@@ -1,22 +1,35 @@
-mixin section(title, desc, url)
-  h3= title
-  p= desc
-  a(href=url target='blank') Learn more
+mixin section(desc, url, img)
+  .section-info
+    block
+    p= desc
+    a(href=url target='blank') Learn more
+  .image
+    if img 
+      img(src=img)
+    else
+      div
 
-+section(
-  'Issue your own privacy coin in minutes',
-  'Run a private ICO, mint anonymous money, create private company shares. Design just about any kind of private asset or financial instrument — in just a couple of minutes.',
-  'http://localhost.com'
-)
-
-+section(
-  'Issue your own privacy coin in minutes',
-  'Run a private ICO, mint anonymous money, create private company shares. Design just about any kind of private asset or financial instrument — in just a couple of minutes.',
-  'http://localhost.com'
-)
-
-+section(
-  'Be a miner and earn coins',
-  'Incognito is a privacy blockchain. Help build the first private browser for the decentralized web.',
-  'http://localhost.com'
-)
+#readmore-container
+  .section1.container
+    +section(
+      'Run a private ICO, mint anonymous money, create private company shares. Design just about any kind of private asset or financial instrument — in just a couple of minutes.',
+      '#',
+      require('../image/section1.png')
+    )
+      h3 Issue your own privacy coin 
+        span.highlight in minutes
+  .section2.container
+    +section(
+      'Run a private ICO, mint anonymous money, create private company shares. Design just about any kind of private asset or financial instrument — in just a couple of minutes.',
+      '#',
+       require('../image/section2.png')
+    )
+      h3 Make your crypto 
+        span.highlight incognito
+  .section3.container
+    div.wrapper.container
+      +section(
+        'Incognito is a privacy blockchain. Help build the first private browser for the decentralized web.',
+        '#'
+      )
+        h3 Be a miner and earn coins
