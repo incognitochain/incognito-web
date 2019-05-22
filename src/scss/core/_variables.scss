@@ -1,0 +1,34 @@
+// colors
+$green: #02F32E;
+$white: white;
+$black: black;
+$black1: #20252B;
+$black2: #2A3036;
+$black3: #30353B;
+$grey: #BBBFC4;
+$grey-light: #B2B7BD;
+
+$background-color: $black;
+$text-color: $grey;
+$btn-background-color: linear-gradient(90deg, #05FA5B 0%, #02F32E 100%);
+$btn-text-color: #131413;
+
+// spacing
+$breakpoint-xs: 0px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+$page-width: 1440px;
+$page-padding: 200px;
+
+$btn-height: 64px;
+$input-height: $btn-height;
+
+// font
+$default-font-size: 16px;
+$default-font: 'Source Code Pro', monospace;
+$space-mono-font: 'Space Mono', monospace;
+
+// decor

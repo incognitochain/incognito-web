@@ -26,7 +26,16 @@ const devConfig = {
     { 
       test: /\.pug$/,
       use: ['pug-loader']
-    }]
+    },
+    {
+      test: /\.(png|jpe?g|gif|svg)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {},
+        },
+      ],
+    },]
   }
 };
 
@@ -58,6 +67,16 @@ const prodConfig = {
     { 
       test: /\.pug$/,
       use: ['pug-loader']
+    },{
+      test: /\.(png|jpe?g|gif|svg)$/,
+      use: [
+        {
+          loader: 'file-loader',
+          options: {
+            name: 'images/[hash:7].[ext]',
+          },
+        },
+      ],
     }]
   }
 };
