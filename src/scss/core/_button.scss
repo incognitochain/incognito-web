@@ -1,0 +1,22 @@
+@import 'variables';
+
+@mixin button {
+  height: $btn-height;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 20px;
+  font-family: $default-font;
+  border: none;
+  padding: 0px 23px;
+  background: $btn-background-color;
+  color: $btn-text-color;
+  cursor: pointer;
+
+  &:hover {
+    
+  }
+}
+
+button {
+  @include button;
+}

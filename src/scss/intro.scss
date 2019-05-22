@@ -1,0 +1,62 @@
+@import 'core/variables';
+@import 'core/utils';
+
+#intro-container {
+  background-color: $black2;
+  display: flex;
+  color: $white;
+  padding-top: 145px;
+  padding-bottom: 145px;
+  
+  div.image {
+    width: calc(380px + 95px);
+    > img {
+      width: 380px;
+    }
+  }
+  div.intro {
+    flex: 1;
+    h1.title {
+      font-family: $space-mono-font;
+      font-size: 42px;
+      color: $green;
+      letter-spacing: 0;
+      line-height: 0px;
+      margin-bottom: 42px;
+
+    }
+    p.sub-title  {
+      font-size: 24px;
+      letter-spacing: -1px;
+      line-height: 34px;
+      span.crypto-name {
+        color: $white;
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
+    div.email-subscribe {
+      margin-top: 48px;
+      margin-bottom: 48px;
+      display: flex;
+
+      #email-input{
+        margin-right: 14px;
+        flex: 1;
+      }
+      button.submit-email {
+        width: 185px;
+      }
+    }
+    
+    ul {
+      li {
+        font-family: SourceCodePro-Regular;
+        font-size: 16px;
+        color: #BBBFC4;
+        letter-spacing: -1px;
+        line-height: 34px;
+      }
+    }
+  }
+}

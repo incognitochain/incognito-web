@@ -1,0 +1,13 @@
+@import 'variables';
+
+ul {
+  li {
+    list-style: none;
+    &:before {
+      content: '>';
+      margin-left: -20px;
+      margin-right: 10px;
+      color: $green;
+      }
+  }
+}
