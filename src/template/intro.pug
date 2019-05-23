@@ -1,3 +1,9 @@
+mixin list(tailDesc)
+  li
+    block
+    | 
+    span= tailDesc
+
 div#intro-container.container
   div.image
     img(src=require('../image/coolphone.png'))
@@ -8,14 +14,20 @@ div#intro-container.container
       span.crypto-name Bitcoin
       |
       |privately. <br/>
-      |Switch to incognito mode.
+      |Your privacy, made simple.
 
     form(onsubmit='return false;').email-subscribe
       input(placeholder='Enter your email', required, type='email', pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')#email-input
       button(type='submit').submit-email Count me in
 
     ul
-      li Issue your own incognito coin
-      li Buy native Privacy coin
-      li Mine and earn Privacy coin
-      li Read the whitepaper & open-source code
+      +list('your own privacy token')
+        a.list-url(href='#', target='blank') Issue
+      +list('Privacy token')
+        a.list-url(href='#', target='blank') Buy
+      +list('and earn Privacy token')
+        a.list-url(href='#', target='blank') Mine
+      +list('with the Incognito blockchain')
+        a.list-url(href='#', target='blank') Partner
+      +list('the whitepaper & open-source code')
+        a.list-url(href='#', target='blank') Read
