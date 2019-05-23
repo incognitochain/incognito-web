@@ -10,9 +10,9 @@ div#intro-container.container
       |privately. <br/>
       |Switch to incognito mode.
 
-    .email-subscribe
-      input(placeholder='Enter your email')#email-input
-      button.submit-email Count me in
+    form(onsubmit='return false;').email-subscribe
+      input(placeholder='Enter your email', required, type='email', pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')#email-input
+      button(type='submit').submit-email Count me in
 
     ul
       li Issue your own incognito coin
