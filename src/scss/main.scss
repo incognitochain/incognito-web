@@ -21,13 +21,27 @@ html, body {
   margin: 0px;
   padding: 0px;
   font-size: $default-font-size;
+
+  min-width: 400px;
 }
 
 .container {
   max-width: $page-width;
   margin: 0px auto;
 
-  @include breakpoint-up(lg) {
+  @include breakpoint-up(xl) {
     padding: 0px 198px;
+  };
+
+  @include breakpoint-down(xl) {
+    padding: 0px 158px;
+  };
+
+  @include breakpoint-down(md) {
+    padding: 0px 100px;
+  };
+
+  @include breakpoint-down(sm) {
+    padding: 0px 30px;
   };
 }

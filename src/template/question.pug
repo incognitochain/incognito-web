@@ -3,11 +3,12 @@ mixin question(ques, ans)
     span.question= ques
     span.answer= ans
 
-#question-container.container
-  .label
-    h3 Frequenly asked question
-  .content
-    +question('What are the supported cryptocurrencies?', 'The treasure box is supporting BTC, ETH and CONST.')
-    +question('What are the supported cryptocurrencies?', 'The treasure box is supporting BTC, ETH and CONST.')
-    +question('What are the supported cryptocurrencies?', 'The treasure box is supporting BTC, ETH and CONST.')
-    +question('What are the supported cryptocurrencies?', 'The treasure box is supporting BTC, ETH and CONST.')
+#question-container
+  .container
+    .label
+      h3 Frequenly asked question
+    .content
+      +question('What are the supported cryptocurrencies?', 'The treasure box is supporting BTC, ETH and CONST.')
+      +question('What are the supported cryptocurrencies?', 'The treasure box is supporting BTC, ETH and CONST.')
+      +question('What are the supported cryptocurrencies?', 'The treasure box is supporting BTC, ETH and CONST.')
+      +question('What are the supported cryptocurrencies?', 'The treasure box is supporting BTC, ETH and CONST.')

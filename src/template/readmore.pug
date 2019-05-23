@@ -1,16 +1,17 @@
 mixin section(desc, url, img)
-  .section-info
-    block
-    p= desc
-    a(href=url target='blank') Learn more
-  .image
-    if img 
-      img(src=img)
-    else
-      div
+  .container
+    .section-info
+      block
+      p= desc
+      a(href=url target='blank') Learn more
+    .image
+      if img 
+        img(src=img)
+      else
+        div
 
 #readmore-container
-  .section1.container
+  .section1
     +section(
       'Run a private ICO, mint anonymous money, create private company shares. Design just about any kind of private asset or financial instrument — in just a couple of minutes.',
       '#',
@@ -18,7 +19,7 @@ mixin section(desc, url, img)
     )
       h3 Issue your own privacy coin 
         span.highlight in minutes
-  .section2.container
+  .section2
     +section(
       'Switch on private mode for your favorite coins. Private Bitcoin (pBTC) retains the exact value and functionality of Bitcoin — just 100% confidential.',
       '#',
@@ -26,9 +27,8 @@ mixin section(desc, url, img)
     )
       h3 Make your crypto 
         span.highlight incognito
-  .section3.container
-    div.wrapper.container
-      +section(
+  .section3
+    +section(
         'Incognito is a privacy blockchain. Help build the first private browser for the decentralized web.',
         '#'
       )

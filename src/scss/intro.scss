@@ -4,14 +4,23 @@
 #intro-container {
   background-color: $black2;
   display: flex;
+  justify-content: center;
   color: $white;
   padding-top: 145px;
   
   div.image {
-    width: calc(380px + 95px);
+    margin-right: 25px;
     > img {
-      width: 380px;
+      
+      @include breakpoint-up(xl) {
+        width: 380px;
+        margin-right: 70px;
+      };
     }
+
+    @include breakpoint-down(lg) {
+      display: none;
+    };
   }
   div.intro {
     flex: 1;
@@ -46,6 +55,19 @@
       button.submit-email {
         min-width: 185px;
       }
+
+      @include breakpoint-down(md) {
+        flex-direction: column;
+
+        #email-input{
+          margin-right: unset;
+          margin-bottom: 14px;
+          flex: unset;
+        }
+        button.submit-email {
+          min-width: 185px;
+        }
+      };
     }
     
     ul {
