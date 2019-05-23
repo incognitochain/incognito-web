@@ -3,14 +3,15 @@ import { subscribe } from './service';
 const changeCryptoName = ({ listName, timeout }) => {
   const cryptoNameEl = document.querySelector('#intro-container .crypto-name');
   let currentIndex = 1;
+  const classAni = 'flip-ani';
   setInterval(() => {
     cryptoNameEl.innerText = listName[currentIndex++];
 
-    if (cryptoNameEl.classList.contains('flip-ani')) {
-      cryptoNameEl.classList.remove('flip-ani');
+    if (cryptoNameEl.classList.contains(classAni)) {
+      cryptoNameEl.classList.remove(classAni);
     } else {
-      cryptoNameEl.classList.add('flip-ani');
-      setTimeout(() =>  cryptoNameEl.classList.remove('flip-ani'), 500);
+      cryptoNameEl.classList.add(classAni);
+      setTimeout(() =>  cryptoNameEl.classList.remove(classAni), 500);
     }
 
     // reset
@@ -54,5 +55,5 @@ const formHandle = () => {
 }
 
 
-changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'BNB'], timeout: 4000 });
+changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'BNB'], timeout: 2000 });
 formHandle();
