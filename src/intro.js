@@ -1,4 +1,5 @@
 import { subscribe } from './service';
+import { setMessage } from './message_box';
 
 const changeCryptoName = ({ listName, timeout }) => {
   const cryptoNameEl = document.querySelector('#intro-container .crypto-name');
@@ -43,10 +44,10 @@ const formHandle = () => {
 
     subscribe(emailEl.value)
       .then(() => {
-        alert('Subscribed!')
+        setMessage('Your email has been subscribed!')
       })
       .catch((e) => {
-        alert(e.message);
+        setMessage(e.message, 'error');
       })
       .finally(() => {
         submitBtn.innerText = originalBtnText;
