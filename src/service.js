@@ -1,10 +1,8 @@
 export const subscribe = email => {
-  return fetch('https://jsonplaceholder.typicode.com/posts', {
+  return fetch('https://test-api.incognito.org/auth/subscribe', {
     method: 'POST',
     body: JSON.stringify({
-      title: 'foo',
-      body: 'bar',
-      userId: 1
+      Email: email,
     }),
     headers: {
       "Content-type": "application/json; charset=UTF-8"
