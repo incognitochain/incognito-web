@@ -1,0 +1,33 @@
+@import 'core/variables';
+@import 'core/utils';
+
+#message-box {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  transform: translateX(300px);
+  max-width: 300px;
+  transition: all 700ms;
+  border-radius: 0px 0px 0px 4px;
+  opacity: 0;
+
+  &.info {
+    background-color: $green;
+    color: $white;
+  }
+
+  &.error {
+    background-color: $red;
+    color: $white;
+  }
+
+  &.show {
+    transform: translateX(0px);
+    padding: 20px;
+    opacity: 1;
+  }
+
+  .message {
+    color: $white;
+  }
+}
