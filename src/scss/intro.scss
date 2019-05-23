@@ -34,7 +34,7 @@
         text-decoration: underline;
       }
     }
-    div.email-subscribe {
+    form.email-subscribe {
       margin-top: 48px;
       margin-bottom: 48px;
       display: flex;
@@ -44,7 +44,7 @@
         flex: 1;
       }
       button.submit-email {
-        width: 185px;
+        min-width: 185px;
       }
     }
     

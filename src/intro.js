@@ -1,8 +1,9 @@
+import { subscribe } from './service';
+
 const changeCryptoName = ({ listName, timeout }) => {
   const cryptoNameEl = document.querySelector('#intro-container .crypto-name');
   let currentIndex = 1;
   setInterval(() => {
-    debugger
     cryptoNameEl.innerText = listName[currentIndex++];
 
     if (cryptoNameEl.classList.contains('flip-ani')) {
@@ -19,5 +20,39 @@ const changeCryptoName = ({ listName, timeout }) => {
   }, timeout);
 }
 
+const formHandle = () => {
+  const emailEl = document.querySelector('#email-input');
+  const form = document.querySelector('form.email-subscribe');
+  const submitBtn = document.querySelector('button.submit-email');
+
+  emailEl.addEventListener("input", function (event) {
+    if (emailEl.validity.patternMismatch || emailEl.validity.typeMismatch) {
+      emailEl.setCustomValidity("This is not valid email!");
+    } else {
+      emailEl.setCustomValidity("");
+    }
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    //set submit status
+    const originalBtnText = submitBtn.innerText;
+    submitBtn.innerText = 'Sending...';
+
+    subscribe(emailEl.value)
+      .then(() => {
+        alert('Subscribed!')
+      })
+      .catch((e) => {
+        alert(e.message);
+      })
+      .finally(() => {
+        submitBtn.innerText = originalBtnText;
+      });
+  });
+}
+
 
 changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'BNB'], timeout: 4000 });
+formHandle();
