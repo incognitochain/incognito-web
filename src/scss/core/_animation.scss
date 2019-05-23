@@ -1,5 +1,52 @@
+@mixin animated {
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+@keyframes flip {
+  from {
+    transform: rotateX(90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: rotateX( -20deg);
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: rotateX(10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: rotateX(-5deg);
+  }
+
+  to {
+    transform: rotateX(5deg);
+  }
+}
+
 .flip-ani {
-  transform: rotateX(360deg);
-  display: inline-block;
-  transition: all 1000ms;
+  @include animated;
+  animation-name: flip;
+}
+
+@keyframes fadeInLeftBig {
+  from {
+    opacity: 0;
+    transform: translate3d(-2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.fadeInLeftBig-ani {
+  @include animated;
+  animation-name: fadeInLeftBig;
 }
