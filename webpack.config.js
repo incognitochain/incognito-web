@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const devConfig = {
   mode: 'development',
@@ -28,7 +29,7 @@ const devConfig = {
       use: ['pug-loader']
     },
     {
-      test: /\.(png|jpe?g|gif|svg)$/,
+      test: /\.(png|jpe?g|gif|svg|webp)$/,
       use: [
         {
           loader: 'file-loader',
@@ -61,6 +62,7 @@ const prodConfig = {
         use: [
             MiniCssExtractPlugin.loader,
             "css-loader", // translates CSS into CommonJS
+            { loader: 'postcss-loader' },
             "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
     },
@@ -68,7 +70,7 @@ const prodConfig = {
       test: /\.pug$/,
       use: ['pug-loader']
     },{
-      test: /\.(png|jpe?g|gif|svg)$/,
+      test: /\.(png|jpe?g|gif|svg|webp)$/,
       use: [
         {
           loader: 'file-loader',
@@ -78,6 +80,9 @@ const prodConfig = {
         },
       ],
     }]
+  },
+  optimization: {
+    minimizer: [new OptimizeCSSAssetsPlugin({})],
   }
 };
 
