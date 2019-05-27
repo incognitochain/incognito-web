@@ -3,7 +3,10 @@ mixin section(desc, url, img)
     .section-info
       block
       p= desc
-      a(href=url target='blank') Learn more
+      if url
+        a(href=url target='blank') Learn more
+      else
+        
     .image
       if img 
         img(src=img)
@@ -14,19 +17,17 @@ mixin section(desc, url, img)
   .section1
     +section(
       'Run a private ICO, mint anonymous money, create private company shares. Design just about any kind of private asset or financial instrument — in just a couple of minutes.',
-      '#',
-      require('../image/section1.png')
+      '',
+      require('../image/section1.webp')
     )
-      h3 Issue your own privacy coin 
-        span.highlight in minutes
+      h3 Issue your own privacy coin in minutes
   .section2
     +section(
       'Switch on private mode for your favorite coins. Private Bitcoin (pBTC) retains the exact value and functionality of Bitcoin — just 100% confidential.',
-      '#',
-       require('../image/section2.png')
+      '',
+       require('../image/section2.webp')
     )
-      h3 Make your crypto 
-        span.highlight incognito
+      h3 Make your crypto incognito
   .section3
     +section(
         'Incognito is a privacy blockchain. Help build the first private browser for the decentralized web.',
