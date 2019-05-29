@@ -34,19 +34,40 @@
   animation-name: flip;
 }
 
-@keyframes fadeInLeftBig {
+@keyframes bounceInUp {
+  from,
+
+  to {
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
   from {
     opacity: 0;
-    transform: translate3d(-2000px, 0, 0);
+    transform: translate3d(0, 100px, 0);
   }
 
   to {
-    opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
 
-.fadeInLeftBig-ani {
+.bounceInUp-ani {
   @include animated;
-  animation-name: fadeInLeftBig;
+  animation-name: bounceInUp;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn-ani {
+  @include animated;
+  animation-name: fadeIn;
+  animation-duration: 500ms;
 }

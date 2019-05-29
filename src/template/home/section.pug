@@ -1,0 +1,29 @@
+mixin section(subtitle, title, desc)
+  .section
+    .info.container
+      h3.subtitle= subtitle
+      h1.title= title
+      p.desc= desc
+    if block
+      block
+    else
+
+
+#section-container
+  +section(
+    'Privacy',
+    'Zero-knowledge proof without trusted setup',
+    'Incognito uses ring signatures, confidential transactions, and stealth addresses to completely mask the sender, receiver, and amount of any transaction. Zero-knowledge proofs shrink the size of the cryptographic proof from 10kB to less than 1kB.'
+  )
+    img(src=require('../../image/section1.webp'))
+  +section(
+    'Scalability',
+    'High-throughput with parallelized transactions and state sharding',
+    'Incognito is a high-throughput blockchain network that achieves over 5,000 transactions, made possible by the implementation of both parallelized transactions and state sharding. It is designed to scale linearly along with the number of miners.'
+  )
+    img.container(src=require('../../image/section2.webp'))
+  +section(
+    'Mining',
+    'Mine anywhere. Use any device of your choice.',
+    'Anyone can mine Privacy. No expensive hardware is required. If you have an internet connection and a basic computer, you can strengthen the Incognito network by becoming a miner and mining Privacy Coin. Incognito is designed to operate with no central authority; transaction management is carried out collectively by the miners of the network.'
+  )

@@ -7,4 +7,10 @@ const collapse = e => {
   }
 };
 
-window.collapse = collapse;
+const els = document.querySelectorAll('.collapse');
+
+
+els && els.forEach(item => {
+  const handleClick = () => collapse(item);
+  item.addEventListener('click', handleClick);
+});

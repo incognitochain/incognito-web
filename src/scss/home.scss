@@ -1,0 +1,246 @@
+@import 'core/variables';
+@import 'core/utils';
+
+#intro-container {
+  background-color: $black2;
+  display: flex;
+  justify-content: center;
+  color: $white;
+  padding-top: 63px;
+  
+  div.image {
+    margin-top: 106px;
+    margin-right: 25px;
+    > img {
+      
+      @include breakpoint-up(xl) {
+        width: 380px;
+        margin-right: 70px;
+      };
+    }
+
+    @include breakpoint-down(lg) {
+      display: none;
+    };
+  }
+  div.intro {
+    flex: 1;
+    h3.highlight-title {
+      font-family: $space-mono-font;
+      font-size: 24px;
+      color: $green;
+      letter-spacing: 0;
+      margin-bottom: 63px;
+      margin-top: 0px;
+    }
+
+    h1.title {
+      font-size: 36px;
+      color: $white;
+      margin-bottom: 42px;
+      margin: 0px;
+      letter-spacing: -1.5px;
+      line-height: 49px;
+      span.crypto-name {
+        display: inline-block;
+        color: inherit;
+        text-decoration: underline;
+      }
+    }
+
+    p.sub-title  {
+      font-size: 18px;
+      font-family: $sourcecode-pro-font;
+      font-size: 18px;
+      letter-spacing: -0.75px;
+      line-height: 27px;
+    }
+    form.email-subscribe {
+      margin-top: 48px;
+      margin-bottom: 48px;
+      display: flex;
+
+      #email-input{
+        margin-right: 14px;
+        flex: 1;
+      }
+      button.submit-email {
+        min-width: 185px;
+      }
+
+      @include breakpoint-down(md) {
+        flex-direction: column;
+
+        #email-input{
+          margin-right: unset;
+          margin-bottom: 14px;
+          flex: unset;
+        }
+        button.submit-email {
+          min-width: 185px;
+        }
+      };
+    }
+    
+    ul {
+      li {
+        font-family: $sourcecode-pro-font;
+        font-size: 16px;
+        color: #BBBFC4;
+        letter-spacing: -1px;
+        line-height: 34px;
+
+        >a.list-url {
+          font-weight: 'bold';
+          color: $white;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+
+#question-container {
+  background-color: $white;
+  > div {
+    display: flex;
+    color: $white;
+    padding-bottom: 170px;
+    padding-top: 107px;
+
+    > div.label {
+      flex: 1;
+      h3 {
+        font-weight: bold;
+        font-size: 42px;
+        color: $black2;
+        letter-spacing: -0.5px;
+        line-height: 48px;
+        margin-top: 20px;
+      }
+    }
+    > div.content {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+
+      div.question-container {
+        padding: 20px 0px;
+        border-bottom: dotted 1px $grey-light;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+
+        &::before {
+          content: '>';
+          color: $black1;
+          position: relative;
+          left: -20px;
+          top: 25px;
+        }
+
+        &.show-collapse {
+          &::before {
+            content: 'v';
+          }
+
+          span.question {
+            color: $black1;
+          }
+
+          span.answer {
+            max-height: 500px;
+          }
+        }
+
+
+        &:hover {
+          span.question {
+            font-weight: bold;
+            color: $green;
+          }
+        }
+
+        span.question {
+          font-size: 18px;
+          font-weight: bold;
+          color: $black1;
+          letter-spacing: -0.5px;
+          line-height: 26px;
+          transition: all 500ms;
+        }
+
+        span.answer {
+          font-size: 18px;
+          color: $grey1;
+          letter-spacing: -0.5px;
+          line-height: 26px;
+          margin-top: 10px;
+          max-height: 0px;
+          overflow: hidden;
+          transition: all 500ms;
+        }
+      }
+    }
+  }
+}
+
+#section-container {
+  padding-top: 77px;
+  padding-bottom: 100px;
+  background-color: $white;
+  >div.section {
+    padding-bottom: 77px;
+    text-align: center;
+
+    .info {
+      max-width: 50%;
+      h3, h1, span, p {
+        color: $black;
+      }
+  
+      h3.subtitle {
+        font-size: 12px;
+        color: $black2;
+        text-align: center;
+        line-height: 46px;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+  
+        &::after {
+          content: '';
+          width: 30px;
+          height: 1px;
+          background-color: $black2;
+        }
+      }
+  
+      h3.title {
+        font-family: $sourcecode-pro-font;
+        font-weight: bold;
+        font-size: 32px;
+        color: $black2;
+        letter-spacing: -0.38px;
+        text-align: center;
+        line-height: 45px;
+      }
+  
+      p.desc {
+        font-size: 18px;
+        color: $black2;
+        letter-spacing: 0;
+        text-align: center;
+        line-height: 28px;
+      }
+    }
+
+    > img {
+      padding-top: 77px;
+      margin: 40px;
+    }
+  }
+}
