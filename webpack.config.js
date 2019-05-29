@@ -4,16 +4,23 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+const templateGen = [
+  new HtmlWebpackPlugin({
+    template: 'src/template/home/index.pug',
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/referral/index.pug',
+    filename: 'referral.html'
+  }),
+];
+
 const devConfig = {
   mode: 'development',
   devServer: {
     contentBase: './dist'
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Development',
-      template: path.resolve(__dirname, './src/template/index.pug')
-    }),
+    ...templateGen
   ],
   module: {
     rules: [{
@@ -21,6 +28,7 @@ const devConfig = {
         use: [
             "style-loader",
             "css-loader", // translates CSS into CommonJS
+            { loader: 'postcss-loader' },
             "sass-loader" // compiles Sass to CSS, using Node Sass by default
         ]
     },
@@ -45,16 +53,13 @@ const prodConfig = {
   plugins: [
     // new CleanWebpackPlugin(['dist/*']) for < v2 versions of CleanWebpackPlugin
     new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Development',
-      template: path.resolve(__dirname, './src/template/index.pug')
-    }),
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
       filename: "[name].css",
       chunkFilename: "[id].css"
-    })
+    }),
+    ...templateGen
   ],
   module: {
     rules: [{
@@ -90,7 +95,7 @@ const prodConfig = {
     const isProduction = (argv.mode === 'production');
 
     return {
-      entry: path.resolve(__dirname, './src/index.js'),
+      entry: path.resolve(__dirname, './src/js/index.js'),
       devtool: 'inline-source-map',
       output: {
         filename: '[name].bundle.js',

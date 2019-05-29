@@ -6,9 +6,7 @@
 @import 'core/utils';
 @import 'core/font';
 @import 'core/animation';
-@import './intro.scss';
-@import './readmore.scss';
-@import './question.scss';
+@import './home.scss';
 @import './message_box.scss';
 
 * {
@@ -24,6 +22,7 @@ html, body {
   font-size: $default-font-size;
 
   min-width: 400px;
+  transition: background-color 300ms;
 }
 
 .container {
@@ -47,6 +46,6 @@ html, body {
   };
 }
 
-.visible-effect {
-  // transition: all 500ms;
+.scroll-action-btn {
+  cursor: pointer;
 }

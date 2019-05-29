@@ -1,11 +1,11 @@
-import { subscribe } from './service';
-import { setMessage } from './message_box';
+import { subscribe } from '../service/api';
+import { setMessage } from '../service/message_box';
 
 const changeCryptoName = ({ listName, timeout }) => {
   const cryptoNameEl = document.querySelector('#intro-container .crypto-name');
   let currentIndex = 1;
   const classAni = 'flip-ani';
-  setInterval(() => {
+  cryptoNameEl && setInterval(() => {
     cryptoNameEl.innerText = listName[currentIndex++];
 
     if (cryptoNameEl.classList.contains(classAni)) {
@@ -27,7 +27,7 @@ const formHandle = () => {
   const form = document.querySelector('form.email-subscribe');
   const submitBtn = document.querySelector('button.submit-email');
 
-  emailEl.addEventListener("input", function (event) {
+  emailEl && emailEl.addEventListener("input", function (event) {
     if (emailEl.validity.patternMismatch || emailEl.validity.typeMismatch) {
       emailEl.setCustomValidity("This is not valid email!");
     } else {
@@ -35,7 +35,7 @@ const formHandle = () => {
     }
   });
 
-  form.addEventListener('submit', (e) => {
+  form && form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     //set submit status
@@ -56,5 +56,5 @@ const formHandle = () => {
 }
 
 
-changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'BNB'], timeout: 2000 });
+changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'BNB'], timeout: 5000 });
 formHandle();

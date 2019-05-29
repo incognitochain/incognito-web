@@ -1,12 +1,10 @@
 doctype html  
 html(lang='en')  
  head
-    title Incognito
+    block title
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
- body
-   include intro.pug
-   include readmore.pug
-   include question.pug
+ body(style='opacity: 0').fadeIn-ani
+   block content
    include message_box.pug
