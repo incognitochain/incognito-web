@@ -18,6 +18,10 @@
 }
 
 html, body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
   background-color: $background-color;
   margin: 0px;
   padding: 0px;
@@ -25,7 +29,13 @@ html, body {
 
   min-width: 400px;
   transition: background-color 300ms;
+
+
+  div#content {
+    flex: 1
+  }
 }
+
 
 .container {
   max-width: $page-width;
