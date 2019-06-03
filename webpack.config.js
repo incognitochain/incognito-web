@@ -13,6 +13,10 @@ const templateGen = [
     template: 'src/template/referral/index.pug',
     filename: 'referral.html'
   }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/about/index.pug',
+    filename: 'about.html'
+  }),
 ];
 
 const production = process.env.NODE_ENV === 'production';
