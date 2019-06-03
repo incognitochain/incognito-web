@@ -1,7 +1,7 @@
 import { getErrorMessage } from './errorHandler';
 
 export const subscribe = email => {
-  return fetch('https://test-api.incognito.org/auth/subscribe', {
+  return fetch(`${APP_ENV.BASE_API_URL}/auth/subscribe`, {
     method: 'POST',
     body: JSON.stringify({
       Email: email,
