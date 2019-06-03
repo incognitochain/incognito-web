@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const webpack = require('webpack');
 
 const templateGen = [
   new HtmlWebpackPlugin({
@@ -14,13 +15,22 @@ const templateGen = [
   }),
 ];
 
+const production = process.env.NODE_ENV === 'production';
+const env = production ? require('./.env.production') : require('./.env.development');
+
 const devConfig = {
   mode: 'development',
   devServer: {
     contentBase: './dist'
   },
   plugins: [
-    ...templateGen
+    ...templateGen,
+    new webpack.DefinePlugin({
+      APP_ENV: JSON.stringify({
+        ...env,
+        production
+      }),
+    }),
   ],
   module: {
     rules: [{
@@ -59,6 +69,12 @@ const prodConfig = {
       filename: "[name].css",
       chunkFilename: "[id].css"
     }),
+    new webpack.DefinePlugin({
+      APP_ENV: JSON.stringify({
+        ...env,
+        production
+      }),
+    }),
     ...templateGen
   ],
   module: {
@@ -91,16 +107,12 @@ const prodConfig = {
   }
 };
 
-  module.exports = (env, argv) => {
-    const isProduction = (argv.mode === 'production');
-
-    return {
-      entry: path.resolve(__dirname, './src/js/index.js'),
-      devtool: 'inline-source-map',
-      output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist')
-      },
-      ...isProduction ? prodConfig : devConfig
-    };
+  module.exports = {
+    entry: path.resolve(__dirname, './src/js/index.js'),
+    devtool: 'inline-source-map',
+    output: {
+      filename: '[name].bundle.js',
+      path: path.resolve(__dirname, 'dist')
+    },
+    ...production ? prodConfig : devConfig
   };
