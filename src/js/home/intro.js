@@ -56,5 +56,5 @@ const formHandle = () => {
 }
 
 
-changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'BNB'], timeout: 5000 });
+changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'BNB'], timeout: 2000 });
 formHandle();
