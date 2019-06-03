@@ -7,6 +7,10 @@
   justify-content: center;
   color: $white;
   padding-top: 100px;
+
+  @include breakpoint-down(lg) {
+    padding-top: 50px;
+  };
   
   div.image {
     margin-right: 25px;
@@ -30,7 +34,6 @@
     padding-bottom: 100px;
     > div {
       h3.highlight-title {
-        font-family: $space-mono-font;
         font-size: 24px;
         color: $green;
         letter-spacing: 0;
@@ -54,7 +57,6 @@
       }
   
       p.sub-title  {
-        font-family: $sourcecode-pro-font;
         font-size: 20px;
         letter-spacing: -0.75px;
         line-height: 28px;
@@ -91,7 +93,6 @@
       
       ul {
         li {
-          font-family: $sourcecode-pro-font;
           font-size: 16px;
           color: #BBBFC4;
           letter-spacing: -1px;
@@ -132,6 +133,12 @@
     padding-bottom: 170px;
     padding-top: 107px;
 
+    @include breakpoint-down(lg) {
+      flex-direction: column;
+      padding-top: 20px;
+      padding-bottom: 70px;
+    };
+
     > div.label {
       flex: 1;
       h3 {
@@ -141,6 +148,12 @@
         letter-spacing: -0.5px;
         line-height: 48px;
         margin-top: 20px;
+
+        @include breakpoint-down(lg) {
+          font-size: 36px;
+          line-height: 40px;
+          margin: 0px;
+        };
       }
     }
     > div.content {
@@ -213,6 +226,12 @@
   padding-top: 77px;
   padding-bottom: 100px;
   background-color: $white;
+
+  @include breakpoint-down(lg) {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  };
+
   >div.section {
     padding-bottom: 77px;
     text-align: center;
@@ -258,7 +277,6 @@
       }
   
       h3.title {
-        font-family: $sourcecode-pro-font;
         font-weight: bold;
         font-size: 32px;
         color: $black2;
