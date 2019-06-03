@@ -24,77 +24,89 @@
     };
   }
   div.intro {
+    display: flex;
     flex: 1;
-    h3.highlight-title {
-      font-family: $space-mono-font;
-      font-size: 24px;
-      color: $green;
-      letter-spacing: 0;
-      margin-bottom: 63px;
-      margin-top: 0px;
-    }
-
-    h1.title {
-      font-size: 36px;
-      color: $white;
-      margin-bottom: 42px;
-      margin: 0px;
-      letter-spacing: -1.5px;
-      line-height: 49px;
-      span.crypto-name {
-        display: inline-block;
-        color: inherit;
-        text-decoration: underline;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 100px;
+    > div {
+      h3.highlight-title {
+        font-family: $space-mono-font;
+        font-size: 24px;
+        color: $green;
+        letter-spacing: 0;
+        margin-bottom: 63px;
+        margin-top: 0px;
       }
-    }
-
-    p.sub-title  {
-      font-size: 18px;
-      font-family: $sourcecode-pro-font;
-      font-size: 18px;
-      letter-spacing: -0.75px;
-      line-height: 27px;
-    }
-    form.email-subscribe {
-      margin-top: 48px;
-      margin-bottom: 48px;
-      display: flex;
-
-      #email-input{
-        margin-right: 14px;
-        flex: 1;
+  
+      h1.title {
+        font-size: 42px;
+        color: $white;
+        margin-bottom: 42px;
+        margin: 0px;
+        letter-spacing: -1.5px;
+        line-height: 50px;
+        span.crypto-name {
+          display: inline-block;
+          color: inherit;
+          text-decoration: underline;
+        }
       }
-      button.submit-email {
-        min-width: 185px;
+  
+      p.sub-title  {
+        font-family: $sourcecode-pro-font;
+        font-size: 20px;
+        letter-spacing: -0.75px;
+        line-height: 28px;
       }
-
-      @include breakpoint-down(md) {
-        flex-direction: column;
-
+      form.email-subscribe {
+        margin-top: 48px;
+        margin-bottom: 48px;
+        display: flex;
+  
         #email-input{
-          margin-right: unset;
-          margin-bottom: 14px;
-          flex: unset;
+          margin-right: 14px;
+          flex: 1;
         }
         button.submit-email {
           min-width: 185px;
         }
-      };
-    }
-    
-    ul {
-      li {
-        font-family: $sourcecode-pro-font;
-        font-size: 16px;
-        color: #BBBFC4;
-        letter-spacing: -1px;
-        line-height: 34px;
-
-        >a.list-url {
-          font-weight: 'bold';
-          color: $white;
-          text-decoration: underline;
+  
+        @include breakpoint-down(md) {
+          flex-direction: column;
+  
+          #email-input{
+            margin-right: unset;
+            margin-bottom: 14px;
+            flex: unset;
+          }
+          button.submit-email {
+            min-width: 185px;
+          }
+        };
+      }
+      
+      ul {
+        li {
+          font-family: $sourcecode-pro-font;
+          font-size: 16px;
+          color: #BBBFC4;
+          letter-spacing: -1px;
+          line-height: 34px;
+  
+          >a.list-url {
+            font-weight: 'bold';
+            color: $white;
+            text-decoration: underline;
+          }
         }
+      }
+    }
+    .action-btn {
+      .arrow {
+        transform: rotate(180deg);
+        display: inline-block;
+        margin-right: 10px;
       }
     }
   }
@@ -195,7 +207,7 @@
     text-align: center;
 
     .info {
-      max-width: 50%;
+      max-width: 1000px;
       h3, h1, span, p {
         color: $black;
       }
@@ -240,7 +252,6 @@
 
     > img {
       padding-top: 77px;
-      margin: 40px;
     }
   }
 }
