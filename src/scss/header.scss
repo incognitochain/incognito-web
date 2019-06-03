@@ -88,7 +88,8 @@ nav#header {
         transition: transform 300ms;
 
         > a.menu-item {
-          margin: 10px 10px 10px 30px;
+          padding: 10px;
+          margin-right: 30px;
 
           &::before {
             margin-right: 10px;

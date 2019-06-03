@@ -47,11 +47,11 @@ html, body {
   };
 
   @include breakpoint-down(xl) {
-    padding: 0px 158px;
+    padding: 0px 120px;
   };
 
   @include breakpoint-down(md) {
-    padding: 0px 100px;
+    padding: 0px 50px;
   };
 
   @include breakpoint-down(sm) {
