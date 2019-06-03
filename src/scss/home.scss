@@ -47,6 +47,7 @@
         letter-spacing: -1.5px;
         line-height: 50px;
         span.crypto-name {
+          width: 190px;
           display: inline-block;
           color: inherit;
           text-decoration: underline;
@@ -107,6 +108,14 @@
         transform: rotate(180deg);
         display: inline-block;
         margin-right: 10px;
+        transition: margin 300ms, color 500ms, transform 200ms;
+      }
+      &:hover {
+        .arrow {
+          transform: rotate(180deg) scaleX(2);
+          color: $green;
+          margin-right: 20px;
+        }
       }
     }
   }
