@@ -59,6 +59,9 @@
         font-size: 20px;
         letter-spacing: -0.75px;
         line-height: 28px;
+        .highlight {
+          color: $white;
+        }
       }
       form.email-subscribe {
         margin-top: 48px;
@@ -215,8 +218,23 @@
     padding-bottom: 77px;
     text-align: center;
 
-    .info {
+    .info, .stack {
       max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .stack {
+      a.stack-item {
+        transition: color 300ms;
+
+        &:hover {
+          color: $green;
+        }
+      }
+    }
+
+    .info {
       h3, h1, span, p {
         color: $black;
       }
