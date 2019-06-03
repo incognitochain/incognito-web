@@ -6,22 +6,27 @@ div#intro-container.container.bounceInUp-ani
   div.image
     img(src=require('../../image/coolphone.webp'))
   div.intro
-    h3.highlight-title Incognito
-    h1.title
-      |Send 
-      span.crypto-name Bitcoin
-      |  privately.
-    p.sub-title Incognito is a privacy blockchain that allows you to access other blockchains in incognito mode.
-    p.sub-title Now you can store, send and receive all your crypto assets — with total privacy. You can even mint your own privacy-protecting digital token.
-    p.sub-title Oh and it’s fast.
+    div
+      h3.highlight-title Incognito
+      h1.title
+        |Send 
+        span.crypto-name Bitcoin
+        |  privately.
+      p.sub-title Incognito is a privacy blockchain that allows you to access other blockchains in incognito mode.
+      p.sub-title Now you can store, send and receive all your crypto assets — with total privacy. You can even mint your own privacy-protecting digital token.
+      p.sub-title Oh and it’s fast.
 
-    form(onsubmit='return false;').email-subscribe
-      input(placeholder='Enter your email', required, type='email', pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')#email-input
-      button(type='submit').submit-email Get early access
+      form(onsubmit='return false;').email-subscribe
+        input(placeholder='Enter your email', required, type='email', pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')#email-input
+        button(type='submit').submit-email Get early access
 
-    ul
-      +list('Issue your own privacy token')
-      +list('Buy Privacy token')
-      +list('Mine and earn Privacy token')
-      +list('Partner with the Incognito blockchain')
-      +list('Read the whitepaper & open-source code')
+      //- ul
+      //-   +list('Issue your own privacy token')
+      //-   +list('Buy Privacy token')
+      //-   +list('Mine and earn Privacy token')
+      //-   +list('Partner with the Incognito blockchain')
+      //-   +list('Read the whitepaper & open-source code')
+
+    span.action-btn.scroll-action-btn(data-scroll-to='#section-container')
+      span.arrow &#8593; 
+      | Built on cool science
