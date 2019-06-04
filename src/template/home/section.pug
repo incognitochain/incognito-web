@@ -27,6 +27,7 @@ mixin stacklist(name, list)
       { name: 'Federation', link: 'https://cosmos.network' },
       { name: 'Bridges', link: 'https://blog.kyber.network/waterloo-a-decentralized-practical-bridge-between-eos-and-ethereum-1c230ac65524' }
     ])
+    img.container(src=require('../../image/section3.webp')).visible-effect
 
   +section(
     'Privacy',
@@ -39,6 +40,7 @@ mixin stacklist(name, list)
       { name: 'Zero-Knowledge Proofs', link: 'http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.419.8132&rep=rep1&type=pdf' }
     ])
     img(src=require('../../image/section1.webp')).visible-effect
+
   +section(
     'Scalability',
     'High-throughput with parallelized transactions and state sharding',
