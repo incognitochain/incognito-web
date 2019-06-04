@@ -18,11 +18,22 @@ mixin stacklist(name, list)
       
 #section-container
   +section(
+    'Sidechain',
+    'Activate incognito mode for any blockchain',
+    'Incognito is a privacy sidechain. It can be attached to any blockchain to conduct confidential asset transfer. The Incognito sidechain runs parallel to main blockchains, allowing for secure two-way transfers of crypto assets whenever privacy is needed.'
+  )
+    +stacklist('Related work', [
+      { name: 'Sidechain', link: 'https://blockstream.com/sidechains.pdf' },
+      { name: 'Federation', link: 'https://cosmos.network' },
+      { name: 'Bridges', link: 'https://blog.kyber.network/waterloo-a-decentralized-practical-bridge-between-eos-and-ethereum-1c230ac65524' }
+    ])
+
+  +section(
     'Privacy',
     'Zero-knowledge proof without trusted setup',
-    'Incognito uses ring signatures, confidential transactions, and stealth addresses to completely mask the sender, receiver, and amount of any transaction. Zero-knowledge proofs shrink the size of the cryptographic proof from 10kB to less than 1kB.'
+    'Incognito uses linkable ring signatures, stealth addresses, and confidential transactions to completely mask the sender, receiver, and amount of any transaction. Advanced techniques in zero-knowledge proofs, such as Bulletproofs, are employed to reduce transaction size.'
   )
-    +stacklist('Privacy Stack', [
+    +stacklist('Related work', [
       { name: 'CryptoNote', link: 'https://cryptonote.org/whitepaper.pdf' },
       { name: 'Bulletproofs', link: 'https://eprint.iacr.org/2017/1066.pdf' },
       { name: 'Zero-Knowledge Proofs', link: 'http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.419.8132&rep=rep1&type=pdf' }
@@ -31,20 +42,11 @@ mixin stacklist(name, list)
   +section(
     'Scalability',
     'High-throughput with parallelized transactions and state sharding',
-    'Incognito is a high-throughput blockchain network that achieves over 5,000 transactions, made possible by the implementation of both parallelized transactions and state sharding. It is designed to scale linearly along with the number of miners.'
+    'Incognito is a high-throughput blockchain network, made possible by the implementation of both parallelized transactions and state sharding. It is designed to scale linearly with increasing numbers of miners.'
   )
-    +stacklist('Scalability Stack', [
+    +stacklist('Related work', [
       { name: 'OmniLedger', link: 'https://eprint.iacr.org/2017/406.pdf' },
       { name: 'libp2p', link: 'https://github.com/libp2p/specs' },
       { name: 'pBFT', link: 'http://pmg.csail.mit.edu/papers/osdi99.pdf' }
     ])
     img.container(src=require('../../image/section2.webp')).visible-effect
-  +section(
-    'Mining',
-    'Mine anywhere. Use any device of your choice.',
-    'Anyone can mine Privacy. No expensive hardware is required. If you have an internet connection and a basic computer, you can strengthen the Incognito network by becoming a miner and mining Privacy Coin. Incognito is designed to operate with no central authority; transaction management is carried out collectively by the miners of the network.'
-  )
-    +stacklist('Mining Stack', [
-      { name: 'Proof of Stake', link: 'https://bitcointalk.org/index.php?topic=27787.0' },
-      { name: 'Randao', link: 'https://www.randao.org/whitepaper/Randao_v0.85_en.pdf' }
-    ])

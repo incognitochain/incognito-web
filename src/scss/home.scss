@@ -18,7 +18,7 @@
       
       @include breakpoint-up(xl) {
         width: 380px;
-        margin-right: 70px;
+        margin-right: 40px;
       };
     }
 
@@ -31,7 +31,7 @@
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 100px;
+    padding-bottom: 30px;
     > div {
       h3.highlight-title {
         font-size: 24px;
@@ -48,8 +48,17 @@
         margin: 0px;
         letter-spacing: -1.5px;
         line-height: 50px;
+        
+
+        @include breakpoint-up(lg) {
+          white-space: nowrap;
+        };
+
         span.crypto-name {
-          width: 190px;
+          @include breakpoint-down(lg) {
+            width: 190px;
+            text-align: center;
+          };
           display: inline-block;
           color: inherit;
           text-decoration: underline;
@@ -108,14 +117,14 @@
     }
     .action-btn {
       .arrow {
-        transform: rotate(180deg);
+        transform: rotate(180deg) scale(1, 1.7);
         display: inline-block;
         margin-right: 10px;
         transition: margin 300ms, color 500ms, transform 200ms;
       }
       &:hover {
         .arrow {
-          transform: rotate(180deg) scaleX(2);
+          transform: rotate(180deg) scale(2, 1.7);
           color: $green;
           margin-right: 20px;
         }
