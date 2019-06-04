@@ -5,7 +5,7 @@
   #about-intro {
     padding-top: 100px;
     padding-bottom: 100px;
-    text-align: center;
+    text-align: left;
 
     @include breakpoint-down(md) {
       padding-top: 50px;
@@ -26,6 +26,10 @@
       @include breakpoint-down(md) {
         font-size: 34px;
       };
+    }
+
+    p.desc {
+      font-size: 18px;
     }
   }
 
