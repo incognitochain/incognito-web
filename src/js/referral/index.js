@@ -1,6 +1,14 @@
 import storage from '../service/storage';
 import KEYS from "../constant/keys";
 
+const checkAuth = () => {
+  const token = storage.get(KEYS.TOKEN);
+
+  if (!token && location.pathname.includes('/referral.html')) {
+    location.pathname = '/';
+  }
+}
+
 const getUserReferralUrl = () => {
   const code = storage.get(KEYS.MY_REFERRAL_CODE);
   if (!code) return undefined;
@@ -10,6 +18,8 @@ const getUserReferralUrl = () => {
 }
 
 const main = () => {
+  checkAuth();
+
   const container = document.querySelector('#referral-intro');
   if (!container) return;
 
