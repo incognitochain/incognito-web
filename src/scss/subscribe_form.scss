@@ -1,0 +1,26 @@
+form#email-subscribe {
+  margin-top: 48px;
+  margin-bottom: 48px;
+  display: flex;
+
+  #email-input{
+    margin-right: 14px;
+    flex: 1;
+  }
+  button.submit-email {
+    min-width: 185px;
+  }
+
+  @include breakpoint-down(md) {
+    flex-direction: column;
+
+    #email-input{
+      margin-right: unset;
+      margin-bottom: 14px;
+      flex: unset;
+    }
+    button.submit-email {
+      min-width: 185px;
+    }
+  };
+}
