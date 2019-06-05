@@ -1,4 +1,8 @@
-const collapse = e => {
+/**
+ * required class: '.collapse'
+ */
+
+ const collapse = e => {
   const className = 'show-collapse';
   if (e.classList.contains(className)) {
     e.classList.remove(className);
@@ -8,7 +12,6 @@ const collapse = e => {
 };
 
 const els = document.querySelectorAll('.collapse');
-
 
 els && els.forEach(item => {
   const handleClick = () => collapse(item);

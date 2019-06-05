@@ -1,0 +1,12 @@
+mixin question(ques, ans)
+  .question-container.collapse
+    span.question= ques
+    span.answer= ans
+
+
+#top-question-container
+  .container
+    .label
+      h3 Top questions from users
+    .content.visible-effect
+      block content
