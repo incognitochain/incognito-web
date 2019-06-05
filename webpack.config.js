@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
+const CopyPlugin = require('copy-webpack-plugin')
 
 const templateGen = [
   new HtmlWebpackPlugin({
@@ -17,10 +18,10 @@ const templateGen = [
     template: 'src/template/about/index.pug',
     filename: 'about.html'
   }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/mine/index.pug',
-    filename: 'mine.html'
-  }),
+  // new HtmlWebpackPlugin({
+  //   template: 'src/template/mine/index.pug',
+  //   filename: 'mine.html'
+  // }),
 ];
 
 const production = process.env.NODE_ENV === 'production';
@@ -39,6 +40,12 @@ const devConfig = {
         production
       }),
     }),
+    new CopyPlugin([
+      {
+        from: path.resolve(__dirname, './src/js/lib'),
+        to: 'lib'
+      }
+    ]),
   ],
   module: {
     rules: [{
@@ -55,7 +62,7 @@ const devConfig = {
       use: ['pug-loader']
     },
     {
-      test: /\.(png|jpe?g|gif|svg|webp)$/,
+      test: /\.(png|jpe?g|gif|svg|webp|glb)$/,
       use: [
         {
           loader: 'file-loader',
@@ -83,6 +90,12 @@ const prodConfig = {
         production
       }),
     }),
+    new CopyPlugin([
+      {
+        from: path.resolve(__dirname, './src/js/lib'),
+        to: 'lib'
+      }
+    ]),
     ...templateGen
   ],
   module: {
@@ -99,12 +112,12 @@ const prodConfig = {
       test: /\.pug$/,
       use: ['pug-loader']
     },{
-      test: /\.(png|jpe?g|gif|svg|webp)$/,
+      test: /\.(png|jpe?g|gif|svg|webp|glb)$/,
       use: [
         {
           loader: 'file-loader',
           options: {
-            name: 'images/[hash:7].[ext]',
+            name: 'assets/[hash:7].[ext]',
           },
         },
       ],
