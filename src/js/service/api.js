@@ -1,24 +1,29 @@
-import { getErrorMessage } from './errorHandler';
+import fetch from './fetch';
+import authModel from '../model/auth';
+import subscribeModel from '../model/subscribe';
 
 export const subscribe = email => {
-  return fetch(`${APP_ENV.BASE_API_URL}/auth/subscribe`, {
+  return fetch('auth/subscribe', {
     method: 'POST',
-    body: JSON.stringify({
+    body: {
       Email: email,
-    }),
-    headers: {
-      "Content-type": "application/json; charset=UTF-8"
-    }
+    },
   })
-  .then(response => response.json())
-  .then(json => {
-    if (json && json.Error) {
-      throw new Error(getErrorMessage(json.Error));
-    }
-
-    return json;
-  })
+  .then(subscribeModel.fromJson)
   .catch((e) => {
     throw new Error(e.message || 'Can not subscribe your email right now, please try later')
+  });
+}
+
+export const auth = email => {
+  return fetch('auth/token', {
+    method: 'POST',
+    body: {
+      Email: email,
+    },
+  })
+  .then(authModel.fromJson)
+  .catch((e) => {
+    throw new Error(e.message || 'Can not register your email right now, please try later')
   });
 }

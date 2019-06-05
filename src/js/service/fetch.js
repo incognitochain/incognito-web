@@ -16,7 +16,7 @@ const customFetch = (directUrl, { url, method, body, headers }) => {
       throw new Error(getErrorMessage(json.Error));
     }
 
-    return json;
+    return json && json.Result;
   })
 }
 
