@@ -3,7 +3,7 @@ const storage = {
     localStorage.setItem(key, value);
   },
   get(key) {
-    localStorage.getItem(key);
+    return localStorage.getItem(key);
   },
   setMultiple(data) {
     Object.entries(data).map(([key, value]) => {

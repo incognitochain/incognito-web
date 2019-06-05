@@ -5,3 +5,4 @@ import './loadScript';
 import './subscribe_form';
 import './collapse';
 import './copiable';
+import './onload';
