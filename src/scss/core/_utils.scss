@@ -1,5 +1,3 @@
-@import 'variables';
-
 @mixin breakpoint-up($size) {
   @if $size == xs {
     @media screen and (min-width: $breakpoint-xs) {

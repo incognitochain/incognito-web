@@ -1,9 +1,9 @@
+@import 'core/variables';
+@import 'core/utils';
 @import 'core/button';
 @import 'core/input';
 @import 'core/list';
 @import 'core/image';
-@import 'core/variables';
-@import 'core/utils';
 @import 'core/font';
 @import 'core/animation';
 @import './home.scss';
@@ -13,6 +13,7 @@
 @import './footer.scss';
 @import './message_box.scss';
 @import './subscribe_form.scss';
+@import './top_question.scss';
 
 * {
   box-sizing: border-box;
