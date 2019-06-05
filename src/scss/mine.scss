@@ -1,7 +1,5 @@
 #mine-container {
-  background-color: $black2;
-  display: flex;
-  justify-content: flex-end;
+  background-color: $white;
   color: $white;
   padding-top: 100px;
 
@@ -12,8 +10,26 @@
   #mine-intro {
     display: flex;
     justify-content: flex-end;
+    background-size: cover;
+    background-repeat: no-repeat;
     div.intro {
       width: 700px;
+
+      h3.sub-title {
+        color: $black1;
+        font-size: 26px
+      }
+      h1.title {
+        color: $black1;
+        font-size: 40px
+      }
+      p.desc {
+        color: $grey1;
+        font-size: 22px;
+        a {
+          color: inherit;
+        }
+      }
     }
   }
 }
