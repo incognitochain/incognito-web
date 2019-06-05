@@ -6,6 +6,7 @@ form#email-subscribe {
   #email-input{
     margin-right: 14px;
     flex: 1;
+    border: solid 1px $black1;
   }
   button.submit-email {
     min-width: 185px;
