@@ -1,5 +1,8 @@
-import { subscribe } from '../service/api';
+import { subscribe, auth } from '../service/api';
 import { setMessage } from '../service/message_box';
+import storage from '../service/storage';
+import KEYS from '../constant/keys';
+
 
 const formHandle = () => {
   const form = document.querySelector('form#email-subscribe');
@@ -14,23 +17,32 @@ const formHandle = () => {
     }
   });
 
-  form && form.addEventListener('submit', (e) => {
+  form && form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     //set submit status
     const originalBtnText = submitBtn.innerText;
     submitBtn.innerText = 'Sending...';
+    submitBtn.disabled = 'disabled';
 
-    subscribe(emailEl.value)
-      .then(() => {
-        setMessage('Your email has been subscribed!')
-      })
-      .catch((e) => {
-        setMessage(e.message, 'error');
-      })
-      .finally(() => {
-        submitBtn.innerText = originalBtnText;
+    try {
+      const subscribedData = await subscribe(emailEl.value);
+      const authData = await auth(emailEl.value);
+
+      setMessage('Your email has been subscribed!');
+
+      // store data to local
+      storage.setMultiple({
+        [KEYS.TOKEN]: authData.token,
+        [KEYS.MY_REFERRAL_CODE]: subscribedData.code
       });
+
+    } catch (e) {
+      setMessage(e.message, 'error');
+    } finally {
+      submitBtn.innerText = originalBtnText;
+      submitBtn.disabled = undefined;
+    }
   });
 }
 
