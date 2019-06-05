@@ -29,6 +29,11 @@
     flex-direction: column;
     justify-content: space-between;
     padding-bottom: 30px;
+    
+    @include breakpoint-up(lg) {
+      padding-top: 100px;
+    };
+    
     > div {
       h3.highlight-title {
         font-size: 24px;
