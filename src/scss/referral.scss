@@ -1,0 +1,78 @@
+#referral-container {
+  margin-top: 100px;
+  #referral-intro {
+    padding-bottom: 100px;
+    display: flex;
+    .image {
+      width: 400px;
+      background-color: $grey;
+      margin-right: 70px;
+
+      span.caption {
+        position: relative;
+        top: 430px;
+        text-align: center;
+        display: block;
+        font-size: 24px;
+        color: $white;
+      }
+    }
+    .content {
+      flex: 1;
+      text-align: center;
+      h1.title {
+        font-size: 40px;
+        color: $white;
+      }
+      p.desc {
+        font-size: 22px;
+        color: $white;
+        span.highlight {
+          font-size: 22px;
+          color: $green;
+        }
+      }
+      .copy-content {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        span.referral-link {
+          display: flex;
+          align-items: center;
+          color: $black;
+          background-color: $grey;
+          flex: 1;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          text-align: left;
+          padding: 0px 20px;
+          height: $btn-height;
+        }
+        button.copy-btn {
+          width: 100px;
+          border-radius: 0px;
+        }
+      }
+
+      .btns {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+
+        .share-facebook, .share-twitter {
+          height: 40px;
+          border-radius: 4px;
+          color: $white;
+        }
+  
+        .share-twitter {
+          background: lightskyblue;
+        }
+        .share-facebook {
+          background: blue;
+        }
+      }
+    }
+  }
+}
