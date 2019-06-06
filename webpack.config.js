@@ -30,7 +30,9 @@ const env = production ? require('./.env.production') : require('./.env.developm
 const devConfig = {
   mode: 'development',
   devServer: {
-    contentBase: './dist'
+    host: '0.0.0.0',
+    contentBase: './dist',
+    disableHostCheck: true
   },
   plugins: [
     ...templateGen,
