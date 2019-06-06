@@ -20,6 +20,7 @@
   box-sizing: border-box;
   color: $text-color;
   font-family: $default-font;
+  letter-spacing: -0.5px;
 }
 
 html, body {
@@ -38,6 +39,20 @@ html, body {
 
   div#content {
     flex: 1
+  }
+}
+
+p {
+  letter-spacing: initial;
+}
+
+h1, h2, h3 {
+  font-weight: 500;
+}
+
+a {
+  &:hover {
+    
   }
 }
 
