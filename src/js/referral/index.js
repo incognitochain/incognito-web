@@ -3,6 +3,7 @@ import KEYS from "../constant/keys";
 import { popupCenter } from '../service/window';
 import { setMessage } from '../service/message_box';
 import countdown from '../service/countdown';
+import { getUserTotalReferral, listReferralLevel } from '../service/api';
 
 const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
@@ -37,9 +38,34 @@ const startCountdown = () => {
   });
 }
 
+const getReferralData = async () => {
+  try {
+    const userTotal = await getUserTotalReferral();
+    const referralList = await listReferralLevel();
+    const foundIndex = referralList && referralList.findIndex((level, index, allLevel) => {
+      return  allLevel[index+1] ? (userTotal >= level.nums && userTotal < allLevel[index+1].nums) : userTotal >= level.nums ;
+    });
+    const currentLevel = referralList[foundIndex];
+    const nextLevel = referralList[foundIndex + 1];
+    const requiredNum = nextLevel.nums - userTotal;
+
+    return {
+      total: userTotal,
+      referralList,
+      currentLevel,
+      nextLevel,
+      requiredNum
+    };
+  } catch {
+    setMessage('Can not get referral program data', 'error');
+  }
+}
+
+
 const main = () => {
   checkAuth();
   startCountdown();
+  getReferralData().then(console.log);
 
   const container = document.querySelector('#referral-intro');
   if (!container) return;
