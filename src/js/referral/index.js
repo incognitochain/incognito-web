@@ -1,6 +1,8 @@
 import storage from '../service/storage';
 import KEYS from "../constant/keys";
 import { popupCenter } from '../service/window';
+import { setMessage } from '../service/message_box';
+import countdown from '../service/countdown';
 
 const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
@@ -28,8 +30,16 @@ const handleShareTwitter = (referralUrl) => {
   popupCenter(`https://twitter.com/share?url=${referralUrl}`, 'Share to Twitter');
 }
 
+const startCountdown = () => {
+  const countdownEl = document.querySelector('.countdown');
+  countdown(countdownEl, '2019-07-06T17:00:00.000Z', () => {
+    setMessage('The program was ended', 'info');
+  });
+}
+
 const main = () => {
   checkAuth();
+  startCountdown();
 
   const container = document.querySelector('#referral-intro');
   if (!container) return;
