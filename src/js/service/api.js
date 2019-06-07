@@ -49,3 +49,15 @@ export const getUserTotalReferral = () => {
   });
 }
 
+export const verifyEmailToken = (token) => {
+  return fetch('auth/verify-email', {
+    method: 'POST',
+    body: {
+      Token: token
+    }
+  })
+  .catch((e) => {
+    throw new Error(e.message || 'Token is invalid')
+  });
+}
+
