@@ -31,6 +31,27 @@ const handleShareTwitter = (referralUrl) => {
   popupCenter(`https://twitter.com/share?url=${referralUrl}`, 'Share to Twitter');
 }
 
+const handleShareGoogle = () => {
+  // if (typeof gapi === 'undefined') return;
+
+  // gapi.load('client', () => {
+  //   gapi.client.init({
+  //     'apiKey': APP_ENV.GOOGLE_API_KEY,
+  //     // clientId and scope are optional if auth is not required.
+  //     'clientId': APP_ENV.GOOGLE_CLIENT_ID,
+  //     'scope': 'profile',
+  //   }).then(function() {
+  //     return gapi.client.request({
+  //       'path': 'https://people.googleapis.com/v1/people/me?requestMask.includeField=person.names',
+  //     })
+  //   }).then(function(response) {
+  //     console.log(response.result);
+  //   }, function(reason) {
+  //     console.log('Error: ', reason);
+  //   });
+  // });  
+}
+
 const startCountdown = () => {
   const countdownEl = document.querySelector('.countdown');
   countdown(countdownEl, '2019-07-06T17:00:00.000Z', () => {
