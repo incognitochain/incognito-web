@@ -3,6 +3,7 @@ nav#header {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  min-height: $header-height;
 
   @include breakpoint-down(md) {
     justify-content: center;

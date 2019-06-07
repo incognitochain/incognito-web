@@ -3,25 +3,26 @@ mixin list(desc)
     span= desc
 
 div#intro-container.container.bounceInUp-ani
-  div.image
-    img(src=require('../../image/coolphone.webp'))
-  div.intro
-    div
-      h1.title
-        |Privately send 
-        span.crypto-name Bitcoin
-      p.sub-title Choose a crypto asset, enter Incognito mode, then send it to anyone – with total privacy. Your personal and transaction data remain completely confidential.
-      p.sub-title Turn on privacy with a single tap.
+  .content
+    div.image
+      img(src=require('../../image/coolphone.webp'))
+    div.intro
+      div
+        h1.title
+          |Privately send 
+          span.crypto-name Bitcoin
+        p.sub-title Choose a crypto asset, enter Incognito mode, then send it to anyone – with total privacy. Your personal and transaction data remain completely confidential.
+        p.sub-title Turn on privacy with a single tap.
 
-      include ../common/subscribe_form.pug
+        include ../common/subscribe_form.pug
 
-      //- ul
-      //-   +list('Issue your own privacy token')
-      //-   +list('Buy Privacy token')
-      //-   +list('Mine and earn Privacy token')
-      //-   +list('Partner with the Incognito blockchain')
-      //-   +list('Read the whitepaper & open-source code')
+        //- ul
+        //-   +list('Issue your own privacy token')
+        //-   +list('Buy Privacy token')
+        //-   +list('Mine and earn Privacy token')
+        //-   +list('Partner with the Incognito blockchain')
+        //-   +list('Read the whitepaper & open-source code')
 
-    span.action-btn.scroll-action-btn(data-scroll-to='#section-container')
-      span.arrow &#8593; 
-      | Built on cool science
+      span.action-btn.scroll-action-btn(data-scroll-to='#section-container')
+        span.arrow &#8593; 
+        | Built on cool science
