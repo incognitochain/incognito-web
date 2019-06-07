@@ -3,11 +3,12 @@ import authModel from '../model/auth';
 import subscribeModel from '../model/subscribe';
 import referralLevelModel from '../model/referralLevel';
 
-export const subscribe = email => {
+export const subscribe = (email, referralCode) => {
   return fetch('auth/subscribe', {
     method: 'POST',
     body: {
       Email: email,
+      ReferralCode: referralCode
     },
   })
   .then(subscribeModel.fromJson)
