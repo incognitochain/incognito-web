@@ -13,9 +13,9 @@ const checkAuth = () => {
 }
 
 const checkVerifyEmailToken = () => {
-  const referralToken = queryString(KEYS.TOKEN_EMAIL_VERIFY_QS);
-  if (referralToken) {
-    verifyEmailToken(referralToken)
+  const token = queryString(KEYS.TOKEN_EMAIL_VERIFY_QS);
+  if (token) {
+    verifyEmailToken(token)
       .then(() => {
         setMessage('Your email was verified', 'info');
       })
@@ -25,9 +25,17 @@ const checkVerifyEmailToken = () => {
   }
 }
 
+const checkReferralCode = () => {
+  const referralCode = queryString(KEYS.REFERRAL_QUERY);
+  if (referralCode) {
+    storage.set(KEYS.REFERRAL_CODE, referralCode);
+  }
+}
+
 const main = () => {
   checkAuth();
   checkVerifyEmailToken();
+  checkReferralCode();
 };
 
 

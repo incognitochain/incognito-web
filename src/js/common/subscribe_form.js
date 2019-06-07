@@ -3,6 +3,9 @@ import { setMessage } from '../service/message_box';
 import storage from '../service/storage';
 import KEYS from '../constant/keys';
 
+const getReferralCode = () => {
+  return storage.get(KEYS.REFERRAL_CODE) || undefined;
+}
 
 const formHandle = () => {
   const form = document.querySelector('form#email-subscribe');
@@ -26,7 +29,7 @@ const formHandle = () => {
     submitBtn.disabled = 'disabled';
 
     try {
-      const subscribedData = await subscribe(emailEl.value);
+      const subscribedData = await subscribe(emailEl.value, getReferralCode());
       const authData = await auth(emailEl.value);
 
       setMessage('Your email has been subscribed!');
