@@ -84,6 +84,8 @@ const getReferralData = async () => {
 
 
 const main = () => {
+  if (!location.pathname.includes('/referral.html')) return;
+  
   checkAuth();
   startCountdown();
   getReferralData().then(console.log);
