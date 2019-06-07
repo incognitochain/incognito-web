@@ -9,7 +9,8 @@ form#email-subscribe {
     border: solid 1px $black1;
   }
   button.submit-email {
-    min-width: 185px;
+    min-width: 195px;
+    font-weight: 400;
   }
 
   @include breakpoint-down(md) {

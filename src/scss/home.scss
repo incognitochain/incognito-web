@@ -3,19 +3,18 @@
   display: flex;
   justify-content: center;
   color: $white;
-  padding-top: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 
   @include breakpoint-down(lg) {
     padding-top: 50px;
   };
   
   div.image {
-    margin-right: 25px;
+    margin-right: 100px;
     > img {
-      
       @include breakpoint-up(xl) {
-        width: 380px;
-        margin-right: 40px;
+        width: 310px;
       };
     }
 
@@ -28,7 +27,7 @@
     flex: 1;
     flex-direction: column;
     justify-content: space-between;
-    padding-bottom: 30px;
+    padding-bottom: 10px;
     
     @include breakpoint-up(lg) {
       padding-top: 100px;
@@ -57,10 +56,8 @@
         };
 
         span.crypto-name {
-          @include breakpoint-down(lg) {
-            width: 190px;
-            text-align: center;
-          };
+          width: 190px;
+          text-align: center;
           display: inline-block;
           color: inherit;
           text-decoration: underline;
@@ -68,8 +65,8 @@
       }
   
       p.sub-title  {
-        font-size: 20px;
-        letter-spacing: -0.75px;
+        font-size: 18px;
+        letter-spacing: 0px;
         line-height: 28px;
         .highlight {
           color: $white;
@@ -121,6 +118,7 @@
   };
 
   >div.section {
+    margin-top: 100px;
     padding-bottom: 77px;
     text-align: center;
 
@@ -131,8 +129,16 @@
     }
 
     .stack {
+      .stack-name {
+        color: $black;
+      }
       a.stack-item {
+        color: $black;
         transition: color 300ms;
+
+        &:hover {
+          color: $grey2;
+        }
       }
     }
 
@@ -145,19 +151,15 @@
         font-size: 12px;
         color: $black2;
         text-align: center;
-        line-height: 46px;
         text-transform: uppercase;
         display: flex;
         justify-content: center;
         flex-direction: column;
         align-items: center;
-  
-        &::after {
-          content: '';
-          width: 30px;
-          height: 1px;
-          background-color: $black2;
-        }
+        letter-spacing: 3px;
+        margin: 0px;
+        line-height: 20px;
+        font-weight: bold;
       }
   
       h3.title {
