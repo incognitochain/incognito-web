@@ -4,10 +4,6 @@ nav#header {
   justify-content: space-between;
   width: 100%;
 
-  @include breakpoint-up(md) {
-    padding: 0px;
-  };
-
   @include breakpoint-down(md) {
     justify-content: center;
   };

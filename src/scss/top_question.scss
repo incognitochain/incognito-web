@@ -1,10 +1,10 @@
 #top-question-container {
-  background-color: $white;
+  background-color: $whitegrey;
   > div {
     display: flex;
     color: $white;
-    padding-bottom: 170px;
-    padding-top: 107px;
+    padding-top: 80px;
+    padding-bottom: 100px;
 
     @include breakpoint-down(lg) {
       flex-direction: column;
@@ -14,12 +14,10 @@
 
     > div.label {
       flex: 1;
-      h3 {
-        font-weight: bold;
-        font-size: 42px;
+      h1 {
+        position: relative;
+        top: 10px;
         color: $black2;
-        letter-spacing: -0.5px;
-        line-height: 48px;
         margin-top: 20px;
 
         @include breakpoint-down(lg) {
@@ -35,7 +33,7 @@
       flex: 1;
 
       div.question-container {
-        padding: 20px 0px;
+        padding: 5px 0px;
         border-bottom: dotted 1px $grey-light;
         display: flex;
         flex-direction: column;
@@ -67,7 +65,7 @@
         &:hover {
           span.question {
             font-weight: bold;
-            color: $green;
+            color: $grey2;
           }
         }
 
@@ -81,7 +79,7 @@
         }
 
         span.answer {
-          font-size: 18px;
+          font-size: 16px;
           color: $grey1;
           letter-spacing: -0.5px;
           line-height: 26px;
@@ -89,6 +87,11 @@
           max-height: 0px;
           overflow: hidden;
           transition: all 500ms;
+          &::after {
+            content: '';
+            display: block;
+            padding-bottom: 20px;
+          }
         }
       }
     }

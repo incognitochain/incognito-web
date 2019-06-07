@@ -60,7 +60,7 @@
         justify-content: space-between;
         margin-top: 20px;
 
-        .share-facebook, .share-twitter {
+        .share-facebook, .share-twitter, .share-google {
           height: 40px;
           border-radius: 4px;
           color: $white;
@@ -71,6 +71,10 @@
         }
         .share-facebook {
           background: blue;
+        }
+        .share-google {
+          background: $white;
+          color: $black;
         }
       }
     }
