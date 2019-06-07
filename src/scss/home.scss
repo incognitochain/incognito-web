@@ -1,113 +1,128 @@
 #intro-container {
-  background-color: $black2;
   display: flex;
   justify-content: center;
-  color: $white;
+  align-items: center;
+  background-color: $black2;
   padding-top: 50px;
   padding-bottom: 50px;
+  min-height: calc(100vh - #{$header-height});
+  position: relative;
 
   @include breakpoint-down(lg) {
     padding-top: 50px;
   };
-  
-  div.image {
-    min-width: 400px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 
-    > img {
-      max-width: 310px;
+  >div.content {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    color: $white;
+
+    div.image {
+      min-width: 400px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+  
+      > img {
+        max-width: 310px;
+      }
+  
+      @include breakpoint-down(lg) {
+        display: none;
+      };
     }
-
-    @include breakpoint-down(lg) {
-      display: none;
-    };
-  }
-  div.intro {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-bottom: 10px;
-    
-    @include breakpoint-up(lg) {
-      padding-top: 100px;
-    };
-    
-    > div {
-      h3.highlight-title {
-        font-size: 24px;
-        color: $green;
-        letter-spacing: 0;
-        margin-bottom: 63px;
-        margin-top: 0px;
-      }
-  
-      h1.title {
-        font-size: 42px;
-        color: $white;
-        margin-bottom: 42px;
-        margin: 0px;
-        letter-spacing: -1.5px;
-        line-height: 50px;
-
-        span.crypto-name {
-          position: relative;
-          width: 200px;
-          display: inline-block;
-          color: inherit;
-          text-decoration: underline;
-
-          &::after {
-            content: '.';
-            position: absolute;
-            bottom: 0px;
-          }
-
-          @include breakpoint-down(680px) {
-            display: block;
-          };
-        }
-      }
-  
-      p.sub-title  {
-        font-size: 18px;
-        letter-spacing: 0px;
-        line-height: 28px;
-        font-weight: 300;
-        .highlight {
-          color: $white;
-        }
-      }
+    div.intro {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      justify-content: space-between;
+      padding-bottom: 10px;
       
-      ul {
-        li {
-          font-size: 16px;
-          color: #BBBFC4;
-          letter-spacing: -1px;
-          line-height: 34px;
+      @include breakpoint-up(lg) {
+        padding-top: 100px;
+      };
+      
+      > div {
+        h3.highlight-title {
+          font-size: 24px;
+          color: $green;
+          letter-spacing: 0;
+          margin-bottom: 63px;
+          margin-top: 0px;
+        }
+    
+        h1.title {
+          font-size: 42px;
+          color: $white;
+          margin-bottom: 42px;
+          margin: 0px;
+          letter-spacing: -1.5px;
+          line-height: 50px;
   
-          >a.list-url {
-            font-weight: 'bold';
-            color: $white;
+          span.crypto-name {
+            position: relative;
+            width: 200px;
+            display: inline-block;
+            color: inherit;
             text-decoration: underline;
+  
+            &::after {
+              content: '.';
+              position: absolute;
+              bottom: 0px;
+            }
+  
+            @include breakpoint-down(680px) {
+              display: block;
+            };
+          }
+        }
+    
+        p.sub-title  {
+          font-size: 18px;
+          letter-spacing: 0px;
+          line-height: 28px;
+          font-weight: 300;
+          .highlight {
+            color: $white;
+          }
+        }
+        
+        ul {
+          li {
+            font-size: 16px;
+            color: #BBBFC4;
+            letter-spacing: -1px;
+            line-height: 34px;
+    
+            >a.list-url {
+              font-weight: 'bold';
+              color: $white;
+              text-decoration: underline;
+            }
           }
         }
       }
-    }
-    .action-btn {
-      .arrow {
-        transform: rotate(180deg) scale(1, 1.7);
-        display: inline-block;
-        margin-right: 10px;
-        transition: margin 300ms, color 500ms, transform 200ms;
-      }
-      &:hover {
+      .action-btn {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+
         .arrow {
-          transform: rotate(180deg) scale(2, 1.7);
-          color: $green;
-          margin-right: 20px;
+          transform: rotate(180deg) scale(1, 1.7);
+          display: inline-block;
+          margin-right: 10px;
+          transition: margin 300ms, color 500ms, transform 200ms;
+        }
+        &:hover {
+          .arrow {
+            transform: rotate(180deg) scale(2, 1.7);
+            color: $green;
+            margin-right: 20px;
+          }
         }
       }
     }
@@ -131,7 +146,6 @@
     text-align: center;
 
     .info, .stack {
-      max-width: 1000px;
       margin: auto;
       text-align: center;
     }
@@ -156,7 +170,7 @@
       }
   
       h3.subtitle {
-        font-size: 12px;
+        font-size: 18px;
         color: $black2;
         text-align: center;
         text-transform: uppercase;
@@ -170,13 +184,16 @@
         font-weight: bold;
       }
   
-      h3.title {
+      h1.title {
         font-weight: bold;
         font-size: 32px;
         color: $black2;
         letter-spacing: -0.38px;
         text-align: center;
         line-height: 45px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
       }
   
       p.desc {

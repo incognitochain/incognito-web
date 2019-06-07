@@ -32,24 +32,53 @@ const handleShareTwitter = (referralUrl) => {
 }
 
 const handleShareGoogle = () => {
-  // if (typeof gapi === 'undefined') return;
+  if (typeof gapi === 'undefined') return;
 
-  // gapi.load('client', () => {
-  //   gapi.client.init({
-  //     'apiKey': APP_ENV.GOOGLE_API_KEY,
-  //     // clientId and scope are optional if auth is not required.
-  //     'clientId': APP_ENV.GOOGLE_CLIENT_ID,
-  //     'scope': 'profile',
-  //   }).then(function() {
-  //     return gapi.client.request({
-  //       'path': 'https://people.googleapis.com/v1/people/me?requestMask.includeField=person.names',
-  //     })
-  //   }).then(function(response) {
-  //     console.log(response.result);
-  //   }, function(reason) {
-  //     console.log('Error: ', reason);
-  //   });
-  // });  
+  function updateSigninStatus(isSignedIn) {
+    // When signin status changes, this function is called.
+    // If the signin status is changed to signedIn, we make an API call.
+    if (isSignedIn) {
+      makeApiCall();
+    }
+  }
+
+  function handleSignInClick(event) {
+    // Ideally the button should only show up after gapi.client.init finishes, so that this
+    // handler won't be called before OAuth is initialized.
+    gapi.auth2.getAuthInstance().signIn();
+  }
+
+  function handleSignOutClick(event) {
+    gapi.auth2.getAuthInstance().signOut();
+  }
+
+  function makeApiCall() {
+    // Make an API call to the People API, and print the user's given name.
+    gapi.client.people.people.get({
+      'resourceName': 'people/me',
+      'requestMask.includeField': 'person.names'
+    }).then(function(response) {
+      console.log('Hello, ' + response.result.names[0].givenName);
+    }, function(reason) {
+      console.log('Error: ' + reason.result.error.message);
+    });
+  }
+
+  gapi.load('client', () => {
+    gapi.client.init({
+      'apiKey': APP_ENV.GOOGLE_API_KEY,
+      // clientId and scope are optional if auth is not required.
+      'discoveryDocs': ["https://people.googleapis.com/$discovery/rest?version=v1"],
+      'clientId': APP_ENV.GOOGLE_CLIENT_ID,
+      'scope': 'profile',
+    }).then(function () {
+      // Listen for sign-in state changes.
+      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+      // Handle the initial sign-in state.
+      updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      handleSignInClick();
+    });
+  });  
 }
 
 const startCountdown = () => {
@@ -85,7 +114,7 @@ const getReferralData = async () => {
 
 const main = () => {
   if (!location.pathname.includes('/referral.html')) return;
-  
+  handleShareGoogle();
   checkAuth();
   startCountdown();
   getReferralData().then(console.log);
