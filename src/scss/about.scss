@@ -1,6 +1,6 @@
 #about-container {
   #about-intro {
-    padding-top: 100px;
+    padding-top: 50px;
     padding-bottom: 100px;
     text-align: left;
 
@@ -10,13 +10,17 @@
     };
 
     h3.sub-title {
-      font-size: 28px;
+      text-transform: uppercase;
+      font-size: 18px;
+      letter-spacing: 1px;
+      margin-bottom: 0px;
       @include breakpoint-down(md) {
-        font-size: 22px;
+        font-size: 16px;
       };
     }
 
     h2.title {
+      margin-top: 10px;
       font-size: 40px;
       color: $white;
 
@@ -26,7 +30,9 @@
     }
 
     p.desc {
-      font-size: 18px;
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 26px;
     }
   }
 
@@ -48,8 +54,9 @@
 
       h3.label {
         color: $black2;
-        font-size: 26px;
-        font-weight: 300;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 700;
 
         @include breakpoint-down(md) {
           font-size: 18px;
@@ -58,14 +65,18 @@
   
       p.desc {
         color: $black2;
-        font-size: 36px;
+        font-size: 24px;
 
         @include breakpoint-down(md) {
-          font-size: 24px;
+          font-size: 20px;
         };
 
         a {
-          color: $green;
+          color: $black;
+          transition: color 300ms;
+          &:hover {
+            color: $grey2;
+          }
         }
       }
     }
@@ -74,13 +85,14 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-top: 50px;
 
       @include breakpoint-down(md) {
         flex-direction: column;
       };
 
       .image {
-        padding: 10px;
+        padding: 5px;
         > img {
           border-radius: 2px;
         }

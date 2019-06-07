@@ -11,11 +11,13 @@
   };
   
   div.image {
-    margin-right: 100px;
+    min-width: 400px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
     > img {
-      @include breakpoint-up(xl) {
-        width: 310px;
-      };
+      max-width: 310px;
     }
 
     @include breakpoint-down(lg) {
@@ -49,18 +51,23 @@
         margin: 0px;
         letter-spacing: -1.5px;
         line-height: 50px;
-        
-
-        @include breakpoint-up(lg) {
-          white-space: nowrap;
-        };
 
         span.crypto-name {
-          width: 190px;
-          text-align: center;
+          position: relative;
+          width: 200px;
           display: inline-block;
           color: inherit;
           text-decoration: underline;
+
+          &::after {
+            content: '.';
+            position: absolute;
+            bottom: 0px;
+          }
+
+          @include breakpoint-down(680px) {
+            display: block;
+          };
         }
       }
   
@@ -68,6 +75,7 @@
         font-size: 18px;
         letter-spacing: 0px;
         line-height: 28px;
+        font-weight: 300;
         .highlight {
           color: $white;
         }

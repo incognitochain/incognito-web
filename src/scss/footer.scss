@@ -3,7 +3,6 @@
   align-items: center;
   justify-content: space-between;
   min-height: 150px;
-  padding: 0px;
   width: 100%;
 
   .group {
@@ -14,8 +13,15 @@
   }
 
   a {
-    margin: 10px 20px;
     text-decoration: unset;
+    
+    &.menu-item {
+      margin: 10px 20px;
+      transition: color 300ms;
+      &:hover {
+        color: $white;
+      }
+    }
   }
 
   h1.header-logo {

@@ -28,6 +28,11 @@
       @content;
     }
   }
+
+  // fallback to px
+  @media screen and (min-width: $size) {
+    @content;
+  }
 }
 
 @mixin breakpoint-down($size) {
@@ -59,5 +64,10 @@
     @media screen and (max-width: $breakpoint-xl) {
       @content;
     }
+  }
+
+  // fallback to px
+  @media screen and (max-width: $size) {
+    @content;
   }
 }
