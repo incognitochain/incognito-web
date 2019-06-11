@@ -110,18 +110,18 @@
         left: 50%;
         transform: translateX(-50%);
         white-space: nowrap;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
-        .arrow {
-          transform: rotate(180deg) scale(1, 1.7);
-          display: inline-block;
+        img {
+          transform: translateY(0px);
           margin-right: 10px;
-          transition: margin 300ms, color 500ms, transform 200ms;
+          transition: transform 400ms;
         }
         &:hover {
-          .arrow {
-            transform: rotate(180deg) scale(2, 1.7);
-            color: $green;
-            margin-right: 20px;
+          img {
+            transform: translateY(-5px);
           }
         }
       }
