@@ -70,13 +70,17 @@ const handleShareGoogle = () => {
       // clientId and scope are optional if auth is not required.
       'discoveryDocs': ["https://people.googleapis.com/$discovery/rest?version=v1"],
       'clientId': APP_ENV.GOOGLE_CLIENT_ID,
-      'scope': 'profile',
+      'scope': 'contacts.readonly',
     }).then(function () {
       // Listen for sign-in state changes.
       gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
+      
       // Handle the initial sign-in state.
-      updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-      handleSignInClick();
+      if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
+        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      } else {
+        handleSignInClick();
+      }      
     });
   });  
 }
@@ -114,7 +118,7 @@ const getReferralData = async () => {
 
 const main = () => {
   if (!location.pathname.includes('/referral.html')) return;
-  handleShareGoogle();
+  // handleShareGoogle();
   checkAuth();
   startCountdown();
   getReferralData().then(console.log);
