@@ -1,17 +1,21 @@
 #referral-intro.container
   .image
-    span.caption Be the first
+    img(src=require('../../image/referral.svg'))
   .content
-    h1.title Build real privacy for our internet.
-    p.desc
-      span.highlight Earn Incognito’s native coin Privacy (PRV), for each friend that signs up. 
-      | Oh, and get Node, the sleekest mining hardware in the world.
+    .block1
+      h1.title Build real privacy for our internet.
+      p.desc Earn Incognito’s native coin Privacy (PRV), for each friend that signs up. Oh, and get Node, the sleekest mining hardware in the world.
 
-    .copiable.copy-content
-      span.referral-link
-      button.copy-btn Copy
-    
-    .btns
-      button.share-twitter Share on Twitter
-      button.share-facebook Share on Facebook
-      button.share-google Email
+    .block2
+      .copiable.copy-content
+        span.referral-link
+        button.copy-btn Copy
+      
+      .btns
+        button.share-facebook
+          img(src=require('../../image/icon/facebook.svg'))
+          | Facebook
+        button.share-twitter
+          img(src=require('../../image/icon/twitter.svg'))
+          | Twitter
+        button.share-google Email
