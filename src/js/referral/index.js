@@ -115,14 +115,117 @@ const getReferralData = async () => {
   }
 }
 
+const renderBoxLevel = (levelData, isActive) => {
+  if (!levelData) return;
 
-const main = () => {
-  if (!location.pathname.includes('/referral.html')) return;
-  // handleShareGoogle();
-  checkAuth();
-  startCountdown();
-  getReferralData().then(console.log);
+  const DATA = {
+    level1: {
+      icon: {
+        normal: require('../../image/icon/referral_level/everyman-normal.svg'),
+        active: require('../../image/icon/referral_level/everyman-active.svg')
+      },
+      got: {
+        others: '10 Privacy'
+      }
+    },
+    level2: {
+      topPercent: 50,
+      icon: {
+        normal: require('../../image/icon/referral_level/citizen-normal.svg'),
+        active: require('../../image/icon/referral_level/citizen-active.svg')
+      },
+      got: {
+        others: '50 Privacy'
+      }
+    },
+    level3: {
+      topPercent: 10,
+      icon: {
+        normal: require('../../image/icon/referral_level/keep-normal.svg'),
+        active: require('../../image/icon/referral_level/keeper-active.svg')
+      },
+      got: {
+        minner: 1,
+        others: 'Your stake for 1 month'
+      }
+    },
+    level4: {
+      topPercent: 1,
+      icon: {
+        normal: require('../../image/icon/referral_level/guardian-normal.svg'),
+        active: require('../../image/icon/referral_level/guardian-active.svg')
+      },
+      got: {
+        minner: 1,
+        others: 'Your stake for 12 months'
+      }
+    }
+  };
 
+  const data = DATA[levelData.name];
+  const box = document.createElement('div');
+  box.classList.add('box');
+  isActive && box.classList.add('active');
+
+  box.innerHTML = `
+    <div class='top-percent'>
+      ${
+        data.topPercent ? `
+        <span>Top </span>
+        <span class='percent'>${data.topPercent}%</span>` :
+        ''
+      }
+    </div>
+    <div><img src='${data.icon[isActive ? 'active' : 'normal']}' /></div>
+    <div class='desc'>${levelData.desc}</div>
+    <div>${levelData.nums}</div>
+    <div>${
+      data.got.minner ?
+        '<span class="minner">1 The Minner</span>' :
+        `<span>${data.got.others}</span>`
+    }</div>
+    <div>${
+      (data.got.others && data.got.minner) ? `<span>${data.got.others}</span>` : ''
+    }</div>
+  `;
+
+  return box;
+}
+
+const handleShowInfo = async () => {
+  try {
+    const container = document.querySelector('#referral-info');
+    if (!container) return;
+
+    const statusEl = container.querySelector('.current-status .status');
+    const friendNumberEl = container.querySelector('.referred-box .friend-number');
+    const bringFriendNumberEl = container.querySelector('.referred-box .bring-friend-number');
+    const nextStatusEl = container.querySelector('.referred-box .next-status');
+
+    const { currentLevel, nextLevel, total, requiredNum, referralList } = await getReferralData() || {};
+
+    statusEl && (statusEl.innerText = currentLevel && currentLevel.desc || 'Pending');
+
+    if (nextLevel) {
+      friendNumberEl && (friendNumberEl.innerText = total || 0);
+      bringFriendNumberEl && (bringFriendNumberEl.innerText = requiredNum || 0);
+      nextStatusEl && (nextStatusEl.innerText = nextLevel.desc);
+    }
+
+    if (referralList) {
+      const levelBoxEl = container.querySelector('.level-box');
+      referralList.forEach(data => {
+        const isActive = currentLevel && (data.name === currentLevel.name);
+        const el = renderBoxLevel(data, isActive);
+        levelBoxEl.appendChild(el);
+      })
+    }
+  } catch (e) {
+    setMessage('Can not get your referral data, please try later', 'error');
+  }
+}
+
+const handleIntro = () => {
   const container = document.querySelector('#referral-intro');
   if (!container) return;
 
@@ -138,6 +241,15 @@ const main = () => {
     fbShareBtn && fbShareBtn.addEventListener('click', () => handleShareFb(referralUrl));
     twitterShareBtn && twitterShareBtn.addEventListener('click', () => handleShareTwitter(referralUrl));
   }
+}
+
+const main = () => {
+  if (!location.pathname.includes('/referral.html')) return;
+  // handleShareGoogle();
+  handleIntro();
+  checkAuth();
+  startCountdown();
+  handleShowInfo();
 };
 
 main();

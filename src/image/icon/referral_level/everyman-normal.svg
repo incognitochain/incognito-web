@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>everyman-normal</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="25" cy="25" r="25"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="everyman-normal" transform="translate(2.000000, 2.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask">
+                <use fill="#FBFBFB" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <circle stroke="#000000" stroke-width="2" cx="25" cy="25" r="26"></circle>
+                <use stroke="#E0E0E0" stroke-width="2" xlink:href="#path-1"></use>
+            </g>
+            <g id="flaticon1560143571-svg" mask="url(#mask-2)" fill-rule="nonzero" stroke="#000000" stroke-width="1.5">
+                <g transform="translate(13.000000, 15.000000)">
+                    <circle id="Oval" cx="11.686" cy="4.507" r="5.257"></circle>
+                    <path d="M13.3571836,10.4183846 C20.7906804,10.9761447 24.6181991,18.8297138 23.720956,27.4447799 C23.5419815,29.1612526 22.1288668,30.2661309 20.5004134,30.2713711 C19.3738826,30.2749962 18.4305921,29.7460348 17.9840092,28.8589734 C17.9848671,39.4175499 18.0457615,44.79714 18.3033537,51.0268709 C18.385507,53.0045042 16.9326571,54.296961 15.0811785,54.2946244 C13.4391371,54.2925521 12.0470551,53.2763958 11.7225866,51.6600142 C11.3985991,53.2762863 10.0066924,54.292552 8.36457151,54.2946244 C6.51317357,54.2969609 5.06008277,53.0046367 5.14164033,51.0270148 C5.39822487,44.8216546 5.4613885,39.3978683 5.46296928,29.0370867 C4.98511888,29.8184448 4.09424322,30.277992 3.04412807,30.2744958 C1.41583298,30.2690748 0.0029919182,29.1635986 -0.175985332,27.4464976 C-1.04866255,19.0461855 2.59381246,11.2953158 9.6369254,10.4750066 C10.8229725,10.1954307 12.1343079,10.1773765 13.3571836,10.4183846 Z" id="Path"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
