@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="54px" height="54px" viewBox="0 0 54 54" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>everyman-active</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#4E4E4E" offset="53.9375%"></stop>
+            <stop stop-color="#6F6F6F" offset="100%"></stop>
+        </linearGradient>
+        <circle id="path-2" cx="25" cy="25" r="25"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="everyman-active" transform="translate(2.000000, 2.000000)">
+            <mask id="mask-3" fill="white">
+                <use xlink:href="#path-2"></use>
+            </mask>
+            <g id="Mask">
+                <use fill="#101011" fill-rule="evenodd" xlink:href="#path-2"></use>
+                <circle stroke="url(#linearGradient-1)" stroke-width="2" cx="25" cy="25" r="26"></circle>
+                <use stroke="#E0E0E0" stroke-width="2" xlink:href="#path-2"></use>
+            </g>
+            <g id="flaticon1560143571-svg" mask="url(#mask-3)" fill="#FFFFFF" fill-rule="nonzero">
+                <g transform="translate(13.000000, 15.000000)">
+                    <circle id="Oval" cx="11.686" cy="4.507" r="4.507"></circle>
+                    <path d="M13.256,11.163 C12.133,10.935 10.912,10.945 9.809,11.205 C2.316,12.083 -0.117,20.756 0.57,27.369 C0.868,30.228 5.375,30.258 5.074,27.369 C4.824,24.959 4.931,21.322 6.212,18.737 C6.212,21.879 6.212,25.021 6.212,28.162 C6.212,28.273 6.223,28.377 6.228,28.484 C6.225,28.535 6.213,28.578 6.213,28.63 C6.213,36.109 6.2,43.585 5.891,51.058 C5.754,54.38 10.905,54.367 11.041,51.058 C11.283,45.201 11.344,39.341 11.358,33.48 C11.602,33.496 11.846,33.496 12.09,33.482 C12.105,39.343 12.164,45.203 12.404,51.058 C12.541,54.367 17.692,54.38 17.554,51.058 C17.245,43.585 17.234,36.109 17.234,28.63 C17.234,28.398 17.203,28.187 17.156,27.984 C17.149,24.737 17.025,21.487 17.063,18.242 C18.597,20.839 18.737,24.8 18.471,27.367 C18.169,30.254 22.677,30.225 22.975,27.367 C23.678,20.617 21.128,11.719 13.256,11.163 Z" id="Path"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
