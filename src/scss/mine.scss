@@ -32,4 +32,14 @@
       }
     }
   }
+
+  #model-viewer {
+    margin: 100px auto;
+
+    h2 {
+      text-align: center;
+      color: $black1;
+      font-size: 40px
+    }
+  }
 }
