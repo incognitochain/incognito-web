@@ -1,5 +1,39 @@
 .countdown-container {
-  span {
-    margin: 0px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > *:not(:last-child) {
+    margin-right: 40px;
+    &::after {
+      content: ':';
+      position: absolute;
+      right: -25px;
+      top: -10px;
+      font-size: 48px;
+      margin: 0px;
+      color: #000000;
+    }
+  }
+
+  > div.group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    > span.data {
+      font-size: 48px;
+      color: #000000;
+      letter-spacing: 0;
+      line-height: 49px;
+    }
+
+    > span.label {
+      font-size: 16px;
+      color: #828282;
+      letter-spacing: 0.22px;
+    }
   }
 }

@@ -35,10 +35,10 @@ export default (el, deadline, onEnd) => {
 
   if (!el || !isValidDate(deadline)) return;
 
-  const daysEl = el.querySelector('.days');
-  const hoursEl = el.querySelector('.hours');
-  const minsEl = el.querySelector('.mins');
-  const secondsEl = el.querySelector('.seconds');
+  const daysEl = el.querySelector('.days .data');
+  const hoursEl = el.querySelector('.hours .data');
+  const minsEl = el.querySelector('.mins .data');
+  const secondsEl = el.querySelector('.seconds .data');
 
   if (deadline && daysEl && hoursEl && minsEl && secondsEl) {
     countdown(deadline, (data) => {
