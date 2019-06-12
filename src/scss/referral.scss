@@ -4,8 +4,16 @@
     padding-bottom: 100px;
     display: flex;
     .image {
-      width: 400px;
-      margin-right: 70px;
+      min-width: 400px;
+      margin-right: 40px;
+
+      > img {
+        max-width: 400px;
+      }
+
+      @include breakpoint-down(lg) {
+        display: none;
+      };
     }
     .content {
       flex: 1;
@@ -51,6 +59,7 @@
             font-size: 20px;
             color: #2A3036;
             letter-spacing: -0.42px;
+            width: 100px;
           }
           button.copy-btn {
             width: 100px;
@@ -144,64 +153,65 @@
         }
       }
 
-      .level-box {
-        display: flex;
-        justify-content: center;
-        
-        .box {
-          padding: 20px 0px;
-          width: 220px;
-          display: grid;
-          justify-content: center;
-          align-items: center;
-          grid-template-rows: 80px 50px 50px 50px 50px;
-
-          &.label {
-            text-align: left;
-          }
-
-          &.active {
-            background-image: linear-gradient(180deg, #3E4243 0%, #000000 45%, #222729 100%);
-            * {
-              color: $white !important;
+      .level-box-container {
+        overflow-x: scroll;
+        .level-box {
+          display: flex;
+          
+          .box {
+            padding: 20px 0px;
+            min-width: 220px;
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            grid-template-rows: 80px 50px 50px 50px 50px;
+  
+            &.label {
+              text-align: left;
             }
-          }
-
-          .desc {
-            font-size: 24px;
-            color: $white;
-            letter-spacing: 0;
-            text-align: center;
-            line-height: 29px;
-          }
-
-          .minner {
-            font-size: 16px;
-            color: $black4;
-            letter-spacing: 0;
-            text-align: center;
-            line-height: 29px;
-            font-weight: bold;
-          }
-
-          .top-percent {
-            position: relative;
-            span {
-              font-size: 16px;
-              color: #000000;
+  
+            &.active {
+              background-image: linear-gradient(180deg, #3E4243 0%, #000000 45%, #222729 100%);
+              * {
+                color: $white !important;
+              }
+            }
+  
+            .desc {
+              font-size: 24px;
               letter-spacing: 0;
               text-align: center;
               line-height: 29px;
-
-              &.percent {
-                font-weight: bold;
-                font-size: 20px;
+            }
+  
+            .minner {
+              font-size: 16px;
+              color: $black4;
+              letter-spacing: 0;
+              text-align: center;
+              line-height: 29px;
+              font-weight: bold;
+            }
+  
+            .top-percent {
+              position: relative;
+              span {
+                font-size: 16px;
+                color: #000000;
+                letter-spacing: 0;
+                text-align: center;
+                line-height: 29px;
+  
+                &.percent {
+                  font-weight: bold;
+                  font-size: 20px;
+                }
               }
             }
-          }
-
-          img {
-            height: 40px;
+  
+            img {
+              height: 40px;
+            }
           }
         }
       }
