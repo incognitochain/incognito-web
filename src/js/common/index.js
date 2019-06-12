@@ -6,3 +6,4 @@ import './subscribe_form';
 import './collapse';
 import './copiable';
 import './onload';
+import './modal';
