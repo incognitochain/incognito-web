@@ -31,56 +31,46 @@ const handleShareTwitter = (referralUrl) => {
   popupCenter(`https://twitter.com/share?url=${referralUrl}`, 'Share to Twitter');
 }
 
-const handleShareGoogle = () => {
+const handleShowEmailList = emails => {
+  console.log(emails);
+}
+
+const handleShareGoogle = (referralUrl) => {
   if (typeof gapi === 'undefined') return;
-
-  function updateSigninStatus(isSignedIn) {
-    // When signin status changes, this function is called.
-    // If the signin status is changed to signedIn, we make an API call.
-    if (isSignedIn) {
-      makeApiCall();
-    }
-  }
-
-  function handleSignInClick(event) {
-    // Ideally the button should only show up after gapi.client.init finishes, so that this
-    // handler won't be called before OAuth is initialized.
-    gapi.auth2.getAuthInstance().signIn();
-  }
-
-  function handleSignOutClick(event) {
-    gapi.auth2.getAuthInstance().signOut();
-  }
-
-  function makeApiCall() {
-    // Make an API call to the People API, and print the user's given name.
-    gapi.client.people.people.get({
-      'resourceName': 'people/me',
-      'requestMask.includeField': 'person.names'
-    }).then(function(response) {
-      console.log('Hello, ' + response.result.names[0].givenName);
-    }, function(reason) {
-      console.log('Error: ' + reason.result.error.message);
-    });
-  }
 
   gapi.load('client', () => {
     gapi.client.init({
       'apiKey': APP_ENV.GOOGLE_API_KEY,
       // clientId and scope are optional if auth is not required.
-      'discoveryDocs': ["https://people.googleapis.com/$discovery/rest?version=v1"],
+      'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest'],
       'clientId': APP_ENV.GOOGLE_CLIENT_ID,
-      'scope': 'contacts.readonly',
+      'scope': 'https://www.googleapis.com/auth/contacts.readonly',
     }).then(function () {
-      // Listen for sign-in state changes.
-      gapi.auth2.getAuthInstance().isSignedIn.listen(updateSigninStatus);
-      
-      // Handle the initial sign-in state.
-      if (gapi.auth2.getAuthInstance().isSignedIn.get()) {
-        updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-      } else {
-        handleSignInClick();
-      }      
+      gapi.auth2.getAuthInstance().signIn().then(response => {
+        const token = response && response.Zi.access_token;
+
+        if (token) {
+          fetch(`https://www.google.com/m8/feeds/contacts/default/full?access_token=${token}&alt=json`)
+            .then(res => res.json())
+            .then(data => {
+              const feed = data.feed;
+              const entry = feed.entry || [];
+              const shared_emails = [];
+              for (let i = 0; i < entry.length; i++) {
+                const item = entry[i];
+                if (item.hasOwnProperty('gd$email')) {
+                  const email = item.gd$email[0].address;
+                  if(/[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})/.test(email)) shared_emails.push(email);
+                }
+              }
+
+              handleShowEmailList(shared_emails);
+            })
+            .catch(() => {
+              setMessage('Can not get your contact list');
+            })
+        }
+      });    
     });
   });  
 }
@@ -240,6 +230,7 @@ const handleIntro = () => {
   const elCopy = container.querySelector('.copy-content'); 
   const fbShareBtn = container.querySelector('.btns button.share-facebook'); 
   const twitterShareBtn = container.querySelector('.btns button.share-twitter'); 
+  const googleShareBtn = container.querySelector('.btns button.share-google'); 
 
   const referralUrl = getUserReferralUrl();
   if (referralUrl) {
@@ -247,12 +238,12 @@ const handleIntro = () => {
     elCopy && elCopy.setAttribute('data-copy-value', referralUrl);
     fbShareBtn && fbShareBtn.addEventListener('click', () => handleShareFb(referralUrl));
     twitterShareBtn && twitterShareBtn.addEventListener('click', () => handleShareTwitter(referralUrl));
+    googleShareBtn && googleShareBtn.addEventListener('click', () => handleShareGoogle(referralUrl));
   }
 }
 
 const main = () => {
   if (!location.pathname.includes('/referral.html')) return;
-  // handleShareGoogle();
   handleIntro();
   checkAuth();
   startCountdown();
