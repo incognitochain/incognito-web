@@ -218,7 +218,14 @@ const handleShowInfo = async () => {
         const isActive = currentLevel && (data.name === currentLevel.name);
         const el = renderBoxLevel(data, isActive);
         levelBoxEl.appendChild(el);
-      })
+      });
+
+      setTimeout(() => {
+        const activeLevelEl = container.querySelector('.box.active');
+        if (activeLevelEl) {
+          activeLevelEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 500);
     }
   } catch (e) {
     setMessage('Can not get your referral data, please try later', 'error');
