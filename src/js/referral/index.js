@@ -6,6 +6,8 @@ import countdown from '../service/countdown';
 import { getUserTotalReferral, listReferralLevel, sendReferralInvitation } from '../service/api';
 import { openModal, closeModal } from '../service/modal';
 
+const socialShareMsg = 'Can’t wait to receive my Incognito.  It’s going to earn me Bitcoin while I sleep';
+
 const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
 
@@ -24,12 +26,12 @@ const getUserReferralUrl = () => {
 
 const handleShareFb = (referralUrl) => {
   // https://www.facebook.com/sharer/sharer.php?u=${referralUrl}&quote=
-  popupCenter(`https://www.facebook.com/sharer/sharer.php?u=${referralUrl}`, 'Share to Facebook');
+  popupCenter(`https://www.facebook.com/sharer/sharer.php?u=${referralUrl}&quote=${socialShareMsg}`, 'Share to Facebook');
 }
 
 const handleShareTwitter = (referralUrl) => {
   // https://twitter.com/share?url=${referralUrl}&via=i&text
-  popupCenter(`https://twitter.com/share?url=${referralUrl}`, 'Share to Twitter');
+  popupCenter(`https://twitter.com/share?url=${referralUrl}&text=${socialShareMsg}`, 'Share to Twitter');
 }
 
 const handleSendEmail = async emails => {
