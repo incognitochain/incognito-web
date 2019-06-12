@@ -25,6 +25,9 @@ const customFetch = (directUrl, { url, method, body, headers }) => {
 
     return json && json.Result;
   })
+  .catch((e) => {
+    throw new Error('Opps! Something went wrong, please try later');
+  });
 }
 
 export default customFetch;

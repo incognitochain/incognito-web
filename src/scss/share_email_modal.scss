@@ -1,0 +1,34 @@
+.share-google-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+    .email {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 30px;
+      background-color: rgba(0,0,0,0.1);
+      padding: 0px 15px;
+      margin: 10px;
+      border-radius: 20px;
+      .clear {
+        padding: 5px 10px;
+        color: blue;
+        cursor: pointer;
+      }
+    }
+  }
+
+  button.share-btn {
+    min-height: 40px;
+    max-height: 40px;
+    width: 150px;
+    margin: 20px;
+  }
+}

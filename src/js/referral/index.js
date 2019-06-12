@@ -3,7 +3,8 @@ import KEYS from "../constant/keys";
 import { popupCenter } from '../service/window';
 import { setMessage } from '../service/message_box';
 import countdown from '../service/countdown';
-import { getUserTotalReferral, listReferralLevel } from '../service/api';
+import { getUserTotalReferral, listReferralLevel, sendReferralInvitation } from '../service/api';
+import { openModal, closeModal } from '../service/modal';
 
 const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
@@ -31,8 +32,65 @@ const handleShareTwitter = (referralUrl) => {
   popupCenter(`https://twitter.com/share?url=${referralUrl}`, 'Share to Twitter');
 }
 
+const handleSendEmail = async emails => {
+  try {
+    await sendReferralInvitation(emails);
+    setMessage('Sent invitation successfully', 'info');
+  } catch (e) {
+    setMessage(e.message, 'error');
+  }
+}
+
 const handleShowEmailList = emails => {
-  console.log(emails);
+  const container = document.createElement('div');
+  container.classList.add('share-google-container');
+
+  const listEl = document.createElement('div');
+  listEl.classList.add('list');
+
+  const shareEl = document.createElement('button');
+  shareEl.classList.add('share-btn');
+  shareEl.innerText = 'Share';
+
+  const renderEmail = (email, onClear) => {
+    if (!email) return;
+    const emailEl = document.createElement('div');
+    emailEl.classList.add('email');
+    emailEl.innerHTML = `
+      <span>${email}</span>
+      <span class='clear'>X</span>
+    `;
+    const clearEl = emailEl.querySelector('.clear');
+    clearEl && clearEl.addEventListener('click', () => {
+      listEl.removeChild(emailEl);
+      onClear(email);
+    });
+
+    return emailEl;
+  }
+
+  const handleClear = email => {
+    const foundIndex = emails.findIndex(e => e === email);
+    
+    if (foundIndex >=0) {
+      emails.splice(foundIndex, 1);
+    }
+  }
+
+  emails.forEach(email => {
+    const emailEl = renderEmail(email, handleClear);
+    emailEl && listEl.appendChild(emailEl);
+  });
+
+  container.appendChild(listEl);
+  container.appendChild(shareEl);
+
+  const modal = openModal('Select contact to share', container);
+
+  shareEl.addEventListener('click', () => {
+    handleSendEmail(emails);
+    closeModal(modal);
+  });
 }
 
 const handleShareGoogle = (referralUrl) => {
