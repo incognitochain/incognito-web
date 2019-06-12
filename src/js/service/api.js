@@ -62,3 +62,20 @@ export const verifyEmailToken = (token) => {
   });
 }
 
+export const sendReferralInvitation = (emails) => {
+  const emailStr = emails && emails.join(',');
+  return fetch('auth/referral-invitation', {
+    method: 'POST',
+    body: {
+      Email: emailStr
+    }
+  })
+  .catch((e) => {
+    if (!APP_ENV.production) {
+      console.error(e);
+    }
+    
+    throw new Error(e.message || 'Can not send invitation to your email list')
+  });
+}
+
