@@ -154,7 +154,10 @@
       }
 
       .level-box-container {
-        overflow-x: scroll;
+        @include breakpoint-down(1300px) {
+          overflow-x: scroll;
+        };
+        
         .level-box {
           display: flex;
           
