@@ -24,7 +24,7 @@ const countdown = (deadline, onCount) => {
       clearInterval(timer);
       onCount(false);
     }
-  }, 1000);
+  }, 500);
 }
 
 const isValidDate = date => {

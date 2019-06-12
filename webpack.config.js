@@ -50,6 +50,10 @@ const devConfig = {
       {
         from: path.resolve(__dirname, './src/model'),
         to: 'model'
+      },
+      {
+        from: path.resolve(__dirname, './src/image/seo/image.svg'),
+        to: 'seo_image.svg'
       }
     ]),
   ],
@@ -104,6 +108,10 @@ const prodConfig = {
       {
         from: path.resolve(__dirname, './src/model'),
         to: 'model'
+      },
+      {
+        from: path.resolve(__dirname, './src/image/seo/image.svg'),
+        to: 'seo_image.svg'
       }
     ]),
     ...templateGen
