@@ -6,11 +6,11 @@ form#email-subscribe {
   #email-input{
     margin-right: 14px;
     flex: 1;
-    border: solid 1px $black1;
   }
   button.submit-email {
     min-width: 195px;
     font-weight: 400;
+    color: $white;
   }
 
   @include breakpoint-down(md) {

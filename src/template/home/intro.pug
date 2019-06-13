@@ -4,21 +4,21 @@ mixin list(desc)
 
 div#intro-container.container.bounceInUp-ani
   .content
-    div.image
-      img(src=require('../../image/coolphone.webp'))
     div.intro
       div
         h3.highlight-title Incognito
-        h1.title Earn
+        h1.title Earn money in your sleep.
+        p.sub-title Incognito brings you
           | 
-          span.crypto-name Bitcoin
-          <br />
-          |while you sleep.
-        p.sub-title Incognito earns you a little extra income for building a better, safer internet. 
+          i-tooltip(text='passive income')
+            span Incognito is your personal mining machine. Earn USD, Bitcoin, Ether or any of your favorite currencies. Just plug in to earn.
+          | 
+          |for building a better, safer internet.
         p.sub-title From a team that shipped $100M+ of smart devices worldwide.
-        p.sub-title $199
+        p.sub-title
+          span.highlight $199
           | 
-          span(style='text-decoration: line-through') $299
+          span(style='text-decoration: line-through; color: inherit') $299
           |
           |for early birds. Arrives Summer 2019.
 

@@ -30,11 +30,11 @@ class Tooltip extends HTMLElement {
     
     this.tooltipContainer.innerHTML = this.innerHTML;
 
-    textEl.style.borderBottom = 'dotted 1px';
+    textEl.style.cssText = 'border-bottom: dotted 1px; color: black;';
     this.style.position = 'relative';
     this.tooltipContainer.style.cssText = `
       position: absolute;
-      background-color: white;
+      background-color: #14191E;
       padding: 10px;
       border-radius: 4px;
       z-index: 100;
@@ -44,6 +44,7 @@ class Tooltip extends HTMLElement {
       left: 50%;
       transform: translateX(-50%);
       display: none;
+      color: white;
     `;
     
 
