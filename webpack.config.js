@@ -14,14 +14,14 @@ const templateGen = [
     template: 'src/template/referral/index.pug',
     filename: 'referral.html'
   }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/about/index.pug',
-    filename: 'about.html'
-  }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/mine/index.pug',
-    filename: 'mine.html'
-  }),
+  // new HtmlWebpackPlugin({
+  //   template: 'src/template/about/index.pug',
+  //   filename: 'about.html'
+  // }),
+  // new HtmlWebpackPlugin({
+  //   template: 'src/template/mine/index.pug',
+  //   filename: 'mine.html'
+  // }),
 ];
 
 const production = process.env.NODE_ENV === 'production';
