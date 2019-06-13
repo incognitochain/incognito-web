@@ -3,5 +3,6 @@ module.exports = {
   GA_ID: '',
   ZENDESK_KEY: '',
   GOOGLE_CLIENT_ID: '',
-  GOOGLE_API_KEY: ''
+  GOOGLE_API_KEY: '',
+  FB_PIXEL_ID: ''
 };
