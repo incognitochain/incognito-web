@@ -1,4 +1,5 @@
 nav#header {
+  padding: 20px 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -33,12 +34,8 @@ nav#header {
 
   .mobile-sidebar {
     position: absolute;
-    left: 0;
+    right: 0;
     padding: inherit;
-
-    @include breakpoint-up(md) {
-      display: none;
-    };
     
     .hamburger-btn {
       &::after {
@@ -78,22 +75,27 @@ nav#header {
         width: 300px;
         background-color: $black2;
         position: fixed;
-        left: 0;
+        right: 0;
         top: 0;
         z-index: 100;
         height: 100%;
-        transform: translateX(-300px);
+        transform: translateX(300px);
         transition: transform 300ms;
+
+        .head {
+          display: flex;
+          justify-content: flex-end;
+          button.close {
+            background-color: transparent;
+            color: $green;
+          }
+        }
         
         > a {
           &:not(.menu-item) {
             margin: 30px auto;
             text-align: center;
             margin-bottom: 10px;
-          }
-
-          img.header-logo {
-            width: 100px;
           }
 
           &.menu-item {
