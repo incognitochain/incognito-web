@@ -6,12 +6,28 @@ nav#header {
   width: 100%;
   min-height: $header-height;
 
+  &.light {
+    h3.header-logo {
+      color: $green;
+    } 
+
+    .hamburger-btn::after {
+      color: $green;
+    }
+  }
+
   @include breakpoint-down(md) {
     justify-content: center;
   };
 
   .logo {
     display: flex;
+    h3.header-logo {
+      font-size: 26px;
+      font-weight: 600;
+      margin: 0px;
+      font-weight: 400;
+    }
   }
   
   .group {
@@ -27,7 +43,7 @@ nav#header {
       margin: 0px 20px;
       transition: color 300ms;
       &:hover {
-        color: $white;
+        color: $grey;
       }
     }
   }
@@ -43,7 +59,6 @@ nav#header {
         font-size: 30px;
         transform: scale(1, 1) rotate(90deg);
         display: block;
-        color: $green;
       }
     }
 
@@ -73,7 +88,7 @@ nav#header {
         flex-direction: column;
         padding: 0px 20px;
         width: 300px;
-        background-color: $black2;
+        background-color: $white;
         position: fixed;
         right: 0;
         top: 0;
@@ -99,13 +114,9 @@ nav#header {
           }
 
           &.menu-item {
-            padding: 10px;
+            padding: 12px 10px;
             margin-right: 30px;
-  
-            &::before {
-              margin-right: 10px;
-              content: '•';
-            }
+            font-size: 20px;
           }
         }
       }
