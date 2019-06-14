@@ -170,30 +170,18 @@ const renderBoxLevel = (levelData, isActive) => {
 
   const DATA = {
     level1: {
-      icon: {
-        normal: require('../../image/icon/referral_level/everyman-normal.svg'),
-        active: require('../../image/icon/referral_level/everyman-active.svg')
-      },
       got: {
         others: '10 Privacy'
       }
     },
     level2: {
       topPercent: 50,
-      icon: {
-        normal: require('../../image/icon/referral_level/citizen-normal.svg'),
-        active: require('../../image/icon/referral_level/citizen-active.svg')
-      },
       got: {
         others: '50 Privacy'
       }
     },
     level3: {
       topPercent: 10,
-      icon: {
-        normal: require('../../image/icon/referral_level/keep-normal.svg'),
-        active: require('../../image/icon/referral_level/keeper-active.svg')
-      },
       got: {
         minner: 1,
         others: 'Your stake for 1 month'
@@ -201,10 +189,6 @@ const renderBoxLevel = (levelData, isActive) => {
     },
     level4: {
       topPercent: 1,
-      icon: {
-        normal: require('../../image/icon/referral_level/guardian-normal.svg'),
-        active: require('../../image/icon/referral_level/guardian-active.svg')
-      },
       got: {
         minner: 1,
         others: 'Your stake for 12 months'
@@ -226,7 +210,6 @@ const renderBoxLevel = (levelData, isActive) => {
         ''
       }
     </div>
-    <div><img src='${data.icon[isActive ? 'active' : 'normal']}' /></div>
     <div class='desc'>${levelData.desc}</div>
     <div>${levelData.nums}</div>
     <div>${
