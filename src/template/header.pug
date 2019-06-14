@@ -11,17 +11,19 @@ mixin menu-right
 nav#header
   .mobile-sidebar
     .hamburger-btn
+      img(src=require('../../image/icon/hamburger.svg'))
     .sidebar
       .overlay
       .content
         .head
-          button.close X
+          .close
+            img(src=require('../../image/icon/close.svg'))
         +menu-left
         +menu-right
   //- .group.left
   //-   +menu-left
   a(href='/').logo
-    h3.header-logo Incognito
+    img(src=require('../../image/logo.svg'))
   //- .group.right
   //-   +menu-left
   //-   +menu-right

@@ -8,9 +8,12 @@
     .image {
       min-width: 350px;
       margin-right: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
 
       > img {
-        max-width: 300px;
+        max-width: 400px;
       }
 
       @include breakpoint-down(lg) {
@@ -27,14 +30,12 @@
         margin-bottom: 40px;
         h1.title {
           font-size: 36px;
-          color: $white;
           letter-spacing: -1.5px;
           line-height: 50px;
           margin: 0px;
         }
         p.desc {
           font-size: 18px;
-          color: $grey;
           letter-spacing: 0;
           line-height: 27px;
         }
@@ -48,7 +49,6 @@
           span.referral-link {
             display: flex;
             align-items: center;
-            background-color: $white;
             flex: 1;
             white-space: nowrap;
             text-overflow: ellipsis;
@@ -56,19 +56,21 @@
             text-align: left;
             padding: 0px 20px;
             height: $btn-height;
-            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.50);
             border-radius: 4px;
             margin-right: 10px;
             font-size: 20px;
             color: #2A3036;
             letter-spacing: -0.42px;
             width: 100px;
+            background: $white;
+            box-shadow: 0 4px 13px 0 rgba(191,191,191,0.50);
           }
           button.copy-btn {
             width: 100px;
             border-radius: 4px;
             font-size: 16px;
             letter-spacing: 0;
+            color: $white;
           }
         }
   
@@ -108,8 +110,7 @@
             background: #4469B0;
           }
           .share-google {
-            background: $white;
-            color: $black;
+            background: #d74740;
           }
         }
       }
@@ -117,7 +118,7 @@
   }
   #referral-info {
     background-color: $white;
-    padding-top: 30px;
+    padding-top: 70px;
     padding-bottom: 50px;
     > div.content {
       text-align: center;
@@ -139,7 +140,6 @@
           font-size: 22px;
           text-transform: uppercase;
           color: $green;
-          background-color: $black;
           padding: 0px 10px;
         }
       }
