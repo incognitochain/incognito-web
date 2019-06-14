@@ -171,26 +171,26 @@ const renderBoxLevel = (levelData, isActive) => {
   const DATA = {
     level1: {
       got: {
-        others: '10 Privacy'
+        others: '10 Privacy Coin'
       }
     },
     level2: {
       topPercent: 50,
       got: {
-        others: '50 Privacy'
+        others: '50 Privacy Coin'
       }
     },
     level3: {
       topPercent: 10,
       got: {
-        minner: 1,
+        minner: 'The Miner',
         others: 'Your stake for 1 month'
       }
     },
     level4: {
       topPercent: 1,
       got: {
-        minner: 1,
+        minner: 'The Miner Pro',
         others: 'Your stake for 12 months'
       }
     }
@@ -214,7 +214,7 @@ const renderBoxLevel = (levelData, isActive) => {
     <div>${levelData.nums}</div>
     <div>${
       data.got.minner ?
-        '<span class="minner">1 The Minner</span>' :
+        `<span class="minner">${data.got.minner}</span>` :
         `<span>${data.got.others}</span>`
     }</div>
     <div>${
@@ -294,9 +294,3 @@ const main = () => {
 };
 
 main();
-
-// change bg
-if (location.pathname.includes('/referral.html')) {
-  const headerEl = document.querySelector('#header');
-  headerEl.classList.add('light');
-}

@@ -3,7 +3,12 @@ import injectScript from '../service/injectScript';
 // load Zendesk
 injectScript({ fromSrc: `https://static.zdassets.com/ekr/snippet.js?key=${APP_ENV.ZENDESK_KEY}`, attrs: {
   id: 'ze-snippet'
-}});
+}}).then(() => {
+  // setTimeout(() => {
+  //   if (typeof $zopim !== 'undefined')
+  //     $zopim.livechat.button.setOffsetVerticalMobile(70);
+  // }, 3000);
+});
 
 // load GA
 injectScript({

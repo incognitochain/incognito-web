@@ -1,5 +1,5 @@
 nav#header {
-  padding: 20px 50px;
+  padding: 20px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -40,10 +40,10 @@ nav#header {
     text-decoration: unset;
 
     &.menu-item {
-      margin: 0px 20px;
+      margin: 0px;
       transition: color 300ms;
       &:hover {
-        color: $grey;
+        color: #7d7d7d;
       }
     }
   }
@@ -54,12 +54,6 @@ nav#header {
     padding: inherit;
     
     .hamburger-btn {
-      &::after {
-        content: '|||';
-        font-size: 30px;
-        transform: scale(1, 1) rotate(90deg);
-        display: block;
-      }
     }
 
     .sidebar {
@@ -100,9 +94,9 @@ nav#header {
         .head {
           display: flex;
           justify-content: flex-end;
-          button.close {
-            background-color: transparent;
-            color: $green;
+          .close {
+            margin-top: 23px;
+            width: 25px;
           }
         }
         
