@@ -5,6 +5,9 @@ import { setMessage } from '../service/message_box';
 import countdown from '../service/countdown';
 import { getUserTotalReferral, listReferralLevel, sendReferralInvitation } from '../service/api';
 import { openModal, closeModal } from '../service/modal';
+import top50Img from '../../image/top50.svg';
+import top10Img from '../../image/top10.svg';
+import top1Img from '../../image/top1.svg';
 
 const socialShareMsg = 'Can’t wait to receive my Incognito.  It’s going to earn me Bitcoin while I sleep';
 
@@ -170,29 +173,23 @@ const renderBoxLevel = (levelData, isActive) => {
 
   const DATA = {
     level1: {
-      got: {
-        others: '10 Privacy Coin'
-      }
+      got: '10 Privacy Coin',
+      desc: 'Privacy Coin keeps the Miner running.'
     },
     level2: {
-      topPercent: 50,
-      got: {
-        others: '50 Privacy Coin'
-      }
+      topPercent: top50Img,
+      got: '50 Privacy Coin',
+      desc: 'More fuel. More income.'
     },
     level3: {
-      topPercent: 10,
-      got: {
-        minner: 'The Miner',
-        others: 'Your stake for 1 month'
-      }
+      topPercent: top10Img,
+      got: 'The Miner',
+      desc: 'The Miner is your personal mining machine.'
     },
     level4: {
-      topPercent: 1,
-      got: {
-        minner: 'The Miner Pro',
-        others: 'Your stake for 12 months'
-      }
+      topPercent: top1Img,
+      got: 'The Miner Pro',
+      desc: 'More power. More income.'
     }
   };
 
@@ -203,23 +200,12 @@ const renderBoxLevel = (levelData, isActive) => {
 
   box.innerHTML = `
     <div class='top-percent'>
-      ${
-        data.topPercent ? `
-        <span>Top </span>
-        <span class='percent'>${data.topPercent}%</span>` :
-        ''
-      }
+      ${data.topPercent ? `<img src='${data.topPercent}' />` : ''}
     </div>
     <div class='desc'>${levelData.desc}</div>
     <div>${levelData.nums}</div>
-    <div>${
-      data.got.minner ?
-        `<span class="minner">${data.got.minner}</span>` :
-        `<span>${data.got.others}</span>`
-    }</div>
-    <div>${
-      (data.got.others && data.got.minner) ? `<span>${data.got.others}</span>` : ''
-    }</div>
+    <div><span class="minner">${data.got}</span></div>
+    <div><span>${data.desc}</span></div>
   `;
 
   return box;
@@ -230,15 +216,22 @@ const handleShowInfo = async () => {
     const container = document.querySelector('#referral-info');
     if (!container) return;
 
+    const statusContainerEl = container.querySelector('.current-status');
     const statusEl = container.querySelector('.current-status .status');
+    const friendNumberContainerEl = container.querySelector('.referred-box');
     const friendNumberEl = container.querySelector('.referred-box .friend-number');
     const bringFriendNumberEl = container.querySelector('.referred-box .bring-friend-number');
     const nextStatusEl = container.querySelector('.referred-box .next-status');
 
     const { currentLevel, nextLevel, total, requiredNum, referralList } = await getReferralData() || {};
 
-    statusEl && (statusEl.innerText = currentLevel && currentLevel.desc || 'Pending');
-
+    if (currentLevel) {
+      statusEl && (statusEl.innerText = currentLevel.desc);
+    } else {
+      statusContainerEl.innerText = 'You\'re nobody';
+      friendNumberContainerEl.innerText = `Refer ${requiredNum} friends to become an ${nextLevel.desc}.`;
+    }
+    
     if (nextLevel) {
       friendNumberEl && (friendNumberEl.innerText = total || 0);
       bringFriendNumberEl && (bringFriendNumberEl.innerText = requiredNum || 0);
@@ -289,7 +282,7 @@ const main = () => {
   if (!location.pathname.includes('/referral.html')) return;
   handleIntro();
   checkAuth();
-  startCountdown();
+  // startCountdown();
   handleShowInfo();
 };
 

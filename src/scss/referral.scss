@@ -79,7 +79,9 @@
           justify-content: space-between;
           margin-top: 40px;
 
-          
+          @include breakpoint-down(sm) {
+            flex-direction: column;
+          };
   
           > button{
             flex: 1;
@@ -91,6 +93,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            @include breakpoint-down(sm) {
+              flex: unset;
+              margin: 5px 0px;
+            };
 
             > img {
               height: 18px;
