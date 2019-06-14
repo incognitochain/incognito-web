@@ -1,5 +1,5 @@
 import './intro';
-import bg from '../../image/home_bg.webp';
+import bg from '../../image/home_bg.jpg';
 
 // change bg
 if (location.pathname === '/')
