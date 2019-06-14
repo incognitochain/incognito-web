@@ -1,5 +1,3 @@
-import model from '../../model/device.glb';
-
 function main() {
   const container = document.querySelector('#model-viewer .viewer');
 
