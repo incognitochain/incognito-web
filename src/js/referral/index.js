@@ -311,3 +311,9 @@ const main = () => {
 };
 
 main();
+
+// change bg
+if (location.pathname.includes('/referral.html')) {
+  const headerEl = document.querySelector('#header');
+  headerEl.classList.add('light');
+}

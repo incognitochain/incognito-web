@@ -1,7 +1,10 @@
 form#email-subscribe {
   margin-top: 48px;
   margin-bottom: 48px;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
+  max-width: 600px;
 
   #email-input{
     margin-right: 14px;

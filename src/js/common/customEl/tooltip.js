@@ -28,9 +28,21 @@ class Tooltip extends HTMLElement {
     this.tooltipContainer = document.createElement('div');
     textEl.innerHTML = this.getAttribute('text');
     
-    this.tooltipContainer.innerHTML = this.innerHTML;
+    this.tooltipContainer.innerHTML = `
+      <style>
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      </style>
+      ${this.innerHTML}
+    `;
 
-    textEl.style.cssText = 'border-bottom: dotted 1px; color: black;';
+    textEl.style.cssText = 'border-bottom: dotted 1px; color: black';
     this.style.position = 'relative';
     this.tooltipContainer.style.cssText = `
       position: absolute;
@@ -40,11 +52,14 @@ class Tooltip extends HTMLElement {
       z-index: 100;
       min-width: 300px;
       max-width: 500px;
-      bottom: 25px;
+      bottom: 35px;
       left: 50%;
       transform: translateX(-50%);
       display: none;
       color: white;
+      animation-name: fadeIn;
+      animation-duration: 300ms;
+      font-size: 16px;
     `;
     
 

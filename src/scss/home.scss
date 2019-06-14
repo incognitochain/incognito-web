@@ -2,7 +2,6 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 50px;
   padding-bottom: 50px;
   min-height: calc(100vh - (#{$header-height}));
   position: relative;
@@ -37,24 +36,26 @@
       flex-direction: column;
       justify-content: space-between;
       padding-bottom: 10px;
-      
-      @include breakpoint-up(lg) {
-        padding-top: 100px;
-      };
+
       
       > div {
         h3.highlight-title {
-          font-size: 19px;
-          color: #000000;
+          font-size: 32px;
+          color: $black;
           letter-spacing: 0;
+          font-weight: 300;
+          margin: 0px;
         }
     
         h1.title {
-          font-size: 48px;
-          color: #000000;
+          font-size: 55px;
+          color: $green;
           letter-spacing: 0;
           text-align: center;
           line-height: 49px;
+          font-weight: 300;
+          margin-top: 15px;
+          margin-bottom: 40px;
   
           span.crypto-name {
             position: relative;
@@ -76,15 +77,17 @@
         }
     
         p.sub-title  {
-          font-size: 16px;
-          color: #000000;
+          font-size: 22px;
+          font-weight: 300;
+          color: $black;
           letter-spacing: 0;
           text-align: center;
           line-height: 24px;
           .highlight {
-            color: inherit;
+            color: $green;
+          }
+          &.small {
             font-size: 20px;
-            font-weight: 600;
           }
         }
         
@@ -185,7 +188,7 @@
   
       h1.title {
         font-weight: bold;
-        font-size: 32px;
+        font-size: 30px;
         color: $black2;
         letter-spacing: -0.38px;
         text-align: center;
