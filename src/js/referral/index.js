@@ -228,7 +228,7 @@ const handleShowInfo = async () => {
     if (currentLevel) {
       statusEl && (statusEl.innerText = currentLevel.desc);
     } else {
-      statusContainerEl.innerText = 'You\'re nobody';
+      statusContainerEl.innerText = 'You\'re Nobody.';
       friendNumberContainerEl.innerText = `Refer ${requiredNum} friends to become an ${nextLevel.desc}.`;
     }
     
