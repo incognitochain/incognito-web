@@ -46,20 +46,22 @@ class Tooltip extends HTMLElement {
     this.style.position = 'relative';
     this.tooltipContainer.style.cssText = `
       position: absolute;
-      background-color: #14191E;
-      padding: 10px;
+      background-color: white;
+      padding: 20px;
       border-radius: 4px;
       z-index: 100;
       min-width: 300px;
-      max-width: 500px;
+      max-width: 600px;
       bottom: 35px;
       left: 50%;
       transform: translateX(-50%);
       display: none;
-      color: white;
       animation-name: fadeIn;
       animation-duration: 300ms;
-      font-size: 16px;
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 0.2px;
+      box-shadow: 0 0 2px 0 rgba(0,0,0,0.06), 0 8px 24px 0 rgba(0,0,0,0.10);
     `;
     
 
