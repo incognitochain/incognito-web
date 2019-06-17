@@ -30,6 +30,7 @@ const showTotalSubscribe = async () => {
     let number = 998;
     try {
       number = await getTotalSubscribe();
+      number = number && Intl.NumberFormat().format(number);
     } catch (e) {}
     
     numberOfSubscriber.innerText = number;
