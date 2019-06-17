@@ -1,3 +1,7 @@
+import { getTotalSubscribe } from '../service/api';
+
+const containerEl = document.querySelector('#intro-container');
+
 const changeCryptoName = ({ listName, timeout }) => {
   const cryptoNameEl = document.querySelector('#intro-container .crypto-name');
   let currentIndex = 1;
@@ -19,4 +23,25 @@ const changeCryptoName = ({ listName, timeout }) => {
   }, timeout);
 }
 
-changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'BNB'], timeout: 2000 });
+const showTotalSubscribe = async () => {
+  const numberOfSubscriber = containerEl.querySelector('.number-of-subscriber');
+  
+  if (numberOfSubscriber) {
+    let number = 998;
+    try {
+      number = await getTotalSubscribe();
+    } catch (e) {}
+    
+    numberOfSubscriber.innerText = number;
+  }
+}
+
+const main = () => {
+  if (location.pathname === '/') {
+    showTotalSubscribe();
+  }
+}
+
+main();
+
+// changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'BNB'], timeout: 2000 });
