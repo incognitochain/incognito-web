@@ -4,7 +4,13 @@ extends ../layout.pug
 block title
    title Home
    
-block content
-   include intro.pug
-   //- include section.pug
-   //- include question.pug
+block main
+   div#home-container
+      .image
+         img(src=require('../../image/home_left_img.png')).desktop
+         img(src=require('../../image/home_image_mobile.png')).mobile
+      .right-content
+         include ../header.pug
+         include intro.pug
+         //- include section.pug
+         //- include question.pug

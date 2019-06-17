@@ -79,3 +79,16 @@ export const sendReferralInvitation = (emails) => {
   });
 }
 
+export const getTotalSubscribe = () => {
+  return fetch('auth/total-subscrite', {
+    method: 'GET',
+  })
+  .catch((e) => {
+    if (!APP_ENV.production) {
+      console.error(e);
+    }
+    
+    throw new Error(e.message || 'Can not get total subscriber')
+  });
+}
+

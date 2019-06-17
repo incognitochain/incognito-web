@@ -3,11 +3,14 @@ extends ../layout.pug
 block title
    title Referral
    
-block content
-   #referral-container
-      include intro.pug
-      include info.pug
-      include question.pug
+block main
+   include ../header.pug
+   div#content
+      #referral-container
+         include intro.pug
+         include info.pug
+         include question.pug
+   
 
 block bodyscript
    script(src="https://apis.google.com/js/api.js")
