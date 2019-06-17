@@ -52,6 +52,10 @@ const devConfig = {
         to: 'model'
       },
       {
+        from: path.resolve(__dirname, './src/docs'),
+        to: ''
+      },
+      {
         from: path.resolve(__dirname, './src/image/seo/image.png'),
         to: 'seo_image.png'
       }
@@ -108,6 +112,10 @@ const prodConfig = {
       {
         from: path.resolve(__dirname, './src/model'),
         to: 'model'
+      },
+      {
+        from: path.resolve(__dirname, './src/docs'),
+        to: ''
       },
       {
         from: path.resolve(__dirname, './src/image/seo/image.png'),
