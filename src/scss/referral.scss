@@ -107,6 +107,9 @@
 
             &:not(:last-child) {
               margin-right: 10px;
+              @include breakpoint-down(sm) {
+                margin-right: unset;
+              };
             }
           }
     
@@ -177,8 +180,8 @@
             min-width: 220px;
             display: grid;
             justify-content: center;
-            align-items: center;
-            grid-template-rows: 50px 40px 40px 40px 40px;
+            align-items: flex-start;
+            grid-template-rows: 60px 40px 40px 40px 40px;
   
             &.label {
               text-align: left;
@@ -221,7 +224,7 @@
             }
   
             img {
-              height: 40px;
+              height: 50px;
             }
           }
         }
