@@ -24,6 +24,25 @@ const templateGen = [
   // }),
 ];
 
+const copyPlugin = new CopyPlugin([
+  {
+    from: path.resolve(__dirname, './src/js/lib'),
+    to: 'lib'
+  },
+  {
+    from: path.resolve(__dirname, './src/model'),
+    to: 'model'
+  },
+  {
+    from: path.resolve(__dirname, './src/docs'),
+    to: ''
+  },
+  {
+    from: path.resolve(__dirname, './src/image/seo'),
+    to: ''
+  }
+]);
+
 const production = process.env.NODE_ENV === 'production';
 const env = production ? require('./.env.production') : require('./.env.development');
 
@@ -42,24 +61,7 @@ const devConfig = {
         production
       }),
     }),
-    new CopyPlugin([
-      {
-        from: path.resolve(__dirname, './src/js/lib'),
-        to: 'lib'
-      },
-      {
-        from: path.resolve(__dirname, './src/model'),
-        to: 'model'
-      },
-      {
-        from: path.resolve(__dirname, './src/docs'),
-        to: ''
-      },
-      {
-        from: path.resolve(__dirname, './src/image/seo/image.png'),
-        to: 'seo_image.png'
-      }
-    ]),
+    copyPlugin
   ],
   module: {
     rules: [{
@@ -104,24 +106,7 @@ const prodConfig = {
         production
       }),
     }),
-    new CopyPlugin([
-      {
-        from: path.resolve(__dirname, './src/js/lib'),
-        to: 'lib'
-      },
-      {
-        from: path.resolve(__dirname, './src/model'),
-        to: 'model'
-      },
-      {
-        from: path.resolve(__dirname, './src/docs'),
-        to: ''
-      },
-      {
-        from: path.resolve(__dirname, './src/image/seo/image.png'),
-        to: 'seo_image.png'
-      }
-    ]),
+    copyPlugin,
     ...templateGen
   ],
   module: {
