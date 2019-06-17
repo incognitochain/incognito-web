@@ -23,7 +23,7 @@ const getUserReferralUrl = () => {
   const code = storage.get(KEYS.MY_REFERRAL_CODE);
   if (!code) return undefined;
 
-  const url = `${location.origin}/${code}`;
+  const url = `${location.origin}?referral=${code}`;
   return url;
 }
 
