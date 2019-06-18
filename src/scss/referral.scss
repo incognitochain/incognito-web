@@ -128,7 +128,7 @@
   }
   #referral-info {
     background-color: $white;
-    padding-top: 70px;
+    padding-top: 0px;
     padding-bottom: 50px;
     > div.content {
       text-align: center;
@@ -173,7 +173,6 @@
         
         .level-box {
           display: flex;
-          margin-top: 30px;
           
           .box {
             padding: 20px 10px 50px 10px;
