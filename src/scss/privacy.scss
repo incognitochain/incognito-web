@@ -1,0 +1,18 @@
+#privacy-container {
+  margin-bottom: 50px;
+  h1 {
+    font-size: 40px;
+    font-weight: 600;
+    text-align: center;
+    margin: 40px 0px;
+  }
+  span {
+    display: block;
+    line-height: 22px;
+    margin-bottom: 10px;
+    &.title {
+      font-weight: bold;
+      margin-top: 40px;
+    }
+  }
+}
