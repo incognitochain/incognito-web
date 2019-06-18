@@ -42,15 +42,14 @@ class Tooltip extends HTMLElement {
       ${this.innerHTML}
     `;
 
-    textEl.style.cssText = 'border-bottom: dotted 1px; color: black';
-    this.style.position = 'relative';
+    textEl.style.cssText = 'border-bottom: dotted 1px; color: black; position: relative';
     this.tooltipContainer.style.cssText = `
       position: absolute;
       background-color: white;
       padding: 20px;
       border-radius: 4px;
       z-index: 100;
-      min-width: 300px;
+      min-width: 240px;
       max-width: 600px;
       bottom: 35px;
       left: 50%;
@@ -68,9 +67,8 @@ class Tooltip extends HTMLElement {
     textEl.addEventListener('mouseover', this.handleMouseIn);
     textEl.addEventListener('mouseleave', this.handleMouseOut);
 
-
+    textEl.appendChild(this.tooltipContainer);
     shadow.appendChild(textEl);
-    shadow.appendChild(this.tooltipContainer);
   }
 }
 
