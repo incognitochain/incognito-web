@@ -7,19 +7,18 @@
 
   .image {
     flex: 1;
+    background: url(../image/home_left_img.webp) no-repeat left bottom;
+    background-size: cover;
 
     img.mobile {
       display: none;
-    }
-
-    img.desktop {
-      display: block;
     }
     
 
     @include breakpoint-down(xl) {
       img.mobile {
         display: block;
+        background: none;
       }
 
       img.desktop {
