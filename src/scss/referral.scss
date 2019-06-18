@@ -176,8 +176,9 @@
           
           .box {
             padding: 20px 10px 50px 10px;
-            min-width: 220px;
+            min-width: 142px;
             display: grid;
+            flex: 1;
             justify-content: center;
             align-items: flex-start;
             grid-template-rows: 60px 40px 40px 40px 40px;
