@@ -101,8 +101,8 @@ const prodConfig = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: "[name].css",
-      chunkFilename: "[id].css"
+      filename: "[name].[hash:8].css",
+      chunkFilename: "[id].[hash:8].css"
     }),
     new webpack.DefinePlugin({
       APP_ENV: JSON.stringify({
@@ -147,7 +147,7 @@ const prodConfig = {
     entry: path.resolve(__dirname, './src/js/index.js'),
     devtool: 'inline-source-map',
     output: {
-      filename: '[name].bundle.js',
+      filename: '[name].[hash:8].js',
       path: path.resolve(__dirname, 'dist')
     },
     ...production ? prodConfig : devConfig
