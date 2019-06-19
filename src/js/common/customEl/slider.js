@@ -1,7 +1,7 @@
-import img1 from '../../../image/home_slider_1.webp';
-import img2 from '../../../image/home_slider_2.webp';
-import img3 from '../../../image/home_slider_3.webp';
-import img4 from '../../../image/home_slider_4.webp';
+import img1 from '../../../image/home_slider_1.jpg';
+import img2 from '../../../image/home_slider_2.jpg';
+import img3 from '../../../image/home_slider_3.jpg';
+import img4 from '../../../image/home_slider_4.jpg';
 
 class Slider extends HTMLElement {
   constructor() {
@@ -11,13 +11,13 @@ class Slider extends HTMLElement {
       img: img1,
       position: 'bottom left',
     }, {
-      img: img4,
+      img: img2,
       position: 'left center'
     }, {
       img: img3,
       position: 'center'
     }, {
-      img: img2,
+      img: img4,
       position: 'center'
     }];
 
