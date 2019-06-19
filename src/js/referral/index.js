@@ -173,23 +173,23 @@ const renderBoxLevel = (levelData, isActive) => {
 
   const DATA = {
     level1: {
-      got: '10 Privacy Coin',
-      desc: 'Privacy Coin keeps the Miner running.'
+      got: 'The Miner',
+      desc: '10% OFF'
     },
     level2: {
       topPercent: top50Img,
-      got: '50 Privacy Coin',
-      desc: 'More fuel. More income.'
+      got: 'The Miner',
+      desc: '25% OFF'
     },
     level3: {
       topPercent: top10Img,
       got: 'The Miner',
-      desc: 'The Miner is your personal mining machine.'
+      desc: '50% OFF'
     },
     level4: {
       topPercent: top1Img,
-      got: 'The Miner Pro',
-      desc: 'More power. More income.'
+      got: 'The Miner',
+      desc: 'For FREE'
     }
   };
 
@@ -204,8 +204,8 @@ const renderBoxLevel = (levelData, isActive) => {
     </div>
     <div class='desc'>${levelData.desc}</div>
     <div>${levelData.nums}</div>
-    <div><span class="minner">${data.got}</span></div>
-    <div><span>${data.desc}</span></div>
+    <div><span>${data.got}</span></div>
+    <div><span class='minner'>${data.desc}</span></div>
   `;
 
   return box;
@@ -219,24 +219,16 @@ const handleShowInfo = async () => {
     const statusContainerEl = container.querySelector('.current-status');
     const statusEl = container.querySelector('.current-status .status');
     const friendNumberContainerEl = container.querySelector('.referred-box');
-    const friendNumberEl = container.querySelector('.referred-box .friend-number');
-    const bringFriendNumberEl = container.querySelector('.referred-box .bring-friend-number');
-    const nextStatusEl = container.querySelector('.referred-box .next-status');
 
-    const { currentLevel, nextLevel, total, requiredNum, referralList } = await getReferralData() || {};
+    const { currentLevel, nextLevel, requiredNum, referralList } = await getReferralData() || {};
 
     if (currentLevel) {
       statusEl && (statusEl.innerText = currentLevel.desc);
     } else {
       statusContainerEl.innerText = 'You\'re Nobody.';
-      friendNumberContainerEl.innerText = `Refer ${requiredNum} friends to become an ${nextLevel.desc}.`;
     }
-    
-    if (nextLevel) {
-      friendNumberEl && (friendNumberEl.innerText = total || 0);
-      bringFriendNumberEl && (bringFriendNumberEl.innerText = requiredNum || 0);
-      nextStatusEl && (nextStatusEl.innerText = nextLevel.desc);
-    }
+
+    friendNumberContainerEl.innerText = `As the community grows, you need to grow too. Right now, you need to refer ${requiredNum} friends to level up to ${nextLevel.desc}.`;
 
     if (referralList) {
       const levelBoxEl = container.querySelector('.level-box');

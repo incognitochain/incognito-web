@@ -1,13 +1,21 @@
 import img1 from '../../../image/home_slider_1.webp';
 import img2 from '../../../image/home_slider_2.webp';
+import img3 from '../../../image/home_slider_3.webp';
+import img4 from '../../../image/home_slider_4.webp';
 
 class Slider extends HTMLElement {
   constructor() {
     super();
 
-    this.data = [{
+    this.data = [ {
+      img: img4,
+      position: 'left center'
+    }, {
       img: img1,
       position: 'bottom left',
+    }, {
+      img: img3,
+      position: 'center'
     }, {
       img: img2,
       position: 'center'
@@ -127,7 +135,7 @@ class Slider extends HTMLElement {
     this.showContainer(nextContainer, nextData);
   }
 
-  autoSlide(timeout = 5000 /** in milisecond */) {
+  autoSlide(timeout = 4000 /** in milisecond */) {
     this.slideNext();
 
     if (!this.timer) {
