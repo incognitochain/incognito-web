@@ -7,12 +7,12 @@ class Slider extends HTMLElement {
   constructor() {
     super();
 
-    this.data = [ {
-      img: img4,
-      position: 'left center'
-    }, {
+    this.data = [{
       img: img1,
       position: 'bottom left',
+    }, {
+      img: img4,
+      position: 'left center'
     }, {
       img: img3,
       position: 'center'
