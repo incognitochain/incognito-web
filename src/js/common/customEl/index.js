@@ -1,2 +1,2 @@
 import './tooltip';
-import './language';
+import './slider';
