@@ -9,7 +9,7 @@ import top50Img from '../../image/top50.svg';
 import top10Img from '../../image/top10.svg';
 import top1Img from '../../image/top1.svg';
 
-const socialShareMsg = 'Can’t wait to receive my Incognito.  It’s going to earn me Bitcoin while I sleep';
+const socialShareMsg = 'Can’t wait to get The Miner.  It’s going to earn me Bitcoin while I sleep';
 
 const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
