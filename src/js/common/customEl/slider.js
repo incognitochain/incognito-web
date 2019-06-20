@@ -2,6 +2,7 @@ import img1 from '../../../image/home_slider_1.jpg';
 import img2 from '../../../image/home_slider_2.jpg';
 import img3 from '../../../image/home_slider_3.jpg';
 import img4 from '../../../image/home_slider_4.jpg';
+import { trackEvent } from '../utils/ga';
 
 class Slider extends HTMLElement {
   constructor() {
@@ -72,6 +73,11 @@ class Slider extends HTMLElement {
 
     // event
     this.addEventListener('click', () => {
+      trackEvent({
+        eventCategory: 'Slider',
+        eventAction: 'click',
+        eventLabel: 'Move to next image'
+      });
       this.resetAutoSlide();
     });
   }
