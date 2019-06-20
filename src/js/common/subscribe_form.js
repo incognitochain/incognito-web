@@ -2,6 +2,7 @@ import { subscribe, auth } from '../service/api';
 import { setMessage } from '../service/message_box';
 import storage from '../service/storage';
 import KEYS from '../constant/keys';
+import { trackEvent } from './utils/ga';
 
 const getReferralCode = () => {
   return storage.get(KEYS.REFERRAL_CODE) || undefined;
@@ -21,6 +22,12 @@ const formHandle = () => {
   });
 
   form && form.addEventListener('submit', async (e) => {
+    trackEvent({
+      eventCategory: 'Button',
+      eventAction: 'submit',
+      eventLabel: 'Subscribe email',
+    });
+
     e.preventDefault();
 
     //set submit status

@@ -8,6 +8,7 @@ import { openModal, closeModal } from '../service/modal';
 import top50Img from '../../image/top50.svg';
 import top10Img from '../../image/top10.svg';
 import top1Img from '../../image/top1.svg';
+import { trackEvent } from '../common/utils/ga';
 
 const socialShareMsg = 'Can’t wait to get The Miner.  It’s going to earn me Bitcoin while I sleep';
 
@@ -67,6 +68,12 @@ const handleShowEmailList = emails => {
     `;
     const clearEl = emailEl.querySelector('.clear');
     clearEl && clearEl.addEventListener('click', () => {
+      trackEvent({
+        eventCategory: 'Button',
+        eventAction: 'click',
+        eventLabel: 'Referral - Remove user\'s friend email from list'
+      });
+
       listEl.removeChild(emailEl);
       onClear(email);
     });
@@ -93,6 +100,12 @@ const handleShowEmailList = emails => {
   const modal = openModal('Select contact to share', container);
 
   shareEl.addEventListener('click', () => {
+    trackEvent({
+      eventCategory: 'Button',
+      eventAction: 'click',
+      eventLabel: 'Share via Google'
+    });
+
     handleSendEmail(emails);
     closeModal(modal);
   });
@@ -264,9 +277,35 @@ const handleIntro = () => {
   if (referralUrl) {
     elLink && (elLink.innerText = referralUrl);
     elCopy && elCopy.setAttribute('data-copy-value', referralUrl);
-    fbShareBtn && fbShareBtn.addEventListener('click', () => handleShareFb(referralUrl));
-    twitterShareBtn && twitterShareBtn.addEventListener('click', () => handleShareTwitter(referralUrl));
-    googleShareBtn && googleShareBtn.addEventListener('click', () => handleShareGoogle(referralUrl));
+    fbShareBtn && fbShareBtn.addEventListener('click', () => {
+      trackEvent({
+        eventCategory: 'Button',
+        eventAction: 'click',
+        eventLabel: 'Share via Facebook'
+      });
+
+      handleShareFb(referralUrl);
+    });
+
+    twitterShareBtn && twitterShareBtn.addEventListener('click', () => {
+      trackEvent({
+        eventCategory: 'Button',
+        eventAction: 'click',
+        eventLabel: 'Share via Twitter'
+      });
+
+      handleShareTwitter(referralUrl);
+    });
+
+    googleShareBtn && googleShareBtn.addEventListener('click', () => {
+      trackEvent({
+        eventCategory: 'Button',
+        eventAction: 'click',
+        eventLabel: 'Login to Google'
+      });
+
+      handleShareGoogle(referralUrl);
+    });
   }
 }
 

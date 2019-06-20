@@ -1,3 +1,5 @@
+import { trackEvent } from './utils/ga';
+
 /**
  * required class: '.collapse'
  */
@@ -15,5 +17,13 @@ const els = document.querySelectorAll('.collapse');
 
 els && els.forEach(item => {
   const handleClick = () => collapse(item);
-  item.addEventListener('click', handleClick);
+  item.addEventListener('click', () => {
+    trackEvent({
+      eventCategory: 'Link',
+      eventAction: 'toggle collapse',
+      eventLabel: 'Toggle FAQs'
+    });
+
+    handleClick();
+  });
 });
