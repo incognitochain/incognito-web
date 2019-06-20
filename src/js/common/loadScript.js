@@ -29,6 +29,7 @@ const loadFbChat = () => {
   const customerEl = document.createElement('div');
   customerEl.classList.add('fb-customerchat');
   customerEl.setAttribute('page_id', APP_ENV.FB_PAGE_ID);
+  customerEl.setAttribute('greeting_dialog_display', 'hide');
 
   document.body.appendChild(root);
   document.body.appendChild(customerEl);
