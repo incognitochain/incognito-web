@@ -3,9 +3,8 @@
     img(src=require('../../image/device.jpg'))
   .content
     .block1
-      p.desc Thanks for your interest in The Miner.
-      p.desc You’re in the draw to win the Miner for free. We’re giving away 100 units.
-      p.desc(style='font-weight:bold') The more you share, the better your odds. Good luck!
+      p.desc Thanks for your interest. You’re in the draw to win the Miner for free. We’re giving away 100 units.
+      p.desc.highlight The more you share, the better your odds. Good luck!
 
     .block2
       .copiable.copy-content
@@ -22,5 +21,6 @@
         //- button.share-google
         //-   img(src=require('../../image/icon/mail.svg'))
         //-   | Email
-      
+      span.divider
+        span Or via email
       include ../common/invite_email_form.pug
