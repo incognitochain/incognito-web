@@ -107,7 +107,7 @@
               font-size: 50px;
               color: $green;
               letter-spacing: 0;
-              line-height: 49px;
+              line-height: 60px;
               font-weight: 300;
               margin-top: 15px;
               margin-bottom: 40px;
@@ -117,7 +117,7 @@
                 width: 200px;
                 display: inline-block;
                 color: inherit;
-                text-decoration: underline;
+                font-weight: 700;
       
                 // &::after {
                 //   content: '.';
@@ -136,7 +136,7 @@
               font-weight: 300;
               color: $black;
               letter-spacing: 0;
-              line-height: 17px;
+              line-height: 20px;
     
               @include breakpoint-down(1600px) {
                 line-height: 24px;

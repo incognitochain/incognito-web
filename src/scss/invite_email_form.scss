@@ -1,12 +1,11 @@
 form.invite-email-form {
-  margin-top: 30px;
   margin-bottom: 30px;
   display: flex;
   flex-direction: column;
   max-width: 600px;
 
   > * {
-    margin: 5px;
+    margin: 5px 0px;
   }
 
   span {
@@ -15,7 +14,6 @@ form.invite-email-form {
 
   #email-input{
     background-color: #f1f1f1;
-    margin-right: 14px;
     flex: 1;
   }
   button.submit-email {
@@ -24,6 +22,7 @@ form.invite-email-form {
     height: 40px;
     color: $white;
     margin-top: 15px;
+    font-size: 16px;
   }
 
   @include breakpoint-down(md) {
