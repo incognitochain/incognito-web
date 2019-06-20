@@ -9,6 +9,7 @@ import top50Img from '../../image/top50.svg';
 import top10Img from '../../image/top10.svg';
 import top1Img from '../../image/top1.svg';
 import { trackEvent } from '../common/utils/ga';
+import { isEmail } from '../common/utils/validate';
 
 const socialShareMsg = 'Can’t wait to get The Miner.  It’s going to earn me Bitcoin while I sleep';
 
@@ -136,7 +137,7 @@ const handleShareGoogle = (referralUrl) => {
                 const item = entry[i];
                 if (item.hasOwnProperty('gd$email')) {
                   const email = item.gd$email[0].address;
-                  if(/[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})/.test(email)) shared_emails.push(email);
+                  if(isEmail(email)) shared_emails.push(email);
                 }
               }
 
