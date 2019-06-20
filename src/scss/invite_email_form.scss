@@ -1,0 +1,41 @@
+form.invite-email-form {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+
+  > * {
+    margin: 5px;
+  }
+
+  span {
+    font-size: 18px;
+  }
+
+  #email-input{
+    background-color: #f1f1f1;
+    margin-right: 14px;
+    flex: 1;
+  }
+  button.submit-email {
+    min-width: 195px;
+    font-weight: 400;
+    height: 40px;
+    color: $white;
+    margin-top: 15px;
+  }
+
+  @include breakpoint-down(md) {
+    flex-direction: column;
+
+    #email-input{
+      margin-right: unset;
+      margin-bottom: 14px;
+      flex: unset;
+    }
+    button.submit-email {
+      min-width: 185px;
+    }
+  };
+}

@@ -7,3 +7,4 @@ import './collapse';
 import './copiable';
 import './onload';
 import './customEl';
+import './invite_email_form';

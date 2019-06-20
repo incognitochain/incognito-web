@@ -6,7 +6,8 @@ const customFetch = (directUrl, { url, method, body, headers }) => {
   const _url = directUrl || url;
   const token = storage.get(KEYS.TOKEN)
   const _headers = {
-    "Content-type": "application/json; charset=UTF-8",
+    Accept: '*/*',
+    "Content-type": "application/json",
     ...headers
   };
 

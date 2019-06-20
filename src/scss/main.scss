@@ -3,6 +3,7 @@
 @import 'core/button';
 @import 'core/input';
 @import 'core/list';
+@import 'core/textarea';
 @import 'core/image';
 @import 'core/font';
 @import 'core/animation';
@@ -18,6 +19,7 @@
 @import './referral.scss';
 // @import './coundown.scss';
 @import './modal.scss';
+@import './invite_email_form.scss';
 
 * {
   box-sizing: border-box;

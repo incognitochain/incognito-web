@@ -67,7 +67,7 @@ export const sendReferralInvitation = (emails) => {
   return fetch('auth/referral-invitation', {
     method: 'POST',
     body: {
-      Email: emailStr
+      'Email': emailStr
     }
   })
   .catch((e) => {
