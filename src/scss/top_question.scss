@@ -15,10 +15,8 @@
     > div.label {
       flex: 1;
       h1 {
-        position: relative;
-        top: 10px;
         color: $black2;
-        margin-top: 20px;
+        margin: 0px;
 
         @include breakpoint-down(lg) {
           font-size: 36px;
@@ -32,6 +30,10 @@
       flex-direction: column;
       flex: 1;
 
+      @include breakpoint-down(lg) {
+        padding-left: 20px;
+      };
+
       div.question-container {
         padding: 5px 0px;
         border-bottom: dotted 1px $grey-light;
@@ -40,16 +42,22 @@
         cursor: pointer;
 
         &::before {
-          content: '>';
-          color: $black1;
+          content: '';
+          border-color: #111111;
+          border-left: solid 7px;
+          border-top: solid 5px transparent;
+          border-bottom: solid 5px transparent;
+          height: 0px;
+          width: 0px;
+          transition: transform 300ms, color 500ms;
           position: relative;
-          left: -20px;
-          top: 25px;
+          top: 18px;
+          left: -16px;
         }
 
         &.show-collapse {
           &::before {
-            content: 'v';
+            transform: rotate(90deg);
           }
 
           span.question {
@@ -66,6 +74,9 @@
           span.question {
             font-weight: bold;
             color: $green;
+          }
+          &::before {
+            border-left-color: $green;
           }
         }
 

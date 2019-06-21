@@ -47,10 +47,6 @@
         min-height: unset;
       };
     
-      @include breakpoint-down(lg) {
-        padding-top: 50px;
-      };
-    
       >div.content {
         display: flex;
         justify-content: center;
