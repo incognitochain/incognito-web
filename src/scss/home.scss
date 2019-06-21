@@ -111,6 +111,12 @@
               font-weight: 300;
               margin-top: 15px;
               margin-bottom: 40px;
+
+              br {
+                @include breakpoint-down(680px) {
+                  display: none;
+                };
+              }
       
               span.crypto-name {
                 position: relative;
