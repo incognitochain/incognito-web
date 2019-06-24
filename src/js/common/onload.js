@@ -12,6 +12,16 @@ const checkAuth = () => {
   }
 }
 
+const redirectReferralToTheMiner = () => {
+  try {
+    if (/(\?|\&)referral=/.test(location.href)) {
+      location.href = `https://theminer.co${location.search}`;
+    }
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 const checkVerifyEmailToken = () => {
   const token = queryString(KEYS.TOKEN_EMAIL_VERIFY_QS);
   if (token) {
@@ -33,6 +43,7 @@ const checkReferralCode = () => {
 }
 
 const main = () => {
+  redirectReferralToTheMiner();
   checkVerifyEmailToken();
   checkReferralCode();
 };
