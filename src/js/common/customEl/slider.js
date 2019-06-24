@@ -1,7 +1,4 @@
 import img1 from '../../../image/home_slider_1.jpg';
-import img2 from '../../../image/home_slider_2.jpg';
-import img3 from '../../../image/home_slider_3.jpg';
-import img4 from '../../../image/home_slider_4.jpg';
 import { trackEvent } from '../utils/ga';
 
 class Slider extends HTMLElement {
@@ -11,15 +8,6 @@ class Slider extends HTMLElement {
     this.data = [{
       img: img1,
       position: 'bottom left',
-    }, {
-      img: img2,
-      position: 'left center'
-    }, {
-      img: img3,
-      position: 'center'
-    }, {
-      img: img4,
-      position: 'center'
     }];
 
     this.containers = [];
@@ -35,7 +23,7 @@ class Slider extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    this.autoSlide();
+    this.slideNext();
   }
 
   disconnectedCallback() {
