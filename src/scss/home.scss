@@ -140,7 +140,8 @@
                 font-weight: 300;
                 color: $black;
                 letter-spacing: 0;
-                line-height: 20px;
+                line-height: 30px;
+                max-width: 600px;
       
                 @include breakpoint-down(1600px) {
                   line-height: 24px;
@@ -172,15 +173,19 @@
             }
             .action-btn {
               position: absolute;
-              bottom: 30px;
-              left: 50%;
-              transform: translateX(-50%);
+              bottom: 80px;
               white-space: nowrap;
               display: flex;
               justify-content: center;
               align-items: center;
+              font-size: 20px;
+              font-weight: 300;
+              color: $black;
+              letter-spacing: 0;
+              line-height: 30px;
       
               img {
+                width: 15px;
                 transform: translateY(0px);
                 margin-right: 10px;
                 transition: transform 400ms;

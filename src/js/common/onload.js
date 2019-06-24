@@ -33,7 +33,6 @@ const checkReferralCode = () => {
 }
 
 const main = () => {
-  checkAuth();
   checkVerifyEmailToken();
   checkReferralCode();
 };

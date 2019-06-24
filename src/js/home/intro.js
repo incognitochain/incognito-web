@@ -39,10 +39,8 @@ const showTotalSubscribe = async () => {
 
 const main = () => {
   if (location.pathname === '/') {
-    showTotalSubscribe();
+    changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'USDC'], timeout: 4000 });
   }
 }
 
 main();
-
-changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'USDC'], timeout: 4000 });
