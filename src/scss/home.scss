@@ -123,11 +123,10 @@
                   color: inherit;
                   font-weight: 700;
         
-                  // &::after {
-                  //   content: '.';
-                  //   position: absolute;
-                  //   bottom: 0px;
-                  // }
+                  &::after {
+                    content: '.';
+                    font-weight: 100;
+                  }
         
                   @include breakpoint-down(680px) {
                     display: block;
@@ -225,10 +224,12 @@
       .stack {
         .stack-name {
           color: $black;
+          font-size: 18px;
         }
         a.stack-item {
           color: $black;
           transition: color 300ms;
+          font-size: 18px;
   
           &:hover {
             color: $grey2;
@@ -263,17 +264,21 @@
           letter-spacing: -0.38px;
           text-align: center;
           line-height: 45px;
-          max-width: 600px;
+          max-width: 700px;
           margin-left: auto;
           margin-right: auto;
         }
     
         p.desc {
-          font-size: 18px;
-          color: $black2;
-          letter-spacing: 0;
           text-align: center;
-          line-height: 28px;
+          font-size: 20px;
+          font-weight: 300;
+          color: $black;
+          letter-spacing: 0;
+          line-height: 30px;
+          max-width: 800px;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
   

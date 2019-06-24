@@ -11,7 +11,7 @@ import top1Img from '../../image/top1.svg';
 import { trackEvent } from '../common/utils/ga';
 import { isEmail } from '../common/utils/validate';
 
-const socialShareMsg = 'Can’t wait to get The Miner.  It’s going to earn me Bitcoin while I sleep';
+const socialShareMsg = 'Can’t wait to get my Miner. Gonna earn Bitcoin while I sleep';
 
 const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
