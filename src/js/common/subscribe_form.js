@@ -46,9 +46,6 @@ const formHandle = () => {
         [KEYS.TOKEN]: authData.token,
         [KEYS.MY_REFERRAL_CODE]: subscribedData.code
       });
-
-      location.pathname = '/referral.html';
-
     } catch (e) {
       setMessage(e.message, 'error');
     } finally {

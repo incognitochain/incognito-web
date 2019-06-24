@@ -10,10 +10,10 @@ const templateGen = [
   new HtmlWebpackPlugin({
     template: 'src/template/home/index.pug',
   }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/referral/index.pug',
-    filename: 'referral.html'
-  }),
+  // new HtmlWebpackPlugin({
+  //   template: 'src/template/referral/index.pug',
+  //   filename: 'referral.html'
+  // }),
   new HtmlWebpackPlugin({
     template: 'src/template/privacy/index.pug',
     filename: 'privacy.html'
