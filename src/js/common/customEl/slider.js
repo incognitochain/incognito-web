@@ -35,7 +35,7 @@ class Slider extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    this.autoSlide();
+    this.slideNext();
   }
 
   disconnectedCallback() {
@@ -45,6 +45,9 @@ class Slider extends HTMLElement {
 
   render() {
     const shadow = this.attachShadow({ mode: 'open' });
+    const nextBtn = document.createElement('div');
+    const prevBtn = document.createElement('div');
+
     this.containers = this.data.map(data => {
       const container = document.createElement('div');
       container.style.cssText = `
@@ -59,26 +62,70 @@ class Slider extends HTMLElement {
       background-image: url('${data.img}');
     `;
 
+      container.addEventListener('click', () => {
+        trackEvent({
+          eventCategory: 'Slider',
+          eventAction: 'click',
+          eventLabel: 'Move to next image'
+        });
+        this.slideNext();
+      });
+
       shadow.appendChild(container);
       return container;
     });
 
+    shadow.appendChild(nextBtn);
+    shadow.appendChild(prevBtn);
+
     // style
     this.style.cssText = `
+      position: relative;
       height: 100%;
       display: block;
       overflow: hidden;
       cursor: pointer;
     `;
+    nextBtn.style.cssText = `
+      position: absolute;
+      z-index: 1000;
+      color: red;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      width: 0px;
+      height: 0px;
+      border-left: 10px solid #70777E;
+      border-top: 20px solid transparent;
+      border-bottom: 20px solid transparent;
+      cursor: pointer;
+    `;
+
+    prevBtn.style.cssText = `
+      ${nextBtn.style.cssText}
+      left: 20px;
+      right: unset;
+      border-left: unset;
+      border-right: 10px solid #70777E;
+    `;
 
     // event
-    this.addEventListener('click', () => {
+    nextBtn.addEventListener('click', () => {
       trackEvent({
         eventCategory: 'Slider',
         eventAction: 'click',
         eventLabel: 'Move to next image'
       });
-      this.resetAutoSlide();
+      this.slideNext();
+    });
+    
+    prevBtn.addEventListener('click', () => {
+      trackEvent({
+        eventCategory: 'Slider',
+        eventAction: 'click',
+        eventLabel: 'Move to prev image'
+      });
+      this.slidePrev();
     });
   }
 
