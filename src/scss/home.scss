@@ -142,10 +142,6 @@
                 line-height: 30px;
                 max-width: 600px;
       
-                @include breakpoint-down(1600px) {
-                  line-height: 24px;
-                };
-      
                 .highlight {
                   color: $green;
                 }
