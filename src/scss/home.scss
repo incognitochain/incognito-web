@@ -87,7 +87,27 @@
             padding-bottom: 100px;
             
             > div {
-      
+              .info-group {
+                .info-item {
+                  display: flex;
+                  align-items: center;
+                  margin: 30px 0px;
+                  .icon {
+                    width: 30px;
+                    margin-right: 20px;
+                  }
+                  .info {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    .title {
+                      font-weight: 500;
+                    }
+                    .desc {}
+                  }
+                }
+              }
+              
               >div.subscribe-email {
                 margin-top: 20px;
                 margin-bottom: 30px;
@@ -146,8 +166,7 @@
                   color: $green;
                 }
                 &.subcriber-count {
-                  position: absolute;
-                  bottom: 80px;
+                  
                 }
               }
               

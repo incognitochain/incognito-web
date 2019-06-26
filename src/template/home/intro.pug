@@ -26,16 +26,16 @@ div#intro-container.bounceInUp-ani
 
         .subscribe-email
           include ../common/subscribe_form.pug
-        p.sub-title.subcriber-count
-          span.number-of-subscriber 0
-          | 
-          | early adopters in line for early bird pricing.
+        //- p.sub-title.subcriber-count
+        //-   span.number-of-subscriber 0
+        //-   | 
+        //-   | early adopters in line for early bird pricing.
 
         .info-group
           +info-item('30-day trial', 'If you don’t love it, return it for a full refund.')
-            require('../../image/icon/close.svg')
+            img(src=require('../../image/icon/gift_icon.png'))
           +info-item('1-year warranty', 'If something goes wrong, we’ll fix it.')
-            require('../../image/icon/close.svg')
+            img(src=require('../../image/icon/tool_icon.png'))
 
         //- ul
         //-   +list('Issue your own privacy token')
@@ -44,6 +44,6 @@ div#intro-container.bounceInUp-ani
         //-   +list('Partner with the Incognito blockchain')
         //-   +list('Read the whitepaper & open-source code')
 
-      //- div.action-btn.scroll-action-btn(data-scroll-to='#section-container')
-      //-   img(src=require('../../image/icon/arrow_grey.svg'))
-      //-   span Built on cool science
+      div.action-btn.scroll-action-btn(data-scroll-to='#section-container')
+        img(src=require('../../image/icon/arrow_grey.svg'))
+        span Learn more
