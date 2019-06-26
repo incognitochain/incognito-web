@@ -2,14 +2,19 @@ mixin list(desc)
   li
     span= desc
 
+mixin info-item(title, desc)
+  .info-item
+    .icon
+      block
+    .info
+      span.title= title
+      span.desc= desc
+
 div#intro-container.bounceInUp-ani
   .content
     div.intro
       div
-        h1.title Earn 
-          span.crypto-name Bitcoin
-          br
-          |while you sleep.
+        h1.title Now anyone can mine crypto.
         p.sub-title A plug and play device that generates crypto. More energy efficient than your toaster.
         p.sub-title Built by a bunch of geeks who shipped $100M+ of connected hardware worldwide.
         br
@@ -26,6 +31,11 @@ div#intro-container.bounceInUp-ani
           | 
           | early adopters in line for early bird pricing.
 
+        .info-group
+          +info-item('30-day trial', 'If you don’t love it, return it for a full refund.')
+            require('../../image/icon/close.svg')
+          +info-item('1-year warranty', 'If something goes wrong, we’ll fix it.')
+            require('../../image/icon/close.svg')
 
         //- ul
         //-   +list('Issue your own privacy token')
