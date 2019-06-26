@@ -1,7 +1,7 @@
 mixin section(subtitle, title, desc)
   .section
     .info.container.visible-effect
-      h3.subtitle= subtitle
+      //- h3.subtitle= subtitle
       h1.title= title
       p.desc= desc
     if block
@@ -18,37 +18,37 @@ mixin stacklist(name, list)
       
 #section-container
   +section(
-    'Sidechain',
-    'Activate incognito mode for any blockchain',
-    'Incognito is a privacy sidechain. It can be attached to any blockchain to conduct confidential asset transfer. The Incognito sidechain runs parallel to main blockchains, allowing for secure two-way transfers of crypto assets whenever privacy is needed.'
+    '',
+    'A passive income generator.',
+    'The Miner is helpful little gadget for the home. It sits quietly on your kitchen counter earning you crypto.'
   )
-    +stacklist('Related work', [
-      { name: 'Sidechain', link: 'https://blockstream.com/sidechains.pdf' },
-      { name: 'Federation', link: 'https://cosmos.network' },
-      { name: 'Bridges', link: 'https://blog.kyber.network/waterloo-a-decentralized-practical-bridge-between-eos-and-ethereum-1c230ac65524' }
-    ])
+    //- +stacklist('Related work', [
+    //-   { name: 'Sidechain', link: 'https://blockstream.com/sidechains.pdf' },
+    //-   { name: 'Federation', link: 'https://cosmos.network' },
+    //-   { name: 'Bridges', link: 'https://blog.kyber.network/waterloo-a-decentralized-practical-bridge-between-eos-and-ethereum-1c230ac65524' }
+    //- ])
     img.container(src=require('../../image/section3.svg')).visible-effect
 
   +section(
-    'Privacy',
-    'Zero-knowledge proof without trusted setup',
-    'Incognito uses linkable ring signatures, stealth addresses, and confidential transactions to completely mask the sender, receiver, and amount of any transaction. Advanced techniques in zero-knowledge proofs, such as Bulletproofs, are employed to reduce transaction size.'
+    '',
+    'Earn multiple cryptocurrencies.',
+    'The Miner runs multiple blockchains simultaneously, so you can earn multiple cryptocurrencies at once. Stay energy efficient by tapping into next-gen Layer 2 and Proof-of-Stake blockchains.'
   )
-    +stacklist('Related work', [
-      { name: 'CryptoNote', link: 'https://cryptonote.org/whitepaper.pdf' },
-      { name: 'Bulletproofs', link: 'https://eprint.iacr.org/2017/1066.pdf' },
-      { name: 'Zero-Knowledge Proofs', link: 'http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.419.8132&rep=rep1&type=pdf' }
-    ])
+    //- +stacklist('Related work', [
+    //-   { name: 'CryptoNote', link: 'https://cryptonote.org/whitepaper.pdf' },
+    //-   { name: 'Bulletproofs', link: 'https://eprint.iacr.org/2017/1066.pdf' },
+    //-   { name: 'Zero-Knowledge Proofs', link: 'http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.419.8132&rep=rep1&type=pdf' }
+    //- ])
     img(src=require('../../image/section1.svg')).visible-effect
 
   +section(
-    'Scalability',
-    'High-throughput with parallelized transactions and state sharding',
-    'Incognito is a high-throughput blockchain network, made possible by the implementation of both parallelized transactions and state sharding. It is designed to scale linearly with increasing numbers of miners.'
+    '',
+    'Mine from anywhere.',
+    'The Miner is a simple, elegant device you can plug in anywhere. Use its mobile app to start, pause, resume and track your earnings - from your couch, at the beach or on the go.'
   )
-    +stacklist('Related work', [
-      { name: 'OmniLedger', link: 'https://eprint.iacr.org/2017/406.pdf' },
-      { name: 'libp2p', link: 'https://github.com/libp2p/specs' },
-      { name: 'pBFT', link: 'http://pmg.csail.mit.edu/papers/osdi99.pdf' }
-    ])
+    //- +stacklist('Related work', [
+    //-   { name: 'OmniLedger', link: 'https://eprint.iacr.org/2017/406.pdf' },
+    //-   { name: 'libp2p', link: 'https://github.com/libp2p/specs' },
+    //-   { name: 'pBFT', link: 'http://pmg.csail.mit.edu/papers/osdi99.pdf' }
+    //- ])
     img.container(src=require('../../image/section2.svg')).visible-effect
