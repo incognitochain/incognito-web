@@ -2,6 +2,7 @@ import img1 from '../../../image/home_slider_1.jpg';
 import img2 from '../../../image/home_slider_2.jpg';
 import img3 from '../../../image/home_slider_3.jpg';
 import img4 from '../../../image/home_slider_4.jpg';
+import arrowIcon from '../../../image/icon/arrow_right_black.png';
 import { trackEvent } from '../utils/ga';
 
 class Slider extends HTMLElement {
@@ -93,20 +94,18 @@ class Slider extends HTMLElement {
       top: 50%;
       right: 20px;
       transform: translateY(-50%);
-      width: 0px;
-      height: 0px;
-      border-left: 10px solid #70777E;
-      border-top: 20px solid transparent;
-      border-bottom: 20px solid transparent;
+      width: 40px;
+      height: 40px;
       cursor: pointer;
+      background: url('${arrowIcon}');
+      background-size: cover;
     `;
 
     prevBtn.style.cssText = `
       ${nextBtn.style.cssText}
       left: 20px;
       right: unset;
-      border-left: unset;
-      border-right: 10px solid #70777E;
+      transform: translateY(-50%) rotate(180deg);
     `;
 
     // event
