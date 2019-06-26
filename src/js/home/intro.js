@@ -45,4 +45,4 @@ const main = () => {
 
 main();
 
-changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'Crypto'], timeout: 4000 });
+changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'crypto'], timeout: 4000 });
