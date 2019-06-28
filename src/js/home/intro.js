@@ -39,7 +39,7 @@ const showTotalSubscribe = async () => {
 
 const main = () => {
   if (location.pathname === '/') {
-    // showTotalSubscribe();
+    showTotalSubscribe();
   }
 }
 
