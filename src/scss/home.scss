@@ -109,8 +109,8 @@
               }
               
               >div.subscribe-email {
-                margin-top: 20px;
-                margin-bottom: 30px;
+                margin-top: 10px;
+                margin-bottom: 60px;
               }
       
               h3.highlight-title {
@@ -166,7 +166,17 @@
                   color: $green;
                 }
                 &.subcriber-count {
-                  
+                  .highlight {
+                    font-weight: 500;
+                    color: $green;
+                    * {
+                      font-weight: inherit;
+                      color: inherit;
+                    }
+                  }
+                }
+                &.small {
+                  font-size: 18px;
                 }
               }
               
@@ -192,7 +202,7 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              font-size: 20px;
+              font-size: 16px;
               font-weight: 300;
               color: $black;
               letter-spacing: 0;
