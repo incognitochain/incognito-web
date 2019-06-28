@@ -18,7 +18,7 @@ div#intro-container.bounceInUp-ani
         p.sub-title A plug and play device that generates crypto. More energy efficient than your toaster.
         p.sub-title Built by a bunch of geeks who shipped $100M+ of connected hardware worldwide.
         br
-        p.sub-title $199
+        p.sub-title.small $199
           | 
           span(style='text-decoration: line-through') $399
           | 
@@ -26,16 +26,19 @@ div#intro-container.bounceInUp-ani
 
         .subscribe-email
           include ../common/subscribe_form.pug
-        p.sub-title.subcriber-count
-          span.number-of-subscriber 0
+        p.sub-title.small.subcriber-count
+          span.highlight
+            span.number-of-subscriber 0
+            | 
+            | early adopters
           | 
-          | early adopters in line for early bird pricing.
+          |in line for early bird pricing.
 
         .info-group
           +info-item('30-day trial', 'If you don’t love it, return it for a full refund.')
-            img(src=require('../../image/icon/gift_icon.png'))
+            img(src=require('../../image/icon/30day_icon.svg'))
           +info-item('1-year warranty', 'If something goes wrong, we’ll fix it.')
-            img(src=require('../../image/icon/tool_icon.png'))
+            img(src=require('../../image/icon/fix.svg'))
 
         //- ul
         //-   +list('Issue your own privacy token')
