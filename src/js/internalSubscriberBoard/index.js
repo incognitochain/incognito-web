@@ -32,7 +32,7 @@ const startMonitor = (timeout) => {
 }
 
 const main = () => {
-  startMonitor(4000);
+  startMonitor(30000);
 };
 
 main();
