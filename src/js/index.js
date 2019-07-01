@@ -3,3 +3,4 @@ import './home';
 import './referral';
 import './common';
 import './mine';
+import './internalSubscriberBoard';

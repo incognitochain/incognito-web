@@ -18,6 +18,10 @@ const templateGen = [
     template: 'src/template/privacy/index.pug',
     filename: 'privacy.html'
   }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/internalSubscriberBoard/index.pug',
+    filename: 'internal-subscriber-board.html'
+  }),
   // new HtmlWebpackPlugin({
   //   template: 'src/template/about/index.pug',
   //   filename: 'about.html'
@@ -82,7 +86,7 @@ const devConfig = {
       use: ['pug-loader']
     },
     {
-      test: /\.(png|jpe?g|gif|svg|webp|glb)$/,
+      test: /\.(png|jpe?g|gif|svg|webp|glb|mp3)$/,
       use: [
         {
           loader: 'file-loader',
@@ -127,7 +131,7 @@ const prodConfig = {
       test: /\.pug$/,
       use: ['pug-loader']
     },{
-      test: /\.(png|jpe?g|gif|svg|webp|glb)$/,
+      test: /\.(png|jpe?g|gif|svg|webp|glb|mp3)$/,
       use: [
         {
           loader: 'file-loader',
