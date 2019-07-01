@@ -1,0 +1,9 @@
+extends ../layout.pug
+
+block title
+   title Internal Subscriber Board
+   
+block main
+  #internal-subscriber-board
+    audio(src=require('../../assets/noti.mp3'), preload="auto")
+    span.count ---

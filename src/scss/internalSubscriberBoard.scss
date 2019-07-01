@@ -1,0 +1,12 @@
+#internal-subscriber-board {
+  min-height: 100vh;
+  display: flex;
+  flex: 1;
+
+  .count {
+    display: block;
+    margin: auto;
+    font-size: 30vw;
+    font-weight: 500;
+  }
+}
