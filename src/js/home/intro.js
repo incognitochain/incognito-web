@@ -24,7 +24,7 @@ const changeCryptoName = ({ listName, timeout }) => {
 }
 
 const showTotalSubscribe = async () => {
-  const numberOfSubscriber = containerEl.querySelector('.number-of-subscriber');
+  const numberOfSubscriber = containerEl && containerEl.querySelector('.number-of-subscriber');
   
   if (numberOfSubscriber) {
     let number = 998;
@@ -38,9 +38,7 @@ const showTotalSubscribe = async () => {
 }
 
 const main = () => {
-  if (location.pathname === '/') {
-    showTotalSubscribe();
-  }
+  showTotalSubscribe();
 }
 
 main();
