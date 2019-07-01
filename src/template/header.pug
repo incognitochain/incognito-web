@@ -10,19 +10,19 @@ mixin menu-right
 nav#header
   .mobile-sidebar
     .hamburger-btn
-      img(src=require('../../image/icon/hamburger.svg'))
+      img(src=require('../../image/icon/hamburger.svg'), alt='hamburgur icon')
     .sidebar
       .overlay
       .content
         .head
           .close
-            img(src=require('../../image/icon/close.svg'))
+            img(src=require('../../image/icon/close.svg'), alt='close icon')
         +menu-left
         +menu-right
   //- .group.left
   //-   +menu-left
   a(href='/').logo
-    img(src=require('../../image/logo.svg'))
+    img(src=require('../../image/logo.svg'), alt='logo')
   //- .group.right
   //-   +menu-left
   //-   +menu-right
