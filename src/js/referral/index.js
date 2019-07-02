@@ -12,6 +12,36 @@ import { trackEvent } from '../common/utils/ga';
 import { isEmail } from '../common/utils/validate';
 
 const socialShareMsg = 'Can’t wait to get The Miner.  It’s going to earn me Bitcoin while I sleep';
+const REFERRAL_DATA = [
+  {
+    desc: 'Everyman',
+    got: [],
+    name: 'level1',
+    nums: 3,
+    title: ''
+  },
+  {
+    desc: 'Citizen',
+    got: [],
+    name: 'level2',
+    nums: 10,
+    title: ''
+  },
+  {
+    desc: 'Keeper',
+    got: [],
+    name: 'level3',
+    nums: 25,
+    title: ''
+  },
+  {
+    desc: 'Guardian',
+    got: [],
+    name: 'level4',
+    nums: 50,
+    title: ''
+  }
+];
 
 const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
@@ -162,7 +192,7 @@ const startCountdown = () => {
 const getReferralData = async () => {
   try {
     const userTotal = await getUserTotalReferral();
-    const referralList = await listReferralLevel();
+    const referralList = REFERRAL_DATA;
     const foundIndex = referralList && referralList.findIndex((level, index, allLevel) => {
       return  allLevel[index+1] ? (userTotal >= level.nums && userTotal < allLevel[index+1].nums) : userTotal >= level.nums ;
     });
@@ -187,23 +217,20 @@ const renderBoxLevel = (levelData, isActive) => {
 
   const DATA = {
     level1: {
-      got: 'The Miner',
-      desc: '10% OFF'
+      got: 'Sticker',
+      img: require('../../image/referral_gift/1.png')
     },
     level2: {
-      topPercent: top50Img,
-      got: 'The Miner',
-      desc: '25% OFF'
+      got: 'T-shirt',
+      img: require('../../image/referral_gift/2.png')
     },
     level3: {
-      topPercent: top10Img,
       got: 'The Miner',
-      desc: '50% OFF'
+      img: require('../../image/referral_gift/3.png')
     },
     level4: {
-      topPercent: top1Img,
-      got: 'The Miner',
-      desc: 'For FREE'
+      got: 'The Miner Pro',
+      img: require('../../image/referral_gift/4.png')
     }
   };
 
@@ -213,13 +240,12 @@ const renderBoxLevel = (levelData, isActive) => {
   isActive && box.classList.add('active');
 
   box.innerHTML = `
-    <div class='top-percent'>
-      ${data.topPercent ? `<img src='${data.topPercent}' />` : ''}
-    </div>
     <div class='desc'>${levelData.desc}</div>
-    <div>${levelData.nums}</div>
+    <div class='num'>${levelData.nums}</div>
     <div><span>${data.got}</span></div>
-    <div><span class='minner'>${data.desc}</span></div>
+    <div><span class='minner'>${
+      data.img ? `<img src=\'${data.img}\'/>` : ''
+    }</span></div>
   `;
 
   return box;
@@ -234,15 +260,15 @@ const handleShowInfo = async () => {
     const statusEl = container.querySelector('.current-status .status');
     const friendNumberContainerEl = container.querySelector('.referred-box');
 
-    const { currentLevel, nextLevel, requiredNum, referralList } = await getReferralData() || {};
+    const { currentLevel, nextLevel, requiredNum, referralList, total } = await getReferralData() || {};
 
     if (currentLevel) {
       statusEl && (statusEl.innerText = currentLevel.desc);
     } else {
-      statusContainerEl.innerText = 'You\'re Nobody.';
+      statusContainerEl.innerText = 'You\'re nobody.';
     }
 
-    friendNumberContainerEl.innerText = `As the community grows, you need to grow too. Right now, you need to refer ${requiredNum} friends to level up to ${nextLevel.desc}.`;
+    friendNumberContainerEl.innerText = `${total} friends have joined. You need to refer ${requiredNum} more to level up to ${nextLevel.desc}.`;
 
     if (referralList) {
       const levelBoxEl = container.querySelector('.level-box');

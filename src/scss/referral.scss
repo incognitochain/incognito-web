@@ -14,8 +14,8 @@
       align-items: flex-start;
 
       > img {
-        max-width: 450px;
-        max-height: 450px;
+        max-width: 430px;
+        max-height: 330px;
       }
 
       @include breakpoint-down(lg) {
@@ -35,6 +35,7 @@
           letter-spacing: -1.5px;
           line-height: 50px;
           margin: 0px;
+          color: $green;
         }
         p.desc {
           font-size: 20px;
@@ -162,8 +163,8 @@
     }
   }
   #referral-info {
-    background-color: $white;
-    padding-top: 0px;
+    background-color: $whitegrey;
+    padding-top: 30px;
     padding-bottom: 50px;
     > div.content {
       text-align: center;
@@ -176,15 +177,15 @@
       }
 
       span.current-status {
-        font-size: 25px;
+        font-size: 36px;
         color: $black2;
         letter-spacing: -0.3px;
         text-align: center;
         line-height: 56px;
+        color: $green;
         .status {
-          font-size: 22px;
-          text-transform: uppercase;
-          color: $green;
+          font-size: inherit;
+          color: inherit;
           padding: 0px 10px;
         }
       }
@@ -210,13 +211,13 @@
           display: flex;
           
           .box {
-            padding: 20px 10px 50px 10px;
+            padding: 20px 10px 30px 10px;
             min-width: 142px;
             display: grid;
             flex: 1;
             justify-content: center;
-            align-items: flex-start;
-            grid-template-rows: 60px 40px 40px 40px 40px;
+            align-items: center;
+            grid-template-rows: 50px 50px 50px 180px;
   
             &.label {
               text-align: left;
@@ -231,6 +232,18 @@
             .desc {
               letter-spacing: 0;
               text-align: center;
+            }
+
+            .num {
+              border: solid 1px black;
+              width: 30px;
+              height: 30px;
+              border-radius: 15px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-left: auto;
+              margin-right: auto;
             }
   
             .minner {
@@ -259,7 +272,8 @@
             }
   
             img {
-              height: 50px;
+              height: 150px;
+              width: auto;
             }
           }
         }
