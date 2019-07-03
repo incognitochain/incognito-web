@@ -1,0 +1,122 @@
+extends ../layout.pug
+
+mixin row-specs(name)
+  .row
+      .specs-name-container
+        span.name= name
+      .specs-info
+        block
+mixin spec1
+  .specs.specs1
+    block
+mixin spec2
+  .specs.specs2
+    block
+
+block title
+   title Specs
+   
+block main
+   include ../header.pug
+   div#specs
+    .device-image-container
+      .container
+        +row-specs('')
+          +spec1
+            span.device-name The Miner
+            img(src=require('../../image/basic-miner.png'), alt='basic-miner').device
+          +spec2
+            span.device-name The Miner Pro
+            img(src=require('../../image/pro-miner.png'), alt='pro-miner').device
+    .content.container
+      //- +row-specs('Cost')
+      //-   +spec1
+      //-     span.label $264
+      //-   +spec2
+      //-     span.label $330
+
+      //- +row-specs('Retail')
+      //-   +spec1
+      //-     span.label $299
+      //-   +spec2
+      //-     span.label $399
+
+      +row-specs('Memory')
+        +spec1
+          span.large-label 4GB
+          span.desc DDR3L-1600/1866 1.35V SO-DIMM
+        +spec2
+          span.large-label 8GB
+          span.desc DDR3L-1600/1866 1.35V SO-DIMM
+
+      +row-specs('Storage')
+        +spec1
+          span.large-label 512GB SSD
+          span.desc PCIe-Gen2. SATA3 6Gb/s
+        +spec2
+          span.large-label 1TB
+          span.desc PCIe-Gen2. SATA3 6Gb/s
+
+      +row-specs('Processor')
+        +spec1
+          span.large-label 4-core
+          span.desc 1.5Ghz quar-core Intel Celeron J3455
+          span.desc Apollo Lake (Goldmont), 4C/4T, 1.5 - 2.3 GHz, 14nm, 2 MB L2, 10W TDP
+        +spec2
+          span.large-label 4-core
+          span.desc 1.5Ghz quar-core Intel Celeron J3455
+          span.desc Apollo Lake (Goldmont), 4C/4T, 1.5 - 2.3 GHz, 14nm, 2 MB L2, 10W TDP
+      
+      +row-specs('Communications')
+        +spec1
+          span.label Wifi
+          span.desc Intel Dual Band Wireless-AC 3168(1x1 802.11ac - 433 Mbps) 
+          br
+          span.label Ethernet
+          span.desc 1x Realtek RTL8168/8111 Gigabit LAN
+
+      +row-specs('Size')
+        +spec1
+          span.desc 3.5" x 4.9" x 6.9"
+            br
+            | ( L x W x H )
+      
+      +row-specs('Weight')
+        +spec1
+          span.desc 2 lbs
+
+      +row-specs('Electrical and operating requirements')
+        +spec1
+          span.desc Line voltage: 100-240 AC
+
+      +row-specs('Operating temperature')
+        +spec1
+          span.desc -20° C to +60° C
+
+      +row-specs('Power')
+        +spec1
+          span.desc 65W
+
+      +row-specs('Warranty')
+        +spec1
+          span.desc 1 year
+      
+      +row-specs('In the box')
+        +spec1
+          span.desc The Miner / The Miner Pro
+            br
+            | Power cord
+      
+      +row-specs('Operating system')
+        +spec1
+          span.desc Ubuntu 18.04
+
+      +row-specs('Built-in blockchains')
+        +spec1
+          span.desc Ethereum 2.0
+            br
+            | Harmony
+            br
+            | Incognito
+            br
+            | Lightning Network
