@@ -15,7 +15,11 @@
     > div.label {
       flex: 1;
       h1 {
-        color: $black2;
+        font-weight: bold;
+        font-size: 50px;
+        color: $black;
+        letter-spacing: -2px;
+        line-height: 53px;
         margin: 0px;
 
         @include breakpoint-down(lg) {
@@ -72,7 +76,6 @@
 
         &:hover {
           span.question {
-            font-weight: bold;
             color: $green;
           }
           &::before {
@@ -82,7 +85,7 @@
 
         span.question {
           font-size: 18px;
-          font-weight: bold;
+          font-weight: 500;
           color: $black1;
           letter-spacing: -0.5px;
           line-height: 26px;
