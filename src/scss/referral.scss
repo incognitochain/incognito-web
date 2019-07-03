@@ -35,7 +35,7 @@
           letter-spacing: -1.5px;
           line-height: 50px;
           margin: 0px;
-          color: $green;
+          color: $black;
         }
         p.desc {
           font-size: 20px;
@@ -45,6 +45,17 @@
 
           &.highlight {
             color: $green;
+          }
+          &.small {
+            font-size: 18px;
+            font-weight: 300;
+          }
+          &.strong {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: $green;
+            font-weight: 500;
+            letter-spacing: 1px;
           }
         }
       }
@@ -98,6 +109,7 @@
             font-size: 16px;
             letter-spacing: 0;
             display: flex;
+            font-weight: 300;
             justify-content: center;
             align-items: center;
 
@@ -178,11 +190,10 @@
 
       span.current-status {
         font-size: 36px;
-        color: $black2;
+        color: $black;
         letter-spacing: -0.3px;
         text-align: center;
         line-height: 56px;
-        color: $green;
         .status {
           font-size: inherit;
           color: inherit;
@@ -193,7 +204,8 @@
       span.referred-box {
         margin-bottom: 10px;
         font-size: 18px;
-        color: $black4;
+        color: $grey1;
+        font-weight: 300;
         letter-spacing: 0;
         line-height: 29px;
         span {
@@ -272,8 +284,8 @@
             }
   
             img {
-              height: 150px;
-              width: auto;
+              width: 120px;
+              height: auto;
             }
           }
         }
