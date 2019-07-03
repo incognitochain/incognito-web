@@ -22,6 +22,10 @@ const templateGen = [
     template: 'src/template/internalSubscriberBoard/index.pug',
     filename: 'internal-subscriber-board.html'
   }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/specs/index.pug',
+    filename: 'specs.html'
+  }),
   // new HtmlWebpackPlugin({
   //   template: 'src/template/about/index.pug',
   //   filename: 'about.html'

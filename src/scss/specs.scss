@@ -1,0 +1,105 @@
+#specs {
+  padding-bottom: 100px;
+  .device-image-container {
+    background-color: #F7F7F7;
+
+    .specs-name-container {
+      border-bottom: none !important;
+      margin-bottom: 0px !important;
+      padding-bottom: 0px !important;
+    }
+
+    span.device-name {
+      display: block;
+      font-size: 16px;
+      color: #000000;
+      letter-spacing: 0;
+      margin-bottom: 25px;
+    }
+
+    img.device {
+      display: block;
+      height: 180px;
+      width: auto;
+    }
+  } 
+  .content, .device-image-container {
+    .row {
+      padding: 45px 0px;
+      display: flex;
+      flex: 1; 
+
+      @include breakpoint-up(md) {
+        &:not(:last-child) {
+          border-bottom: 1px solid #EAEAEA;
+        }
+      };
+  
+      @include breakpoint-down(md) {
+        flex-direction: column;
+      };
+  
+      .specs-name-container {
+        flex: 1;
+  
+        @include breakpoint-down(md) {
+          border-bottom: 1px solid #EAEAEA;
+          padding-bottom: 20px;
+          margin-bottom: 20px;
+        };
+
+        > span.name {
+          font-size: 24px;
+          color: $black;
+          letter-spacing: 0;
+        }
+      }
+  
+      .specs-info {
+        display: flex;
+        align-items: center;
+        flex: 2;
+  
+        .specs {
+          margin-right: 30px;
+          span.desc {
+            display: block;
+            font-size: 20px;
+            color: $grey1;
+            letter-spacing: 0;
+            line-height: 27px;
+            margin-bottom: 12px;
+            font-weight: 300;
+          }
+  
+          span.label {
+            display: block;
+            font-size: 20px;
+            color: $black;
+            letter-spacing: 0;
+            line-height: 27px;
+            margin-bottom: 12px;
+            font-weight: 500;
+          }
+  
+          span.large-label {
+            display: block;
+            font-size: 32px;
+            color: #0A0B0F;
+            letter-spacing: 0;
+            line-height: 27px;
+            margin-bottom: 12px;
+            font-weight: 500;
+          }
+        }
+  
+        .specs1 {
+          flex: 1;
+        }
+        .specs2 {
+          flex: 1;
+        }
+      }
+    }
+  }
+}
