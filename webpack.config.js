@@ -82,7 +82,7 @@ const devConfig = {
       use: ['pug-loader']
     },
     {
-      test: /\.(png|jpe?g|gif|svg|webp|glb)$/,
+      test: /\.(png|jpe?g|gif|svg|webp|glb|mp3|woff)$/,
       use: [
         {
           loader: 'file-loader',
@@ -127,7 +127,7 @@ const prodConfig = {
       test: /\.pug$/,
       use: ['pug-loader']
     },{
-      test: /\.(png|jpe?g|gif|svg|webp|glb)$/,
+      test: /\.(png|jpe?g|gif|svg|webp|glb|mp3|woff)$/,
       use: [
         {
           loader: 'file-loader',
