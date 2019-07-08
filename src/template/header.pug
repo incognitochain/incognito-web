@@ -2,12 +2,19 @@ mixin menu-left()
   //- a(href='/').menu-item Wallet
   //- a(href='/mine.html').menu-item Mine
 
-mixin menu-right
+mixin sidebar-menu
   a(href='/whitepaper.pdf', target='blank').menu-item Read the whitepaper
   a(href='https://github.com/incognitochain', target='blank').menu-item Review the code
   a(href='https://t.me/incognitochain', target='blank').menu-item Join the conversation
+  hr(size='1', width='100%')
+  a(href='/').menu-item Sidechain
+  a(href='/node.html').menu-item Node
+  a(href='/wallet.html').menu-item Wallet
+  hr(size='1', width='100%')
   a(href='mailto: go@incognito.org').menu-item Contact Us
   a(href='/privacy.html').menu-item Privacy & Terms
+
+
 
 nav#header
   .mobile-sidebar
@@ -20,7 +27,7 @@ nav#header
           .close
             img(src=require('../../image/icon/close.svg'), alt='close icon')
         +menu-left
-        +menu-right
+        +sidebar-menu
   //- .group.left
   //-   +menu-left
   a(href='/').logo
@@ -29,5 +36,5 @@ nav#header
     a(href='/').menu-item SIDECHAIN
     a(href='/node.html').menu-item NODE
     a(href='/wallet.html').menu-item WALLET
-  //-   +menu-left
+    a(href='/referral.html').menu-item REFER A FRIEND
     
