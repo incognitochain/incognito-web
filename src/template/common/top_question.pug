@@ -1,7 +1,11 @@
 mixin question(ques, ans)
   .question-container.collapse
     span.question= ques
-    span.answer= ans
+    .answer
+      if ans
+        span= ans
+      if block
+        block
 
 
 #top-question-container

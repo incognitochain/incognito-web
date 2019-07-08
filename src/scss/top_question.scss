@@ -68,7 +68,7 @@
             color: $black1;
           }
 
-          span.answer {
+          div.answer {
             max-height: 500px;
           }
         }
@@ -92,7 +92,7 @@
           transition: all 500ms;
         }
 
-        span.answer {
+        div.answer {
           font-size: 16px;
           color: $grey1;
           letter-spacing: -0.5px;
