@@ -1,0 +1,17 @@
+extends ../layout.pug
+
+
+block title
+   title Meet the Miner. Earn money in your sleep.
+   
+block main
+   div#miner-container
+      .intro-slider-container
+         .image
+            i-slider
+            img(src=require('../../image/home_image_mobile.jpg'), alt='home image mobile').mobile
+         .right-content
+            include ../header.pug
+            include intro.pug
+      include section.pug
+      include question.pug
