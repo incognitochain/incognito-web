@@ -8,8 +8,21 @@ block main
    div#miner-container
       .intro-slider-container
          .image
-            i-slider
-            img(src=require('../../image/home_image_mobile.jpg'), alt='home image mobile').mobile
+            i-slider(images=[{
+                  img: require('../../image/miner/home_slider_1.jpg'),
+                  position: 'bottom left',
+               }, {
+                  img: require('../../image/miner/home_slider_2.jpg'),
+                  position: 'left center'
+               }, {
+                  img: require('../../image/miner/home_slider_3.jpg'),
+                  position: 'center'
+               }, {
+                  img: require('../../image/miner/home_slider_4.jpg'),
+                  position: 'center'
+               }
+            ])
+            img(src=require('../../image/miner/home_image_mobile.jpg'), alt='home image mobile').mobile
          .right-content
             include ../header.pug
             include intro.pug
