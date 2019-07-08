@@ -76,9 +76,10 @@ nav#header {
   .mobile-sidebar {
     position: absolute;
     right: 0;
-    padding: inherit;
+    padding-right: inherit;
     
     .hamburger-btn {
+      cursor: pointer;
     }
 
     .sidebar {
@@ -122,6 +123,7 @@ nav#header {
           .close {
             margin-top: 23px;
             width: 25px;
+            cursor: pointer;
           }
         }
         
