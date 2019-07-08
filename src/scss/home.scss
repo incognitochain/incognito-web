@@ -87,6 +87,52 @@
             padding-bottom: 100px;
             
             > div {
+              .btn-groups {
+                display: flex;
+                flex-direction: column;
+
+                .btn {
+                  border-radius: 4px;
+                  display: flex;
+                  align-items: center;
+                  height: 50px;
+                  text-decoration: none;
+                  overflow: hidden;
+                  margin-top: 5px;
+                  margin-bottom: 5px;
+                  width: 300px;
+                  
+                  .icon {
+                    width: 50px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 100%;
+                    background-color: #19A9B6;
+                    img {
+                      width: 20px;
+                    }
+                  }
+                  .text {
+                    color: white;
+                    display: block;
+                    margin: 10px;
+                  }
+                }
+                .host-node {
+                  background-color: #25C7D6;
+                  .icon {
+                    background-color: #19A9B6;
+                  }
+                }
+                .get-device {
+                  background-color: #074C53;
+                  .icon {
+                    background-color: #022326;
+                  }
+                }
+              }
+
               .info-group {
                 .info-item {
                   display: flex;

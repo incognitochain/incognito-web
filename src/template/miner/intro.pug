@@ -19,8 +19,14 @@ div#intro-container.bounceInUp-ani
         p.sub-title Anyone can host a Node. You can run the software on your computer, or simply plug in the super sleek, energy-efficient Node device, custom-built specifically for Incognito.
 
         .btn-groups
-          a(href='https://docs.google.com/document/d/1bbA8PzpxbYKqPyTGvH2AsE-TARzPxRTuLMcVwdqGG2s/edit', target='blank') Host a Node on your computer
-          a(href='specs.html') Get a dedicated Node device
+          a.btn.host-node(href='https://docs.google.com/document/d/1bbA8PzpxbYKqPyTGvH2AsE-TARzPxRTuLMcVwdqGG2s/edit', target='blank')
+            .icon
+              img(src=require('../../image/icon/my_computer_icon.svg'))
+            span.text Host a Node on your computer
+          a.btn.get-device(href='specs.html')
+            .icon
+              img(src=require('../../image/icon/miner_icon.svg'))
+            span.text Get a dedicated Node device
 
 
         //- ul
