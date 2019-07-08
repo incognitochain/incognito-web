@@ -1,0 +1,29 @@
+mixin list(desc)
+  li
+    span= desc
+
+div#intro-container.bounceInUp-ani
+  .content
+    div.intro
+      div
+        h1.title Privately send  
+          span.crypto-name Bitcoin
+        p.sub-title The Incognito Wallet is a simple mobile app that allows you to store, send and receive all your crypto assets — like BTC, ETH and DAI - with total privacy.
+        p.sub-title Available on both iOS and Android.
+
+        .subscribe-email
+          include ../common/subscribe_form.pug
+
+        div.action-btn.scroll-action-btn(data-scroll-to='#section-container')
+          img(src=require('../../image/icon/arrow_grey.svg'))
+          span Built on cool science  
+
+
+        //- ul
+        //-   +list('Issue your own privacy token')
+        //-   +list('Buy Privacy token')
+        //-   +list('Mine and earn Privacy token')
+        //-   +list('Partner with the Incognito blockchain')
+        //-   +list('Read the whitepaper & open-source code')
+
+      

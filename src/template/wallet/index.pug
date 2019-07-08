@@ -1,0 +1,21 @@
+extends ../layout.pug
+
+
+block title
+   title Privately send Bitcoin, Ethereum, and more.
+   
+block main
+   div#home-container
+      div.intro-slider-container
+         .image
+            i-slider(images=[{
+                  img: require('../../image/wallet/home_slider_1.jpg'),
+                  position: 'bottom left',
+               }
+            ])
+            img(src=require('../../image/wallet/home_image_mobile.png')).mobile
+         .right-content
+            include ../header.pug
+            include intro.pug
+      //- include section.pug
+      //- include question.pug

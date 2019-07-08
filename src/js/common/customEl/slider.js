@@ -1,27 +1,10 @@
-import img1 from '../../../image/home_slider_1.jpg';
-import img2 from '../../../image/home_slider_2.jpg';
-import img3 from '../../../image/home_slider_3.jpg';
-import img4 from '../../../image/home_slider_4.jpg';
 import arrowIcon from '../../../image/icon/arrow_right_black.png';
 import { trackEvent } from '../utils/ga';
 
 class Slider extends HTMLElement {
   constructor() {
     super();
-
-    this.data = [{
-      img: img1,
-      position: 'bottom left',
-    }, {
-      img: img2,
-      position: 'left center'
-    }, {
-      img: img3,
-      position: 'center'
-    }, {
-      img: img4,
-      position: 'center'
-    }];
+    this.data = this.getImageData();
 
     this.containers = [];
     this.timer = null;
@@ -32,6 +15,12 @@ class Slider extends HTMLElement {
     this.slideNext = this.slideNext.bind(this);
     this.slidePrev = this.slidePrev.bind(this);
     this.autoSlide = this.autoSlide.bind(this);
+  }
+
+  getImageData() {
+    try {
+      return JSON.parse(this.getAttribute('images'));
+    } catch {}
   }
 
   connectedCallback() {
@@ -46,9 +35,6 @@ class Slider extends HTMLElement {
 
   render() {
     const shadow = this.attachShadow({ mode: 'open' });
-    const nextBtn = document.createElement('div');
-    const prevBtn = document.createElement('div');
-
     this.containers = this.data.map(data => {
       const container = document.createElement('div');
       container.style.cssText = `
@@ -63,21 +49,22 @@ class Slider extends HTMLElement {
       background-image: url('${data.img}');
     `;
 
-      container.addEventListener('click', () => {
-        trackEvent({
-          eventCategory: 'Slider',
-          eventAction: 'click',
-          eventLabel: 'Move to next image'
+      if (this.data && this.data.length > 1) {
+        container.addEventListener('click', () => {
+          trackEvent({
+            eventCategory: 'Slider',
+            eventAction: 'click',
+            eventLabel: 'Move to next image'
+          });
+          this.slideNext();
         });
-        this.slideNext();
-      });
+      }
 
       shadow.appendChild(container);
       return container;
     });
 
-    shadow.appendChild(nextBtn);
-    shadow.appendChild(prevBtn);
+   
 
     // style
     this.style.cssText = `
@@ -85,47 +72,56 @@ class Slider extends HTMLElement {
       height: 100%;
       display: block;
       overflow: hidden;
-      cursor: pointer;
-    `;
-    nextBtn.style.cssText = `
-      position: absolute;
-      z-index: 1000;
-      color: red;
-      top: 50%;
-      right: 20px;
-      transform: translateY(-50%);
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      background: url('${arrowIcon}');
-      background-size: cover;
+      cursor: ${this.data && this.data.length > 1 ? 'pointer' : 'initial'};
     `;
 
-    prevBtn.style.cssText = `
-      ${nextBtn.style.cssText}
-      left: 20px;
-      right: unset;
-      transform: translateY(-50%) rotate(180deg);
-    `;
+    if (this.data && this.data.length > 1) {
+      const nextBtn = document.createElement('div');
+      const prevBtn = document.createElement('div');
 
-    // event
-    nextBtn.addEventListener('click', () => {
-      trackEvent({
-        eventCategory: 'Slider',
-        eventAction: 'click',
-        eventLabel: 'Move to next image'
+      nextBtn.style.cssText = `
+        position: absolute;
+        z-index: 1000;
+        color: red;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        background: url('${arrowIcon}');
+        background-size: cover;
+      `;
+
+      prevBtn.style.cssText = `
+        ${nextBtn.style.cssText}
+        left: 20px;
+        right: unset;
+        transform: translateY(-50%) rotate(180deg);
+      `;
+
+      // event
+      nextBtn.addEventListener('click', () => {
+        trackEvent({
+          eventCategory: 'Slider',
+          eventAction: 'click',
+          eventLabel: 'Move to next image'
+        });
+        this.slideNext();
       });
-      this.slideNext();
-    });
-    
-    prevBtn.addEventListener('click', () => {
-      trackEvent({
-        eventCategory: 'Slider',
-        eventAction: 'click',
-        eventLabel: 'Move to prev image'
+      
+      prevBtn.addEventListener('click', () => {
+        trackEvent({
+          eventCategory: 'Slider',
+          eventAction: 'click',
+          eventLabel: 'Move to prev image'
+        });
+        this.slidePrev();
       });
-      this.slidePrev();
-    });
+
+      shadow.appendChild(nextBtn);
+      shadow.appendChild(prevBtn);
+    }
   }
 
   getData() {
