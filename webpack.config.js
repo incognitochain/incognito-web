@@ -8,8 +8,8 @@ const CopyPlugin = require('copy-webpack-plugin')
 
 const templateGen = [
   new HtmlWebpackPlugin({
-    template: 'src/template/miner/index.pug',
-    filename: 'miner.html'
+    template: 'src/template/node/index.pug',
+    filename: 'node.html'
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/referral/index.pug',

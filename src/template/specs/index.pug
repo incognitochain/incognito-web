@@ -19,11 +19,9 @@ block title
 block main
    include ../header.pug
    div#specs
-    +row-specs('')
-      +spec2
-        .subscribe-email
-          span Be the first to know 
-          include ../common/subscribe_form.pug
+    .subscribe-email
+      span.label Be the first to know 
+      include ../common/subscribe_form.pug
     .device-image-container
       .container
         +row-specs('')

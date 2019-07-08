@@ -1,8 +1,38 @@
 #specs {
   padding-bottom: 100px;
-  .device-image-container {
-    background-color: #F7F7F7;
 
+  .subscribe-email {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F7F7F7;
+    padding: 30px;
+
+    @include breakpoint-down(md) {
+      flex-direction: column;
+    };
+
+    .label {
+      margin-right: 20px;
+      font-size: 20px;
+    }
+
+    form#email-subscribe {
+      @include breakpoint-down(md) {
+        margin-top: 20px;
+        flex-direction: row;
+      };
+
+      > input {
+        background-color: white;
+        @include breakpoint-down(md) {
+          margin-right: 20px;
+        };
+      }
+    }
+  }
+
+  .device-image-container {
     .specs-name-container {
       border-bottom: none !important;
       margin-bottom: 0px !important;
@@ -24,9 +54,6 @@
     }
   } 
   .content, .device-image-container {
-    .subscribe-email {
-      margin: auto;
-    }
     .row {
       padding: 45px 0px;
       display: flex;
