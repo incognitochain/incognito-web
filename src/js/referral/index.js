@@ -3,11 +3,8 @@ import KEYS from "../constant/keys";
 import { popupCenter } from '../service/window';
 import { setMessage } from '../service/message_box';
 import countdown from '../service/countdown';
-import { getUserTotalReferral, listReferralLevel, sendReferralInvitation } from '../service/api';
+import { getUserTotalReferral, sendReferralInvitation } from '../service/api';
 import { openModal, closeModal } from '../service/modal';
-import top50Img from '../../image/top50.svg';
-import top10Img from '../../image/top10.svg';
-import top1Img from '../../image/top1.svg';
 import { trackEvent } from '../common/utils/ga';
 import { isEmail } from '../common/utils/validate';
 
@@ -198,7 +195,7 @@ const getReferralData = async () => {
     });
     const currentLevel = referralList[foundIndex];
     const nextLevel = referralList[foundIndex + 1];
-    const requiredNum = nextLevel.nums - userTotal;
+    const requiredNum = nextLevel && (nextLevel.nums - userTotal);
 
     return {
       total: userTotal,
@@ -268,7 +265,9 @@ const handleShowInfo = async () => {
       statusContainerEl.innerText = 'You\'re nobody.';
     }
 
-    friendNumberContainerEl.innerText = `${total} friends have joined. You need to refer ${requiredNum} more to level up to ${nextLevel.desc}.`;
+    friendNumberContainerEl.innerText = nextLevel ?
+      `${total} friends have joined. You need to refer ${requiredNum} more to level up to ${nextLevel.desc}.` :
+      'Congrats!  You\'re now a first-class member of the new internet.';
 
     if (referralList) {
       const levelBoxEl = container.querySelector('.level-box');
