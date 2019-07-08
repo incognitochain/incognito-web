@@ -19,14 +19,19 @@ block title
 block main
    include ../header.pug
    div#specs
+    +row-specs('')
+      +spec2
+        .subscribe-email
+          span Be the first to know 
+          include ../common/subscribe_form.pug
     .device-image-container
       .container
         +row-specs('')
           +spec1
-            span.device-name The Miner
+            span.device-name Node
             img(src=require('../../image/basic-miner.png'), alt='basic-miner').device
           +spec2
-            span.device-name The Miner Pro
+            span.device-name Node Pro
             img(src=require('../../image/pro-miner.png'), alt='pro-miner').device
     .content.container
       //- +row-specs('Cost')
@@ -40,7 +45,17 @@ block main
       //-     span.label $299
       //-   +spec2
       //-     span.label $399
-
+      +row-specs('Built-in blockchains')
+        +spec1
+          span.desc Incognito Network
+        +spec2
+          span.desc Incognito Network
+            br
+            | Ethereum 2.0
+            br
+            | Harmony
+            br
+            | Lightning Network
       +row-specs('Memory')
         +spec1
           span.large-label 4GB
@@ -103,20 +118,10 @@ block main
       
       +row-specs('In the box')
         +spec1
-          span.desc The Miner / The Miner Pro
+          span.desc Node / Node Pro
             br
             | Power cord
       
       +row-specs('Operating system')
         +spec1
           span.desc Ubuntu 18.04
-
-      +row-specs('Built-in blockchains')
-        +spec1
-          span.desc Ethereum 2.0
-            br
-            | Harmony
-            br
-            | Incognito
-            br
-            | Lightning Network

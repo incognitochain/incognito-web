@@ -12,8 +12,14 @@ div#intro-container.bounceInUp-ani
         p.sub-title Oh and you can even mint your own privacy token. Welcome to the world’s first platform for privacy tokens.
 
         .btn-groups
-          a(href='miner.html') Host a Node
-          a(href='wallet.html') Get Wallet
+          a.btn.host-node(href='miner.html')
+            .icon
+              img(src=require('../../image/icon/my_computer_icon.svg'))
+            span.text Host a Node. Earn crypto.
+          a.btn.get-device(href='wallet.html')
+            .icon
+              img(src=require('../../image/icon/wallet_icon.svg'))
+            span.text Get Wallet. Go incognito.
 
         div.action-btn.scroll-action-btn(data-scroll-to='#section-container')
           img(src=require('../../image/icon/arrow_grey.svg'))

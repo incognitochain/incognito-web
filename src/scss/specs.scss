@@ -24,6 +24,9 @@
     }
   } 
   .content, .device-image-container {
+    .subscribe-email {
+      margin: auto;
+    }
     .row {
       padding: 45px 0px;
       display: flex;
@@ -57,7 +60,7 @@
   
       .specs-info {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         flex: 2;
   
         .specs {
