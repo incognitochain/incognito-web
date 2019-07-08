@@ -3,9 +3,10 @@ mixin menu-left()
   //- a(href='/mine.html').menu-item Mine
 
 mixin menu-right
-  a(href='/specs.html').menu-item Tech Specs
-  a(href='https://t.me/theminerco', target='blank').menu-item Join the conversation
-  a(href='mailto: hello@theminer.co').menu-item Contact Us
+  a(href='/whitepaper.pdf', target='blank').menu-item Read the whitepaper
+  a(href='https://github.com/incognitochain', target='blank').menu-item Review the code
+  a(href='https://t.me/incognitochain', target='blank').menu-item Join the conversation
+  a(href='mailto: go@incognito.org').menu-item Contact Us
   a(href='/privacy.html').menu-item Privacy & Terms
 
 nav#header
@@ -26,7 +27,7 @@ nav#header
     img(src=require('../../image/logo.svg'), alt='logo')
   .desktop-menu.group.right
     a(href='/').menu-item SIDECHAIN
-    a(href='/miner.html').menu-item NODE
+    a(href='/node.html').menu-item NODE
     a(href='/wallet.html').menu-item WALLET
   //-   +menu-left
     

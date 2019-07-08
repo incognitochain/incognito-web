@@ -1,6 +1,6 @@
 import { getTotalSubscribe } from '../service/api';
 
-const containerEl = document.querySelector('#miner-container');
+const containerEl = document.querySelector('#node-container');
 
 const changeCryptoName = ({ listName, timeout }) => {
   const cryptoNameEl = document.querySelector('#intro-container .crypto-name');
