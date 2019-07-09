@@ -22,6 +22,7 @@ block main
     .subscribe-email
       span.label Be the first to know 
       include ../common/subscribe_form.pug
+      +subscribe_email()
     .device-image-container
       .container
         +row-specs('')

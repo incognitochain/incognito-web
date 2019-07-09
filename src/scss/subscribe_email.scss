@@ -7,6 +7,11 @@
   margin-right: auto;
   margin-top: 100px;
 
+  .label {
+    font-size: 20px;
+    font-weight: unset;
+  }
+
   .subscribe-email {
     form#email-subscribe {
       width: 600px;
