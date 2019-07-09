@@ -1,11 +1,15 @@
 extends ../layout.pug
 
+block meta
+   meta(property="og:title" content="Incognito Node: Host a Node and earn crypto")
+   meta(property="og:description" content="You can host a Node on your computer or simply plug in the super sleek, energy-efficient Node device, custom-built specifically for Incognito to start earning crypto for building the world’s first platform for privacy tokens")
 
 block title
    title Host a Node. Earn crypto.
    
 block main
    div#node-container
+      h1.hidden-heading Incognito Node 
       .intro-slider-container
          .image
             i-slider(images=[{

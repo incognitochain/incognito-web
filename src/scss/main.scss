@@ -94,3 +94,11 @@ a {
 .scroll-action-btn {
   cursor: pointer;
 }
+
+.hidden-heading {
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+}
