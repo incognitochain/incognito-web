@@ -74,5 +74,5 @@ const loadPixel = () => {
 // end load FB Pixel
 
 
-loadFbChat();
+// loadFbChat();
 loadGA();

@@ -88,47 +88,40 @@
             > div {
               .btn-groups {
                 display: flex;
-                flex-direction: column;
+
+                @include breakpoint-down(sm) {
+                  flex-direction: column;
+                };
 
                 .btn {
-                  border-radius: 4px;
-                  display: flex;
-                  align-items: center;
-                  height: 50px;
+                  min-width: 250px;
+                  height: 64px;
+                  border-radius: 6px;
+                  font-weight: 500;
+                  font-size: 20px;
+                  border: none;
+                  padding: 0px 23px;
+                  cursor: pointer;
                   text-decoration: none;
-                  overflow: hidden;
-                  margin-top: 5px;
-                  margin-bottom: 5px;
-                  width: 300px;
-                  
-                  .icon {
-                    width: 50px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 100%;
-                    background-color: #19A9B6;
-                    img {
-                      width: 20px;
-                    }
-                  }
-                  .text {
-                    color: white;
-                    display: block;
-                    margin: 10px;
-                  }
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
                 }
                 .host-node {
-                  background-color: #25C7D6;
-                  .icon {
-                    background-color: #19A9B6;
-                  }
+                  background-color: $green;
+                  color: $white;
+                  margin-right: 30px;
+
+                  @include breakpoint-down(sm) {
+                    margin-right: unset;
+                    margin-bottom: 15px;
+                  };
+  
                 }
                 .get-device {
-                  background-color: #074C53;
-                  .icon {
-                    background-color: #022326;
-                  }
+                  background-color: $white;
+                  color: $green;
+                  box-shadow: 0 0 4px 0 rgba(125,125,125,0.65);
                 }
               }
 
