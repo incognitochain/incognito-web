@@ -6,6 +6,9 @@ block title
 block main
    include ../header.pug
    div#subscribe-email-container
-    h3.label Be the first to know 
+    h3.label Hello. Enter your email to start sharing with friends
+      br
+      | and earning Incognito’s free products.
     .subscribe-email
       include ../common/subscribe_form.pug
+      +subscribe_email('Start sharing')
