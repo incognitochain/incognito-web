@@ -35,6 +35,10 @@ const templateGen = [
     template: 'src/template/wallet/index.pug',
     filename: 'wallet.html'
   }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/subscribe_email/index.pug',
+    filename: 'subscribe.html'
+  }),
   // new HtmlWebpackPlugin({
   //   template: 'src/template/about/index.pug',
   //   filename: 'about.html'

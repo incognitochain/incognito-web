@@ -23,10 +23,19 @@
         flex-direction: row;
       };
 
+      @include breakpoint-down(sm) {
+        margin-top: 20px;
+        flex-direction: column;
+      };
+
       > input {
         background-color: white;
         @include breakpoint-down(md) {
           margin-right: 20px;
+        };
+
+        @include breakpoint-down(sm) {
+          margin-right: unset;
         };
       }
     }
