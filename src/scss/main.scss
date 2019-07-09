@@ -22,6 +22,7 @@
 // @import './coundown.scss';
 @import './modal.scss';
 @import './invite_email_form.scss';
+@import './subscribe_email.scss';
 
 * {
   box-sizing: border-box;
@@ -31,6 +32,7 @@
 
 html, body {
   display: flex;
+  flex: 1;
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%;

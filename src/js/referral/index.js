@@ -44,7 +44,7 @@ const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
 
   if (!token && location.pathname.includes('/referral.html')) {
-    location.pathname = '/';
+    location.pathname = '/subscribe.html';
   }
 }
 
