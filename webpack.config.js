@@ -55,10 +55,6 @@ const copyPlugin = new CopyPlugin([
     to: 'lib'
   },
   {
-    from: path.resolve(__dirname, './src/model'),
-    to: 'model'
-  },
-  {
     from: path.resolve(__dirname, './src/docs'),
     to: ''
   },
