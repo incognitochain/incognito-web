@@ -8,7 +8,7 @@ import { openModal, closeModal } from '../service/modal';
 import { trackEvent } from '../common/utils/ga';
 import { isEmail } from '../common/utils/validate';
 
-const socialShareMsg = 'Can’t wait to get The Miner.  It’s going to earn me Bitcoin while I sleep';
+const socialShareMsg = 'Can’t wait for @IncognitoChain to launch. Gonna send @Bitcoin and @Ethereum with total privacy.';
 const REFERRAL_DATA = [
   {
     desc: 'Everyman',
