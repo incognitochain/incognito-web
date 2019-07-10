@@ -88,8 +88,11 @@
             > div {
               .heading {
                 color: $black;
-                font-size: 24px;
+                font-size: 18px;
                 margin: 0px;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                font-weight: 400;
               }
               .btn-groups {
                 display: flex;
