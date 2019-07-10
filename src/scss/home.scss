@@ -86,6 +86,11 @@
             padding-bottom: 100px;
             
             > div {
+              .heading {
+                color: $black;
+                font-size: 24px;
+                margin: 0px;
+              }
               .btn-groups {
                 display: flex;
 
