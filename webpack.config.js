@@ -39,10 +39,10 @@ const templateGen = [
     template: 'src/template/subscribe_email/index.pug',
     filename: 'subscribe.html'
   }),
-  // new HtmlWebpackPlugin({
-  //   template: 'src/template/about/index.pug',
-  //   filename: 'about.html'
-  // }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/about/index.pug',
+    filename: 'about.html'
+  }),
   // new HtmlWebpackPlugin({
   //   template: 'src/template/mine/index.pug',
   //   filename: 'mine.html'
