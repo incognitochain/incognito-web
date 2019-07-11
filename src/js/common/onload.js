@@ -17,7 +17,7 @@ const checkVerifyEmailToken = () => {
   if (token) {
     verifyEmailToken(token)
       .then(() => {
-        setMessage('Your email was verified', 'info');
+        setMessage('Your email has been verified', 'info');
       })
       .catch((e) => {
         setMessage(e.message, 'error');

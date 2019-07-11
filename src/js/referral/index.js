@@ -215,12 +215,12 @@ const renderBoxLevel = (levelData, isActive) => {
   const DATA = {
     level1: {
       got: '30 Privacy',
-      desc: 'Incognito’s Native Coin',
+      desc: 'Incognito’s native coin',
       img: require('../../image/referral_gift/10 PRV.svg')
     },
     level2: {
       got: '100 Privacy',
-      desc: 'Incognito’s Native Coin',
+      desc: 'Incognito’s native coin',
       img: require('../../image/referral_gift/30 PRV.svg')
     },
     level3: {
