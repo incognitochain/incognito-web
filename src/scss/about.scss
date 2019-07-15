@@ -50,6 +50,9 @@
     }
     .groups {
       display: flex;
+      @include breakpoint-down(lg) {
+        flex-direction: column;
+      };
       .group {
         margin-top: 30px;
         flex: 1;
