@@ -1,0 +1,30 @@
+mixin buildGroup(img, title, titleUrl, desc)
+  a(href= titleUrl, target='blank').group
+    img(src= img, alt='build-img')
+    span.label= title
+    span.desc= desc
+
+#what-we-build.container
+  .info.visible-effect
+    h3.label WHAT WE BUILD
+    p.desc Incognito is open-source. The source code and  the hardware design is public. Contribute if you can.
+
+  .groups.visible-effect
+    +buildGroup(
+      require('../../image/about/Open source software.svg'),
+      'Open-source software',
+      'https://github.com/incognitochain?tab=repositories',
+      'We’ve commiting code publicly on Github since day 1. Review our code and let us know how we can improve it.'
+    )
+    +buildGroup(
+      require('../../image/about/Open source hardware.svg'),
+      'Open-source hardware',
+      'https://github.com/incognitochain?tab=repositories',
+      'We also open-source our hardware design, bill of materials, and firmware.'
+    )
+    +buildGroup(
+      require('../../image/about/Blog.svg'),
+      'Blog',
+      'https://medium.com/@incognitochain',
+      'Follow our blog to learn more about our work, our team, and the latest updates.'
+    )

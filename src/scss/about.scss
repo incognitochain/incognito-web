@@ -1,4 +1,80 @@
 #about-container {
+  #what-we-build {
+    padding-bottom: 100px;
+    background-color: $white;
+    text-align: center;
+
+    @include breakpoint-down(md) {
+      padding-bottom: 50px;
+    };
+
+    .info {
+      padding-top: 100px;
+      margin-left: auto;
+      margin-right: auto;
+
+      @include breakpoint-down(md) {
+        padding-top: 50px;
+      };
+
+      h3.label {
+        color: $black2;
+        font-size: 18px;
+        letter-spacing: 1px;
+        font-weight: 700;
+
+        @include breakpoint-down(md) {
+          font-size: 18px;
+        };
+      }
+  
+      p.desc {
+        max-width: 700px;
+        color: $black2;
+        font-size: 24px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include breakpoint-down(md) {
+          font-size: 20px;
+        };
+
+        a {
+          color: $black;
+          transition: color 300ms;
+          &:hover {
+            color: $grey2;
+          }
+        }
+      }
+    }
+    .groups {
+      display: flex;
+      .group {
+        margin-top: 30px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px 40px;
+        align-items: center;
+        text-decoration: none;
+        img {
+          width: 100px;
+          margin-bottom: 10px;
+        }
+        .label {
+          color: $green;
+          font-size: 22px;
+          margin: 10px 0px;
+        }
+        .desc {
+          font-weight: 300;
+          color: $black;
+          font-size: 18px;
+        }
+      }
+    }
+  }
   #about-intro {
     padding-top: 50px;
     padding-bottom: 100px;
