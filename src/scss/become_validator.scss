@@ -1,0 +1,45 @@
+#become-validator-container {
+  .step-item {
+    cursor: pointer;
+    .show-collapse {
+      .label {
+        &::before {
+          background-color: $green;
+        }
+      }
+    }
+
+    .label {
+      position: relative;
+      padding-left: 30px;
+      &::before {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        content: attr(data-step-number);
+        width: 30px;
+        height: 30px;
+        background-color: $grey;
+        left: -15px;
+        border-radius: 15px;
+        top: -4px;
+        color: $white;
+      }
+    }
+
+    .content {
+      position: relative;
+      padding-left: 30px;
+      &::before {
+        display: block;
+        position: absolute;
+        content: '';
+        width: 2px;
+        height: 100%;
+        background-color: $grey;
+        left: 0px;
+      }
+    }
+  }
+}

@@ -43,6 +43,10 @@ const templateGen = [
     template: 'src/template/about/index.pug',
     filename: 'about.html'
   }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/becomeValidator/index.pug',
+    filename: 'become-validator.html'
+  }),
   // new HtmlWebpackPlugin({
   //   template: 'src/template/mine/index.pug',
   //   filename: 'mine.html'

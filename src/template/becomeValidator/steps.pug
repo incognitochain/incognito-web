@@ -1,0 +1,31 @@
+include ../common/collapse.pug
+
+mixin step(name)
+  .step-item
+    +collapseItem(name)
+      block
+
+mixin stepHtml(step, stepName)
+  .step-item
+    +collapseItemHtml(`<span class='label' data-step-number='${step}'>${stepName}</span>`)
+      block
+
+.step-container.container
+  +collapse('validator-steps-guide')
+    +stepHtml('1', 'Create your account')
+      p Create your account in the Incognito Wallet https://test-wallet.incognito.org. 
+      p Copy your address and private key.  We’ll need them later.
+      p Create your account in the Incognito Wallet https://test-wallet.incognito.org. 
+      p Copy your address and private key.  We’ll need them later.
+      p Create your account in the Incognito Wallet https://test-wallet.incognito.org. 
+      p Copy your address and private key.  We’ll need them later.
+      p Create your account in the Incognito Wallet https://test-wallet.incognito.org. 
+
+    +stepHtml('2', 'Create your account')
+      p Create your account in the Incognito Wallet https://test-wallet.incognito.org. 
+      p Copy your address and private key.  We’ll need them later.
+      p Create your account in the Incognito Wallet https://test-wallet.incognito.org. 
+      p Copy your address and private key.  We’ll need them later.
+      p Create your account in the Incognito Wallet https://test-wallet.incognito.org. 
+      p Copy your address and private key.  We’ll need them later.
+      p Create your account in the Incognito Wallet https://test-wallet.incognito.org.
