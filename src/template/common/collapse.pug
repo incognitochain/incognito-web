@@ -1,0 +1,24 @@
+mixin collapse(id)
+  div(
+    class='collapse-container',
+    data-id= id
+  )
+    block
+
+mixin collapseItem(label, desc)
+  .collapse
+    span.label= label
+    .content
+      if desc
+        span= desc
+      if block
+        block
+
+mixin collapseItemHtml(labelHtml, descHtml)
+  .collapse
+    != labelHtml
+    if block
+      .content
+        block
+    if descHtml
+      != descHtml

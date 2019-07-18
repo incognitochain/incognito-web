@@ -1,16 +1,15 @@
-mixin question(ques, ans)
-  .question-container.collapse
-    span.question= ques
-    .answer
-      if ans
-        span= ans
-      if block
-        block
+include ../common/collapse.pug
 
+mixin question(ques, ans)
+  .question-container
+      +collapseItem(ques, ans)
+        block
 
 #top-question-container
   .container
     .label
       h1 Top questions from users
     .content.visible-effect
-      block content
+      +collapse('top-question')
+        block content
+
