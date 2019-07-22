@@ -14,8 +14,10 @@ mixin collapseItem(label, desc)
       if block
         block
 
-mixin collapseItemHtml(labelHtml, descHtml)
-  .collapse
+mixin collapseItemHtml(labelHtml, descHtml, isOpen)
+  .collapse(
+    data-open= isOpen
+  )
     != labelHtml
     if block
       .content
