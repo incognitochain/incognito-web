@@ -20,7 +20,20 @@ const main = () => {
     let currentItem = null;
     const items = getItems(collapse);
 
-    items && items.forEach(item => {
+    const toggle = (item) => {
+      if (currentItem === item) {
+        hide(currentItem);
+        currentItem = null;
+      } else {
+        show(item);
+        hide(currentItem);
+        currentItem = item;
+      }
+    };
+
+    items && items.forEach((item, index) => {
+      if (index === 0) toggle(item);
+
       item && item.addEventListener('click', () => {
         trackEvent({
           eventCategory: 'Link',
@@ -28,14 +41,7 @@ const main = () => {
           eventLabel: 'Toggle Collapse'
         });
 
-        if (currentItem === item) {
-          hide(currentItem);
-          currentItem = null;
-        } else {
-          show(item);
-          hide(currentItem);
-          currentItem = item;
-        }
+        toggle(item);
       });
     })
   });
