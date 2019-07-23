@@ -3,7 +3,6 @@
     padding: 5px 0px;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
 
     &.show-collapse {
       &::before {
@@ -26,6 +25,7 @@
       letter-spacing: -0.5px;
       line-height: 26px;
       transition: all 500ms;
+      cursor: pointer;
     }
 
     div.content {

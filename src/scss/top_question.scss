@@ -43,7 +43,6 @@
         border-bottom: dotted 1px $grey-light;
         display: flex;
         flex-direction: column;
-        cursor: pointer;
 
         .collapse {
           &::before {
