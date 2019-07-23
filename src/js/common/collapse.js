@@ -34,7 +34,9 @@ const main = () => {
     items && items.forEach((item, index) => {
       if (index === 0) toggle(item);
 
-      item && item.addEventListener('click', () => {
+      const label = item.querySelector('.label');
+
+      label && label.addEventListener('click', () => {
         trackEvent({
           eventCategory: 'Link',
           eventAction: 'toggle collapse',
