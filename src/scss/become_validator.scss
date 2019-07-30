@@ -81,7 +81,7 @@
             }
           }
           .content {
-            max-height: 1000px !important;
+            max-height: 2000px !important;
           }
         }
     
@@ -134,6 +134,20 @@
             letter-spacing: -1px;
             font-weight: 400;
             color: black;
+          }
+
+          .highlight {
+            font-weight: 500;
+          }
+
+          .row-img {
+            display: flex;
+            @include breakpoint-down(sm) {
+              flex-direction: column;
+            };
+            .img {
+              flex: 1;
+            }
           }
 
           img {
