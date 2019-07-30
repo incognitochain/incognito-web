@@ -11,7 +11,17 @@ mixin stepHtml(step, stepName, isOpen)
       p Create your account in the Incognito Wallet
         | 
         a(href='https://test-wallet.incognito.org', target='blank') https://test-wallet.incognito.org.
-      p Copy your address and private key.  You’ll need them later.
+      p Copy
+        | 
+        span.highlight YOUR PRIVATE KEY.
+        | 
+        | You’ll need it in STEP 2.
+      p Copy
+        | 
+        span.highlight YOUR ADDRESS.
+        | 
+        | You’ll need it in STEP 3.
+
       img(src=require('../../image/become_validator/step1.png'), alt='step1')
 
     +stepHtml('2', 'Run Incognito')
@@ -20,16 +30,39 @@ mixin stepHtml(step, stepName, isOpen)
         a(href='https://docs.docker.com/install/', target='blank') Docker.
       p Download Incognito chain.
       p 
-        span.script docker pull incognitochain/incognito
-      p Start Incognito chain.  Replace 
+        span.script.copiable(data-copy-value='docker pull incognitochain/incognito') docker pull incognitochain/incognito
+      p Start Incognito chain. Replace
+        | 
+        span.script 123
+        | 
+        | with
+        | 
+        span.script YOUR PRIVATE KEY
         |
-        span.script YOUR_PRIVATE_KEY 
-        |
-        |with your private key.
+        |(from STEP 1).
       p
-        span.script docker run -p 9334:9334 -e PRIVATEKEY=YOUR_PRIVATE_KEY -v $PWD:/data -d incognitochain/incognito
+        span.script.copiable(data-copy-value='docker run -p 9334:9334 -e PRIVATEKEY=123 -v $PWD:/data -d incognitochain/incognito') docker run -p 9334:9334 -e PRIVATEKEY=123 -v $PWD:/data -d incognitochain/incognito
+    
+    +stepHtml('3', 'Request free Privacy (PRV)')
+      p Privacy (PRV) is the native coin of the Incognito Network.  You need to stake 1,750 PRV to become a miner.  
+      p It’s easy to request free PRV.  Simply send a message on the Incognito Telegram channel
+        | 
+        a(href='https://t.me/incognitochain', target='blank') https://t.me/incognitochain,
+        |
+        |along with YOUR ADDRESS (from STEP 1).
+      p For example:
+      p "I'd like to be a miner for the Incognito Testnet. Please send me some free PRV.  My address is 1Uv3CsGLj7Ue6YoftT2XvMPrLcpETWgDPu9XQ3rF8FgZKMtwfkGPbQ1nRxtyhSVs7duQ"
 
-    +stepHtml('3', 'Monitor Incognito')
+
+    +stepHtml('4', 'Stake')
+      p Once the local node is online, stake 1,750 PRV to become a validator.
+      .row-img 
+        .img
+          img(src=require('../../image/become_validator/stake_1.png'), alt='stake_1')
+        .img
+          img(src=require('../../image/become_validator/stake_2.png'), alt='stake_2')
+
+    +stepHtml('5', 'Monitor Incognito')
       p Install
         | 
         a(href='https://github.com/incognitochain/incognito-monitor/releases', target='blank') Incognito Network Monitor.
@@ -38,17 +71,4 @@ mixin stepHtml(step, stepName, isOpen)
       p Wait until the Local node status changes from OFFLINE to ONLINE.  It takes a few minutes for your node to be fully synced with the network.
       img(src=require('../../image/become_validator/step4.png'), alt='step4')
 
-    +stepHtml('4', 'Request free Privacy (PRV)')
-      p Request free Privacy (PRV) from the Incognito Faucet 
-        | 
-        a(href='https://test-faucet.incognito.org/', target='blank') https://test-faucet.incognito.org/.
-        | 
-        | Privacy is the native coin of the Incognito Network. 
-      p The Faucet will give you 5,000 PRV.
-      img(src=require('../../image/become_validator/step2.png'), alt='step2')
-
-    +stepHtml('5', 'Stake')
-      p Once the local node is online, stake 1,750 PRV to become a validator.
-      img(src=require('../../image/become_validator/step5.png'), alt='step5')
-
-  h3 Congrats!  You’re now an Incognito Validator :)
+  h3 Congrats!  You’re now an Incognito Miner :)
