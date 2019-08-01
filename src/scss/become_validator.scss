@@ -136,6 +136,16 @@
             color: black;
           }
 
+          .copiable {
+            &::after {
+              content: '⎘';
+              font-size: 25px;
+              color: $green;
+              margin-left: 5px;
+              line-height: 0px;
+            }
+          }
+
           .highlight {
             font-weight: 500;
           }
