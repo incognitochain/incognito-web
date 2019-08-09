@@ -8,19 +8,19 @@ mixin stepHtml(step, stepName, isOpen)
 .step-container.container
   +collapse('validator-steps-guide')
     +stepHtml('1', 'Create your account', 'true')
-      p Create your account in the Incognito Wallet
+      p Create a password to set up your Incognito Wallet account:
         | 
         a(href='https://test-wallet.incognito.org', target='blank') https://test-wallet.incognito.org.
       p Copy
         | 
         span.highlight YOUR PRIVATE KEY.
         | 
-        | You’ll need it in STEP 2.
+        | Keep it safe! You’ll need it to run a script in STEP 2.
       p Copy
         | 
         span.highlight YOUR ADDRESS.
         | 
-        | You’ll need it in STEP 3.
+        | You’ll need it for STEP 3, where you’ll request PRV to stake.
 
       img(src=require('../../image/become_validator/step1.png'), alt='step1')
 
@@ -28,46 +28,67 @@ mixin stepHtml(step, stepName, isOpen)
       p Install 
         |
         a(href='https://docs.docker.com/install/', target='blank') Docker.
-      p Download Incognito chain.
+      p Run the command line below to download run.sh, or download it
+        | 
+        a(href='https://incognito.org/run.sh', target='blank') here.
       p 
-        span.script.copiable(data-copy-value='docker pull incognitochain/incognito') docker pull incognitochain/incognito
-      p Start Incognito chain. Replace
+        span.script.copiable(data-copy-value='curl -LO https://incognito.org/run.sh') curl -LO https://incognito.org/run.sh
+      p Run the command line below to start Incognito. Replace
         | 
-        span.script 123456
+        span.script xxx
         | 
-        | below with
+        | with
         | 
         span.script YOUR PRIVATE KEY
         |
-        |(from STEP 1).
+        |(refer to STEP 1 if you’re lost).
       p
-        span.script.copiable(data-copy-value='docker run -p 9334:9334 -e PRIVATEKEY=123456 -v $PWD:/data -d incognitochain/incognito') docker run -p 9334:9334 -e PRIVATEKEY=123456 -v $PWD:/data -d incognitochain/incognito
+        span.script.copiable(data-copy-value='PRIVATEKEY=xxx bash run.sh') PRIVATEKEY=xxx bash run.sh
+      
+      p
+        span If you see the following errors, just ignore them.  You’re doing good.
+        br
+        span.quote Error: No such container: inc_miner
+        br
+        span.quote Error: No such container: inc_kovan
+        br
+        span.quote Error response from daemon: network with name inc_net already exists
+      
+      p For the curious, because Incognito is integrated with Ethereum (so you can send ETH and ERC20 tokens privately), its error messages show up here.  There’s nothing much we can do about it. Moving on.
+
     
     +stepHtml('3', 'Request free Privacy (PRV)')
-      p Privacy (PRV) is the native coin of the Incognito Network.  You need to stake 1,750 PRV to become a miner.  
-      p It’s easy to request free PRV.  Simply send a message on the Incognito Telegram channel
+      p Privacy (PRV) is the native coin of the Incognito Network.  To become a validator and help build the network, you’ll need to stake the minimum 1,750 PRV.
+      p It’s easy to request free PRV.  Simply send a message to the Incognito Telegram channel 
         | 
-        a(href='https://t.me/incognitochain', target='blank') https://t.me/incognitochain,
-        |
-        |along with YOUR ADDRESS (from STEP 1).
+        a(href='https://t.me/incognitochain', target='blank') https://t.me/incognitochain
+        |, remembering to include YOUR ADDRESS (from STEP 1).
       p For example:
-      p "I'd like to be a miner for the Incognito Testnet. Please send me some free PRV.  My address is 1Uv3CsGLj7Ue6YoftT2XvMPrLcpETWgDPu9XQ3rF8FgZKMtwfkGPbQ1nRxtyhSVs7duQ"
+      p.quote "Send me free PRV and no one gets hurt. My address is 1Uv3CsGLj7Ue6YoftT2XvMPrLcpETWgDPu9XQ3rF8FgZKMtwfkGPbQ1nRxtyhSVs7duQ"
 
 
     +stepHtml('4', 'Stake')
-      p In the Incognito Wallet, stake 1750 PRV to become a validator.
+      p Almost there! Now, that you’ve got PRV, all you have to do is stake. Remember, you need to stake at least 1,750 PRV to begin earning rewards. Just open your Incognito Wallet and tap the [STAKE] button.
+      a(href='https://test-wallet.incognito.org', target='blank') https://test-wallet.incognito.org
+      br
+      br
       .row-img 
         .img
           img(src=require('../../image/become_validator/stake_1.png'), alt='stake_1')
         .img
           img(src=require('../../image/become_validator/stake_2.png'), alt='stake_2')
+      p Congrats! You’re officially part of the network. Welcome to Incognito :)
 
-    +stepHtml('5', 'Monitor Incognito')
-      p Install
+    +stepHtml('5', 'Monitor Incognito (optional)')
+      p Running multiple nodes? Or just kind of a control freak? Install 
         | 
         a(href='https://github.com/incognitochain/incognito-monitor/releases', target='blank') Incognito Network Monitor.
-        |
-        | The Incognito Network Monitor is a desktop utility that lets you monitor multiple nodes on the Incognito network.
+        |. The Incognito Network Monitor is a desktop utility application that allows you to - you guessed it - easily monitor your Incognito nodes.
       img(src=require('../../image/become_validator/step4.png'), alt='step4')
 
-  h3 Congrats!  You’re now an Incognito Miner :)
+  p We welcome any questions, comments, or feedback. Or just reach out to chat. We’re on telegram pretty much all the time:
+    | 
+    a(href='https://t.me/incognitochain', target='blank') https://t.me/incognitochain
+    |, or do it the old fashioned way and send an email to
+    | 
+    a(href='mailto:go@incognito.org') go@incognito.org.
