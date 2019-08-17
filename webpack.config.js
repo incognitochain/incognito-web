@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserJSPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
 const CopyPlugin = require('copy-webpack-plugin')
 
@@ -70,6 +71,8 @@ const copyPlugin = new CopyPlugin([
 
 const production = process.env.NODE_ENV === 'production';
 const env = production ? require('./.env.production') : require('./.env.development');
+
+console.debug(`Production mode: ${!!production}`)
 
 const devConfig = {
   mode: 'development',
@@ -160,7 +163,10 @@ const prodConfig = {
     }]
   },
   optimization: {
-    minimizer: [new OptimizeCSSAssetsPlugin({})],
+    minimizer: [
+      new TerserJSPlugin({}),
+      new OptimizeCSSAssetsPlugin({})
+    ],
   }
 };
 
