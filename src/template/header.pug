@@ -20,6 +20,12 @@ mixin sidebar-menu
 
 
 nav#header
+  a(href='/').logo
+  .desktop-menu.group.right
+    a(href='/sidechain.html').menu-item SIDECHAIN
+    a(href='/node.html').menu-item NODE
+    a(href='/wallet.html').menu-item WALLET
+    a(href='/referral.html').menu-item REFER & EARN
   .mobile-sidebar
     .hamburger-btn
     .sidebar
@@ -30,12 +36,3 @@ nav#header
             img(src=require('../../image/icon/close.svg'), alt='close icon')
         +menu-left
         +sidebar-menu
-  //- .group.left
-  //-   +menu-left
-  a(href='/').logo
-  .desktop-menu.group.right
-    a(href='/sidechain.html').menu-item SIDECHAIN
-    a(href='/node.html').menu-item NODE
-    a(href='/wallet.html').menu-item WALLET
-    a(href='/referral.html').menu-item REFER & EARN
-    
