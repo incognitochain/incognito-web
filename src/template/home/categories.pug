@@ -1,0 +1,12 @@
+mixin item(img, label, desc) 
+  .category
+    .img
+      img(src= img, alt='category-item')
+    span.label= label
+    span.desc= desc
+
+#categories-container.container
+  +item(require('../../image/home/node.png'), 'Host a Node', 'Be a validator using Node hardware. Just plug in to earn crypto for powering privacy.')
+  +item(require('../../image/home/run_vn.png'), 'Run a Virtual Node', 'Be a validator by running a virtual node (or several), on your computer or on a VPS.')
+  +item(require('../../image/home/wallet_app.png'), 'Download the wallet', 'Keep your activity confidential. Store, send and receive crypto privately.')
+  +item(require('../../image/home/issue_token.png'), 'Issue your own privacy token', 'Tokenize any form of private ownership. Distribute it anywhere in the world.')

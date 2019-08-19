@@ -30,7 +30,7 @@ const templateGen = [
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/sidechain/index.pug',
-    filename: 'index.html'
+    filename: 'sidechain.html'
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/wallet/index.pug',
@@ -47,6 +47,10 @@ const templateGen = [
   new HtmlWebpackPlugin({
     template: 'src/template/becomeValidator/index.pug',
     filename: 'miner.html'
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/home/index.pug',
+    filename: 'index.html'
   }),
   // new HtmlWebpackPlugin({
   //   template: 'src/template/mine/index.pug',
