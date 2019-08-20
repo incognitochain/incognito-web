@@ -28,12 +28,15 @@ mixin stepHtml(step, stepName, isOpen)
       p Install 
         |
         a(href='https://docs.docker.com/install/', target='blank') Docker.
-      p Run the command line below to download run.sh, or download it
+      p Run the command line below to download run.sh, or download it 
         | 
         a(href='https://incognito.org/run.sh', target='blank') here.
       p 
         span.script.copiable(data-copy-value='curl -LO https://incognito.org/run.sh') curl -LO https://incognito.org/run.sh
-      p Open, and edit the file, then replace 
+      p Edit
+        | 
+        span.script run.sh
+        | and replace
         | 
         span.script xxx
         | 
@@ -41,7 +44,9 @@ mixin stepHtml(step, stepName, isOpen)
         | 
         span.script YOUR PRIVATE KEY
         |
-        |(refer to STEP 1 if you’re lost). Then, run the command line below to start Incognito.
+        |(from STEP 1).
+      img(src=require('../../image/become_validator/edit_runsh.png'), alt='edit_runsh')
+      p Then, run the command line below to start Incognito
       p
         span.script.copiable(data-copy-value='bash run.sh') bash run.sh
       
