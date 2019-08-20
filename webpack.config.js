@@ -46,7 +46,7 @@ const templateGen = [
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/becomeValidator/index.pug',
-    filename: 'miner.html'
+    filename: 'validator.html'
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/home/index.pug',
