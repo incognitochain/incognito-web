@@ -9,6 +9,7 @@ block meta
    meta(property="og:description" content="The Incognito Wallet is a simple mobile app that allows you to store, send and receive all your crypto assets — like BTC, ETH, and DAI - with total privacy.")
 
 block main
+   include ../header.pug
    div#wallet-container
       div.intro-slider-container
          .image
@@ -19,7 +20,6 @@ block main
             ])
             img(src=require('../../image/wallet/home_image_mobile.png')).mobile
          .right-content
-            include ../header.pug
             include intro.pug
       //- include section.pug
       //- include question.pug

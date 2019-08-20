@@ -8,6 +8,7 @@ block title
    title Incognito mode for blockchains.
    
 block main
+   include ../header.pug
    div#about-container
       div.intro-slider-container
          .image
@@ -18,7 +19,6 @@ block main
             ])
             img(src=require('../../image/sidechain/home_image_mobile.png')).mobile
          .right-content
-            include ../header.pug
             include intro.pug
       include ./build.pug     
       include ./team.pug

@@ -8,6 +8,7 @@ block title
    title Host a Node. Earn crypto.
    
 block main
+   include ../header.pug
    div#node-container
       .intro-slider-container
          .image
@@ -27,7 +28,6 @@ block main
             ])
             img(src=require('../../image/node/home_image_mobile.jpg'), alt='home image mobile').mobile
          .right-content
-            include ../header.pug
             include intro.pug
       include section.pug
       include question.pug
