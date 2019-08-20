@@ -33,7 +33,7 @@ mixin stepHtml(step, stepName, isOpen)
         a(href='https://incognito.org/run.sh', target='blank') here.
       p 
         span.script.copiable(data-copy-value='curl -LO https://incognito.org/run.sh') curl -LO https://incognito.org/run.sh
-      p Run the command line below to start Incognito. Replace
+      p Open, and edit the file, then replace 
         | 
         span.script xxx
         | 
@@ -41,9 +41,9 @@ mixin stepHtml(step, stepName, isOpen)
         | 
         span.script YOUR PRIVATE KEY
         |
-        |(refer to STEP 1 if you’re lost).
+        |(refer to STEP 1 if you’re lost). Then, run the command line below to start Incognito.
       p
-        span.script.copiable(data-copy-value='PRIVATEKEY=xxx bash run.sh') PRIVATEKEY=xxx bash run.sh
+        span.script.copiable(data-copy-value='bash run.sh') bash run.sh
       
       p
         span If you see the following errors, just ignore them.  You’re doing good.
