@@ -27,11 +27,12 @@
     display: flex;
     flex: 1;
     flex-direction: column;
+    background-color: #E4EEEF;
     #intro-container {
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding-bottom: 220px;
+      padding-bottom: 200px;
       align-items: center;
       padding-left: 30px;
       padding-right: 30px;
@@ -40,11 +41,11 @@
       background-repeat: no-repeat;
       background-size: cover;
       flex: 1;
-      margin-bottom: 80px;
+      margin-bottom: 50px;
 
       @include breakpoint-down(xl) {
         padding-top: 100px;
-        padding-bottom: 20px;
+        padding-bottom: 25px;
         flex-basis: 350px;
       };
       
@@ -118,7 +119,7 @@
         background-color: $white;
         padding: 20px;
         padding-top: 30px;
-        padding-bottom: 50px;
+        padding-bottom: 30px;
         border: 0 solid rgba(0,0,0,0.04);
         box-shadow: 0 3px 8px 0 rgba(0,0,0,0.15);
         border-radius: 4px;
@@ -158,7 +159,7 @@
           margin-right: 40px;
 
           @include breakpoint-down(1400px) {
-            margin-right: 20px;
+            margin-right: 14px;
           };
 
           
