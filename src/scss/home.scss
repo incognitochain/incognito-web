@@ -36,22 +36,29 @@
       padding-left: 30px;
       padding-right: 30px;
       background-image: url('../image/home/bg-desktop.jpg');
-      background-position: center bottom;
+      background-position: center top;
       background-repeat: no-repeat;
       background-size: cover;
       flex: 1;
       margin-bottom: 80px;
 
-      @include breakpoint-down(md) {
-        text-align: left;
-        background-image: url('../image/home/bg_mobile.jpg');
-      };
-
       @include breakpoint-down(xl) {
         padding-top: 100px;
-        padding-bottom: 100px;
+        padding-bottom: 20px;
+        flex-basis: 350px;
       };
       
+      @include breakpoint-down(sm) {
+        text-align: left;
+        background-image: url('../image/home/bg_mobile.jpg');
+        flex-basis: 900px;
+      };
+
+      @include breakpoint-down(450px) {
+        flex-basis: 800px;
+      };
+
+
       .title {
         font-size: 40px;
         letter-spacing: 0;
@@ -76,6 +83,8 @@
         @include breakpoint-down(md) {
           text-align: left;
           margin: unset;
+          max-width: unset;
+          width: 100%;
         };
       }
     }
@@ -91,16 +100,20 @@
       position: absolute;
 
       @include breakpoint-down(xl) {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         position: unset;
         transform: unset;
         left: unset;
       };
 
+      @include breakpoint-down(md) {
+        padding: 0px 20px;
+      };
+
       .category {
         display: flex;
         flex-direction: row;
-        flex: 1;
         margin: 10px 10px;
         background-color: $white;
         padding: 20px;
@@ -113,6 +126,20 @@
         top: 0px;
         transition: top 0.3s ease-in-out;
         cursor: pointer;
+        text-decoration: none;
+        width: 100%;
+
+        @include breakpoint-down(xl) {
+          width: 45%;
+        };
+
+        @include breakpoint-down(1400px) {
+          padding-bottom: 20px;
+        };
+
+        @include breakpoint-down(md) {
+          width: 100%;
+        };
 
         &:hover {
           top: -10px;
@@ -129,6 +156,12 @@
           flex-direction: column;
           text-align: left;
           margin-right: 40px;
+
+          @include breakpoint-down(1400px) {
+            margin-right: 20px;
+          };
+
+          
           .label {
             font-size: 20px;
             color: $black;
@@ -154,6 +187,41 @@
             width: 90px;
           }
         }        
+      }
+    }
+
+    .popup-random {
+      background-color: white;
+      padding: 10px;
+      max-width: 250px;
+      border: 0 solid rgba(0,0,0,0.04);
+      box-shadow: 0 3px 8px 0 rgba(0,0,0,0.15), 0 1px 1px 0 rgba(0,0,0,0.16), 0 3px 0 0 rgba(0,0,0,0.10);
+      border-radius: 4px;
+      position: absolute;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: -10px;
+        border-top: solid 10px white;
+        border-right: solid 20px transparent;
+        border-left: solid 20px transparent;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .balance, .activity {
+        display: flex;
+        flex-direction: column;
+        margin: 10px 0px;
+
+        .label {
+          color: $grey2;
+        }
+
+        .value {
+          font-size: 15px;
+        }
       }
     }
   }
