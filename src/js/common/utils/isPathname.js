@@ -1,0 +1,1 @@
+export default (pathname) => typeof window === 'object' && window.location.pathname === pathname;
