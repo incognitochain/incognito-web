@@ -6,6 +6,7 @@
   nav#header {
     position: absolute;
     z-index: 1;
+    border-bottom: none;
 
     .logo {
       background-image: url('../image/logo_white.svg');
@@ -32,7 +33,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding-bottom: 200px;
+      padding-bottom: 270px;
       align-items: center;
       padding-left: 30px;
       padding-right: 30px;
@@ -41,7 +42,7 @@
       background-repeat: no-repeat;
       background-size: cover;
       flex: 1;
-      margin-bottom: 50px;
+
 
       @include breakpoint-down(xl) {
         padding-top: 100px;
@@ -74,12 +75,12 @@
   
       .sub-title {
         display: block;
-        max-width: 588px;
-        font-size: 18px;
+        max-width: 720px;
+        font-size: 16px;
         color: $white;
         letter-spacing: 0;
         text-align: center;
-        line-height: 28px;
+        line-height: 26px;
 
         @include breakpoint-down(md) {
           text-align: left;
@@ -164,18 +165,18 @@
 
           
           .label {
-            font-size: 20px;
-            color: $black;
+            font-size: 16px;
+            color: #111111;
             letter-spacing: 0;
-            line-height: 25px;
+            line-height: 23px;
             margin-bottom: 20px;
           }
     
           .desc {
-            font-size: 16px;
+            font-size: 14px;
             color: #657576;
             letter-spacing: 0;
-            line-height: 25px;
+            line-height: 20px;
           }
         }
 
@@ -183,7 +184,6 @@
           height: 130px;
           margin-bottom: 20px;
           margin-left: auto;
-          margin-right: auto;
           > img {
             width: 90px;
           }
