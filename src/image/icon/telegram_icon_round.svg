@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="27px" viewBox="0 0 27 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>flaticon1566458852-svg</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#3CADDE" offset="0%"></stop>
+            <stop stop-color="#2C98D4" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="WEB" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Home-Copy-6" transform="translate(-804.000000, -21.000000)" fill-rule="nonzero">
+            <g id="Group-24" transform="translate(493.000000, 22.000000)">
+                <g id="Group-12" transform="translate(312.000000, 0.000000)">
+                    <g id="flaticon1566458852-svg">
+                        <circle id="Oval" stroke="#FFFFFF" stroke-width="2" fill="url(#linearGradient-1)" cx="12.4998535" cy="12.5" r="12.4998535"></circle>
+                        <polygon id="Path" fill="#FFFFFF" points="11.2860352 14.3212891 16.9350098 18.5862793 19.7865234 6.4140625 5.21342773 12.1464355 9.64785156 13.6152344 17.7407715 8.18671875"></polygon>
+                        <polygon id="Path" fill="#D2D2D7" points="9.64785156 13.6152344 10.8623535 17.9855469 11.2860352 14.3212891 17.7407715 8.18671875"></polygon>
+                        <polygon id="Path" fill="#B9B9BE" points="13.1219727 15.7074219 10.8623535 17.9855469 11.2860352 14.3212891"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

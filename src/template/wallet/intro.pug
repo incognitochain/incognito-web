@@ -10,11 +10,12 @@ div#intro-container.bounceInUp-ani
         h1.title Privately send  
           span.crypto-name Bitcoin
         p.sub-title The Incognito mobile wallet that allows you to privately store, send and receive all your crypto assets. Turn on privacy for your BTC, ETH, DAI and more.
-        p.sub-title Available on both iOS and Android.
 
-        .subscribe-email
-          include ../common/subscribe_form.pug
-          +subscribe_email()
+        .app-store-groups
+          a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
+            img(src=require('../../image/wallet/ch google play.svg'), alt='chplay-app')
+          a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
+            img(src=require('../../image/wallet/app store.svg'), alt='ios-app')
 
         //- div.action-btn.scroll-action-btn(data-scroll-to='#section-container')
         //-   img(src=require('../../image/icon/arrow_grey.svg'))

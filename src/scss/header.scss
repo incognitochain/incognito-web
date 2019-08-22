@@ -6,6 +6,7 @@ nav#header {
   width: 100%;
   min-height: $header-height;
   position: relative;
+  border-bottom: solid 1px $white2;
 
   @include breakpoint-down(md) {
     padding: 20px;
@@ -36,9 +37,14 @@ nav#header {
       font-weight: 400;
     }
   }
+
+  .desktop-menu {
+    display: flex;
+    align-items: center;
+  }
   
   .group {
-    @include breakpoint-down(md) {
+    @include breakpoint-down(900px) {
       display: none;
     };
 
@@ -57,6 +63,31 @@ nav#header {
         color: $black;
         letter-spacing: 0.5px;
         padding: 5px 15px;
+      }
+
+      &.telegram-btn {
+        background-color: $blue;
+        display: flex;
+        align-items: center;
+        border-radius: 20px;
+        height: 22px;
+        width: 140px;
+        color: $white;
+
+        img {
+          width: 25px;
+          margin-right: 5px;
+          position: relative;
+          left: -1px;
+          transform: rotate();
+          transition: transform 200ms ease-in-out;
+        }
+
+        &:hover {
+          img {
+            transform: rotate(20deg);
+          }
+        }
       }
     }
 
