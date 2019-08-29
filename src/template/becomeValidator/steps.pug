@@ -8,23 +8,63 @@ mixin stepHtml(step, stepName, isOpen)
 .step-container.container
   +collapse('validator-steps-guide')
     +stepHtml('1', 'Create your account', 'true')
-      p Create a password to set up your Incognito Wallet account:
+      p Download the Incognito app.
+      .row-img 
+        .img.install-app-img
+          a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
+            img(src=require('../../image/wallet/ch google play.svg'), alt='chplay-app')
+        .img.install-app-img
+          a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
+            img(src=require('../../image/wallet/app store.svg'), alt='ios-app')
+      p Open the app and tap on
         | 
-        a(href='https://test-wallet.incognito.org', target='blank') https://test-wallet.incognito.org.
-      p Copy
+        span.highlight YOU
+        |.
+        | Copy
         | 
-        span.highlight YOUR PRIVATE KEY.
+        span.highlight YOUR INCOGNITO ADDRESS
         | 
-        | Keep it safe! You’ll need it to run a script in STEP 2.
-      p Copy
+        |and
         | 
-        span.highlight YOUR ADDRESS.
+        span.highlight YOUR PRIVATE KEY
         | 
-        | You’ll need it for STEP 3, where you’ll request PRV to stake.
+        | (keep them safe!).  You’ll need them in STEP 3 and 5.
 
-      img(src=require('../../image/become_validator/step1.png'), alt='step1')
+      img(src=require('../../image/become_validator/view_account_setting.png'), alt='view_account_setting')
+      img(src=require('../../image/become_validator/view_your_keys.png'), alt='view_your_keys')
+      img(src=require('../../image/become_validator/copy_your_keys.png'), alt='copy_your_keys')
 
-    +stepHtml('2', 'Run Incognito')
+    +stepHtml('2', 'Set up your node')
+      p You can run Incognito on a low-cost server.  If you don’t have a server yet, it’s really simple and takes just a couple of minutes.  You can set up an account with a VPS provider or a cloud service provider like
+        | 
+        a(href='https://www.digitalocean.com', target='blank') DigitalOcean
+        |,
+        | 
+        a(href='https://www.linode.com/', target='blank') Linode
+        | 
+        | or
+        | 
+        a(href='https://www.vultr.com/', target='blank') Vultr.
+      
+      p The minimum server requirements are
+        | 
+        span.highlight 2GB RAM, 2 CPUs
+        |, and
+        | 
+        span.highlight 50GB SSD.
+        | 
+        |For example, if you use AWS, a
+        | 
+        span.highlight t3.small instance
+        | 
+        | is sufficient.
+      p Save
+        | 
+        span.highlight YOUR SERVER EXTERNAL IP ADDRESS.
+        | 
+        | You’ll need it in STEP 4.
+
+    +stepHtml('3', 'Run Incognito')
       p Install 
         |
         a(href='https://docs.docker.com/install/', target='blank') Docker.
@@ -36,6 +76,7 @@ mixin stepHtml(step, stepName, isOpen)
       p Edit
         | 
         span.script run.sh
+        | 
         | and replace
         | 
         span.script xxx
@@ -59,38 +100,41 @@ mixin stepHtml(step, stepName, isOpen)
         br
         span.quote Error response from daemon: network with name inc_net already exists
       
-      p For the curious, because Incognito is integrated with Ethereum (so you can send ETH and ERC20 tokens privately), its error messages show up here.  There’s nothing much we can do about it. Moving on.
+      p For the curious, because Incognito is integrated with Ethereum (so you can send ETH and ERC20 tokens privately), its error messages show up here.  There’s nothing much we can do about it. Move on.
 
-    
-    +stepHtml('3', 'Request free Privacy (PRV)')
-      p Privacy (PRV) is the native coin of the Incognito Network.  To become a validator and help build the network, you’ll need to stake the minimum 1,750 PRV.
-      p It’s easy to request free PRV.  Simply send a message to the Incognito Telegram channel 
-        | 
-        a(href='https://t.me/incognitochain', target='blank') https://t.me/incognitochain
-        |, remembering to include YOUR ADDRESS (from STEP 1).
-      p For example:
-      p.quote "Send me free PRV and no one gets hurt. My address is 1Uv3CsGLj7Ue6YoftT2XvMPrLcpETWgDPu9XQ3rF8FgZKMtwfkGPbQ1nRxtyhSVs7duQ"
+    +stepHtml('4', 'Monitor your node')
+      p You can easily monitor your Incognito nodes right from your phone.
+      
+      img(src=require('../../image/become_validator/manage_node.png'), alt='manage_node')
+      img(src=require('../../image/become_validator/add_virtual_node.png'), alt='add_virtual_node')
+      img(src=require('../../image/become_validator/add_virtual_node_form.png'), alt='add_virtual_node_form')
 
+    +stepHtml('5', 'Request free Privacy (PRV)')
+      p Privacy (PRV) is the native coin of the Incognito Network.  To become a validator and help build the network, you’ll need to stake the minimum 1,750 PRV.  It’s easy to request free PRV.  Follow these steps:
+        ol
+          li Make a public post on either Facebook or Twitter that includes
+            | 
+            span.highlight https://incognito.org/YOUR_INCOGNITO_ADDRESS
+            | 
+            |(from STEP 1).
+            br
+            br
+            span For example:
+            p.quote "I’m going to be a validator for the Incognito network. My address is https://incognito.org/1Uv3CsGLj7Ue6YoftT2XvMPrLcpETWgDPu9XQ3rF8FgZKMtwfkGPbQ1nRxtyhSVs7duQ"
+            br
+          li Then, copy and paste the URL of that social post to the Incognito Telegram channel
+            | 
+            a(href='https://t.me/incognitochain', target='blank') https://t.me/incognitochain.
+            | 
+            | That’s it! 1,750 PRV will be added to your wallet. If your PRV has not arrived after 12 hours, please dm @annie_incognito for support.
 
-    +stepHtml('4', 'Stake')
-      p Almost there! Now, that you’ve got PRV, all you have to do is stake. Remember, you need to stake at least 1,750 PRV to begin earning rewards. Just open your Incognito Wallet and tap the [STAKE] button.
-      a(href='https://test-wallet.incognito.org', target='blank') https://test-wallet.incognito.org
-      br
-      br
-      .row-img 
-        .img
-          img(src=require('../../image/become_validator/stake_1.png'), alt='stake_1')
-        .img
-          img(src=require('../../image/become_validator/stake_2.png'), alt='stake_2')
-      p Congrats! You’re officially part of the network. Welcome to Incognito :)
-
-    +stepHtml('5', 'Monitor Incognito (optional)')
-      p Running multiple nodes? Or just kind of a control freak? Install 
-        | 
-        a(href='https://github.com/incognitochain/incognito-monitor/releases', target='blank') Incognito Network Monitor.
-        |. The Incognito Network Monitor is a desktop utility application that allows you to - you guessed it - easily monitor your Incognito nodes.
-      img(src=require('../../image/become_validator/step4.png'), alt='step4')
-
+    +stepHtml('6', 'Stake')
+      p Almost there! Now, that you’ve got PRV, all you have to do is stake. Remember, you need to stake at least 1,750 PRV to begin earning rewards.
+      img(src=require('../../image/become_validator/node_want_to_stake.png'), alt='node_want_to_stake')
+      img(src=require('../../image/become_validator/start_staking.png'), alt='start_staking')
+      img(src=require('../../image/become_validator/stake.png'), alt='stake')
+      
+  p Congrats! You’re officially part of the network. Welcome to Incognito :)
   p We welcome any questions, comments, or feedback. Or just reach out to chat. We’re on telegram pretty much all the time:
     | 
     a(href='https://t.me/incognitochain', target='blank') https://t.me/incognitochain

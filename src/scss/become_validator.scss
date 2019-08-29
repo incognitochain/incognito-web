@@ -5,6 +5,10 @@
   justify-content: space-between;
   min-height: 100%;
 
+  p {
+    font-size: 18px;
+  }
+  
   nav#header {
     position: absolute;
     border-bottom: none;
@@ -82,7 +86,7 @@
             }
           }
           .content {
-            max-height: 2000px !important;
+            max-height: 2400px !important;
           }
         }
     
@@ -135,6 +139,11 @@
             letter-spacing: -1px;
             font-weight: 400;
             color: black;
+          }
+
+          .install-app-img {
+            max-width: 200px;
+            margin-right: 20px;
           }
 
           .quote {
