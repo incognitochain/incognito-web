@@ -20,10 +20,10 @@ const templateGen = [
     template: 'src/template/privacy/index.pug',
     filename: 'privacy.html'
   }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/internalSubscriberBoard/index.pug',
-    filename: 'internal-subscriber-board.html'
-  }),
+  // new HtmlWebpackPlugin({
+  //   template: 'src/template/internalSubscriberBoard/index.pug',
+  //   filename: 'internal-subscriber-board.html'
+  // }),
   new HtmlWebpackPlugin({
     template: 'src/template/specs/index.pug',
     filename: 'specs.html'

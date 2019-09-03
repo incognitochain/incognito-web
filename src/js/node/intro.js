@@ -38,9 +38,9 @@ const showTotalSubscribe = async () => {
 }
 
 const main = () => {
-  showTotalSubscribe();
+  // showTotalSubscribe();
 }
 
 main();
 
-changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'crypto'], timeout: 4000 });
+// changeCryptoName({ listName: ['Bitcoin', 'Ethereum', 'crypto'], timeout: 4000 });
