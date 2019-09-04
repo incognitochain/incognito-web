@@ -7,6 +7,7 @@ import { getUserTotalReferral, sendReferralInvitation } from '../service/api';
 import { openModal, closeModal } from '../service/modal';
 import { trackEvent } from '../common/utils/ga';
 import { isEmail } from '../common/utils/validate';
+import isPathname from '../common/utils/isPathname';
 
 const socialShareMsg = 'Can’t wait for @IncognitoChain to launch. Gonna send @Bitcoin and @Ethereum with total privacy.';
 const REFERRAL_DATA = [
@@ -43,7 +44,7 @@ const REFERRAL_DATA = [
 const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
 
-  if (!token && location.pathname.includes('/referral.html')) {
+  if (!token && isPathname('/referral')) {
     location.pathname = '/subscribe.html';
   }
 }
@@ -341,7 +342,7 @@ const handleIntro = () => {
 }
 
 const main = () => {
-  if (!location.pathname.includes('/referral.html')) return;
+  if (!isPathname('/referral')) return;
   handleIntro();
   checkAuth();
   // startCountdown();
