@@ -3,11 +3,12 @@ import KEYS from "../constant/keys";
 import { setMessage } from '../service/message_box';
 import queryString from '../service/queryString';
 import { verifyEmailToken } from '../service/api';
+import isPathname from '../common/utils/isPathname';
 
 const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
 
-  if (token && location.pathname === '/') {
+  if (token && isPathname('/')) {
     location.pathname = '/referral.html';
   }
 }
