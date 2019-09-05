@@ -9,53 +9,25 @@ const CopyPlugin = require('copy-webpack-plugin')
 
 const templateGen = [
   new HtmlWebpackPlugin({
-    template: 'src/template/node/index.pug',
-    filename: 'node.html'
-  }),
-  new HtmlWebpackPlugin({
     template: 'src/template/referral/index.pug',
     filename: 'referral.html'
   }),
   new HtmlWebpackPlugin({
-    template: 'src/template/privacy/index.pug',
-    filename: 'privacy.html'
-  }),
-  // new HtmlWebpackPlugin({
-  //   template: 'src/template/internalSubscriberBoard/index.pug',
-  //   filename: 'internal-subscriber-board.html'
-  // }),
-  new HtmlWebpackPlugin({
     template: 'src/template/specs/index.pug',
     filename: 'specs.html'
-  }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/sidechain/index.pug',
-    filename: 'sidechain.html'
-  }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/wallet/index.pug',
-    filename: 'wallet.html'
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/subscribe_email/index.pug',
     filename: 'subscribe.html'
   }),
   new HtmlWebpackPlugin({
-    template: 'src/template/about/index.pug',
-    filename: 'about.html'
-  }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/becomeValidator/index.pug',
-    filename: 'validator.html'
-  }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/home/index.pug',
+    template: 'src/template/whyNode/index.pug',
     filename: 'index.html'
   }),
-  // new HtmlWebpackPlugin({
-  //   template: 'src/template/mine/index.pug',
-  //   filename: 'mine.html'
-  // }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/checkoutNode/index.pug',
+    filename: 'checkout-node.html'
+  }),
 ];
 
 const copyPlugin = new CopyPlugin([

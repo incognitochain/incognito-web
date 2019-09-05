@@ -15,28 +15,28 @@ const REFERRAL_DATA = [
     desc: 'Everyman',
     got: [],
     name: 'level1',
-    nums: 3,
+    nums: 1,
     title: ''
   },
   {
     desc: 'Citizen',
     got: [],
     name: 'level2',
-    nums: 10,
+    nums: 5,
     title: ''
   },
   {
     desc: 'Keeper',
     got: [],
     name: 'level3',
-    nums: 25,
+    nums: 10,
     title: ''
   },
   {
     desc: 'Guardian',
     got: [],
     name: 'level4',
-    nums: 50,
+    nums: 25,
     title: ''
   }
 ];
@@ -215,22 +215,22 @@ const renderBoxLevel = (levelData, isActive) => {
 
   const DATA = {
     level1: {
-      got: '30 Privacy',
+      got: '$25 off',
       desc: 'Incognito’s native coin',
       img: require('../../image/referral_gift/10 PRV.svg')
     },
     level2: {
-      got: '100 Privacy',
+      got: '$50 off',
       desc: 'Incognito’s native coin',
       img: require('../../image/referral_gift/30 PRV.svg')
     },
     level3: {
-      got: 'Node',
+      got: '$100 off',
       desc: 'Generates crypto by powering Incognito',
       img: require('../../image/referral_gift/3.png')
     },
     level4: {
-      got: 'Node Pro',
+      got: 'Node for free',
       desc: 'Earns even more by powering other blockchains too',
       img: require('../../image/referral_gift/4.png')
     }
@@ -242,13 +242,8 @@ const renderBoxLevel = (levelData, isActive) => {
   isActive && box.classList.add('active');
 
   box.innerHTML = `
-    <div class='desc'>${levelData.desc}</div>
     <div class='num'>${levelData.nums}</div>
     <div><span>${data.got}</span></div>
-    <div class='small-desc'><span>${data.desc}</span></div>
-    <div><span class='minner'>${
-      data.img ? `<img src=\'${data.img}\'/>` : ''
-    }</span></div>
   `;
 
   return box;
@@ -268,12 +263,10 @@ const handleShowInfo = async () => {
     if (currentLevel) {
       statusEl && (statusEl.innerText = currentLevel.desc);
     } else {
-      statusContainerEl.innerText = 'You\'re nobody.';
+      statusContainerEl.innerText = `${total} of your friends signed up already. `;
     }
 
-    friendNumberContainerEl.innerText = nextLevel ?
-      `${total} friends have joined. You need to refer ${requiredNum} more to level up to ${nextLevel.desc}.` :
-      'Congrats!  You\'re now a first-class member of the new internet.';
+    friendNumberContainerEl.innerText = 'Upon the completion of your purchase, we will refund you based on the number of referrals.';
 
     if (referralList) {
       const levelBoxEl = container.querySelector('.level-box');

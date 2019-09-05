@@ -26,7 +26,7 @@ nav#header {
     display: flex;
     position: relative;
     width: 120px;
-    height: 23px;
+    height: 30px;
     background-image: url('../image/logo_black.svg');
     background-repeat: no-repeat;
     background-size: contain;
@@ -118,6 +118,10 @@ nav#header {
       background-image: url('../image/icon/hamburger.svg');
       background-repeat: no-repeat;
       background-size: contain;
+
+      @include breakpoint-up(901px) {
+        visibility: hidden;
+      };
     }
 
     .sidebar {
