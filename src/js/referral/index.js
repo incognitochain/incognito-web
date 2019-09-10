@@ -215,22 +215,22 @@ const renderBoxLevel = (levelData, isActive) => {
 
   const DATA = {
     level1: {
-      got: '$25 off',
+      got: '$20 off',
       desc: 'Incognito’s native coin',
       img: require('../../image/referral_gift/10 PRV.svg')
     },
     level2: {
-      got: '$50 off',
+      got: '$30 off',
       desc: 'Incognito’s native coin',
       img: require('../../image/referral_gift/30 PRV.svg')
     },
     level3: {
-      got: '$100 off',
+      got: '$40 off',
       desc: 'Generates crypto by powering Incognito',
       img: require('../../image/referral_gift/3.png')
     },
     level4: {
-      got: 'Node for free',
+      got: '$50 off',
       desc: 'Earns even more by powering other blockchains too',
       img: require('../../image/referral_gift/4.png')
     }
