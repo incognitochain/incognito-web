@@ -16,7 +16,7 @@ function main() {
 
 const startCountdown = (container) => {
   const countdownEl = container.querySelector('.countdown');
-  countdown(countdownEl, '2019-09-24T00:00:00.000', () => {
+  countdown(countdownEl, '2019-09-25T00:00:00.000', () => {
     setMessage('The program was ended', 'error');
   });
 }
