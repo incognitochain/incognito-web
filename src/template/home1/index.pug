@@ -1,0 +1,32 @@
+extends ../layout.pug
+mixin block(name, headerTxt, title, desc)
+   div.block(class= name)
+      h2.headerText= headerTxt
+      .info
+         h1.title= title
+         p.desc= desc
+         block
+
+
+block title
+   title Incognito mode for your crypto
+   
+
+
+
+block main
+   #home1-container
+      include ../header.pug
+      #content
+         .blocks-container
+            +block('app-block', 'Incognito mode', 'Use', 'Send, receive and store crypto privately.')
+               .links
+                  span.link iOS
+                  span.link Android
+            +block('node-block', 'for your cryto', 'Earn', 'Earn crypto for giving others privacy.')
+               .links
+                  span.link Watch Node intro
+                  span.link Watch Node unbox
+
+         .subscribe-container 
+   
