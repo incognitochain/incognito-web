@@ -6,10 +6,6 @@
   transition: bottom 500ms ease-out, transform 200ms;
   transform: rotate();
 
-  @include breakpoint-up(900px) {
-    display: none;
-  };
-
   &:hover {
     bottom: 30px;
     transform: rotate(20deg);

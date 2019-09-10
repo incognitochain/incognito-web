@@ -36,6 +36,7 @@
         background-position: center top;
         background-repeat: no-repeat;
         position: relative;
+        min-height: 700px;
 
         .headerText {
           position: absolute;
@@ -47,7 +48,7 @@
 
         .info {
           text-align: center;
-          margin-top: 80px;
+          margin-top: 70px;
 
           @include breakpoint-down(sm) {
             margin-top: 60px;
@@ -112,7 +113,7 @@
       }
 
       .app-block {
-        background-image: url('../image/home1/app_bg.png');
+        background-image: url('../image/home1/app_bg.jpg');
 
         .headerText {
           right: 10px;
