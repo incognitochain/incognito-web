@@ -26,7 +26,6 @@ class YoutubePlayer {
   createPopup() {
     const popup = document.createElement('div');
     const closePopupBtn = document.createElement('button');
-    closePopupBtn.innerText = 'CLOSE';
 
     popup.classList.add('video-player');
     closePopupBtn.classList.add('close-button');

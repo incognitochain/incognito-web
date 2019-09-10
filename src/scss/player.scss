@@ -7,10 +7,14 @@
   z-index: 1000;
 
   .close-button {
+    height: 38px;
     background: transparent;
     position: absolute;
-    top: 0px;
-    left: 0px;
+    top: 30px;
+    left: 30px;
     font-weight: 300;
+    background-image: url('../image/icon/close.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }

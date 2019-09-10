@@ -25,14 +25,15 @@ block main
                      span iOS
                   a.link(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
                      span Android
-            +block('node-block', 'for your cryto', 'Earn', 'Earn crypto for giving others privacy.')
+            +block('node-block', 'for your cryto', 'Power', 'Earn crypto for giving others privacy.')
                .links
-                  span.link(data-video-url='https://www.youtube.com/embed/mmujZYcPwSs') Watch Node intro
+                  span.link(data-video-url='https://www.youtube.com/embed/LZjI4RsVwF8') Watch Node intro
                   span.link(data-video-url='https://www.youtube.com/embed/Je9Eykmf3Lc') Unbox Node
 
          .subscribe-container 
             div
                .info
+                  span The first Nodes will be half price. Be the first.
                   span Node will go live in
                      | 
                      .countdown.visible-effect
@@ -50,7 +51,6 @@ block main
                               span.label :
                            .seconds.group
                               span.data 00
-                  span The first Nodes will be half price. Be the first.
                .subscribe-email
                   include ../common/subscribe_form.pug
                   +subscribe_email('Half off, please')

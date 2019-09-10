@@ -2,16 +2,13 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  min-width: 1200px;
 
   // override header
   nav#header {
     position: absolute;
     z-index: 1;
     border-bottom: none;
-
-    .desktop-menu {
-      visibility: hidden;
-    }
 
     .hamburger-btn {
       background-image: url('../image/icon/hamburger-white.svg');
@@ -50,14 +47,14 @@
           margin-top: 100px;
 
           .title {
-            font-size: 32px;
+            font-size: 48px;
             letter-spacing: 0;
             line-height: 49px;
           }
 
           .desc {
             opacity: 0.9;
-            font-size: 20px;
+            font-size: 32px;
             letter-spacing: 0;
             line-height: 28px;
           }
@@ -81,7 +78,7 @@
               &::after {
                 content: '>';
                 margin-left: 5px;
-                transform: scale(0.8,1.8) translate(0px);
+                transform: scale(0.4,1) translate(0px);
                 display: inline-block;
                 font-weight: 100;
                 transition: transform 0.2s;
@@ -89,7 +86,7 @@
 
               &:hover {
                 &::after {
-                  transform:translate(5px);
+                  transform: translate(3px);
                 }
               }
             }
@@ -144,7 +141,7 @@
     }
 
     .subscribe-container {
-      flex: 0 0 90px;
+      flex: 0 0 130px;
       display: flex;
       background: #014E52;
       justify-content: center;
@@ -163,7 +160,7 @@
         .info {
           width: 320px;
           color: $white;
-          margin-right: 20px;
+          margin-right: 50px;
           span {
             color: inherit;
             display: block;
