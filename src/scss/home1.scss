@@ -36,7 +36,7 @@
 
         .headerText {
           position: absolute;
-          font-size: 32px;
+          font-size: 36px;
           letter-spacing: 0;
           line-height: 45px;
           font-weight: 400;
@@ -44,7 +44,7 @@
 
         .info {
           text-align: center;
-          margin-top: 100px;
+          margin-top: 80px;
 
           .title {
             font-size: 48px;
@@ -108,7 +108,7 @@
           }
 
           .desc {
-            color: #657576;
+            color: #333333;
           }
 
           .links {
@@ -150,7 +150,7 @@
 
       > div {
         width: 100%;
-        max-width: 1000px;
+        max-width: 1200px;
         position: relative;
         display: flex;
         flex-direction: row;
@@ -158,13 +158,15 @@
         align-items: center;
 
         .info {
-          width: 320px;
+          width: 390px;
           color: $white;
-          margin-right: 50px;
+          margin-right: 80px;
           span {
             color: inherit;
             display: block;
             font-weight: 300;
+            font-size: 20px;
+            line-height: 33px;
           }
 
           .countdown {
@@ -201,10 +203,16 @@
             }
             button {
               position: absolute;
-              background: #FF8E00;
+              background: transparent;
+              background-image: url('../image/home1/sc_email_btn_bg.png');
+              background-size: cover;
               border-radius: 4px;
               right: 20px;
               height: 80%;
+
+              &:hover {
+                background-image: url('../image/home1/sc_email_btn_bg_hover.png');
+              }
             }
           }
         }
