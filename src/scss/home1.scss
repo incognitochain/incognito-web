@@ -81,9 +81,16 @@
               &::after {
                 content: '>';
                 margin-left: 5px;
-                transform: scale(0.8,1.8);
+                transform: scale(0.8,1.8) translate(0px);
                 display: inline-block;
                 font-weight: 100;
+                transition: transform 0.2s;
+              }
+
+              &:hover {
+                &::after {
+                  transform:translate(5px);
+                }
               }
             }
           }
@@ -138,8 +145,57 @@
 
     .subscribe-container {
       flex: 0 0 90px;
-      background: black;
+      display: flex;
+      background: #014E52;
+      justify-content: center;
+      align-items: center;
       
+
+      > div {
+        width: 100%;
+        max-width: 1000px;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        .info {
+          width: 320px;
+          color: $white;
+          margin-right: 20px;
+          span {
+            color: inherit;
+            display: block;
+            font-weight: 300;
+          }
+
+          .countdown {
+            color: inherit;
+            font-weight: 600;
+            display: inline-block;
+          }
+        }
+  
+        .subscribe-email {
+          flex: 1;
+          form {
+            width: 100%;
+            max-width: unset;
+            align-items: center;
+            input {
+              width: 100%;
+            }
+            button {
+              position: absolute;
+              background: #FF8E00;
+              border-radius: 4px;
+              right: 20px;
+              height: 80%;
+            }
+          }
+        }
+      }
     }
   }
 }
