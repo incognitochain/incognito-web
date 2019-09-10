@@ -6,6 +6,14 @@
   background-color: $white;
   z-index: 1000;
 
+  @include breakpoint-down(lg) {
+    padding: 100px;
+  };
+
+  @include breakpoint-down(sm) {
+    padding: 100px 10px;
+  };
+
   .close-button {
     height: 38px;
     background: transparent;
