@@ -2,7 +2,6 @@
   display: flex;
   flex: 1;
   flex-direction: column;
-  min-width: 1200px;
 
   // override header
   nav#header {
@@ -23,6 +22,10 @@
       height: 100%;
       display: flex;
       flex: 1;
+
+      @include breakpoint-down(lg) {
+        flex-direction: column;
+      };
 
       .block {
         display: flex;
@@ -46,10 +49,19 @@
           text-align: center;
           margin-top: 80px;
 
+          @include breakpoint-down(sm) {
+            margin-top: 60px;
+          };
+
           .title {
             font-size: 48px;
             letter-spacing: 0;
             line-height: 49px;
+
+            @include breakpoint-down(sm) {
+              font-size: 40px;
+              line-height: 45px;
+            };
           }
 
           .desc {
@@ -57,6 +69,11 @@
             font-size: 32px;
             letter-spacing: 0;
             line-height: 28px;
+
+            @include breakpoint-down(sm) {
+              font-size: 26px;
+              line-height: 30px;
+            };
           }
           
 
@@ -119,6 +136,10 @@
       .node-block {
         background-image: url('../image/home1/node_bg.png');
 
+        @include breakpoint-down(lg) {
+          order: -1;
+        };
+
         .headerText {
           left: 10px;
           color: white;
@@ -141,12 +162,12 @@
     }
 
     .subscribe-container {
+      padding: 10px;
       flex: 0 0 130px;
       display: flex;
       background: #014E52;
       justify-content: center;
       align-items: center;
-      
 
       > div {
         width: 100%;
@@ -157,10 +178,21 @@
         justify-content: center;
         align-items: center;
 
+        @include breakpoint-down(1000px) {
+          flex-direction: column;
+        };
+        
+
         .info {
           width: 390px;
           color: $white;
           margin-right: 80px;
+
+          @include breakpoint-down(1000px) {
+            width: 100%;
+            margin-right: 0px;
+          };
+
           span {
             color: inherit;
             display: block;
@@ -194,13 +226,26 @@
   
         .subscribe-email {
           flex: 1;
+          width: 100%;
           form {
             width: 100%;
             max-width: unset;
             align-items: center;
+
+            @include breakpoint-down(1000px) {
+              flex-direction: column;
+              position: relative;
+            };
+        
             input {
               width: 100%;
+
+              @include breakpoint-down(1000px) {
+                margin: unset;
+                flex: unset;
+              };
             }
+
             button {
               position: absolute;
               background: transparent;
@@ -213,6 +258,11 @@
               &:hover {
                 background-image: url('../image/home1/sc_email_btn_bg_hover.png');
               }
+
+              @include breakpoint-down(1000px) {
+                top: 50%;
+                transform: translateY(-50%);
+              };
             }
           }
         }
