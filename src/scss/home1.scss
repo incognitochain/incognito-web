@@ -1,0 +1,140 @@
+#home1-container {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  // override header
+  nav#header {
+    position: absolute;
+    z-index: 1;
+    border-bottom: none;
+
+    .desktop-menu {
+      visibility: hidden;
+    }
+
+    .hamburger-btn {
+      background-image: url('../image/icon/hamburger-white.svg');
+    }
+  }
+
+  #content {
+    display: flex;
+    flex-direction: column;
+
+    .blocks-container {
+      height: 100%;
+      display: flex;
+      flex: 1;
+
+      .block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        position: relative;
+
+        .headerText {
+          position: absolute;
+          font-size: 32px;
+          letter-spacing: 0;
+          line-height: 45px;
+          font-weight: 400;
+        }
+
+        .info {
+          text-align: center;
+          margin-top: 100px;
+
+          .title {
+            font-size: 32px;
+            letter-spacing: 0;
+            line-height: 49px;
+          }
+
+          .desc {
+            opacity: 0.9;
+            font-size: 20px;
+            letter-spacing: 0;
+            line-height: 28px;
+          }
+          
+
+          .links {
+            .link {
+              margin-left: 10px;
+              margin-right: 10px;
+              font-size: 18px;
+              letter-spacing: 0;
+              text-align: center;
+              color: inherit;
+              cursor: pointer;
+
+              &::after {
+                content: '>';
+                margin-left: 5px;
+                transform: scale(0.8,1.8);
+                display: inline-block;
+                font-weight: 100;
+              }
+            }
+          }
+        }
+      }
+
+      .app-block {
+        background-image: url('../image/home1/app_bg.png');
+
+        .headerText {
+          right: 10px;
+          color: #657576;
+        }
+
+        .info {
+          .title {
+            color: #101111;
+          }
+
+          .desc {
+            color: #657576;
+          }
+
+          .links {
+            color: #08CDD7;
+          }
+        }
+      }
+      .node-block {
+        background-image: url('../image/home1/node_bg.png');
+
+        .headerText {
+          left: 10px;
+          color: white;
+        }
+
+        .info {
+          .title {
+            color: white;
+          }
+
+          .desc {
+            color: white;
+          }
+
+          .links {
+            color: white;
+          }
+        }
+      }
+    }
+
+    .subscribe-container {
+      flex: 0 0 90px;
+      background: black;
+      
+    }
+  }
+}

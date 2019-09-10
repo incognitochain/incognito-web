@@ -49,7 +49,7 @@ const templateGen = [
     filename: 'validator.html'
   }),
   new HtmlWebpackPlugin({
-    template: 'src/template/home/index.pug',
+    template: 'src/template/home1/index.pug',
     filename: 'index.html'
   }),
   // new HtmlWebpackPlugin({
