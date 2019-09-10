@@ -71,7 +71,12 @@
               letter-spacing: 0;
               text-align: center;
               color: inherit;
+              text-decoration: none;
               cursor: pointer;
+
+              span {
+                color: inherit;
+              }
 
               &::after {
                 content: '>';

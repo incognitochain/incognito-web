@@ -21,8 +21,10 @@ block main
          .blocks-container
             +block('app-block', 'Incognito mode', 'Use', 'Send, receive and store crypto privately.')
                .links
-                  span.link iOS
-                  span.link Android
+                  a.link(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
+                     span iOS
+                  a.link(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
+                     span Android
             +block('node-block', 'for your cryto', 'Earn', 'Earn crypto for giving others privacy.')
                .links
                   span.link(data-video-url='https://www.youtube.com/embed/mmujZYcPwSs') Watch Node intro
