@@ -33,9 +33,23 @@ block main
          .subscribe-container 
             div
                .info
-                  span Node will go live on
+                  span Node will go live in
                      | 
-                     .countdown 24/09/2019.
+                     .countdown.visible-effect
+                        .countdown-container
+                           .days.group
+                              span.data 00
+                              span.label
+                                 | 
+                                 | days
+                           .hours.group
+                              span.data 00
+                              span.label :
+                           .mins.group
+                              span.data 00
+                              span.label :
+                           .seconds.group
+                              span.data 00
                   span The first Nodes will be half price. Be the first.
                .subscribe-email
                   include ../common/subscribe_form.pug
