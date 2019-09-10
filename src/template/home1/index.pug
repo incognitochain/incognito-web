@@ -1,7 +1,6 @@
 extends ../layout.pug
-mixin block(name, headerTxt, title, desc)
+mixin block(name, title, desc)
    div.block(class= name)
-      h2.headerText= headerTxt
       .info
          h1.title= title
          p.desc= desc
@@ -19,13 +18,13 @@ block main
       include ../header.pug
       #content.bounceInUp-ani
          .blocks-container
-            +block('app-block', 'Incognito mode', 'Use', 'Send, receive and store crypto privately.')
+            +block('app-block', 'Use', 'Send, receive and store crypto privately.')
                .links
                   a.link(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
                      span iOS
                   a.link(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
                      span Android
-            +block('node-block', 'for your cryto', 'Power', 'Earn crypto for giving others privacy.')
+            +block('node-block', 'Power', 'Earn crypto for giving others privacy.')
                .links
                   span.link(data-video-url='https://www.youtube.com/embed/LZjI4RsVwF8') Watch Node intro
                   span.link(data-video-url='https://www.youtube.com/embed/Je9Eykmf3Lc') Unbox Node

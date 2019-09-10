@@ -25,8 +25,8 @@ nav#header {
   .logo {
     display: flex;
     position: relative;
-    width: 120px;
-    height: 23px;
+    width: 30px;
+    height: 25px;
     background-image: url('../image/logo_black.svg');
     background-repeat: no-repeat;
     background-size: contain;
@@ -41,6 +41,12 @@ nav#header {
   .desktop-menu {
     display: flex;
     align-items: center;
+  }
+
+  .title {
+    display: block;
+    width: 100%;
+    margin-left: 10px;
   }
   
   .group {
