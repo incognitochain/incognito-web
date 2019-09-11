@@ -10,8 +10,16 @@ function main() {
     return;
   }
 
+  hideTelegram();
   handleVideoPlayers(container);
   startCountdown(container);
+}
+
+const hideTelegram = () => {
+  const el = document.querySelector('#telegram-chat-float');
+  if (el) {
+    el.style.display = 'none';
+  }
 }
 
 const startCountdown = (container) => {
