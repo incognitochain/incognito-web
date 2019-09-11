@@ -4,11 +4,11 @@ import countdown from '../service/countdown';
 import { setMessage } from '../service/message_box';
 
 function main() {
-  if (!isPathname('/')) {
+  const container = document.querySelector('#home1-container');
+
+  if (!container) {
     return;
   }
-
-  const container = document.querySelector('#home1-container');
 
   handleVideoPlayers(container);
   startCountdown(container);
