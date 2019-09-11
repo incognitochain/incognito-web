@@ -36,7 +36,11 @@
         background-position: center top;
         background-repeat: no-repeat;
         position: relative;
-        min-height: 700px;
+        min-height: 600px;
+
+        @include breakpoint-down(md) {
+          min-height: 700px;
+        };
 
         .headerText {
           position: absolute;
