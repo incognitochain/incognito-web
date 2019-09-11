@@ -76,3 +76,4 @@ const loadPixel = () => {
 
 // loadFbChat();
 loadGA();
+loadPixel();
