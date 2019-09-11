@@ -9,6 +9,12 @@
     z-index: 1;
     border-bottom: none;
 
+    .title {
+      @include breakpoint-down(lg) {
+        color: $white;
+      };
+    }
+
     .hamburger-btn {
       background-image: url('../image/icon/hamburger-white.svg');
     }
@@ -36,11 +42,7 @@
         background-position: center top;
         background-repeat: no-repeat;
         position: relative;
-        min-height: 600px;
-
-        @include breakpoint-down(md) {
-          min-height: 700px;
-        };
+        min-height: 700px;
 
         .headerText {
           position: absolute;
@@ -55,7 +57,7 @@
           margin-top: 70px;
 
           @include breakpoint-down(sm) {
-            margin-top: 60px;
+            margin-top: 90px;
           };
 
           .title {
@@ -64,8 +66,7 @@
             line-height: 49px;
 
             @include breakpoint-down(sm) {
-              font-size: 40px;
-              line-height: 45px;
+              display: none;
             };
           }
 
@@ -76,8 +77,10 @@
             line-height: 28px;
 
             @include breakpoint-down(sm) {
+              max-width: 300px;
               font-size: 26px;
-              line-height: 30px;
+              font-weight: 500;
+              line-height: 36px;
             };
           }
           
@@ -167,10 +170,13 @@
     }
 
     .subscribe-container {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      min-height: 130px;
       padding: 10px;
-      flex: 0 0 130px;
       display: flex;
-      background: #014E52;
+      background: rgba(1, 78, 82, 0.85);
       justify-content: center;
       align-items: center;
 
@@ -192,6 +198,7 @@
           width: 390px;
           color: $white;
           margin-right: 80px;
+          margin-bottom: 20px;
 
           @include breakpoint-down(1000px) {
             width: 100%;
@@ -206,21 +213,71 @@
             line-height: 33px;
           }
 
-          .countdown {
+          .price-group {
+            display: flex;
+            flex-direction: row;
+            color: $white;
+
+            span {
+              font-size: 16px;
+              letter-spacing: 0;
+              line-height: 23px;
+            }
+
+            .label {
+              flex: 1;
+            }
+
+            .price {
+              flex: 1;
+              &.origin-price {
+                color: #D1DFE0;
+                text-decoration: line-through;
+              }
+              &.end-price {
+                font-weight: 500;
+              }
+              &.save-price {
+                font-weight: 500;
+                color: #16F3FF;
+              }
+            }
+          }
+        }
+
+        .custom-countdown {
+          color: $white;
+          margin-top: 5px;
+
+          @include breakpoint-up(1000px) {
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+          }; 
+         
+
+          span {
             color: inherit;
-            font-weight: 600;
+            font-size: 16px;
+            letter-spacing: 0;
+            line-height: 23px;
+          }
+
+          .countdown {
             display: inline-block;
 
             .countdown-container {
+              font-size: 16px;
               font-weight: inherit;
               display: flex;
               flex-direction: row;
-              color: inherit;
+              color: $white;
               margin-left: 5px;
 
               .group, .data, .label {
-                font-weight: inherit;
-                color: inherit;
+                font-size: 16px;
+                font-weight: 500;
+                color: $white;
                 display: inline;
                 margin-right: 1px;
                 margin-left: 1px;
@@ -249,16 +306,22 @@
                 margin: unset;
                 flex: unset;
               };
+
+              @include breakpoint-down(sm) {
+                height: 44px;
+                display: block;
+              };
             }
 
             button {
               position: absolute;
               background: transparent;
               background-image: url('../image/home1/sc_email_btn_bg.png');
+              background-position: center;
               background-size: cover;
               border-radius: 4px;
               right: 20px;
-              height: 80%;
+              height: 54px;
 
               &:hover {
                 background-image: url('../image/home1/sc_email_btn_bg_hover.png');
@@ -267,6 +330,18 @@
               @include breakpoint-down(1000px) {
                 top: 50%;
                 transform: translateY(-50%);
+                right: 5px;
+              };
+
+              @include breakpoint-down(sm) {
+                position: unset;
+                height: 44px;
+                width: 100%;
+                display: block;
+                top: unset;
+                transform: unset;
+                margin-top: 10px;
+                margin-bottom: 10px;
               };
             }
           }

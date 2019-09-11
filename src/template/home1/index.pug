@@ -5,6 +5,11 @@ mixin block(name, title, desc)
          h1.title= title
          p.desc= desc
          block
+   
+mixin price-group(label, price, priceClass)
+   .price-group
+      span.label= label
+      span.price(class= priceClass)= price
 
 
 block title
@@ -16,8 +21,8 @@ block title
 block main
    #home1-container
       include ../header.pug
-      #content.bounceInUp-ani
-         .blocks-container
+      #content
+         .blocks-container.bounceInUp-ani
             +block('app-block', 'Use', 'Send, receive and store crypto privately.')
                .links
                   a.link(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
@@ -32,8 +37,16 @@ block main
          .subscribe-container 
             div
                .info
-                  span The first Nodes will be half price. Be the first.
-                  span Node will go live in
+                  +price-group('Retail price', '$400', 'origin-price')
+                  +price-group('Early bird special', '$199', 'end-price')
+                  +price-group('You\'ll save', '$201 (-50%)', 'save-price')
+
+               .subscribe-email
+                  include ../common/subscribe_form.pug
+                  +subscribe_email('50% off, please')
+
+               .custom-countdown
+                  span Node will launch in
                      | 
                      .countdown.visible-effect
                         .countdown-container
@@ -50,6 +63,3 @@ block main
                               span.label :
                            .seconds.group
                               span.data 00
-               .subscribe-email
-                  include ../common/subscribe_form.pug
-                  +subscribe_email('Half off, please')
