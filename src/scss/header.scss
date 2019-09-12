@@ -51,9 +51,19 @@ nav#header {
   }
   
   .group {
+    position: relative;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+
     @include breakpoint-down(900px) {
       display: none;
     };
+
+    .right {
+      position: absolute;
+      right: 60px;
+    }
 
     .menu-item {
       font-size: 12px;
@@ -96,10 +106,6 @@ nav#header {
           }
         }
       }
-    }
-
-    &.right {
-      margin-right: 70px;
     }
   }
 

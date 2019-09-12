@@ -25,16 +25,14 @@ mixin sidebar-menu
 nav#header
   a(href='/').logo
 
-  span.title Incognito mode for your crypto
-
-  //- .desktop-menu.group.right
-  //-   a(href='/node.html').menu-item NODE
-  //-   a(href='/wallet.html').menu-item WALLET
-  //-   a(href='/sidechain.html').menu-item SIDECHAIN
-  //-   a(href='/referral.html').menu-item REFER & EARN
-  //-   a(href='https://t.me/incognitochain', target='blank').menu-item.telegram-btn
-  //-     img(src=require('../../image/icon/telegram_icon_round.svg'), alt='telegram-icon')
-  //-     | Join our Telegram
+  .desktop-menu.group
+    a(href='/').menu-item POWER
+    a(href='/wallet.html').menu-item USE
+    .right
+      a(href='/referral.html').menu-item REFER & EARN
+    //- a(href='https://t.me/incognitochain', target='blank').menu-item.telegram-btn
+    //-   img(src=require('../../image/icon/telegram_icon_round.svg'), alt='telegram-icon')
+    //-   | Join our Telegram
   .mobile-sidebar
     .hamburger-btn
     .sidebar
