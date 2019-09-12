@@ -1,4 +1,4 @@
-#sidechain-container, #node-container, #wallet-container, #about-container {
+#sidechain-container, #node-container, #wallet-container, #about-container, #home1-container {
   > div.intro-slider-container {
     display: flex;
 
@@ -30,6 +30,7 @@
 
     .right-content {
       flex: 1;
+      overflow-y: scroll;
   
       @include breakpoint-down(xl) {
         padding-left: 20px;
@@ -55,6 +56,9 @@
           margin-left: 80px;
           margin-right: 80px;
           margin-top: 60px;
+          position: absolute;
+          top: 0;
+          bottom: 0;
   
           @include breakpoint-down(md) {
             margin-left: 20px;
@@ -62,6 +66,7 @@
       
           @include breakpoint-down(xl) {
             margin-top: 20px;
+            position: initial;
           };
       
           div.image {
