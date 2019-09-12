@@ -2,6 +2,7 @@ import isPathname from '../common/utils/isPathname';
 import YoutubePlayer from '../common/youtubePlayer';
 import countdown from '../service/countdown';
 import { getTotalSubscribe } from '../service/api';
+import { trackEvent } from '../common/utils/ga';
 import { setMessage } from '../service/message_box';
 
 function main() {
@@ -48,6 +49,12 @@ const handleVideoPlayers = (container) => {
         if (url) {
           const player = new YoutubePlayer(url);
           player.play();
+
+          trackEvent({
+            eventCategory: 'Youtube player',
+            eventAction: 'click',
+            eventLabel: `Play url ${url}`
+          });
         }
       });
     })
