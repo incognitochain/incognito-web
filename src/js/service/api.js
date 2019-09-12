@@ -83,6 +83,7 @@ export const getTotalSubscribe = () => {
   return fetch('auth/total-subscrite', {
     method: 'GET',
   })
+  .then(num => Intl.NumberFormat().format(num))
   .catch((e) => {
     if (!APP_ENV.production) {
       console.error(e);
