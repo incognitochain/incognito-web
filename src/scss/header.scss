@@ -1,5 +1,5 @@
 nav#header {
-  padding: 20px 80px;
+  padding: 0px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,7 +25,7 @@ nav#header {
   .logo {
     display: flex;
     position: relative;
-    width: 30px;
+    width: 125px;
     height: 25px;
     background-image: url('../image/logo_black.svg');
     background-repeat: no-repeat;
@@ -62,14 +62,14 @@ nav#header {
 
     .right {
       position: absolute;
-      right: 60px;
+      right: 20px;
     }
 
     .menu-item {
       font-size: 12px;
       color: $grey1;
       letter-spacing: 0.5px;
-      margin: auto 8px;
+      margin: auto 15px;
 
       &.highlight-btn {
         background: $white;

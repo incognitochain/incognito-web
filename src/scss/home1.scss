@@ -3,348 +3,196 @@
   flex: 1;
   flex-direction: column;
 
-  // override header
-  nav#header {
-    position: absolute;
-    z-index: 1;
-    border-bottom: none;
-
-    .title {
-      @include breakpoint-down(lg) {
-        color: $white;
-      };
-    }
-
-    .hamburger-btn {
-      background-image: url('../image/icon/hamburger-white.svg');
+  #telegram-chat-float {
+    @include breakpoint-down(xl) {
+      display: none;
     }
   }
-
-  #content {
+  
+  .right-content {
     display: flex;
     flex-direction: column;
 
-    .blocks-container {
-      height: 100%;
-      display: flex;
-      flex: 1;
+    .intro {
+      justify-content: unset !important;
+    }
 
-      @include breakpoint-down(lg) {
-        flex-direction: column;
-      };
-
-      .block {
+    .prices {
+      margin-bottom: 30px;
+      margin-top: 30px;
+      max-width: 400px;
+      .price-group {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        flex: 1;
-        background-size: cover;
-        background-position: center top;
-        background-repeat: no-repeat;
-        position: relative;
-        min-height: 700px;
+        flex-direction: row;
+        color: $white;
 
-        .headerText {
-          position: absolute;
-          font-size: 36px;
+        span {
+          font-size: 16px;
           letter-spacing: 0;
-          line-height: 45px;
-          font-weight: 400;
+          line-height: 23px;
         }
 
-        .info {
-          text-align: center;
-          margin-top: 70px;
-
-          @include breakpoint-down(sm) {
-            margin-top: 90px;
-          };
-
-          .title {
-            font-size: 48px;
-            letter-spacing: 0;
-            line-height: 49px;
-
-            @include breakpoint-down(sm) {
-              display: none;
-            };
-          }
-
-          .desc {
-            opacity: 0.9;
-            font-size: 32px;
-            letter-spacing: 0;
-            line-height: 28px;
-
-            @include breakpoint-down(sm) {
-              max-width: 300px;
-              font-size: 26px;
-              font-weight: 500;
-              line-height: 36px;
-            };
-          }
-          
-
-          .links {
-            .link {
-              margin-left: 10px;
-              margin-right: 10px;
-              font-size: 18px;
-              letter-spacing: 0;
-              text-align: center;
-              color: inherit;
-              text-decoration: none;
-              cursor: pointer;
-
-              span {
-                color: inherit;
-              }
-
-              &::after {
-                content: '>';
-                margin-left: 5px;
-                transform: scale(0.4,1) translate(0px);
-                display: inline-block;
-                font-weight: 100;
-                transition: transform 0.2s;
-              }
-
-              &:hover {
-                &::after {
-                  transform: translate(3px);
-                }
-              }
-            }
-          }
-        }
-      }
-
-      .app-block {
-        background-image: url('../image/home1/app_bg.jpg');
-
-        .headerText {
-          right: 10px;
-          color: #657576;
+        .label {
+          flex: 1;
         }
 
-        .info {
-          .title {
-            color: #101111;
+        .price {
+          flex: 1;
+          &.origin-price {
+            color: #8C9C9D;
+            text-decoration: line-through;
           }
-
-          .desc {
-            color: #333333;
+          &.end-price {
+            font-size: 20px;
+            font-weight: 500;
+            color: #B12704;
           }
-
-          .links {
-            color: #08CDD7;
-          }
-        }
-      }
-      .node-block {
-        background-image: url('../image/home1/node_bg.png');
-
-        @include breakpoint-down(lg) {
-          order: -1;
-        };
-
-        .headerText {
-          left: 10px;
-          color: white;
-        }
-
-        .info {
-          .title {
-            color: white;
-          }
-
-          .desc {
-            color: white;
-          }
-
-          .links {
-            color: white;
+          &.save-price {
           }
         }
       }
     }
 
-    .subscribe-container {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      min-height: 130px;
-      padding: 10px;
+    .custom-countdown {
       display: flex;
-      background: rgba(1, 78, 82, 0.85);
-      justify-content: center;
-      align-items: center;
+      flex-direction: row;
 
-      > div {
-        width: 100%;
-        max-width: 1200px;
-        position: relative;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
+      span {
+        color: inherit;
+        font-size: 16px;
+        letter-spacing: 0;
+        line-height: 23px;
+      }
 
-        @include breakpoint-down(1000px) {
-          flex-direction: column;
-        };
-        
+      .countdown {
+        display: inline-block;
+        color: $white;
+        margin-left: 5px;
 
-        .info {
-          width: 390px;
+        .countdown-container {
+          font-size: 16px;
           color: $white;
-          margin-right: 80px;
-          margin-bottom: 20px;
+          display: flex;
+          flex-direction: row;
 
-          @include breakpoint-down(1000px) {
-            width: 100%;
-            margin-right: 0px;
-          };
-
-          span {
-            color: inherit;
-            display: block;
-            font-weight: 300;
-            font-size: 20px;
-            line-height: 33px;
-          }
-
-          .price-group {
-            display: flex;
-            flex-direction: row;
-            color: $white;
-
-            span {
-              font-size: 16px;
-              letter-spacing: 0;
-              line-height: 23px;
-            }
-
-            .label {
-              flex: 1;
-            }
-
-            .price {
-              flex: 1;
-              &.origin-price {
-                color: #D1DFE0;
-                text-decoration: line-through;
-              }
-              &.end-price {
-                font-weight: 500;
-              }
-              &.save-price {
-                font-weight: 500;
-                color: #16F3FF;
-              }
-            }
-          }
-        }
-
-        .custom-countdown {
-          color: $white;
-          margin-top: 5px;
-
-          @include breakpoint-up(1000px) {
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-          }; 
-         
-
-          span {
-            color: inherit;
-            font-size: 16px;
+          .group, .data, .label {
+            font-weight: 500;
+            font-size: 14px;
+            color: #FF8E00;
             letter-spacing: 0;
-            line-height: 23px;
-          }
-
-          .countdown {
-            display: inline-block;
-
-            .countdown-container {
-              font-size: 16px;
-              font-weight: inherit;
-              display: flex;
-              flex-direction: row;
-              color: $white;
-              margin-left: 5px;
-
-              .group, .data, .label {
-                font-size: 16px;
-                font-weight: 500;
-                color: $white;
-                display: inline;
-                margin-right: 1px;
-                margin-left: 1px;
-              }
-            }
+            display: inline;
+            margin-right: 1px;
+            margin-left: 1px;
           }
         }
-  
-        .subscribe-email {
-          flex: 1;
-          width: 100%;
-          form {
-            width: 100%;
-            max-width: unset;
-            align-items: center;
+      }
+    }
 
-            @include breakpoint-down(1000px) {
-              flex-direction: column;
-              position: relative;
-            };
-        
-            input {
-              width: 100%;
+    .links {
+      .link {
+        color: #25CDD6;
+        margin-right: 36px;
+        font-size: 18px;
+        letter-spacing: 0;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
 
-              @include breakpoint-down(1000px) {
-                margin: unset;
-                flex: unset;
-              };
+        span {
+          color: inherit;
+        }
 
-              @include breakpoint-down(sm) {
-                height: 44px;
-                display: block;
-              };
-            }
+        &::after {
+          content: '>';
+          margin-left: 5px;
+          transform: scale(0.4,1) translate(0px);
+          display: inline-block;
+          font-weight: 100;
+          transition: transform 0.2s;
+        }
 
-            button {
-              position: absolute;
-              background: transparent;
-              background-image: url('../image/home1/sc_email_btn_bg.png');
-              background-position: center;
-              background-size: cover;
-              border-radius: 4px;
-              right: 20px;
-              height: 54px;
-
-              &:hover {
-                background-image: url('../image/home1/sc_email_btn_bg_hover.png');
-              }
-
-              @include breakpoint-down(1000px) {
-                top: 50%;
-                transform: translateY(-50%);
-                right: 5px;
-              };
-
-              @include breakpoint-down(sm) {
-                position: unset;
-                height: 44px;
-                width: 100%;
-                display: block;
-                top: unset;
-                transform: unset;
-                margin-top: 10px;
-                margin-bottom: 10px;
-              };
-            }
+        &:hover {
+          &::after {
+            transform: translate(3px);
           }
+        }
+      }
+    }
+
+    .row {
+      display: flex;
+      flex-direction: row;
+
+      .row-item {
+        flex: 1;
+      }
+    }
+
+    .cta {
+      background: #0D3A3C;
+      border-radius: 8px;
+      padding: 20px;
+
+      @include breakpoint-down(xl) {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(13, 58, 60, 0.85);
+      };
+
+      span {
+        color: $white;
+        font-size: 16px;
+        letter-spacing: 0;
+        line-height: 25px;
+      }
+
+      .subscribe-email {
+        margin-bottom: unset !important;
+        margin-top: unset !important;
+
+        > span {
+          margin-bottom: 15px;
+          display: block;
+        }
+
+        form#email-subscribe {
+          max-width: unset;
+
+          button.submit-email {
+            height: 44px;
+            background: #FF8E00;
+            border-radius: 4px;
+            min-width: 190px;
+          }
+
+          input {
+            height: 44px;
+          }
+        }
+      }
+      .total-subcriber {
+        margin-top: 12px;
+        span[role='counter'] {
+          color: #FF8E00;
+        }
+      }
+    }
+
+    ul.list-info {
+      padding-left: 16px;
+      margin-top: 20px;
+
+      li {
+        font-size: 14px;
+        color: #101111;
+        letter-spacing: 0;
+        line-height: 23px;
+        list-style: initial;
+
+        &::before {
+          display: none;
         }
       }
     }

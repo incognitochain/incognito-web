@@ -1,6 +1,7 @@
 import isPathname from '../common/utils/isPathname';
 import YoutubePlayer from '../common/youtubePlayer';
 import countdown from '../service/countdown';
+import { getTotalSubscribe } from '../service/api';
 import { setMessage } from '../service/message_box';
 
 function main() {
@@ -10,21 +11,25 @@ function main() {
     return;
   }
 
-  hideTelegram();
   handleVideoPlayers(container);
   startCountdown(container);
+  handleShowTotalSubscriber(container);
 }
 
-const hideTelegram = () => {
-  const el = document.querySelector('#telegram-chat-float');
-  if (el) {
-    el.style.display = 'none';
-  }
+const handleShowTotalSubscriber = async (container) => {
+  try {
+    const num = await getTotalSubscribe();
+    
+    if (num) {
+      const el = container.querySelector(".total-subcriber span[role='counter']");
+      el && (el.innerText = num);
+    }
+  } catch {}
 }
 
 const startCountdown = (container) => {
   const countdownEl = container.querySelector('.countdown');
-  countdown(countdownEl, '2019-09-25T00:00:00.000', () => {
+  countdown(countdownEl, '2019-10-01T00:00:00.000', () => {
     setMessage('The program was ended', 'error');
   });
 }
