@@ -1,0 +1,61 @@
+mixin price-group(label, price, priceClass)
+  .price-group
+    span.label= label
+    span.price(class= priceClass)= price
+
+
+div#intro-container
+  .content
+    div.intro
+      div
+        h1.heading The plug & play Incognito Node
+        h1.title  Earn crypto for creating a new internet that cares about your privacy.
+
+
+      .links
+        span.link(data-video-url='https://www.youtube.com/embed/LZjI4RsVwF8') Watch Node intro
+        span.link(data-video-url='https://www.youtube.com/embed/Je9Eykmf3Lc') Unbox Node
+
+      .prices
+        +price-group('Regular price', '$400', 'origin-price')
+        +price-group('Early bird special', '$199', 'end-price')
+        +price-group('You\'ll save', '$201 (-50%)', 'save-price')
+
+      .cta
+        .subscribe-email
+          span The first Nodes will be half price. We don’t want you to miss out. 
+          div
+            include ../common/subscribe_form.pug
+            +subscribe_email('50% off, please')
+        .total-subcriber
+          span(role='counter') 1000+
+          | 
+          span early birds on the list.
+
+        .custom-countdown
+          span Node will launch in
+          .countdown.visible-effect
+            .countdown-container
+              .days.group
+                span.data 00
+                span.label
+                    | 
+                    | days
+              .hours.group
+                span.data 00
+                span.label :
+              .mins.group
+                span.data 00
+                span.label :
+              .seconds.group
+                span.data 00
+
+     
+      ul.list-info
+        li Earn multiple cryptocurrencies like BTC, ETH, BNB and more
+        li Get rewarded for powering privacy for the crypto world
+        li Own a share of the crypto economy
+        li Pocket and eco friendly, just 8 cents to run all day
+        li So simple even grandma’s doing it
+        li Ships worldwide
+        li 1-year warranty

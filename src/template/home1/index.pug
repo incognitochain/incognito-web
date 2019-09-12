@@ -1,65 +1,22 @@
 extends ../layout.pug
-mixin block(name, title, desc)
-   div.block(class= name)
-      .info
-         h1.title= title
-         p.desc= desc
-         block
-   
-mixin price-group(label, price, priceClass)
-   .price-group
-      span.label= label
-      span.price(class= priceClass)= price
 
 
 block title
-   title Incognito mode for your crypto
+   title The plug & play Incognito Node
    
-
-
-
 block main
-   #home1-container
-      include ../header.pug
-      #content
-         .blocks-container.bounceInUp-ani
-            +block('app-block', 'Use', 'Send, receive and store crypto privately.')
-               .links
-                  a.link(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
-                     span iOS
-                  a.link(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
-                     span Android
-            +block('node-block', 'Power', 'Earn crypto for giving others privacy.')
-               .links
-                  span.link(data-video-url='https://www.youtube.com/embed/LZjI4RsVwF8') Watch Node intro
-                  span.link(data-video-url='https://www.youtube.com/embed/Je9Eykmf3Lc') Unbox Node
-
-         .subscribe-container 
-            div
-               .info
-                  +price-group('Retail price', '$400', 'origin-price')
-                  +price-group('Early bird special', '$199', 'end-price')
-                  +price-group('You\'ll save', '$201 (-50%)', 'save-price')
-
-               .subscribe-email
-                  include ../common/subscribe_form.pug
-                  +subscribe_email('50% off, please')
-
-               .custom-countdown
-                  span Node will launch in
-                     | 
-                     .countdown.visible-effect
-                        .countdown-container
-                           .days.group
-                              span.data 00
-                              span.label
-                                 | 
-                                 | days
-                           .hours.group
-                              span.data 00
-                              span.label :
-                           .mins.group
-                              span.data 00
-                              span.label :
-                           .seconds.group
-                              span.data 00
+   include ../header.pug
+   div#home1-container
+      div.intro-slider-container
+         .image
+            i-slider(images=[{
+                  img: require('../../image/home1/node_bg.png'),
+                  position: 'bottom center',
+               }
+            ])
+            img(src=require('../../image/home1/node_bg.jpg')).mobile
+         .right-content
+            include intro.pug
+      //- include section.pug
+      //- include question.pug
+      include ../telegram_chat.pug
