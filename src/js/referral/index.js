@@ -56,18 +56,12 @@ const checkAuth = () => {
     // show email subscribe
     block.appendChild(emailSubscribeEl);
 
-    // hidden refferalInfoEl
-    refferalInfoEl.style.display = 'none';
   } else {
       // hidden email subscribe
       block.removeChild(emailSubscribeEl);
 
       // show user refferal
       block.appendChild(userRefferalEl);  
-
-      // show refferalInfoEl
-      refferalInfoEl.style.display = 'initial';
-      handleShowInfo();
   }
 }
 
@@ -211,7 +205,7 @@ const startCountdown = () => {
 
 const getReferralData = async () => {
   try {
-    const userTotal = await getUserTotalReferral();
+    const userTotal = await getUserTotalReferral().catch(() => 0);
     const referralList = REFERRAL_DATA;
     const foundIndex = referralList && referralList.findIndex((level, index, allLevel) => {
       return  allLevel[index+1] ? (userTotal >= level.nums && userTotal < allLevel[index+1].nums) : userTotal >= level.nums ;
@@ -277,16 +271,11 @@ const handleShowInfo = async () => {
     if (!container) return;
 
     const statusContainerEl = container.querySelector('.current-status');
-    const statusEl = container.querySelector('.current-status .status');
     const friendNumberContainerEl = container.querySelector('.referred-box');
 
-    const { currentLevel, nextLevel, requiredNum, referralList, total } = await getReferralData() || {};
+    const { currentLevel, referralList, total } = await getReferralData() || {};
 
-    if (currentLevel) {
-      statusEl && (statusEl.innerText = currentLevel.desc);
-    } else {
-      statusContainerEl.innerText = `${total} of your friends signed up already. `;
-    }
+    statusContainerEl.innerText = `${total} of your friends signed up already. `;
 
     friendNumberContainerEl.innerText = 'Upon the completion of your purchase, we will refund you based on the number of referrals.';
 
@@ -360,6 +349,7 @@ const main = () => {
   if (!isPathname('/referral')) return;
   handleIntro();
   checkAuth();
+  handleShowInfo();
   // startCountdown();
 };
 
