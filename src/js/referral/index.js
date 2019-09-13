@@ -9,7 +9,7 @@ import { trackEvent } from '../common/utils/ga';
 import { isEmail } from '../common/utils/validate';
 import isPathname from '../common/utils/isPathname';
 
-const socialShareMsg = 'Gonna earn crypto for giving you guys privacy. Got 50% off my Node, you should too:';
+const socialShareMsg = 'Me and my Node are gonna generate some crypto. Getting 50% OFF my Node, you should too.';
 const REFERRAL_DATA = [
   {
     desc: 'Everyman',
