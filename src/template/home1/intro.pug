@@ -1,36 +1,24 @@
-mixin price-group(label, price, priceClass)
-  .price-group
-    span.label= label
-    span.price(class= priceClass)= price
-
-
 div#intro-container
   .content
     div.intro
       div
-        h1.heading The plug & play Incognito Node
-        h1.title  Earn crypto for creating a new internet that cares about your privacy.
+        h1.heading INCOGNITO NODE
+        h1.title  Own a Node and earn crypto. Create a new internet that cares about your privacy.
 
-
-      .links
-        span.link(data-video-url='https://www.youtube.com/embed/LZjI4RsVwF8') Watch Node intro
-        span.link(data-video-url='https://www.youtube.com/embed/Je9Eykmf3Lc') Unbox Node
-
-      .prices
-        +price-group('Regular price', '$400', 'origin-price')
-        +price-group('Early bird special', '$199', 'end-price')
-        +price-group('You\'ll save', '$201 (-50%)', 'save-price')
+      .price
+        span.end-price $199
+        span.origin-price $400
 
       .cta
         .subscribe-email
-          span The first Nodes will be half price. We don’t want you to miss out. 
+          span The first Nodes will be half price. Be at the forefront of this revolution.
           div
             include ../common/subscribe_form.pug
             +subscribe_email('50% off, please')
         .total-subcriber
           span(role='counter') 1000+
           | 
-          span early birds on the list.
+          span early birds already on the list.
 
         .custom-countdown
           span Node will launch in
@@ -52,10 +40,9 @@ div#intro-container
 
      
       ul.list-info
-        li Earn multiple cryptocurrencies like BTC, ETH, BNB and more
-        li Get rewarded for powering privacy for the crypto world
-        li Own a share of the crypto economy
-        li Pocket and eco friendly, just 8 cents to run all day
-        li So simple even grandma’s doing it
-        li Ships worldwide
-        li 1-year warranty
+        li A plug and play device that powers the Incognito network.
+        li Earn crypto every time someone makes a private transaction.  Collect BTC, ETH, BNB, and a very special coin, called PRV.
+        li Own a share of the crypto economy.
+        li Energy-efficient, just 8 cents to run all day.
+        li Ships worldwide.
+        li 1-year warranty.
