@@ -8,6 +8,64 @@
       display: none;
     }
   }
+
+  .image {
+    position: relative;
+    .links {
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+      top: 100px;
+      justify-content: center;
+      display: flex;
+      align-items: flex-start;
+
+      @include breakpoint-down(676px) {
+        top: 20px;
+        padding: 0px 30px;
+      }
+
+      .link {
+        background: transparent;
+        color: $white;
+        margin-right: 36px;
+        font-size: 18px;
+        letter-spacing: 0;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+        border: solid 2px $white;
+        border-radius: 20px;
+        padding: 5px 20px;
+        transition: color 300ms, background 300ms;
+
+        @include breakpoint-down(676px) {
+          margin-bottom: 5px;
+        }
+
+        span {
+          color: inherit;
+        }
+
+        &::after {
+          content: '>';
+          margin-left: 5px;
+          transform: scale(0.4,1) translate(0px);
+          display: inline-block;
+          font-weight: 100;
+          transition: transform 0.2s;
+        }
+
+        &:hover {
+          background: $white;
+          color: $black;
+          &::after {
+            transform: translate(3px);
+          }
+        }
+      }
+    }
+  }
   
   .right-content {
     display: flex;
@@ -15,42 +73,30 @@
 
     .intro {
       justify-content: unset !important;
+      padding-bottom: 220px !important;
     }
 
-    .prices {
-      margin-bottom: 30px;
-      margin-top: 30px;
-      max-width: 400px;
-      .price-group {
-        display: flex;
-        flex-direction: row;
-        color: $white;
+    .price {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      color: $white;
 
-        span {
-          font-size: 16px;
-          letter-spacing: 0;
-          line-height: 23px;
+      span {
+        font-size: 24px;
+        letter-spacing: 0;
+        line-height: 23px;
+        &.origin-price {
+          color: #8C9C9D;
+          text-decoration: line-through;
         }
-
-        .label {
-          flex: 1;
+        &.end-price {
+          font-size: 32px;
+          font-weight: 500;
+          color: #B12704;
+          margin-right: 10px;
         }
-
-        .price {
-          flex: 1;
-          &.origin-price {
-            color: #8C9C9D;
-            text-decoration: line-through;
-          }
-          &.end-price {
-            font-size: 20px;
-            font-weight: 500;
-            color: #B12704;
-          }
-          &.save-price {
-          }
-        }
-      }
+      } 
     }
 
     .custom-countdown {
@@ -78,42 +124,15 @@
           .group, .data, .label {
             font-weight: 500;
             font-size: 14px;
-            color: #FF8E00;
+            color: $black;
             letter-spacing: 0;
             display: inline;
             margin-right: 1px;
             margin-left: 1px;
-          }
-        }
-      }
-    }
 
-    .links {
-      .link {
-        color: #25CDD6;
-        margin-right: 36px;
-        font-size: 18px;
-        letter-spacing: 0;
-        text-align: center;
-        text-decoration: none;
-        cursor: pointer;
-
-        span {
-          color: inherit;
-        }
-
-        &::after {
-          content: '>';
-          margin-left: 5px;
-          transform: scale(0.4,1) translate(0px);
-          display: inline-block;
-          font-weight: 100;
-          transition: transform 0.2s;
-        }
-
-        &:hover {
-          &::after {
-            transform: translate(3px);
+            @include breakpoint-down(xl) {
+              color: #FF8E00;
+            }
           }
         }
       }
@@ -129,11 +148,10 @@
     }
 
     .cta {
-      background: #0D3A3C;
-      border-radius: 8px;
-      padding: 20px;
+      margin-top: 50px;
 
       @include breakpoint-down(xl) {
+        padding: 20px;
         position: fixed;
         bottom: 0;
         left: 0;
@@ -142,10 +160,12 @@
       };
 
       span {
-        color: $white;
         font-size: 16px;
         letter-spacing: 0;
         line-height: 25px;
+        @include breakpoint-down(xl) {
+          color: $white;
+        }
       }
 
       .subscribe-email {
@@ -153,7 +173,9 @@
         margin-top: unset !important;
 
         > span {
-          margin-bottom: 15px;
+          margin-bottom: 5px;
+          font-size: 18px;
+          font-weight: 400;
           display: block;
         }
 
@@ -161,21 +183,22 @@
           max-width: unset;
 
           button.submit-email {
-            height: 44px;
+            height: 48px;
             background: #FF8E00;
             border-radius: 4px;
             min-width: 190px;
           }
 
           input {
-            height: 44px;
+            height: 48px;
           }
         }
       }
       .total-subcriber {
-        margin-top: 12px;
+        margin-top: 30px;
         span[role='counter'] {
           color: #FF8E00;
+          font-weight: 500;
         }
       }
     }
@@ -185,11 +208,12 @@
       margin-top: 20px;
 
       li {
-        font-size: 14px;
+        font-size: 16px;
         color: #101111;
         letter-spacing: 0;
         line-height: 23px;
         list-style: initial;
+        font-weight: 300;
 
         &::before {
           display: none;
