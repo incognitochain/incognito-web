@@ -76,27 +76,48 @@
       padding-bottom: 220px !important;
     }
 
-    .price {
-      margin-top: 10px;
+    .price-info {
       display: flex;
-      flex-direction: row;
-      color: $white;
+      align-items: center;
 
-      span {
-        font-size: 24px;
-        letter-spacing: 0;
-        line-height: 23px;
-        &.origin-price {
-          color: #8C9C9D;
-          text-decoration: line-through;
-        }
-        &.end-price {
-          font-size: 32px;
-          font-weight: 500;
-          color: #B12704;
+      .price {
+        margin-right: 50px;
+        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        color: $white;
+  
+        span {
+          font-size: 24px;
+          letter-spacing: 0;
+          line-height: 23px;
+          &.origin-price {
+            color: #8C9C9D;
+            text-decoration: line-through;
+          }
+          &.end-price {
+            font-size: 32px;
+            font-weight: 500;
+            color: #B12704;
+            margin-right: 10px;
+          }
+        } 
+      }
+
+      .rocket {
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 28px;
           margin-right: 10px;
         }
-      } 
+
+        span {
+          color: #25CDD6;
+          
+        }
+      }
     }
 
     .custom-countdown {
