@@ -88,7 +88,7 @@
         color: $white;
   
         span {
-          font-size: 24px;
+          font-size: 32px;
           letter-spacing: 0;
           line-height: 23px;
           &.origin-price {
@@ -96,7 +96,6 @@
             text-decoration: line-through;
           }
           &.end-price {
-            font-size: 32px;
             font-weight: 500;
             color: #B12704;
             margin-right: 10px;
@@ -144,8 +143,8 @@
 
           .group, .data, .label {
             font-weight: 500;
-            font-size: 14px;
-            color: $black;
+            font-size: 16px;
+            color: #FF8E00;
             letter-spacing: 0;
             display: inline;
             margin-right: 1px;
@@ -208,6 +207,10 @@
             background: #FF8E00;
             border-radius: 4px;
             min-width: 190px;
+
+            @include breakpoint-up(md) {
+              width: 40%;
+            }
           }
 
           input {
