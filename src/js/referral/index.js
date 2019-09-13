@@ -43,9 +43,31 @@ const REFERRAL_DATA = [
 
 const checkAuth = () => {
   const token = storage.get(KEYS.TOKEN);
+  const container = document.querySelector('#referral-container');
+  const block = container.querySelector('.block2');
+  const emailSubscribeEl = container.querySelector('.subscribe-email');
+  const userRefferalEl = container.querySelector('.user-refferal');
+  const refferalInfoEl = container.querySelector('#referral-info');
 
-  if (!token && isPathname('/referral')) {
-    location.pathname = '/subscribe.html';
+  if (!token) {
+    // hidden user refferal
+    block.removeChild(userRefferalEl);
+
+    // show email subscribe
+    block.appendChild(emailSubscribeEl);
+
+    // hidden refferalInfoEl
+    refferalInfoEl.style.display = 'none';
+  } else {
+      // hidden email subscribe
+      block.removeChild(emailSubscribeEl);
+
+      // show user refferal
+      block.appendChild(userRefferalEl);  
+
+      // show refferalInfoEl
+      refferalInfoEl.style.display = 'initial';
+      handleShowInfo();
   }
 }
 
@@ -339,7 +361,6 @@ const main = () => {
   handleIntro();
   checkAuth();
   // startCountdown();
-  handleShowInfo();
 };
 
 main();

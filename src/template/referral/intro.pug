@@ -8,20 +8,24 @@
       p.desc.small We make these links just for you. we’d be flattered if you used them. When your first friend signs up, we’ll thank you with up to another $50 off.
 
     .block2
-      .copiable.copy-content
-        span.referral-link
-        button.copy-btn Copy
-      
-      .btns
-        button.share-facebook
-          img(src=require('../../image/icon/facebook.svg'), alt='fb icon')
-          | Facebook
-        button.share-twitter
-          img(src=require('../../image/icon/twitter.svg'), alt='twitter icon')
-          | Twitter
-        //- button.share-google
-        //-   img(src=require('../../image/icon/mail.svg'))
-        //-   | Email
-      //- span.divider
-      //-   span Or via email
-      //- include ../common/invite_email_form.pug
+      .subscribe-email
+        include ../common/subscribe_form.pug
+        +subscribe_email('Get your referral link')
+      div.user-refferal
+        .copiable.copy-content
+          span.referral-link
+          button.copy-btn Copy
+        
+        .btns
+          button.share-facebook
+            img(src=require('../../image/icon/facebook.svg'), alt='fb icon')
+            | Facebook
+          button.share-twitter
+            img(src=require('../../image/icon/twitter.svg'), alt='twitter icon')
+            | Twitter
+          //- button.share-google
+          //-   img(src=require('../../image/icon/mail.svg'))
+          //-   | Email
+        //- span.divider
+        //-   span Or via email
+        //- include ../common/invite_email_form.pug
