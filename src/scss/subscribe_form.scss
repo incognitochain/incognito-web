@@ -3,7 +3,8 @@ form#email-subscribe {
   max-width: 600px;
 
   #email-input{
-    background-color: #f3f6f6;
+    background-color: $white;
+    border: solid 1px #c8d0d0;
     margin-right: 14px;
     flex: 1;
   }
