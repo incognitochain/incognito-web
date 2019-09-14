@@ -19,6 +19,7 @@ const checkVerifyEmailToken = () => {
     verifyEmailToken(token)
       .then(() => {
         setMessage('Your email has been verified', 'info');
+        location.href = `${location.origin}/referral.html`;
       })
       .catch((e) => {
         setMessage(e.message, 'error');

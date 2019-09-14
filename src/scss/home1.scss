@@ -22,13 +22,12 @@
 
       @include breakpoint-down(676px) {
         top: 20px;
-        padding: 0px 30px;
+        padding: 0px 10px;
       }
 
       .link {
         background: transparent;
         color: $white;
-        margin-right: 36px;
         font-size: 18px;
         letter-spacing: 0;
         text-align: center;
@@ -38,6 +37,15 @@
         border-radius: 20px;
         padding: 5px 20px;
         transition: color 300ms, background 300ms;
+
+        &:first-child {
+          margin-right: 36px;
+
+          @include breakpoint-down(676px) {
+            margin-right: 5px;
+          }
+  
+        }
 
         @include breakpoint-down(676px) {
           margin-bottom: 5px;
@@ -73,7 +81,7 @@
 
     .intro {
       justify-content: unset !important;
-      padding-bottom: 220px !important;
+      padding-bottom: 240px !important;
     }
 
     .price-info {
@@ -176,7 +184,7 @@
         bottom: 0;
         left: 0;
         width: 100%;
-        background: rgba(13, 58, 60, 0.85);
+        background: rgba(13, 58, 60, 0.95);
       };
 
       span {
@@ -193,7 +201,7 @@
         margin-top: unset !important;
 
         > span {
-          margin-bottom: 5px;
+          margin-bottom: 15px;
           font-size: 18px;
           font-weight: 400;
           display: block;
