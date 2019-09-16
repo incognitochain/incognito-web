@@ -8,4 +8,5 @@ import './copiable';
 import './onload';
 import './customEl';
 import './header';
+import './telegram_chat';
 // import './invite_email_form';
