@@ -14,34 +14,7 @@ div#intro-container
           |
           span.extra  Power a new internet that cares about your privacy
 
-      .price-info
-        .price
-          span.end-price $199
-          span.origin-price $400
-          |
-          span.off-percentage (-50%)
-
-        div.rocket
-          img(src=require('../../image/home1/rocket.svg'))
-          .info
-            .custom-countdown
-              .countdown.visible-effect
-                .countdown-container
-                  .days.group
-                    span.data 00
-                    span.label
-                        | 
-                        | days
-                  .hours.group
-                    span.data 00
-                    span.label :
-                  .mins.group
-                    span.data 00
-                    span.label :
-                  .seconds.group
-                    span.data 00
-              | left
-            span For Early Adopter Special
+      include ../common/price_info.pug
 
       .cta
         .subscribe-email

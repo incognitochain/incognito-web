@@ -1,4 +1,4 @@
-.video-player {
+.popup-modal {
   position: fixed;
   height: 100%;
   width: 100%;
@@ -13,6 +13,11 @@
   @include breakpoint-down(sm) {
     padding: 100px 10px;
   };
+
+  .modal-content {
+    height: 100%;
+    width: 100%;
+  }
 
   .close-button {
     height: 38px;

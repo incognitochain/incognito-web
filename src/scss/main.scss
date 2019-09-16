@@ -28,7 +28,7 @@
 @import './telegram_chat.scss';
 @import './collapse.scss';
 @import './become_validator.scss';
-@import './player.scss';
+@import './popup.scss';
 
 * {
   box-sizing: border-box;
@@ -106,4 +106,12 @@ a {
   overflow: hidden;
   margin: 0px;
   padding: 0px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block; 
 }
