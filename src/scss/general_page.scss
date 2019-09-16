@@ -62,6 +62,7 @@
   
           @include breakpoint-down(md) {
             margin-left: 20px;
+            margin-right: 20px;
           };
       
           @include breakpoint-down(xl) {
@@ -196,6 +197,16 @@
                 margin-top: 10px;
                 margin-bottom: 10px;
                 color: $black;
+
+                @include breakpoint-down(md) {
+                  font-size: 28px;
+                  line-height: 40px;
+                };
+
+                @include breakpoint-down(sm) {
+                  font-size: 22px;
+                  line-height: 32px;
+                };
   
                 br {
                   @include breakpoint-down(680px) {

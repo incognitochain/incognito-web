@@ -1,3 +1,10 @@
+mixin benefit(img, label, desc)
+  .benefit
+    div.icon
+      img(src= img)
+    span.label= label
+    span.desc= desc
+
 div#intro-container
   .content
     div.intro
@@ -8,46 +15,52 @@ div#intro-container
       .price-info
         .price
           span.end-price $199
-          span.origin-price $400
+          span.origin-price $400 (-50%)
 
         div.rocket
           img(src=require('../../image/home1/rocket.svg'))
-          span Early Adopter Special
+          .info
+            .custom-countdown
+              .countdown.visible-effect
+                .countdown-container
+                  .days.group
+                    span.data 00
+                    span.label
+                        | 
+                        | days
+                  .hours.group
+                    span.data 00
+                    span.label :
+                  .mins.group
+                    span.data 00
+                    span.label :
+                  .seconds.group
+                    span.data 00
+              span left
+            span For Early Adopter Special
 
       .cta
         .subscribe-email
-          span The first Nodes will be half price. Be at the forefront of this revolution.
           div
             include ../common/subscribe_form.pug
-            +subscribe_email('50% off, please')
+            +subscribe_email('GET 50% OFF')
         .total-subcriber
+          span.label Limited quantity.
+          | 
           span(role='counter') 1000+
           | 
-          span early birds already on the list.
+          span early birds already signed up. 
 
-        .custom-countdown
-          span Node will launch in
-          .countdown.visible-effect
-            .countdown-container
-              .days.group
-                span.data 00
-                span.label
-                    | 
-                    | days
-              .hours.group
-                span.data 00
-                span.label :
-              .mins.group
-                span.data 00
-                span.label :
-              .seconds.group
-                span.data 00
+      .benefit-group
+        +benefit(require('../../image/icon/fix.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')
+        +benefit(require('../../image/icon/30day_icon.svg'), '30-day trial', 'If you don’t love your Node, return it for a full refund.')
+        +benefit(require('../../image/icon/international-shipping.gif'), 'Ships worldwide', 'Node is designed for everyone, and by everyone.')
 
      
       ul.list-info
-        li A plug and play device that powers the Incognito network.
-        li Earn crypto every time someone makes a private transaction.  Collect BTC, ETH, BNB, and a very special coin, called PRV.
-        li Own a share of the crypto economy.
-        li Energy-efficient, just 8 cents to run all day.
-        li Ships worldwide.
-        li 1-year warranty.
+        li Meet Node, a little helpful gadget that earns Bitcoin, Ethereum, Binance and more for processing crypto transactions confidentially.
+        li Node also earns a very special coin, called Privacy.
+        li Enjoy automatic earning of passive crypto income.
+        li Effortless setup, just plug and play.
+        li Energy efficient, just 1kWh (about 8 cents) to run all day.
+        li Designed to power the incognito mode for the token economy.

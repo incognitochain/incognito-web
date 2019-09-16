@@ -88,17 +88,31 @@
       display: flex;
       align-items: center;
 
+      @include breakpoint-down(1400px) {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
       .price {
         margin-right: 50px;
         margin-top: 10px;
         display: flex;
         flex-direction: row;
         color: $white;
+
+        @include breakpoint-down(1400px) {
+          margin-bottom: 15px;
+        }
   
         span {
           font-size: 32px;
           letter-spacing: 0;
           line-height: 23px;
+
+          @include breakpoint-down(sm) {
+            font-size: 22px;
+          }
+          
           &.origin-price {
             color: #8C9C9D;
             text-decoration: line-through;
@@ -141,7 +155,7 @@
       .countdown {
         display: inline-block;
         color: $white;
-        margin-left: 5px;
+        margin-right: 5px;
 
         .countdown-container {
           font-size: 16px;
@@ -172,6 +186,53 @@
 
       .row-item {
         flex: 1;
+      }
+    }
+
+    .benefit-group {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+
+      @include breakpoint-down(sm) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .benefit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+        max-width: 200px;
+
+        @include breakpoint-down(sm) {
+          max-width: 80%;
+        }
+
+        span {
+          text-align: center;
+        }
+
+        .icon {
+          width: 30px;
+          height: 40px;
+          display: flex;
+          align-items: flex-end;
+        }
+
+        
+
+        .label {
+          margin-top: 5px;
+          margin-bottom: 5px;
+          font-weight: 500;
+        }
+
+        .desc {
+          font-size: 14px;
+        }
       }
     }
 
@@ -210,6 +271,10 @@
         form#email-subscribe {
           max-width: unset;
 
+          @include breakpoint-up(460px) {
+            flex-direction: row;
+          }
+
           button.submit-email {
             height: 48px;
             background: #FF8E00;
@@ -223,11 +288,20 @@
 
           input {
             height: 48px;
+
+            @include breakpoint-up(460px) {
+              flex: 1;
+              margin-right: 10px;
+            }
           }
         }
       }
       .total-subcriber {
-        margin-top: 30px;
+        .label {
+          font-weight: 500;
+        }
+
+        margin-top: 15px;
         span[role='counter'] {
           color: #FF8E00;
           font-weight: 500;
