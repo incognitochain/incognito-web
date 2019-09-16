@@ -1,4 +1,4 @@
-import { trackEvent } from './utils/ga';
+// import { trackEvent } from './utils/ga';
 
 /**
  * required class: '.collapse-container'
@@ -37,11 +37,11 @@ const main = () => {
       const label = item.querySelector('.label');
 
       label && label.addEventListener('click', () => {
-        trackEvent({
-          eventCategory: 'Link',
-          eventAction: 'toggle collapse',
-          eventLabel: 'Toggle Collapse'
-        });
+        // trackEvent({
+        //   eventCategory: 'Link',
+        //   eventAction: 'toggle collapse',
+        //   eventLabel: 'Toggle Collapse'
+        // });
 
         toggle(item);
       });

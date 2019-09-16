@@ -1,4 +1,5 @@
 import { setMessage } from '../service/message_box';
+import { trackEvent } from './utils/ga';
 /**
  * required class: '.copiable'
  * attr data: data-copy-value
@@ -42,6 +43,11 @@ const copiable = e => {
     var successful = document.execCommand('copy');
     if (successful) {
       setMessage('Copied', 'info');
+      trackEvent({
+        eventCategory: 'Copy data',
+        eventAction: 'Copy data',
+        eventLabel: `Copy ${text}`
+      });
     }
   } catch (err) {
     setMessage('Copy failed', 'error');
