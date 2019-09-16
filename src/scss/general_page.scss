@@ -14,7 +14,6 @@
       img.mobile {
         display: none;
       }
-      
   
       @include breakpoint-down(xl) {
         img.mobile {
@@ -26,6 +25,20 @@
           display: none;
         }
       };
+
+      @include breakpoint-down(md) {
+        img.mobile {
+          height: 80vw;
+          object-fit: cover;
+        }
+      }
+      
+      @include breakpoint-down(sm) {
+        img.mobile {
+          height: 70vw;
+          object-fit: cover;
+        }
+      }
     }
 
     .right-content {

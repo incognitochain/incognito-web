@@ -7,11 +7,21 @@ form#email-subscribe {
     border: solid 1px #c8d0d0;
     margin-right: 14px;
     flex: 1;
+
+    @include breakpoint-down(sm) {
+      height: $sm-input-height!important;
+    }
   }
   button.submit-email {
     min-width: 230px;
     font-weight: 400;
     color: $white;
+    
+    @include breakpoint-down(sm) {
+      height: $sm-input-height!important;
+      font-size: 1.1em;
+      font-weight: 500;
+    }
   }
 
   @include breakpoint-down(md) {

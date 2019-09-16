@@ -82,6 +82,14 @@
     .intro {
       justify-content: unset !important;
       padding-bottom: 240px !important;
+      
+      .title {
+        .extra {
+          @include breakpoint-down(md) {
+            display: none;
+          }
+        }
+      }
     }
 
     .price-info {
@@ -113,9 +121,12 @@
             font-size: 22px;
           }
           
-          &.origin-price {
+          &.origin-price, &.off-percentage {
             color: #8C9C9D;
+          }
+          &.origin-price {
             text-decoration: line-through;
+            margin-right: 10px;
           }
           &.end-price {
             font-weight: 500;
@@ -144,9 +155,11 @@
     .custom-countdown {
       display: flex;
       flex-direction: row;
+      align-items: center;
+      color: #FF8E00!important;
 
       span {
-        color: inherit;
+        color: #FF8E00!important;
         font-size: 16px;
         letter-spacing: 0;
         line-height: 23px;
@@ -166,15 +179,10 @@
           .group, .data, .label {
             font-weight: 500;
             font-size: 16px;
-            color: #FF8E00;
             letter-spacing: 0;
             display: inline;
             margin-right: 1px;
             margin-left: 1px;
-
-            @include breakpoint-down(xl) {
-              color: #FF8E00;
-            }
           }
         }
       }
@@ -191,7 +199,7 @@
 
     .benefit-group {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       margin-top: 30px;
 
       @include breakpoint-down(sm) {
@@ -297,6 +305,19 @@
         }
       }
       .total-subcriber {
+        
+        .signed-up-text {
+          &::before {
+            content: "early birds already";
+          }
+
+          @include breakpoint-down(sm) {
+            &::before {
+              content: "people";
+            }
+          }
+        }
+
         .label {
           font-weight: 500;
         }
