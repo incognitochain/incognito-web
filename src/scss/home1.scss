@@ -49,6 +49,7 @@
 
         @include breakpoint-down(676px) {
           margin-bottom: 5px;
+          font-size: 1em;
         }
 
         span {
@@ -56,11 +57,11 @@
         }
 
         &::after {
-          content: '>';
-          margin-left: 5px;
-          transform: scale(0.4,1) translate(0px);
+          content: '\f144';
+          font-family: 'Font Awesome 5 Free';
+          margin-left: 10px;
           display: inline-block;
-          font-weight: 100;
+          font-weight: normal;
           transition: transform 0.2s;
         }
 
