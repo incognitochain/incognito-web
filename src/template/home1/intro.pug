@@ -10,12 +10,16 @@ div#intro-container
     div.intro
       div
         h1.heading INCOGNITO NODE
-        h1.title  Earn crypto in your sleep. Power a new internet that cares about your privacy.
+        h1.title  Earn crypto in your sleep.
+          |
+          span.extra  Power a new internet that cares about your privacy
 
       .price-info
         .price
           span.end-price $199
-          span.origin-price $400 (-50%)
+          span.origin-price $400
+          |
+          span.off-percentage (-50%)
 
         div.rocket
           img(src=require('../../image/home1/rocket.svg'))
@@ -36,7 +40,7 @@ div#intro-container
                     span.label :
                   .seconds.group
                     span.data 00
-              span left
+              | left
             span For Early Adopter Special
 
       .cta
@@ -49,7 +53,7 @@ div#intro-container
           | 
           span(role='counter') 1000+
           | 
-          span early birds already signed up. 
+          span.signed-up-text  signed up. 
 
       .benefit-group
         +benefit(require('../../image/icon/fix.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')
