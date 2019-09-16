@@ -1,7 +1,9 @@
+import Popup from './popup';
+
 class YoutubePlayer {
   constructor(url) {
     this.url = url;
-    this.popup = null;
+    this.popupModal = new Popup();
   }
 
   createFrame() {
@@ -22,34 +24,11 @@ class YoutubePlayer {
 
     return container;
   }
-
-  createPopup() {
-    const popup = document.createElement('div');
-    const closePopupBtn = document.createElement('button');
-
-    popup.classList.add('video-player');
-    closePopupBtn.classList.add('close-button');
-
-    closePopupBtn.addEventListener('click', this.closePopup.bind(this));
-
-    popup.appendChild(closePopupBtn);
-
-    return popup;
-  }
-
-  closePopup() {
-    document.body.removeChild(this.popup);
-  }
   
   play() {
-    const body = document.body;
-    const popup = this.createPopup();
+    if (!this.popupModal) return;
     const frame = this.createFrame();
-
-    this.popup = popup;
-
-    popup.appendChild(frame);
-    body.appendChild(popup);
+    this.popupModal.showWithBodyContent(frame);
   }
 }
 

@@ -26,20 +26,20 @@
       }
 
       .link {
-        background: transparent;
+        background: rgba(16,17,17,0.54);
         color: $white;
         font-size: 18px;
         letter-spacing: 0;
         text-align: center;
         text-decoration: none;
         cursor: pointer;
-        border: solid 2px $white;
-        border-radius: 20px;
+        border: 1px solid #FFFFFF;
+        border-radius: 22px;
         padding: 5px 20px;
         transition: color 300ms, background 300ms;
 
         &:first-child {
-          margin-right: 36px;
+          margin-right: 20px;
 
           @include breakpoint-down(676px) {
             margin-right: 5px;
@@ -245,7 +245,7 @@
     }
 
     .cta {
-      margin-top: 50px;
+      margin-top: 30px;
 
       @include breakpoint-down(xl) {
         padding: 20px;
