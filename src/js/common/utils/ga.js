@@ -3,5 +3,6 @@ export const trackEvent = ({ eventCategory, eventAction, eventLabel, eventValue 
     return;
   }
 
+  console.log('Track event', {eventCategory, eventAction, eventLabel, eventValue});
   window.ga('send', 'event', eventCategory, eventAction, eventLabel, eventValue);
 }
