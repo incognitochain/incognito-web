@@ -49,6 +49,18 @@ const templateGen = [
     filename: 'validator.html'
   }),
   new HtmlWebpackPlugin({
+    template: 'src/template/launchOnAWS/index.pug',
+    filename: 'doc-setup-amazon-instance.html'
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/launchOnGoogleCloud/index.pug',
+    filename: 'doc-setup-gcloud-instance.html'
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/launchOnDigitalOcean/index.pug',
+    filename: 'doc-setup-digitalocean-instance.html'
+  }),
+  new HtmlWebpackPlugin({
     template: 'src/template/home1/index.pug',
     filename: 'index.html'
   }),

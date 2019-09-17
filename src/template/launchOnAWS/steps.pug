@@ -1,0 +1,70 @@
+include ../common/collapse.pug
+
+mixin stepHtml(step, stepName, isOpen)
+  .step-item#hello
+    +collapseItemHtml(`<span class='label' data-step-number='${step}'>${stepName}</span>`, null, isOpen)
+      block
+
+.step-container.container
+  +collapse('validator-steps-guide')
+    +stepHtml('1', `<a href='https://aws.amazon.com/marketplace/management/signin'>Log in</a> your AWS account`, 'true')
+      p Register one if you don't have (
+        |
+        a(href='https://aws.amazon.com/') https://aws.amazon.com/
+        |)
+
+    +stepHtml('2', 'On top left bar, choose Services > Compute> EC2')
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_2.png')).landscape
+
+    +stepHtml('3', 'Launch Instance')
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_3.png')).landscape
+
+    +stepHtml('4', 'Choose Amazon Linux 2 AMI (HVM), SSD Volume Type')
+      p Either x86 or Arm is fine
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_4.png')).landscape
+
+    +stepHtml('5', 'Choose instance type: "t3.small". To run more effectively you can choose "t3.xlarge" (a bit more pricey).')
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_5.png')).landscape
+      p Click “Next: Configure Instance Details” at the bottom right of the page
+      p Nothing to change here, so click “Next: Add Storage”
+
+    +stepHtml('6', 'Change size Gib into 60')
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_6.png')).landscape
+      p Click Add Tag. There's nothing to add here so lick Next: Configure Security Group
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_6_add_tag.png')).landscape
+
+    +stepHtml('7', 'Click "Add Rule"')
+      p Please add the following 2 port: TCP 9334 and TCP 9433. 
+        br
+        |To add, please click "Add Rule", then:
+        br
+        |- For Type, select  "Custom TCP Rule"
+        br
+        |- Input port number: 9334, 9433
+        br
+        |- For Source,  Anywhere 0.0.0.0/0
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_7.png')).landscape
+      p Then click "Review and Launch"
+
+    +stepHtml('8', 'Download Key Pair')
+      p In the pop up window, please elect “Create a new key pair” and then enter a name that you like, for example "incognitokey".
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_8_download_keypair.png')).landscape
+      p Click “Download Key Pair” and save it somewhere safe.
+      p Click “Launch Instances”.
+      p Click “View Instances”
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_8_view_instance.png')).landscape
+
+    +stepHtml('9', 'Connect to instance')
+      p Right click at the Running status, then select "Connect"
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_9_connect.png')).landscape
+      p Follow the step in the screenshot
+      img(src=require('../../image/launch_on_aws/run_on_aws_step_9_popup.png')).landscape
+      ul
+        li Open SSH client
+        li Local you Key File at Step 8
+        li this command:
+          p
+            span.script.copiable(data-copy-value='chmod 400 ') chmod 400 <file name> (eg: chmod 400 incogintokey.pem)
+      p After that run this command:
+      p
+        span.script.copiable(data-copy-value='ssh -i "file" ec2-user@ec2-13-58-138-9.us-east-2.compute.amazonaws.com') ssh -i "file" ec2-user@ec2-13-58-138-9.us-east-2.compute.amazonaws.com

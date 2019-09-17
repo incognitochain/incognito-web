@@ -1,14 +1,14 @@
 include ../common/collapse.pug
 
 mixin stepHtml(step, stepName, isOpen)
-  .step-item
+  .step-item#hello
     +collapseItemHtml(`<span class='label' data-step-number='${step}'>${stepName}</span>`, null, isOpen)
       block
 
 .step-container.container
   +collapse('validator-steps-guide')
     +stepHtml('1', 'Create your account', 'true')
-      p Download the Incognito app.
+      p Download the Incognito App
       .row-img 
         .img.install-app-img
           a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
@@ -16,31 +16,28 @@ mixin stepHtml(step, stepName, isOpen)
         .img.install-app-img
           a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
             img(src=require('../../image/wallet/app store.svg'), alt='ios-app')
-      p Open the app and tap on
-        | 
+      p Open the app and it will automatically generate a wallet for you.
+      p Under the tap 
+        |
         span.highlight YOU
-        |.
-        | Copy
-        | 
+        |, tap on 
+        span.highlight Account. 
+
+      img(src=require('../../image/become_validator/view_account_setting.jpg'), alt='view_account_setting')
+      img(src=require('../../image/become_validator/view_your_keys.jpg'), alt='view_your_keys')
+      p Copy 
+        |
         span.highlight YOUR INCOGNITO ADDRESS
-        | 
-        |and
-        | 
-        span.highlight YOUR PRIVATE KEY
-        | 
-        | (keep them safe!).  You’ll need them in STEP 3 and 5.
+        |  and your 
+        span.highlight VALIDATOR KEY 
+        span.italic (keep them safe!)
+        |. You’ll need them in STEP 3 and 4.
+      img(src=require('../../image/become_validator/copy_your_keys.jpg'), alt='copy_your_keys')
 
-      img(src=require('../../image/become_validator/view_account_setting.png'), alt='view_account_setting')
-      img(src=require('../../image/become_validator/view_your_keys.png'), alt='view_your_keys')
-      img(src=require('../../image/become_validator/copy_your_keys.png'), alt='copy_your_keys')
-
-    +stepHtml('2', 'Set up your node')
-      p You can run Incognito on a low-cost server.  If you don’t have a server yet, it’s really simple and takes just a couple of minutes.  You can set up an account with a VPS provider or a cloud service provider like
+    +stepHtml('2', 'Set up your server')
+      p You can run Incognito on a low-cost server. If you don’t have a server yet, it’s really simple and takes just a couple of minutes. You can set up an account with a VPS provider or a cloud service provider like
         | 
         a(href='https://www.digitalocean.com', target='blank') DigitalOcean
-        |,
-        | 
-        a(href='https://www.linode.com/', target='blank') Linode
         |,
         | 
         a(href='https://cloud.google.com/', target='blank') Google Cloud
@@ -50,100 +47,112 @@ mixin stepHtml(step, stepName, isOpen)
         | 
         | or
         | 
-        a(href='https://www.vultr.com/', target='blank') Vultr.
+        a(href='https://www.vultr.com/', target='blank') Vultr
+        |,
+        | 
+        a(href='https://www.linode.com/', target='blank') Linode.
       
-      p The minimum server requirements are
-        | 
-        span.highlight 2GB RAM, 2 CPUs
-        |, and
-        | 
-        span.highlight 50GB SSD.
-        | 
-        |For example, if you use AWS, a
-        | 
-        span.highlight t3.small instance
-        | 
-        | is sufficient.
-      p Save
-        | 
-        span.highlight YOUR SERVER EXTERNAL IP ADDRESS.
-        | 
-        | You’ll need it in STEP 4.
+      p Useful instructions:
+        |
+        br
+        | * 
+        a(href="doc-setup-amazon-instance.html", target='blank') How to set up an AWS account?
+        br
+        | * 
+        a(href="doc-setup-gcloud-instance.html", target='blank') How to set up a Google Cloud Instance?
+        br
+        | * 
+        a(href="doc-setup-digitalocean-instance.html", target='blank') How to set up a Digital Ocean Instance?
+      
+      p The minimum server requirements are 2GB RAM, 2 CPUs, and 50GB SSD. For example, if you use AWS, a t3.small instance is sufficient.
+      p See instructions to set up here.
+      p Save 
+        |
+        span.highlight YOUR SERVER EXTERNAL IP ADDRESS
+        |. You’ll need it in Step 5.
 
     +stepHtml('3', 'Run Incognito')
-      p Install 
-        |
-        a(href='https://docs.docker.com/install/', target='blank') Docker.
-      p Open Terminal and enter the command line below to download 
-        | 
-        span.script run.sh
-      p 
-        span.script.copiable(data-copy-value='curl -LO https://incognito.org/run.sh') curl -LO https://incognito.org/run.sh
-      p Edit
-        | 
-        span.script run.sh
-        | 
-        | and replace
-        | 
-        span.script xxx
-        | 
-        | with
-        | 
-        span.script YOUR PRIVATE KEY
-        |
-        |(from STEP 1).
-      img(src=require('../../image/become_validator/edit_runsh.png'), alt='edit_runsh')
-      p Then, enter the command line below to start Incognito.
-      p
-        span.script.copiable(data-copy-value='bash run.sh') bash run.sh
-      
-      p
-        span If you see the following errors, just ignore them.  You’re doing good.
+      p In your SSH window which connects to the instance, please follow these steps:
+      ul
+        li Install Docker:
+          p.script.copiable(data-copy-value='sudo apt-get update && sudo apt-get install docker.io') sudo apt-get update && sudo apt-get install docker.io
+        li Download run.sh file:
+          p.script.copiable(data-copy-value='curl -LO https://incognito.org/run.sh') curl -LO https://incognito.org/run.sh
+        li Run this command lines. Replace validator_key with 
+          |
+          span.highlight your VALIDATOR KEY 
+          | (from Step 1).
+          p.script.copiable(data-copy-value='sed -i "s/xxx/validator_key/" run.sh') sed -i "s/xxx/validator_key/" run.sh
+        li Enter the command line below to start Incognito
+          p.script.copiable(data-copy-value='bash run.sh') bash run.sh
+
+      p If you see the following errors, just ignore them. You’re doing good.  
         br
         span.quote Error: No such container: inc_miner
         br
         span.quote Error: No such container: inc_kovan
         br
-        span.quote Error response from daemon: network with name inc_net already exists
-      
-      p For the curious, because Incognito is integrated with Ethereum (so you can send ETH and ERC20 tokens privately), its error messages show up here.  There’s nothing much we can do about it. Move on.
+        span.quote Error response from daemon: network with name inc_net already exists  
+          
+      p For the curious, because Incognito is integrated with Ethereum (so you can send ETH and ERC20 tokens privately), its error messages show up here. There’s nothing much we can do about it. Move on.
 
-    +stepHtml('4', 'Monitor your node')
-      p You can easily monitor your Incognito nodes right from your phone.
-      
-      img(src=require('../../image/become_validator/manage_node.png'), alt='manage_node')
-      img(src=require('../../image/become_validator/add_virtual_node.png'), alt='add_virtual_node')
-      img(src=require('../../image/become_validator/add_virtual_node_form.png'), alt='add_virtual_node_form')
-
-    +stepHtml('5', 'Request free Privacy (PRV)')
-      p Privacy (PRV) is the native coin of the Incognito Network.  To become a validator and help build the network, you’ll need to stake the minimum 1,750 PRV.  It’s easy to request free PRV.  Follow these steps:
+    +stepHtml('4', 'Request free Privacy (PRV)')
+      p Privacy (PRV) is the native coin of the Incognito Network. To become a validator and help build the network, you’ll need to stake the minimum 1,750 PRV. It’s easy to request free PRV. Follow these steps:
         ol
-          li Make a public post on either Facebook or Twitter that includes
+          li Make a public post on either Facebook or Twitter that includes 
             | 
             span.highlight https://incognito.org/YOUR_INCOGNITO_ADDRESS
             | 
-            |(from STEP 1).
+            |(from STEP 1) and a hashtag 
+            span.highlight #goincognito
             br
             br
             span For example:
-            p.quote "I’m going to be a validator for the Incognito network. My address is https://incognito.org/1Uv3CsGLj7Ue6YoftT2XvMPrLcpETWgDPu9XQ3rF8FgZKMtwfkGPbQ1nRxtyhSVs7duQ"
+            p.quote "I’m going to be a validator for the Incognito network. My address is https://incognito.org/1Uv3CsGLj7Ue6YoftT2XvMPrLcpETWgDPu9XQ3rF8FgZKMtwfkGPbQ1nRxtyhSVs7duQ #goincognito"
             br
-          li Then, copy and paste the URL of that social post to the Incognito Telegram channel
+          li Then, copy and paste the URL of that social post to the Incognito Telegram channel 
             | 
             a(href='https://t.me/incognitochain', target='blank') https://t.me/incognitochain.
             | 
-            | That’s it! 1,750 PRV will be added to your wallet. If your PRV has not arrived after 12 hours, please dm @annie_incognito for support.
+            | That’s it! 1,750 PRV will be added to your wallet. If your PRV has not arrived after 12 hours, please direct message @_incognito for support.
+
+    +stepHtml('5', 'Monitor your node')
+      p You can easily monitor your Incognito nodes right from your phone.      
+      img(src=require('../../image/become_validator/manage_node.jpg'), alt='manage_node')
+
+      p Tap 
+        span.highlight "Add a Virtual Node"
+      img(src=require('../../image/become_validator/add_virtual_node.jpg'), alt='add_virtual_node')
+
+      p Enter 
+        span.highlight your Node's IP address, then click 
+        span.highlight "Add"
+      img(src=require('../../image/become_validator/add_virtual_node_form.jpg'), alt='add_virtual_node_form')
 
     +stepHtml('6', 'Stake')
       p Almost there! Now, that you’ve got PRV, all you have to do is stake. Remember, you need to stake at least 1,750 PRV to begin earning rewards.
-      img(src=require('../../image/become_validator/node_want_to_stake.png'), alt='node_want_to_stake')
-      img(src=require('../../image/become_validator/start_staking.png'), alt='start_staking')
-      img(src=require('../../image/become_validator/stake.png'), alt='stake')
+      p Tap on the Node you want to stake
+      img(src=require('../../image/become_validator/node_want_to_stake.jpg'), alt='node_want_to_stake')
+
+      p Tap 
+        span.highlight "Run" 
+        |to start staking
+      img(src=require('../../image/become_validator/start_staking.jpg'), alt='start_staking')
+
+      p Select fee & speed as you want, then tap 
+        span.highlight "Stake"
+      img(src=require('../../image/become_validator/stake.jpg'), alt='stake')
+      img(src=require('../../image/become_validator/node_page.jpg'), alt='node_page')
       
-  p Congrats! You’re officially part of the network. Welcome to Incognito :)
-  p We welcome any questions, comments, or feedback. Or just reach out to chat. We’re on telegram pretty much all the time:
-    | 
-    a(href='https://t.me/incognitochain', target='blank') https://t.me/incognitochain
-    |, or do it the old fashioned way and send an email to
-    | 
-    a(href='mailto:go@incognito.org') go@incognito.org.
+      p Congrats! You’re officially part of the network. Welcome to Incognito :)
+      p
+        span.highlight IMPORTANT NOTE: 
+        |Please keep your PRIVATE KEY as SAFE because anyone who has it can access your funds. You may need it once you re-install the mobile app.
+      img(src=require('../../image/become_validator/secure_key.jpg'), alt='secure_key')
+
+      p We welcome any questions, comments, or feedback. Or just reach out to chat. We’re on telegram pretty much all the time:
+        | 
+        a(href='https://t.me/incognitochain', target='blank') https://t.me/incognitochain
+        |, or do it the old fashioned way and send an email to
+        | 
+        a(href='mailto:go@incognito.org') go@incognito.org.
