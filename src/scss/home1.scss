@@ -20,11 +20,6 @@
       display: flex;
       align-items: flex-start;
 
-      @include breakpoint-down(676px) {
-        top: 20px;
-        padding: 0px 10px;
-      }
-
       .link {
         background: rgba(16,17,17,0.54);
         color: $white;
@@ -58,10 +53,10 @@
 
         &::after {
           content: '\f144';
-          font-family: 'Font Awesome 5 Free';
+          font-family: 'Font Awesome 5 Pro';
           margin-left: 10px;
           display: inline-block;
-          font-weight: normal;
+          font-weight: light;
           transition: transform 0.2s;
         }
 
@@ -72,6 +67,23 @@
             transform: translate(3px);
           }
         }
+      }
+
+      @include breakpoint-down(lg) {
+        bottom: 20px;
+        top: initial;
+        padding: 0px 10px;
+
+        .link {
+          background: rgba(255, 255, 255, 0.9);
+          color: #101111;
+          border: 0.5px solid rgba(0, 0, 0, 0.04);
+          border-radius: 6px!important
+        }
+      }
+
+      @include breakpoint-down(sm) {
+        bottom: 10px;
       }
     }
   }

@@ -18,6 +18,10 @@
     height: 100%;
     width: 100%;
     margin-top: -30px;
+
+    @include breakpoint-down(xl) {
+      height: 80vw;
+    }
   }
 
   .subscribe-form {
@@ -50,5 +54,10 @@
     background-image: url('../image/icon/close.svg');
     background-size: contain;
     background-repeat: no-repeat;
+
+    @include breakpoint-down(lg) {
+      top: 10px;
+      left: 10px;
+    }
   }
 }
