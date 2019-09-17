@@ -1,0 +1,38 @@
+include ../common/collapse.pug
+
+mixin stepHtml(step, stepName, isOpen)
+  .step-item#hello
+    +collapseItemHtml(`<span class='label' data-step-number='${step}'>${stepName}</span>`, null, isOpen)
+      block
+
+.step-container.container
+  +collapse('validator-steps-guide')
+    +stepHtml('1', `<a href='https://cloud.digitalocean.com/login'>Log in</a> your Digital Ocean Account`, 'true')
+      p Create one if you don't have
+
+    +stepHtml('2', 'Click "Create" -> "Droplets"')
+      img(src=require('../../image/launch_on_digital_ocean/run_on_do_step_2.png')).landscape
+
+    +stepHtml('3', 'Set up your droplet')
+      p Choose Ubuntu
+      img(src=require('../../image/launch_on_digital_ocean/run_on_do_step_3.png')).landscape
+      p Choose Standard
+      img(src=require('../../image/launch_on_digital_ocean/run_on_do_step_3_choose_image.png')).landscape
+      p Name your host
+      img(src=require('../../image/launch_on_digital_ocean/run_on_do_step_3_create.png')).landscape
+      p Click 
+        span.highlight Create
+      p Your Droplet is now created. You will see the IP address. 
+      img(src=require('../../image/launch_on_digital_ocean/run_on_do_step_3_view.png')).landscape 
+
+    +stepHtml('4', 'Connect your Droplet')
+      p Please check your email, details of your droplet (IP address, username and password) will be sent to you.
+      p Open Terminal for Mac/Linux or PowerShell for Windows:    
+      p Run this command 
+      p 
+        span.script.copiable(data-copy-value='ssh root@') ssh root@(your ip address)
+      p Then type "Y"
+      p Copy and paste the password received from email
+      p Change your password
+      p Then you're connected to your server
+      img(src=require('../../image/launch_on_digital_ocean/run_on_do_step_4.png')).landscape
