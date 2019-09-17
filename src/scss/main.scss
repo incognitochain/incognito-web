@@ -7,6 +7,9 @@
 @import 'core/image';
 @import 'core/font';
 @import 'core/animation';
+@import 'common/price_info.scss';
+@import 'common/video_popup.scss';
+@import 'common/cta.scss';
 @import './general_page.scss';
 @import './about.scss';
 @import './header.scss';
@@ -28,7 +31,6 @@
 @import './telegram_chat.scss';
 @import './collapse.scss';
 @import './become_validator.scss';
-@import './popup.scss';
 
 * {
   box-sizing: border-box;

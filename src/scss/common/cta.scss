@@ -1,0 +1,89 @@
+.cta {
+    margin-top: 30px;
+
+    @include breakpoint-down(xl) {
+      padding: 20px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(13, 58, 60, 0.95);
+    };
+
+    @include breakpoint-down(sm) {
+        padding: 15px;
+    }
+
+    span {
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height: 25px;
+      @include breakpoint-down(xl) {
+        color: $white;
+      }
+    }
+
+    .subscribe-email {
+      margin-bottom: unset !important;
+      margin-top: unset !important;
+
+      > span {
+        margin-bottom: 15px;
+        font-size: 18px;
+        font-weight: 400;
+        display: block;
+      }
+
+      form#email-subscribe {
+        max-width: unset;
+
+        @include breakpoint-up(460px) {
+          flex-direction: row;
+        }
+
+        button.submit-email {
+          height: 48px;
+          background: #FF8E00;
+          border-radius: 4px;
+          min-width: 190px;
+
+          @include breakpoint-up(md) {
+            width: 40%;
+          }
+        }
+
+        input {
+          height: 48px;
+
+          @include breakpoint-up(460px) {
+            flex: 1;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+    .total-subcriber {
+      
+      .signed-up-text {
+        &::before {
+          content: "early birds already";
+        }
+
+        @include breakpoint-down(sm) {
+          &::before {
+            content: "people";
+          }
+        }
+      }
+
+      .label {
+        font-weight: 500;
+      }
+
+      margin-top: 15px;
+      span[role='counter'] {
+        color: #FF8E00;
+        font-weight: 500;
+      }
+    }
+}

@@ -1,9 +1,9 @@
-import Popup from './popup';
+import VideoPopup from './video_popup';
 
 class YoutubePlayer {
   constructor(url) {
     this.url = url;
-    this.popupModal = new Popup();
+    this.popupModal = new VideoPopup();
   }
 
   createFrame() {

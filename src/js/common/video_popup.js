@@ -1,6 +1,6 @@
-class Popup {
+class VideoPopup {
     constructor() {
-        this.popup = document.querySelector('.popup-modal');
+        this.popup = document.querySelector('.video-popup');
 
         if (!this.popup) 
         return; 
@@ -11,7 +11,7 @@ class Popup {
             closePopupBtn.addEventListener('click', this.hide.bind(this));
         }
 
-        this.modalContent = this.popup.querySelector('.modal-content');
+        this.modalContent = this.popup.querySelector('.content');
 
         if (!this.modalContent) return;
     }
@@ -43,4 +43,4 @@ class Popup {
     }
 }
 
-export default Popup;
+export default VideoPopup;

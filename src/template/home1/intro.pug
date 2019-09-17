@@ -15,18 +15,7 @@ div#intro-container
           span.extra  Power a new internet that cares about your privacy.
 
       include ../common/price_info.pug
-
-      .cta
-        .subscribe-email
-          div
-            include ../common/subscribe_form.pug
-            +subscribe_email('GET 50% OFF')
-        .total-subcriber
-          span.label Limited quantity.
-          | 
-          span(role='counter') 1000+
-          | 
-          span.signed-up-text  signed up. 
+      include ../common/subscribe_email_component.pug
 
       .benefit-group
         +benefit(require('../../image/icon/fix.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')

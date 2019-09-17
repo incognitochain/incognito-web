@@ -1,8 +1,8 @@
-.popup-modal {
+.video-popup {
   position: fixed;
   height: 100%;
   width: 100%;
-  padding: 100px 200px;
+  padding: 100px 100px;
   background-color: $white;
   z-index: 1000;
 
@@ -14,9 +14,30 @@
     padding: 100px 10px;
   };
 
-  .modal-content {
+  .content {
     height: 100%;
     width: 100%;
+    margin-top: -30px;
+  }
+
+  .subscribe-form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+
+    >div {
+      flex: 1;
+    }
+  
+    .cta {
+      margin: 0px;
+
+      @include breakpoint-up(xl) {
+        .total-subcriber {
+          display: none;
+        }
+      }
+    }
   }
 
   .close-button {
