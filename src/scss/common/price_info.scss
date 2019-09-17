@@ -1,0 +1,95 @@
+.price-info {
+    display: flex;
+    align-items: center;
+
+    @include breakpoint-down(1400px) {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .price {
+      margin-right: 50px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: row;
+      color: $white;
+
+      @include breakpoint-down(1400px) {
+        margin-bottom: 15px;
+      }
+
+      span {
+        font-size: 32px;
+        letter-spacing: 0;
+        line-height: 23px;
+
+        @include breakpoint-down(sm) {
+          font-size: 22px;
+        }
+        
+        &.origin-price, &.off-percentage {
+          color: #8C9C9D;
+        }
+        &.origin-price {
+          text-decoration: line-through;
+          margin-right: 10px;
+        }
+        &.end-price {
+          font-weight: 500;
+          color: #B12704;
+          margin-right: 10px;
+        }
+      } 
+    }
+
+    .rocket {
+      display: flex;
+      align-items: center;
+
+      img {
+        width: 28px;
+        margin-right: 10px;
+      }
+
+      span {
+        color: #25CDD6;
+        
+      }
+    }
+  }
+
+  .custom-countdown {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #FF8E00!important;
+
+    span {
+      color: #FF8E00!important;
+      font-size: 16px;
+      letter-spacing: 0;
+      line-height: 23px;
+    }
+
+    .countdown {
+      display: inline-block;
+      color: $white;
+      margin-right: 5px;
+
+      .countdown-container {
+        font-size: 16px;
+        color: $white;
+        display: flex;
+        flex-direction: row;
+
+        .group, .data, .label {
+          font-weight: 500;
+          font-size: 16px;
+          letter-spacing: 0;
+          display: inline;
+          margin-right: 1px;
+          margin-left: 1px;
+        }
+      }
+    }
+}

@@ -24,7 +24,7 @@ form#email-subscribe {
     }
   }
 
-  @include breakpoint-down(md) {
+  @include breakpoint-down(sm) {
     flex-direction: column;
 
     #email-input{
