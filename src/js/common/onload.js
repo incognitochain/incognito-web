@@ -31,7 +31,7 @@ const checkReferralCode = () => {
   const referralCode = queryString(KEYS.REFERRAL_QUERY);
   if (referralCode) {
     storage.set(KEYS.REFERRAL_CODE, referralCode);
-    location.href = `${location.origin}/referral.html`;
+    location.href = `${location.origin}`;
   }
 }
 
