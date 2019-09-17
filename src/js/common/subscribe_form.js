@@ -32,9 +32,11 @@ const formHandle = () => {
       e.preventDefault();
 
       //set submit status
-      const originalBtnText = submitBtn.innerText;
-      submitBtn.innerText = 'Sending...';
+      const submitBtnText = submitBtn.querySelector("#text") || {};
+      const originalBtnText = submitBtnText.innerText;
+      submitBtnText.innerText = 'Sending...';
       submitBtn.disabled = 'disabled';
+      submitBtn.classList.add("loading");
 
       try {
         const subscribedData = await subscribe(emailEl.value, getReferralCode());
@@ -53,8 +55,9 @@ const formHandle = () => {
       } catch (e) {
         setMessage(e.message, 'error');
       } finally {
-        submitBtn.innerText = originalBtnText;
+        submitBtnText.innerText = originalBtnText;
         submitBtn.disabled = undefined;
+        submitBtn.classList.remove("loading");
       }
     });
   }

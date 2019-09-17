@@ -62,8 +62,21 @@
         }
       }
     }
-    .total-subcriber {
-      
+
+    .discount-notice {
+      display: none;
+
+      @include breakpoint-down(sm) {
+        display: block;
+        color: #FF8E00;
+        margin: 0px;
+        margin-top: 10px;
+      }
+    }
+
+    .total-subcriber {  
+      margin-top: 15px; 
+
       .signed-up-text {
         &::before {
           content: "early birds already";
@@ -80,10 +93,13 @@
         font-weight: 500;
       }
 
-      margin-top: 15px;
       span[role='counter'] {
         color: #FF8E00;
         font-weight: 500;
+      }
+
+      @include breakpoint-down(sm) {
+        margin-top: 0px;
       }
     }
 }
