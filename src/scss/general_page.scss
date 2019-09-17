@@ -19,6 +19,7 @@
         img.mobile {
           display: block;
           background: none;
+          object-fit: cover;
         }
   
         img.desktop {
@@ -29,14 +30,14 @@
       @include breakpoint-down(md) {
         img.mobile {
           height: 80vw;
-          object-fit: cover;
+          object-position: bottom;
         }
       }
       
       @include breakpoint-down(sm) {
         img.mobile {
           height: 70vw;
-          object-fit: cover;
+          object-position: 0px 85%;
         }
       }
     }

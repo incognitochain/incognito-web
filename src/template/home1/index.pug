@@ -9,7 +9,12 @@ block main
    div#home1-container
       div.intro-slider-container
          .image
-            i-slider(images=[{
+            i-slider(images=[
+               {
+                  img: require('../../image/home1/home_slider_5.jpg'),
+                  position: 'bottom center',
+               },
+               {
                   img: require('../../image/home1/node_mobile_bg.jpg'),
                   position: 'bottom center',
                }, 
@@ -24,11 +29,7 @@ block main
                {
                   img: require('../../image/home1/home_slider_4.jpg'),
                   position: 'bottom center',
-               }, 
-               {
-                  img: require('../../image/home1/home_slider_5.jpg'),
-                  position: 'bottom center',
-               }, 
+               },  
                {
                   img: require('../../image/home1/home_slider_6.jpg'),
                   position: 'bottom center',
@@ -38,7 +39,7 @@ block main
                   position: 'bottom center',
                }
             ])
-            img(src=require('../../image/home1/node_mobile_bg.jpg')).mobile
+            img(src=require('../../image/home1/home_slider_5.jpg')).mobile
 
             .links
                span.link(data-video-url='https://www.youtube.com/embed/LZjI4RsVwF8') Watch intro
