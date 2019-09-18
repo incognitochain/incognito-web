@@ -2,6 +2,8 @@
  * required class: 'visible-effect'
  */
 
+// intersectionobserver polyfill
+require('intersection-observer');
 
 const visible = () => {
   var intersectionObserver = new IntersectionObserver(function(entries) {
