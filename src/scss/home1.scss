@@ -92,89 +92,147 @@
     display: flex;
     flex-direction: column;
 
-    .intro {
-      justify-content: unset !important;
-      padding-bottom: 240px !important;
-      
-      .title {
-        .extra {
-          @include breakpoint-down(md) {
-            display: none;
+    #intro-container {
+      >div.content {
+        flex-direction: column;
+        bottom: unset!important;
+
+        .intro {
+          justify-content: center !important;
+          min-height: calc(100vh - 90px);
+  
+          @include breakpoint-down(xl) {
+            min-height: unset;
+          }
+          
+          .title {
+            .extra {
+              @include breakpoint-down(md) {
+                display: none;
+              }
+            }
+          }
+
+          .description {
+            @include breakpoint-up(lg) {
+              margin-top: 40px;
+              margin-bottom: 40px;
+            }
           }
         }
-      }
-    }
 
-    .row {
-      display: flex;
-      flex-direction: row;
+        .question {
+          #top-question-container {
+            // cheat css
+            margin-left: -90px;
+            margin-right: -90px;
 
-      .row-item {
-        flex: 1;
-      }
-    }
+            @include breakpoint-down(xl) {
+              margin-left: -110px;
+              margin-right: -110px;
+            }
 
-    .benefit-group {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 30px;
+            @include breakpoint-down(lg) {
+              margin-left: -40px;
+              margin-right: -40px;              
+            }
+          }
 
-      @include breakpoint-down(sm) {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-      }
+          .container {
+            flex-direction: column;
 
-      .benefit {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-        max-width: 200px;
+            @include breakpoint-up(xl) {
+              padding-left: 100px;
+              padding-right: 100px;
+            }
 
-        @include breakpoint-down(sm) {
-          max-width: 80%;
+            @include breakpoint-down(sm) {
+              padding-left: 40px;
+              padding-right: 40px;
+            }
+
+            >.content {
+              margin-top: 30px;
+              
+              @include breakpoint-up(lg) {
+                margin-left: 20px;
+              }
+            }
+          }
         }
 
-        span {
-          text-align: center;
-        }
-
-        .icon {
-          width: 30px;
-          height: 40px;
+        .row {
           display: flex;
-          align-items: flex-end;
+          flex-direction: row;
+
+          .row-item {
+            flex: 1;
+          }
         }
 
-        
+        .benefit-group {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 30px;
 
-        .label {
-          margin-top: 5px;
-          margin-bottom: 5px;
-          font-weight: 500;
+          @include breakpoint-down(sm) {
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .benefit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            max-width: 200px;
+
+            @include breakpoint-down(sm) {
+              max-width: 80%;
+            }
+
+            span {
+              text-align: center;
+            }
+
+            .icon {
+              width: 30px;
+              height: 40px;
+              display: flex;
+              align-items: flex-end;
+            }
+
+            
+
+            .label {
+              margin-top: 5px;
+              margin-bottom: 5px;
+              font-weight: 500;
+            }
+
+            .desc {
+              font-size: 14px;
+            }
+          }
         }
 
-        .desc {
-          font-size: 14px;
-        }
-      }
-    }
+        ul.list-info {
+          padding-left: 16px;
+          margin-top: 20px;
 
-    ul.list-info {
-      padding-left: 16px;
-      margin-top: 20px;
+          li {
+            font-size: 16px;
+            color: #101111;
+            letter-spacing: 0;
+            line-height: 23px;
+            list-style: initial;
+            font-weight: 300;
 
-      li {
-        font-size: 16px;
-        color: #101111;
-        letter-spacing: 0;
-        line-height: 23px;
-        list-style: initial;
-        font-weight: 300;
-
-        &::before {
-          display: none;
+            &::before {
+              display: none;
+            }
+          }
         }
       }
     }

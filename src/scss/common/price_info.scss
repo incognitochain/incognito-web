@@ -2,9 +2,13 @@
     display: flex;
     align-items: center;
 
-    @include breakpoint-down(1400px) {
-      flex-direction: column;
+    @include breakpoint-down(xl) {
+      flex-direction: row;
       align-items: flex-start;
+    }
+
+    @include breakpoint-down(sm) {
+      flex-direction: column;
     }
 
     .price {

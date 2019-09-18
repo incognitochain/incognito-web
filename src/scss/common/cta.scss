@@ -1,26 +1,26 @@
 .cta {
     margin-top: 30px;
 
-    @include breakpoint-down(xl) {
-      padding: 20px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(13, 58, 60, 0.95);
-    };
+    // @include breakpoint-down(xl) {
+    //   padding: 20px;
+    //   position: fixed;
+    //   bottom: 0;
+    //   left: 0;
+    //   width: 100%;
+    //   background: rgba(13, 58, 60, 0.95);
+    // };
 
-    @include breakpoint-down(sm) {
-        padding: 15px;
-    }
+    // @include breakpoint-down(sm) {
+    //     padding: 15px;
+    // }
 
     span {
       font-size: 16px;
       letter-spacing: 0;
       line-height: 25px;
-      @include breakpoint-down(xl) {
-        color: $white;
-      }
+      // @include breakpoint-down(xl) {
+      //   color: $white;
+      // }
     }
 
     .subscribe-email {
@@ -66,12 +66,12 @@
     .discount-notice {
       display: none;
 
-      @include breakpoint-down(sm) {
-        display: block;
-        color: #FF8E00;
-        margin: 0px;
-        margin-top: 10px;
-      }
+      // @include breakpoint-down(sm) {
+      //   display: block;
+      //   color: #FF8E00;
+      //   margin: 0px;
+      //   margin-top: 10px;
+      // }
     }
 
     .total-subcriber {  
@@ -82,11 +82,11 @@
           content: "early birds already";
         }
 
-        @include breakpoint-down(sm) {
-          &::before {
-            content: "people";
-          }
-        }
+        // @include breakpoint-down(sm) {
+        //   &::before {
+        //     content: "people";
+        //   }
+        // }
       }
 
       .label {
@@ -97,9 +97,33 @@
         color: #FF8E00;
         font-weight: 500;
       }
+    }
 
-      @include breakpoint-down(sm) {
+    &.sticky {
+      @include breakpoint-down(xl) {
+        z-index: 2;
+        padding: 20px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(13, 58, 60, 0.95);
         margin-top: 0px;
+
+        .total-subcriber {
+          display: none;
+        }
+      }
+
+      @include breakpoint-up(sm) {
+        form#email-subscribe {
+          flex-direction: row;
+
+          #email-input {
+            margin-bottom: 0px;
+            margin-right: 10px;
+          }
+        }
       }
     }
 }

@@ -15,6 +15,7 @@ function main() {
   handleVideoPlayers(container);
   startCountdown(container);
   handleShowTotalSubscriber(container);
+  handleWindowScroll(container);
 }
 
 const handleShowTotalSubscriber = async (container) => {
@@ -65,6 +66,20 @@ const handleVideoPlayers = (container) => {
   } catch (e) {
     console.error('handleVideoPlayers failed', e);
   }
+}
+
+const handleWindowScroll = (container) => {
+  const ctaEl = container.querySelector(".cta");
+  const subscribeEmailEl = ctaEl.querySelector("#email-subscribe");
+  const stickyPosition = subscribeEmailEl.offsetTop + subscribeEmailEl.offsetParent.offsetTop;
+
+  window.onscroll = function() {
+    if(window.pageYOffset > stickyPosition) {
+      ctaEl.classList.add("sticky");
+    } else {
+      ctaEl.classList.remove("sticky");
+    }
+  };
 }
 
 main();
