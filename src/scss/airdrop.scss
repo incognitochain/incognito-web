@@ -1,0 +1,64 @@
+#airdrop-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: url('../image/airdrop/airdrop-background.png') no-repeat;
+    background-size: cover;
+    color: $white;
+
+    h1, p {
+        color: $white;
+    }
+
+    p {
+        font-size: 20px;
+    }
+
+    span.highlight {
+        color: #FFC700;
+    }
+
+    .title {
+        text-align: center;
+        font-size: 50px;
+        font-weight: normal;
+    }
+
+    #box {
+        display: flex;
+        justify-content: space-between;
+        padding: 30px 70px;
+        background: $white;
+        border-radius: 15px;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        align-items: center;
+
+        * {
+            font-size: 16px;
+            color: $black;
+        }
+
+        .telegram-btn {
+            margin-left: 50px;
+            text-decoration: none;
+
+            button {
+                height: auto;
+                padding: 10px 20px;
+                color: $white;
+                border-radius: 27px;
+                background: #25CDD6;
+                display: flex;
+                align-items: center;
+
+                .icon {
+                    width: 30px;
+                    margin-right: 15px;
+                }
+            }
+        }
+    }
+}
