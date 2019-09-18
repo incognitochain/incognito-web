@@ -1,6 +1,6 @@
-mixin benefit(img, label, desc)
+mixin benefit(img, label, desc, imgClass='')
   .benefit
-    div.icon
+    div(class='icon ' + imgClass)
       img(src= img)
     span.label= label
     span.desc= desc
@@ -21,7 +21,7 @@ div#intro-container
       .benefit-group
         +benefit(require('../../image/icon/incomes.svg'), 'Automatic earning of passive income')
         +benefit(require('../../image/icon/energy-saving.svg'), 'Energy efficient', 'Low power. Just 1 kWh (about 8c) to run all day')
-        +benefit(require('../../image/icon/easy.svg'), 'Effortless', 'Just plug the Node in & let it run.')
+        +benefit(require('../../image/icon/easy.svg'), 'Effortless', 'Just plug the Node in & let it run.', 'easy')
 
       .benefit-group
         +benefit(require('../../image/icon/fix.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')

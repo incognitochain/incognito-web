@@ -201,6 +201,10 @@
               height: 40px;
               display: flex;
               align-items: flex-end;
+
+              &.easy {
+                width: 50px;
+              }
             }
 
             
