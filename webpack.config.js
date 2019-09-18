@@ -64,6 +64,10 @@ const templateGen = [
     template: 'src/template/home1/index.pug',
     filename: 'index.html'
   }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/airdrop/index.pug',
+    filename: 'airdrop.html'
+  }),
   // new HtmlWebpackPlugin({
   //   template: 'src/template/mine/index.pug',
   //   filename: 'mine.html'
