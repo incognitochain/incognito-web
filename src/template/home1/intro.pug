@@ -11,22 +11,21 @@ div#intro-container
       div
         h1.heading INCOGNITO NODE
         h1.title  Earn crypto in your sleep.
-          |
-          span.extra  Power a new internet that cares about your privacy.
+        div.description 
+          p Meet Node, a little helpful gadget that earns Bitcoin, Ethereum, Binance and more for processing crypto transactions confidentially.
+          p.extra Built by a bunch of geeks who shipped $100M+ of connected hardware worldwide
 
       include ../common/price_info.pug
       include ../common/subscribe_email_component.pug
 
       .benefit-group
-        +benefit(require('../../image/icon/fix.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')
-        +benefit(require('../../image/icon/30day_icon.svg'), '30-day trial', 'If you don’t love your Node, return it for a full refund.')
-        +benefit(require('../../image/icon/international-shipping.gif'), 'Ships worldwide', 'Node is designed for everyone, and by everyone.')
+        +benefit(require('../../image/icon/incomes.svg'), 'Automatic earning of passive income')
+        +benefit(require('../../image/icon/energy-saving.svg'), 'Energy efficient', 'Low power. Just 1 kWh (about 8c) to run all day')
+        +benefit(require('../../image/icon/easy.svg'), 'Effortless', 'Just plug the Node in & let it run.')
 
-     
-      ul.list-info
-        li Meet Node, a little helpful gadget that earns Bitcoin, Ethereum, Binance and more for processing crypto transactions confidentially.
-        li Node also earns a very special coin, called Privacy.
-        li Enjoy automatic earning of passive crypto income.
-        li Effortless setup, just plug and play.
-        li Energy efficient, just 1kWh (about 8 cents) to run all day.
-        li Designed to power the incognito mode for the token economy.
+      .benefit-group
+        +benefit(require('../../image/icon/fix.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')
+        +benefit(require('../../image/icon/box-closed.svg'), '30-day trial', 'If you don’t love your Node, return it for a full refund.')
+        +benefit(require('../../image/icon/international-shipping.gif'), 'Ships worldwide', 'Node is designed for everyone, and by everyone.')
+    .question
+      include ./question.pug

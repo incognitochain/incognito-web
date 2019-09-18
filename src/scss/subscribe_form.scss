@@ -10,6 +10,9 @@ form#email-subscribe {
 
     @include breakpoint-down(sm) {
       height: $sm-input-height!important;
+      flex: auto;
+      margin-right: 0px;
+      margin-bottom: 10px;
     }
   }
 
@@ -30,55 +33,57 @@ form#email-subscribe {
   }
 
   @include breakpoint-down(sm) {
-    border-bottom: 1px solid white;
+    flex-direction: column;
 
-    #email-input{
-      margin-right: unset;
-      margin-bottom: 10px;
-      flex: unset;
-      background: transparent;
-      border: none;
-      padding-left: 0px;
-      color: $white;
-      flex: 1;
+    // border-bottom: 1px solid white;
 
-      &:focus, &:-webkit-autofill {
-        background: transparent;
-        border: none;
-        outline: none;
-      }
-    }
+    // #email-input{
+    //   margin-right: unset;
+    //   margin-bottom: 10px;
+    //   flex: unset;
+    //   background: transparent;
+    //   border: none;
+    //   padding-left: 0px;
+    //   color: $white;
+    //   flex: 1;
 
-    button.submit-email {
-      min-width: unset!important;
-      border-radius: 50px!important;
-      width: 40px;
-      padding: 0px!important;
+    //   &:focus, &:-webkit-autofill {
+    //     background: transparent;
+    //     border: none;
+    //     outline: none;
+    //   }
+    // }
 
-      #text {
-        display: none;
-      }
+    // button.submit-email {
+    //   min-width: unset!important;
+    //   border-radius: 50px!important;
+    //   width: 40px;
+    //   padding: 0px!important;
 
-      &::before {
-        content: "\f061";
-        font-family: 'Font Awesome 5 Pro';
-        font-weight: light;
-        color: $white;
-      }
+    //   #text {
+    //     display: none;
+    //   }
 
-      &.loading {
+    //   &::before {
+    //     content: "\f061";
+    //     font-family: 'Font Awesome 5 Pro';
+    //     font-weight: light;
+    //     color: $white;
+    //   }
 
-        &:focus {
-          outline: 0;
-          box-shadow: none!important;
-        }
+    //   &.loading {
 
-        &::before {
-          content: "\f3f4";
-          animation: spin 1s linear infinite;
-          display: inline-block;
-        }
-      }
-    }
+    //     &:focus {
+    //       outline: 0;
+    //       box-shadow: none!important;
+    //     }
+
+    //     &::before {
+    //       content: "\f3f4";
+    //       animation: spin 1s linear infinite;
+    //       display: inline-block;
+    //     }
+    //   }
+    // }
   };
 }
