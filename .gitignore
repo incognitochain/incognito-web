@@ -5,3 +5,4 @@ node_modules
 yarn-error.log
 .env.development.js
 .env.production.js
+yarn.lock
