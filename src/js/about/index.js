@@ -47,6 +47,9 @@ const handleSwitchTeamGroup = (container) => {
 
 const main = () => {
     const container = document.querySelector("#about-container");
+
+    if(!container) return; 
+    
     handleSwitchTeamGroup(container);
 }
 

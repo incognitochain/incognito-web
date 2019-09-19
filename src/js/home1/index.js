@@ -70,6 +70,7 @@ const handleVideoPlayers = (container) => {
 
 const handleWindowScroll = (container) => {
   const ctaEl = container.querySelector(".cta");
+  const priceInfoElm = container.querySelector(".price-info");
   let subscribeEmailEl = ctaEl.querySelector("#email-subscribe");
   let stickyPosition = 0;
 
@@ -79,10 +80,13 @@ const handleWindowScroll = (container) => {
   } while(subscribeEmailEl);
 
   window.addEventListener('scroll', function() {
+    const ctaElmHeight = ctaEl.offsetHeight;
     if(window.pageYOffset > stickyPosition) {
       ctaEl.classList.add("sticky");
+      priceInfoElm.style.paddingTop = `${ctaElmHeight}px`;
     } else {
       ctaEl.classList.remove("sticky");
+      priceInfoElm.style.paddingTop = 0;
     }
   });
 }
