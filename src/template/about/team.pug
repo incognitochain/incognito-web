@@ -1,21 +1,57 @@
+mixin member(avatar, name, title)
+  .member
+    .avatar
+      img(src=avatar)
+    .description
+      .name= name
+      .title= title
+
 #about-team
   .info.container.visible-effect
     h3.label OUR TEAM
     p.desc We’re a diverse team of 15 cryptographers, distributed system researchers, and programmers - busy building the privacy layer of the decentralized web.
 
-  .gallery.container.visible-effect
-    .group
-      .image
-        img(src=require('../../image/about/team/2.jpg'), alt='team')
-    .group.grid
-      .image
-        img(src=require('../../image/about/team/3.jpg'), alt='team')
-      .image
-        img(src=require('../../image/about/team/4.jpg'), alt='team')
-      .image
-        img(src=require('../../image/about/team/1.jpg'), alt='team')
-      .image
-        img(src=require('../../image/about/team/5.jpg'), alt='team')
+
+  .container.visible-effect
+    .team-group
+      button#development.group(filter='development').active Development
+      button#design.group(filter='design') Design
+      button#community.group(filter='community') Community
+      button#marketing.group(filter='marketing') Marketing
+      button#communications.group(filter='communications') Communications
+    
+    .gallery  
+      .group.active#development
+        +member(require('../../image/about/team/duy.png'), 'Duy Huynh', 'Project Lead')
+        +member(require('../../image/about/team/thaibao.png'), 'Le Vu Thai Bao', 'Chain')
+        +member(require('../../image/about/team/thuc.png'), 'Nguyen Dinh Thuc', 'Chain')
+        +member(require('../../image/about/team/hiennguyen.png'), 'Nguyen Thi Thu Hien', 'Chain')
+        +member(require('../../image/about/team/hy.png'), 'Ngo Dinh Hy', 'Chain')
+        +member(require('../../image/about/team/anonymous.png'), 'Tran Minh Khoa', 'Chain')
+        +member(require('../../image/about/team/dungtran.png'), 'Tran Trung Dung', 'Chain')
+        +member(require('../../image/about/team/lamchau.png'), 'Chau Tuong Lam', 'Chain')
+        +member(require('../../image/about/team/hung.png'), 'Ngo Minh Quoc Hung', 'Chain')
+        +member(require('../../image/about/team/dungv.png'), 'Van Quoc Dung', 'Chain')
+        +member(require('../../image/about/team/duybao.png'), 'Chiem Duy Bao', 'Chain')
+        +member(require('../../image/about/team/duc.png'), 'Dinh Nguyen Minh Đuc', 'Chain')
+        +member(require('../../image/about/team/hieutran.png'), 'Tran Ngoc Hieu', 'Chain')
+        +member(require('../../image/about/team/khanhle.png'), 'Le Hoang Khanh', 'QC')
+        +member(require('../../image/about/team/binh.png'), 'Nguyen Quang Binh', 'Product')
+        +member(require('../../image/about/team/phuong.png'), 'Hoang Phuong', 'Product')
+        +member(require('../../image/about/team/vuong.png'), 'Dao Quoc Vuong', 'Product')
+        +member(require('../../image/about/team/duongtien.png'), 'Duong Tien', 'Product')
+        +member(require('../../image/about/team/hoai.png'), 'Ngo Hoai', 'Product')
+      .group#design
+        +member(require('../../image/about/team/linh.png'), 'Ngo Khanh Linh', 'Designer')
+        +member(require('../../image/about/team/an.png'), 'Nguyen Tuong An', 'Designer')
+      .group#community
+        +member(require('../../image/about/team/thang.png'), 'Nguyen Minh Thang', 'CX')
+        +member(require('../../image/about/team/annie.png'), 'Phan Quy Anh', 'CX')
+        +member(require('../../image/about/team/andrey.png'), 'Andrey Bugaevski', 'Community')
+      .group#marketing
+        +member(require('../../image/about/team/henry.png'), 'Van Qui Nguyen', 'Marketing')
+      .group#communications
+        +member(require('../../image/about/team/ning.png'), 'Ning Tan', 'Communications')
 
   .info.container.visible-effect
     h3.label JOIN INCOGNITO
