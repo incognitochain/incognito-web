@@ -78,9 +78,6 @@
       margin-top: 15px; 
 
       .signed-up-text {
-        &::before {
-          content: "early birds already";
-        }
 
         // @include breakpoint-down(sm) {
         //   &::before {
@@ -94,8 +91,11 @@
       }
 
       span[role='counter'] {
-        color: #FF8E00;
         font-weight: 500;
+      }
+
+      span[role='counter'], .highlight {
+        color: #B12704;
       }
     }
 
@@ -125,5 +125,9 @@
           }
         }
       }
+    }
+
+    @include breakpoint-down(sm) {
+      margin-top: 0px;
     }
 }

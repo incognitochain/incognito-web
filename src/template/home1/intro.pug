@@ -2,8 +2,9 @@ mixin benefit(img, label, desc, imgClass='')
   .benefit
     div(class='icon ' + imgClass)
       img(src= img)
-    span.label= label
-    span.desc= desc
+    .content
+      span.label= label
+      span.desc= desc
 
 div#intro-container
   .content
@@ -15,17 +16,19 @@ div#intro-container
           p Meet Node, a little helpful gadget that earns Bitcoin, Ethereum, Binance and more for processing crypto transactions confidentially.
           p.extra Built by a bunch of geeks who shipped $100M+ of connected hardware worldwide
 
-      include ../common/price_info.pug
-      include ../common/subscribe_email_component.pug
+      .subscribe-price-container
+        include ../common/price_info.pug
+        include ../common/subscribe_email_component.pug
 
-      .benefit-group
-        +benefit(require('../../image/icon/incomes.svg'), 'Earn passive income', 'Automatically collect crypto every second of every day')
-        +benefit(require('../../image/icon/energy-saving.svg'), 'Energy efficient', 'Just 1 kWh (about 8 cents a day) to run all day')
-        +benefit(require('../../image/icon/easy.svg'), 'Effortless', 'Just plug Node in and let it work for you.', 'easy')
+      .benefit-container
+        .benefit-group
+          +benefit(require('../../image/icon/income.svg'), 'Earn passive income', 'Automatically collect crypto every second of every day')
+          +benefit(require('../../image/icon/energy-saving.svg'), 'Energy efficient', 'Just 1 kWh (about 8 cents a day) to run all day')
+          +benefit(require('../../image/icon/effortless.svg'), 'Effortless', 'Just plug Node in and let it work for you.', 'easy')
 
-      .benefit-group
-        +benefit(require('../../image/icon/fix.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')
-        +benefit(require('../../image/icon/box-closed.svg'), '30-day trial', 'If you don’t love your Node, return it for a full refund.')
-        +benefit(require('../../image/icon/international-shipping.gif'), 'Ships worldwide', 'Anyone, anywhere, can own a Node.')
+        .benefit-group
+          +benefit(require('../../image/icon/warranty.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')
+          +benefit(require('../../image/icon/trail.svg'), '30-day trial', 'If you don’t love your Node, return it for a full refund.')
+          +benefit(require('../../image/icon/worldwide.svg'), 'Ships worldwide', 'Anyone, anywhere, can own a Node.')
     .question
       include ./question.pug

@@ -70,8 +70,7 @@
       }
 
       @include breakpoint-down(lg) {
-        bottom: 20px;
-        top: initial;
+        top: 20px;
         padding: 0px 10px;
 
         .link {
@@ -117,6 +116,12 @@
             @include breakpoint-up(lg) {
               margin-top: 40px;
               margin-bottom: 40px;
+            }
+
+            @include breakpoint-down(sm) {
+              .extra {
+                display: none;
+              }
             }
           }
         }
@@ -170,54 +175,94 @@
           }
         }
 
-        .benefit-group {
-          display: flex;
-          justify-content: space-between;
-          margin-top: 30px;
+        .subscribe-price-container {
+          position: relative;
 
           @include breakpoint-down(sm) {
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-          }
-
-          .benefit {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-            max-width: 200px;
+            flex-direction: column-reverse;
 
-            @include breakpoint-down(sm) {
-              max-width: 80%;
-            }
+            .price-info {
+              margin-top: 20px;
 
-            span {
-              text-align: center;
-            }
-
-            .icon {
-              width: 30px;
-              height: 40px;
-              display: flex;
-              align-items: flex-end;
-
-              &.easy {
-                width: 50px;
+              .price {
+                position: absolute;
+                top: 0px;
               }
             }
 
-            
+            .cta {
+              margin-top: 50px;
 
-            .label {
-              margin-top: 5px;
-              margin-bottom: 5px;
-              font-weight: 500;
+              &.sticky {
+                margin-top: 0px;
+              }
+            }
+          }
+        }
+
+        .benefit-container {
+          display: flex;
+          justify-content: space-between;
+
+          .benefit-group {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            margin-top: 30px;
+
+            @include breakpoint-down(sm) {
+              flex-direction: column;
+              justify-content: center;
             }
 
-            .desc {
-              font-size: 14px;
+            .benefit {
+              display: flex;
+              padding: 10px;
+              max-width: 250px;
+
+              @include breakpoint-down(sm) {
+                max-width: 80%;
+                padding: 10px 0px;
+              }
+
+              .content {
+                display: flex;
+                flex-direction: column;
+              }
+
+              .icon {
+                width: 50px;
+                height: 50px;
+                margin-top: 8px;
+                margin-right: 20px;
+                flex: 1;
+
+                >img {
+                  width: 30px;
+                }
+
+                &.easy {
+                  width: 50px;
+                }
+              }
+
+              
+
+              .label {
+                margin-top: 5px;
+                margin-bottom: 5px;
+                font-weight: 500;
+              }
+
+              .desc {
+                font-size: 14px;
+              }
             }
+          }
+
+          @include breakpoint-down(sm) {
+            flex-direction: column;
           }
         }
 
