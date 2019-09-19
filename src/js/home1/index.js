@@ -70,16 +70,21 @@ const handleVideoPlayers = (container) => {
 
 const handleWindowScroll = (container) => {
   const ctaEl = container.querySelector(".cta");
-  const subscribeEmailEl = ctaEl.querySelector("#email-subscribe");
-  const stickyPosition = subscribeEmailEl.offsetTop + subscribeEmailEl.offsetParent.offsetTop;
+  let subscribeEmailEl = ctaEl.querySelector("#email-subscribe");
+  let stickyPosition = 0;
 
-  window.onscroll = function() {
+  do {
+    stickyPosition += subscribeEmailEl.offsetTop || 0;
+    subscribeEmailEl = subscribeEmailEl.offsetParent;
+  } while(subscribeEmailEl);
+
+  window.addEventListener('scroll', function() {
     if(window.pageYOffset > stickyPosition) {
       ctaEl.classList.add("sticky");
     } else {
       ctaEl.classList.remove("sticky");
     }
-  };
+  });
 }
 
 main();

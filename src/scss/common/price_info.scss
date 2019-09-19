@@ -1,6 +1,8 @@
 .price-info {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
 
     @include breakpoint-down(xl) {
       flex-direction: row;
