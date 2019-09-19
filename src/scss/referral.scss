@@ -182,7 +182,6 @@
     }
   }
   #referral-info {
-    background-color: $whitegrey;
     padding-top: 30px;
     padding-bottom: 50px;
     > div.content {
@@ -269,6 +268,10 @@
 
                   @include breakpoint-down(sm) {
                     width: 150px;
+                  }
+
+                  @include breakpoint-up(lg) {
+                    margin-left: 100px;
                   }
                 }
               }
