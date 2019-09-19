@@ -3,8 +3,13 @@
 #referral-container {
   margin-top: 10px;
   #referral-intro {
-    padding-bottom: 30px;
+    padding-top: 100px;
+    padding-bottom: 100px;
     display: flex;
+    background: url('../image/referral_background.jpg') no-repeat;
+    background-size: cover;
+    max-width: fit-content;
+
     .image {
       min-width: 350px;
       margin-right: 50px;
@@ -12,6 +17,7 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
+      flex: 1;
 
       > img {
         max-width: 430px;
@@ -35,7 +41,7 @@
           letter-spacing: -1.5px;
           line-height: 50px;
           margin: 0px;
-          color: $black;
+          color: $white;
         }
         p.desc {
           font-size: 20px;
@@ -49,6 +55,7 @@
           &.small {
             font-size: 18px;
             font-weight: 300;
+            color: $white;
           }
           &.strong {
             font-size: 14px;
@@ -215,6 +222,8 @@
       }
 
       .level-box-container {
+        margin-top: 50px;
+        
         @include breakpoint-down(1300px) {
           overflow-x: scroll;
         };
@@ -234,6 +243,36 @@
             justify-content: center;
             align-items: flex-start;
             grid-template-rows: 50px auto;
+
+            .offer-price {
+              img {
+                width: 60px;
+              }
+
+              @include breakpoint-up(lg) {
+                margin-top: 20px;
+              }
+            }
+
+            &.crown {
+              .icon {
+                font-size: 14px;
+                margin-top: -10px;
+                >img {
+                  width: 30px;
+                }
+              }
+
+              .offer-price {
+                img {
+                  width: 200px;
+
+                  @include breakpoint-down(sm) {
+                    width: 150px;
+                  }
+                }
+              }
+            }
 
             @include breakpoint-down(920px) {
               display: flex;

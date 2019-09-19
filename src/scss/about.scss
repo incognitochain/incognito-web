@@ -173,9 +173,9 @@
         background: transparent;
 
         &:hover, &.active {
-          background: #FF8E00;
           border-radius: 5px;
-          color: $white
+          color: $white;
+          background: #0DC7D8;
         }
       }
     }
@@ -222,12 +222,13 @@
           .description {
             .name {
               font-size: 1.15rem;
-              color: #2970ff;
+              font-weight: 500;
               margin-bottom: 5px;
             }
   
             .title {
               font-size: 1rem;
+              font-weight: 400;
             }
           }
         }
