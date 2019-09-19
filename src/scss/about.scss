@@ -160,6 +160,26 @@
       }
     }
 
+    .team-group {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 30px;
+      font-size: 1.2rem;
+
+      >button {
+        padding: 10px 20px;
+        height: auto;
+        background: transparent;
+
+        &:hover, &.active {
+          background: #FF8E00;
+          border-radius: 5px;
+          color: $white
+        }
+      }
+    }
+
     .gallery {
       display: flex;
       justify-content: center;
@@ -178,7 +198,39 @@
       }
 
       .group {
-        flex: 1;
+        flex-wrap: wrap;
+        justify-content: center;
+        display: none;
+
+        &.active {
+          display: flex;
+        }
+
+        .member {
+          width: 250px;
+          padding: 0 25px;
+          margin-bottom: 30px;
+
+          .avatar {
+            margin-bottom: 10px;
+            img {
+              width: 170px;
+              border-radius: 100px;
+            }
+          }
+          
+          .description {
+            .name {
+              font-size: 1.15rem;
+              color: #2970ff;
+              margin-bottom: 5px;
+            }
+  
+            .title {
+              font-size: 1rem;
+            }
+          }
+        }
       }
 
       .grid {
