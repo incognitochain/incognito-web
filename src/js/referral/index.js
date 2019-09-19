@@ -22,21 +22,14 @@ const REFERRAL_DATA = [
     desc: 'Citizen',
     got: [],
     name: 'level2',
-    nums: 5,
+    nums: 3,
     title: ''
   },
   {
     desc: 'Keeper',
     got: [],
     name: 'level3',
-    nums: 10,
-    title: ''
-  },
-  {
-    desc: 'Guardian',
-    got: [],
-    name: 'level4',
-    nums: 25,
+    nums: 7,
     title: ''
   }
 ];
@@ -233,22 +226,17 @@ const renderBoxLevel = (levelData, isActive) => {
     level1: {
       got: '$10 off',
       desc: 'Incognito’s native coin',
-      img: require('../../image/referral_gift/10$.svg')
+      img: require('../../image/referral_gift/referral_off_1.svg')
     },
     level2: {
       got: '$20 off',
       desc: 'Incognito’s native coin',
-      img: require('../../image/referral_gift/20$.svg')
+      img: require('../../image/referral_gift/referral_off_3.svg')
     },
     level3: {
-      got: '$30 off',
-      desc: 'Generates crypto by powering Incognito',
-      img: require('../../image/referral_gift/30$.svg')
-    },
-    level4: {
       got: '$50 off',
-      desc: 'Earns even more by powering other blockchains too',
-      img: require('../../image/referral_gift/50$.svg')
+      desc: 'Generates crypto by powering Incognito',
+      img: require('../../image/referral_gift/referral_off_7.svg')
     }
   };
 
@@ -259,7 +247,7 @@ const renderBoxLevel = (levelData, isActive) => {
 
   box.innerHTML = `
     <div class='num'>${levelData.nums}</div>
-    <div><img src='${data.img}' /></div>
+    <div class='offer-price'><img src='${data.img}' /></div>
   `;
 
   return box;
@@ -275,16 +263,16 @@ const handleShowInfo = async () => {
 
     const { currentLevel, referralList, total } = await getReferralData() || {};
 
-    statusContainerEl.innerText = `${total} of your friends signed up already. `;
+    statusContainerEl.innerText = `${total} of your friends have signed up`;
 
-    friendNumberContainerEl.innerText = 'Upon the completion of your purchase, we will refund you based on the number of referrals.';
+    friendNumberContainerEl.innerText = `After you've made a purchase, we'll refund you based on the number of your referrals.`;
 
     if (referralList) {
       const levelBoxEl = container.querySelector('.level-box');
       referralList.forEach(data => {
         const isActive = currentLevel && (data.name === currentLevel.name);
         const el = renderBoxLevel(data, isActive);
-        levelBoxEl.appendChild(el);
+        levelBoxEl.insertBefore(el, levelBoxEl.lastChild);
       });
 
       setTimeout(() => {
