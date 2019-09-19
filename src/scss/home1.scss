@@ -124,12 +124,12 @@
         .question {
           #top-question-container {
             // cheat css
-            margin-left: -90px;
-            margin-right: -90px;
+            margin-left: -80px;
+            margin-right: -80px;
 
             @include breakpoint-down(xl) {
-              margin-left: -110px;
-              margin-right: -110px;
+              margin-left: -100px;
+              margin-right: -100px;
             }
 
             @include breakpoint-down(lg) {
@@ -238,6 +238,10 @@
             }
           }
         }
+      }
+
+      @include breakpoint-down(xl) {
+        padding-bottom: 0px!important;
       }
     }
   }

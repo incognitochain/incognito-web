@@ -29,13 +29,10 @@
     display: flex;
     justify-content: space-between;
     margin-top: 30px;
-
-    >div {
-      flex: 1;
-    }
   
     .cta {
       margin: 0px;
+      flex: 0.8;
 
       @include breakpoint-up(xl) {
         .total-subcriber {

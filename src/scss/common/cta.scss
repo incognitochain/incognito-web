@@ -37,9 +37,9 @@
       form#email-subscribe {
         max-width: unset;
 
-        @include breakpoint-up(460px) {
-          flex-direction: row;
-        }
+        // @include breakpoint-up(460px) {
+        //   flex-direction: row;
+        // }
 
         button.submit-email {
           height: 48px;
