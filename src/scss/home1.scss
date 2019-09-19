@@ -218,8 +218,8 @@
 
             .benefit {
               display: flex;
-              padding: 10px;
-              max-width: 250px;
+              padding: 20px;
+              max-width: 350px;
 
               @include breakpoint-down(sm) {
                 max-width: 80%;
@@ -229,6 +229,7 @@
               .content {
                 display: flex;
                 flex-direction: column;
+                flex: 1;
               }
 
               .icon {
@@ -236,7 +237,6 @@
                 height: 50px;
                 margin-top: 8px;
                 margin-right: 20px;
-                flex: 1;
 
                 >img {
                   width: 30px;
