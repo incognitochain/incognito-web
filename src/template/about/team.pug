@@ -9,46 +9,53 @@ mixin member(avatar, name, title)
 #about-team
   .info.container.visible-effect
     h3.label OUR TEAM
-    p.desc We’re a diverse team of 15 cryptographers, distributed system researchers, and programmers - busy building the privacy layer of the decentralized web.
+    p.desc We’re a diverse team of 30+ cryptographers, distributed system researchers, programmers, and community builders - busy building the privacy layer of the decentralized web.
 
 
   .container.visible-effect
     .team-group
-      button#development.group(filter='development').active Development
-      button#design.group(filter='design') Design
+      button#cryptography.group(filter='cryptography').active Cryptography
+      button#distributed-systems.group(filter='distributed-systems') Distributed Systems
+      button#applications.group(filter='applications') Applications
+      button#hardware.group(filter='hardware') Hardware
       button#community.group(filter='community') Community
-      button#communications.group(filter='communications') Communications
     
     .gallery  
-      .group.active#development
-        +member(require('../../image/about/team/duy.png'), 'Duy', 'Project Lead')
+      .group.active#cryptography
+        +member(require('../../image/about/team/thuc.png'), 'Thuc', 'Researcher')
+        +member(require('../../image/about/team/anonymous.png'), 'Khoa', 'Researcher')
+        +member(require('../../image/about/team/hieutran.png'), 'Hieu', 'Researcher')
+        +member(require('../../image/about/team/hiennguyen.png'), 'Hien', 'Researcher')
+        +member(require('../../image/about/team/hy.png'), 'Hy', 'Programmer')
+
+      .group#distributed-systems
+        +member(require('../../image/about/team/dungtran.png'), 'Dung', 'Researcher')
         +member(require('../../image/about/team/thaibao.png'), 'Bao', 'Programmer')
-        +member(require('../../image/about/team/thuc.png'), 'Thuc', 'Cryptographer')
-        +member(require('../../image/about/team/hiennguyen.png'), 'Hien', 'Cryptographer')
-        +member(require('../../image/about/team/hy.png'), 'Hy', 'Cryptographer')
-        +member(require('../../image/about/team/anonymous.png'), 'Khoa', 'Cryptographer')
-        +member(require('../../image/about/team/dungtran.png'), 'Dung', 'Programmer')
         +member(require('../../image/about/team/lamchau.png'), 'Lam', 'Programmer')
         +member(require('../../image/about/team/hung.png'), 'Hung', 'Programmer')
         +member(require('../../image/about/team/dungv.png'), 'Dung', 'Programmer')
         +member(require('../../image/about/team/duybao.png'), 'Bao', 'Programmer')
         +member(require('../../image/about/team/duc.png'), 'Duc', 'Programmer')
-        +member(require('../../image/about/team/hieutran.png'), 'Hieu', 'Cryptographer')
-        +member(require('../../image/about/team/khanhle.png'), 'Khanh', 'QC')
-        +member(require('../../image/about/team/binh.png'), 'Binh', 'Product')
-        +member(require('../../image/about/team/phuong.png'), 'Phuong', 'Product')
-        +member(require('../../image/about/team/vuong.png'), 'Vuong', 'Product')
-        +member(require('../../image/about/team/duongtien.png'), 'Tien', 'Product')
-        +member(require('../../image/about/team/hoai.png'), 'Hoai', 'Product')
-      .group#design
-        +member(require('../../image/about/team/linh.png'), 'Linh', 'Designer')
-        +member(require('../../image/about/team/an.png'), 'An', 'Designer')
+        +member(require('../../image/about/team/khanhle.png'), 'Khanh', 'Tester')
+
+      .group#applications
+        +member(require('../../image/about/team/phuong.png'), 'Phuong', 'Programmer')
+        +member(require('../../image/about/team/vuong.png'), 'Vuong', 'Programmer')
+        +member(require('../../image/about/team/duongtien.png'), 'Tien', 'Programmer')
+        +member(require('../../image/about/team/hoai.png'), 'Hoai', 'Programmer')
+        +member(require('../../image/about/team/an.png'), 'An', 'Product Designer')
+
+      .group#hardware
+        +member(require('../../image/about/team/linh.png'), 'Linh', 'Industrial Designer')
+        +member(require('../../image/about/team/binh.png'), 'Hien', 'Programmer')
+        +member(require('../../image/about/team/binh.png'), 'Binh', 'Programmer')
+
       .group#community
+        +member(require('../../image/about/team/duy.png'), 'Duy', 'Community')
         +member(require('../../image/about/team/henry.png'), 'Henry', 'Community')
         +member(require('../../image/about/team/thang.png'), 'Peter', 'Community')
         +member(require('../../image/about/team/annie.png'), 'Annie', 'Community')
         +member(require('../../image/about/team/andrey.png'), 'Andrey', 'Community')
-      .group#communications
         +member(require('../../image/about/team/ning.png'), 'Ning', 'Communications')
 
   .info.container.visible-effect
