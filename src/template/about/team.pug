@@ -17,41 +17,39 @@ mixin member(avatar, name, title)
       button#development.group(filter='development').active Development
       button#design.group(filter='design') Design
       button#community.group(filter='community') Community
-      button#marketing.group(filter='marketing') Marketing
       button#communications.group(filter='communications') Communications
     
     .gallery  
       .group.active#development
-        +member(require('../../image/about/team/duy.png'), 'Duy Huynh', 'Project Lead')
-        +member(require('../../image/about/team/thaibao.png'), 'Le Vu Thai Bao', 'Chain')
-        +member(require('../../image/about/team/thuc.png'), 'Nguyen Dinh Thuc', 'Chain')
-        +member(require('../../image/about/team/hiennguyen.png'), 'Nguyen Thi Thu Hien', 'Chain')
-        +member(require('../../image/about/team/hy.png'), 'Ngo Dinh Hy', 'Chain')
-        +member(require('../../image/about/team/anonymous.png'), 'Tran Minh Khoa', 'Chain')
-        +member(require('../../image/about/team/dungtran.png'), 'Tran Trung Dung', 'Chain')
-        +member(require('../../image/about/team/lamchau.png'), 'Chau Tuong Lam', 'Chain')
-        +member(require('../../image/about/team/hung.png'), 'Ngo Minh Quoc Hung', 'Chain')
-        +member(require('../../image/about/team/dungv.png'), 'Van Quoc Dung', 'Chain')
-        +member(require('../../image/about/team/duybao.png'), 'Chiem Duy Bao', 'Chain')
-        +member(require('../../image/about/team/duc.png'), 'Dinh Nguyen Minh Đuc', 'Chain')
-        +member(require('../../image/about/team/hieutran.png'), 'Tran Ngoc Hieu', 'Chain')
-        +member(require('../../image/about/team/khanhle.png'), 'Le Hoang Khanh', 'QC')
-        +member(require('../../image/about/team/binh.png'), 'Nguyen Quang Binh', 'Product')
-        +member(require('../../image/about/team/phuong.png'), 'Hoang Phuong', 'Product')
-        +member(require('../../image/about/team/vuong.png'), 'Dao Quoc Vuong', 'Product')
-        +member(require('../../image/about/team/duongtien.png'), 'Duong Tien', 'Product')
-        +member(require('../../image/about/team/hoai.png'), 'Ngo Hoai', 'Product')
+        +member(require('../../image/about/team/duy.png'), 'Duy', 'Project Lead')
+        +member(require('../../image/about/team/thaibao.png'), 'Bao', 'Programmer')
+        +member(require('../../image/about/team/thuc.png'), 'Thuc', 'Cryptographer')
+        +member(require('../../image/about/team/hiennguyen.png'), 'Hien', 'Cryptographer')
+        +member(require('../../image/about/team/hy.png'), 'Hy', 'Cryptographer')
+        +member(require('../../image/about/team/anonymous.png'), 'Khoa', 'Cryptographer')
+        +member(require('../../image/about/team/dungtran.png'), 'Dung', 'Programmer')
+        +member(require('../../image/about/team/lamchau.png'), 'Lam', 'Programmer')
+        +member(require('../../image/about/team/hung.png'), 'Hung', 'Programmer')
+        +member(require('../../image/about/team/dungv.png'), 'Dung', 'Programmer')
+        +member(require('../../image/about/team/duybao.png'), 'Bao', 'Programmer')
+        +member(require('../../image/about/team/duc.png'), 'Duc', 'Programmer')
+        +member(require('../../image/about/team/hieutran.png'), 'Hieu', 'Cryptographer')
+        +member(require('../../image/about/team/khanhle.png'), 'Khanh', 'QC')
+        +member(require('../../image/about/team/binh.png'), 'Binh', 'Product')
+        +member(require('../../image/about/team/phuong.png'), 'Phuong', 'Product')
+        +member(require('../../image/about/team/vuong.png'), 'Vuong', 'Product')
+        +member(require('../../image/about/team/duongtien.png'), 'Tien', 'Product')
+        +member(require('../../image/about/team/hoai.png'), 'Hoai', 'Product')
       .group#design
-        +member(require('../../image/about/team/linh.png'), 'Ngo Khanh Linh', 'Designer')
-        +member(require('../../image/about/team/an.png'), 'Nguyen Tuong An', 'Designer')
+        +member(require('../../image/about/team/linh.png'), 'Linh', 'Designer')
+        +member(require('../../image/about/team/an.png'), 'An', 'Designer')
       .group#community
-        +member(require('../../image/about/team/thang.png'), 'Nguyen Minh Thang', 'CX')
-        +member(require('../../image/about/team/annie.png'), 'Phan Quy Anh', 'CX')
-        +member(require('../../image/about/team/andrey.png'), 'Andrey Bugaevski', 'Community')
-      .group#marketing
-        +member(require('../../image/about/team/henry.png'), 'Van Qui Nguyen', 'Marketing')
+        +member(require('../../image/about/team/henry.png'), 'Henry', 'Community')
+        +member(require('../../image/about/team/thang.png'), 'Peter', 'Community')
+        +member(require('../../image/about/team/annie.png'), 'Annie', 'Community')
+        +member(require('../../image/about/team/andrey.png'), 'Andrey', 'Community')
       .group#communications
-        +member(require('../../image/about/team/ning.png'), 'Ning Tan', 'Communications')
+        +member(require('../../image/about/team/ning.png'), 'Ning', 'Communications')
 
   .info.container.visible-effect
     h3.label JOIN INCOGNITO

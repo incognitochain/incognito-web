@@ -1,14 +1,13 @@
 @import './share_email_modal.scss';
 
 #referral-container {
-  margin-top: 10px;
   #referral-intro {
     padding-top: 100px;
     padding-bottom: 100px;
     display: flex;
     background: url('../image/referral_background.jpg') no-repeat;
     background-size: cover;
-    max-width: fit-content;
+    max-width: unset;
 
     .image {
       min-width: 350px;
@@ -256,7 +255,6 @@
             &.crown {
               .icon {
                 font-size: 14px;
-                margin-top: -10px;
                 >img {
                   width: 30px;
                 }
@@ -295,9 +293,10 @@
             }
   
             &.active {
-              border: solid 2px $green;
-              border-radius: 4px;
-              background-color: #f4feff;
+              .num {
+                background: $black;
+                color: $white;
+              }
             }
   
             .desc {
