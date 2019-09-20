@@ -8,6 +8,12 @@
     background: url('../image/referral_background.jpg') no-repeat;
     background-size: cover;
     max-width: unset;
+    min-height: 80vh;
+    align-items: center;
+
+    @include breakpoint-down(sm) {
+      background-image: url('../image/referral_background_mobile.jpg');
+    }
 
     .image {
       min-width: 350px;
@@ -23,7 +29,7 @@
         max-height: 330px;
       }
 
-      @include breakpoint-down(lg) {
+      @include breakpoint-down(xl) {
         display: none;
       };
     }
@@ -256,7 +262,8 @@
               .icon {
                 font-size: 14px;
                 >img {
-                  width: 30px;
+                  width: 40px;
+                  margin-top: -5px;
                 }
               }
 
@@ -294,8 +301,10 @@
   
             &.active {
               .num {
-                background: $black;
-                color: $white;
+                >span {
+                  background: $black;
+                  color: $white;
+                }
               }
             }
   
@@ -311,19 +320,21 @@
             }
 
             .num {
-              border: solid 1px black;
-              width: 30px;
-              height: 30px;
-              border-radius: 15px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              margin-left: auto;
-              margin-right: auto;
+              >span {
+                border: solid 1px black;
+                width: 30px;
+                height: 30px;
+                border-radius: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: auto;
+                margin-right: auto;
 
-              @include breakpoint-down(920px) {
-                border: none;
-                font-size: 28px;
+                @include breakpoint-down(920px) {
+                  border: none;
+                  font-size: 28px;
+                }
               }
             }
   

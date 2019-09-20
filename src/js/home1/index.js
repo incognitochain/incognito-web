@@ -79,8 +79,14 @@ const handleWindowScroll = (container) => {
     subscribeEmailEl = subscribeEmailEl.offsetParent;
   } while(subscribeEmailEl);
 
+  const priceElm = priceInfoElm.querySelector(".price");
+
   window.addEventListener('scroll', function() {
-    const ctaElmHeight = ctaEl.offsetHeight;
+    let ctaElmHeight = ctaEl.offsetHeight;
+    if(priceElm) {
+      ctaElmHeight += priceElm.offsetHeight + 20;
+    }
+
     if(window.pageYOffset > stickyPosition) {
       ctaEl.classList.add("sticky");
       priceInfoElm.style.paddingTop = `${ctaElmHeight}px`;

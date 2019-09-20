@@ -12,6 +12,14 @@ nav#header {
     padding: 15px;
   };
 
+  .mobile {
+    display: none;
+
+    @include breakpoint-down(lg) {
+      display: block;
+    }
+  }
+
   &.light {
     h3.header-logo {
       color: $green;
