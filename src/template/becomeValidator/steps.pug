@@ -72,19 +72,12 @@ mixin stepHtml(step, stepName, isOpen)
         |. You’ll need it in Step 5.
 
     +stepHtml('3', 'Run Incognito')
-      p In your SSH window which connects to the instance, please follow these steps:
-      ul
-        li Install Docker:
-          p.script.copiable(data-copy-value='sudo apt-get update && sudo apt-get install docker.io') sudo apt-get update && sudo apt-get install docker.io
-        li Download run.sh file:
-          p.script.copiable(data-copy-value='curl -LO https://incognito.org/run.sh') curl -LO https://incognito.org/run.sh
-        li Run this command lines. Replace validator_key with 
-          |
-          span.highlight your VALIDATOR KEY 
-          | (from Step 1).
-          p.script.copiable(data-copy-value='sed -i "s/xxx/validator_key/" run.sh') sed -i "s/xxx/validator_key/" run.sh
-        li Enter the command line below to start Incognito
-          p.script.copiable(data-copy-value='bash run.sh') bash run.sh
+      p In your terminal:
+      p Run this command line below. Replace validator_key with 
+        |
+        span.highlight your VALIDATOR KEY 
+        | (from Step 1).
+      p.script.copiable(data-copy-value='curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && bash run.sh') curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && bash run.sh
 
       p If you see the following errors, just ignore them. You’re doing good.  
         br
