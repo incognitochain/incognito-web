@@ -1,1 +1,1 @@
-export const isEmail = email => /[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})/.test(email);
+export const isEmail = email => /[A-Za-z0-9._%+-]{3,}@[a-zA-Z0-9-]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})/.test(email);

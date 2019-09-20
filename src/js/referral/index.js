@@ -68,12 +68,12 @@ const getUserReferralUrl = () => {
 
 const handleShareFb = (referralUrl) => {
   // https://www.facebook.com/sharer/sharer.php?u=${referralUrl}&quote=
-  popupCenter(`https://www.facebook.com/sharer/sharer.php?u=${referralUrl}&quote=${socialShareMsg}`, 'Share to Facebook');
+  popupCenter(`https://www.facebook.com/sharer/sharer.php?u=${referralUrl}&quote=${encodeURI(socialShareMsg)}`, 'Share to Facebook');
 }
 
 const handleShareTwitter = (referralUrl) => {
   // https://twitter.com/share?url=${referralUrl}&via=i&text
-  popupCenter(`https://twitter.com/share?url=${referralUrl}&text=${socialShareMsg}`, 'Share to Twitter');
+  popupCenter(`https://twitter.com/share?url=${referralUrl}&text=${encodeURI(socialShareMsg)}`, 'Share to Twitter');
 }
 
 const handleSendEmail = async emails => {
