@@ -246,7 +246,7 @@ const renderBoxLevel = (levelData, isActive) => {
   isActive && box.classList.add('active');
 
   box.innerHTML = `
-    <div class='num'>${levelData.nums}</div>
+    <div class='num'><span>${levelData.nums}</span></div>
     <div class='offer-price'><img src='${data.img}' /></div>
   `;
 

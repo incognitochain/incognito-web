@@ -113,9 +113,15 @@
           }
 
           .description {
+            p {
+              font-size: 18px;
+              font-weight: 300;
+              line-height: 27px;
+            }
+
             @include breakpoint-up(lg) {
-              margin-top: 40px;
-              margin-bottom: 40px;
+              margin-top: 10px;
+              margin-bottom: 10px;
             }
 
             @include breakpoint-down(sm) {
@@ -218,7 +224,7 @@
 
             .benefit {
               display: flex;
-              padding: 20px;
+              padding: 5px 20px;
               max-width: 350px;
 
               @include breakpoint-down(sm) {
@@ -257,6 +263,7 @@
 
               .desc {
                 font-size: 14px;
+                font-weight: 300;
               }
             }
           }

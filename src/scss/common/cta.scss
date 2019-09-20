@@ -42,7 +42,7 @@
         // }
 
         button.submit-email {
-          height: 48px;
+          height: 54px;
           background: #FF8E00;
           border-radius: 4px;
           min-width: 190px;
@@ -53,7 +53,7 @@
         }
 
         input {
-          height: 48px;
+          height: 54px;
 
           @include breakpoint-up(460px) {
             flex: 1;

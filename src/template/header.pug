@@ -3,6 +3,12 @@ mixin menu-left()
   //- a(href='/mine.html').menu-item Mine
 
 mixin sidebar-menu
+  a(href='/').menu-item.mobile Earn
+  a(href='/wallet.html').menu-item.mobile Use
+  a(href='/referral.html').menu-item.mobile Refer & Earn $50
+
+  hr(size='1', width='100%').mobile
+
   a(href='/sidechain.html').menu-item Tech Overview
   a(href='/validator.html').menu-item Host a Virtual Node
   a(href='https://github.com/incognitochain?tab=repositories', target='blank').menu-item Code
