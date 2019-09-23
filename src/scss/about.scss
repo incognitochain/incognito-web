@@ -1,4 +1,124 @@
 #about-container {
+
+  #intro-container {
+    background: url(../image/about/about_us_background.jpg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 50vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+
+    @include breakpoint-down(sm) {
+      background-image: url(../image/about/about_us_background_mobile.jpg);
+      min-height: calc(100vh - 60px);
+    }
+
+    .sub-title, .heading {
+      font-size: 24px;
+      font-weight: 300;
+    }
+
+    .heading {
+      @include breakpoint-down(sm) {
+        font-weight: 500;
+      }
+    }
+
+    .sub-title {
+      font-size: 28px;
+      padding: 0 100px;
+      line-height: 40px;
+
+      @include breakpoint-down(md) {
+        padding: 0 20px;
+        font-size: 20px;
+        line-height: 28px;
+      }
+    }
+
+    * {
+      color: $white;
+    }
+  }
+
+  #offices {
+    background-color: $white;
+    text-align: center;
+
+    @include breakpoint-down(md) {
+      padding-bottom: 50px;
+    };
+
+    .info {
+      padding-top: 100px;
+      margin-left: auto;
+      margin-right: auto;
+
+      @include breakpoint-down(md) {
+        padding-top: 50px;
+      };
+
+      h3.label {
+        color: $black2;
+        letter-spacing: 1px;
+      }
+  
+      p.desc {
+        max-width: 700px;
+        font-size: 24px;
+        margin-left: auto;
+        margin-right: auto;
+
+        @include breakpoint-down(md) {
+          font-size: 20px;
+        };
+
+        a {
+          color: $black;
+          transition: color 300ms;
+          &:hover {
+            color: $grey2;
+          }
+        }
+      }
+    }
+    .groups {
+      display: flex;
+      @include breakpoint-down(lg) {
+        flex-direction: column;
+      };
+      .group {
+        margin-top: 30px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 20px 40px;
+        align-items: center;
+        text-decoration: none;
+        img {
+          width: 100px;
+          height: 100px;
+          object-fit: fill;
+          margin-bottom: 10px;
+        }
+        .label {
+          text-transform: uppercase;
+          font-size: 18px;
+          margin: 10px 0px;
+          margin-bottom: 20px;
+          font-weight: 500;
+        }
+        .desc {
+          font-weight: 300;
+          color: #657576;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+
   #what-we-build {
     padding-bottom: 100px;
     background-color: $white;
@@ -19,18 +139,11 @@
 
       h3.label {
         color: $black2;
-        font-size: 18px;
         letter-spacing: 1px;
-        font-weight: 700;
-
-        @include breakpoint-down(md) {
-          font-size: 18px;
-        };
       }
   
       p.desc {
         max-width: 700px;
-        color: $black2;
         font-size: 24px;
         margin-left: auto;
         margin-right: auto;
@@ -78,6 +191,40 @@
       }
     }
   }
+
+  #explaination {
+    padding-top: 50px;
+
+    @include breakpoint-down(md) {
+      padding-bottom: 50px;
+    };
+
+    .content {
+      display: flex;
+
+      @include breakpoint-down(md) {
+        flex-direction: column;
+      }
+
+      .left-side, .right-side {
+        flex: 1;
+        padding: 20px;
+      }
+
+      .right-side {
+        font-size: 18px;
+
+        .desc {
+          &:first-child {
+            margin-top: 0;
+          }
+
+          margin-top: 50px;
+        }
+      }
+    }
+  }
+
   #about-intro {
     padding-top: 50px;
     padding-bottom: 100px;
@@ -133,17 +280,10 @@
 
       h3.label {
         color: $black2;
-        font-size: 18px;
         letter-spacing: 1px;
-        font-weight: 700;
-
-        @include breakpoint-down(md) {
-          font-size: 18px;
-        };
       }
   
       p.desc {
-        color: $black2;
         font-size: 24px;
 
         @include breakpoint-down(md) {
@@ -163,15 +303,20 @@
     .team-group {
       margin-top: 50px;
       display: flex;
-      justify-content: space-between;
       padding: 0 30px;
       font-size: 1.2rem;
       flex-wrap: wrap;
+      justify-content: center;
 
-      >button {
+      .group {
         padding: 10px 20px;
         height: auto;
         background: transparent;
+        margin: 15px;
+
+        @include breakpoint-down(sm) {
+          margin: 10px 0px;
+        }
 
         &:hover, &.active {
           border-radius: 5px;
@@ -241,6 +386,22 @@
         .image {
           width: 50%;
         }
+      }
+    }
+  }
+
+  * {
+    .info {
+      h3.label {
+        font-size: 38px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      p.desc {
+        color: #657576;
+        margin-top: 0px;
       }
     }
   }
