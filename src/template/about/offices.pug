@@ -1,0 +1,27 @@
+mixin build_group(image, title, description)
+    .group
+        img(src=image, alt='office')
+        span.label= title
+        span.desc!= description
+
+#offices.container
+    .info.visible-effect
+        h3.label Local Offices
+        p.desc Stop by to say hello at any time.
+
+    .groups.visible-effect
+        +build_group(
+            require('../../image/about/offices/office_asia.svg'),
+            'Asia',
+            '139 Hong Ha St<br/>Ho Chi Minh City<br/>Vietnam'
+        )
+        +build_group(
+            require('../../image/about/offices/office_us.svg'),
+            'United States',
+            '101 E Redlands Blvd<br/>Redlands, CA 92373<br/>USA'
+        )
+        +build_group(
+            require('../../image/about/offices/office_europe.svg'),
+            'Europe',
+            'Villa Malitah, Mediterranean Street. The Village, St Julian’s STJ 1870'
+        )

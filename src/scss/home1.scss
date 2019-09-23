@@ -2,6 +2,7 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  overflow-y: scroll;
 
   #telegram-chat-float {
     @include breakpoint-down(xl) {
@@ -97,7 +98,7 @@
         bottom: unset!important;
 
         .intro {
-          justify-content: center !important;
+          justify-content: unset !important;
           min-height: calc(100vh - 90px);
   
           @include breakpoint-down(xl) {
@@ -294,6 +295,25 @@
 
       @include breakpoint-down(xl) {
         padding-bottom: 0px!important;
+      }
+    }
+
+    .scroll-down {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      left: 75%;
+      height: 50px;
+      width: 50px;
+      border-radius: 25px;
+      margin-bottom: 20px;
+      margin-left: -25px;
+      font-family: "Font Awesome 5 Pro";
+
+      &.hide {
+        display: none;
       }
     }
   }
