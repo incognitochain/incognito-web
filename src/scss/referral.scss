@@ -2,14 +2,19 @@
 
 #referral-container {
   #referral-intro {
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
     display: flex;
     background: url('../image/referral_background.jpg') no-repeat;
     background-size: cover;
     max-width: unset;
-    min-height: 80vh;
+    min-height: 50vh;
     align-items: center;
+
+    @include breakpoint-down(1440px) {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
 
     @include breakpoint-down(sm) {
       background-image: url('../image/referral_background_mobile.jpg');
@@ -41,12 +46,22 @@
 
       .block1 {
         margin-bottom: 20px;
+
+        @include breakpoint-down(1440px) {
+          margin-bottom: 10px;
+        }
+
         h1.title {
           font-size: 36px;
           letter-spacing: -1.5px;
           line-height: 50px;
           margin: 0px;
           color: $white;
+
+          @include breakpoint-down(1440px) {
+            font-size: 30px;
+            line-height: 40px;
+          }
         }
         p.desc {
           font-size: 20px;
@@ -94,6 +109,10 @@
             letter-spacing: -0.42px;
             width: 100px;
             background-color: #f1f1f1;
+
+            @include breakpoint-down(1440px) {
+              height: 44px;
+            }
           }
           button.copy-btn {
             width: 100px;
@@ -101,6 +120,10 @@
             font-size: 16px;
             letter-spacing: 0;
             color: $white;
+
+            @include breakpoint-down(1440px) {
+              height: 44px;
+            }
           }
         }
   
@@ -108,6 +131,10 @@
           display: flex;
           justify-content: space-between;
           margin-top: 20px;
+
+          @include breakpoint-down(1440px) {
+            margin-top: 10px;
+          }
 
           @include breakpoint-down(sm) {
             flex-direction: column;
@@ -227,6 +254,10 @@
 
       .level-box-container {
         margin-top: 50px;
+
+        @include breakpoint-down(1440px) {
+          margin-top: 0px;
+        }
         
         @include breakpoint-down(1300px) {
           overflow-x: scroll;
