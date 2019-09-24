@@ -4,18 +4,16 @@ import { trackEvent } from '../utils/ga';
 const carouselStyleConfig = {
   normal: {
     button: {
-      height: '10px',
-      width: '10px',
-      background: 'none',
-      border: '1px solid rgba(255, 255, 255, 0.8)'
+      height: '80px',
+      width: '80px',
+      border: 'none'
     }
   },
   active: {
     button: {
-      height: '15px',
-      width: '15px',
-      background: 'rgba(255, 255, 255, 0.8)',
-      border: 'none'
+      height: '80px',
+      width: '80px',
+      border: '2px solid #3a84ee'
     }
   }
 };
@@ -78,14 +76,13 @@ class Slider extends HTMLElement {
     this.containers = this.data.map(data => {
       const container = document.createElement('div');
       container.style.cssText = `
-      transform: scale(1.1);
       opacity: 0;
-      width: 0px;
-      height: 0px;
-      height: inherit;
-      transition: opacity 2s, transform 1s;
+      width: 100%;
+      height: calc(100% - 100px);
+      transition: opacity 3s;
+      position: absolute;
       background-size: cover;
-      background-position: top right;
+      background-position: ${data.position || 'center'};
       background-image: url('${data.img}');
     `;
 
@@ -127,7 +124,7 @@ class Slider extends HTMLElement {
     carousel.classList.add('carousel');
     carousel.style.cssText = `
       position: absolute;
-      bottom: 50px;
+      bottom: 5px;
       left: 50%;
     `;
 
@@ -140,7 +137,7 @@ class Slider extends HTMLElement {
     `
 
     const buttonCss = carouselStyleConfig.normal.button;
-    this.data.forEach((_, i) => {
+    this.data.forEach((item, i) => {
       const button = document.createElement('div');
       button.classList.add('button');
       button.addEventListener('click', () => {
@@ -150,10 +147,16 @@ class Slider extends HTMLElement {
         border: ${buttonCss.border};
         width: ${buttonCss.width};
         height: ${buttonCss.height};
-        border-radius: 50px;
         margin: 0 5px;
-        background: ${buttonCss.background}
       `;
+      
+      const image = document.createElement('img');
+      image.src = item.img;
+      image.style.cssText = `
+        width: 100%;
+        height: 100%;
+      `;
+      button.appendChild(image);
 
       wrapper.appendChild(button);
     });
@@ -234,19 +237,19 @@ class Slider extends HTMLElement {
   }
 
   hideContainer(container) {
-    container.style.width = 0;
-    container.style.height = 0;
+    // container.style.width = 0;
+    // container.style.height = 0;
     container.style.opacity = 0;
-    container.style.transform = 'scale(1.1)';
-    container.style.backgroundPosition = 'top right';
+    // container.style.transform = 'scale(1.1)';
+    // container.style.backgroundPosition = 'top right';
   }
 
   showContainer(container, data) {
-    container.style.width = '100%';
-    container.style.height = '100%';
+    // container.style.width = '100%';
+    // container.style.height = 'calc(100% - 100px)';
     container.style.opacity = 1;
-    container.style.transform = 'scale(1)';
-    container.style.backgroundPosition = data.position;
+    // container.style.transform = 'scale(1)';
+    // container.style.backgroundPosition = data.position;
     this.updateCarouselActive();
   }
 
@@ -317,7 +320,6 @@ class Slider extends HTMLElement {
         ...(i === this.currentIndex ? carouselStyleConfig.active : {})
       };
         
-      button.style.background = styleConfig.button.background;
       button.style.width = styleConfig.button.width;
       button.style.height = styleConfig.button.height;
       button.style.border = styleConfig.button.border;
