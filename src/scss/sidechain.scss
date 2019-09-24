@@ -1,0 +1,60 @@
+#sidechain-container {
+    >div.intro-slider-container {        
+        .right-content {
+            @include breakpoint-up(xl) {
+                overflow: hidden!important;
+                max-height: 1080px;
+            }
+
+            #intro-container {
+                >div.content {
+                    div.intro {
+                        .scroll-action-btn {
+                            display: none;
+                        }
+
+                        div {
+                            p.sub-title {
+                                max-width: unset;
+                            }
+                        }
+
+                        @include breakpoint-down(xl) {
+                            padding-bottom: 0px;
+                        }
+                    }
+                }
+
+                @include breakpoint-down(xl) {
+                    padding-bottom: 0px;
+                }
+            }
+        }
+    }
+
+    #section-container {
+        @include breakpoint-down(xl) {
+            padding-top: 0px;
+        }
+    }
+
+    .links {
+        display: flex;
+        flex-direction: column;
+        z-index: 0;
+
+        button {
+            margin: 5px 0px;
+            min-width: 300px;
+            color: $white;
+
+            &.slave {
+                background: #014E52;
+            }
+
+            @include breakpoint-down(xl) {
+                width: 100%;
+            }
+        }
+    }
+}

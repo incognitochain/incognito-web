@@ -4,23 +4,32 @@
     background: url(../image/about/about_us_background.jpg) no-repeat;
     background-size: cover;
     background-position: center;
-    min-height: 50vh;
+    min-height: 75vh;
     display: flex;
     align-items: flex-end;
     justify-content: center;
     text-align: center;
+
+    .intro {
+      margin-bottom: 50px;
+    }
 
     @include breakpoint-down(sm) {
       background-image: url(../image/about/about_us_background_mobile.jpg);
       min-height: calc(100vh - 60px);
     }
 
-    .sub-title, .heading {
+    .sub-title {
       font-size: 24px;
+      line-height: 31px;
       font-weight: 300;
     }
 
     .heading {
+      font-size: 20px;
+      font-weight: 600;
+      letter-spacing: 2px;
+
       @include breakpoint-down(sm) {
         font-weight: 500;
       }
@@ -47,29 +56,14 @@
     background-color: $white;
     text-align: center;
 
-    @include breakpoint-down(md) {
-      padding-bottom: 50px;
-    };
-
     .info {
-      padding-top: 100px;
-      margin-left: auto;
-      margin-right: auto;
-
-      @include breakpoint-down(md) {
-        padding-top: 50px;
-      };
-
       h3.label {
         color: $black2;
         letter-spacing: 1px;
       }
   
       p.desc {
-        max-width: 700px;
         font-size: 24px;
-        margin-left: auto;
-        margin-right: auto;
 
         @include breakpoint-down(md) {
           font-size: 20px;
@@ -124,19 +118,7 @@
     background-color: $white;
     text-align: center;
 
-    @include breakpoint-down(md) {
-      padding-bottom: 50px;
-    };
-
     .info {
-      padding-top: 100px;
-      margin-left: auto;
-      margin-right: auto;
-
-      @include breakpoint-down(md) {
-        padding-top: 50px;
-      };
-
       h3.label {
         color: $black2;
         letter-spacing: 1px;
@@ -193,11 +175,6 @@
   }
 
   #explaination {
-    padding-top: 50px;
-
-    @include breakpoint-down(md) {
-      padding-bottom: 50px;
-    };
 
     .content {
       display: flex;
@@ -212,53 +189,22 @@
       }
 
       .right-side {
+        margin-top: 50px;
         font-size: 18px;
+        max-width: 695px;
+        margin: 0 auto;
 
         .desc {
+          font-size: 20px;
+          font-weight: 300;
+          line-height: 30px;
+          margin-top: 50px;
+
           &:first-child {
             margin-top: 0;
           }
-
-          margin-top: 50px;
         }
       }
-    }
-  }
-
-  #about-intro {
-    padding-top: 50px;
-    padding-bottom: 100px;
-    text-align: left;
-
-    @include breakpoint-down(md) {
-      padding-top: 50px;
-      padding-bottom: 50px;
-    };
-
-    h3.sub-title {
-      text-transform: uppercase;
-      font-size: 18px;
-      letter-spacing: 1px;
-      margin-bottom: 0px;
-      @include breakpoint-down(md) {
-        font-size: 16px;
-      };
-    }
-
-    h2.title {
-      margin-top: 10px;
-      font-size: 40px;
-      color: $white;
-
-      @include breakpoint-down(md) {
-        font-size: 34px;
-      };
-    }
-
-    p.desc {
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 26px;
     }
   }
 
@@ -267,17 +213,7 @@
     background-color: $white;
     text-align: center;
 
-    @include breakpoint-down(md) {
-      padding-bottom: 50px;
-    };
-
     .info {
-      padding-top: 100px;
-
-      @include breakpoint-down(md) {
-        padding-top: 50px;
-      };
-
       h3.label {
         color: $black2;
         letter-spacing: 1px;
@@ -392,6 +328,14 @@
 
   * {
     .info {
+      &.container {
+        margin-top: 100px;
+
+        @include breakpoint-down(sm) {
+          margin-top: 0px;
+        }
+      }
+
       h3.label {
         font-size: 38px;
         font-weight: 500;
@@ -402,6 +346,10 @@
       p.desc {
         color: #657576;
         margin-top: 0px;
+        font-weight: 300;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
       }
     }
   }
