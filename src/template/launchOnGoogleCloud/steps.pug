@@ -51,10 +51,12 @@ mixin stepHtml(step, stepName, isOpen)
         span.highlight "tcp"
         |, then input 
         span.highlight "9334,9433"
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_5_create.png'))
+      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_5_create.png')).landscape
       p Then click 
         span.highlight "Create" 
         |and go back to VM Instance.
+      p Your local server is now created. This is the IP address to run your Virtual Node
+      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_5_ip.png')).landscape
 
     +stepHtml('6', 'SSH to instance')
       p Click on 
@@ -63,5 +65,5 @@ mixin stepHtml(step, stepName, isOpen)
         span.highlight "Open in browser window"
       img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_6_connect.png')).landscape
       p From this SSH window, you can start to set up node by following this instruction: 
-        a(href='https://incognitodoc.gitbook.io/workspace/incognito-validator') https://incognitodoc.gitbook.io/workspace/incognito-validator
+        a(href='/validator.html') https://incognito.org/validator
       img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_6_ssh.png')).landscape
