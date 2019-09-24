@@ -5,6 +5,7 @@
   bottom: 20px;
   transition: bottom 500ms ease-out, transform 200ms;
   transform: rotate();
+  z-index: 100;
 
   &:hover {
     bottom: 30px;

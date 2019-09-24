@@ -15,7 +15,8 @@ function main() {
   handleVideoPlayers(container);
   startCountdown(container);
   handleShowTotalSubscriber(container);
-  handleWindowScroll(container);
+  handleScrollToEmailSubscriber(container);
+  handleScrollToFAQ(container);
 }
 
 const handleShowTotalSubscriber = async (container) => {
@@ -68,7 +69,27 @@ const handleVideoPlayers = (container) => {
   }
 }
 
-const handleWindowScroll = (container) => {
+const handleScrollToFAQ  = (container) => {
+  const rootScrollerElm = container.querySelector(".right-content");
+  if (!rootScrollerElm) return;
+  const scrollBtn = container.querySelector(".scroll-down");
+  const faqElm = container.querySelector("#faq");
+
+  rootScrollerElm.addEventListener('scroll', function(event) {
+    const target = event.target;
+    console.log(target.scrollTop, faqElm.offsetTop);
+    
+    if(scrollBtn) {
+      if(target.scrollTop > 0) {
+        scrollBtn.classList.add("hide");
+      } else {
+        scrollBtn.classList.remove("hide");
+      }
+    }
+  })
+}
+
+const handleScrollToEmailSubscriber = (container) => {
   const ctaEl = container.querySelector(".cta");
   const priceInfoElm = container.querySelector(".price-info");
   let subscribeEmailEl = ctaEl.querySelector("#email-subscribe");

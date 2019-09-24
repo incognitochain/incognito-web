@@ -4,12 +4,12 @@ mixin build_group(image, title, description)
         span.label= title
         span.desc!= description
 
-#offices.container
-    .info.visible-effect
+#offices
+    .info.container.visible-effect
         h3.label Local Offices
         p.desc Stop by to say hello at any time.
 
-    .groups.visible-effect
+    .groups.container.visible-effect
         +build_group(
             require('../../image/about/offices/office_asia.svg'),
             'Asia',

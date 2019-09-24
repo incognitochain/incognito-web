@@ -10,6 +10,7 @@
     max-width: unset;
     min-height: 50vh;
     align-items: center;
+    background-position-y: center;
 
     @include breakpoint-down(1440px) {
       padding-top: 20px;
@@ -62,7 +63,7 @@
             line-height: 40px;
           }
 
-          @include breakpoint-down(md) {
+          @include breakpoint-down(sm) {
             color: $white;
           }
         }
@@ -79,16 +80,17 @@
             font-size: 18px;
             font-weight: 300;
 
-            @include breakpoint-down(md) {
+            @include breakpoint-down(sm) {
               color: $white;
             }
           }
           &.strong {
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
             color: $green;
             font-weight: 500;
             letter-spacing: 1px;
+            margin-top: 0px;
           }
         }
       }
@@ -107,13 +109,12 @@
           cursor: pointer;
           display: flex;
           align-items: center;
-          span.referral-link {
+          span.referral-link-wrapper {
             display: flex;
             align-items: center;
             flex: 1;
             white-space: nowrap;
             text-overflow: ellipsis;
-            overflow: hidden;
             text-align: left;
             padding: 0px 20px;
             height: $btn-height;
@@ -128,6 +129,10 @@
 
             @include breakpoint-down(1440px) {
               height: 44px;
+            }
+
+            .referral-link {
+              overflow: hidden;
             }
           }
           button.copy-btn {
@@ -287,12 +292,12 @@
           };
 
           .box {
-            padding: 20px 10px 30px 10px;
+            padding: 20px 10px 10px 10px;
             min-width: 142px;
             display: grid;
             flex: 1;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             grid-template-rows: 50px auto;
 
             .offer-price {
@@ -307,23 +312,15 @@
 
             &.crown {
               .icon {
-                font-size: 14px;
-                >img {
-                  width: 40px;
-                  margin-top: -5px;
-                }
+                font-size: 16px;
               }
 
               .offer-price {
                 img {
-                  width: 200px;
+                  width: 120px;
 
                   @include breakpoint-down(sm) {
                     width: 150px;
-                  }
-
-                  @include breakpoint-up(lg) {
-                    margin-left: 100px;
                   }
                 }
               }

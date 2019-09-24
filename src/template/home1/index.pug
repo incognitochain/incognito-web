@@ -34,8 +34,10 @@ block main
                   img: require('../../image/home1/home_slider_5.jpg'),
                   position: 'bottom center',
                }
-            ])
-            img(src=require('../../image/home1/home_slider_6.jpg')).mobile
+            ], 
+            auto_slide=true,
+            auto_slide_time=10 * 1000)
+            img(src=require('../../image/home1/home_background_mobile.png')).mobile
 
             .links
                span.link(data-video-url='https://www.youtube.com/embed/LZjI4RsVwF8') Watch intro

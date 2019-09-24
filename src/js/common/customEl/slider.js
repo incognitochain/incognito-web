@@ -1,6 +1,25 @@
 import arrowIcon from '../../../image/icon/arrow_right_black.png';
 import { trackEvent } from '../utils/ga';
 
+const carouselStyleConfig = {
+  normal: {
+    button: {
+      height: '10px',
+      width: '10px',
+      background: 'none',
+      border: '1px solid rgba(255, 255, 255, 0.8)'
+    }
+  },
+  active: {
+    button: {
+      height: '15px',
+      width: '15px',
+      background: 'rgba(255, 255, 255, 0.8)',
+      border: 'none'
+    }
+  }
+};
+
 class Slider extends HTMLElement {
   constructor() {
     super();
@@ -15,6 +34,7 @@ class Slider extends HTMLElement {
     this.slideNext = this.slideNext.bind(this);
     this.slidePrev = this.slidePrev.bind(this);
     this.autoSlide = this.autoSlide.bind(this);
+    this.slideTo = this.slideTo.bind(this);
   }
 
   getImageData() {
@@ -23,9 +43,29 @@ class Slider extends HTMLElement {
     } catch {}
   }
 
+  isAutoSlide() {
+    const defaultIsAutoSlide = false;
+    try {
+      return this.getAttribute('auto_slide') || defaultIsAutoSlide;
+    } catch {}
+    return false;
+  }
+
+  getAutoSlideTime() {
+    const defaultTime = 5 * 1000;
+    try {
+      return this.getAttribute('auto_slide_time') || defaultTime;
+    } catch {}
+    return defaultTime;
+  }
+
   connectedCallback() {
     this.render();
-    this.slideNext();
+    if(this.isAutoSlide()) {
+      this.resetAutoSlide();
+    } else {
+      this.slideNext();
+    }
   }
 
   disconnectedCallback() {
@@ -43,7 +83,7 @@ class Slider extends HTMLElement {
       width: 0px;
       height: 0px;
       height: inherit;
-      transition: background 3s, opacity 2s, transform 1s;
+      transition: opacity 2s, transform 1s;
       background-size: cover;
       background-position: top right;
       background-image: url('${data.img}');
@@ -56,6 +96,7 @@ class Slider extends HTMLElement {
             eventAction: 'click',
             eventLabel: 'Move to next image'
           });
+          this.resetAutoSlide();
           this.slideNext();
         });
       }
@@ -76,52 +117,97 @@ class Slider extends HTMLElement {
     `;
 
     if (this.data && this.data.length > 1) {
-      const nextBtn = document.createElement('div');
-      const prevBtn = document.createElement('div');
-
-      nextBtn.style.cssText = `
-        position: absolute;
-        z-index: 1000;
-        color: red;
-        top: 50%;
-        right: 20px;
-        transform: translateY(-50%);
-        width: 40px;
-        height: 40px;
-        cursor: pointer;
-        background: url('${arrowIcon}');
-        background-size: cover;
-      `;
-
-      prevBtn.style.cssText = `
-        ${nextBtn.style.cssText}
-        left: 20px;
-        right: unset;
-        transform: translateY(-50%) rotate(180deg);
-      `;
-
-      // event
-      nextBtn.addEventListener('click', () => {
-        trackEvent({
-          eventCategory: 'Slider',
-          eventAction: 'click',
-          eventLabel: 'Move to next image'
-        });
-        this.slideNext();
-      });
-      
-      prevBtn.addEventListener('click', () => {
-        trackEvent({
-          eventCategory: 'Slider',
-          eventAction: 'click',
-          eventLabel: 'Move to prev image'
-        });
-        this.slidePrev();
-      });
-
-      shadow.appendChild(nextBtn);
-      shadow.appendChild(prevBtn);
+      // this.renderNextPrevButtons(shadow);
+      this.renderCarouselButton(shadow);
     }
+  }
+
+  renderCarouselButton (container) {
+    const carousel = document.createElement('div');
+    carousel.classList.add('carousel');
+    carousel.style.cssText = `
+      position: absolute;
+      bottom: 50px;
+      left: 50%;
+    `;
+
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = `
+      position: relative;
+      left: -50%;
+      display: flex;
+      align-items: center;
+    `
+
+    const buttonCss = carouselStyleConfig.normal.button;
+    this.data.forEach((_, i) => {
+      const button = document.createElement('div');
+      button.classList.add('button');
+      button.addEventListener('click', () => {
+        this.slideTo(i);
+      });
+      button.style.cssText = `
+        border: ${buttonCss.border};
+        width: ${buttonCss.width};
+        height: ${buttonCss.height};
+        border-radius: 50px;
+        margin: 0 5px;
+        background: ${buttonCss.background}
+      `;
+
+      wrapper.appendChild(button);
+    });
+
+    carousel.appendChild(wrapper);
+    container.appendChild(carousel);
+  } 
+
+  renderNextPrevButtons (container) {
+    const nextBtn = document.createElement('div');
+    const prevBtn = document.createElement('div');
+
+    nextBtn.style.cssText = `
+      position: absolute;
+      z-index: 1000;
+      color: red;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      background: url('${arrowIcon}');
+      background-size: cover;
+    `;
+
+    prevBtn.style.cssText = `
+      ${nextBtn.style.cssText}
+      left: 20px;
+      right: unset;
+      transform: translateY(-50%) rotate(180deg);
+    `;
+
+    // event
+    nextBtn.addEventListener('click', () => {
+      trackEvent({
+        eventCategory: 'Slider',
+        eventAction: 'click',
+        eventLabel: 'Move to next image'
+      });
+      this.slideNext();
+    });
+    
+    prevBtn.addEventListener('click', () => {
+      trackEvent({
+        eventCategory: 'Slider',
+        eventAction: 'click',
+        eventLabel: 'Move to prev image'
+      });
+      this.slidePrev();
+    });
+
+    container.appendChild(nextBtn);
+    container.appendChild(prevBtn);
   }
 
   getData() {
@@ -161,6 +247,28 @@ class Slider extends HTMLElement {
     container.style.opacity = 1;
     container.style.transform = 'scale(1)';
     container.style.backgroundPosition = data.position;
+    this.updateCarouselActive();
+  }
+
+  hideAllContainers() {
+    this.containers.map(container => {
+      this.hideContainer(container);
+    })
+  }
+
+  slideTo(index) {
+    this.resetAutoSlide();
+    this.hideAllContainers();
+
+    if(index >= this.data.length) {
+      index = 0;
+    } else if(index < 0) {
+      index = this.data.length - 1;
+    }
+    this.currentIndex = index;
+
+    const {container: nextContainer, data: nextData} = this.getData();
+    this.showContainer(nextContainer, nextData);
   }
 
   slideNext() {
@@ -195,7 +303,25 @@ class Slider extends HTMLElement {
     clearInterval(this.timer);
     this.timer = null;
 
-    this.autoSlide();
+    if(this.autoSlide()) {
+      this.autoSlide(this.getAutoSlideTime());
+    }
+  }
+
+  updateCarouselActive() {
+    const carouselButtons = this.shadowRoot.querySelectorAll('.carousel .button');
+
+    carouselButtons.forEach((button, i) => {
+      let styleConfig = { 
+        ...carouselStyleConfig.normal,
+        ...(i === this.currentIndex ? carouselStyleConfig.active : {})
+      };
+        
+      button.style.background = styleConfig.button.background;
+      button.style.width = styleConfig.button.width;
+      button.style.height = styleConfig.button.height;
+      button.style.border = styleConfig.button.border;
+    })
   }
 }
 

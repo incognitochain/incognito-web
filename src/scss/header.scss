@@ -49,6 +49,26 @@ nav#header {
   .desktop-menu {
     display: flex;
     align-items: center;
+
+    .main {
+      margin-left: -110px;
+
+      .menu-item {
+        font-size: 15px;
+        font-weight: 600;
+
+        &.highlight-btn {
+          font-size: 15px;
+          border-radius: 15px;
+        }
+      }
+
+      .split-line {
+        margin: 0 20px;
+        width: 1px;
+        border-left: 1px solid #c8d0d0;
+      }
+    }
   }
 
   .title {
