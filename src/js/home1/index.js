@@ -35,7 +35,7 @@ const handleShowTotalSubscriber = async (container) => {
 const startCountdown = (container) => {
   const countdownEls = document.querySelectorAll('.countdown');
   for(const countdownEl of countdownEls) {
-    countdown(countdownEl, '2019-10-01T00:00:00.000', () => {
+    countdown(countdownEl, '2019-10-01T11:00:00.000-07:00', () => {
       setMessage('The program was ended', 'error');
     });
   }
