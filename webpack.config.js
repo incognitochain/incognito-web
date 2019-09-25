@@ -158,7 +158,13 @@ const prodConfig = {
     ...templateGen
   ],
   module: {
-    rules: [{
+    rules: [
+    {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+    },
+    {
         test: /\.scss$/,
         use: [
             MiniCssExtractPlugin.loader,
