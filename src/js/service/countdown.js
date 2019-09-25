@@ -14,9 +14,10 @@ const getTime = timeInSecond => {
 
 const countdown = (deadline, onCount) => {
   const timer = setInterval(() => {
-    const now = Date.now();
-    const deadlineInSecond = new Date(deadline).getTime();
-    const duration = Math.floor((deadlineInSecond - now)/1000);
+    const currentTime = new Date();
+    const deadlineTime = new Date(deadline);
+
+    const duration = Math.floor(((deadlineTime - currentTime)) / 1000);
 
     if (duration >= 0) {
       onCount(getTime(duration));
@@ -24,7 +25,7 @@ const countdown = (deadline, onCount) => {
       clearInterval(timer);
       onCount(false);
     }
-  }, 500);
+  }, 1000);
 }
 
 const isValidDate = date => {
