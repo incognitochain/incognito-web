@@ -2,7 +2,6 @@
     >div.intro-slider-container {        
         .right-content {
             @include breakpoint-up(xl) {
-                overflow: hidden!important;
                 max-height: 1080px;
             }
 
@@ -10,7 +9,11 @@
                 >div.content {
                     div.intro {
                         .scroll-action-btn {
-                            display: none;
+                            bottom: 20px;
+                            
+                            @include breakpoint-down(xl) {
+                                display: none;
+                            }
                         }
 
                         div {
