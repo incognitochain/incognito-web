@@ -77,8 +77,8 @@ class Slider extends HTMLElement {
       const container = document.createElement('div');
       container.style.cssText = `
       opacity: 0;
-      width: 100%;
-      height: calc(100% - 100px);
+      width: ${data.width || '100%'};
+      height: ${data.height || '100%'};
       transition: opacity 3s;
       position: absolute;
       background-size: cover;
