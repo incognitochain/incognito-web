@@ -77,7 +77,6 @@ const handleScrollToFAQ  = (container) => {
 
   rootScrollerElm.addEventListener('scroll', function(event) {
     const target = event.target;
-    console.log(target.scrollTop, faqElm.offsetTop);
     
     if(scrollBtn) {
       if(target.scrollTop > 0) {
