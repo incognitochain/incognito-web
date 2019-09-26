@@ -77,7 +77,7 @@ mixin stepHtml(step, stepName, isOpen)
         |
         span.highlight your VALIDATOR KEY 
         | (from Step 1).
-      p.script.copiable(data-copy-value='curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && bash run.sh') curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && bash run.sh
+      p.script.copiable(data-copy-value='curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh') curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh
 
       p If you see the following errors, just ignore them. You’re doing good.  
         br
