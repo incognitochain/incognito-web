@@ -29,9 +29,15 @@ const checkVerifyEmailToken = () => {
 
 const checkReferralCode = () => {
   const referralCode = queryString(KEYS.REFERRAL_QUERY);
+  const myReferralCode = storage.get(KEYS.MY_REFERRAL_CODE);
+
   if (referralCode) {
-    storage.set(KEYS.REFERRAL_CODE, referralCode);
-    location.href = `${location.origin}`;
+    if(myReferralCode && referralCode == myReferralCode) {
+      location.href = `${location.origin}/referral.html`;
+    } else {
+      storage.set(KEYS.REFERRAL_CODE, referralCode);
+      location.href = `${location.origin}`;
+    }
   }
 }
 
