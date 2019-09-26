@@ -17,6 +17,7 @@ const getItems = collapse => collapse && collapse.querySelectorAll('.collapse');
 const main = () => {
   const collapses = getCollapseGroups();
   collapses && collapses.forEach(collapse => {
+    const autoCollapseFirstItem = collapse.getAttribute('auto-collapse-first-item') || '';
     let currentItem = null;
     const items = getItems(collapse);
 
@@ -32,7 +33,7 @@ const main = () => {
     };
 
     items && items.forEach((item, index) => {
-      if (index === 0) toggle(item);
+      if (autoCollapseFirstItem.toLowerCase() !== 'false' && index === 0) toggle(item);
 
       const label = item.querySelector('.label');
 

@@ -7,10 +7,10 @@ mixin collapse(id)
 
 mixin collapseItem(label, desc)
   .collapse
-    span.label= label
+    span.label!= label
     .content
       if desc
-        span= desc
+        span!= desc
       if block
         block
 
