@@ -106,8 +106,6 @@
           }
           
           .title {
-            margin-bottom: 5px!important;
-
             .extra {
               @include breakpoint-down(md) {
                 display: none;
@@ -126,11 +124,14 @@
           .earn-description {
             font-size: 24px;
             line-height: 33px;
-            color: #FF8E00;
             font-weight: 400;
 
             @include breakpoint-down(sm) {
               font-size: 20px;
+            }
+
+            .highlight {
+              color: #FF8E00;
             }
           }
 
