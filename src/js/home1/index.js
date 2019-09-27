@@ -5,6 +5,7 @@ import { getTotalSubscribe } from '../service/api';
 import { trackEvent } from '../common/utils/ga';
 import { setMessage } from '../service/message_box';
 import isQueryStringExists from '../service/queryStringExists';
+import KEYS from '../constant/keys';
 
 function main() {
   const container = document.querySelector('#home1-container');
@@ -19,6 +20,7 @@ function main() {
   handleScrollToEmailSubscriber(container);
   handleScrollToFAQ(container);
   handleAutoPlayUnboxing(container);
+  handleAutoPlayIntro(container);
 }
 
 const handleShowTotalSubscriber = async (container) => {
@@ -120,10 +122,19 @@ const handleScrollToEmailSubscriber = (container) => {
 }
 
 const handleAutoPlayUnboxing = (container) => {  
-  if(isQueryStringExists('unboxing')) {
+  if(isQueryStringExists(KEYS.UNBOXING_QUERY)) {
     const unboxingVideoButton = container.querySelector(".link[type='unbox']");
     if(unboxingVideoButton) {
       unboxingVideoButton.click();
+    }
+  }
+}
+
+const handleAutoPlayIntro = (container) => {
+  if(isQueryStringExists(KEYS.INTRO_QUERY)) {
+    const introVideoButton = container.querySelector(".link[type='intro']");
+    if(introVideoButton) {
+      introVideoButton.click();
     }
   }
 }

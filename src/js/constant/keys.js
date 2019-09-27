@@ -4,5 +4,6 @@ export default {
   REFERRAL_CODE: '$REFERRAL_CODE',
   TOKEN_EMAIL_VERIFY_QS: 'token',
   REFERRAL_QUERY: 'referral',
-  UNBOXING_QUERY: 'unboxing'
+  UNBOXING_QUERY: 'unboxing',
+  INTRO_QUERY: 'intro'
 };
