@@ -4,6 +4,7 @@ import countdown from '../service/countdown';
 import { getTotalSubscribe } from '../service/api';
 import { trackEvent } from '../common/utils/ga';
 import { setMessage } from '../service/message_box';
+import isQueryStringExists from '../service/queryStringExists';
 
 function main() {
   const container = document.querySelector('#home1-container');
@@ -17,6 +18,7 @@ function main() {
   handleShowTotalSubscriber(container);
   handleScrollToEmailSubscriber(container);
   handleScrollToFAQ(container);
+  handleAutoPlayUnboxing(container);
 }
 
 const handleShowTotalSubscriber = async (container) => {
@@ -63,7 +65,7 @@ const handleVideoPlayers = (container) => {
           });
         }
       });
-    })
+    });
   } catch (e) {
     console.error('handleVideoPlayers failed', e);
   }
@@ -115,6 +117,15 @@ const handleScrollToEmailSubscriber = (container) => {
       priceInfoElm.style.paddingTop = 0;
     }
   });
+}
+
+const handleAutoPlayUnboxing = (container) => {  
+  if(isQueryStringExists('unboxing')) {
+    const unboxingVideoButton = container.querySelector(".link[type='unbox']");
+    if(unboxingVideoButton) {
+      unboxingVideoButton.click();
+    }
+  }
 }
 
 main();
