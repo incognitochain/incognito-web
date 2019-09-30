@@ -14,77 +14,101 @@
     position: relative;
     .links {
       width: 100%;
+      height: 100%;
       position: absolute;
       z-index: 1;
-      top: 100px;
+      top: 0;
       justify-content: center;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
+      margin-top: -50px;
 
       .link {
-        background: rgba(16,17,17,0.54);
-        color: $white;
-        font-size: 18px;
-        letter-spacing: 0;
-        text-align: center;
-        text-decoration: none;
         cursor: pointer;
-        border: 1px solid #FFFFFF;
-        border-radius: 22px;
-        padding: 5px 20px;
-        transition: color 300ms, background 300ms;
 
-        &:first-child {
-          margin-right: 20px;
+        img.icon {
+          height: 100px;
+          transition: opacity .3s ease-in;
+          opacity: 1;
 
-          @include breakpoint-down(676px) {
-            margin-right: 5px;
+          &:hover {
+            opacity: 0.7;
           }
-  
-        }
 
-        @include breakpoint-down(676px) {
-          margin-bottom: 5px;
-          font-size: 1em;
-        }
-
-        span {
-          color: inherit;
-        }
-
-        &::after {
-          content: '\f144';
-          font-family: 'Font Awesome 5 Pro';
-          margin-left: 10px;
-          display: inline-block;
-          font-weight: light;
-          transition: transform 0.2s;
-        }
-
-        &:hover {
-          background: $white;
-          color: $black;
-          &::after {
-            transform: translate(3px);
+          @include breakpoint-down(sm) {
+            height: 50px;
           }
-        }
-      }
-
-      @include breakpoint-down(lg) {
-        top: 20px;
-        padding: 0px 10px;
-
-        .link {
-          background: rgba(255, 255, 255, 0.9);
-          color: #101111;
-          border: 0.5px solid rgba(0, 0, 0, 0.04);
-          border-radius: 6px!important
         }
       }
 
       @include breakpoint-down(sm) {
-        bottom: 10px;
+        margin-top: unset;
       }
+
+      // .link {
+      //   background: rgba(16,17,17,0.54);
+      //   color: $white;
+      //   font-size: 18px;
+      //   letter-spacing: 0;
+      //   text-align: center;
+      //   text-decoration: none;
+      //   cursor: pointer;
+      //   border: 1px solid #FFFFFF;
+      //   border-radius: 22px;
+      //   padding: 5px 20px;
+      //   transition: color 300ms, background 300ms;
+
+      //   &:first-child {
+      //     margin-right: 20px;
+
+      //     @include breakpoint-down(676px) {
+      //       margin-right: 5px;
+      //     }
+  
+      //   }
+
+      //   @include breakpoint-down(676px) {
+      //     margin-bottom: 5px;
+      //     font-size: 1em;
+      //   }
+
+      //   span {
+      //     color: inherit;
+      //   }
+
+      //   &::after {
+      //     content: '\f144';
+      //     font-family: 'Font Awesome 5 Pro';
+      //     margin-left: 10px;
+      //     display: inline-block;
+      //     font-weight: light;
+      //     transition: transform 0.2s;
+      //   }
+
+      //   &:hover {
+      //     background: $white;
+      //     color: $black;
+      //     &::after {
+      //       transform: translate(3px);
+      //     }
+      //   }
+      // }
+
+      // @include breakpoint-down(lg) {
+      //   top: 20px;
+      //   padding: 0px 10px;
+
+      //   .link {
+      //     background: rgba(255, 255, 255, 0.9);
+      //     color: #101111;
+      //     border: 0.5px solid rgba(0, 0, 0, 0.04);
+      //     border-radius: 6px!important
+      //   }
+      // }
+
+      // @include breakpoint-down(sm) {
+      //   bottom: 10px;
+      // }
     }
   }
   
@@ -103,6 +127,32 @@
   
           @include breakpoint-down(xl) {
             min-height: unset;
+          }
+
+          .video-link {
+            margin-top: 50px;
+            cursor: pointer;
+
+            .link {
+              color: #0DC7D8;
+              font-size: 18px;
+              font-weight: 300;
+              
+              &::after  {
+                content: '\f144';
+                font-family: 'Font Awesome 5 Pro';
+                margin-left: 10px;
+                display: inline-block;
+                font-weight: light;
+                transition: transform 0.2s;
+              }
+
+              &:hover {
+                &::after {
+                  transform: translate(3px);
+                }
+              }
+            }            
           }
           
           .title {
