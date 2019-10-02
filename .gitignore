@@ -5,4 +5,6 @@ node_modules
 yarn-error.log
 .env.development.js
 .env.production.js
+.env
 yarn.lock
+.idea/
