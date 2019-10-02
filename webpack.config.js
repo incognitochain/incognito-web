@@ -5,7 +5,9 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
-const CopyPlugin = require('copy-webpack-plugin')
+const CopyPlugin = require('copy-webpack-plugin');
+
+require('dotenv').config();
 
 const templateGen = [
   new HtmlWebpackPlugin({
@@ -94,9 +96,7 @@ const copyPlugin = new CopyPlugin([
 ]);
 
 const production = process.env.NODE_ENV === 'production';
-const env = production ? require('./.env.production') : require('./.env.development');
-
-console.debug(`Production mode: ${!!production}`)
+console.debug(`Production mode: ${!!production}`);
 
 const devConfig = {
   mode: 'development',
@@ -109,7 +109,7 @@ const devConfig = {
     ...templateGen,
     new webpack.DefinePlugin({
       APP_ENV: JSON.stringify({
-        ...env,
+        ...process.env,
         production
       }),
     }),
@@ -154,7 +154,7 @@ const prodConfig = {
     }),
     new webpack.DefinePlugin({
       APP_ENV: JSON.stringify({
-        ...env,
+        ...process.env,
         production
       }),
     }),
