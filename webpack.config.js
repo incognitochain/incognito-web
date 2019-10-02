@@ -33,6 +33,10 @@ const templateGen = [
     filename: 'sidechain.html'
   }),
   new HtmlWebpackPlugin({
+    template: 'src/template/sidechain/index.pug',
+    filename: 'tech.html'
+  }),
+  new HtmlWebpackPlugin({
     template: 'src/template/wallet/index.pug',
     filename: 'wallet.html'
   }),

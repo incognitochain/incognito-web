@@ -14,21 +14,21 @@ mixin member(avatar, name, title)
 
   .container.visible-effect
     .team-group
-      button#cryptography.group(filter='cryptography').active Cryptography
-      button#distributed-systems.group(filter='distributed-systems') Distributed Systems
+      button#distributed-systems.group(filter='distributed-systems').active Distributed Systems
+      button#cryptography.group(filter='cryptography') Cryptography
       button#applications.group(filter='applications') Applications
       button#hardware.group(filter='hardware') Hardware
       button#community.group(filter='community') Community
     
     .gallery  
-      .group.active#cryptography
+      .group#cryptography
         +member(require('../../image/about/team/Thuc.svg'), 'Thuc', 'Researcher')
         //- +member(require('../../image/about/team/anonymous.png'), 'Khoa', 'Researcher')
         +member(require('../../image/about/team/Hieu.svg'), 'Hieu', 'Researcher')
         +member(require('../../image/about/team/Hien.svg'), 'Hien', 'Researcher')
         //- +member(require('../../image/about/team/Hy.svg'), 'Hy', 'Programmer')
 
-      .group#distributed-systems
+      .group.active#distributed-systems
         +member(require('../../image/about/team/DungTran.svg'), 'Dung', 'Researcher')
         +member(require('../../image/about/team/ThaiBao.svg'), 'Bao', 'Programmer')
         +member(require('../../image/about/team/Lam.svg'), 'Lam', 'Programmer')
