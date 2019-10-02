@@ -46,17 +46,21 @@
         flex-direction: column;
         z-index: 0;
 
-        button {
-            margin: 5px 0px;
-            min-width: 300px;
-            color: $white;
+        a {
+            width: fit-content;
 
-            &.slave {
-                background: #014E52;
-            }
-
-            @include breakpoint-down(xl) {
-                width: 100%;
+            button {
+                margin: 5px 0px;
+                min-width: 300px;
+                color: $white;
+    
+                &.slave {
+                    background: #014E52;
+                }
+    
+                @include breakpoint-down(xl) {
+                    width: 100%;
+                }
             }
         }
     }
