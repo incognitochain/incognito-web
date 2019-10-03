@@ -73,18 +73,26 @@ class Slider extends HTMLElement {
 
   render() {
     const shadow = this.attachShadow({ mode: 'open' });
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = `
+      position: relative;
+    `
     this.containers = this.data.map(data => {
       const container = document.createElement('div');
       container.style.cssText = `
-      opacity: 0;
-      width: ${data.width || '100%'};
-      height: ${data.height || '100%'};
-      transition: opacity 3s;
-      position: absolute;
-      background-size: cover;
-      background-position: ${data.position || 'center'};
-      background-image: url('${data.img}');
-    `;
+        opacity: 0;
+        transition: opacity 3s;
+        display: none;
+      `;
+      const image = document.createElement('img');
+      image.style.cssText = `
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        object-fit: contain;
+      `;
+      image.src = data.img;
+      container.appendChild(image);
 
       if (this.data && this.data.length > 1) {
         container.addEventListener('click', () => {
@@ -98,16 +106,15 @@ class Slider extends HTMLElement {
         });
       }
 
-      shadow.appendChild(container);
+      wrapper.appendChild(container);
       return container;
     });
 
-   
+    shadow.appendChild(wrapper);
 
     // style
     this.style.cssText = `
       position: relative;
-      height: 100%;
       display: block;
       overflow: hidden;
       cursor: ${this.data && this.data.length > 1 ? 'pointer' : 'initial'};
@@ -123,18 +130,10 @@ class Slider extends HTMLElement {
     const carousel = document.createElement('div');
     carousel.classList.add('carousel');
     carousel.style.cssText = `
-      position: absolute;
-      bottom: 5px;
-      left: 50%;
-    `;
-
-    const wrapper = document.createElement('div');
-    wrapper.style.cssText = `
-      position: relative;
-      left: -50%;
       display: flex;
       align-items: center;
-    `
+      margin-top: 3px;
+    `;
 
     const buttonCss = carouselStyleConfig.normal.button;
     this.data.forEach((item, i) => {
@@ -148,6 +147,8 @@ class Slider extends HTMLElement {
         width: ${buttonCss.width};
         height: ${buttonCss.height};
         margin: 0 5px;
+        border-radius: 6px;
+        ${i === 0 && 'margin-left: 0px;'}
       `;
       
       const image = document.createElement('img');
@@ -155,13 +156,13 @@ class Slider extends HTMLElement {
       image.style.cssText = `
         width: 100%;
         height: 100%;
+        border-radius: 6px;
       `;
       button.appendChild(image);
 
-      wrapper.appendChild(button);
+      carousel.appendChild(button);
     });
 
-    carousel.appendChild(wrapper);
     container.appendChild(carousel);
   } 
 
@@ -240,6 +241,7 @@ class Slider extends HTMLElement {
     // container.style.width = 0;
     // container.style.height = 0;
     container.style.opacity = 0;
+    container.style.display = 'none';
     // container.style.transform = 'scale(1.1)';
     // container.style.backgroundPosition = 'top right';
   }
@@ -247,6 +249,7 @@ class Slider extends HTMLElement {
   showContainer(container, data) {
     // container.style.width = '100%';
     // container.style.height = 'calc(100% - 100px)';
+    container.style.display = 'block';
     container.style.opacity = 1;
     // container.style.transform = 'scale(1)';
     // container.style.backgroundPosition = data.position;

@@ -13,20 +13,21 @@ block main
    div#node-container
       .intro-slider-container
          .image
-            i-slider(images=[{
-                  img: require('../../image/node/home_slider_1.jpg'),
-                  position: 'bottom left',
-               }, {
-                  img: require('../../image/node/home_slider_2.jpg'),
-                  position: 'left center'
-               }, {
-                  img: require('../../image/node/home_slider_3.jpg'),
-                  position: 'center'
-               }, {
-                  img: require('../../image/node/home_slider_4.jpg'),
-                  position: 'center'
-               }
-            ])
+            .desktop
+               i-slider(images=[{
+                     img: require('../../image/node/home_slider_1.jpg'),
+                     position: 'bottom left',
+                  }, {
+                     img: require('../../image/node/home_slider_2.jpg'),
+                     position: 'left center'
+                  }, {
+                     img: require('../../image/node/home_slider_3.jpg'),
+                     position: 'center'
+                  }, {
+                     img: require('../../image/node/home_slider_4.jpg'),
+                     position: 'center'
+                  }
+               ])
             img(src=require('../../image/node/home_image_mobile.jpg'), alt='home image mobile').mobile
          .right-content
             include intro.pug

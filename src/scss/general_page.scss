@@ -1,6 +1,11 @@
 #sidechain-container, #node-container, #wallet-container, #about-container, #home1-container, #airdrop-container {
   > div.intro-slider-container {
     display: flex;
+    max-width: 1200px;
+
+    @include breakpoint-up(xl) {
+      margin: 0 auto;
+    }
 
     @include breakpoint-down(xl) {
       flex-direction: column;
@@ -14,6 +19,10 @@
       img.mobile {
         display: none;
       }
+
+      @include breakpoint-up(xl) {
+        margin-top: 40px;
+      }
   
       @include breakpoint-down(xl) {
         img.mobile {
@@ -24,7 +33,7 @@
           object-position: bottom;
         }
   
-        img.desktop {
+        .desktop {
           display: none;
         }
       };
@@ -71,10 +80,13 @@
           color: $white;
           margin-left: 80px;
           margin-right: 80px;
-          margin-top: 30px;
-          position: absolute;
+          margin-top: 52px;
           top: 0;
           bottom: 0;
+
+          @include breakpoint-up(xl) {
+            margin-right: unset;
+          }
   
           @include breakpoint-down(md) {
             margin-left: 20px;
@@ -110,10 +122,10 @@
             > div {
               .heading {
                 color: $black;
-                font-size: 16px;
+                font-size: 32px;
                 margin: 0px;
-                text-transform: uppercase;
-                letter-spacing: 1.5px;
+                line-height: 41px;
+                letter-spacing: 0.4px;
                 font-weight: 400;
 
                 @include breakpoint-down(sm) {

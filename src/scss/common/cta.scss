@@ -1,5 +1,5 @@
 .cta {
-    margin-top: 30px;
+    margin-top: 20px;
 
     // @include breakpoint-down(xl) {
     //   padding: 20px;
@@ -43,7 +43,7 @@
 
         button.submit-email {
           height: 54px;
-          background: #FF8E00;
+          background: #25CDD6;
           border-radius: 4px;
           min-width: 190px;
 
@@ -75,7 +75,20 @@
     }
 
     .total-subcriber {  
-      margin-top: 15px; 
+      margin-top: 47px; 
+      display: flex;
+
+      .icon {
+        margin-right: 20px;
+      }
+
+      .content {
+        div {
+          font-size: 16px;
+          font-weight: 100;
+          line-height: 24px;
+        }
+      }
 
       .signed-up-text {
 
