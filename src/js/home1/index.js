@@ -111,12 +111,14 @@ const handleScrollToEmailSubscriber = (container) => {
       ctaElmHeight += priceElm.offsetHeight + 20;
     }
 
-    if(window.pageYOffset > stickyPosition) {
-      ctaEl.classList.add("sticky");
-      priceInfoElm.style.paddingTop = `${ctaElmHeight}px`;
-    } else {
-      ctaEl.classList.remove("sticky");
-      priceInfoElm.style.paddingTop = 0;
+    if(window.matchMedia('(max-width: 1200px)').matches) {
+      if(window.pageYOffset > stickyPosition) {
+        ctaEl.classList.add("sticky");
+        priceInfoElm.style.paddingTop = `${ctaElmHeight}px`;
+      } else {
+        ctaEl.classList.remove("sticky");
+        priceInfoElm.style.paddingTop = 0;
+      }
     }
   });
 }

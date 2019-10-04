@@ -4,6 +4,257 @@
   flex-direction: column;
   overflow-y: scroll;
 
+  > div.intro-slider-container {
+    max-width: 1200px;
+
+    @include breakpoint-up(xl) {
+      margin: 0 auto;
+    }
+
+    .image {
+      @include breakpoint-up(xl) {
+        margin-top: 40px;
+      }
+    }
+  
+    .right-content {
+      display: flex;
+      flex-direction: column;
+  
+      #intro-container {
+        min-height: unset;
+
+        >div.content {
+          flex-direction: column;
+          bottom: unset!important;
+          position: relative!important;
+          margin-top: 52px;
+  
+          @include breakpoint-up(xl) {
+            margin-right: unset;
+          }
+  
+          div.intro {
+            justify-content: unset !important;
+    
+            @include breakpoint-down(xl) {
+              min-height: unset;
+              padding-bottom: 0px;
+            }
+  
+            > div {
+              .heading {              
+                font-size: 32px;
+                line-height: 41px;
+                letter-spacing: 0.4px;
+                text-transform: none;
+                font-weight: 500;
+              }
+            }
+  
+            .video-link {
+              margin-top: 50px;
+              cursor: pointer;
+  
+              .link {
+                color: #0DC7D8;
+                font-size: 18px;
+                font-weight: 300;
+                
+                &::after  {
+                  content: '\f144';
+                  font-family: 'Font Awesome 5 Pro';
+                  margin-left: 10px;
+                  display: inline-block;
+                  font-weight: light;
+                  transition: transform 0.2s;
+                }
+  
+                &:hover {
+                  &::after {
+                    transform: translate(3px);
+                  }
+                }
+              }            
+            }
+            
+            .title {
+              .extra {
+                @include breakpoint-down(md) {
+                  display: none;
+                }
+              }
+            }
+  
+            .collapse {
+              padding: 0px;
+  
+              .content {
+                margin: 0px;
+  
+                @include breakpoint-up(xl) {
+                  margin-top: 52px;
+                }
+              }
+            }
+  
+            .earn-description {
+              font-size: 24px;
+              line-height: 33px;
+              font-weight: 400;
+  
+              @include breakpoint-down(sm) {
+                font-size: 20px;
+              }
+  
+              .highlight {
+                color: #FF8E00;
+              }
+            }
+  
+            .description {
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 24px;
+              letter-spacing: 0.1px;
+              margin-top: 10px;
+              margin-bottom: 10px;
+              color: $black5;
+  
+              .highlight {
+                color: #ff8e00;
+                font-weight: 500;
+              }
+  
+              @include breakpoint-down(sm) {
+                .extra {
+                  display: none;
+                }
+              }
+            }
+          }
+  
+          .question {
+            #top-question-container {
+              // cheat css
+              margin-left: -80px;
+              margin-right: -80px;
+  
+              @include breakpoint-down(xl) {
+                margin-left: -100px;
+                margin-right: -100px;
+              }
+  
+              @include breakpoint-down(lg) {
+                margin-left: -40px;
+                margin-right: -40px;              
+              }
+            }
+  
+            .container {
+              flex-direction: column;
+  
+              @include breakpoint-up(xl) {
+                padding-left: 100px;
+                padding-right: 100px;
+              }
+  
+              @include breakpoint-down(sm) {
+                padding-left: 40px;
+                padding-right: 40px;
+              }
+  
+              >.content {
+                margin-top: 30px;
+                
+                @include breakpoint-up(lg) {
+                  margin-left: 20px;
+                }
+              }
+            }
+          }
+  
+          .row {
+            display: flex;
+            flex-direction: row;
+  
+            .row-item {
+              flex: 1;
+            }
+          }
+  
+          .subscribe-price-container {
+            position: relative;
+            margin-top: 20px;
+  
+            @include breakpoint-down(sm) {
+              display: flex;
+              flex-direction: column-reverse;
+  
+              .price-info {
+                margin-top: 20px;
+  
+                .price {
+                  position: absolute;
+                  top: 0px;
+                }
+              }
+  
+              .cta {
+                margin-top: 50px;
+  
+                &.sticky {
+                  margin-top: 0px;
+                }
+              }
+            }
+          }
+  
+          ul.list-info {
+            padding-left: 16px;
+            margin-top: 20px;
+  
+            li {
+              font-size: 16px;
+              color: #101111;
+              letter-spacing: 0;
+              line-height: 23px;
+              list-style: initial;
+              font-weight: 300;
+  
+              &::before {
+                display: none;
+              }
+            }
+          }
+        }
+  
+        @include breakpoint-down(xl) {
+          padding-bottom: 0px!important;
+        }
+      }
+  
+      .scroll-down {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        left: 75%;
+        height: 50px;
+        width: 50px;
+        border-radius: 25px;
+        margin-bottom: 20px;
+        margin-left: -25px;
+        font-family: "Font Awesome 5 Pro";
+  
+        &.hide {
+          display: none;
+        }
+      }
+    }
+  }
+
   #telegram-chat-float {
     @include breakpoint-down(xl) {
       display: none;
@@ -111,281 +362,158 @@
       // }
     }
   }
-  
-  .right-content {
-    display: flex;
-    flex-direction: column;
 
-    #intro-container {
-      >div.content {
-        flex-direction: column;
-        bottom: unset!important;
+  #content-container {
+    margin-top: 90px;
 
-        div.intro {
-          justify-content: unset !important;
-          min-height: calc(100vh - 90px);
-  
-          @include breakpoint-down(xl) {
-            min-height: unset;
-          }
-
-          .video-link {
-            margin-top: 50px;
-            cursor: pointer;
-
-            .link {
-              color: #0DC7D8;
-              font-size: 18px;
-              font-weight: 300;
-              
-              &::after  {
-                content: '\f144';
-                font-family: 'Font Awesome 5 Pro';
-                margin-left: 10px;
-                display: inline-block;
-                font-weight: light;
-                transition: transform 0.2s;
-              }
-
-              &:hover {
-                &::after {
-                  transform: translate(3px);
-                }
-              }
-            }            
-          }
-          
-          .title {
-            .extra {
-              @include breakpoint-down(md) {
-                display: none;
-              }
-            }
-          }
-
-          .collapse {
-            padding: 0px;
-
-            .content {
-              margin: 0px;
-            }
-          }
-
-          .earn-description {
-            font-size: 24px;
-            line-height: 33px;
-            font-weight: 400;
-
-            @include breakpoint-down(sm) {
-              font-size: 20px;
-            }
-
-            .highlight {
-              color: #FF8E00;
-            }
-          }
-
-          .description {
-            p {
-              font-size: 18px;
-              font-weight: 300;
-              line-height: 27px;
-            }
-
-            @include breakpoint-up(lg) {
-              margin-top: 10px;
-              margin-bottom: 10px;
-            }
-
-            @include breakpoint-down(sm) {
-              .extra {
-                display: none;
-              }
-            }
-          }
-        }
-
-        .question {
-          #top-question-container {
-            // cheat css
-            margin-left: -80px;
-            margin-right: -80px;
-
-            @include breakpoint-down(xl) {
-              margin-left: -100px;
-              margin-right: -100px;
-            }
-
-            @include breakpoint-down(lg) {
-              margin-left: -40px;
-              margin-right: -40px;              
-            }
-          }
-
-          .container {
-            flex-direction: column;
-
-            @include breakpoint-up(xl) {
-              padding-left: 100px;
-              padding-right: 100px;
-            }
-
-            @include breakpoint-down(sm) {
-              padding-left: 40px;
-              padding-right: 40px;
-            }
-
-            >.content {
-              margin-top: 30px;
-              
-              @include breakpoint-up(lg) {
-                margin-left: 20px;
-              }
-            }
-          }
-        }
-
-        .row {
-          display: flex;
-          flex-direction: row;
-
-          .row-item {
-            flex: 1;
-          }
-        }
-
-        .subscribe-price-container {
-          position: relative;
-
-          @include breakpoint-down(sm) {
-            display: flex;
-            flex-direction: column-reverse;
-
-            .price-info {
-              margin-top: 20px;
-
-              .price {
-                position: absolute;
-                top: 0px;
-              }
-            }
-
-            .cta {
-              margin-top: 50px;
-
-              &.sticky {
-                margin-top: 0px;
-              }
-            }
-          }
-        }
-
-        .benefit-container {
-          display: flex;
-          justify-content: space-between;
-
-          .benefit-group {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-            margin-top: 30px;
-
-            @include breakpoint-down(sm) {
-              flex-direction: column;
-              justify-content: center;
-            }
-
-            .benefit {
-              display: flex;
-              padding: 5px 20px;
-              max-width: 350px;
-
-              @include breakpoint-down(sm) {
-                max-width: 80%;
-                padding: 10px 0px;
-              }
-
-              .content {
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-              }
-
-              .icon {
-                width: 50px;
-                height: 50px;
-                margin-top: 8px;
-                margin-right: 20px;
-
-                >img {
-                  width: 30px;
-                }
-
-                &.easy {
-                  width: 50px;
-                }
-              }
-
-              
-
-              .label {
-                margin-top: 5px;
-                margin-bottom: 5px;
-                font-weight: 500;
-              }
-
-              .desc {
-                font-size: 14px;
-                font-weight: 300;
-              }
-            }
-          }
-
-          @include breakpoint-down(sm) {
-            flex-direction: column;
-          }
-        }
-
-        ul.list-info {
-          padding-left: 16px;
-          margin-top: 20px;
-
-          li {
-            font-size: 16px;
-            color: #101111;
-            letter-spacing: 0;
-            line-height: 23px;
-            list-style: initial;
-            font-weight: 300;
-
-            &::before {
-              display: none;
-            }
-          }
-        }
-      }
-
-      @include breakpoint-down(xl) {
-        padding-bottom: 0px!important;
-      }
+    @include breakpoint-down(xl) {
+      margin-top: 30px;
     }
 
-    .scroll-down {
-      position: absolute;
-      bottom: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      left: 75%;
-      height: 50px;
-      width: 50px;
-      border-radius: 25px;
-      margin-bottom: 20px;
-      margin-left: -25px;
-      font-family: "Font Awesome 5 Pro";
+    @include breakpoint-down(lg) {
+      margin-top: 0px;
+    }
 
-      &.hide {
-        display: none;
+    .benefit-container {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 73px;
+      border-bottom: 1px solid #D8D8D8;
+
+      @include breakpoint-down(xl) {
+        flex-direction: column;
+      }
+
+      .benefit-group {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        flex: 1;
+
+        &.benefit-wrapper {
+          flex: 2;
+        }
+
+        @include breakpoint-down(sm) {
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .heading {
+          font-size: 32px;
+          font-weight: 500;
+          line-height: 41px;
+        }
+
+        .benefit {
+          display: flex;
+          flex-direction: column;
+          padding: 5px 45px;
+          max-width: 350px;
+          text-align: left;
+          flex: 1;
+
+          @include breakpoint-up(sm) {
+            &:not(:last-child) {
+            border-right: 1px dashed #D8D8D8;
+            }
+          }
+
+          @include breakpoint-down(sm) {
+            max-width: 80%;
+            padding: 10px 0px;
+          }
+
+          .content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+          }
+
+          .icon {
+            width: 50px;
+            height: 50px;
+            margin-top: 8px;
+            margin-right: 20px;
+
+            >img {
+              width: 30px;
+            }
+
+            &.easy {
+              width: 50px;
+            }
+          }
+
+          
+
+          .label {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-weight: 500;
+          }
+
+          .desc {
+            font-size: 14px;
+            font-weight: 300;
+          }
+        }
+      }
+
+      @include breakpoint-down(sm) {
+        flex-direction: column;
+      }
+    }
+    .story-container {
+      padding: 0 100px;
+
+      @include breakpoint-down(xl) {
+        padding: 0 ;
+      }
+
+      .heading {
+        font-size: 32px;
+        line-height: 41px;
+        font-weight: 500px;
+        text-align: center;
+        margin-top: 70px;
+        margin-bottom: 50px;
+      }
+
+      .content {
+        .group {
+          .title {
+            font-weight: 500;
+            font-size: 24px;
+          }
+
+          .description, .title, .subtitle, .image {
+            margin-bottom: 35px;
+          }
+          .subtitle, .description {
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.1px;
+          }
+          .subtitle {
+            font-weight: 500;
+          }
+          .description {
+            .strong {
+              font-weight: 500;
+            }
+          }
+
+          .image {
+            .description {
+              font-size: 14px;
+              font-style: italic;
+              color: #9B9E9E;
+              margin-top: 5px;
+              text-align: center;
+            }
+          }
+        }
       }
     }
   }

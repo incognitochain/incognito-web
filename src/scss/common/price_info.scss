@@ -30,10 +30,11 @@
 
         &.off-percentage {
           font-size: 27px;
+          display: none;
         }
         
         &.end-price, &.off-percentage {
-          color: #B12704;
+          // color: #B12704;
         }
         &.origin-price {
           color: #8C9C9D;
@@ -77,6 +78,7 @@
     .rocket {
       display: flex;
       align-items: center;
+      display: none;
 
       img {
         width: 28px;
@@ -90,6 +92,7 @@
     flex-direction: row;
     align-items: center;
     color: #FF8E00!important;
+    display: none;
 
     span {
       color: #FF8E00!important;

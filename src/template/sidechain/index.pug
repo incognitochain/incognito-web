@@ -13,11 +13,12 @@ block main
    div#sidechain-container
       div.intro-slider-container
          .image
-            i-slider(images=[{
-                  img: require('../../image/sidechain/home_slider_1.jpg'),
-                  position: 'center center',
-               }
-            ])
+            .desktop
+               i-slider(images=[{
+                     img: require('../../image/sidechain/home_slider_1.jpg'),
+                     position: 'center center',
+                  }
+               ])
             img(src=require('../../image/sidechain/home_image_mobile.png')).mobile
          .right-content
             include intro.pug
