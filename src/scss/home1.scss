@@ -283,72 +283,6 @@
           }
         }
 
-        .benefit-container {
-          display: flex;
-          justify-content: space-between;
-
-          .benefit-group {
-            display: flex;
-            justify-content: space-between;
-            flex-direction: column;
-            margin-top: 30px;
-
-            @include breakpoint-down(sm) {
-              flex-direction: column;
-              justify-content: center;
-            }
-
-            .benefit {
-              display: flex;
-              padding: 5px 20px;
-              max-width: 350px;
-
-              @include breakpoint-down(sm) {
-                max-width: 80%;
-                padding: 10px 0px;
-              }
-
-              .content {
-                display: flex;
-                flex-direction: column;
-                flex: 1;
-              }
-
-              .icon {
-                width: 50px;
-                height: 50px;
-                margin-top: 8px;
-                margin-right: 20px;
-
-                >img {
-                  width: 30px;
-                }
-
-                &.easy {
-                  width: 50px;
-                }
-              }
-
-              
-
-              .label {
-                margin-top: 5px;
-                margin-bottom: 5px;
-                font-weight: 500;
-              }
-
-              .desc {
-                font-size: 14px;
-                font-weight: 300;
-              }
-            }
-          }
-
-          @include breakpoint-down(sm) {
-            flex-direction: column;
-          }
-        }
-
         ul.list-info {
           padding-left: 16px;
           margin-top: 20px;
@@ -389,6 +323,74 @@
 
       &.hide {
         display: none;
+      }
+    }
+  }
+
+  #section-container {
+    .benefit-container {
+      display: flex;
+      justify-content: space-between;
+
+      .benefit-group {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-top: 30px;
+
+        @include breakpoint-down(sm) {
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .benefit {
+          display: flex;
+          padding: 5px 20px;
+          max-width: 350px;
+
+          @include breakpoint-down(sm) {
+            max-width: 80%;
+            padding: 10px 0px;
+          }
+
+          .content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+          }
+
+          .icon {
+            width: 50px;
+            height: 50px;
+            margin-top: 8px;
+            margin-right: 20px;
+
+            >img {
+              width: 30px;
+            }
+
+            &.easy {
+              width: 50px;
+            }
+          }
+
+          
+
+          .label {
+            margin-top: 5px;
+            margin-bottom: 5px;
+            font-weight: 500;
+          }
+
+          .desc {
+            font-size: 14px;
+            font-weight: 300;
+          }
+        }
+      }
+
+      @include breakpoint-down(sm) {
+        flex-direction: column;
       }
     }
   }

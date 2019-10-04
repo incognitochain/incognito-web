@@ -27,9 +27,7 @@ block main
                      img: require('../../image/home1/home_slider_10.png'),
                      position: 'bottom center',
                   },
-               ], 
-               auto_slide=true,
-               auto_slide_time=10 * 1000)
+               ])
             img(src=require('../../image/home1/home_background_mobile.png')).mobile
 
             //- .links
@@ -37,7 +35,7 @@ block main
             //-       img(src=require('../../image/youtube_play_icon.svg')).icon
          .right-content
             include intro.pug
-      //- include section.pug
+      include section.pug
       //- include question.pug
       include ../telegram_chat.pug
    include ../common/video_popup.pug
