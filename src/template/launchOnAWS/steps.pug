@@ -19,11 +19,11 @@ mixin stepHtml(step, stepName, isOpen)
     +stepHtml('3', 'Launch Instance')
       img(src=require('../../image/launch_on_aws/run_on_aws_step_3.png')).landscape
 
-    +stepHtml('4', 'Choose Amazon Linux 2 AMI (HVM), SSD Volume Type')
+    +stepHtml('4', 'Choose Ubuntu Server 18.04 LTS (HVM), SSD Volume Type')
       p Either x86 or Arm is fine
       img(src=require('../../image/launch_on_aws/run_on_aws_step_4.png')).landscape
 
-    +stepHtml('5', 'Choose instance type: "t3.small". To run more effectively you can choose "t3.xlarge" (a bit more pricey).')
+    +stepHtml('5', 'Choose instance type "t3a.xlarge"')
       img(src=require('../../image/launch_on_aws/run_on_aws_step_5.png')).landscape
       p Click “Next: Configure Instance Details” at the bottom right of the page
       p Nothing to change here, so click “Next: Add Storage”

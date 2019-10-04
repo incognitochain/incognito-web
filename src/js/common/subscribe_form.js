@@ -3,6 +3,7 @@ import { setMessage } from '../service/message_box';
 import storage from '../service/storage';
 import KEYS from '../constant/keys';
 import { trackEvent } from './utils/ga';
+import queryString from '../service/queryString';
 
 const getReferralCode = () => {
   return storage.get(KEYS.REFERRAL_CODE) || undefined;
@@ -63,4 +64,24 @@ const formHandle = () => {
   }
 }
 
-formHandle();
+const handleAutoSignIn = () => {
+  const email = queryString('email');
+
+  if(email.trim()) {
+    const emailForm = document.querySelector('#email-subscribe');
+    if(!emailForm) return;
+    const emailInput = emailForm.querySelector('#email-input');
+    if(!emailInput) return;
+    emailInput.value = email.trim();
+    const submitButton = emailForm.querySelector('.submit-email');
+    if(!submitButton) return;
+    submitButton.click();
+  }
+}
+
+const main = () => {
+  formHandle();
+  handleAutoSignIn();
+}
+
+main();
