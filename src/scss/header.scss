@@ -7,6 +7,8 @@ nav#header {
   min-height: $header-height;
   position: relative;
   border-bottom: solid 1px $white2;
+  box-shadow: 0 2px 4px 0 #F4F4F4;
+  background: $white;
 
   @include breakpoint-down(md) {
     padding: 15px;
@@ -38,6 +40,13 @@ nav#header {
     background-image: url('../image/logo_black.svg');
     background-repeat: no-repeat;
     background-size: contain;
+
+    @include breakpoint-up(xl) {
+      position: absolute;
+      left: calc(50% - 60px);
+      z-index: 1;
+    }
+
     h3.header-logo {
       font-size: 26px;
       font-weight: 600;
@@ -51,17 +60,17 @@ nav#header {
     align-items: center;
 
     .main {
-      margin-left: -110px;
+      flex: 1;
 
-      .menu-item {
-        font-size: 15px;
-        font-weight: 600;
+      // .menu-item {
+      //   font-size: 15px;
+      //   font-weight: 600;
 
-        &.highlight-btn {
-          font-size: 15px;
-          border-radius: 15px;
-        }
-      }
+      //   &.highlight-btn {
+      //     font-size: 15px;
+      //     border-radius: 15px;
+      //   }
+      // }
 
       .split-line {
         margin: 0 20px;
@@ -95,19 +104,20 @@ nav#header {
 
     .menu-item {
       font-size: 12px;
-      color: $grey1;
-      letter-spacing: 0.5px;
+      color: #657576;
+      letter-spacing: 1px;
       margin: auto 15px;
+      font-weight: 500;
 
       &.highlight-btn {
-        background: $white;
-        box-shadow: 0 0 4px 0 rgba(125,125,125,0.65);
-        border-radius: 13px;
+        // background: $white;
+        // box-shadow: 0 0 4px 0 rgba(125,125,125,0.65);
+        // border-radius: 13px;
         font-weight: 600;
-        font-size: 12px;
+        // font-size: 12px;
         color: $black;
-        letter-spacing: 0.5px;
-        padding: 5px 15px;
+        // letter-spacing: 0.5px;
+        // padding: 5px 15px;
       }
 
       &.telegram-btn {

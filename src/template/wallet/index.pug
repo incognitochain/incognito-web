@@ -14,11 +14,12 @@ block main
    div#wallet-container
       div.intro-slider-container
          .image
-            i-slider(images=[{
-                  img: require('../../image/wallet/home_slider_1.jpg'),
-                  position: 'top',
-               }
-            ])
+            .desktop
+               i-slider(images=[{
+                     img: require('../../image/wallet/home_slider_1.jpg'),
+                     position: 'top',
+                  }
+               ])
             img(src=require('../../image/wallet/home_image_mobile.png')).mobile
          .right-content
             include intro.pug
