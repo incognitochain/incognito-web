@@ -87,7 +87,6 @@ class Slider extends HTMLElement {
       const image = document.createElement('img');
       image.style.cssText = `
         width: 100%;
-        max-width: 600px;
         height: auto;
         object-fit: contain;
       `;
