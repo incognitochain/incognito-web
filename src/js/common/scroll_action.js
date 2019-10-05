@@ -6,7 +6,6 @@
 const els = document.querySelectorAll('.scroll-action-btn');
 
 if (els.length > 0) {
-  console.log('aaa');
   els.forEach(el => {
     el.addEventListener('click', () => {
       const target = el.getAttribute('data-scroll-to');
