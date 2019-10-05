@@ -23,18 +23,25 @@
       border-left: 0px;
       border-bottom: 0px;
       transform: rotate(-45deg);
+      transition: margin-top 0.3s ease-in-out;
       margin-top: 5px;
+    }
+
+    &:hover {
+      .arrow {
+        margin-top: 0px;
+      }
     }
   }
 
   #telegram-chat-float {
     width: 50px;
-    transition: bottom 500ms ease-out, transform 200ms;
+    transition: margin-bottom 500ms ease-out, transform 200ms;
     transform: rotate();
     margin-top: 20px;
 
     &:hover {
-      bottom: 30px;
+      margin-bottom: 10px;
       transform: rotate(20deg);
     }
   }
