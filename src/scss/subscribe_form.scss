@@ -4,17 +4,17 @@ form#email-subscribe {
 
   #email-input {
     background-color: $white;
-    border: solid 1px #c8d0d0;
+    border: solid 1px #d1dfe0;
     margin-right: 14px;
     flex: 1;
     font-size: 16px;
 
     &::placeholder {
-      color: #8C9C9D;
+      color: #657576;
     }
 
     @include breakpoint-down(sm) {
-      height: $sm-input-height!important;
+      height: $sm-input-height !important;
       flex: auto;
       margin-right: 0px;
       margin-bottom: 10px;
@@ -29,9 +29,9 @@ form#email-subscribe {
       color: $white;
       font-size: 16px;
     }
-    
+
     @include breakpoint-down(sm) {
-      height: $sm-input-height!important;
+      height: $sm-input-height !important;
       font-size: 1.1em;
       font-weight: 500;
     }
@@ -90,5 +90,5 @@ form#email-subscribe {
     //     }
     //   }
     // }
-  };
+  }
 }
