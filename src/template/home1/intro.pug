@@ -12,23 +12,18 @@ div#intro-container
       div
         h1.heading Incognito Node
         .description Earn crypto in your sleep. 
-          | Collect <span class="highlight">$25 monthly</span> in BTC, ETH, BNB and today’s most exciting cryptocurrencies. 
+          | <span class="highlight">Collect $25 monthly</span> in BTC, ETH, BNB and today’s most exciting cryptocurrencies. 
           span.extra Built by a bunch of geeks who shipped $100M+ of connected hardware worldwide.
 
       .subscribe-price-container
         include ../common/price_info.pug
         include ../common/subscribe_email_component.pug      
 
-      //- .benefit-container
-      //-   .benefit-group
-      //-     +benefit(require('../../image/icon/income.svg'), 'Earn passive income', 'Automatically collect crypto every second of every day')
-      //-     +benefit(require('../../image/icon/energy-saving.svg'), 'Energy efficient', 'Just 1 kWh (about 8 cents a day) to run all day')
-      //-     +benefit(require('../../image/icon/effortless.svg'), 'Effortless', 'Just plug Node in and let it work for you.', 'easy')
-
-      //-   .benefit-group
-      //-     +benefit(require('../../image/icon/warranty.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')
-      //-     +benefit(require('../../image/icon/trail.svg'), '30-day trial', 'If you don’t love your Node, return it for a full refund.')
-      //-     +benefit(require('../../image/icon/worldwide.svg'), 'Ships worldwide', 'Anyone, anywhere, can own a Node.')
+      .benefit-container
+        .benefit-group
+          +benefit(require('../../image/icon/worldwide.svg'), 'Ships worldwide', 'Anyone, anywhere, can own a Node.')
+          +benefit(require('../../image/icon/warranty.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')
+          +benefit(require('../../image/icon/trial.svg'), '30-day trial', 'If you don’t love your Node, return it for a full refund.')
       //- .video-link
       //-     span.link(data-video-url='https://www.youtube.com/embed/eXNAD4wckQI', type='unbox') Watch Chris unbox Node in the Incognito office
     //- .question#faq

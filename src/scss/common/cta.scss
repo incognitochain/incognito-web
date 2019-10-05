@@ -1,146 +1,144 @@
 .cta {
-    margin-top: 20px;
+  margin-top: 20px;
 
+  // @include breakpoint-down(xl) {
+  //   padding: 20px;
+  //   position: fixed;
+  //   bottom: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   background: rgba(13, 58, 60, 0.95);
+  // };
+
+  // @include breakpoint-down(sm) {
+  //     padding: 15px;
+  // }
+
+  span {
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 25px;
     // @include breakpoint-down(xl) {
-    //   padding: 20px;
-    //   position: fixed;
-    //   bottom: 0;
-    //   left: 0;
-    //   width: 100%;
-    //   background: rgba(13, 58, 60, 0.95);
-    // };
+    //   color: $white;
+    // }
+  }
+
+  .subscribe-email {
+    margin-bottom: unset !important;
+    margin-top: unset !important;
+
+    > span {
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: 400;
+      display: block;
+    }
+
+    form#email-subscribe {
+      max-width: unset;
+
+      // @include breakpoint-up(460px) {
+      //   flex-direction: row;
+      // }
+
+      button.submit-email {
+        height: 54px;
+        background: $green1;
+        border-radius: 4px;
+        min-width: 190px;
+
+        @include breakpoint-up(md) {
+          width: 40%;
+        }
+      }
+
+      input {
+        height: 54px;
+
+        @include breakpoint-up(460px) {
+          flex: 1;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+
+  .discount-notice {
+    display: none;
 
     // @include breakpoint-down(sm) {
-    //     padding: 15px;
+    //   display: block;
+    //   color: #FF8E00;
+    //   margin: 0px;
+    //   margin-top: 10px;
     // }
+  }
 
-    span {
-      font-size: 16px;
-      letter-spacing: 0;
-      line-height: 25px;
-      // @include breakpoint-down(xl) {
-      //   color: $white;
-      // }
+  .total-subcriber {
+    margin-top: 47px;
+    display: flex;
+
+    .icon {
+      margin-right: 20px;
     }
 
-    .subscribe-email {
-      margin-bottom: unset !important;
-      margin-top: unset !important;
-
-      > span {
-        margin-bottom: 15px;
-        font-size: 18px;
-        font-weight: 400;
-        display: block;
-      }
-
-      form#email-subscribe {
-        max-width: unset;
-
-        // @include breakpoint-up(460px) {
-        //   flex-direction: row;
-        // }
-
-        button.submit-email {
-          height: 54px;
-          background: #25CDD6;
-          border-radius: 4px;
-          min-width: 190px;
-
-          @include breakpoint-up(md) {
-            width: 40%;
-          }
-        }
-
-        input {
-          height: 54px;
-
-          @include breakpoint-up(460px) {
-            flex: 1;
-            margin-right: 10px;
-          }
-        }
+    .content {
+      div {
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 24px;
       }
     }
 
-    .discount-notice {
-      display: none;
-
+    .signed-up-text {
       // @include breakpoint-down(sm) {
-      //   display: block;
-      //   color: #FF8E00;
-      //   margin: 0px;
-      //   margin-top: 10px;
+      //   &::before {
+      //     content: "people";
+      //   }
       // }
     }
 
-    .total-subcriber {  
-      margin-top: 47px; 
-      display: flex;
-
-      .icon {
-        margin-right: 20px;
-      }
-
-      .content {
-        div {
-          font-size: 16px;
-          font-weight: 300;
-          line-height: 24px;
-        }
-      }
-
-      .signed-up-text {
-
-        // @include breakpoint-down(sm) {
-        //   &::before {
-        //     content: "people";
-        //   }
-        // }
-      }
-
-      .label {
-        font-weight: 500;
-      }
-
-      span[role='counter'] {
-        font-weight: 500;
-      }
-
-      span[role='counter'], .highlight {
-        color: #B12704;
-      }
+    .label {
+      font-weight: 500;
     }
 
-    &.sticky {
-      @include breakpoint-down(xl) {
-        z-index: 2;
-        padding: 20px;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background: rgba(13, 58, 60, 0.95);
-        margin-top: 0px;
+    span[role='counter'] {
+      font-weight: 500;
+    }
 
-        .total-subcriber {
-          display: none;
-        }
-      }
+    span[role='counter'],
+    .highlight {
+      color: #b12704;
+    }
+  }
 
-      @include breakpoint-up(sm) {
-        form#email-subscribe {
-          flex-direction: row;
+  &.sticky {
+    z-index: 2;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(13, 58, 60, 0.95);
+    margin-top: 0px;
 
-          #email-input {
-            margin-bottom: 0px;
-            margin-right: 10px;
-          }
+    .total-subcriber {
+      display: none;
+    }
+
+    @include breakpoint-up(sm) {
+      form#email-subscribe {
+        flex-direction: row;
+
+        #email-input {
+          margin-bottom: 0px;
+          margin-right: 10px;
         }
       }
     }
+  }
 
-    @include breakpoint-down(sm) {
-      margin-top: 0px;
-    }
+  @include breakpoint-down(sm) {
+    margin-top: 0px;
+  }
 }
