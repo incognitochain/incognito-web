@@ -22,6 +22,7 @@ class Slider extends HTMLElement {
   constructor() {
     super();
     this.data = this.getImageData();
+    this.aspectRatio = this.getAspectRatio();
 
     this.containers = [];
     this.timer = null;
@@ -39,6 +40,10 @@ class Slider extends HTMLElement {
     try {
       return JSON.parse(this.getAttribute('images'));
     } catch {}
+  }
+
+  getAspectRatio() {
+    return this.getAttribute('aspect_ratio') || '100';
   }
 
   isAutoSlide() {
@@ -101,7 +106,6 @@ class Slider extends HTMLElement {
 
   render() {
     const shadow = this.attachShadow({ mode: 'open' });
-    const aspectRatio = this.getAttribute('aspect_ratio') || '100';
     const wrapper = document.createElement('div');
     wrapper.style.cssText = `
       position: relative;
@@ -111,23 +115,22 @@ class Slider extends HTMLElement {
       const container = document.createElement('div');
       container.style.cssText = `
         opacity: 0;
-        transition: opacity 3s;
-        display: none;
+        transition: opacity 1s;
         position: relative;
         width: 100%;
-        padding-top: ${aspectRatio}%;
+        padding-top: 0px;
       `;
       container.setAttribute('type', type);
 
       const defaultStyle = `
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      width: 100%;
-      height: 100%;
-    `;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 100%;
+      `;
 
       if (type == 'youtube') {
         container.appendChild(
@@ -312,10 +315,9 @@ class Slider extends HTMLElement {
     if (type === 'youtube') {
       this.toggleYoutubeVideo(container, 'hide');
     }
-    // container.style.width = 0;
-    // container.style.height = 0;
+    container.style.width = 0;
+    container.style.paddingTop = 0;
     container.style.opacity = 0;
-    container.style.display = 'none';
     // container.style.transform = 'scale(1.1)';
     // container.style.backgroundPosition = 'top right';
   }
@@ -325,9 +327,8 @@ class Slider extends HTMLElement {
     if (type === 'youtube') {
       this.toggleYoutubeVideo(container);
     }
-    // container.style.width = '100%';
-    // container.style.height = 'calc(100% - 100px)';
-    container.style.display = 'block';
+    container.style.width = '100%';
+    container.style.paddingTop = `${this.aspectRatio}%`;
     container.style.opacity = 1;
     // container.style.transform = 'scale(1)';
     // container.style.backgroundPosition = data.position;

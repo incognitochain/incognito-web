@@ -1,26 +1,7 @@
 #footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: $footer-height;
-  width: 100%;
-
-  .group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-  }
-
-  a {
-    text-decoration: unset;
-    
-    &.menu-item {
-      margin: 10px 20px;
-      transition: color 300ms;
-      &:hover {
-        color: $white;
-      }
-    }
-  }
+  padding: 20px;
+  background: #101111;
+  font-size: 15px;
+  color: #b9c9ca;
+  text-align: center;
 }
