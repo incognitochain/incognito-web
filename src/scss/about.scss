@@ -1,5 +1,4 @@
 #about-container {
-
   #intro-container {
     background: url(../image/about/about_us_background.jpg) no-repeat;
     background-size: cover;
@@ -61,13 +60,13 @@
         color: $black2;
         letter-spacing: 1px;
       }
-  
+
       p.desc {
         font-size: 24px;
 
         @include breakpoint-down(md) {
           font-size: 20px;
-        };
+        }
 
         a {
           color: $black;
@@ -82,7 +81,7 @@
       display: flex;
       @include breakpoint-down(lg) {
         flex-direction: column;
-      };
+      }
       .group {
         margin-top: 30px;
         flex: 1;
@@ -123,7 +122,7 @@
         color: $black2;
         letter-spacing: 1px;
       }
-  
+
       p.desc {
         max-width: 700px;
         font-size: 24px;
@@ -132,7 +131,7 @@
 
         @include breakpoint-down(md) {
           font-size: 20px;
-        };
+        }
 
         a {
           color: $black;
@@ -147,7 +146,7 @@
       display: flex;
       @include breakpoint-down(lg) {
         flex-direction: column;
-      };
+      }
       .group {
         margin-top: 30px;
         flex: 1;
@@ -175,7 +174,6 @@
   }
 
   #explaination {
-
     .content {
       display: flex;
 
@@ -183,7 +181,8 @@
         flex-direction: column;
       }
 
-      .left-side, .right-side {
+      .left-side,
+      .right-side {
         flex: 1;
         padding: 20px;
       }
@@ -218,13 +217,13 @@
         color: $black2;
         letter-spacing: 1px;
       }
-  
+
       p.desc {
         font-size: 24px;
 
         @include breakpoint-down(md) {
           font-size: 20px;
-        };
+        }
 
         a {
           color: $black;
@@ -254,10 +253,11 @@
           margin: 10px 0px;
         }
 
-        &:hover, &.active {
+        &:hover,
+        &.active {
           border-radius: 5px;
           color: $white;
-          background: #0DC7D8;
+          background: #0dc7d8;
           opacity: 1;
         }
       }
@@ -271,7 +271,7 @@
 
       @include breakpoint-down(md) {
         flex-direction: column;
-      };
+      }
 
       .image {
         padding: 5px;
@@ -301,14 +301,14 @@
               border-radius: 100px;
             }
           }
-          
+
           .description {
             .name {
               font-size: 1.15rem;
               font-weight: 500;
               margin-bottom: 5px;
             }
-  
+
             .title {
               font-size: 1rem;
               font-weight: 400;
@@ -325,14 +325,6 @@
         }
       }
     }
-  }
-
-  #footer {
-    padding: 20px;
-    background: #101111;
-    font-size: 15px;
-    color: #B9C9CA;
-    text-align: center;
   }
 
   * {
