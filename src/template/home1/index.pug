@@ -12,10 +12,43 @@ block main
             .desktop
                i-slider(images=[
                   {
-                     img: require('../../image/home1/home_slider_10.png'),
+                     img: 'https://www.youtube.com/embed/bafTu0kGfq4',
+                     thumbnail: 'https://img.youtube.com/vi/bafTu0kGfq4/hqdefault.jpg',
+                     type: 'youtube',
+                     position: 'bottom center',
+                  },
+                  {
+                     img: 'https://www.youtube.com/embed/eXNAD4wckQI',
+                     thumbnail: 'https://img.youtube.com/vi/eXNAD4wckQI/hqdefault.jpg',
+                     type: 'youtube',
+                     position: 'bottom center',
+                  },
+                  {
+                     img: require('../../image/home1/home_slider_1.jpg'),
+                     position: 'bottom center',
+                  },
+                  {
+                     img: require('../../image/home1/home_slider_2.jpg'),
+                     position: 'bottom center',
+                  },
+                  {
+                     img: require('../../image/home1/home_slider_4.jpg'),
+                     position: 'bottom center',
+                  },
+                  {
+                     img: require('../../image/home1/home_slider_3.jpg'),
+                     position: 'bottom center',
+                  },
+                  {
+                     img: require('../../image/home1/home_slider_5.jpg'),
+                     position: 'bottom center',
+                  },
+                  {
+                     img: require('../../image/home1/home_slider_6.jpg'),
                      position: 'bottom center',
                   }
-               ])
+               ],
+               aspect_ratio=1260/1740*100)
             img(src=require('../../image/home1/home_background_mobile.png')).mobile
 
             //- .links

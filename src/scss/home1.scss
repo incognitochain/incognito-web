@@ -5,10 +5,14 @@
   overflow-y: scroll;
 
   > div.intro-slider-container {
-    max-width: 1200px;
+    max-width: 1250px;
 
     @include breakpoint-up(xl) {
       margin: 0 auto;
+
+      > div {
+        width: 50%;
+      }
     }
 
     .image {
@@ -16,34 +20,113 @@
         margin-top: 40px;
       }
     }
-  
+
     .right-content {
       display: flex;
       flex-direction: column;
-  
+
       #intro-container {
         min-height: unset;
+        padding-bottom: 0px;
 
-        >div.content {
+        > div.content {
           flex-direction: column;
-          bottom: unset!important;
-          position: relative!important;
+          bottom: unset !important;
+          position: relative !important;
           margin-top: 52px;
-  
+
           @include breakpoint-up(xl) {
             margin-right: unset;
           }
-  
+
           div.intro {
             justify-content: unset !important;
-    
+            padding-bottom: 0px;
+
             @include breakpoint-down(xl) {
               min-height: unset;
               padding-bottom: 0px;
             }
-  
+
+            .benefit-container {
+              display: flex;
+              justify-content: space-between;
+
+              @include breakpoint-down(xl) {
+                flex-direction: column;
+              }
+
+              .benefit-group {
+                display: flex;
+                margin-top: 40px;
+                flex: 1;
+                flex-direction: column;
+
+                @include breakpoint-down(sm) {
+                  justify-content: center;
+                }
+
+                .heading {
+                  font-size: 32px;
+                  font-weight: 500;
+                  line-height: 41px;
+                }
+
+                .benefit {
+                  display: flex;
+                  max-width: 350px;
+                  text-align: left;
+
+                  &:not(:last-child) {
+                    margin-bottom: 20px;
+                  }
+
+                  @include breakpoint-down(sm) {
+                    max-width: 80%;
+                    padding: 10px 0px;
+                  }
+
+                  .content {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                  }
+
+                  .icon {
+                    width: 50px;
+                    height: 50px;
+                    margin-top: 8px;
+                    margin-right: 20px;
+
+                    > img {
+                      width: 30px;
+                    }
+
+                    &.easy {
+                      width: 50px;
+                    }
+                  }
+
+                  .label {
+                    margin-top: 5px;
+                    margin-bottom: 5px;
+                    font-weight: 500;
+                  }
+
+                  .desc {
+                    font-size: 14px;
+                    font-weight: 300;
+                  }
+                }
+              }
+
+              @include breakpoint-down(sm) {
+                flex-direction: column;
+              }
+            }
+
             > div {
-              .heading {              
+              .heading {
                 font-size: 32px;
                 line-height: 41px;
                 letter-spacing: 0.4px;
@@ -51,17 +134,17 @@
                 font-weight: 500;
               }
             }
-  
+
             .video-link {
               margin-top: 50px;
               cursor: pointer;
-  
+
               .link {
-                color: #0DC7D8;
+                color: #0dc7d8;
                 font-size: 18px;
                 font-weight: 300;
-                
-                &::after  {
+
+                &::after {
                   content: '\f144';
                   font-family: 'Font Awesome 5 Pro';
                   margin-left: 10px;
@@ -69,15 +152,15 @@
                   font-weight: light;
                   transition: transform 0.2s;
                 }
-  
+
                 &:hover {
                   &::after {
                     transform: translate(3px);
                   }
                 }
-              }            
+              }
             }
-            
+
             .title {
               .extra {
                 @include breakpoint-down(md) {
@@ -85,33 +168,33 @@
                 }
               }
             }
-  
+
             .collapse {
               padding: 0px;
-  
+
               .content {
                 margin: 0px;
-  
+
                 @include breakpoint-up(xl) {
                   margin-top: 52px;
                 }
               }
             }
-  
+
             .earn-description {
               font-size: 24px;
               line-height: 33px;
               font-weight: 400;
-  
+
               @include breakpoint-down(sm) {
                 font-size: 20px;
               }
-  
+
               .highlight {
-                color: #FF8E00;
+                color: #ff8e00;
               }
             }
-  
+
             .description {
               font-size: 16px;
               font-weight: 400;
@@ -120,12 +203,12 @@
               margin-top: 10px;
               margin-bottom: 10px;
               color: $black5;
-  
+
               .highlight {
-                color: #ff8e00;
+                color: $green1;
                 font-weight: 500;
               }
-  
+
               @include breakpoint-down(sm) {
                 .extra {
                   display: none;
@@ -133,87 +216,87 @@
               }
             }
           }
-  
+
           .question {
             #top-question-container {
               // cheat css
               margin-left: -80px;
               margin-right: -80px;
-  
+
               @include breakpoint-down(xl) {
                 margin-left: -100px;
                 margin-right: -100px;
               }
-  
+
               @include breakpoint-down(lg) {
                 margin-left: -40px;
-                margin-right: -40px;              
+                margin-right: -40px;
               }
             }
-  
+
             .container {
               flex-direction: column;
-  
+
               @include breakpoint-up(xl) {
                 padding-left: 100px;
                 padding-right: 100px;
               }
-  
+
               @include breakpoint-down(sm) {
                 padding-left: 40px;
                 padding-right: 40px;
               }
-  
-              >.content {
+
+              > .content {
                 margin-top: 30px;
-                
+
                 @include breakpoint-up(lg) {
                   margin-left: 20px;
                 }
               }
             }
           }
-  
+
           .row {
             display: flex;
             flex-direction: row;
-  
+
             .row-item {
               flex: 1;
             }
           }
-  
+
           .subscribe-price-container {
             position: relative;
             margin-top: 20px;
-  
+
             @include breakpoint-down(sm) {
               display: flex;
               flex-direction: column-reverse;
-  
+
               .price-info {
                 margin-top: 20px;
-  
+
                 .price {
                   position: absolute;
                   top: 0px;
                 }
               }
-  
+
               .cta {
                 margin-top: 50px;
-  
+
                 &.sticky {
                   margin-top: 0px;
                 }
               }
             }
           }
-  
+
           ul.list-info {
             padding-left: 16px;
             margin-top: 20px;
-  
+
             li {
               font-size: 16px;
               color: #101111;
@@ -221,19 +304,19 @@
               line-height: 23px;
               list-style: initial;
               font-weight: 300;
-  
+
               &::before {
                 display: none;
               }
             }
           }
         }
-  
+
         @include breakpoint-down(xl) {
-          padding-bottom: 0px!important;
+          padding-bottom: 0px !important;
         }
       }
-  
+
       .scroll-down {
         position: absolute;
         bottom: 0;
@@ -246,8 +329,8 @@
         border-radius: 25px;
         margin-bottom: 20px;
         margin-left: -25px;
-        font-family: "Font Awesome 5 Pro";
-  
+        font-family: 'Font Awesome 5 Pro';
+
         &.hide {
           display: none;
         }
@@ -279,7 +362,7 @@
 
         img.icon {
           height: 100px;
-          transition: opacity .3s ease-in;
+          transition: opacity 0.3s ease-in;
           opacity: 1;
 
           &:hover {
@@ -315,7 +398,7 @@
       //     @include breakpoint-down(676px) {
       //       margin-right: 5px;
       //     }
-  
+
       //   }
 
       //   @include breakpoint-down(676px) {
@@ -364,111 +447,17 @@
   }
 
   #content-container {
-    margin-top: 90px;
+    margin-top: 80px;
 
     @include breakpoint-down(xl) {
-      margin-top: 30px;
+      margin-top: 50px;
     }
 
-    @include breakpoint-down(lg) {
-      margin-top: 0px;
-    }
-
-    .benefit-container {
-      display: flex;
-      justify-content: space-between;
-      padding-bottom: 73px;
-      border-bottom: 1px solid #D8D8D8;
-
-      @include breakpoint-down(xl) {
-        flex-direction: column;
-      }
-
-      .benefit-group {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 40px;
-        flex: 1;
-
-        &.benefit-wrapper {
-          flex: 2;
-        }
-
-        @include breakpoint-down(sm) {
-          flex-direction: column;
-          justify-content: center;
-        }
-
-        .heading {
-          font-size: 32px;
-          font-weight: 500;
-          line-height: 41px;
-        }
-
-        .benefit {
-          display: flex;
-          flex-direction: column;
-          padding: 5px 45px;
-          max-width: 350px;
-          text-align: left;
-          flex: 1;
-
-          @include breakpoint-up(sm) {
-            &:not(:last-child) {
-            border-right: 1px dashed #D8D8D8;
-            }
-          }
-
-          @include breakpoint-down(sm) {
-            max-width: 80%;
-            padding: 10px 0px;
-          }
-
-          .content {
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-          }
-
-          .icon {
-            width: 50px;
-            height: 50px;
-            margin-top: 8px;
-            margin-right: 20px;
-
-            >img {
-              width: 30px;
-            }
-
-            &.easy {
-              width: 50px;
-            }
-          }
-
-          
-
-          .label {
-            margin-top: 5px;
-            margin-bottom: 5px;
-            font-weight: 500;
-          }
-
-          .desc {
-            font-size: 14px;
-            font-weight: 300;
-          }
-        }
-      }
-
-      @include breakpoint-down(sm) {
-        flex-direction: column;
-      }
-    }
     .story-container {
       padding: 0 100px;
 
       @include breakpoint-down(xl) {
-        padding: 0 ;
+        padding: 0;
       }
 
       .heading {
@@ -476,7 +465,7 @@
         line-height: 41px;
         font-weight: 500px;
         text-align: center;
-        margin-top: 70px;
+        margin-top: 0px;
         margin-bottom: 50px;
       }
 
@@ -487,10 +476,14 @@
             font-size: 24px;
           }
 
-          .description, .title, .subtitle, .image {
+          .description,
+          .title,
+          .subtitle,
+          .image {
             margin-bottom: 35px;
           }
-          .subtitle, .description {
+          .subtitle,
+          .description {
             font-size: 16px;
             line-height: 24px;
             letter-spacing: 0.1px;
@@ -508,7 +501,7 @@
             .description {
               font-size: 14px;
               font-style: italic;
-              color: #9B9E9E;
+              color: #9b9e9e;
               margin-top: 5px;
               text-align: center;
             }

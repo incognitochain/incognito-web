@@ -59,7 +59,7 @@ class Slider extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    if(this.isAutoSlide()) {
+    if (this.isAutoSlide()) {
       this.resetAutoSlide();
     } else {
       this.slideNext();
@@ -71,27 +71,74 @@ class Slider extends HTMLElement {
     this.timer = null;
   }
 
+  createYoutubeFrame({ url, width, height, style }) {
+    const container = document.createElement('iframe');
+
+    Object.entries({
+      width: width || '100%',
+      height: height || '100%',
+      style: style || '',
+      src: `${url}?autoplay=1&enablejsapi=1`,
+      frameborder: 0,
+      allow:
+        'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
+      allowfullscreen: true
+    }).forEach(([key, value]) => {
+      container.setAttribute(String(key), String(value));
+    });
+
+    return container;
+  }
+
+  toggleYoutubeVideo(container, state = 'show') {
+    const iframe = container.querySelector('iframe');
+    const func = state == 'hide' ? 'pauseVideo' : 'playVideo';
+    iframe.contentWindow.postMessage(
+      `{"event": "command", "func": "${func}"}`,
+      '*'
+    );
+  }
+
   render() {
     const shadow = this.attachShadow({ mode: 'open' });
+    const aspectRatio = this.getAttribute('aspect_ratio') || '100';
     const wrapper = document.createElement('div');
     wrapper.style.cssText = `
       position: relative;
-    `
+    `;
     this.containers = this.data.map(data => {
+      const { type = 'image', img: src } = data;
       const container = document.createElement('div');
       container.style.cssText = `
         opacity: 0;
         transition: opacity 3s;
         display: none;
-      `;
-      const image = document.createElement('img');
-      image.style.cssText = `
+        position: relative;
         width: 100%;
-        height: auto;
-        object-fit: contain;
+        padding-top: ${aspectRatio}%;
       `;
-      image.src = data.img;
-      container.appendChild(image);
+      container.setAttribute('type', type);
+
+      const defaultStyle = `
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+    `;
+
+      if (type == 'youtube') {
+        container.appendChild(
+          this.createYoutubeFrame({ url: src, style: defaultStyle })
+        );
+      } else {
+        const image = document.createElement('img');
+        image.style.cssText = defaultStyle;
+        image.src = src;
+        container.appendChild(image);
+      }
 
       if (this.data && this.data.length > 1) {
         container.addEventListener('click', () => {
@@ -125,17 +172,20 @@ class Slider extends HTMLElement {
     }
   }
 
-  renderCarouselButton (container) {
+  renderCarouselButton(container) {
     const carousel = document.createElement('div');
     carousel.classList.add('carousel');
     carousel.style.cssText = `
-      display: flex;
+      display: block;
       align-items: center;
-      margin-top: 3px;
+      margin-top: 10px;
+      overflow-x: scroll;
+      white-space: nowrap;
     `;
 
     const buttonCss = carouselStyleConfig.normal.button;
     this.data.forEach((item, i) => {
+      const { type = 'image', img: src, thumbnail } = item;
       const button = document.createElement('div');
       button.classList.add('button');
       button.addEventListener('click', () => {
@@ -147,11 +197,28 @@ class Slider extends HTMLElement {
         height: ${buttonCss.height};
         margin: 0 5px;
         border-radius: 6px;
+        display: inline-block;
+        position: relative;
         ${i === 0 && 'margin-left: 0px;'}
       `;
-      
+
+      if (type == 'youtube') {
+        const playIcon = document.createElement('img');
+        playIcon.src = require('../../../image/icon/play.svg');
+        playIcon.style.cssText = `
+          position: absolute; 
+          top: 50%;
+          left: 50%;
+          margin-top: -15px;
+          margin-left: -15px;
+          height: 30px;
+          width: 30px;
+        `;
+        button.appendChild(playIcon);
+      }
+
       const image = document.createElement('img');
-      image.src = item.img;
+      image.src = type === 'youtube' ? thumbnail || src : src;
       image.style.cssText = `
         width: 100%;
         height: 100%;
@@ -163,9 +230,9 @@ class Slider extends HTMLElement {
     });
 
     container.appendChild(carousel);
-  } 
+  }
 
-  renderNextPrevButtons (container) {
+  renderNextPrevButtons(container) {
     const nextBtn = document.createElement('div');
     const prevBtn = document.createElement('div');
 
@@ -199,7 +266,7 @@ class Slider extends HTMLElement {
       });
       this.slideNext();
     });
-    
+
     prevBtn.addEventListener('click', () => {
       trackEvent({
         eventCategory: 'Slider',
@@ -228,7 +295,7 @@ class Slider extends HTMLElement {
       } else {
         this.currentIndex = 0;
       }
-      
+
       container = this.containers[0];
       data = this.data[0];
     }
@@ -236,7 +303,15 @@ class Slider extends HTMLElement {
     return { container, data };
   }
 
+  getType(container) {
+    return container.getAttribute('type');
+  }
+
   hideContainer(container) {
+    const type = this.getType(container);
+    if (type === 'youtube') {
+      this.toggleYoutubeVideo(container, 'hide');
+    }
     // container.style.width = 0;
     // container.style.height = 0;
     container.style.opacity = 0;
@@ -246,6 +321,10 @@ class Slider extends HTMLElement {
   }
 
   showContainer(container, data) {
+    const type = this.getType(container);
+    if (type === 'youtube') {
+      this.toggleYoutubeVideo(container);
+    }
     // container.style.width = '100%';
     // container.style.height = 'calc(100% - 100px)';
     container.style.display = 'block';
@@ -258,21 +337,21 @@ class Slider extends HTMLElement {
   hideAllContainers() {
     this.containers.map(container => {
       this.hideContainer(container);
-    })
+    });
   }
 
   slideTo(index) {
     this.resetAutoSlide();
     this.hideAllContainers();
 
-    if(index >= this.data.length) {
+    if (index >= this.data.length) {
       index = 0;
-    } else if(index < 0) {
+    } else if (index < 0) {
       index = this.data.length - 1;
     }
     this.currentIndex = index;
 
-    const {container: nextContainer, data: nextData} = this.getData();
+    const { container: nextContainer, data: nextData } = this.getData();
     this.showContainer(nextContainer, nextData);
   }
 
@@ -308,24 +387,26 @@ class Slider extends HTMLElement {
     clearInterval(this.timer);
     this.timer = null;
 
-    if(this.autoSlide()) {
+    if (this.isAutoSlide()) {
       this.autoSlide(this.getAutoSlideTime());
     }
   }
 
   updateCarouselActive() {
-    const carouselButtons = this.shadowRoot.querySelectorAll('.carousel .button');
+    const carouselButtons = this.shadowRoot.querySelectorAll(
+      '.carousel .button'
+    );
 
     carouselButtons.forEach((button, i) => {
-      let styleConfig = { 
+      let styleConfig = {
         ...carouselStyleConfig.normal,
         ...(i === this.currentIndex ? carouselStyleConfig.active : {})
       };
-        
+
       button.style.width = styleConfig.button.width;
       button.style.height = styleConfig.button.height;
       button.style.border = styleConfig.button.border;
-    })
+    });
   }
 }
 
