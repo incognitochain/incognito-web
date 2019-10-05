@@ -33,9 +33,9 @@
           flex-direction: column;
           bottom: unset !important;
           position: relative !important;
-          margin-top: 52px;
 
           @include breakpoint-up(xl) {
+            margin-top: 52px;
             margin-right: unset;
           }
 
@@ -359,7 +359,6 @@
       justify-content: center;
       display: flex;
       align-items: center;
-      margin-top: -50px;
 
       @include breakpoint-up(xl) {
         display: none;
@@ -369,7 +368,7 @@
         cursor: pointer;
 
         img.icon {
-          width: 100px;
+          width: 150px;
           height: auto;
           transition: opacity 0.3s ease-in;
           opacity: 1;
@@ -378,14 +377,14 @@
             opacity: 0.7;
           }
 
+          @include breakpoint-down(lg) {
+            width: 100px;
+          }
+
           @include breakpoint-down(sm) {
             width: 60px;
           }
         }
-      }
-
-      @include breakpoint-down(sm) {
-        margin-top: unset;
       }
 
       // .link {
