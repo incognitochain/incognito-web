@@ -15,7 +15,7 @@
 @import './header.scss';
 // @import './mine.scss';
 @import './privacy.scss';
-// @import './footer.scss';
+@import './footer.scss';
 @import './message_box.scss';
 @import './top_question.scss';
 @import './referral.scss';
@@ -40,7 +40,8 @@
   font-family: $default-font;
 }
 
-html, body {
+html,
+body {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -55,29 +56,29 @@ html, body {
   transition: background-color 300ms;
 
   div#content {
-    flex: 1
+    flex: 1;
   }
 }
 
 ::-webkit-scrollbar {
-  width: 0px;  /* Remove scrollbar space */
-  background: transparent;  /* Optional: just make scrollbar invisible */
+  width: 0px; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
 }
 
 p {
   letter-spacing: initial;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-weight: 500;
 }
 
 a {
   &:hover {
-    
   }
 }
-
 
 .container {
   max-width: $page-width;
@@ -85,22 +86,23 @@ a {
 
   @include breakpoint-up(xl) {
     padding: 0px 198px;
-  };
+  }
 
   @include breakpoint-down(xl) {
     padding: 0px 120px;
-  };
+  }
 
   @include breakpoint-down(md) {
     padding: 0px 50px;
-  };
+  }
 
   @include breakpoint-down(sm) {
     padding: 0px 30px;
-  };
+  }
 }
 
-.scroll-action-btn, .copiable {
+.scroll-action-btn,
+.copiable {
   cursor: pointer;
 }
 
@@ -117,5 +119,5 @@ a {
 }
 
 .show {
-  display: block; 
+  display: block;
 }
