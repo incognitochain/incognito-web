@@ -83,13 +83,19 @@ class Slider extends HTMLElement {
       width: width || '100%',
       height: height || '100%',
       style: style || '',
-      src: `${url}?autoplay=1&enablejsapi=1`,
+      src: `${url}?enablejsapi=1`,
       frameborder: 0,
       allow:
         'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
-      allowfullscreen: true
+      allowfullscreen: true,
+      loaded: false
     }).forEach(([key, value]) => {
       container.setAttribute(String(key), String(value));
+    });
+
+    container.addEventListener('load', function() {
+      container.setAttribute('loaded', true);
+      container.removeEventListener('loaded', this);
     });
 
     return container;
@@ -98,10 +104,19 @@ class Slider extends HTMLElement {
   toggleYoutubeVideo(container, state = 'show') {
     const iframe = container.querySelector('iframe');
     const func = state == 'hide' ? 'pauseVideo' : 'playVideo';
-    iframe.contentWindow.postMessage(
-      `{"event": "command", "func": "${func}"}`,
-      '*'
-    );
+    const isFrameLoaded = iframe.getAttribute('loaded') == 'true' || false;
+    if (!isFrameLoaded) {
+      const self = this;
+      iframe.addEventListener('load', function() {
+        iframe.removeEventListener('load', this);
+        self.toggleYoutubeVideo(container, state);
+      });
+    } else {
+      iframe.contentWindow.postMessage(
+        `{"event": "command", "func": "${func}"}`,
+        '*'
+      );
+    }
   }
 
   render() {
@@ -323,16 +338,16 @@ class Slider extends HTMLElement {
   }
 
   showContainer(container, data) {
-    const type = this.getType(container);
-    if (type === 'youtube') {
-      this.toggleYoutubeVideo(container);
-    }
     container.style.width = '100%';
     container.style.paddingTop = `${this.aspectRatio}%`;
     container.style.opacity = 1;
     // container.style.transform = 'scale(1)';
     // container.style.backgroundPosition = data.position;
     this.updateCarouselActive();
+    const type = this.getType(container);
+    if (type === 'youtube') {
+      this.toggleYoutubeVideo(container);
+    }
   }
 
   hideAllContainers() {
