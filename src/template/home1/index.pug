@@ -51,9 +51,9 @@ block main
                aspect_ratio=1260/1740*100)
             img(src=require('../../image/home1/home_background_mobile.png')).mobile
 
-            //- .links
-            //-    span.link(data-video-url='https://www.youtube.com/embed/bafTu0kGfq4', type='intro')
-            //-       img(src=require('../../image/youtube_play_icon.svg')).icon
+            .links
+               span.link(data-video-url='https://www.youtube.com/embed/bafTu0kGfq4', type='intro')
+                  img(src=require('../../image/icon/play.svg')).icon
          .right-content
             include intro.pug
       include section.pug

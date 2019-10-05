@@ -9,13 +9,13 @@
 
   @include breakpoint-down(lg) {
     padding: 100px;
-  };
+  }
 
   @include breakpoint-down(sm) {
     padding: 100px 10px;
-  };
+  }
 
-  .content {
+  > .content {
     height: 100%;
     width: 100%;
     margin-top: -30px;
@@ -26,31 +26,30 @@
   }
 
   .subscribe-form {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-  
-    .cta {
-      margin: 0px;
-      flex: 0.8;
-
-      @include breakpoint-up(xl) {
-        .total-subcriber {
-          display: none;
-        }
-      }
-    }
-
-    @include breakpoint-down(xl) {
-      flex-direction: column;
-
-      #email-subscribe {
-        margin-top: 30px;
-      }
-    }
+    position: relative;
+    margin-top: 20px;
+    padding: 0 30px;
 
     @include breakpoint-down(sm) {
-      padding: 0 30px;
+      display: flex;
+      flex-direction: column-reverse;
+
+      .price-info {
+        margin-top: 20px;
+
+        .price {
+          position: absolute;
+          top: 0px;
+        }
+      }
+
+      .cta {
+        margin-top: 50px;
+
+        &.sticky {
+          margin-top: 0px;
+        }
+      }
     }
   }
 
@@ -60,7 +59,7 @@
     left: 0px;
     width: 100%;
     background: $white;
-    
+
     .close-button {
       height: 38px;
       background: transparent;
