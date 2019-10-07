@@ -167,6 +167,9 @@ const prodConfig = {
         production
       })
     }),
+    new webpack.ProvidePlugin({
+      noUiSlider: 'nouislider'
+    }),
     copyPlugin,
     ...templateGen
   ],

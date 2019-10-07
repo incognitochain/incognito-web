@@ -1,8 +1,79 @@
+@import '~nouislider/distribute/nouislider';
+
 #home1-container {
   display: flex;
   flex: 1;
   flex-direction: column;
   overflow-y: scroll;
+
+  .hint {
+    &::before {
+      content: '\f059';
+      font-family: 'Font Awesome 5 Pro';
+    }
+  }
+
+  .tooltip {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+
+    .top {
+      min-width: 350px;
+      top: -4px;
+      left: 50%;
+      font-size: 14px;
+      line-height: 21px;
+      transform: translate(-50%, -100%);
+      padding: 20px;
+      font-weight: 400;
+      background-color: $white;
+      border-radius: 4px;
+      position: absolute;
+      z-index: 9999;
+      box-sizing: border-box;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.2s;
+      box-shadow: 0 1px 5px 0 rgba(179, 179, 179, 0.5);
+
+      .content {
+        > div {
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+        }
+      }
+
+      i {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -12px;
+        width: 24px;
+        height: 12px;
+        overflow: hidden;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 12px;
+          height: 12px;
+          left: 50%;
+          transform: translate(-50%, -50%) rotate(45deg);
+          background-color: $white;
+          box-shadow: 0 1px 5px 0 rgba(179, 179, 179, 0.5);
+        }
+      }
+    }
+
+    &:hover {
+      .top {
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
 
   > div.intro-slider-container {
     max-width: 1250px;
@@ -461,13 +532,166 @@
       margin-top: 50px;
     }
 
-    .story-container {
-      padding: 0 100px;
+    .heading {
+      font-size: 32px;
+      line-height: 44px;
+    }
 
+    .story-container,
+    .earning-slider-container {
+      padding: 0 100px;
       @include breakpoint-down(xl) {
         padding: 0;
       }
+    }
 
+    .earning-slider-container {
+      padding-bottom: 90px;
+      margin-bottom: 50px;
+      border-bottom: 1px solid #f0f5f5;
+
+      .tooltip {
+        font-size: 20px;
+      }
+
+      .earning-group {
+        margin-top: 55px;
+        border: 1px solid #d1dfe0;
+        display: flex;
+        padding: 40px;
+        border-radius: 8px;
+
+        @include breakpoint-down(sm) {
+          flex-direction: column;
+          padding: 30px;
+        }
+
+        .description {
+          font-size: 16px;
+          color: #657576;
+        }
+
+        > div {
+          margin: 0 auto;
+
+          @include breakpoint-down(sm) {
+            margin: unset;
+
+            &:not(:last-child) {
+              margin-bottom: 30px;
+            }
+          }
+
+          * {
+            font-size: 20px;
+          }
+        }
+
+        .earning {
+          &:not(:last-child) {
+            margin-bottom: 10px;
+          }
+
+          * {
+            font-size: 18px;
+          }
+
+          > span {
+            font-weight: 500;
+          }
+        }
+
+        .earning-price {
+          font-size: 28px;
+          line-height: 34px;
+          font-weight: 500;
+          margin-top: 5px;
+          margin-bottom: 15px;
+
+          &::before {
+            content: '$';
+          }
+        }
+      }
+
+      .slider-group {
+        padding-right: 10px;
+
+        .slider {
+          margin-top: 90px;
+          display: flex;
+          align-items: center;
+
+          @include breakpoint-down(sm) {
+            margin-top: 60px;
+          }
+
+          .icon-container {
+            display: flex;
+            align-items: center;
+            margin-right: 30px;
+            .icon {
+              width: 20px;
+              height: 20px;
+              margin-right: 10px;
+            }
+            > span {
+              line-height: 27px;
+              font-size: 18px;
+              margin-top: 5px;
+            }
+          }
+
+          .noUi-target {
+            height: 6px;
+            border-radius: 6px;
+            border: none;
+            background: #f0f5f5;
+            flex: 1;
+          }
+
+          .noUi-tooltip {
+            border: none;
+            background: none;
+            font-size: 16px;
+            font-weight: 500;
+
+            &::after {
+              content: '%';
+            }
+          }
+
+          .noUi-handle {
+            height: 25px;
+            width: 25px;
+            border-radius: 25px;
+            top: -11px;
+            border: none;
+            box-shadow: 0 2px 4px #9ab7b8;
+            background: $white;
+
+            &::after {
+              display: none;
+            }
+
+            &::before {
+              border-radius: 25px;
+              width: 10px;
+              height: 10px;
+              background: #25cdd6;
+              left: 8px;
+              top: 8px;
+            }
+          }
+
+          .noUi-connect {
+            background: #25cdd6;
+          }
+        }
+      }
+    }
+
+    .story-container {
       .heading {
         font-size: 32px;
         line-height: 41px;
