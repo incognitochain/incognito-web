@@ -18,9 +18,9 @@ const fixedEarningInUSDRate = {
   bnb: 4.5
 };
 let coinFiatRate = {
-  btc: 0,
-  eth: 0,
-  bnb: 0
+  btc: 0.1,
+  eth: 0.1,
+  bnb: 0.1
 };
 let sliderAffected = false;
 let defaultEarningTooltipContent =

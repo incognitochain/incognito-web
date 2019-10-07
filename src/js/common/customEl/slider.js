@@ -97,7 +97,7 @@ class Slider extends HTMLElement {
 
     container.addEventListener('load', function() {
       container.setAttribute('loaded', true);
-      container.removeEventListener('loaded', this);
+      container.removeEventListener('load', this);
     });
 
     return container;
