@@ -63,6 +63,8 @@ class Slider extends HTMLElement {
   }
 
   connectedCallback() {
+    const isDesktopDevice = window.matchMedia('(min-width: 1200px)').matches;
+    if (!isDesktopDevice) return;
     this.render();
     if (this.isAutoSlide()) {
       this.resetAutoSlide();
@@ -95,7 +97,7 @@ class Slider extends HTMLElement {
 
     container.addEventListener('load', function() {
       container.setAttribute('loaded', true);
-      container.removeEventListener('loaded', this);
+      container.removeEventListener('load', this);
     });
 
     return container;
@@ -240,6 +242,8 @@ class Slider extends HTMLElement {
       image.style.cssText = `
         width: 100%;
         height: 100%;
+        object-fit: cover;
+        object-position: center;
         border-radius: 6px;
       `;
       button.appendChild(image);
