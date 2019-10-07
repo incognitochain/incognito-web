@@ -9,87 +9,106 @@ export const subscribe = (email, referralCode) => {
     body: {
       Email: email,
       ReferralCode: referralCode
-    },
+    }
   })
-  .then(subscribeModel.fromJson)
-  .catch((e) => {
-    throw new Error(e.message || 'Can not subscribe your email right now, please try later')
-  });
-}
+    .then(subscribeModel.fromJson)
+    .catch(e => {
+      throw new Error(
+        e.message || 'Can not subscribe your email right now, please try later'
+      );
+    });
+};
 
 export const auth = email => {
   return fetch('auth/token', {
     method: 'POST',
     body: {
-      Email: email,
-    },
+      Email: email
+    }
   })
-  .then(authModel.fromJson)
-  .catch((e) => {
-    throw new Error(e.message || 'Can not register your email right now, please try later')
-  });
-}
+    .then(authModel.fromJson)
+    .catch(e => {
+      throw new Error(
+        e.message || 'Can not register your email right now, please try later'
+      );
+    });
+};
 
 export const listReferralLevel = () => {
   return fetch('auth/referral-levels', {
     method: 'GET'
   })
-  .then(data => data && data.map(referralLevelModel.fromJson))
-  .catch((e) => {
-    throw new Error(e.message || 'Can not get referral program list')
-  });
-}
+    .then(data => data && data.map(referralLevelModel.fromJson))
+    .catch(e => {
+      throw new Error(e.message || 'Can not get referral program list');
+    });
+};
 
 export const getUserTotalReferral = () => {
   return fetch('auth/total-referral', {
     method: 'GET'
   })
-  .then(num => Number.parseInt(num) || 0)
-  .catch((e) => {
-    throw new Error(e.message || 'Can not get user referral total')
-  });
-}
+    .then(num => Number.parseInt(num) || 0)
+    .catch(e => {
+      throw new Error(e.message || 'Can not get user referral total');
+    });
+};
 
-export const verifyEmailToken = (token) => {
+export const verifyEmailToken = token => {
   return fetch('auth/verify-email', {
     method: 'POST',
     body: {
       Token: token
     }
-  })
-  .catch((e) => {
-    throw new Error(e.message || 'Token is invalid')
+  }).catch(e => {
+    throw new Error(e.message || 'Token is invalid');
   });
-}
+};
 
-export const sendReferralInvitation = (emails) => {
+export const sendReferralInvitation = emails => {
   const emailStr = emails && emails.join(',');
   return fetch('auth/referral-invitation', {
     method: 'POST',
     body: {
-      'Email': emailStr
+      Email: emailStr
     }
-  })
-  .catch((e) => {
+  }).catch(e => {
     if (!APP_ENV.production) {
       console.error(e);
     }
-    
-    throw new Error(e.message || 'Can not send invitation to your email list')
+
+    throw new Error(e.message || 'Can not send invitation to your email list');
   });
-}
+};
 
 export const getTotalSubscribe = () => {
   return fetch('auth/total-subscrite', {
-    method: 'GET',
+    method: 'GET'
   })
-  .then(num => Intl.NumberFormat().format(num))
-  .catch((e) => {
-    if (!APP_ENV.production) {
-      console.error(e);
-    }
-    
-    throw new Error(e.message || 'Can not get total subscriber')
-  });
-}
+    .then(num => Intl.NumberFormat().format(num))
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
 
+      throw new Error(e.message || 'Can not get total subscriber');
+    });
+};
+
+export const getExchangeRates = () => {
+  return fetch('exchange/rates', {
+    method: 'GET'
+  })
+    .then(rates => {
+      const fiatRate = {};
+      rates.forEach(rate => {
+        fiatRate[rate.Base.toLowerCase()] = rate.Price;
+      });
+      return fiatRate;
+    })
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+    });
+};
