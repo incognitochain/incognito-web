@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const TerserJSPlugin = require('terser-webpack-plugin');
 const webpack = require('webpack');
@@ -21,6 +21,10 @@ const templateGen = [
   new HtmlWebpackPlugin({
     template: 'src/template/privacy/index.pug',
     filename: 'privacy.html'
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/return/index.pug',
+    filename: 'return.html'
   }),
   // new HtmlWebpackPlugin({
   //   template: 'src/template/internalSubscriberBoard/index.pug',
@@ -73,7 +77,7 @@ const templateGen = [
   new HtmlWebpackPlugin({
     template: 'src/template/airdrop/index.pug',
     filename: 'airdrop.html'
-  }),
+  })
   // new HtmlWebpackPlugin({
   //   template: 'src/template/mine/index.pug',
   //   filename: 'mine.html'
@@ -111,33 +115,38 @@ const devConfig = {
       APP_ENV: JSON.stringify({
         ...process.env,
         production
-      }),
+      })
+    }),
+    new webpack.ProvidePlugin({
+      noUiSlider: 'nouislider'
     }),
     copyPlugin
   ],
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.scss$/,
         use: [
-            "style-loader",
-            "css-loader", // translates CSS into CommonJS
-            { loader: 'postcss-loader' },
-            "sass-loader" // compiles Sass to CSS, using Node Sass by default
+          'style-loader',
+          'css-loader', // translates CSS into CommonJS
+          { loader: 'postcss-loader' },
+          'sass-loader' // compiles Sass to CSS, using Node Sass by default
         ]
-    },
-    { 
-      test: /\.pug$/,
-      use: ['pug-loader']
-    },
-    {
-      test: /\.(png|jpe?g|gif|svg|webp|glb|mp3|woff)$/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {},
-        },
-      ],
-    },]
+      },
+      {
+        test: /\.pug$/,
+        use: ['pug-loader']
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp|glb|mp3|woff)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}
+          }
+        ]
+      }
+    ]
   }
 };
 
@@ -149,63 +158,62 @@ const prodConfig = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: "[name].[hash:8].css",
-      chunkFilename: "[id].[hash:8].css"
+      filename: '[name].[hash:8].css',
+      chunkFilename: '[id].[hash:8].css'
     }),
     new webpack.DefinePlugin({
       APP_ENV: JSON.stringify({
         ...process.env,
         production
-      }),
+      })
     }),
     copyPlugin,
     ...templateGen
   ],
   module: {
     rules: [
-    {
+      {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
-    },
-    {
+        use: ['babel-loader']
+      },
+      {
         test: /\.scss$/,
         use: [
-            MiniCssExtractPlugin.loader,
-            "css-loader", // translates CSS into CommonJS
-            { loader: 'postcss-loader' },
-            "sass-loader" // compiles Sass to CSS, using Node Sass by default
+          MiniCssExtractPlugin.loader,
+          'css-loader', // translates CSS into CommonJS
+          { loader: 'postcss-loader' },
+          'sass-loader' // compiles Sass to CSS, using Node Sass by default
         ]
-    },
-    { 
-      test: /\.pug$/,
-      use: ['pug-loader']
-    },{
-      test: /\.(png|jpe?g|gif|svg|webp|glb|mp3|woff)$/,
-      use: [
-        {
-          loader: 'file-loader',
-          options: {
-            name: 'assets/[hash:7].[ext]',
-          },
-        },
-      ],
-    }]
+      },
+      {
+        test: /\.pug$/,
+        use: ['pug-loader']
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|webp|glb|mp3|woff)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'assets/[hash:7].[ext]'
+            }
+          }
+        ]
+      }
+    ]
   },
   optimization: {
-    minimizer: [
-      new TerserJSPlugin({}),
-      new OptimizeCSSAssetsPlugin({})
-    ],
+    minimizer: [new TerserJSPlugin({}), new OptimizeCSSAssetsPlugin({})]
   }
 };
 
-  module.exports = {
-    entry: path.resolve(__dirname, './src/js/index.js'),
-    devtool: 'inline-source-map',
-    output: {
-      filename: '[name].[hash:8].js',
-      path: path.resolve(__dirname, 'dist')
-    },
-    ...production ? prodConfig : devConfig
-  };
+module.exports = {
+  entry: path.resolve(__dirname, './src/js/index.js'),
+  devtool: 'inline-source-map',
+  output: {
+    filename: '[name].[hash:8].js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  ...(production ? prodConfig : devConfig)
+};
