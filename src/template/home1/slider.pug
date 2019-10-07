@@ -1,0 +1,35 @@
+.earning-slider-container
+    h1.heading How much will you earn? Depends on how many people value privacy. 
+        //- .earning-tooltip.hint.tooltip
+        //-     .top 
+        //-         .content 
+        //-         i
+    .description What percentage of the crypto world will choose to send, receive or store their coins privately?
+    .slider-group
+        .slider
+            .icon-container
+                img(src=require('../../image/icon/btc.svg')).icon
+                span BTC
+            #btc-slider
+        .slider 
+            .icon-container
+                img(src=require('../../image/icon/eth.svg')).icon
+                span ETH
+            #eth-slider
+        .slider 
+            .icon-container
+                img(src=require('../../image/icon/bnb.svg')).icon
+                span BNB
+            #bnb-slider
+    .earning-group
+        div
+            div Your monthly earnings:
+            .earning-price 0
+            div.description *at today's market rate
+        div
+            .earning BTC: 
+                span#earning-btc 0
+            .earning ETH: 
+                span#earning-eth 0
+            .earning BNB: 
+                span#earning-bnb 0

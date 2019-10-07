@@ -41,6 +41,7 @@
     "@webcomponents/shadydom": "^1.6.1",
     "dotenv": "^8.1.0",
     "intersection-observer": "^0.7.0",
-    "nodelist-foreach-polyfill": "^1.2.0"
+    "nodelist-foreach-polyfill": "^1.2.0",
+    "nouislider": "^14.0.2"
   }
 }
