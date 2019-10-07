@@ -99,6 +99,12 @@ const copyPlugin = new CopyPlugin([
   }
 ]);
 
+const customPlugin = [
+  new webpack.ProvidePlugin({
+    noUiSlider: 'nouislider'
+  })
+];
+
 const production = process.env.NODE_ENV === 'production';
 console.debug(`Production mode: ${!!production}`);
 
@@ -117,9 +123,7 @@ const devConfig = {
         production
       })
     }),
-    new webpack.ProvidePlugin({
-      noUiSlider: 'nouislider'
-    }),
+    ...customPlugin,
     copyPlugin
   ],
   module: {
@@ -167,9 +171,7 @@ const prodConfig = {
         production
       })
     }),
-    new webpack.ProvidePlugin({
-      noUiSlider: 'nouislider'
-    }),
+    ...customPlugin,
     copyPlugin,
     ...templateGen
   ],

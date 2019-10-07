@@ -1,4 +1,3 @@
-import isPathname from '../common/utils/isPathname';
 import YoutubePlayer from '../common/youtubePlayer';
 import countdown from '../service/countdown';
 import { getTotalSubscribe, getExchangeRates } from '../service/api';
@@ -6,6 +5,7 @@ import { trackEvent } from '../common/utils/ga';
 import { setMessage } from '../service/message_box';
 import isQueryStringExists from '../service/queryStringExists';
 import KEYS from '../constant/keys';
+import Tooltip from 'tooltip.js';
 
 // for earning calculation
 const earningStepPercent = 0.5;
@@ -27,6 +27,7 @@ let defaultEarningTooltipContent =
   '<div>This is our conservative dollar estimation of monthly earnings, calculated at today’s BTC, ETH and BNB market prices. To make your own projections, use the sliders below.</div><div>Earnings will vary based on the volume of private transactions and the price of earned crypto at the time of withdrawal</div>';
 let affectedEarningTooltipContent =
   '<div>How much you earn depends on how many people value privacy, so calculated from your projections below – here’s how much you’ll earn monthly.</div><div>The USD value is based on today’s BTC, ETH and BNB market prices.</div>';
+const earningTooltips = [];
 
 function main() {
   const container = document.querySelector('#home1-container');
@@ -43,7 +44,7 @@ function main() {
   handleAutoPlayUnboxing(container);
   handleAutoPlayIntro(container);
   handleEarningSliders(container);
-  handleUpdateEarningTooltip(container);
+  handleSetupEarningTooltips(container);
 }
 
 const handleShowTotalSubscriber = async container => {
@@ -164,15 +165,30 @@ const handleAutoPlayIntro = container => {
   }
 };
 
-const handleUpdateEarningTooltip = container => {
-  const earningTooltips = container.querySelectorAll('.earning-tooltip');
+const handleSetupEarningTooltips = container => {
+  const earningTooltipElms = container.querySelectorAll('.earning-tooltip');
+  earningTooltipElms.forEach(tooltipEl => {
+    earningTooltips.push(
+      new Tooltip(tooltipEl, {
+        animation: true,
+        placement: 'auto bottom',
+        trigger: 'hover focus',
+        title: !sliderAffected
+          ? defaultEarningTooltipContent
+          : affectedEarningTooltipContent,
+        html: true
+      })
+    );
+  });
+};
 
-  earningTooltips.forEach(tooltip => {
-    const content = tooltip.querySelector('.content');
-    if (!content) return;
-    content.innerHTML = !sliderAffected
-      ? defaultEarningTooltipContent
-      : affectedEarningTooltipContent;
+const updateEarningTooltip = () => {
+  earningTooltips.map(tooltip => {
+    tooltip.updateTitleContent(
+      !sliderAffected
+        ? defaultEarningTooltipContent
+        : affectedEarningTooltipContent
+    );
   });
 };
 
@@ -238,7 +254,7 @@ const handleEarningSliders = async container => {
 };
 
 const updateEarningUI = (container, earningData) => {
-  handleUpdateEarningTooltip(container);
+  updateEarningTooltip(container);
 
   const earningGroupEl = container.querySelector('.earning-group');
   const earningPriceEl = earningGroupEl.querySelector('.earning-price');
