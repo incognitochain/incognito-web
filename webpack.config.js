@@ -77,6 +77,18 @@ const templateGen = [
   new HtmlWebpackPlugin({
     template: 'src/template/airdrop/index.pug',
     filename: 'airdrop.html'
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/self_funded/index.pug',
+    filename: 'self-funded.html'
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/free_software/index.pug',
+    filename: 'free-software.html'
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/payment/index.pug',
+    filename: 'payment.html'
   })
   // new HtmlWebpackPlugin({
   //   template: 'src/template/mine/index.pug',
