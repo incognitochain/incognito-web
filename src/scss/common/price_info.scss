@@ -35,6 +35,7 @@
       &.end-price {
         font-weight: 500;
         margin-right: 10px;
+        color: $black;
 
         &::before {
           content: '$';
@@ -78,7 +79,14 @@
   .rocket {
     display: flex;
     align-items: center;
-    display: none;
+
+    @include breakpoint-up(sm) {
+      margin-left: 27px;
+    }
+
+    .info {
+      line-height: 20px;
+    }
 
     img {
       width: 28px;
@@ -87,18 +95,31 @@
   }
 }
 
+.early-bird {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
 .custom-countdown {
   display: flex;
   flex-direction: row;
   align-items: center;
-  color: #ff8e00 !important;
-  display: none;
+  color: #09969e !important;
 
   span {
-    color: #ff8e00 !important;
-    font-size: 16px;
+    color: #09969e !important;
+  }
+
+  .group,
+  .data,
+  .label,
+  span {
+    font-size: 14px;
     letter-spacing: 0;
-    line-height: 23px;
+    display: inline;
+    font-weight: 500;
   }
 
   .countdown {
@@ -114,12 +135,18 @@
 
       .group,
       .data,
-      .label {
-        font-size: 16px;
-        letter-spacing: 0;
-        display: inline;
-        margin-right: 1px;
-        margin-left: 1px;
+      .label,
+      span {
+        margin-right: 3px;
+        margin-left: 3px;
+
+        &:first-child {
+          margin-left: 0px;
+        }
+
+        &:last-child {
+          margin-right: 0px;
+        }
       }
     }
   }

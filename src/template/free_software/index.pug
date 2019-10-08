@@ -3,19 +3,16 @@ extends ../layout.pug
 
 block title
    title Privately send Bitcoin, Ethereum, and more.
-   
-block meta
-    meta(property="og:image" content=require('../../image/wallet/wallet_slider_1.jpg'))
 
 block main
    include ../header.pug
    include ../telegram_chat.pug
-   div#wallet-container
+   div#free-software-container
       div.intro-slider-container
          .image
             .desktop
                i-slider(images=[{
-                     img: require('../../image/wallet/wallet_slider_1.jpg'),
+                     img: require('../../image/free_software/free_software_slider_1.jpg'),
                      position: 'top',
                      paddingTop: 'calc(100vh - 60px)'
                   }
