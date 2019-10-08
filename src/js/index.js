@@ -10,4 +10,5 @@ import './referral';
 import './common';
 import './home1';
 import './about';
+import './payment';
 // import './internalSubscriberBoard';

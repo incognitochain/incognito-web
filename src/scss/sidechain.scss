@@ -1,67 +1,43 @@
 #sidechain-container {
-    >div.intro-slider-container {        
-        .right-content {
-            @include breakpoint-up(xl) {
-                max-height: 1080px;
+  > div.intro-slider-container {
+    .right-content {
+      @include breakpoint-up(xl) {
+        max-height: 1080px;
+      }
+
+      #intro-container {
+        > div.content {
+          div.intro {
+            .scroll-action-btn {
+              bottom: 20px;
+
+              @include breakpoint-down(xl) {
+                display: none;
+              }
             }
 
-            #intro-container {
-                >div.content {
-                    div.intro {
-                        .scroll-action-btn {
-                            bottom: 20px;
-                            
-                            @include breakpoint-down(xl) {
-                                display: none;
-                            }
-                        }
-
-                        div {
-                            p.sub-title {
-                                max-width: unset;
-                            }
-                        }
-
-                        @include breakpoint-down(xl) {
-                            padding-bottom: 0px;
-                        }
-                    }
-                }
-
-                @include breakpoint-down(xl) {
-                    padding-bottom: 0px;
-                }
+            div {
+              p.sub-title {
+                max-width: unset;
+              }
             }
+
+            @include breakpoint-down(xl) {
+              padding-bottom: 0px;
+            }
+          }
         }
-    }
 
-    #section-container {
         @include breakpoint-down(xl) {
-            padding-top: 0px;
+          padding-bottom: 0px;
         }
+      }
     }
+  }
 
-    .links {
-        display: flex;
-        flex-direction: column;
-        z-index: 0;
-
-        a {
-            width: fit-content;
-
-            button {
-                margin: 5px 0px;
-                min-width: 300px;
-                color: $white;
-    
-                &.slave {
-                    background: #014E52;
-                }
-    
-                @include breakpoint-down(xl) {
-                    width: 100%;
-                }
-            }
-        }
+  #section-container {
+    @include breakpoint-down(xl) {
+      padding-top: 0px;
     }
+  }
 }

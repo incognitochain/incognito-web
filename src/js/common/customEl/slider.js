@@ -43,7 +43,7 @@ class Slider extends HTMLElement {
   }
 
   getAspectRatio() {
-    return this.getAttribute('aspect_ratio') || '100';
+    return `${this.getAttribute('aspect_ratio') || '100'}%`;
   }
 
   isAutoSlide() {
@@ -201,7 +201,7 @@ class Slider extends HTMLElement {
       display: block;
       align-items: center;
       margin-top: 10px;
-      overflow-x: scroll;
+      overflow-x: auto;
       white-space: nowrap;
     `;
 
@@ -246,7 +246,7 @@ class Slider extends HTMLElement {
         height: 100%;
         object-fit: cover;
         object-position: center;
-        border-radius: 6px;
+        border-radius: 4px;
       `;
       button.appendChild(image);
 
@@ -345,7 +345,7 @@ class Slider extends HTMLElement {
 
   showContainer(container, data) {
     container.style.width = '100%';
-    container.style.paddingTop = `${this.aspectRatio}%`;
+    container.style.paddingTop = `${data.paddingTop || this.aspectRatio}`;
     container.style.opacity = 1;
     // container.style.transform = 'scale(1)';
     // container.style.backgroundPosition = data.position;

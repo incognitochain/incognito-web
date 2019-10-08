@@ -7,12 +7,12 @@ nav#header {
   min-height: $header-height;
   position: relative;
   border-bottom: solid 1px $white2;
-  box-shadow: 0 2px 4px 0 #F4F4F4;
   background: $white;
+  z-index: 2;
 
   @include breakpoint-down(md) {
     padding: 15px;
-  };
+  }
 
   .mobile {
     display: none;
@@ -25,7 +25,7 @@ nav#header {
   &.light {
     h3.header-logo {
       color: $green;
-    } 
+    }
 
     .hamburger-btn::after {
       color: $green;
@@ -86,7 +86,7 @@ nav#header {
     margin-left: 10px;
     font-size: 14px;
   }
-  
+
   .group {
     position: relative;
     flex: 1;
@@ -95,7 +95,7 @@ nav#header {
 
     @include breakpoint-down(900px) {
       display: none;
-    };
+    }
 
     .right {
       position: absolute;
@@ -161,7 +161,7 @@ nav#header {
 
   .mobile-sidebar {
     right: 0;
-    
+
     .hamburger-btn {
       height: 25px;
       width: 25px;
@@ -215,7 +215,7 @@ nav#header {
             cursor: pointer;
           }
         }
-        
+
         > a {
           &:not(.menu-item) {
             margin: 30px auto;
@@ -226,8 +226,8 @@ nav#header {
           &.menu-item {
             padding: 12px 10px;
             margin-right: 30px;
-            font-size: 20px;
-            font-weight: 300;
+            font-size: 16px;
+            font-weight: 400;
           }
         }
       }
