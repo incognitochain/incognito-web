@@ -1,0 +1,26 @@
+#wallet-container {
+  background: #191919;
+  > div.intro-slider-container {
+    .right-content {
+      * {
+        color: $white;
+      }
+
+      #intro-container {
+        > div.content {
+          div.intro {
+            > div .heading {
+              color: $white;
+            }
+
+            > div {
+              h1.title {
+                color: $white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

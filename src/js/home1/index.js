@@ -24,7 +24,7 @@ let coinFiatRate = {
 };
 let sliderAffected = false;
 let defaultEarningTooltipContent =
-  '<div>This is our conservative dollar estimation of monthly earnings, calculated at today’s BTC, ETH and BNB market prices. To make your own projections, use the sliders below.</div><div>Earnings will vary based on the volume of private transactions and the price of earned crypto at the time of withdrawal</div>';
+  '<div>Earnings will vary based on the volume of private transactions and the price of earned crypto at the time of withdrawal.</div><div>To make your own projections, use the sliders below.</div>';
 let affectedEarningTooltipContent =
   '<div>How much you earn depends on how many people value privacy, so calculated from your projections below – here’s how much you’ll earn monthly.</div><div>The USD value is based on today’s BTC, ETH and BNB market prices.</div>';
 const earningTooltips = [];
@@ -65,7 +65,7 @@ const handleShowTotalSubscriber = async container => {
 const startCountdown = container => {
   const countdownEls = document.querySelectorAll('.countdown');
   for (const countdownEl of countdownEls) {
-    countdown(countdownEl, '2019-10-08T11:00:00.000-07:00', () => {
+    countdown(countdownEl, '2019-10-09T11:00:00.000-07:00', () => {
       setMessage('The program was ended', 'error');
     });
   }
@@ -202,7 +202,6 @@ const handleEarningSliders = async container => {
   };
   const defaultSliderOptions = {
     start: earningDefaultStartPercent,
-    tooltips: [true],
     connect: 'lower',
     step: earningStepPercent,
     range: {
@@ -237,15 +236,20 @@ const handleEarningSliders = async container => {
   } catch {}
 
   for (const coinName in sliders) {
-    const slider = sliders[coinName];
+    const sliderContainer = sliders[coinName];
+    const slider = sliderContainer.querySelector('.slider-container');
     if (slider) {
       noUiSlider.create(slider, {
         ...defaultSliderOptions,
         start: currentRate[coinName]
       });
       slider.noUiSlider.on('slide', (values, handle, uncoded) => {
-        if (!sliderAffected) sliderAffected = true;
+        // if (!sliderAffected) sliderAffected = true;
         const value = uncoded[0];
+        const earningPercent = sliderContainer.querySelector(
+          '.earning-percent'
+        );
+        earningPercent.innerText = value;
         currentRate[coinName] = Math.round(value * 10) / 10;
         updateEarningUI(container, calculateEarning(currentRate));
       });

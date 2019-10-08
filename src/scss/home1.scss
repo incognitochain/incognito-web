@@ -6,6 +6,93 @@
   flex-direction: column;
   overflow-y: scroll;
 
+  .benefit-container {
+    display: flex;
+    justify-content: space-between;
+
+    .benefit-group {
+      display: flex;
+      margin-top: 40px;
+      flex: 1;
+      flex-direction: column;
+
+      @include breakpoint-up(sm) {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      @include breakpoint-down(sm) {
+        justify-content: center;
+      }
+
+      .heading {
+        font-size: 32px;
+        font-weight: 500;
+        line-height: 41px;
+      }
+
+      .benefit {
+        display: flex;
+        max-width: 350px;
+        text-align: left;
+        flex: 1;
+
+        @include breakpoint-up(sm) {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 0 20px;
+
+          &:not(:last-child) {
+            border-right: 1px solid #f0f5f5;
+          }
+        }
+
+        @include breakpoint-down(sm) {
+          max-width: 80%;
+          padding: 10px 0px;
+        }
+
+        .content {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+        }
+
+        .icon {
+          width: 50px;
+          height: 50px;
+          margin-top: 8px;
+          margin-right: 20px;
+
+          > img {
+            width: 30px;
+          }
+
+          &.easy {
+            width: 50px;
+          }
+        }
+
+        .label {
+          margin-top: 5px;
+          margin-bottom: 5px;
+          font-weight: 500;
+          color: $black;
+        }
+
+        .desc {
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+    }
+
+    @include breakpoint-down(sm) {
+      flex-direction: column;
+    }
+  }
+
   .hint {
     &::before {
       content: '\f059';
@@ -88,21 +175,7 @@
   }
 
   > div.intro-slider-container {
-    max-width: 1250px;
-
-    @include breakpoint-up(xl) {
-      margin: 0 auto;
-
-      > div {
-        width: 50%;
-      }
-    }
-
-    .image {
-      @include breakpoint-up(xl) {
-        margin-top: 40px;
-      }
-    }
+    max-width: 1200px;
 
     .right-content {
       display: flex;
@@ -126,86 +199,13 @@
             justify-content: unset !important;
             padding-bottom: 0px;
 
+            @include breakpoint-up(xl) {
+              margin-top: 20px;
+            }
+
             @include breakpoint-down(xl) {
               min-height: unset;
               padding-bottom: 0px;
-            }
-
-            .benefit-container {
-              display: flex;
-              justify-content: space-between;
-
-              @include breakpoint-down(xl) {
-                flex-direction: column;
-              }
-
-              .benefit-group {
-                display: flex;
-                margin-top: 40px;
-                flex: 1;
-                flex-direction: column;
-
-                @include breakpoint-down(sm) {
-                  justify-content: center;
-                }
-
-                .heading {
-                  font-size: 32px;
-                  font-weight: 500;
-                  line-height: 41px;
-                }
-
-                .benefit {
-                  display: flex;
-                  max-width: 350px;
-                  text-align: left;
-
-                  &:not(:last-child) {
-                    margin-bottom: 20px;
-                  }
-
-                  @include breakpoint-down(sm) {
-                    max-width: 80%;
-                    padding: 10px 0px;
-                  }
-
-                  .content {
-                    display: flex;
-                    flex-direction: column;
-                    flex: 1;
-                  }
-
-                  .icon {
-                    width: 50px;
-                    height: 50px;
-                    margin-top: 8px;
-                    margin-right: 20px;
-
-                    > img {
-                      width: 30px;
-                    }
-
-                    &.easy {
-                      width: 50px;
-                    }
-                  }
-
-                  .label {
-                    margin-top: 5px;
-                    margin-bottom: 5px;
-                    font-weight: 500;
-                  }
-
-                  .desc {
-                    font-size: 14px;
-                    font-weight: 300;
-                  }
-                }
-              }
-
-              @include breakpoint-down(sm) {
-                flex-direction: column;
-              }
             }
 
             > div {
@@ -215,6 +215,193 @@
                 letter-spacing: 0.4px;
                 text-transform: none;
                 font-weight: 500;
+              }
+            }
+
+            .earning-slider-container {
+              margin-top: 50px;
+
+              @include breakpoint-down(sm) {
+                margin-top: 20px;
+              }
+
+              .heading {
+                font-size: 14px;
+                line-height: 17px;
+                letter-spacing: 0.2px;
+
+                @include breakpoint-up(sm) {
+                  font-size: 16px;
+                }
+              }
+
+              .description {
+                margin: 0px;
+                padding: 0px;
+                margin-top: 5px;
+                font-size: 14px;
+              }
+
+              .tooltip {
+                font-size: 20px;
+              }
+
+              .earning-tooltip {
+                font-size: 12px;
+              }
+
+              .earning-group {
+                display: flex;
+                margin-top: 30px;
+
+                @include breakpoint-down(sm) {
+                  flex-direction: column;
+                }
+
+                .description {
+                  font-size: 14px;
+                  color: #657576;
+                }
+
+                > div {
+                  flex: 1;
+
+                  @include breakpoint-down(sm) {
+                    margin: unset;
+
+                    &:not(:last-child) {
+                      margin-bottom: 30px;
+                    }
+                  }
+
+                  * {
+                    font-size: 14px;
+                    line-height: 17px;
+                    letter-spacing: 0.65;
+                  }
+
+                  .title {
+                    font-size: 12px;
+                    text-transform: uppercase;
+                  }
+                }
+
+                .earning {
+                  display: flex;
+
+                  &:not(:last-child) {
+                    margin-bottom: 10px;
+                  }
+
+                  * {
+                    font-size: 14px;
+                  }
+
+                  > span {
+                    font-weight: 500;
+
+                    &.title {
+                      min-width: 40px;
+                      font-weight: normal;
+                      color: $grey3;
+                    }
+                  }
+                }
+
+                .earning-price {
+                  font-size: 24px;
+                  line-height: 34px;
+                  font-weight: 500;
+                  margin-top: 5px;
+                  color: #25cdd6;
+
+                  &::before {
+                    content: '$';
+                  }
+                }
+              }
+
+              .slider-group {
+                padding-right: 10px;
+
+                .slider {
+                  margin-top: 5px;
+                  display: flex;
+                  align-items: center;
+
+                  @include breakpoint-down(sm) {
+                    margin-top: 20px;
+                  }
+
+                  .icon-container {
+                    display: flex;
+                    align-items: center;
+                    margin-right: 30px;
+                    min-width: 60px;
+
+                    .icon {
+                      width: 20px;
+                      height: 20px;
+                      margin-right: 10px;
+                    }
+                    > span {
+                      line-height: 27px;
+                      font-size: 14px;
+                      margin-top: 5px;
+                    }
+                  }
+
+                  .earning-percent {
+                    margin-left: 30px;
+                    font-size: 14px;
+                    letter-spacing: 0.09px;
+                    color: $black;
+                    min-width: 50px;
+
+                    &::after {
+                      content: '%';
+                    }
+                  }
+
+                  .noUi-target {
+                    height: 4px;
+                    border-radius: 6px;
+                    border: none;
+                    background: #f0f5f5;
+                    flex: 1;
+                  }
+
+                  .noUi-tooltip {
+                    border: none;
+                    background: none;
+                    font-size: 16px;
+                    font-weight: 500;
+
+                    &::after {
+                      content: '%';
+                    }
+                  }
+
+                  .noUi-handle {
+                    height: 18px;
+                    width: 18px;
+                    border-radius: 25px;
+                    top: -8px;
+                    border: none;
+                    box-shadow: 0 2px 4px #9ab7b8;
+                    background: $white;
+                    outline: none;
+
+                    &::after,
+                    &::before {
+                      display: none;
+                    }
+                  }
+
+                  .noUi-connect {
+                    background: $black;
+                  }
+                }
               }
             }
 
@@ -229,7 +416,7 @@
               .link {
                 color: #0dc7d8;
                 font-size: 18px;
-                font-weight: 300;
+                font-weight: 400;
 
                 &::after {
                   content: '\f144';
@@ -289,7 +476,6 @@
               letter-spacing: 0.1px;
               margin-top: 10px;
               margin-bottom: 10px;
-              color: $black5;
               position: relative;
 
               .highlight {
@@ -371,23 +557,13 @@
 
           .subscribe-price-container {
             position: relative;
-            margin-top: 20px;
 
             @include breakpoint-down(sm) {
               display: flex;
-              flex-direction: column-reverse;
-
-              .price-info {
-                margin-top: 20px;
-
-                .price {
-                  position: absolute;
-                  top: 0px;
-                }
-              }
+              flex-direction: column;
 
               .cta {
-                margin-top: 50px;
+                margin-top: 20px;
 
                 &.sticky {
                   margin-top: 0px;
@@ -436,6 +612,46 @@
 
         &.hide {
           display: none;
+        }
+      }
+    }
+
+    @include breakpoint-up(xl) {
+      margin: 0 auto;
+
+      > div {
+        width: 50%;
+
+        &:first-child {
+          width: 60%;
+        }
+      }
+
+      .image {
+        margin-top: 150px;
+        position: relative;
+      }
+
+      .right-content {
+        position: initial;
+
+        #intro-container {
+          position: initial;
+
+          > div.content {
+            position: initial !important;
+            margin-top: 150px;
+            margin-left: 40px;
+
+            #intro-heading {
+              position: absolute;
+              left: 0;
+              top: 100px;
+              text-align: center;
+              width: 100%;
+              margin: 0 auto;
+            }
+          }
         }
       }
     }
@@ -554,10 +770,8 @@
   }
 
   #content-container {
-    margin-top: 80px;
-
     @include breakpoint-down(xl) {
-      margin-top: 50px;
+      margin-top: 0px;
     }
 
     .heading {
@@ -568,163 +782,19 @@
     .story-container,
     .earning-slider-container {
       padding: 0 100px;
+
       @include breakpoint-down(xl) {
         padding: 0;
       }
     }
 
-    .earning-slider-container {
-      padding-bottom: 90px;
-      margin-bottom: 50px;
-      border-bottom: 1px solid #f0f5f5;
-
-      .tooltip {
-        font-size: 20px;
-      }
-
-      .earning-tooltip {
-        font-size: 20px;
-      }
-
-      .earning-group {
-        margin-top: 55px;
-        border: 1px solid #d1dfe0;
-        display: flex;
-        padding: 40px;
-        border-radius: 8px;
-
-        @include breakpoint-down(sm) {
-          flex-direction: column;
-          padding: 30px;
-        }
-
-        .description {
-          font-size: 16px;
-          color: #657576;
-        }
-
-        > div {
-          margin: 0 auto;
-
-          @include breakpoint-down(sm) {
-            margin: unset;
-
-            &:not(:last-child) {
-              margin-bottom: 30px;
-            }
-          }
-
-          * {
-            font-size: 20px;
-          }
-        }
-
-        .earning {
-          &:not(:last-child) {
-            margin-bottom: 10px;
-          }
-
-          * {
-            font-size: 18px;
-          }
-
-          > span {
-            font-weight: 500;
-          }
-        }
-
-        .earning-price {
-          font-size: 28px;
-          line-height: 34px;
-          font-weight: 500;
-          margin-top: 5px;
-          margin-bottom: 15px;
-
-          &::before {
-            content: '$';
-          }
-        }
-      }
-
-      .slider-group {
-        padding-right: 10px;
-
-        .slider {
-          margin-top: 90px;
-          display: flex;
-          align-items: center;
-
-          @include breakpoint-down(sm) {
-            margin-top: 60px;
-          }
-
-          .icon-container {
-            display: flex;
-            align-items: center;
-            margin-right: 30px;
-            .icon {
-              width: 20px;
-              height: 20px;
-              margin-right: 10px;
-            }
-            > span {
-              line-height: 27px;
-              font-size: 18px;
-              margin-top: 5px;
-            }
-          }
-
-          .noUi-target {
-            height: 6px;
-            border-radius: 6px;
-            border: none;
-            background: #f0f5f5;
-            flex: 1;
-          }
-
-          .noUi-tooltip {
-            border: none;
-            background: none;
-            font-size: 16px;
-            font-weight: 500;
-
-            &::after {
-              content: '%';
-            }
-          }
-
-          .noUi-handle {
-            height: 25px;
-            width: 25px;
-            border-radius: 25px;
-            top: -11px;
-            border: none;
-            box-shadow: 0 2px 4px #9ab7b8;
-            background: $white;
-            outline: none;
-
-            &::after {
-              display: none;
-            }
-
-            &::before {
-              border-radius: 25px;
-              width: 10px;
-              height: 10px;
-              background: #25cdd6;
-              left: 8px;
-              top: 8px;
-            }
-          }
-
-          .noUi-connect {
-            background: #25cdd6;
-          }
-        }
-      }
-    }
-
     .story-container {
+      margin-top: 60px;
+
+      @include breakpoint-down(lg) {
+        margin-top: 30px;
+      }
+
       .heading {
         font-size: 32px;
         line-height: 41px;
@@ -745,12 +815,12 @@
           .title,
           .subtitle,
           .image {
-            margin-bottom: 35px;
+            margin-bottom: 30px;
           }
           .subtitle,
           .description {
             font-size: 16px;
-            line-height: 24px;
+            line-height: 25px;
             letter-spacing: 0.1px;
           }
           .subtitle {

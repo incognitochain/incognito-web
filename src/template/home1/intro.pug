@@ -9,24 +9,19 @@ mixin benefit(img, label, desc, imgClass='')
 div#intro-container
   .content
     div.intro
-      div
+      #intro-heading
         h1.heading Incognito Node
-        .description 
-          span.highlight Earn $25 monthly 
-          | in BTC, ETH, BNB and more, for helping to process confidential crypto transactions for the world. 
-          span.see-how.scroll-action-btn(data-scroll-to='.video-link') See how
-          span.earning-tooltip.hint
+        .description Earn BTC, ETH, BNB and more, for helping to process confidential crypto transactions for the world. 
+          //- span.see-how.scroll-action-btn(data-scroll-to='.video-link') See how
+          //- span.earning-tooltip.hint
         //- .description.extra Built by a bunch of geeks who shipped $100M+ of connected hardware worldwide.
 
       .subscribe-price-container
         include ../common/price_info.pug
         include ../common/subscribe_email_component.pug      
 
-      .benefit-container
-        .benefit-group
-          +benefit(require('../../image/icon/worldwide.svg'), 'Ships worldwide', 'Anyone, anywhere, can own a Node.')
-          +benefit(require('../../image/icon/warranty.svg'), '1-year warranty', 'If something goes wrong we’ll fix it. Easy.')
-          +benefit(require('../../image/icon/trial.svg'), '30-day trial', 'If you don’t love your Node, return it for a full refund.')
+      //- include ./benefit.pug
+      include ./slider.pug
       .video-link
           span.link(data-video-url='https://www.youtube.com/embed/eXNAD4wckQI', type='unbox') Watch Chris unbox Node in the Incognito office
     //- .question#faq
