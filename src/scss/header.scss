@@ -228,6 +228,11 @@ nav#header {
             margin-right: 30px;
             font-size: 16px;
             font-weight: 400;
+
+            @include breakpoint-down(sm) {
+              padding-top: 7px;
+              padding-bottom: 7px;
+            }
           }
         }
       }

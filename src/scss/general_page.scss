@@ -460,6 +460,10 @@
       #intro-container {
         > div.content {
           align-items: center;
+
+          div.intro {
+            padding-bottom: 0px;
+          }
         }
       }
     }

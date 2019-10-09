@@ -114,5 +114,77 @@ export const getExchangeRates = () => {
 };
 
 export const getProductPrice = () => {
-  return fetch('');
+  return fetch('order/price', {
+    method: 'GET'
+  })
+    .then(price => price)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+    });
+};
+
+export const signUp = ({ name, email }) => {
+  return fetch('auth/signup', {
+    method: 'POST',
+    body: {
+      FullName: name,
+      Email: email
+    }
+  })
+    .then(user => user.fromJson)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+    });
+};
+
+export const getShippingFee = ({
+  address = '',
+  city = '',
+  zip = '',
+  state,
+  country
+}) => {
+  return fetch('order/shipping-fee', {
+    method: 'POST',
+    body: {
+      AddressStreet: address,
+      AddressCity: city,
+      AddressRegion: state,
+      AddressPostalCode: zip,
+      AddressCountry: country
+    }
+  })
+    .then(fee => fee.fromJson)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+    });
+};
+
+export const submitCryptoOrder = ({
+  email,
+  name,
+  address,
+  city,
+  state,
+  country,
+  zip,
+  coinName,
+  quantity
+}) => {
+  return fetch('order/crypto/checkout', {
+    method: 'POST',
+    body: {}
+  })
+    .then(orderInfo => orderInfo.fromJson)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+    });
 };
