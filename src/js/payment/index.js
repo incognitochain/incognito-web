@@ -8,6 +8,7 @@ import isPath from '../common/utils/isPathname';
 import storage from '../service/storage';
 import { setMessage } from '../service/message_box';
 import KEYS from '../constant/keys';
+import csc from 'country-state-city';
 
 let globalProductPrice = 199; //product_price
 
@@ -106,14 +107,14 @@ const handleSubmitCryptoOrder = async ({
 };
 
 const handlePayment = async () => {
-  const container = document.querySelector('#payment-form-container');
-  const emailEl = container.querySelector('#email');
-  const firstNameEl = container.querySelector('#first_name');
-  const lastNameEl = container.querySelector('#last_name');
+  const container = document.querySelector('#payment');
+  const emailEl = container.querySelector('#contact');
+  const firstNameEl = container.querySelector('#first-name');
+  const lastNameEl = container.querySelector('#last-name');
   const addressStreetEl = container.querySelector('#address');
   const addressCityEl = container.querySelector('#city');
   const addressStateEl = container.querySelector('#state');
-  const addressZipEl = container.querySelector('#zip');
+  const addressZipEl = container.querySelector('#postal-code');
   const addressCountryEl = container.querySelector('#country');
 
   if (
@@ -127,11 +128,38 @@ const handlePayment = async () => {
     !addressCountryEl
   ) {
     if (!APP_ENV.production) {
-      console.error(e);
+      console.error('missing some elements');
     }
 
     return;
   }
+
+  const handleChangeState = countryId => {
+    addressStateEl.innerHTML = '';
+
+    const states = csc.getStatesOfCountry(countryId);
+    addressStateEl.innerHTML = '';
+
+    states.forEach(state => {
+      const option = document.createElement('option');
+      option.value = state.name;
+      option.innerText = state.name;
+      addressStateEl.appendChild(option);
+    });
+  };
+
+  const countries = csc.getAllCountries();
+  countries.forEach(country => {
+    const option = document.createElement('option');
+    option.setAttribute('id', country.id);
+    option.value = country.sortname;
+    option.innerText = country.name;
+    if (country.sortname.toLowerCase() === 'us') {
+      option.selected = true;
+      handleChangeState(country.id);
+    }
+    addressCountryEl.appendChild(option);
+  });
 
   const onSubmitOrderInfo = () => {
     const email = emailEl.value;
@@ -176,7 +204,11 @@ const handlePayment = async () => {
     const state = addressStateEl.value;
     const zip = addressZipEl.value;
     const country = addressCountryEl.value;
+    const countryId = addressCountryEl.options[
+      addressCountryEl.selectedIndex
+    ].getAttribute('id');
 
+    handleChangeState(countryId);
     handleGetShippingFee({ address, city, zip, state, country });
   };
 

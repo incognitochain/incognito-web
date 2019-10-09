@@ -52,10 +52,10 @@ block main
                     )
                     div.input-two-columns
                         div.select-two-lines-label
-                            label Country/Region
+                            //- label Country/Region
                             div.select-wrapper
                                 select(id="country", name="country")
-                                    option(value="VN") Vietnam
+                        select(name="state")#state
                         input(
                             placeholder="Postal code",
                             id="postal-code",
@@ -69,7 +69,7 @@ block main
                     span.product-quantity=quantity
                     img.product-image(
                         alt="Node",
-                        src=require("../../image/device.jpg")
+                        src=require("../../image/device.png")
                     )
                 div.product-name Node
                 div.price=price
