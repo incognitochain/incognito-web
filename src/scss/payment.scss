@@ -438,6 +438,26 @@
       }
     }
 
+    .select-wrapper {
+      .caret {
+        border-left: 1px rgba(179, 179, 179, 0.5) solid;
+        display: block;
+        width: 30px;
+        height: 20px;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        -webkit-transform: translate(0%, -50%);
+        transform: translate(0%, -50%);
+
+        .icon {
+          right: 0px;
+          top: 6px;
+        }
+      }
+    }
+
     .select-two-lines-label {
       width: 100%;
 
@@ -488,8 +508,8 @@
     height: 100%;
 
     .icon {
-      width: 100px;
-      height: 100px;
+      width: 150px;
+      height: 150px;
       margin-bottom: 50px;
     }
 

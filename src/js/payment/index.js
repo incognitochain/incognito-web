@@ -150,7 +150,7 @@ const handleGetShippingFee = async (
 
 const handleSubmitCryptoOrder = async (
   container,
-  { address, city, state, zip, country, quantity, coinName }
+  { name, address, city, state, zip, country, quantity, coinName }
 ) => {
   const paymentContainer = container.querySelector('#payment-container');
   const submitPaymentBtnEl = paymentContainer.querySelector(
@@ -163,6 +163,7 @@ const handleSubmitCryptoOrder = async (
 
   try {
     const order = await submitCryptoOrder({
+      name,
       address,
       city,
       state,
@@ -192,7 +193,7 @@ const handleSubmitCryptoOrder = async (
       }
       if (iconEl) {
         try {
-          iconEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${order.Address}`;
+          iconEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${order.Address}`;
           iconEl.classList.remove('hidden');
         } catch {}
       }
@@ -394,6 +395,9 @@ const handlePayment = async () => {
   };
 
   const onSubmitPayment = () => {
+    const firstName = firstNameEl.value || '';
+    const lastName = lastNameEl.value || '';
+    const name = `${firstName} ${lastName}`;
     const address = addressStreetEl.value;
     const city = addressCityEl.value;
     const state = addressStateEl.value;
@@ -411,6 +415,7 @@ const handlePayment = async () => {
     }
 
     handleSubmitCryptoOrder(container, {
+      name,
       address,
       city,
       state,
