@@ -1,0 +1,30 @@
+extends ../layout.pug
+
+block main
+    - var phone = '+84 96 322 59 17'
+    - var shipAddress = '123 Hong Ha, Phu Nhuan, Ho Chi Minh 70000, Vietnam'
+    div#payment-step
+        ul.breadcrumb.desktop
+            li.breadcrumb-item
+                span Information
+                img(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
+            li.breadcrumb-item.active
+                span Payment
+        div.information
+            div.three-lines-content
+                div Contact
+                div=phone
+                div Change
+            div
+            div.three-lines-content
+                div Ship to
+                div=shipAddress
+                div Change
+            div
+        div
+            h2 Payment
+            p All transactions are secure and encrypted.
+        div
+            h2 Billing address
+            p Select the address that matches your card or payment method.
+        div
