@@ -128,7 +128,7 @@ const handlePayment = async () => {
   if (!container) return;
   const orderInfoContainer = container.querySelector('#order-info');
   const productContainer = container.querySelector('#product-container');
-  const emailEl = container.querySelector('#contact');
+  const emailEl = container.querySelector('#email');
   const firstNameEl = container.querySelector('#first-name');
   const lastNameEl = container.querySelector('#last-name');
   const addressStreetEl = container.querySelector('#address');
