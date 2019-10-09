@@ -19,12 +19,12 @@
     }
 
     .heading {
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 2px;
+      font-size: 38px;
+      font-weight: 500;
 
       @include breakpoint-down(sm) {
         font-weight: 500;
+        line-height: 45px;
       }
     }
 
@@ -32,7 +32,8 @@
       font-weight: 400;
       font-size: 18px;
       padding: 0 100px;
-      line-height: 31px;
+      line-height: 27px;
+      max-width: 950px;
 
       @include breakpoint-down(md) {
         padding: 0 20px;
@@ -54,22 +55,6 @@
       h3.label {
         color: $black2;
         letter-spacing: 1px;
-      }
-
-      p.desc {
-        font-size: 24px;
-
-        @include breakpoint-down(md) {
-          font-size: 20px;
-        }
-
-        a {
-          color: $black;
-          transition: color 300ms;
-          &:hover {
-            color: $grey2;
-          }
-        }
       }
     }
     .groups {
@@ -99,9 +84,10 @@
           font-weight: 500;
         }
         .desc {
-          font-weight: 300;
+          font-weight: 400;
           color: #657576;
-          font-size: 18px;
+          font-size: 14px;
+          line-height: 18px;
         }
       }
     }
@@ -120,13 +106,8 @@
 
       p.desc {
         max-width: 700px;
-        font-size: 24px;
         margin-left: auto;
         margin-right: auto;
-
-        @include breakpoint-down(md) {
-          font-size: 20px;
-        }
 
         a {
           color: $black;
@@ -179,7 +160,7 @@
       .left-side,
       .right-side {
         flex: 1;
-        padding: 20px;
+        padding: 20px 0;
       }
 
       .right-side {
@@ -210,12 +191,6 @@
       }
 
       p.desc {
-        font-size: 24px;
-
-        @include breakpoint-down(md) {
-          font-size: 20px;
-        }
-
         a {
           color: $black;
           transition: color 300ms;
@@ -333,15 +308,22 @@
         font-weight: 500;
         text-align: center;
         margin-bottom: 10px;
+
+        @include breakpoint-down(sm) {
+          line-height: 45px;
+        }
       }
 
       p.desc {
         color: #657576;
-        margin-top: 0px;
+        margin-top: 20px;
         font-weight: 300;
-        max-width: 800px;
+        max-width: 600px;
         margin-left: auto;
         margin-right: auto;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 27px;
       }
     }
   }

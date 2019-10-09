@@ -5,5 +5,6 @@ export default {
   TOKEN_EMAIL_VERIFY_QS: 'token',
   REFERRAL_QUERY: 'referral',
   UNBOXING_QUERY: 'unboxing',
-  INTRO_QUERY: 'intro'
+  INTRO_QUERY: 'intro',
+  PRODUCT_PRICE: '$PRODUCT_PRICE'
 };
