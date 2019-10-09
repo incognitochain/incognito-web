@@ -12,7 +12,7 @@ import csc from 'country-state-city';
 
 let globalProductPrice = 199; //product_price
 
-const handleGetProductPrice = async () => {
+const handleGetProductPrice = async container => {
   globalProductPrice = storage.get(KEYS.PRODUCT_PRICE) || productPrice;
   try {
     const productPrice = await getProductPrice();
@@ -21,6 +21,11 @@ const handleGetProductPrice = async () => {
       globalProductPrice = productPrice;
     }
   } catch {}
+
+  if (!container) return;
+  const productPriceEl = container.querySelector('.product-price');
+  if (!productPriceEl) return;
+  productPriceEl.innerText = `$${globalProductPrice}`;
 };
 
 const handleUserSignup = async ({ name, email }) => {
@@ -35,13 +40,11 @@ const handleUserSignup = async ({ name, email }) => {
   return false;
 };
 
-const handleGetShippingFee = async ({ address, city, zip, state, country }) => {
-  const quantityEl = null;
-  const totalPriceEl = null;
-  const shippingPriceEl = null;
-  const taxPriceEl = null;
-
-  const quantity = quantityEl ? quantityEl.value : 1;
+const handleGetShippingFee = async (
+  productContainer,
+  { address, city, zip, state, country }
+) => {
+  let quantity = 1;
   let shippingFee = 0;
   let tax = 0;
 
@@ -55,10 +58,24 @@ const handleGetShippingFee = async ({ address, city, zip, state, country }) => {
     }
   } catch {}
 
-  const totalPrice = quantity * globalProductPrice;
+  const subTotalPrice = quantity * globalProductPrice;
+  const totalPrice = subTotalPrice + shippingFee + tax;
+
+  if (!productContainer) return;
+  const quantityEl = null;
+  const subTotalPriceEl = productContainer.querySelector('.sub-total-price');
+  const totalPriceEl = productContainer.querySelector('.total-price');
+  const shippingPriceEl = productContainer.querySelector('.shipping-price');
+  const taxPriceEl = productContainer.querySelector('.tax-price');
+
+  quantity = quantityEl ? quantityEl.value : quantity;
+
+  if (subTotalPriceEl) {
+    subTotalPriceEl.innerText = `$${subTotalPrice}`;
+  }
 
   if (shippingPriceEl) {
-    shippingPriceEl.innerText = shippingFee || 'FREE';
+    shippingPriceEl.innerText = shippingFee ? `$${shippingFee}` : 'FREE';
   }
 
   if (taxPriceEl) {
@@ -71,7 +88,7 @@ const handleGetShippingFee = async ({ address, city, zip, state, country }) => {
   }
 
   if (totalPriceEl) {
-    totalPriceEl.innerText = totalPrice;
+    totalPriceEl.innerText = `$${totalPrice}`;
   }
 };
 
@@ -108,6 +125,9 @@ const handleSubmitCryptoOrder = async ({
 
 const handlePayment = async () => {
   const container = document.querySelector('#payment');
+  if (!container) return;
+  const orderInfoContainer = container.querySelector('#order-info');
+  const productContainer = container.querySelector('#product-container');
   const emailEl = container.querySelector('#contact');
   const firstNameEl = container.querySelector('#first-name');
   const lastNameEl = container.querySelector('#last-name');
@@ -148,20 +168,8 @@ const handlePayment = async () => {
     });
   };
 
-  const countries = csc.getAllCountries();
-  countries.forEach(country => {
-    const option = document.createElement('option');
-    option.setAttribute('id', country.id);
-    option.value = country.sortname;
-    option.innerText = country.name;
-    if (country.sortname.toLowerCase() === 'us') {
-      option.selected = true;
-      handleChangeState(country.id);
-    }
-    addressCountryEl.appendChild(option);
-  });
-
-  const onSubmitOrderInfo = () => {
+  const onSubmitOrderInfo = e => {
+    e.preventDefault();
     const email = emailEl.value;
     const firstName = firstNameEl.value || '';
     const lastName = lastNameEl.value || '';
@@ -172,25 +180,25 @@ const handlePayment = async () => {
     const zip = addressZipEl.value;
     const country = addressCountryEl.value;
 
-    if (!email) {
+    if (!email.trim()) {
       return showErrorMsg('Please enter your email');
     }
-    if (!name) {
+    if (!name.trim()) {
       return showErrorMsg('Please enter your first name and last name');
     }
-    if (!address) {
+    if (!address.trim()) {
       return showErrorMsg('Please enter your shipping street');
     }
-    if (!city) {
+    if (!city.trim()) {
       return showErrorMsg('Please enter your shipping city');
     }
-    if (!state) {
+    if (!state.trim()) {
       return showErrorMsg('Please select your shipping state');
     }
-    if (!zip) {
+    if (!zip.trim()) {
       return showErrorMsg('Please enter your shipping postal code');
     }
-    if (!country) {
+    if (!country.trim()) {
       return showErrorMsg('Please select your shipping country');
     }
 
@@ -209,10 +217,34 @@ const handlePayment = async () => {
     ].getAttribute('id');
 
     handleChangeState(countryId);
-    handleGetShippingFee({ address, city, zip, state, country });
+    handleGetShippingFee(productContainer, {
+      address,
+      city,
+      zip,
+      state,
+      country
+    });
   };
 
+  handleGetProductPrice(productContainer);
   addressCountryEl.addEventListener('change', onCountryChange);
+
+  const countries = csc.getAllCountries();
+  countries.forEach(country => {
+    const option = document.createElement('option');
+    option.setAttribute('id', country.id);
+    option.value = country.sortname;
+    option.innerText = country.name;
+    option.selected = country.sortname.toLowerCase() === 'us';
+    addressCountryEl.appendChild(option);
+  });
+
+  // TODO: add IE polyfill
+  addressCountryEl.dispatchEvent(new Event('change'));
+
+  if (orderInfoContainer) {
+    orderInfoContainer.addEventListener('submit', onSubmitOrderInfo);
+  }
 };
 
 const showErrorMsg = message => {
@@ -221,7 +253,6 @@ const showErrorMsg = message => {
 
 const main = () => {
   if (!isPath('/payment')) return;
-  handleGetProductPrice();
   handlePayment();
 };
 
