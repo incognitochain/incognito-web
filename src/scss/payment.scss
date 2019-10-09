@@ -23,7 +23,8 @@
       padding: 55px 55px 55px 50px;
 
       @media (max-width: 767px) {
-        padding: 0;
+        padding: 20px 15px;
+        width: 100%;
       }
 
       .logo-wrapper {
@@ -113,6 +114,20 @@
               margin-right: 0;
             }
           }
+
+          @media (max-width: 767px) {
+            display: block;
+
+            input {
+              width: 100%;
+              display: block;
+              margin: 6px 0;
+            }
+
+            .select-two-lines-label {
+              width: 100%;
+            }
+          }
         }
         .select-two-lines-label {
           position: relative;
@@ -157,74 +172,6 @@
           }
         }
       }
-      .checkbox-wrapper {
-        display: table;
-        box-sizing: border-box;
-        width: 100%;
-        margin-top: 5px;
-
-        &:before {
-          content: "";
-          display: table;
-        }
-
-        .input-checkbox {
-          border-color: #d9d9d9;
-          background-color: white;
-
-          width: 18px;
-          height: 18px;
-          box-shadow: 0 0 0 0 #197bbd inset;
-          transition: all 0.2s ease-in-out;
-          position: relative;
-          cursor: pointer;
-          vertical-align: -4px;
-          border: 1px solid;
-
-          &:checked:after {
-            transform: scale(1);
-            opacity: 1;
-          }
-
-          &:after {
-            content: "";
-            display: block;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: scale(0.2);
-            transition: all 0.2s ease-in-out 0.1s;
-            opacity: 0;
-
-            width: 10px;
-            height: 8px;
-            margin-left: -5px;
-            margin-top: -4px;
-            background-image: url(//cdn.shopify.com/s/assets/checkout/checkbox-tick-79bec41….png);
-            background-image: url(//cdn.shopify.com/s/assets/checkout/checkbox-tick-66a9a39….svg),none;
-          }
-        }
-
-        .checkbox-input {
-          display: table-cell;
-          white-space: nowrap;
-
-          &:checked {
-            border: none;
-            box-shadow: 0 0 0 10px #197bbd inset;
-          }
-
-          padding-right: 10px;
-        }
-
-        .checkbox-label {
-          display: table-cell;
-          width: 100%;
-          font-size: 14px;
-          cursor: pointer;
-          vertical-align: middle;
-        }
-      }
       .button-wrapper {
         display: flex;
         justify-content: flex-end;
@@ -237,6 +184,10 @@
           background-color: #197bbd;
           color: white;
           font-weight: 500;
+
+          @media (max-width: 767px) {
+            width: 100%;
+          }
         }
       }
     }
@@ -329,6 +280,10 @@
           margin-left: auto;
           text-align: right;
         }
+      }
+
+      .total-price {
+        font-size: 24px;
       }
     }
   }
