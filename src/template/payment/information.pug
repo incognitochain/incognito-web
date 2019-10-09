@@ -8,11 +8,13 @@ div#information
     form#order-info
         div.input-wrapper
             h2 Contact information
-            input(
-                placeholder='Email',
-                id="email",
-                name="email"
-            )
+            div.input-field
+                label(for="email") Email
+                input(
+                    placeholder='Email',
+                    id="email",
+                    name="email"
+                )
         div.input-wrapper
             h2 Shipping address
             div.input-two-columns
@@ -44,15 +46,19 @@ div#information
                     id="city",
                     name="city"
                 )
-            div.input-two-columns
+            div.input-two-columns.country-wrapper
                 div.select-two-lines-label
-                    label Country/Region
-                    div.select-wrapper
+                    div.select-wrapper.input-field
+                        label(for="country") Country/Region
                         select(id="country", name="country")
+                        div.caret
+                            img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
                 div.select-two-lines-label
-                    label State
-                    div.select-wrapper
+                    div.select-wrapper.input-field
+                        label(for="state") State
                         select(id="state", name="state")
+                        div.caret
+                            img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
                 div.input-field
                     label(for="postal-code") Postal code
                     input(
