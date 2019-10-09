@@ -18,24 +18,25 @@ div#payment-container
             div.card-type
                 div Crypto currencies
                 div.types
-                    img(src=require('../../image/icon/visa.svg'))
-                    img(src=require('../../image/icon/master.svg'))
-                    img(src=require('../../image/icon/amex.svg'))
-                    img(src=require('../../image/icon/jcb.svg'))
+                    img(src=require('../../image/icon/bitcoin.png'))
+                    img(src=require('../../image/icon/ethereum.png'))
+                    img(src=require('../../image/icon/binance.png'))
+                    img(src=require('../../image/icon/tether.png'))
                     span and more...
             div.card-information.input-wrapper
                 div.select-two-lines-label
-                    label(for='name') Coin
-                    select(name='coin-name')#coin-name
-                        option(value='BTC') BTC
-                        option(value='ETH') ETH
-                        option(value='BNB') BNB
-                        option(value='USDT') USDT
-                        option(value='USDC') USDC
-                        option(value='TUSD') TUSD
-                        option(value='PAX') PAX
-                        option(value='GUSD') GUSD
-                        option(value='USDS') BUSD
+                    div.select-wrapper.input-field
+                        label(for='coin-name') Coin
+                        select(name='coin-name')#coin-name
+                            option(value='BTC') BTC
+                            option(value='ETH') ETH
+                            option(value='BNB') BNB
+                            option(value='USDT') USDT
+                            option(value='USDC') USDC
+                            option(value='TUSD') TUSD
+                            option(value='PAX') PAX
+                            option(value='GUSD') GUSD
+                            option(value='USDS') BUSD
     div.button-wrapper
         div.return
             img.icon(src=require('../../image/icon/chevron-left-light.svg'), alt='left')

@@ -204,6 +204,7 @@ const handlePayment = async () => {
   const addressStateEl = container.querySelector('#state');
   const addressZipEl = container.querySelector('#postal-code');
   const addressCountryEl = container.querySelector('#country');
+  const coinNameEl = paymentContainer.querySelector('#coin-name');
 
   if (
     !emailEl ||
@@ -213,7 +214,8 @@ const handlePayment = async () => {
     !addressCityEl ||
     !addressStateEl ||
     !addressZipEl ||
-    !addressCountryEl
+    !addressCountryEl ||
+    !coinNameEl
   ) {
     if (!APP_ENV.production) {
       console.error('missing some elements');
@@ -245,6 +247,7 @@ const handlePayment = async () => {
     addressZipEl.addEventListener('input', handleChange);
     addressZipEl.addEventListener('input', handleChange);
     addressCountryEl.addEventListener('input', handleChange);
+    coinNameEl.addEventListener('input', handleChange);
 
     if (email) {
       emailEl.value = email;
@@ -287,6 +290,7 @@ const handlePayment = async () => {
     handleChange(addressStateEl);
     handleChange(addressZipEl);
     handleChange(addressCountryEl);
+    handleChange(coinNameEl);
   };
 
   const handleAddressStateChange = countryId => {
@@ -366,7 +370,7 @@ const handlePayment = async () => {
     const quantity = 1;
 
     if (!paymentContainer) return;
-    const coinNameEl = paymentContainer.querySelector('#coin-name');
+
     if (!coinNameEl) return;
     const coinName = coinNameEl.value;
 
