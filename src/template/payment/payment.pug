@@ -1,59 +1,56 @@
-extends ../layout.pug
-
-block main
-    - var phone = '+84 96 322 59 17'
-    - var shipAddress = '123 Hong Ha, Phu Nhuan, Ho Chi Minh 70000, Vietnam'
-    div#payment-step
-        ul.breadcrumb.desktop
-            li.breadcrumb-item
-                a.link(href='#') Information
-                img.icon(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
-            li.breadcrumb-item.active
-                span Payment
-        div.information
-            div.three-lines-content
-                div Contact
-                div=phone
-                a(href='#') Change
-            div
-            div.three-lines-content
-                div Ship to
-                div=shipAddress
-                a.link(href='#') Change
-            div
-        div.payment
-            h2 Payment
-            p All transactions are secure and encrypted.
-            div.card-input
-                div.card-type
-                    div Credit card
-                    div.types
-                        img(src=require('../../image/icon/visa.svg'))
-                        img(src=require('../../image/icon/master.svg'))
-                        img(src=require('../../image/icon/amex.svg'))
-                        img(src=require('../../image/icon/jcb.svg'))
-                        span and more...
-                div.card-information.input-wrapper
+- var phone = '+84 96 322 59 17'
+- var shipAddress = '123 Hong Ha, Phu Nhuan, Ho Chi Minh 70000, Vietnam'
+div#payment-step
+    ul.breadcrumb.desktop
+        li.breadcrumb-item
+            a.link(href='#') Information
+            img.icon(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
+        li.breadcrumb-item.active
+            span Payment
+    div.information
+        div.three-lines-content
+            div Contact
+            div=phone
+            a(href='#') Change
+        div
+        div.three-lines-content
+            div Ship to
+            div=shipAddress
+            a.link(href='#') Change
+        div
+    div.payment
+        h2 Payment
+        p All transactions are secure and encrypted.
+        div.card-input
+            div.card-type
+                div Credit card
+                div.types
+                    img(src=require('../../image/icon/visa.svg'))
+                    img(src=require('../../image/icon/master.svg'))
+                    img(src=require('../../image/icon/amex.svg'))
+                    img(src=require('../../image/icon/jcb.svg'))
+                    span and more...
+            div.card-information.input-wrapper
+                div.input-field
+                    label(for='card-number') Card number
+                    input(id='card-number', name='card-number', placeholder='Card number')
+                    img.icon(src=require('../../image/icon/lock-solid.svg'), title='All transactions are secure and encrypted.')
+                div.input-field
+                    label(for='name') Name on card
+                    input(id='name', name='name', placeholder='Name on card')
+                div.input-two-columns
                     div.input-field
-                        label(for='card-number') Card number
-                        input(id='card-number', name='card-number', placeholder='Card number')
-                        img.icon(src=require('../../image/icon/lock-solid.svg'), title='All transactions are secure and encrypted.')
+                        label(for='expiration-date') Expiration date (MM/YY)
+                        input(id='expiration-date', name='expiration-date', placeholder='Expiration date (MM/YY)')
                     div.input-field
-                        label(for='name') Name on card
-                        input(id='name', name='name', placeholder='Name on card')
-                    div.input-two-columns
-                        div.input-field
-                            label(for='expiration-date') Expiration date (MM/YY)
-                            input(id='expiration-date', name='expiration-date', placeholder='Expiration date (MM/YY)')
-                        div.input-field
-                            label(for='security-code') Security code
-                            input(id='security-code', name='expiration-date', placeholder='Security code')
-                            img.icon(
-                                src=require('../../image/icon/question-circle-solid.svg'),
-                                title=' 3-digit security code usually found on the back of your card. American Express cards have a 4-digit code located on the front.'
-                            )
-        div.button-wrapper
-            div.return
-                img.icon(src=require('../../image/icon/chevron-left-light.svg'), alt='left')
-                a.link(href='#') Return to shipping
-            button Pay now
+                        label(for='security-code') Security code
+                        input(id='security-code', name='expiration-date', placeholder='Security code')
+                        img.icon(
+                            src=require('../../image/icon/question-circle-solid.svg'),
+                            title=' 3-digit security code usually found on the back of your card. American Express cards have a 4-digit code located on the front.'
+                        )
+    div.button-wrapper
+        div.return
+            img.icon(src=require('../../image/icon/chevron-left-light.svg'), alt='left')
+            a.link(href='#') Return to shipping
+        button Pay now
