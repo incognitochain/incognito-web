@@ -1,4 +1,3 @@
-- var phone = '+84 96 322 59 17'
 - var shipAddress = '123 Hong Ha, Phu Nhuan, Ho Chi Minh 70000, Vietnam'
 div#payment-container
     ul.breadcrumb.desktop
@@ -8,10 +7,6 @@ div#payment-container
         li.breadcrumb-item.active
             span Payment
     div.information
-        div.three-lines-content
-            div Contact
-            div=phone
-            a(href='#') Change
         div
         div.three-lines-content
             div Ship to
@@ -20,10 +15,10 @@ div#payment-container
         div
     div.payment
         h2 Payment
-        p All transactions are secure and encrypted.
+        p 
         div.card-input
             div.card-type
-                div Credit card
+                div Crypto currencies
                 div.types
                     img(src=require('../../image/icon/visa.svg'))
                     img(src=require('../../image/icon/master.svg'))
@@ -31,26 +26,20 @@ div#payment-container
                     img(src=require('../../image/icon/jcb.svg'))
                     span and more...
             div.card-information.input-wrapper
-                div.input-field
-                    label(for='card-number') Card number
-                    input(id='card-number', name='card-number', placeholder='Card number')
-                    img.icon(src=require('../../image/icon/lock-solid.svg'), title='All transactions are secure and encrypted.')
-                div.input-field
-                    label(for='name') Name on card
-                    input(id='name', name='name', placeholder='Name on card')
-                div.input-two-columns
-                    div.input-field
-                        label(for='expiration-date') Expiration date (MM/YY)
-                        input(id='expiration-date', name='expiration-date', placeholder='Expiration date (MM/YY)')
-                    div.input-field
-                        label(for='security-code') Security code
-                        input(id='security-code', name='expiration-date', placeholder='Security code')
-                        img.icon(
-                            src=require('../../image/icon/question-circle-solid.svg'),
-                            title=' 3-digit security code usually found on the back of your card. American Express cards have a 4-digit code located on the front.'
-                        )
+                div.select-two-lines-label
+                    label(for='name') Coin
+                    select(name='coin-name')#coin-name
+                        option(value='BTC') BTC
+                        option(value='ETH') ETH
+                        option(value='BNB') BNB
+                        option(value='USDT') USDT
+                        option(value='USDC') USDC
+                        option(value='TUSD') TUSD
+                        option(value='PAX') PAX
+                        option(value='GUSD') GUSD
+                        option(value='USDS') BUSD
     div.button-wrapper
         div.return
             img.icon(src=require('../../image/icon/chevron-left-light.svg'), alt='left')
             a.link(href='#') Return to shipping
-        button Pay now
+        button#submit-payment-btn Pay now

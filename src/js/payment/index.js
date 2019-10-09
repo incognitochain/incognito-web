@@ -92,24 +92,12 @@ const handleGetShippingFee = async (
   }
 };
 
-const handleSubmitCryptoOrder = async ({
-  email,
-  name,
-  address,
-  city,
-  state,
-  zip,
-  country,
-  coinName
-}) => {
-  const quantityEl = null;
-
-  const quantity = quantityEl ? quantityEl.value : 1;
-
+const handleSubmitCryptoOrder = async (
+  container,
+  { address, city, state, zip, country, quantity, coinName }
+) => {
   try {
     const order = await submitCryptoOrder({
-      email,
-      name,
       address,
       city,
       state,
@@ -120,7 +108,9 @@ const handleSubmitCryptoOrder = async ({
     });
     if (order) {
     }
-  } catch {}
+  } catch (e) {
+    setMessage(e.message, 'error');
+  }
 };
 
 const handlePayment = async () => {
@@ -128,6 +118,7 @@ const handlePayment = async () => {
   if (!container) return;
   const orderInfoContainer = container.querySelector('#order-info');
   const productContainer = container.querySelector('#product-container');
+  const paymentContainer = container.querySelector('#payment-container');
   const emailEl = container.querySelector('#email');
   const firstNameEl = container.querySelector('#first-name');
   const lastNameEl = container.querySelector('#last-name');
@@ -154,7 +145,7 @@ const handlePayment = async () => {
     return;
   }
 
-  const handleChangeState = countryId => {
+  const handleAddressStateChange = countryId => {
     addressStateEl.innerHTML = '';
 
     const states = csc.getStatesOfCountry(countryId);
@@ -206,6 +197,34 @@ const handlePayment = async () => {
     }
   };
 
+  const onSubmitPayment = () => {
+    const address = addressStreetEl.value;
+    const city = addressCityEl.value;
+    const state = addressStateEl.value;
+    const zip = addressZipEl.value;
+    const country = addressCountryEl.value;
+    const quantity = 1;
+
+    if (!paymentContainer) return;
+    const coinNameEl = paymentContainer.querySelector('#coin-name');
+    if (!coinNameEl) return;
+    const coinName = coinNameEl.value;
+
+    if (!coinNameEl) {
+      return showErrorMsg('Please select a coin');
+    }
+
+    handleSubmitCryptoOrder(container, {
+      address,
+      city,
+      state,
+      zip,
+      country,
+      coinName,
+      quantity
+    });
+  };
+
   const onCountryChange = async () => {
     const address = addressStreetEl.value;
     const city = addressCityEl.value;
@@ -216,7 +235,7 @@ const handlePayment = async () => {
       addressCountryEl.selectedIndex
     ].getAttribute('id');
 
-    handleChangeState(countryId);
+    handleAddressStateChange(countryId);
     handleGetShippingFee(productContainer, {
       address,
       city,
@@ -244,6 +263,14 @@ const handlePayment = async () => {
 
   if (orderInfoContainer) {
     orderInfoContainer.addEventListener('submit', onSubmitOrderInfo);
+  }
+
+  if (paymentContainer) {
+    const submitPaymentBtnEl = paymentContainer.querySelector(
+      '#submit-payment-btn'
+    );
+    if (!submitPaymentBtnEl) return;
+    submitPaymentBtnEl.addEventListener('click', onSubmitPayment);
   }
 };
 

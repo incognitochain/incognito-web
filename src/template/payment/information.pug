@@ -19,7 +19,7 @@ div#information
                 div.input-field
                     label(for="first-name") First name
                     input(
-                        placeholder="First name (optional)",
+                        placeholder="First name",
                         id="first-name",
                         name="first-name"
                     )
@@ -38,13 +38,6 @@ div#information
                     name="address"
                 )
             div.input-field
-                label(for="apartment") Apartment, suite, etc. (optional)
-                input(
-                    placeholder="Apartment, suite, etc. (optional)"
-                    id="apartment",
-                    name="apartment"
-                )
-            div.input-field
                 label(for="city") City
                 input(
                     placeholder="City",
@@ -56,9 +49,8 @@ div#information
                     label Country/Region
                     div.select-wrapper
                         select(id="country", name="country")
-                    label State
                 div.select-two-lines-label
-                    label Country/Region
+                    label State
                     div.select-wrapper
                         select(id="state", name="state")
                 div.input-field

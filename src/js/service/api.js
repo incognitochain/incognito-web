@@ -223,5 +223,6 @@ export const submitCryptoOrder = ({
       if (!APP_ENV.production) {
         console.error(e);
       }
+      throw new Error(e.message || 'Order failed');
     });
 };
