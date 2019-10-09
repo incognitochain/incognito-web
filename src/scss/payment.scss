@@ -79,6 +79,18 @@
 
       .input-field {
         position: relative;
+
+        &.has-value {
+          input {
+            padding-top: 28px;
+          }
+
+          label {
+            transform: none;
+            opacity: 1;
+            transition: all 0.2s ease-out;
+          }
+        }
       }
 
       label {
@@ -87,9 +99,8 @@
         position: absolute;
         top: 0;
         width: 100%;
-        margin-top: 0.42857em;
-        margin-left: 1px;
-        padding: 0 0.91667em;
+        margin-top: 6px;
+        margin-left: 14px;
         z-index: 1;
         user-select: none;
         transform: translateY(3px);
@@ -99,11 +110,7 @@
         text-overflow: ellipsis;
         box-sizing: border-box;
         opacity: 0;
-
-        &.visible {
-          transform: none;
-          opacity: 1;
-        }
+        color: #737373;
       }
 
       input {
@@ -112,6 +119,7 @@
         border: 1px solid #d9d9d9;
         padding: 12px;
         font-size: 14px;
+        font-weight: 400;
         height: 43px;
         width: 100%;
         margin: 6px 0;
