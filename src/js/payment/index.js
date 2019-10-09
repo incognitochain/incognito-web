@@ -40,6 +40,46 @@ const handleUserSignup = async ({ name, email }) => {
   return false;
 };
 
+const storeInformation = newPaymentInfo => {
+  const paymentInfo = getInformation();
+  const newInfo = { ...paymentInfo, ...newPaymentInfo };
+
+  storage.set(KEYS.PAYMENT_INFORMATION, JSON.stringify(newInfo));
+};
+
+const getInformation = () => {
+  try {
+    const json = storage.get(KEYS.PAYMENT_INFORMATION);
+    const paymentInfo = JSON.parse(json);
+    return paymentInfo;
+  } catch (error) {
+    console.error(error);
+    storage.set(KEYS.PAYMENT_INFORMATION, '{}');
+    return {};
+  }
+};
+
+const toggleInformation = () => {
+  const informationElement = document.getElementById('information');
+  informationElement.classList.toggle('hidden');
+};
+
+const togglePayment = () => {
+  const paymentElement = document.getElementById('payment-container');
+  paymentElement.classList.toggle('hidden');
+};
+
+const addListenerForLinks = () => {
+  const links = document.getElementsByClassName('link');
+  for (let i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', event => {
+      event.preventDefault();
+      toggleInformation();
+      togglePayment();
+    });
+  }
+};
+
 const handleGetShippingFee = async (
   productContainer,
   { address, city, zip, state, country }
@@ -145,6 +185,30 @@ const handlePayment = async () => {
     return;
   }
 
+  const fillInformation = () => {
+    const paymentInformation = getInformation();
+    if (!paymentInformation) return;
+    const {
+      email,
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zip,
+      country
+    } = paymentInformation;
+
+    emailEl.value = email;
+    firstNameEl.value = firstName;
+    lastNameEl.value = lastName;
+    addressStreetEl.value = address;
+    addressCityEl.value = city;
+    addressStreetEl.value = state;
+    addressZipEl.value = zip;
+    addressCountryEl.value = country;
+  };
+
   const handleAddressStateChange = countryId => {
     addressStateEl.innerHTML = '';
 
@@ -194,7 +258,23 @@ const handlePayment = async () => {
     }
 
     if (handleUserSignup({ name, email })) {
+      storeInformation({
+        email,
+        address,
+        name,
+        city,
+        zip,
+        country,
+        state,
+        step: 1,
+        firstName,
+        lastName
+      });
+      toggleInformation();
+      togglePayment();
     }
+
+    return false;
   };
 
   const onSubmitPayment = () => {
@@ -261,6 +341,9 @@ const handlePayment = async () => {
   // TODO: add IE polyfill
   addressCountryEl.dispatchEvent(new Event('change'));
 
+  addListenerForLinks();
+  fillInformation();
+
   if (orderInfoContainer) {
     orderInfoContainer.addEventListener('submit', onSubmitOrderInfo);
   }
@@ -280,6 +363,19 @@ const showErrorMsg = message => {
 
 const main = () => {
   if (!isPath('/payment')) return;
+
+  const paymentInformation = getInformation();
+  if (
+    paymentInformation &&
+    paymentInformation.name &&
+    paymentInformation.email &&
+    paymentInformation.step === 1
+  ) {
+    toggleInformation();
+  } else {
+    togglePayment();
+  }
+
   handlePayment();
 };
 
