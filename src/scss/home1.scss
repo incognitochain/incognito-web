@@ -65,6 +65,11 @@
           margin-top: 8px;
           margin-right: 20px;
 
+          @include breakpoint-up(xl) {
+            margin-top: 0px;
+            margin-right: 0px;
+          }
+
           > img {
             width: 30px;
           }
@@ -220,6 +225,7 @@
 
             .earning-slider-container {
               margin-top: 50px;
+              position: relative;
 
               @include breakpoint-down(sm) {
                 margin-top: 20px;

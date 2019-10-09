@@ -1,0 +1,45 @@
+- var shipAddress = '123 Hong Ha, Phu Nhuan, Ho Chi Minh 70000, Vietnam'
+div#payment-container
+    ul.breadcrumb.desktop
+        li.breadcrumb-item
+            a.link(href='#') Information
+            img.icon(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
+        li.breadcrumb-item.active
+            span Payment
+    //- div.information
+    //-     div.three-lines-content
+    //-         div Ship to
+    //-         div=shipAddress
+    //-         a.link(href='#') Change
+    div.payment
+        h2 Payment
+        p 
+        div.card-input
+            div.card-type
+                div Crypto currencies
+                div.types
+                    img(src=require('../../image/icon/btc.svg'))
+                    img(src=require('../../image/icon/eth.svg'))
+                    img(src=require('../../image/icon/bnb.svg'))
+                    img(src=require('../../image/icon/usdt.svg'))
+                    span and more...
+            div.card-information.input-wrapper
+                div.select-two-lines-label
+                    div.select-wrapper.input-field
+                        label(for='coin-name') Coin
+                        select(name='coin-name')#coin-name
+                            option(value='BTC') Bitcoin
+                            option(value='ETH') Ethereum
+                            option(value='BNB') Binance
+                            option(value='USDT') Tether
+                            option(value='USDC') USD Coin
+                            option(value='TUSD') TrueUSD
+                            option(value='PAX') Paxos Standard
+                            option(value='GUSD') Gemini Dollar
+                            option(value='USDS') Stably
+                            option(value='BUSD') Binance USD
+    div.button-wrapper
+        div.return
+            img.icon(src=require('../../image/icon/chevron-left-light.svg'), alt='left')
+            a.link(href='#') Return to shipping
+        button#submit-payment-btn Pay now
