@@ -152,6 +152,15 @@ const handleSubmitCryptoOrder = async (
   container,
   { address, city, state, zip, country, quantity, coinName }
 ) => {
+  const paymentContainer = container.querySelector('#payment-container');
+  const submitPaymentBtnEl = paymentContainer.querySelector(
+    '#submit-payment-btn'
+  );
+  if (submitPaymentBtnEl) {
+    submitPaymentBtnEl.disabled = true;
+    submitPaymentBtnEl.classList.add('loading');
+  }
+
   try {
     const order = await submitCryptoOrder({
       address,
@@ -194,6 +203,11 @@ const handleSubmitCryptoOrder = async (
     }
   } catch (e) {
     setMessage(e.message, 'error');
+  } finally {
+    if (submitPaymentBtnEl) {
+      submitPaymentBtnEl.disabled = false;
+      submitPaymentBtnEl.classList.remove('loading');
+    }
   }
 };
 
@@ -347,7 +361,18 @@ const handlePayment = async () => {
       return showErrorMsg('Please select your shipping country');
     }
 
+    const submitBtnEl = orderInfoContainer.querySelector('#submit-order-btn');
+    if (submitBtnEl) {
+      submitBtnEl.disabled = true;
+      submitBtnEl.classList.add('loading');
+    }
+
     const isSignedIn = await handleUserSignup({ name, email });
+    if (submitBtnEl) {
+      submitBtnEl.disabled = false;
+      submitBtnEl.classList.remove('loading');
+    }
+
     if (isSignedIn) {
       storeInformation({
         email,
