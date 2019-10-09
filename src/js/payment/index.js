@@ -150,7 +150,17 @@ const handleGetShippingFee = async (
 
 const handleSubmitCryptoOrder = async (
   container,
-  { name, address, city, state, zip, country, quantity, coinName }
+  {
+    firstName,
+    lastName,
+    address,
+    city,
+    state,
+    zip,
+    country,
+    quantity,
+    coinName
+  }
 ) => {
   const paymentContainer = container.querySelector('#payment-container');
   const submitPaymentBtnEl = paymentContainer.querySelector(
@@ -163,7 +173,8 @@ const handleSubmitCryptoOrder = async (
 
   try {
     const order = await submitCryptoOrder({
-      name,
+      firstName,
+      lastName,
       address,
       city,
       state,
@@ -397,7 +408,6 @@ const handlePayment = async () => {
   const onSubmitPayment = () => {
     const firstName = firstNameEl.value || '';
     const lastName = lastNameEl.value || '';
-    const name = `${firstName} ${lastName}`;
     const address = addressStreetEl.value;
     const city = addressCityEl.value;
     const state = addressStateEl.value;
@@ -415,7 +425,8 @@ const handlePayment = async () => {
     }
 
     handleSubmitCryptoOrder(container, {
-      name,
+      firstName,
+      lastName,
       address,
       city,
       state,
