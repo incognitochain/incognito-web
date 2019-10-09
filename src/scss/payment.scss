@@ -367,6 +367,14 @@
         margin-left: auto;
         font-weight: 500;
       }
+
+      @media (max-width: 767px) {
+        flex-direction: column-reverse;
+
+        .return {
+          margin-top: 20px;
+        }
+      }
     }
 
     .card-input {
