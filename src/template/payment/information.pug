@@ -4,97 +4,86 @@ block main
     - var price = '$199.00'
     - var quantity = 1
     div#information
-                div.left-content
-                    ul.breadcrumb.desktop
-                        li.breadcrumb-item.active
-                            span Information
-                            img(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
-                        li.breadcrumb-item
-                            span Shipping
-                            img(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
-                        li.breadcrumb-item
-                            span Payment
-                    form
-                        div.input-wrapper
-                            h2 Contact information
-                            input(
-                                placeholder='Email or mobile phone number',
-                                id="contact",
-                                name="contact"
-                            )
-                        div.input-wrapper
-                            h2 Shipping address
-                            div.input-two-columns
-                                input(
-                                    placeholder="First name (optional)",
-                                    id="first-name",
-                                    name="first-name"
-                                )
-                                input(
-                                    placeholder="Last name",
-                                    id="last-name",
-                                    name="last-name"
-                                )
-                            input(
-                                placeholder="Address"
-                                id="address",
-                                name="address"
-                            )
-                            input(
-                                placeholder="Apartment, suite, etc. (optional)"
-                                id="apartment",
-                                name="apartment"
-                            )
-                            input(
-                                placeholder="City",
-                                id="city",
-                                name="city"
-                            )
-                            div.input-two-columns
-                                div.select-two-lines-label
-                                    label Country/Region
-                                    div.select-wrapper
-                                        select(id="country", name="country")
-                                            option(value="VN") Vietnam
-                                input(
-                                    placeholder="Postal code",
-                                    id="postal-code",
-                                    name="postal-code"
-                                )
-                        div.button-wrapper
-                            button Continue to shipping
-                div.right-content
-                    div.order-items
-                        div.product
-                            span.product-quantity=quantity
-                            img.product-image(
-                                alt="Node",
-                                src=require("../../image/device.jpg")
-                            )
-                        div.product-name Node
-                        div.price=price
-                    div.order-summary
-                        div.content-two-columns.separator
-                            div.left
-                                div Subtotal
-                                div Shipping
-                            div.right
-                                div=price
-                                div.next-step Calculated at next step
-                        div.content-two-columns
-                            div.left
-                                div.total-label Total
-                            div.right
-                                span.currency USD
-                                span.price=price
-
-
-
-
-
-
-
-
-
-
-
+        div.left-content
+            ul.breadcrumb.desktop
+                li.breadcrumb-item.active
+                    span Information
+                    img(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
+                li.breadcrumb-item
+                    span Shipping
+                    img(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
+                li.breadcrumb-item
+                    span Payment
+            form
+                div.input-wrapper
+                    h2 Contact information
+                    input(
+                        placeholder='Email or mobile phone number',
+                        id="contact",
+                        name="contact"
+                    )
+                div.input-wrapper
+                    h2 Shipping address
+                    div.input-two-columns
+                        input(
+                            placeholder="First name (optional)",
+                            id="first-name",
+                            name="first-name"
+                        )
+                        input(
+                            placeholder="Last name",
+                            id="last-name",
+                            name="last-name"
+                        )
+                    input(
+                        placeholder="Address"
+                        id="address",
+                        name="address"
+                    )
+                    input(
+                        placeholder="Apartment, suite, etc. (optional)"
+                        id="apartment",
+                        name="apartment"
+                    )
+                    input(
+                        placeholder="City",
+                        id="city",
+                        name="city"
+                    )
+                    div.input-two-columns
+                        div.select-two-lines-label
+                            label Country/Region
+                            div.select-wrapper
+                                select(id="country", name="country")
+                                    option(value="VN") Vietnam
+                        input(
+                            placeholder="Postal code",
+                            id="postal-code",
+                            name="postal-code"
+                        )
+                div.button-wrapper
+                    button Continue to shipping
+        div.right-content
+            div.order-items
+                div.product
+                    span.product-quantity=quantity
+                    img.product-image(
+                        alt="Node",
+                        src=require("../../image/device.jpg")
+                    )
+                div.product-name Node
+                div.price=price
+            div.order-summary
+                div.content-two-columns.separator
+                    div.left
+                        div Subtotal
+                        div Shipping
+                    div.right
+                        div=price
+                        div.next-step Calculated at next step
+                div.content-two-columns
+                    div.left
+                        div.total-label Total
+                    div.right
+                        span.currency USD
+                        span.total-price.price=price

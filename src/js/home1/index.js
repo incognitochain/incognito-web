@@ -1,11 +1,6 @@
 import YoutubePlayer from '../common/youtubePlayer';
 import countdown from '../service/countdown';
-import {
-  getTotalSubscribe,
-  getExchangeRates,
-  getProductPrice
-} from '../service/api';
-import storage from '../service/storage';
+import { getTotalSubscribe, getExchangeRates, getProductPrice } from '../service/api';
 import { trackEvent } from '../common/utils/ga';
 import { setMessage } from '../service/message_box';
 import isQueryStringExists from '../service/queryStringExists';
@@ -50,7 +45,6 @@ function main() {
   handleAutoPlayIntro(container);
   handleEarningSliders(container);
   handleSetupEarningTooltips(container);
-  handleGetProductPrice(container);
 }
 
 const handleShowTotalSubscriber = async container => {
@@ -188,18 +182,13 @@ const handleSetupEarningTooltips = container => {
   });
 };
 
-const handleGetProductPrice = async container => {
-  const priceEl = container.querySelector('.price-info .end-price');
-  try {
-    const productPrice = await getProductPrice();
-    if (productPrice) {
-      storage.set(KEYS.PRODUCT_PRICE, productPrice);
-
-      if (!priceEl) return;
-      priceEl.innerText = productPrice;
-    }
-  } catch {}
-};
+// const handleGetProductPrice = async (container) => {
+//   const priceEl =
+//   try {
+//     const productPrice = await getProductPrice();
+//     if(productPrice)
+//   } catch{}
+// }
 
 const updateEarningTooltip = () => {
   earningTooltips.map(tooltip => {
