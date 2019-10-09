@@ -167,6 +167,7 @@ export const getShippingFee = ({
 };
 
 export const submitCryptoOrder = ({
+  name,
   address,
   city,
   state,
@@ -207,6 +208,7 @@ export const submitCryptoOrder = ({
   return fetch('order/crypto/checkout', {
     method: 'POST',
     body: {
+      FullName: name,
       AddressStreet: address,
       AddressRegion: state,
       AddressCity: city,
