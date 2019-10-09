@@ -13,12 +13,11 @@
   }
 
   .subscribe-email {
-    form#email-subscribe {
+    #email-subscribe {
       width: 600px;
       @include breakpoint-down(md) {
         width: unset;
-      };
-    
+      }
     }
   }
 }

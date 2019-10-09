@@ -84,7 +84,7 @@ const handleAutoSignIn = () => {
 };
 
 const main = () => {
-  formHandle();
+  // formHandle();
   handleAutoSignIn();
 };
 
