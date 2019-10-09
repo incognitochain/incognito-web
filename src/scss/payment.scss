@@ -410,6 +410,7 @@
   .link {
     color: #197bbd;
     text-decoration: none;
+    cursor: pointer;
   }
 
   .three-lines-content {
@@ -426,5 +427,9 @@
     > div:last-child {
       width: 50px;
     }
+  }
+
+  .hidden {
+    display: none;
   }
 }
