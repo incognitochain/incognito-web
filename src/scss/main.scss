@@ -110,15 +110,6 @@ a {
 .scroll-action-btn,
 .copiable {
   cursor: pointer;
-  &::after {
-    content: 'Copy';
-    margin-left: 5px;
-    background-color: $green;
-    color: $white;
-    padding: 2px 10px;
-    font-size: 14px;
-    border-radius: 2px;
-  }
 }
 
 .hidden-heading {
