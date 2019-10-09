@@ -85,7 +85,7 @@ const addListenerForLinks = () => {
   }
 };
 
-const handleChange = (event) => {
+const handleChange = event => {
   const target = event.target || event;
   const value = target.value.trim();
 
@@ -278,7 +278,6 @@ const handlePayment = async () => {
       addressCountryEl.value = country;
     }
 
-
     handleChange(emailEl);
     handleChange(firstNameEl);
     handleChange(lastNameEl);
@@ -303,7 +302,7 @@ const handlePayment = async () => {
     });
   };
 
-  const onSubmitOrderInfo = e => {
+  const onSubmitOrderInfo = async e => {
     e.preventDefault();
     const email = emailEl.value;
     const firstName = firstNameEl.value || '';
@@ -337,7 +336,8 @@ const handlePayment = async () => {
       return showErrorMsg('Please select your shipping country');
     }
 
-    if (handleUserSignup({ name, email })) {
+    const isSignedIn = await handleUserSignup({ name, email });
+    if (isSignedIn) {
       storeInformation({
         email,
         address,
