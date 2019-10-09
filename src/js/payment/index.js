@@ -170,6 +170,7 @@ const handleSubmitCryptoOrder = async (
       const walletAddressEl = thankyouContainer.querySelector(
         '#wallet-address'
       );
+      const iconEl = thankyouContainer.querySelector('.icon');
       if (coinPriceEl) {
         coinPriceEl.innerText = order.TotalAmount;
       }
@@ -179,6 +180,12 @@ const handleSubmitCryptoOrder = async (
       if (walletAddressEl) {
         walletAddressEl.innerText = order.Address;
         walletAddressEl.setAttribute('data-copy-value', order.Address);
+      }
+      if (iconEl) {
+        try {
+          iconEl.src = require(`../../image/icon/${coinName.toLowerCase()}.svg`);
+          iconEl.classList.remove('hidden');
+        } catch {}
       }
       togglePayment();
       thankyouContainer.classList.remove('hidden');

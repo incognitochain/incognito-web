@@ -18,25 +18,26 @@ div#payment-container
             div.card-type
                 div Crypto currencies
                 div.types
-                    img(src=require('../../image/icon/bitcoin.png'))
-                    img(src=require('../../image/icon/ethereum.png'))
-                    img(src=require('../../image/icon/binance.png'))
-                    img(src=require('../../image/icon/tether.png'))
+                    img(src=require('../../image/icon/btc.svg'))
+                    img(src=require('../../image/icon/eth.svg'))
+                    img(src=require('../../image/icon/bnb.svg'))
+                    img(src=require('../../image/icon/usdt.svg'))
                     span and more...
             div.card-information.input-wrapper
                 div.select-two-lines-label
                     div.select-wrapper.input-field
                         label(for='coin-name') Coin
                         select(name='coin-name')#coin-name
-                            option(value='BTC') BTC
-                            option(value='ETH') ETH
-                            option(value='BNB') BNB
-                            option(value='USDT') USDT
-                            option(value='USDC') USDC
-                            option(value='TUSD') TUSD
-                            option(value='PAX') PAX
-                            option(value='GUSD') GUSD
-                            option(value='USDS') BUSD
+                            option(value='BTC') Bitcoin
+                            option(value='ETH') Ethereum
+                            option(value='BNB') Binance
+                            option(value='USDT') Tether
+                            option(value='USDC') USD Coin
+                            option(value='TUSD') TrueUSD
+                            option(value='PAX') Paxos Standard
+                            option(value='GUSD') Gemini Dollar
+                            option(value='USDS') Stably
+                            option(value='BUSD') Binance USD
     div.button-wrapper
         div.return
             img.icon(src=require('../../image/icon/chevron-left-light.svg'), alt='left')
