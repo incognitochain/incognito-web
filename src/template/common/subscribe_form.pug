@@ -1,9 +1,10 @@
 mixin subscribe_email(btnText)
-  form(onsubmit='return false;')#email-subscribe
-    input(placeholder='Enter your email', required, type='email', pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z0-9-]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')#email-input
-    button(type='submit').submit-email
-      span#text
-        if btnText
-          != btnText
-        else 
-          |Get early access
+  #email-subscribe
+    //- input(placeholder='Enter your email', required, type='email', pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z0-9-]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')#email-input
+    a(href='/payment.html')
+      button
+        span#text
+          if btnText
+            != btnText
+          else 
+            |Get early access
