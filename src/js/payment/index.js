@@ -40,6 +40,46 @@ const handleUserSignup = async ({ name, email }) => {
   return false;
 };
 
+const storeInformation = (newPaymentInfo) => {
+  const paymentInfo = getInformation();
+  const newInfo = { ...paymentInfo, ...newPaymentInfo };
+
+  storage.set(KEYS.PAYMENT_INFORMATION, JSON.stringify(newInfo));
+};
+
+const getInformation = () => {
+  try {
+    const json = storage.get(KEYS.PAYMENT_INFORMATION);
+    const paymentInfo = JSON.parse(json);
+    return paymentInfo;
+  } catch (error) {
+    console.error(error);
+    storage.set(KEYS.PAYMENT_INFORMATION, '{}');
+    return {};
+  }
+};
+
+const toggleInformation = () => {
+  const informationElement = document.getElementById('information');
+  informationElement.classList.toggle('hidden');
+};
+
+const togglePayment = () => {
+  const paymentElement = document.getElementById('payment-container');
+  paymentElement.classList.toggle('hidden');
+};
+
+const addListenerForLinks = () => {
+  const links = document.getElementsByClassName('link');
+  for (let i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', (event) => {
+      event.preventDefault();
+      toggleInformation();
+      togglePayment();
+    });
+  }
+};
+
 const handleGetShippingFee = async (
   productContainer,
   { address, city, zip, state, country }
@@ -132,6 +172,7 @@ const handlePayment = async () => {
   const firstNameEl = container.querySelector('#first-name');
   const lastNameEl = container.querySelector('#last-name');
   const addressStreetEl = container.querySelector('#address');
+  const addressApartmentEl = container.querySelector('#apartment');
   const addressCityEl = container.querySelector('#city');
   const addressStateEl = container.querySelector('#state');
   const addressZipEl = container.querySelector('#postal-code');
@@ -145,7 +186,8 @@ const handlePayment = async () => {
     !addressCityEl ||
     !addressStateEl ||
     !addressZipEl ||
-    !addressCountryEl
+    !addressCountryEl ||
+    !addressApartmentEl
   ) {
     if (!APP_ENV.production) {
       console.error('missing some elements');
@@ -153,6 +195,23 @@ const handlePayment = async () => {
 
     return;
   }
+
+
+  const fillInformation = () => {
+    const paymentInformation = getInformation();
+    const { email, firstName, lastName, address, city, state, zip, country, apartment } = paymentInformation;
+
+    emailEl.value = email;
+    firstNameEl.value = firstName;
+    lastNameEl.value = lastName;
+    addressStreetEl.value = address;
+    addressCityEl.value = city;
+    addressStreetEl.value = state;
+    addressZipEl.value = zip;
+    addressCountryEl.value = country;
+    addressApartmentEl.value = apartment;
+  };
+
 
   const handleChangeState = countryId => {
     addressStateEl.innerHTML = '';
@@ -179,6 +238,7 @@ const handlePayment = async () => {
     const state = addressStateEl.value;
     const zip = addressZipEl.value;
     const country = addressCountryEl.value;
+    const apartment = addressApartmentEl.value;
 
     if (!email.trim()) {
       return showErrorMsg('Please enter your email');
@@ -202,8 +262,9 @@ const handlePayment = async () => {
       return showErrorMsg('Please select your shipping country');
     }
 
-    if (handleUserSignup({ name, email })) {
-    }
+    storeInformation({ email, address, name, city, zip, country, state, step: 1, firstName, lastName, apartment });
+    toggleInformation();
+    togglePayment();
   };
 
   const onCountryChange = async () => {
@@ -242,6 +303,9 @@ const handlePayment = async () => {
   // TODO: add IE polyfill
   addressCountryEl.dispatchEvent(new Event('change'));
 
+  addListenerForLinks();
+  fillInformation();
+
   if (orderInfoContainer) {
     orderInfoContainer.addEventListener('submit', onSubmitOrderInfo);
   }
@@ -253,6 +317,14 @@ const showErrorMsg = message => {
 
 const main = () => {
   if (!isPath('/payment')) return;
+
+  const paymentInformation = getInformation();
+  if (paymentInformation && paymentInformation.name && paymentInformation.email && paymentInformation.step === 1) {
+    toggleInformation();
+  } else {
+    togglePayment();
+  }
+
   handlePayment();
 };
 
