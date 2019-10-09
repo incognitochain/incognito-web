@@ -53,9 +53,9 @@ const getInformation = () => {
     const paymentInfo = JSON.parse(json);
     return paymentInfo;
   } catch (error) {
-    console.error(error);
-    storage.set(KEYS.PAYMENT_INFORMATION, '{}');
-    return {};
+    if (!APP_ENV.production) {
+      console.error(error);
+    }
   }
 };
 
@@ -147,6 +147,27 @@ const handleSubmitCryptoOrder = async (
       quantity
     });
     if (order) {
+      const thankyouContainer = container.querySelector('#thank-you-container');
+      if (!thankyouContainer) return;
+      const coinPriceEl = thankyouContainer.querySelector('.coin-price');
+      const coinNameEl = thankyouContainer.querySelector('.coin-name');
+      const walletAddressEl = thankyouContainer.querySelector(
+        '#wallet-address'
+      );
+      if (coinPriceEl) {
+        coinPriceEl.innerText = order.TotalAmount;
+      }
+      if (coinNameEl) {
+        coinNameEl.innerText = coinName;
+      }
+      if (walletAddressEl) {
+        walletAddressEl.innerText = order.Address;
+        walletAddressEl.setAttribute('data-copy-value', order.Address);
+      }
+      togglePayment();
+      thankyouContainer.classList.remove('hidden');
+
+      storage.set(KEYS.PAYMENT_INFORMATION, '');
     }
   } catch (e) {
     setMessage(e.message, 'error');
