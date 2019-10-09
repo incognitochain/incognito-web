@@ -7,13 +7,12 @@ import { trackEvent } from './utils/ga';
 
 const copiable = e => {
   const text = e.getAttribute('data-copy-value');
-  const textArea = document.createElement("textarea");
+  const textArea = document.createElement('textarea');
   textArea.value = text;
   document.body.appendChild(textArea);
 
   // handle iOS as a special case
   if (navigator.userAgent.match(/ipad|ipod|iphone/i)) {
-
     // save current contentEditable/readOnly status
     var editable = textArea.contentEditable;
     var readOnly = textArea.readOnly;
@@ -58,7 +57,8 @@ const copiable = e => {
 
 const els = document.querySelectorAll('.copiable');
 
-els && els.forEach(item => {
-  const handleClick = () => copiable(item);
-  item.addEventListener('click', handleClick);
-});
+els &&
+  els.forEach(item => {
+    const handleClick = () => copiable(item);
+    item.addEventListener('click', handleClick);
+  });
