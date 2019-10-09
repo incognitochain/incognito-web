@@ -3,8 +3,9 @@
   font-size: 14px;
   background: white;
   min-height: calc(100vh - 60px);
-  max-width: 1100px;
   margin: 0 auto;
+  background: linear-gradient(90deg, white 52%, #fafafa 100%);
+  justify-content: center;
 
   @media (max-width: 767px) {
     flex-direction: column-reverse;
@@ -23,6 +24,7 @@
   .left-content {
     width: 52%;
     padding: 55px 55px 55px 50px;
+    max-width: 624px;
 
     @media (max-width: 767px) {
       padding: 20px 15px;
@@ -225,6 +227,7 @@
     background: #fafafa;
     box-shadow: 1px 0 0 #e1e1e1 inset;
     padding: 56px 56px 56px 40px;
+    max-width: 576px;
 
     .order-items {
       display: flex;
