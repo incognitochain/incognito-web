@@ -1,6 +1,6 @@
 import YoutubePlayer from '../common/youtubePlayer';
 import countdown from '../service/countdown';
-import { getTotalSubscribe, getExchangeRates } from '../service/api';
+import { getTotalSubscribe, getExchangeRates, getProductPrice } from '../service/api';
 import { trackEvent } from '../common/utils/ga';
 import { setMessage } from '../service/message_box';
 import isQueryStringExists from '../service/queryStringExists';
@@ -181,6 +181,14 @@ const handleSetupEarningTooltips = container => {
     );
   });
 };
+
+const handleGetProductPrice = async (container) => {
+  const priceEl = 
+  try {
+    const productPrice = await getProductPrice();
+    if(productPrice)
+  } catch{}
+}
 
 const updateEarningTooltip = () => {
   earningTooltips.map(tooltip => {
