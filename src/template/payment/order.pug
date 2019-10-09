@@ -1,0 +1,29 @@
+extends ../layout.pug
+
+block main
+    - var price = '$199.00'
+    - var quantity = 1
+    div#order
+        div.order-items
+            div.product
+                span.product-quantity=quantity
+                img.product-image(
+                    alt="Node",
+                    src=require("../../image/device.jpg")
+                )
+            div.product-name Node
+            div.product-price.price=price
+        div.order-summary
+            div.content-two-columns.separator
+                div.left
+                    div Subtotal
+                    div Shipping
+                div.right
+                    div=price
+                    div.next-step Calculated at next step
+            div.content-two-columns
+                div.left
+                    div.total-label Total
+                div.right
+                    span.currency USD
+                    span.total-price.price=price
