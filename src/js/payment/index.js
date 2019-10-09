@@ -192,7 +192,7 @@ const handleSubmitCryptoOrder = async (
       }
       if (iconEl) {
         try {
-          iconEl.src = require(`../../image/icon/${coinName.toLowerCase()}.svg`);
+          iconEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${order.Address}`;
           iconEl.classList.remove('hidden');
         } catch {}
       }
