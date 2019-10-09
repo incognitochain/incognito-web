@@ -2,7 +2,7 @@ div#information
     ul.breadcrumb.desktop
         li.breadcrumb-item.active
             span Information
-            img(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
+            img.icon(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
         li.breadcrumb-item
             span Payment
     form#order-info
@@ -31,42 +31,56 @@ div#information
                         name="last-name"
                     )
             div.input-field
-                label(for="address") Address
+                label(for="first-name") First name (optional)
                 input(
-                    placeholder="Address"
-                    id="address",
-                    name="address"
+                    placeholder="First name (optional)",
+                    id="first-name",
+                    name="first-name"
                 )
             div.input-field
-                label(for="apartment") Apartment, suite, etc. (optional)
+                label(for="last-name") Last name
                 input(
-                    placeholder="Apartment, suite, etc. (optional)"
-                    id="apartment",
-                    name="apartment"
+                    placeholder="Last name",
+                    id="last-name",
+                    name="last-name"
                 )
+        div.input-field
+            label(for="address") Address
+            input(
+                placeholder="Address"
+                id="address",
+                name="address"
+            )
+        div.input-field
+            label(for="apartment") Apartment, suite, etc. (optional)
+            input(
+                placeholder="Apartment, suite, etc. (optional)"
+                id="apartment",
+                name="apartment"
+            )
+        div.input-field
+            label(for="city") City
+            input(
+                placeholder="City",
+                id="city",
+                name="city"
+            )
+        div.input-two-columns
+            div.select-two-lines-label
+                label Country/Region
+                div.select-wrapper
+                    select(id="country", name="country")
+                label State
+            div.select-two-lines-label
+                label Country/Region
+                div.select-wrapper
+                    select(id="state", name="state")
             div.input-field
-                label(for="city") City
+                label(for="postal-code") Postal code
                 input(
-                    placeholder="City",
-                    id="city",
-                    name="city"
+                    placeholder="Postal code",
+                    id="postal-code",
+                    name="postal-code"
                 )
-            div.input-two-columns
-                div.select-two-lines-label
-                    label Country/Region
-                    div.select-wrapper
-                        select(id="country", name="country")
-                    label State
-                div.select-two-lines-label
-                    label Country/Region
-                    div.select-wrapper
-                        select(id="state", name="state")
-                div.input-field
-                    label(for="postal-code") Postal code
-                    input(
-                        placeholder="Postal code",
-                        id="postal-code",
-                        name="postal-code"
-                    )
-        div.button-wrapper
-            button#submit Continue to payment
+    div.button-wrapper
+        button#submit Continue to payment
