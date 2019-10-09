@@ -1,0 +1,20 @@
+#self-funded-container {
+  background: #1a1c1c;
+
+  > div.intro-slider-container {
+    .right-content #intro-container {
+      > div.content div.intro {
+        > div {
+          * {
+            color: #e7e7e7;
+            padding: 5px 0px;
+          }
+          .heading,
+          h1.title {
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}

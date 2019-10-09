@@ -112,3 +112,7 @@ export const getExchangeRates = () => {
       }
     });
 };
+
+export const getProductPrice = () => {
+  return fetch('');
+};
