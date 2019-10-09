@@ -1,0 +1,70 @@
+div#information
+    ul.breadcrumb.desktop
+        li.breadcrumb-item.active
+            span Information
+            img.icon(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
+        li.breadcrumb-item
+            span Payment
+    form#order-info
+        div.input-wrapper
+            h2 Contact information
+            div.input-field
+                label(for="email") Email
+                input(
+                    placeholder='Email',
+                    id="email",
+                    name="email"
+                )
+        div.input-wrapper
+            h2 Shipping address
+            div.input-two-columns
+                div.input-field
+                    label(for="first-name") First name
+                    input(
+                        placeholder="First name",
+                        id="first-name",
+                        name="first-name"
+                    )
+                div.input-field
+                    label(for="last-name") Last name
+                    input(
+                        placeholder="Last name",
+                        id="last-name",
+                        name="last-name"
+                    )
+            div.input-field
+                label(for="address") Address
+                input(
+                    placeholder="Address"
+                    id="address",
+                    name="address"
+                )
+            div.input-field
+                label(for="city") City
+                input(
+                    placeholder="City",
+                    id="city",
+                    name="city"
+                )
+            div.input-two-columns.country-wrapper
+                div.select-two-lines-label
+                    div.select-wrapper.input-field
+                        label(for="country") Country/Region
+                        select(id="country", name="country")
+                        div.caret
+                            img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
+                div.select-two-lines-label
+                    div.select-wrapper.input-field
+                        label(for="state") State
+                        select(id="state", name="state")
+                        div.caret
+                            img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
+                div.input-field
+                    label(for="postal-code") Postal code
+                    input(
+                        placeholder="Postal code",
+                        id="postal-code",
+                        name="postal-code"
+                    )
+        div.button-wrapper
+            button#submit-order-btn Continue to payment
