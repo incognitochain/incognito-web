@@ -128,7 +128,7 @@
       .input-two-columns {
         display: flex;
 
-        > *  {
+        > * {
           margin: 6px;
           width: 50%;
 
@@ -243,7 +243,7 @@
           white-space: nowrap;
           text-align: center;
           border-radius: 1.75em;
-          background-color: rgba(114,114,114,0.9);
+          background-color: rgba(114, 114, 114, 0.9);
           color: #fff;
           box-sizing: border-box;
           min-width: 21px;
@@ -269,7 +269,6 @@
       }
     }
     .order-summary {
-
     }
 
     .separator {
@@ -320,7 +319,7 @@
     margin-top: -3px;
   }
 
-  #payment-step {
+  #payment-container {
     .information {
       padding: 12px 16px;
       border: 1px solid #e6e6e6;
@@ -377,7 +376,6 @@
         display: flex;
         align-items: center;
         border-bottom: 1px solid #e6e6e6;
-
 
         div:nth-child(2) {
           margin-left: auto;
