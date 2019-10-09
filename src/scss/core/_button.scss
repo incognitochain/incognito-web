@@ -11,11 +11,30 @@
   cursor: pointer;
 
   &:hover {
-    opacity: 0.8;
+    &:not(:disabled) {
+      opacity: 0.8;
+    }
   }
 
   &:disabled {
-    background: $black1;
+    background: #bbbfc4;
+  }
+
+  &.loading {
+    padding-left: 50px;
+    &::before {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      margin-top: -3px;
+      margin-left: -32px;
+      border-radius: 50%;
+      border: 2px solid $white;
+      border-top-color: transparent;
+      animation: spin 0.6s linear infinite;
+    }
   }
 }
 
