@@ -1,9 +1,13 @@
 #thank-you-container.hidden
     h1.title Thank you for your order
-    img(src='').icon.hidden
-    div.script.copiable(data-copy-value='')#wallet-address
-    div Please send 
+    div.description Please send 
         span.coin-price 
         |  
         span.coin-name
-        |  to the wallet address above
+        |  to the wallet address below.
+    div.script.copiable(data-copy-value='')#wallet-address
+    .line 
+        .text OR
+    .qr-code
+        div Scan QR Code
+        img(src='').icon.hidden

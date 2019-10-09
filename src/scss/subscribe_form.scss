@@ -1,4 +1,4 @@
-form#email-subscribe {
+#email-subscribe {
   display: flex;
   max-width: 600px;
 
@@ -21,17 +21,17 @@ form#email-subscribe {
     }
   }
 
-  button.submit-email {
+  button {
     min-width: 230px;
+    width: 100%;
 
     #text {
       font-weight: 500;
       color: $white;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     @include breakpoint-down(sm) {
-      height: $sm-input-height !important;
       font-size: 1.1em;
       font-weight: 500;
     }

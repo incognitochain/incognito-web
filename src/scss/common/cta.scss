@@ -1,5 +1,5 @@
 .cta {
-  margin-top: 20px;
+  margin-top: 10px;
 
   // @include breakpoint-down(xl) {
   //   padding: 20px;
@@ -34,7 +34,7 @@
       display: block;
     }
 
-    form#email-subscribe {
+    #email-subscribe {
       max-width: unset;
 
       // @include breakpoint-up(460px) {
@@ -42,11 +42,11 @@
       // }
 
       input,
-      button.submit-email {
-        height: 48px;
+      button {
+        height: 54px;
       }
 
-      button.submit-email {
+      button {
         background: $green1;
         border-radius: 4px;
         min-width: 190px;
@@ -127,16 +127,24 @@
       display: none;
     }
 
-    form#email-subscribe {
+    #email-subscribe {
+      align-items: center;
       input,
-      button.submit-email {
+      button {
         height: 36px;
+      }
+
+      @include breakpoint-down(sm) {
+        a {
+          width: 100%;
+        }
       }
     }
 
     @include breakpoint-up(sm) {
-      form#email-subscribe {
+      #email-subscribe {
         flex-direction: row;
+        justify-content: center;
 
         #email-input {
           margin-bottom: 0px;
