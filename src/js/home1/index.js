@@ -182,13 +182,13 @@ const handleSetupEarningTooltips = container => {
   });
 };
 
-const handleGetProductPrice = async (container) => {
-  const priceEl = 
-  try {
-    const productPrice = await getProductPrice();
-    if(productPrice)
-  } catch{}
-}
+// const handleGetProductPrice = async (container) => {
+//   const priceEl =
+//   try {
+//     const productPrice = await getProductPrice();
+//     if(productPrice)
+//   } catch{}
+// }
 
 const updateEarningTooltip = () => {
   earningTooltips.map(tooltip => {
