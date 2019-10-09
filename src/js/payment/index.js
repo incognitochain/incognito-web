@@ -50,6 +50,11 @@ const storeInformation = newPaymentInfo => {
 const getInformation = () => {
   try {
     const json = storage.get(KEYS.PAYMENT_INFORMATION);
+
+    if (!json) {
+      return {};
+    }
+
     const paymentInfo = JSON.parse(json);
     return paymentInfo;
   } catch (error) {
@@ -77,6 +82,17 @@ const addListenerForLinks = () => {
       toggleInformation();
       togglePayment();
     });
+  }
+};
+
+const handleChange = (event) => {
+  const target = event.target || event;
+  const value = target.value.trim();
+
+  if (value && value.length > 0) {
+    target.parentElement.classList.add('has-value');
+  } else if (value.length === 0) {
+    target.parentElement.classList.remove('has-value');
   }
 };
 
@@ -199,14 +215,57 @@ const handlePayment = async () => {
       country
     } = paymentInformation;
 
-    emailEl.value = email;
-    firstNameEl.value = firstName;
-    lastNameEl.value = lastName;
-    addressStreetEl.value = address;
-    addressCityEl.value = city;
-    addressStreetEl.value = state;
-    addressZipEl.value = zip;
-    addressCountryEl.value = country;
+    emailEl.addEventListener('input', handleChange);
+    firstNameEl.addEventListener('input', handleChange);
+    lastNameEl.addEventListener('input', handleChange);
+    addressStreetEl.addEventListener('input', handleChange);
+    addressCityEl.addEventListener('input', handleChange);
+    addressStateEl.addEventListener('input', handleChange);
+    addressZipEl.addEventListener('input', handleChange);
+    addressZipEl.addEventListener('input', handleChange);
+    addressCountryEl.addEventListener('input', handleChange);
+
+    if (email) {
+      emailEl.value = email;
+    }
+
+    if (firstName) {
+      firstNameEl.value = firstName;
+    }
+
+    if (lastName) {
+      lastNameEl.value = lastName;
+    }
+
+    if (address) {
+      addressStreetEl.value = address;
+    }
+
+    if (city) {
+      addressCityEl.value = city;
+    }
+
+    if (state) {
+      addressStateEl.value = state;
+    }
+
+    if (zip) {
+      addressZipEl.value = zip;
+    }
+
+    if (country) {
+      addressCountryEl.value = country;
+    }
+
+
+    handleChange(emailEl);
+    handleChange(firstNameEl);
+    handleChange(lastNameEl);
+    handleChange(addressStreetEl);
+    handleChange(addressCityEl);
+    handleChange(addressStateEl);
+    handleChange(addressZipEl);
+    handleChange(addressCountryEl);
   };
 
   const handleAddressStateChange = countryId => {
@@ -368,8 +427,7 @@ const main = () => {
   if (
     paymentInformation &&
     paymentInformation.name &&
-    paymentInformation.email &&
-    paymentInformation.step === 1
+    paymentInformation.email
   ) {
     toggleInformation();
   } else {

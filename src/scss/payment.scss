@@ -408,6 +408,38 @@
     }
   }
 
+  #information {
+    .country-wrapper {
+      input {
+        margin: 0;
+      }
+
+      label {
+        margin-top: 0;
+      }
+
+      .select-wrapper {
+        .caret {
+          border-left: 1px rgba(179,179,179,0.5) solid;
+          display: block;
+          width: 30px;
+          height: 20px;
+          pointer-events: none;
+          position: absolute;
+          top: 50%;
+          right: 0;
+          -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+        }
+
+        label {
+          margin-left: 0;
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
   .link {
     color: #197bbd;
     text-decoration: none;
