@@ -9,6 +9,7 @@ import storage from '../service/storage';
 import { setMessage } from '../service/message_box';
 import KEYS from '../constant/keys';
 import csc from 'country-state-city';
+import { isEmail } from '../common/utils/validate';
 
 let globalProductPrice = 199; //product_price
 
@@ -341,37 +342,67 @@ const handlePayment = async () => {
 
   const onSubmitOrderInfo = async e => {
     e.preventDefault();
-    const email = emailEl.value;
-    const firstName = firstNameEl.value || '';
-    const lastName = lastNameEl.value || '';
-    const name = `${firstName} ${lastName}`;
-    const address = addressStreetEl.value;
-    const city = addressCityEl.value;
-    const state = addressStateEl.value;
-    const zip = addressZipEl.value;
-    const country = addressCountryEl.value;
+    const email = emailEl.value.trim();
+    const firstName = (firstNameEl.value || '').trim();
+    const lastName = (lastNameEl.value || '').trim();
+    const name = `${firstName} ${lastName}`.trim();
+    const address = addressStreetEl.value.trim();
+    const city = addressCityEl.value.trim();
+    const state = addressStateEl.value.trim();
+    const zip = addressZipEl.value.trim();
+    const country = addressCountryEl.value.trim();
+    let hasErrors = false;
 
-    if (!email.trim()) {
-      return showErrorMsg('Please enter your email');
+    if (!email || !isEmail(email)) {
+      addFormErrorMessage(emailEl, 'Enter a valid email');
+      hasErrors = true;
+    } else {
+      removeFormErrorMessage(emailEl);
     }
-    if (!name.trim()) {
-      return showErrorMsg('Please enter your first name and last name');
+    if (!firstName) {
+      addFormErrorMessage(firstNameEl, 'Enter a first name');
+      hasErrors = true;
+    } else {
+      removeFormErrorMessage(firstNameEl);
     }
-    if (!address.trim()) {
-      return showErrorMsg('Please enter your shipping street');
+    if (!lastName) {
+      addFormErrorMessage(lastNameEl, 'Enter a last name');
+      hasErrors = true;
+    } else {
+      removeFormErrorMessage(lastNameEl);
     }
-    if (!city.trim()) {
-      return showErrorMsg('Please enter your shipping city');
+    if (!address) {
+      addFormErrorMessage(addressStreetEl, 'Enter an address');
+      hasErrors = true;
+    } else {
+      removeFormErrorMessage(addressStreetEl);
     }
-    if (!state.trim()) {
-      return showErrorMsg('Please select your shipping state');
+    if (!city) {
+      addFormErrorMessage(addressCityEl, 'Enter a city');
+      hasErrors = true;
+    } else {
+      removeFormErrorMessage(addressCityEl);
     }
-    if (!zip.trim()) {
-      return showErrorMsg('Please enter your shipping postal code');
+    if (!state) {
+      addFormErrorMessage(addressStateEl, 'Select or enter a state');
+      hasErrors = true;
+    } else {
+      removeFormErrorMessage(addressStateEl);
     }
-    if (!country.trim()) {
-      return showErrorMsg('Please select your shipping country');
+    if (!zip) {
+      addFormErrorMessage(addressZipEl, 'Enter a ZIP / Postal code');
+      hasErrors = true;
+    } else {
+      removeFormErrorMessage(addressZipEl);
     }
+    if (!country) {
+      addFormErrorMessage(addressCountryEl, 'Select a country');
+      hasErrors = true;
+    } else {
+      removeFormErrorMessage(addressCountryEl);
+    }
+
+    if (hasErrors) return;
 
     const submitBtnEl = orderInfoContainer.querySelector('#submit-order-btn');
     if (submitBtnEl) {
@@ -487,6 +518,29 @@ const handlePayment = async () => {
     if (!submitPaymentBtnEl) return;
     submitPaymentBtnEl.addEventListener('click', onSubmitPayment);
   }
+};
+
+const addFormErrorMessage = (formElement, message) => {
+  const validatorClassName = 'validator';
+  let validatorEl = formElement.parentNode.querySelector(
+    `.${validatorClassName}`
+  );
+  if (!validatorEl) {
+    validatorEl = document.createElement('div');
+    validatorEl.classList.add(validatorClassName);
+    formElement.parentNode.insertBefore(validatorEl, formElement.nextSibling);
+  }
+  validatorEl.innerHTML = message;
+  formElement.classList.add('error');
+};
+
+const removeFormErrorMessage = formElement => {
+  const validatorClassName = 'validator';
+  const validatorEl = formElement.parentNode.querySelector(
+    `.${validatorClassName}`
+  );
+  if (validatorEl) validatorEl.remove();
+  formElement.classList.remove('error');
 };
 
 const showErrorMsg = message => {
