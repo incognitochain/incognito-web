@@ -22,6 +22,47 @@
     }
   }
 
+  .loading-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    z-index: 9999;
+
+    .spinner {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      margin-top: -25px;
+      margin-left: 25px;
+      border-radius: 50%;
+      border: 5px solid #0dc7d8;
+      border-top-color: transparent;
+    }
+  }
+
+  .divide-line {
+    margin-top: 30px;
+    border-top: 1px solid #e4eeef;
+    position: relative;
+
+    .text {
+      position: absolute;
+      top: -11px;
+      margin: 0 auto;
+      text-align: center;
+      left: 50%;
+      background: white;
+      padding: 0 20px;
+      margin-left: -30px;
+    }
+  }
+
   .left-content {
     width: 52%;
     padding: 55px 55px 55px 50px;
@@ -342,6 +383,26 @@
   }
 
   #payment-container {
+    .payment {
+      &:not(:first-child) {
+        margin-top: 30px;
+      }
+
+      .description {
+        margin-top: 5px;
+      }
+    }
+
+    #pay-with-crypto {
+      select {
+        padding: 14px 29px 5px 12px;
+      }
+    }
+
+    #ship-to {
+      margin-right: 10px;
+    }
+
     .information {
       padding: 12px 16px;
       border: 1px solid #e6e6e6;
@@ -506,7 +567,6 @@
 
   #thank-you-container {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     width: 100%;
     height: 100%;
@@ -514,15 +574,16 @@
     .title {
       color: #25cdd6;
       font-size: 28px;
-      line-height: 41px;
+      line-height: 37px;
       margin: 0px;
     }
 
     .description {
+      margin-top: 20px;
       &,
       * {
         font-size: 16px;
-        line-height: 41px;
+        line-height: 21px;
       }
     }
 
@@ -532,14 +593,28 @@
       font-weight: 500;
     }
 
+    .copy-container {
+      margin-top: 20px;
+
+      .tap-to-copy {
+        display: none;
+        font-size: 12px;
+
+        @include breakpoint-down(sm) {
+          display: block;
+        }
+      }
+    }
+
     #wallet-address {
       padding: 10px 20px;
       background: #f7f7f7;
       border-radius: 4px;
       border: 2px solid #eff3f3;
       height: 48px;
-      margin-top: 20px;
       text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
 
       &::after {
         content: '\f0c5';
@@ -549,6 +624,7 @@
         color: #25cdd6;
 
         @include breakpoint-up(sm) {
+          display: none;
           font-family: inherit;
           content: 'Copy';
           right: -21px;
@@ -561,23 +637,6 @@
           position: relative;
           top: -11px;
         }
-      }
-    }
-
-    .line {
-      margin-top: 30px;
-      border-top: 1px solid #e4eeef;
-      position: relative;
-
-      .text {
-        position: absolute;
-        top: -11px;
-        margin: 0 auto;
-        text-align: center;
-        left: 50%;
-        background: white;
-        padding: 0 20px;
-        margin-left: -30px;
       }
     }
 

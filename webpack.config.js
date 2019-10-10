@@ -12,19 +12,23 @@ require('dotenv').config();
 const templateGen = [
   new HtmlWebpackPlugin({
     template: 'src/template/node/index.pug',
-    filename: 'node.html'
+    filename: 'node.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/referral/index.pug',
-    filename: 'referral.html'
+    filename: 'referral.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/privacy/index.pug',
-    filename: 'privacy.html'
+    filename: 'privacy.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/return/index.pug',
-    filename: 'return.html'
+    filename: 'return.html',
+    env: process.env
   }),
   // new HtmlWebpackPlugin({
   //   template: 'src/template/internalSubscriberBoard/index.pug',
@@ -32,63 +36,83 @@ const templateGen = [
   // }),
   new HtmlWebpackPlugin({
     template: 'src/template/specs/index.pug',
-    filename: 'specs.html'
+    filename: 'specs.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/sidechain/index.pug',
-    filename: 'sidechain.html'
+    filename: 'sidechain.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/sidechain/index.pug',
-    filename: 'tech.html'
+    filename: 'tech.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/wallet/index.pug',
-    filename: 'wallet.html'
+    filename: 'wallet.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/subscribe_email/index.pug',
-    filename: 'subscribe.html'
+    filename: 'subscribe.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/about/index.pug',
-    filename: 'about.html'
+    filename: 'about.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/becomeValidator/index.pug',
-    filename: 'validator.html'
+    filename: 'validator.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/launchOnAWS/index.pug',
-    filename: 'doc-setup-amazon-instance.html'
+    filename: 'doc-setup-amazon-instance.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/launchOnGoogleCloud/index.pug',
-    filename: 'doc-setup-gcloud-instance.html'
+    filename: 'doc-setup-gcloud-instance.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/launchOnDigitalOcean/index.pug',
-    filename: 'doc-setup-digitalocean-instance.html'
+    filename: 'doc-setup-digitalocean-instance.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/home1/index.pug',
-    filename: 'index.html'
+    filename: 'index.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/airdrop/index.pug',
-    filename: 'airdrop.html'
+    filename: 'airdrop.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/self_funded/index.pug',
-    filename: 'self-funded.html'
+    filename: 'self-funded.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/free_software/index.pug',
-    filename: 'free-software.html'
+    filename: 'free-software.html',
+    env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/payment/index.pug',
-    filename: 'payment.html'
+    filename: 'payment.html',
+    env: process.env
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/order_confirmation/index.pug',
+    filename: 'thank-you.html',
+    env: process.env
   })
   // new HtmlWebpackPlugin({
   //   template: 'src/template/mine/index.pug',
@@ -151,7 +175,10 @@ const devConfig = {
       },
       {
         test: /\.pug$/,
-        use: ['pug-loader']
+        loader: 'pug-loader',
+        options: {
+          self: true
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg|webp|glb|mp3|woff)$/,
@@ -205,7 +232,10 @@ const prodConfig = {
       },
       {
         test: /\.pug$/,
-        use: ['pug-loader']
+        loader: 'pug-loader',
+        options: {
+          self: true
+        }
       },
       {
         test: /\.(png|jpe?g|gif|svg|webp|glb|mp3|woff)$/,

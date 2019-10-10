@@ -1,4 +1,3 @@
-- var shipAddress = '123 Hong Ha, Phu Nhuan, Ho Chi Minh 70000, Vietnam'
 div#payment-container
     ul.breadcrumb.desktop
         li.breadcrumb-item
@@ -6,17 +5,23 @@ div#payment-container
             img.icon(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
         li.breadcrumb-item.active
             span Payment
-    //- div.information
-    //-     div.three-lines-content
-    //-         div Ship to
-    //-         div=shipAddress
-    //-         a.link(href='#') Change
-    div.payment
-        h2 Payment
+    div.information
+        div.three-lines-content
+            div Ship to
+            div#ship-to
+            a.link(href='#') Change
+    .payment#pay-with-paypal
+        h2 Pay with VISA, Mastercard, AMEX, Discover or Paypal
+        p.description Click on the type of card you wish to use.
+        .input-field
+            #paypal-express-checkout-button
+    .divide-line
+        .text OR
+    div.payment#pay-with-crypto
+        h2 Pay with crypto
         p 
         div.card-input
             div.card-type
-                div Crypto currencies
                 div.types
                     img(src=require('../../image/icon/btc.svg'))
                     img(src=require('../../image/icon/eth.svg'))
@@ -26,7 +31,6 @@ div#payment-container
             div.card-information.input-wrapper
                 div.select-two-lines-label
                     div.select-wrapper.input-field
-                        label(for='coin-name') Coin
                         select(name='coin-name')#coin-name
                             option(value='BTC') Bitcoin (BTC)
                             option(value='ETH') Ethereum (ETH)

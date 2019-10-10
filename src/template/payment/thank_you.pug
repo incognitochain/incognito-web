@@ -5,8 +5,10 @@
         |  
         span.coin-name
         |  to the wallet address below.
-    div.script.copiable(data-copy-value='')#wallet-address
-    .line 
+    .copy-container
+        div.tap-to-copy Tap to copy
+        div.script.copiable(data-copy-value='')#wallet-address
+    .divide-line 
         .text OR
     .qr-code
         div Scan QR Code
