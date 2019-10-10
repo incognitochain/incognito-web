@@ -79,6 +79,10 @@
       .input-field {
         position: relative;
 
+        .validator {
+          color: #e32c2b;
+        }
+
         &.has-value {
           input {
             padding-top: 28px;
@@ -88,6 +92,13 @@
             transform: none;
             opacity: 1;
             transition: all 0.2s ease-out;
+          }
+        }
+
+        input {
+          &.error {
+            box-shadow: 0 0 0 1px #e32c2b;
+            border-color: #e32c2b;
           }
         }
       }
@@ -126,8 +137,8 @@
         transition: all 0.2s ease-out;
         &:focus {
           outline: none;
-          border-color: #197bbd;
-          box-shadow: 0 0 0 1px #197bbd;
+          border-color: #0dc7d8;
+          box-shadow: 0 0 0 1px #0dc7d8;
         }
       }
 
