@@ -1,3 +1,5 @@
+- const paypalClientId = self.htmlWebpackPlugin.options.env;
+
 doctype html  
 html(lang='en')  
  head
@@ -7,6 +9,7 @@ html(lang='en')
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     meta(property="og:image" content="/seo_image.png")
+    script(src=`https://www.paypal.com/sdk/js?client-id=${paypalClientId.PAYPAL_CLIENT_ID}&intent=authorize&commit=false&disable-funding=credit,sepa`)
     block meta
  body(style='opacity: 0').fadeIn-ani
    block main

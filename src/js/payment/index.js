@@ -2,7 +2,8 @@ import {
   getShippingFee,
   signUp,
   getProductPrice,
-  submitCryptoOrder
+  submitCryptoOrder,
+  submitPaypalOrder
 } from '../service/api';
 import isPath from '../common/utils/isPathname';
 import storage from '../service/storage';
@@ -10,8 +11,9 @@ import { setMessage } from '../service/message_box';
 import KEYS from '../constant/keys';
 import csc from 'country-state-city';
 import { isEmail } from '../common/utils/validate';
+import { trackEvent } from '../common/utils/ga';
 
-let globalProductPrice = 199; //product_price
+let globalProductPrice = 399; //product_price
 
 const handleGetProductPrice = async container => {
   globalProductPrice = storage.get(KEYS.PRODUCT_PRICE) || productPrice;
@@ -37,7 +39,9 @@ const handleUserSignup = async ({ name, email }) => {
       storage.set(KEYS.TOKEN, token);
       return true;
     }
-  } catch {}
+  } catch (e) {
+    showErrorMsg(e.message);
+  }
   return false;
 };
 
@@ -147,6 +151,30 @@ const handleGetShippingFee = async (
   if (totalPriceEl) {
     totalPriceEl.innerText = `$${totalPrice}`;
   }
+
+  saveCartInformation({
+    price: globalProductPrice,
+    shippingFee,
+    tax,
+    quantity,
+    totalPrice
+  });
+};
+
+const saveCartInformation = cart => {
+  try {
+    storage.set(KEYS.CART_INFORMATION, JSON.stringify(cart));
+  } catch {}
+};
+
+const getCartInformation = () => {
+  let cart = {};
+
+  try {
+    cart = JSON.parse(storage.get(KEYS.CART_INFORMATION) || '{}');
+  } catch {}
+
+  return cart;
 };
 
 const handleSubmitCryptoOrder = async (
@@ -224,9 +252,7 @@ const handleSubmitCryptoOrder = async (
   }
 };
 
-const handlePayment = async () => {
-  const container = document.querySelector('#payment');
-  if (!container) return;
+const handlePayment = async container => {
   const orderInfoContainer = container.querySelector('#order-info');
   const productContainer = container.querySelector('#product-container');
   const paymentContainer = container.querySelector('#payment-container');
@@ -324,6 +350,22 @@ const handlePayment = async () => {
     handleChange(addressZipEl);
     handleChange(addressCountryEl);
     handleChange(coinNameEl);
+
+    updateShipTo({ firstName, lastName, address, city, state, zip, country });
+  };
+
+  const updateShipTo = ({
+    firstName,
+    lastName,
+    address,
+    city,
+    state,
+    zip,
+    country
+  }) => {
+    const shipTo = `${firstName} ${lastName}, ${address}, ${city}, ${state} ${zip}, ${country}`;
+    const shipToEl = paymentContainer.querySelector('#ship-to');
+    if (shipToEl) shipToEl.innerText = shipTo;
   };
 
   const handleAddressStateChange = countryId => {
@@ -342,6 +384,8 @@ const handlePayment = async () => {
 
   const onSubmitOrderInfo = async e => {
     e.preventDefault();
+    if (!checkValidForm(orderInfoContainer)) return;
+
     const email = emailEl.value.trim();
     const firstName = (firstNameEl.value || '').trim();
     const lastName = (lastNameEl.value || '').trim();
@@ -351,58 +395,12 @@ const handlePayment = async () => {
     const state = addressStateEl.value.trim();
     const zip = addressZipEl.value.trim();
     const country = addressCountryEl.value.trim();
-    let hasErrors = false;
 
-    if (!email || !isEmail(email)) {
-      addFormErrorMessage(emailEl, 'Enter a valid email');
-      hasErrors = true;
-    } else {
-      removeFormErrorMessage(emailEl);
-    }
-    if (!firstName) {
-      addFormErrorMessage(firstNameEl, 'Enter a first name');
-      hasErrors = true;
-    } else {
-      removeFormErrorMessage(firstNameEl);
-    }
-    if (!lastName) {
-      addFormErrorMessage(lastNameEl, 'Enter a last name');
-      hasErrors = true;
-    } else {
-      removeFormErrorMessage(lastNameEl);
-    }
-    if (!address) {
-      addFormErrorMessage(addressStreetEl, 'Enter an address');
-      hasErrors = true;
-    } else {
-      removeFormErrorMessage(addressStreetEl);
-    }
-    if (!city) {
-      addFormErrorMessage(addressCityEl, 'Enter a city');
-      hasErrors = true;
-    } else {
-      removeFormErrorMessage(addressCityEl);
-    }
-    if (!state) {
-      addFormErrorMessage(addressStateEl, 'Select or enter a state');
-      hasErrors = true;
-    } else {
-      removeFormErrorMessage(addressStateEl);
-    }
-    if (!zip) {
-      addFormErrorMessage(addressZipEl, 'Enter a ZIP / Postal code');
-      hasErrors = true;
-    } else {
-      removeFormErrorMessage(addressZipEl);
-    }
-    if (!country) {
-      addFormErrorMessage(addressCountryEl, 'Select a country');
-      hasErrors = true;
-    } else {
-      removeFormErrorMessage(addressCountryEl);
-    }
-
-    if (hasErrors) return;
+    trackEvent({
+      eventCategory: 'Button',
+      eventAction: 'submit',
+      eventLabel: 'Submit email and shipping info'
+    });
 
     const submitBtnEl = orderInfoContainer.querySelector('#submit-order-btn');
     if (submitBtnEl) {
@@ -429,6 +427,7 @@ const handlePayment = async () => {
         firstName,
         lastName
       });
+      updateShipTo({ firstName, lastName, address, city, state, zip, country });
       toggleInformation();
       togglePayment();
     }
@@ -454,6 +453,12 @@ const handlePayment = async () => {
     if (!coinNameEl) {
       return showErrorMsg('Please select a coin');
     }
+
+    trackEvent({
+      eventCategory: 'Button',
+      eventAction: 'submit',
+      eventLabel: `Submit payment with crypto: ${coinName}`
+    });
 
     handleSubmitCryptoOrder(container, {
       firstName,
@@ -504,6 +509,8 @@ const handlePayment = async () => {
   // TODO: add IE polyfill
   addressCountryEl.dispatchEvent(new Event('change'));
 
+  handleFormValidation(orderInfoContainer);
+
   addListenerForLinks();
   fillInformation();
 
@@ -520,35 +527,170 @@ const handlePayment = async () => {
   }
 };
 
-const addFormErrorMessage = (formElement, message) => {
-  const validatorClassName = 'validator';
-  let validatorEl = formElement.parentNode.querySelector(
-    `.${validatorClassName}`
-  );
-  if (!validatorEl) {
-    validatorEl = document.createElement('div');
-    validatorEl.classList.add(validatorClassName);
-    formElement.parentNode.insertBefore(validatorEl, formElement.nextSibling);
-  }
-  validatorEl.innerHTML = message;
-  formElement.classList.add('error');
-};
-
-const removeFormErrorMessage = formElement => {
-  const validatorClassName = 'validator';
-  const validatorEl = formElement.parentNode.querySelector(
-    `.${validatorClassName}`
-  );
-  if (validatorEl) validatorEl.remove();
-  formElement.classList.remove('error');
-};
-
 const showErrorMsg = message => {
   setMessage(message, 'error');
 };
 
+const showLoading = container => {
+  container = container || document.querySelector('#payment');
+  const loadingContainer = container.querySelector('.loading-container');
+  if (loadingContainer) {
+    loadingContainer.classList.remove('hidden');
+  }
+};
+
+const hideLoading = container => {
+  container = container || document.querySelector('#payment');
+  const loadingContainer = container.querySelector('.loading-container');
+  if (loadingContainer) {
+    loadingContainer.classList.add('hidden');
+  }
+};
+//// FORM VALIDATION
+
+const handleFormValidation = container => {
+  const validatorClassName = 'validator';
+  const errorClassName = 'error';
+
+  const addError = field => {
+    const message = field.getAttribute('error_message') || 'Enter a value';
+    let validatorEl = field.parentNode.querySelector(`.${validatorClassName}`);
+    if (!validatorEl) {
+      validatorEl = document.createElement('div');
+      validatorEl.classList.add(validatorClassName);
+      field.parentNode.insertBefore(validatorEl, field.nextSibling);
+    }
+    validatorEl.innerHTML = message;
+    field.classList.add(errorClassName);
+    field.setAttribute('validated', false);
+  };
+
+  const removeError = field => {
+    const validatorClassName = 'validator';
+    const validatorEl = field.parentNode.querySelector(
+      `.${validatorClassName}`
+    );
+    if (validatorEl) validatorEl.remove();
+    field.classList.remove(errorClassName);
+    field.setAttribute('validated', true);
+  };
+
+  const handleInputChange = field => {
+    field.addEventListener('change', function() {
+      const value = this.value.trim();
+      const isEmailRequired =
+        this.getAttribute('email_required') === 'true' || false;
+
+      if (!value || (isEmailRequired && !isEmail(value))) {
+        addError(field);
+        return false;
+      } else {
+        removeError(field);
+        return true;
+      }
+    });
+  };
+  const formFields = container.querySelectorAll('input, select');
+
+  formFields.forEach(field => {
+    const isRequired = field.required;
+    if (!isRequired) {
+      field.setAttribute('validated', true);
+    }
+    handleInputChange(field);
+  });
+};
+
+const checkValidForm = formContainer => {
+  const formFields = formContainer.querySelectorAll('input, select');
+
+  for (let i = 0; i < formFields.length; i++) {
+    const field = formFields[i];
+    const fieldValidated = field.getAttribute('validated');
+    const isFieldValid = fieldValidated ? fieldValidated === 'true' : true;
+    if (!isFieldValid) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+//// PAYPALLLLL
+
+const handlePaypalExpressButton = container => {
+  paypal
+    .Buttons({
+      style: {
+        height: 44,
+        color: 'blue'
+      },
+      createOrder: (data, actions) => {
+        const cart = getCartInformation();
+        const { totalPrice = 0.01 } = cart;
+        return actions.order.create({
+          application_context: {
+            shipping_preference: 'NO_SHIPPING',
+            landing_page: 'BILLING',
+            return_url: `${window.location}/payment.html`
+          },
+          purchase_units: [
+            {
+              amount: {
+                value: totalPrice,
+                currency_code: 'USD'
+              }
+            }
+          ]
+        });
+      },
+      onApprove: async (data, actions) => {
+        const orderId = data.orderID;
+        showLoading(container);
+        try {
+          const paymentInformation = getInformation();
+          const {
+            firstName,
+            lastName,
+            address,
+            city,
+            state,
+            zip,
+            country,
+            quantity = 1
+          } = paymentInformation;
+
+          const orderInfo = await submitPaypalOrder({
+            firstName,
+            lastName,
+            address,
+            city,
+            state,
+            country,
+            zip,
+            orderId,
+            quantity
+          });
+
+          window.location = '/thank-you.html';
+        } catch (e) {
+          showErrorMsg(e.message);
+          actions.reject();
+        } finally {
+          hideLoading(container);
+        }
+      },
+      onCancel: (data, actions) => {},
+      onError: (data, actions) => {}
+    })
+    .render('#paypal-express-checkout-button');
+};
+
 const main = () => {
   if (!isPath('/payment')) return;
+
+  const container = document.querySelector('#payment');
+  if (!container) return;
 
   const paymentInformation = getInformation();
   if (
@@ -561,7 +703,8 @@ const main = () => {
     togglePayment();
   }
 
-  handlePayment();
+  handlePayment(container);
+  handlePaypalExpressButton(container);
 };
 
 main();

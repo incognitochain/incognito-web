@@ -138,6 +138,10 @@ export const signUp = ({ name, email }) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
     });
 };
 
@@ -227,6 +231,46 @@ export const submitCryptoOrder = ({
       if (!APP_ENV.production) {
         console.error(e);
       }
-      throw new Error(e.message || 'Order failed');
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
+
+export const submitPaypalOrder = ({
+  firstName,
+  lastName,
+  address,
+  city,
+  state,
+  country,
+  zip,
+  orderId,
+  quantity
+}) => {
+  return fetch('order/paypal/checkout', {
+    method: 'POST',
+    body: {
+      FirstName: firstName,
+      LastName: lastName,
+      AddressStreet: address,
+      AddressRegion: state,
+      AddressCity: city,
+      AddressPostalCode: zip,
+      AddressCountry: country,
+      Quantity: quantity,
+      OrderID: orderId
+    }
+  })
+    .then(orderInfo => orderInfo)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
     });
 };
