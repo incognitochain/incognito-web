@@ -11,16 +11,14 @@ div#payment-container
             div#ship-to
             a.link(href='#') Change
     .payment#pay-with-paypal
-        h2 Pay with VISA, Mastercard, AMEX, Discover or Paypal
+        h2 Pay with Visa, Mastercard, Amex or Paypal
         p.description Click on the type of card you wish to use.
-        .input-field
+        .input-field.payment-wrapper
             #paypal-express-checkout-button
-    .divide-line
-        .text OR
     div.payment#pay-with-crypto
         h2 Pay with crypto
         p 
-        div.card-input
+        div.card-input.payment-wrapper
             div.card-type
                 div.types
                     img(src=require('../../image/icon/btc.svg'))
@@ -44,8 +42,5 @@ div#payment-container
                             option(value='BUSD') Binance USD (BUSD)
                         div.caret
                             img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
-    div.button-wrapper
-        div.return
-            img.icon(src=require('../../image/icon/chevron-left-light.svg'), alt='left')
-            a.link(href='#') Return to shipping
-        button#submit-payment-btn Pay now
+            div.button-wrapper
+                button#submit-payment-btn Pay now

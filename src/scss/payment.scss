@@ -39,7 +39,7 @@
       width: 50px;
       height: 50px;
       margin-top: -25px;
-      margin-left: 25px;
+      margin-left: 3px;
       border-radius: 50%;
       border: 5px solid #0dc7d8;
       border-top-color: transparent;
@@ -64,13 +64,15 @@
   }
 
   .left-content {
-    width: 52%;
     padding: 55px 55px 55px 50px;
-    max-width: 624px;
 
     @include breakpoint-down(xl) {
       padding: 20px;
       width: 100%;
+    }
+
+    .wrapper {
+      float: right;
     }
 
     .logo-wrapper {
@@ -258,7 +260,6 @@
     }
     .button-wrapper {
       display: flex;
-      justify-content: flex-end;
       margin-top: 30px;
 
       button {
@@ -275,11 +276,9 @@
     }
   }
   .right-content {
-    flex: 1;
     background: #fafafa;
     box-shadow: 1px 0 0 #e1e1e1 inset;
     padding: 50px;
-    max-width: 576px;
 
     @include breakpoint-down(xl) {
       padding: 20px;
@@ -375,6 +374,21 @@
     }
   }
 
+  .left-content,
+  .right-content {
+    flex: 1;
+
+    .wrapper {
+      max-width: 500px;
+      width: 100%;
+
+      @include breakpoint-down(xl) {
+        max-width: unset;
+        float: unset;
+      }
+    }
+  }
+
   .icon {
     width: 10px;
     height: 10px;
@@ -388,8 +402,19 @@
         margin-top: 30px;
       }
 
+      .payment-wrapper {
+        max-width: 300px;
+      }
+
       .description {
         margin-top: 5px;
+      }
+
+      .button-wrapper {
+        width: 100%;
+        #submit-payment-btn {
+          width: 100%;
+        }
       }
     }
 
@@ -441,7 +466,6 @@
       }
 
       button {
-        margin-left: auto;
         font-weight: 500;
       }
 
@@ -455,18 +479,10 @@
     }
 
     .card-input {
-      border: 1px solid #e6e6e6;
-      border-radius: 5px;
-
-      > * {
-        padding: 12px 16px;
-      }
-
       .card-type {
         height: 53px;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #e6e6e6;
 
         div:nth-child(2) {
           margin-left: auto;

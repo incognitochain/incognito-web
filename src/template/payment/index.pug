@@ -7,11 +7,13 @@ block main
     div#content
         div#payment
             div.left-content
-                include ./information
-                include ./payment
-                include ./thank_you
+                .wrapper
+                    include ./information
+                    include ./payment
+                    include ./thank_you
             div.right-content
-                include ./order
+                .wrapper
+                    include ./order
             include ./loading
 
 
