@@ -188,12 +188,25 @@ const handleSetupEarningTooltips = container => {
 };
 
 const handleGetProductPrice = async container => {
-  const priceEl = container.querySelector('.price-info .end-price');
-  if (!priceEl) return;
+  const priceInfoEls = container.querySelectorAll('.price-info');
   try {
     const productPrice = await getProductPrice();
     if (productPrice) {
-      priceEl.innerText = productPrice;
+      const {
+        OfferPrice: price,
+        RemainOffer: quantityRemaining
+      } = productPrice;
+      priceInfoEls.forEach(priceInfoEl => {
+        const priceEl = priceInfoEl.querySelector('.end-price');
+        const offerCountdownEl = priceInfoEl.querySelector('.offer-countdown');
+        const offerWrapperEl = priceInfoEl.querySelector('.offer-wrapper');
+        if (quantityRemaining < 1) {
+          offerWrapperEl.remove();
+        } else {
+          if (offerCountdownEl) offerCountdownEl.innerText = quantityRemaining;
+        }
+        if (priceEl) priceEl.innerText = price;
+      });
     }
   } catch {}
 };

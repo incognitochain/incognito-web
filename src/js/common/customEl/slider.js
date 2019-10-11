@@ -85,7 +85,7 @@ class Slider extends HTMLElement {
       width: width || '100%',
       height: height || '100%',
       style: style || '',
-      src: `${url}?enablejsapi=1`,
+      src: `${url}${url.indexOf('?') < 0 ? `?` : '&'}enablejsapi=1`,
       frameborder: 0,
       allow:
         'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture',
@@ -147,8 +147,6 @@ class Slider extends HTMLElement {
         right: 0;
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        object-position: center;
       `;
 
       if (type == 'youtube') {
@@ -157,7 +155,7 @@ class Slider extends HTMLElement {
         );
       } else {
         const image = document.createElement('img');
-        image.style.cssText = defaultStyle;
+        image.style.cssText = `${defaultStyle}; object-fit: cover; object-position: center;`;
         image.src = src;
         container.appendChild(image);
       }

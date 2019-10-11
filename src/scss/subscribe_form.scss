@@ -1,6 +1,37 @@
 #email-subscribe {
   display: flex;
   max-width: 600px;
+  align-items: center;
+
+  .title {
+    font-size: 18px;
+    line-height: 19px;
+    font-weight: 500;
+    margin-right: 35px;
+    color: $black;
+    display: none;
+  }
+
+  .buy-now-link {
+    @include breakpoint-down(sm) {
+      width: 100%;
+    }
+  }
+
+  .price-info {
+    display: none;
+  }
+
+  .shipping-info {
+    font-size: 14px;
+    line-height: 20px;
+    margin-left: 20px;
+    display: none;
+
+    @include breakpoint-up(sm) {
+      display: block;
+    }
+  }
 
   #email-input {
     background-color: $white;

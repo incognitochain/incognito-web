@@ -76,10 +76,13 @@
     align-items: center;
 
     .info {
-      line-height: 20px;
-      color: #ff871c;
-      font-size: 16px;
-      font-weight: 400;
+      &,
+      * {
+        line-height: 20px;
+        color: #ff871c;
+        font-size: 16px;
+        font-weight: 400;
+      }
     }
 
     img {

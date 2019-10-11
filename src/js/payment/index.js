@@ -21,8 +21,12 @@ const handleGetProductPrice = async container => {
   try {
     const productPrice = await getProductPrice();
     if (productPrice) {
-      storage.set(KEYS.PRODUCT_PRICE, productPrice);
-      globalProductPrice = productPrice;
+      const {
+        OfferPrice: price,
+        RemainOffer: quantityRemaining
+      } = productPrice;
+      storage.set(KEYS.PRODUCT_PRICE, price);
+      globalProductPrice = price;
     }
   } catch {}
 
@@ -765,15 +769,6 @@ const main = () => {
 
   const container = document.querySelector('#payment');
   if (!container) return;
-
-  const testMode = queryString('testmode') || false;
-
-  if (testMode) {
-    const paypalEl = container.querySelector('#pay-with-paypal');
-    if (paypalEl) {
-      paypalEl.classList.remove('hidden');
-    }
-  }
 
   const paymentInformation = getInformation();
   if (

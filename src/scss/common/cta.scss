@@ -128,6 +128,46 @@
     }
 
     #email-subscribe {
+      display: flex;
+      flex-direction: row;
+
+      @include breakpoint-up(sm) {
+        .title {
+          display: block;
+        }
+      }
+
+      .shipping-info {
+        display: none;
+      }
+
+      .price-info {
+        display: block;
+
+        .rocket {
+          display: none;
+        }
+
+        .price {
+          margin-top: 0px;
+
+          .end-price {
+            font-size: 20px;
+            font-weight: 400;
+
+            &::before {
+              top: 0px;
+              font-size: inherit;
+            }
+          }
+
+          .origin-price {
+            font-size: 16px;
+            top: 0px;
+          }
+        }
+      }
+
       align-items: center;
       input,
       button {
@@ -135,6 +175,12 @@
       }
 
       @include breakpoint-down(sm) {
+        > * {
+          flex: 1;
+        }
+
+        padding-left: 15px;
+        padding-right: 15px;
         a {
           width: 100%;
         }
@@ -151,6 +197,11 @@
           margin-right: 10px;
         }
       }
+    }
+
+    @include breakpoint-down(xl) {
+      top: unset;
+      bottom: 0;
     }
   }
 
