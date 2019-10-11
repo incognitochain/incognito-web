@@ -260,6 +260,7 @@ const handleSubmitCryptoOrder = async (
       if (!thankyouContainer) return;
       const coinPriceEl = thankyouContainer.querySelector('.coin-price');
       const coinNameEl = thankyouContainer.querySelector('.coin-name');
+      const totalPriceEl = thankyouContainer.querySelector('.total-price');
       const walletAddressEl = thankyouContainer.querySelector(
         '#wallet-address'
       );
@@ -279,6 +280,11 @@ const handleSubmitCryptoOrder = async (
           iconEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${order.Address}`;
           iconEl.classList.remove('hidden');
         } catch {}
+      }
+      if (totalPriceEl) {
+        const cartInfo = getCartInformation();
+        const { totalPrice = 0 } = cartInfo;
+        totalPriceEl.innerText = `$${totalPrice}`;
       }
       togglePayment();
       thankyouContainer.classList.remove('hidden');
