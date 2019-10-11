@@ -1,0 +1,11 @@
+extends ../layout.pug
+
+block main
+    include ../header.pug
+    div#order-confirmation-container
+        .wrapper
+            div
+                img(src=require('../../image/icon/thank_you_icon.svg')).icon
+            h1.title All done! So excited for you to meet Node.
+            p.description An order confirmation has been sent to your inbox. If you don’t see our email there, rescue it from your spam folder. 
+            p.thank-you-note Thanks for being a part of this :)

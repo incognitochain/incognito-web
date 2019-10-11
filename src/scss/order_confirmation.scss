@@ -1,0 +1,37 @@
+#order-confirmation-container {
+  margin: 0 auto;
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 60px);
+    max-width: 600px;
+    text-align: center;
+    padding: 20px;
+
+    .icon {
+      width: 217px;
+      height: 138px;
+      margin-bottom: 25px;
+    }
+
+    .title {
+      line-height: 39px;
+      font-size: 28px;
+      font-weight: 500;
+      padding: 0;
+      margin: 0;
+    }
+
+    .description,
+    .thank-you-note {
+      font-size: 16px;
+      line-height: 27px;
+    }
+
+    .thank-you-note {
+      font-weight: 500;
+    }
+  }
+}

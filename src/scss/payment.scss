@@ -22,14 +22,57 @@
     }
   }
 
+  .loading-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.8);
+    position: absolute;
+    z-index: 9999;
+
+    .spinner {
+      content: '';
+      box-sizing: border-box;
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      margin-top: -25px;
+      margin-left: 3px;
+      border-radius: 50%;
+      border: 5px solid #0dc7d8;
+      border-top-color: transparent;
+    }
+  }
+
+  .divide-line {
+    margin-top: 30px;
+    border-top: 1px solid #e4eeef;
+    position: relative;
+
+    .text {
+      position: absolute;
+      top: -11px;
+      margin: 0 auto;
+      text-align: center;
+      left: 50%;
+      background: white;
+      padding: 0 20px;
+      margin-left: -30px;
+    }
+  }
+
   .left-content {
-    width: 52%;
     padding: 55px 55px 55px 50px;
-    max-width: 624px;
 
     @include breakpoint-down(xl) {
       padding: 20px;
       width: 100%;
+    }
+
+    .wrapper {
+      float: right;
     }
 
     .logo-wrapper {
@@ -79,6 +122,10 @@
       .input-field {
         position: relative;
 
+        .validator {
+          color: #e32c2b;
+        }
+
         &.has-value {
           input {
             padding-top: 28px;
@@ -88,6 +135,13 @@
             transform: none;
             opacity: 1;
             transition: all 0.2s ease-out;
+          }
+        }
+
+        input {
+          &.error {
+            box-shadow: 0 0 0 1px #e32c2b;
+            border-color: #e32c2b;
           }
         }
       }
@@ -126,8 +180,8 @@
         transition: all 0.2s ease-out;
         &:focus {
           outline: none;
-          border-color: #197bbd;
-          box-shadow: 0 0 0 1px #197bbd;
+          border-color: #0dc7d8;
+          box-shadow: 0 0 0 1px #0dc7d8;
         }
       }
 
@@ -206,7 +260,6 @@
     }
     .button-wrapper {
       display: flex;
-      justify-content: flex-end;
       margin-top: 30px;
 
       button {
@@ -223,11 +276,9 @@
     }
   }
   .right-content {
-    flex: 1;
     background: #fafafa;
     box-shadow: 1px 0 0 #e1e1e1 inset;
     padding: 50px;
-    max-width: 576px;
 
     @include breakpoint-down(xl) {
       padding: 20px;
@@ -323,6 +374,21 @@
     }
   }
 
+  .left-content,
+  .right-content {
+    flex: 1;
+
+    .wrapper {
+      max-width: 500px;
+      width: 100%;
+
+      @include breakpoint-down(xl) {
+        max-width: unset;
+        float: unset;
+      }
+    }
+  }
+
   .icon {
     width: 10px;
     height: 10px;
@@ -331,6 +397,39 @@
   }
 
   #payment-container {
+    .payment {
+      &:not(:first-child) {
+        margin-top: 30px;
+      }
+
+      .payment-wrapper {
+        @include breakpoint-up(sm) {
+          max-width: 300px;
+        }
+      }
+
+      .description {
+        margin-top: 5px;
+      }
+
+      .button-wrapper {
+        width: 100%;
+        #submit-payment-btn {
+          width: 100%;
+        }
+      }
+    }
+
+    #pay-with-crypto {
+      select {
+        padding: 14px 29px 5px 12px;
+      }
+    }
+
+    #ship-to {
+      margin-right: 10px;
+    }
+
     .information {
       padding: 12px 16px;
       border: 1px solid #e6e6e6;
@@ -369,7 +468,6 @@
       }
 
       button {
-        margin-left: auto;
         font-weight: 500;
       }
 
@@ -383,18 +481,10 @@
     }
 
     .card-input {
-      border: 1px solid #e6e6e6;
-      border-radius: 5px;
-
-      > * {
-        padding: 12px 16px;
-      }
-
       .card-type {
         height: 53px;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid #e6e6e6;
 
         div:nth-child(2) {
           margin-left: auto;
@@ -408,12 +498,6 @@
         span {
           margin-left: 10px;
           font-size: 12px;
-        }
-
-        @include breakpoint-down(sm) {
-          .types {
-            display: none;
-          }
         }
       }
 
@@ -495,7 +579,6 @@
 
   #thank-you-container {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     width: 100%;
     height: 100%;
@@ -503,15 +586,16 @@
     .title {
       color: #25cdd6;
       font-size: 28px;
-      line-height: 41px;
+      line-height: 37px;
       margin: 0px;
     }
 
     .description {
+      margin-top: 20px;
       &,
       * {
         font-size: 16px;
-        line-height: 41px;
+        line-height: 21px;
       }
     }
 
@@ -521,14 +605,28 @@
       font-weight: 500;
     }
 
+    .copy-container {
+      margin-top: 20px;
+
+      .tap-to-copy {
+        display: none;
+        font-size: 12px;
+
+        @include breakpoint-down(sm) {
+          display: block;
+        }
+      }
+    }
+
     #wallet-address {
       padding: 10px 20px;
       background: #f7f7f7;
       border-radius: 4px;
       border: 2px solid #eff3f3;
       height: 48px;
-      margin-top: 20px;
       text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
 
       &::after {
         content: '\f0c5';
@@ -538,6 +636,7 @@
         color: #25cdd6;
 
         @include breakpoint-up(sm) {
+          display: none;
           font-family: inherit;
           content: 'Copy';
           right: -21px;
@@ -550,23 +649,6 @@
           position: relative;
           top: -11px;
         }
-      }
-    }
-
-    .line {
-      margin-top: 30px;
-      border-top: 1px solid #e4eeef;
-      position: relative;
-
-      .text {
-        position: absolute;
-        top: -11px;
-        margin: 0 auto;
-        text-align: center;
-        left: 50%;
-        background: white;
-        padding: 0 20px;
-        margin-left: -30px;
       }
     }
 
