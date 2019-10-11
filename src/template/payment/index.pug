@@ -1,5 +1,8 @@
 extends ../layout.pug
 
+block meta
+    script(src=`https://www.paypal.com/sdk/js?client-id=${paypalClientId.PAYPAL_CLIENT_ID}&intent=authorize&commit=false&disable-funding=credit,sepa`)
+
 block main
     include ../header.pug
     div#content
