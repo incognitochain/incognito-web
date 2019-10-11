@@ -436,7 +436,7 @@ const handlePayment = async container => {
 
     trackEvent({
       eventCategory: 'Button',
-      eventAction: 'submit',
+      eventAction: 'click',
       eventLabel: 'Submit email and shipping info'
     });
 
@@ -494,7 +494,7 @@ const handlePayment = async container => {
 
     trackEvent({
       eventCategory: 'Button',
-      eventAction: 'submit',
+      eventAction: 'click',
       eventLabel: `Submit payment with crypto: ${coinName}`
     });
 
