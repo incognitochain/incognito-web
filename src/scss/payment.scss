@@ -403,7 +403,9 @@
       }
 
       .payment-wrapper {
-        max-width: 300px;
+        @include breakpoint-up(sm) {
+          max-width: 300px;
+        }
       }
 
       .description {
@@ -496,12 +498,6 @@
         span {
           margin-left: 10px;
           font-size: 12px;
-        }
-
-        @include breakpoint-down(sm) {
-          .types {
-            display: none;
-          }
         }
       }
 

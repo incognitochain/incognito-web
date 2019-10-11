@@ -29,6 +29,8 @@ const handleGetProductPrice = async container => {
   const productPriceEl = container.querySelector('.product-price');
   if (!productPriceEl) return;
   productPriceEl.innerText = `$${globalProductPrice}`;
+
+  updateCart({ price: globalProductPrice });
 };
 
 const handleUserSignup = async ({ name, email }) => {
@@ -101,26 +103,12 @@ const handleChange = event => {
   }
 };
 
-const handleGetShippingFee = async (
-  productContainer,
-  { address, city, zip, state, country }
-) => {
-  let quantity = 1;
-  let shippingFee = 0;
-  let tax = 0;
+const updateCart = ({ price, shippingFee = 0, tax = 0, quantity = 1 }) => {
+  const productContainer = document.querySelector(
+    '#payment #product-container'
+  );
 
-  try {
-    const fee = await getShippingFee({ address, city, zip, state, country });
-    console.log(fee);
-    if (fee) {
-      const productPrice = fee.Price;
-      globalProductPrice = productPrice || globalProductPrice;
-      shippingFee = fee.ShippingFee;
-      tax = fee.Tax;
-    }
-  } catch {}
-
-  const subTotalPrice = quantity * globalProductPrice;
+  const subTotalPrice = quantity * price;
   const totalPrice = subTotalPrice + shippingFee + tax;
 
   if (!productContainer) return;
@@ -134,7 +122,7 @@ const handleGetShippingFee = async (
   quantity = quantityEl ? quantityEl.value : quantity;
 
   if (productPriceEl) {
-    productPriceEl.innerText = `$${globalProductPrice}`;
+    productPriceEl.innerText = `$${price}`;
   }
 
   if (subTotalPriceEl) {
@@ -157,14 +145,39 @@ const handleGetShippingFee = async (
   if (totalPriceEl) {
     totalPriceEl.innerText = `$${totalPrice}`;
   }
+};
+
+const handleGetShippingFee = async (
+  productContainer,
+  { address, city, zip, state, country }
+) => {
+  let quantity = 1;
+  let shippingFee = 0;
+  let tax = 0;
+
+  try {
+    const fee = await getShippingFee({ address, city, zip, state, country });
+    if (fee) {
+      const productPrice = fee.Price;
+      globalProductPrice = productPrice || globalProductPrice;
+      shippingFee = fee.ShippingFee;
+      tax = fee.Tax;
+    }
+  } catch {}
+
+  updateCart({ price: globalProductPrice, quantity, shippingFee, tax });
 
   saveCartInformation({
-    price: globalProductPrice,
+    price,
     shippingFee,
     tax,
     quantity,
     totalPrice
   });
+};
+
+const resetPayment = () => {
+  storage.set(KEYS.PAYMENT_INFORMATION, '');
 };
 
 const saveCartInformation = cart => {
@@ -245,8 +258,7 @@ const handleSubmitCryptoOrder = async (
       }
       togglePayment();
       thankyouContainer.classList.remove('hidden');
-
-      storage.set(KEYS.PAYMENT_INFORMATION, '');
+      resetPayment();
     }
   } catch (e) {
     setMessage(e.message, 'error');
@@ -679,6 +691,7 @@ const handlePaypalExpressButton = container => {
             quantity
           });
 
+          resetPayment();
           window.location = '/thank-you.html';
         } catch (e) {
           showErrorMsg(e.message);
