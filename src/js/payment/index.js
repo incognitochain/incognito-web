@@ -111,9 +111,10 @@ const handleGetShippingFee = async (
 
   try {
     const fee = await getShippingFee({ address, city, zip, state, country });
+    console.log(fee);
     if (fee) {
       const productPrice = fee.Price;
-      globalProductPrice = productPrice;
+      globalProductPrice = productPrice || globalProductPrice;
       shippingFee = fee.ShippingFee;
       tax = fee.Tax;
     }
@@ -128,8 +129,13 @@ const handleGetShippingFee = async (
   const totalPriceEl = productContainer.querySelector('.total-price');
   const shippingPriceEl = productContainer.querySelector('.shipping-price');
   const taxPriceEl = productContainer.querySelector('.tax-price');
+  const productPriceEl = productContainer.querySelector('.product-price');
 
   quantity = quantityEl ? quantityEl.value : quantity;
+
+  if (productPriceEl) {
+    productPriceEl.innerText = `$${globalProductPrice}`;
+  }
 
   if (subTotalPriceEl) {
     subTotalPriceEl.innerText = `$${subTotalPrice}`;
@@ -305,7 +311,6 @@ const handlePayment = async container => {
     addressCityEl.addEventListener('input', handleChange);
     addressStateEl.addEventListener('input', handleChange);
     addressZipEl.addEventListener('input', handleChange);
-    addressZipEl.addEventListener('input', handleChange);
     addressCountryEl.addEventListener('input', handleChange);
     coinNameEl.addEventListener('input', handleChange);
 
@@ -329,16 +334,17 @@ const handlePayment = async container => {
       addressCityEl.value = city;
     }
 
-    if (state) {
-      addressStateEl.value = state;
-    }
-
     if (zip) {
       addressZipEl.value = zip;
     }
 
     if (country) {
       addressCountryEl.value = country;
+      addressCountryEl.dispatchEvent(new Event('change'));
+
+      if (state) {
+        addressStateEl.value = state;
+      }
     }
 
     handleChange(emailEl);
@@ -484,7 +490,7 @@ const handlePayment = async container => {
     ].getAttribute('id');
 
     handleAddressStateChange(countryId);
-    handleGetShippingFee(productContainer, {
+    await handleGetShippingFee(productContainer, {
       address,
       city,
       zip,
@@ -497,18 +503,19 @@ const handlePayment = async container => {
   addressCountryEl.addEventListener('change', onCountryChange);
 
   const countries = csc.getAllCountries();
+  let selectedCountryId = -1;
   countries.forEach(country => {
     const option = document.createElement('option');
     option.setAttribute('id', country.id);
     option.value = country.sortname;
     option.innerText = country.name;
     option.selected = country.sortname.toLowerCase() === 'us';
+    selectedCountryId =
+      country.sortname.toLowerCase() === 'us' ? country.id : selectedCountryId;
     addressCountryEl.appendChild(option);
   });
 
-  // TODO: add IE polyfill
-  addressCountryEl.dispatchEvent(new Event('change'));
-
+  if (selectedCountryId > -1) handleAddressStateChange(selectedCountryId);
   handleFormValidation(orderInfoContainer);
 
   addListenerForLinks();
