@@ -83,9 +83,23 @@ const handleAutoSignIn = () => {
   }
 };
 
+const handleClickBuyNow = () => {
+  const buyNowButtons = document.querySelectorAll('.buy-now-btn');
+  buyNowButtons.forEach(buyNowButton => {
+    buyNowButton.addEventListener('click', () => {
+      trackEvent({
+        eventCategory: 'Buy Now',
+        eventAction: 'click',
+        eventLabel: 'Move to payment page'
+      });
+    });
+  });
+};
+
 const main = () => {
   // formHandle();
   handleAutoSignIn();
+  handleClickBuyNow();
 };
 
 main();
