@@ -247,6 +247,11 @@ const handleSubmitCryptoOrder = async (
       quantity
     });
     if (order) {
+      trackEvent({
+        eventCategory: 'Crypto Payment Page',
+        eventAction: 'show',
+        eventLabel: 'Shown crypto wallet address to user'
+      });
       const thankyouContainer = container.querySelector('#thank-you-container');
       if (!thankyouContainer) return;
       const coinPriceEl = thankyouContainer.querySelector('.coin-price');
@@ -660,12 +665,17 @@ const handlePaypalExpressButton = container => {
         color: 'blue'
       },
       createOrder: (data, actions) => {
+        trackEvent({
+          eventCategory: 'Paypal Payment',
+          eventAction: 'click',
+          eventLabel: 'User clicked Paypal button'
+        });
         const cart = getCartInformation();
         const { totalPrice = 0.01 } = cart;
         return actions.order.create({
           application_context: {
             shipping_preference: 'NO_SHIPPING',
-            landing_page: 'Billing',
+            landing_page: 'BILLING',
             return_url: `${window.location.origin}/payment.html`
           },
           purchase_units: [
@@ -679,6 +689,11 @@ const handlePaypalExpressButton = container => {
         });
       },
       onApprove: async (data, actions) => {
+        trackEvent({
+          eventCategory: 'Paypal Payment',
+          eventAction: 'paypal-client-approved',
+          eventLabel: 'Paypal approved user payment'
+        });
         const orderId = data.orderID;
         showLoading(container);
         try {
@@ -706,17 +721,41 @@ const handlePaypalExpressButton = container => {
             quantity
           });
 
+          trackEvent({
+            eventCategory: 'Paypal Payment',
+            eventAction: 'order-success',
+            eventLabel: 'Payment was charged successfully'
+          });
+
           resetPayment();
           window.location = '/thank-you.html';
         } catch (e) {
           showErrorMsg(e.message);
           actions.reject();
+
+          trackEvent({
+            eventCategory: 'Paypal Payment',
+            eventAction: 'order-fail',
+            eventLabel: 'Payment was charged fail'
+          });
         } finally {
           hideLoading(container);
         }
       },
-      onCancel: (data, actions) => {},
-      onError: (data, actions) => {}
+      onCancel: (data, actions) => {
+        trackEvent({
+          eventCategory: 'Paypal Payment',
+          eventAction: 'user-canceled',
+          eventLabel: 'User canceled payment'
+        });
+      },
+      onError: (data, actions) => {
+        trackEvent({
+          eventCategory: 'Paypal Payment',
+          eventAction: 'order-error',
+          eventLabel: 'Paypal payment error while processing'
+        });
+      }
     })
     .render('#paypal-express-checkout-button');
 };
