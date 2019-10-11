@@ -634,10 +634,11 @@
         float: right;
         font-size: 20px;
         color: #25cdd6;
+        display: none;
 
         @include breakpoint-up(sm) {
-          display: none;
           font-family: inherit;
+          display: block;
           content: 'Copy';
           right: -21px;
           background-color: #1e3536;
