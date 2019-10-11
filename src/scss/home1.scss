@@ -560,12 +560,34 @@
           .subscribe-price-container {
             position: relative;
 
+            .cta {
+              &:not(.sticky) {
+                .subscribe-email {
+                  #email-subscribe {
+                    button {
+                      min-width: 250px;
+                      margin-top: 10px;
+                    }
+                  }
+                }
+              }
+            }
+
             @include breakpoint-down(sm) {
               display: flex;
               flex-direction: column;
 
               .cta {
                 margin-top: 20px;
+
+                .subscribe-email {
+                  #email-subscribe {
+                    button: {
+                      max-width: 250px;
+                      margin-top: 10px;
+                    }
+                  }
+                }
 
                 &.sticky {
                   margin-top: 0px;
