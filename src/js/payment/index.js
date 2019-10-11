@@ -665,8 +665,8 @@ const handlePaypalExpressButton = container => {
         return actions.order.create({
           application_context: {
             shipping_preference: 'NO_SHIPPING',
-            landing_page: 'BILLING',
-            return_url: `${window.location}/payment.html`
+            landing_page: 'Billing',
+            return_url: `${window.location.origin}/payment.html`
           },
           purchase_units: [
             {
