@@ -114,7 +114,7 @@ export const getExchangeRates = () => {
 };
 
 export const getProductPrice = () => {
-  return fetch('order/price', {
+  return fetch('product/price', {
     method: 'GET'
   })
     .then(price => price)
