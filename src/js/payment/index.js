@@ -788,7 +788,7 @@ const main = () => {
   }
 
   handlePayment(container);
-  handlePaypalExpressButton(container);
+  // handlePaypalExpressButton(container);
 };
 
 main();
