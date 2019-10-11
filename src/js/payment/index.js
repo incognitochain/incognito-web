@@ -12,11 +12,12 @@ import KEYS from '../constant/keys';
 import csc from 'country-state-city';
 import { isEmail } from '../common/utils/validate';
 import { trackEvent } from '../common/utils/ga';
+import queryString from '../service/queryString';
 
 let globalProductPrice = 399; //product_price
 
 const handleGetProductPrice = async container => {
-  globalProductPrice = storage.get(KEYS.PRODUCT_PRICE) || productPrice;
+  globalProductPrice = storage.get(KEYS.PRODUCT_PRICE) || globalProductPrice;
   try {
     const productPrice = await getProductPrice();
     if (productPrice) {
@@ -103,7 +104,13 @@ const handleChange = event => {
   }
 };
 
-const updateCart = ({ price, shippingFee = 0, tax = 0, quantity = 1 }) => {
+const updateCart = ({
+  price,
+  shippingFee = 0,
+  tax = 0,
+  quantity = 1,
+  saveCart = false
+}) => {
   const productContainer = document.querySelector(
     '#payment #product-container'
   );
@@ -145,6 +152,16 @@ const updateCart = ({ price, shippingFee = 0, tax = 0, quantity = 1 }) => {
   if (totalPriceEl) {
     totalPriceEl.innerText = `$${totalPrice}`;
   }
+
+  if (saveCart) {
+    saveCartInformation({
+      price,
+      shippingFee,
+      tax,
+      quantity,
+      totalPrice
+    });
+  }
 };
 
 const handleGetShippingFee = async (
@@ -165,14 +182,12 @@ const handleGetShippingFee = async (
     }
   } catch {}
 
-  updateCart({ price: globalProductPrice, quantity, shippingFee, tax });
-
-  saveCartInformation({
-    price,
+  updateCart({
+    price: globalProductPrice,
+    quantity,
     shippingFee,
     tax,
-    quantity,
-    totalPrice
+    saveCart: true
   });
 };
 
@@ -711,6 +726,15 @@ const main = () => {
 
   const container = document.querySelector('#payment');
   if (!container) return;
+
+  const testMode = queryString('testmode') || false;
+
+  if (testMode) {
+    const paypalEl = container.querySelector('#pay-with-paypal');
+    if (paypalEl) {
+      paypalEl.classList.remove('hidden');
+    }
+  }
 
   const paymentInformation = getInformation();
   if (
