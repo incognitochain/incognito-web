@@ -30,13 +30,27 @@
     margin-top: 20px;
     padding: 0 30px;
 
+    @include breakpoint-up(sm) {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      .price-info,
+      .cta {
+        margin-bottom: 20px;
+      }
+
+      .cta {
+        margin-top: 0px;
+      }
+    }
+
     @include breakpoint-down(sm) {
       display: flex;
       flex-direction: column-reverse;
 
       .price-info {
-        margin-top: 20px;
-
         .price {
           position: absolute;
           top: 0px;

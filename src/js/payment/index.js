@@ -13,6 +13,7 @@ import csc from 'country-state-city';
 import { isEmail } from '../common/utils/validate';
 import { trackEvent } from '../common/utils/ga';
 import queryString from '../service/queryString';
+import YoutubePlayer from '../common/youtubePlayer';
 
 let globalProductPrice = 399; //product_price
 
@@ -667,107 +668,121 @@ const checkValidForm = formContainer => {
 
 //// PAYPALLLLL
 
-const handlePaypalExpressButton = container => {
-  paypal
-    .Buttons({
-      style: {
-        height: 44,
-        color: 'blue'
-      },
-      createOrder: (data, actions) => {
-        trackEvent({
-          eventCategory: 'Paypal Payment',
-          eventAction: 'click',
-          eventLabel: 'User clicked Paypal button'
-        });
-        const cart = getCartInformation();
-        const { totalPrice = 0.01 } = cart;
-        return actions.order.create({
-          application_context: {
-            shipping_preference: 'NO_SHIPPING',
-            landing_page: 'BILLING',
-            return_url: `${window.location.origin}/payment.html`
-          },
-          purchase_units: [
-            {
-              amount: {
-                value: totalPrice,
-                currency_code: 'USD'
-              }
-            }
-          ]
-        });
-      },
-      onApprove: async (data, actions) => {
-        trackEvent({
-          eventCategory: 'Paypal Payment',
-          eventAction: 'paypal-client-approved',
-          eventLabel: 'Paypal approved user payment'
-        });
-        const orderId = data.orderID;
-        showLoading(container);
-        try {
-          const paymentInformation = getInformation();
-          const {
-            firstName,
-            lastName,
-            address,
-            city,
-            state,
-            zip,
-            country,
-            quantity = 1
-          } = paymentInformation;
+// const handlePaypalExpressButton = container => {
+//   paypal
+//     .Buttons({
+//       style: {
+//         height: 44,
+//         color: 'blue'
+//       },
+//       createOrder: (data, actions) => {
+//         trackEvent({
+//           eventCategory: 'Paypal Payment',
+//           eventAction: 'click',
+//           eventLabel: 'User clicked Paypal button'
+//         });
+//         const cart = getCartInformation();
+//         const { totalPrice = 0.01 } = cart;
+//         return actions.order.create({
+//           application_context: {
+//             shipping_preference: 'NO_SHIPPING',
+//             landing_page: 'BILLING',
+//             return_url: `${window.location.origin}/payment.html`
+//           },
+//           purchase_units: [
+//             {
+//               amount: {
+//                 value: totalPrice,
+//                 currency_code: 'USD'
+//               }
+//             }
+//           ]
+//         });
+//       },
+//       onApprove: async (data, actions) => {
+//         trackEvent({
+//           eventCategory: 'Paypal Payment',
+//           eventAction: 'paypal-client-approved',
+//           eventLabel: 'Paypal approved user payment'
+//         });
+//         const orderId = data.orderID;
+//         showLoading(container);
+//         try {
+//           const paymentInformation = getInformation();
+//           const {
+//             firstName,
+//             lastName,
+//             address,
+//             city,
+//             state,
+//             zip,
+//             country,
+//             quantity = 1
+//           } = paymentInformation;
 
-          const orderInfo = await submitPaypalOrder({
-            firstName,
-            lastName,
-            address,
-            city,
-            state,
-            country,
-            zip,
-            orderId,
-            quantity
-          });
+//           const orderInfo = await submitPaypalOrder({
+//             firstName,
+//             lastName,
+//             address,
+//             city,
+//             state,
+//             country,
+//             zip,
+//             orderId,
+//             quantity
+//           });
 
-          trackEvent({
-            eventCategory: 'Paypal Payment',
-            eventAction: 'order-success',
-            eventLabel: 'Payment was charged successfully'
-          });
+//           trackEvent({
+//             eventCategory: 'Paypal Payment',
+//             eventAction: 'order-success',
+//             eventLabel: 'Payment was charged successfully'
+//           });
 
-          resetPayment();
-          window.location = '/thank-you.html';
-        } catch (e) {
-          showErrorMsg(e.message);
-          actions.reject();
+//           resetPayment();
+//           window.location = '/thank-you.html';
+//         } catch (e) {
+//           showErrorMsg(e.message);
+//           actions.reject();
 
-          trackEvent({
-            eventCategory: 'Paypal Payment',
-            eventAction: 'order-fail',
-            eventLabel: 'Payment was charged fail'
-          });
-        } finally {
-          hideLoading(container);
-        }
-      },
-      onCancel: (data, actions) => {
-        trackEvent({
-          eventCategory: 'Paypal Payment',
-          eventAction: 'user-canceled',
-          eventLabel: 'User canceled payment'
-        });
-      },
-      onError: (data, actions) => {
-        trackEvent({
-          eventCategory: 'Paypal Payment',
-          eventAction: 'order-error',
-          eventLabel: 'Paypal payment error while processing'
-        });
-      }
-    })
-    .render('#paypal-express-checkout-button');
+//           trackEvent({
+//             eventCategory: 'Paypal Payment',
+//             eventAction: 'order-fail',
+//             eventLabel: 'Payment was charged fail'
+//           });
+//         } finally {
+//           hideLoading(container);
+//         }
+//       },
+//       onCancel: (data, actions) => {
+//         trackEvent({
+//           eventCategory: 'Paypal Payment',
+//           eventAction: 'user-canceled',
+//           eventLabel: 'User canceled payment'
+//         });
+//       },
+//       onError: (data, actions) => {
+//         trackEvent({
+//           eventCategory: 'Paypal Payment',
+//           eventAction: 'order-error',
+//           eventLabel: 'Paypal payment error while processing'
+//         });
+//       }
+//     })
+//     .render('#paypal-express-checkout-button');
+// };
+
+const handlePaymentGuide = container => {
+  const paymentGuideContainer = container.querySelector('#payment-guide');
+  if (!paymentGuideContainer) return;
+  const guides = paymentGuideContainer.querySelectorAll('.guide-link');
+  guides.forEach(guide => {
+    const videoUrl = guide.getAttribute('video-url');
+    if (!videoUrl) return;
+    guide.addEventListener('click', () => {
+      const youtubePlayer = new YoutubePlayer(videoUrl);
+      youtubePlayer.play();
+    });
+  });
 };
 
 const main = () => {
@@ -788,6 +803,7 @@ const main = () => {
   }
 
   handlePayment(container);
+  handlePaymentGuide(container);
   // handlePaypalExpressButton(container);
 };
 

@@ -412,6 +412,34 @@
         margin-top: 5px;
       }
 
+      .payment-guide {
+        * {
+          text-decoration: none;
+
+          &.guide-highlight {
+            color: $green;
+            margin-left: 10px;
+          }
+
+          &.guide-link {
+            &::after {
+              content: '\f054';
+              font-family: 'Font Awesome 5 Pro';
+              margin-left: 10px;
+              transition: margin-left 0.2s;
+              font-size: 0.8em;
+            }
+
+            &:hover {
+              cursor: pointer;
+              &::after {
+                margin-left: 13px;
+              }
+            }
+          }
+        }
+      }
+
       .button-wrapper {
         width: 100%;
         #submit-payment-btn {
