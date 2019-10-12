@@ -10,6 +10,7 @@ import { setMessage } from '../service/message_box';
 import isQueryStringExists from '../service/queryStringExists';
 import KEYS from '../constant/keys';
 import Tooltip from 'tooltip.js';
+import storage from '../service/storage';
 
 // for earning calculation
 const earningStepPercent = 0.5;
@@ -259,6 +260,8 @@ const handleEarningSliders = async container => {
         ...coinFiatRate,
         ...newCoinFiatRate
       };
+
+      storage.set(KEYS.COIN_FIAT_RATES, JSON.stringify(newCoinFiatRate));
     }
 
     updateEarningUI(container, calculateEarning(currentRate));
