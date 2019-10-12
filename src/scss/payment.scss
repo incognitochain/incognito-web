@@ -618,10 +618,12 @@
   }
 
   #zelle-thank-you-container {
-    .total-price {
+    .total-price,
+    .order-number {
       font-weight: 500;
       color: $black;
-
+    }
+    .total-price {
       &::before {
         content: '$';
       }

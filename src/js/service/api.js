@@ -274,3 +274,38 @@ export const submitPaypalOrder = ({
       );
     });
 };
+
+export const submitZelleOrder = ({
+  firstName,
+  lastName,
+  address,
+  city,
+  state,
+  country,
+  zip,
+  quantity
+}) => {
+  return fetch('order/zelle/checkout', {
+    method: 'POST',
+    body: {
+      FirstName: firstName,
+      LastName: lastName,
+      AddressStreet: address,
+      AddressRegion: state,
+      AddressCity: city,
+      AddressPostalCode: zip,
+      AddressCountry: country,
+      Quantity: quantity
+    }
+  })
+    .then(orderInfo => orderInfo)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
