@@ -10,6 +10,12 @@ div#payment-container
             div Ship to
             div#ship-to
             a.link(href='#') Change
+    div.payment#pay-with-zelle
+        h2 Pay in USD with Zelle
+        p Zelle is the quickest way to pay for your Node.
+        .payment-wrapper
+            div.button-wrapper
+                button.submit-btn#submit-payment-zelle-btn Pay with Zelle
     div.payment#pay-with-crypto
         h2 Pay with Bitcoin, Ethereum and more.
         div.card-input.payment-wrapper
@@ -47,4 +53,13 @@ div#payment-container
                         div.caret
                             img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
             div.button-wrapper
-                button#submit-payment-btn Pay now
+                button.submit-btn#submit-payment-btn Pay now
+    #payment-guide
+        h2 Don't have Bitcoin yet?
+        p
+        .payment-guide 
+            span In the US?
+            a(href='https://docs.google.com/document/d/1-g0j74-xgmwD7Xjz46zZ9mx8b-ajop1KyTyQ1HhDUoI', target='_blank').guide-link.guide-highlight Get Bitcoin from Coinbase
+        .payment-guide 
+            span Outside of the US?
+            span(video-url='https://www.youtube.com/embed/_DDsF_eIo4k').guide-link.guide-highlight Get Bitcoin from Binance
