@@ -282,6 +282,7 @@ const handleSubmitZelleOrder = async (
   }
 ) => {
   const paymentContainer = container.querySelector('#payment-container');
+  const productContainer = container.querySelector('#product-container');
   const submitPaymentBtnEl = paymentContainer.querySelector(
     '#submit-payment-zelle-btn'
   );
@@ -322,6 +323,18 @@ const handleSubmitZelleOrder = async (
       orderNumberEls.forEach(orderNumberEl => {
         orderNumberEl.innerText = orderId;
       });
+      if (productContainer) {
+        const paymentGuideEl = productContainer.querySelector('#payment-guide');
+        const payWithCryptoEl = productContainer.querySelector(
+          '#pay-with-crypto'
+        );
+        if (paymentGuideEl) {
+          paymentGuideEl.classList.add('hidden');
+        }
+        if (payWithCryptoEl) {
+          payWithCryptoEl.classList.add('hidden');
+        }
+      }
       togglePayment();
       thankyouContainer.classList.remove('hidden');
       resetPayment();
