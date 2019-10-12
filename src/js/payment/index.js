@@ -277,6 +277,7 @@ const handleSubmitZelleOrder = async (
       quantity
     });
     if (order) {
+      const { TotalPrice: totalPrice, OrderID: orderId } = order;
       trackEvent({
         eventCategory: 'Zelle Payment Page',
         eventAction: 'show',
@@ -285,14 +286,17 @@ const handleSubmitZelleOrder = async (
       const thankyouContainer = container.querySelector(
         '#zelle-thank-you-container'
       );
-      console.log(thankyouContainer);
       if (!thankyouContainer) return;
       const totalAmountEl = thankyouContainer.querySelector('.total-price');
+      const orderNumberEls = thankyouContainer.querySelectorAll(
+        '.order-number'
+      );
       if (totalAmountEl) {
-        const cartInfo = getCartInformation();
-        const { totalPrice = 0 } = cartInfo;
         totalAmountEl.innerText = totalPrice;
       }
+      orderNumberEls.forEach(orderNumberEl => {
+        orderNumberEl.innerText = orderId;
+      });
       togglePayment();
       thankyouContainer.classList.remove('hidden');
       resetPayment();
