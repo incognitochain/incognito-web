@@ -3,7 +3,8 @@ import {
   signUp,
   getProductPrice,
   submitCryptoOrder,
-  submitPaypalOrder
+  submitZelleOrder,
+  getExchangeRates
 } from '../service/api';
 import isPath from '../common/utils/isPathname';
 import storage from '../service/storage';
@@ -12,7 +13,6 @@ import KEYS from '../constant/keys';
 import csc from 'country-state-city';
 import { isEmail } from '../common/utils/validate';
 import { trackEvent } from '../common/utils/ga';
-import queryString from '../service/queryString';
 import YoutubePlayer from '../common/youtubePlayer';
 
 let globalProductPrice = 399; //product_price
@@ -85,6 +85,17 @@ const toggleInformation = () => {
 const togglePayment = () => {
   const paymentElement = document.getElementById('payment-container');
   paymentElement.classList.toggle('hidden');
+  updateCoinChange();
+};
+
+const updateCoinChange = () => {
+  const paymentElement = document.getElementById('payment-container');
+  if (!paymentElement.classList.contains('hidden')) {
+    const coinNameEl = paymentElement.querySelector('#coin-name');
+    if (coinNameEl) {
+      coinNameEl.dispatchEvent(new Event('blur'));
+    }
+  }
 };
 
 const addListenerForLinks = () => {
@@ -241,6 +252,21 @@ const getCoinName = coin => {
   }
 };
 
+const calculatePriceInCoin = (price, coinName) => {
+  let exchangeRates = {};
+  try {
+    exchangeRates = JSON.parse(storage.get(KEYS.COIN_FIAT_RATE) || '{}');
+  } catch {}
+
+  const rate = exchangeRates[coinName.toLowerCase()];
+
+  if (rate) {
+    return price / rate;
+  }
+
+  return price;
+};
+
 const handleSubmitZelleOrder = async (
   container,
   {
@@ -256,6 +282,7 @@ const handleSubmitZelleOrder = async (
   }
 ) => {
   const paymentContainer = container.querySelector('#payment-container');
+  const productContainer = container.querySelector('#product-container');
   const submitPaymentBtnEl = paymentContainer.querySelector(
     '#submit-payment-zelle-btn'
   );
@@ -265,7 +292,7 @@ const handleSubmitZelleOrder = async (
   }
 
   try {
-    const order = await submitCryptoOrder({
+    const order = await submitZelleOrder({
       firstName,
       lastName,
       address,
@@ -273,10 +300,10 @@ const handleSubmitZelleOrder = async (
       state,
       zip,
       country,
-      coinName,
       quantity
     });
     if (order) {
+      const { TotalPrice: totalPrice, OrderID: orderId } = order;
       trackEvent({
         eventCategory: 'Zelle Payment Page',
         eventAction: 'show',
@@ -285,13 +312,28 @@ const handleSubmitZelleOrder = async (
       const thankyouContainer = container.querySelector(
         '#zelle-thank-you-container'
       );
-      console.log(thankyouContainer);
       if (!thankyouContainer) return;
       const totalAmountEl = thankyouContainer.querySelector('.total-price');
+      const orderNumberEls = thankyouContainer.querySelectorAll(
+        '.order-number'
+      );
       if (totalAmountEl) {
-        const cartInfo = getCartInformation();
-        const { totalPrice = 0 } = cartInfo;
         totalAmountEl.innerText = totalPrice;
+      }
+      orderNumberEls.forEach(orderNumberEl => {
+        orderNumberEl.innerText = orderId;
+      });
+      if (productContainer) {
+        const paymentGuideEl = productContainer.querySelector('#payment-guide');
+        const payWithCryptoEl = productContainer.querySelector(
+          '#pay-with-crypto'
+        );
+        if (paymentGuideEl) {
+          paymentGuideEl.classList.add('hidden');
+        }
+        if (payWithCryptoEl) {
+          payWithCryptoEl.classList.add('hidden');
+        }
       }
       togglePayment();
       thankyouContainer.classList.remove('hidden');
@@ -539,6 +581,30 @@ const handlePayment = async container => {
     });
   };
 
+  const handlePaymentCoinChange = (container, coinName, totalAmount) => {
+    if (!container) return;
+    const coinFullName = getCoinName(coinName);
+    const payWithCryptoEl = container.querySelector('#pay-with-crypto');
+    if (payWithCryptoEl) {
+      const coinNameEl = payWithCryptoEl.querySelector('.coin-name');
+      const priceEl = payWithCryptoEl.querySelector('.total-price');
+      let toFixed = 0;
+      switch (coinName.toLowerCase()) {
+        case 'btc':
+          toFixed = 8;
+          break;
+        case 'eth':
+        case 'bnb':
+          toFixed = 6;
+          break;
+      }
+      if (coinNameEl) coinNameEl.innerText = coinFullName;
+      if (priceEl)
+        priceEl.innerText = `${totalAmount.toFixed(toFixed)} ${coinName}`;
+      payWithCryptoEl.classList.remove('hidden');
+    }
+  };
+
   const onSubmitOrderInfo = async e => {
     e.preventDefault();
     if (!checkValidForm(orderInfoContainer)) return;
@@ -680,6 +746,15 @@ const handlePayment = async container => {
     });
   };
 
+  const onPaymentByCoinChange = function() {
+    const coinName = this.value;
+    const cartInfo = getCartInformation();
+    const { totalPrice = 0 } = cartInfo;
+    const totalAmountInCoin = calculatePriceInCoin(totalPrice, coinName);
+
+    handlePaymentCoinChange(productContainer, coinName, totalAmountInCoin);
+  };
+
   handleGetProductPrice(productContainer);
   addressCountryEl.addEventListener('blue', onCountryChange);
   addressCountryEl.addEventListener('change', onCountryChange);
@@ -714,10 +789,15 @@ const handlePayment = async container => {
     const submitZellePaymentBtnEl = paymentContainer.querySelector(
       '#submit-payment-zelle-btn'
     );
+    const coinTypeEl = paymentContainer.querySelector('#coin-name');
     if (submitPaymentBtnEl)
       submitPaymentBtnEl.addEventListener('click', onSubmitPayment);
     if (submitZellePaymentBtnEl)
       submitZellePaymentBtnEl.addEventListener('click', onSubmitZellePayment);
+    if (coinTypeEl) {
+      coinTypeEl.addEventListener('change', onPaymentByCoinChange);
+      coinTypeEl.addEventListener('blur', onPaymentByCoinChange);
+    }
   }
 };
 
@@ -810,111 +890,6 @@ const checkValidForm = formContainer => {
   return true;
 };
 
-//// PAYPALLLLL
-
-// const handlePaypalExpressButton = container => {
-//   paypal
-//     .Buttons({
-//       style: {
-//         height: 44,
-//         color: 'blue'
-//       },
-//       createOrder: (data, actions) => {
-//         trackEvent({
-//           eventCategory: 'Paypal Payment',
-//           eventAction: 'click',
-//           eventLabel: 'User clicked Paypal button'
-//         });
-//         const cart = getCartInformation();
-//         const { totalPrice = 0.01 } = cart;
-//         return actions.order.create({
-//           application_context: {
-//             shipping_preference: 'NO_SHIPPING',
-//             landing_page: 'BILLING',
-//             return_url: `${window.location.origin}/payment.html`
-//           },
-//           purchase_units: [
-//             {
-//               amount: {
-//                 value: totalPrice,
-//                 currency_code: 'USD'
-//               }
-//             }
-//           ]
-//         });
-//       },
-//       onApprove: async (data, actions) => {
-//         trackEvent({
-//           eventCategory: 'Paypal Payment',
-//           eventAction: 'paypal-client-approved',
-//           eventLabel: 'Paypal approved user payment'
-//         });
-//         const orderId = data.orderID;
-//         showLoading(container);
-//         try {
-//           const paymentInformation = getInformation();
-//           const {
-//             firstName,
-//             lastName,
-//             address,
-//             city,
-//             state,
-//             zip,
-//             country,
-//             quantity = 1
-//           } = paymentInformation;
-
-//           const orderInfo = await submitPaypalOrder({
-//             firstName,
-//             lastName,
-//             address,
-//             city,
-//             state,
-//             country,
-//             zip,
-//             orderId,
-//             quantity
-//           });
-
-//           trackEvent({
-//             eventCategory: 'Paypal Payment',
-//             eventAction: 'order-success',
-//             eventLabel: 'Payment was charged successfully'
-//           });
-
-//           resetPayment();
-//           window.location = '/thank-you.html';
-//         } catch (e) {
-//           showErrorMsg(e.message);
-//           actions.reject();
-
-//           trackEvent({
-//             eventCategory: 'Paypal Payment',
-//             eventAction: 'order-fail',
-//             eventLabel: 'Payment was charged fail'
-//           });
-//         } finally {
-//           hideLoading(container);
-//         }
-//       },
-//       onCancel: (data, actions) => {
-//         trackEvent({
-//           eventCategory: 'Paypal Payment',
-//           eventAction: 'user-canceled',
-//           eventLabel: 'User canceled payment'
-//         });
-//       },
-//       onError: (data, actions) => {
-//         trackEvent({
-//           eventCategory: 'Paypal Payment',
-//           eventAction: 'order-error',
-//           eventLabel: 'Paypal payment error while processing'
-//         });
-//       }
-//     })
-//     .render('#paypal-express-checkout-button');
-// };
-
 const handlePaymentGuide = container => {
   const paymentGuideContainer = container.querySelector('#payment-guide');
   if (!paymentGuideContainer) return;
@@ -929,8 +904,17 @@ const handlePaymentGuide = container => {
   });
 };
 
+const loadExchangeRates = async () => {
+  try {
+    const exchangeRates = await getExchangeRates();
+    storage.set(KEYS.COIN_FIAT_RATE, JSON.stringify(exchangeRates));
+  } catch {}
+};
+
 const main = () => {
   if (!isPath('/payment')) return;
+
+  loadExchangeRates();
 
   const container = document.querySelector('#payment');
   if (!container) return;
@@ -948,6 +932,7 @@ const main = () => {
 
   handlePayment(container);
   handlePaymentGuide(container);
+  updateCoinChange();
   // handlePaypalExpressButton(container);
 };
 
