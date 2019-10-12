@@ -407,10 +407,10 @@
           font-weight: 500;
         }
       }
+    }
 
-      .total-price {
-        font-size: 24px;
-      }
+    .total-price {
+      font-size: 24px;
     }
   }
 
@@ -438,8 +438,8 @@
 
   #payment-container {
     .payment {
-      &:not(:first-child) {
-        margin-top: 30px;
+      &:not(:last-child) {
+        margin-top: 50px;
       }
 
       .payment-wrapper {
@@ -454,7 +454,7 @@
 
       .button-wrapper {
         width: 100%;
-        #submit-payment-btn {
+        .submit-btn {
           width: 100%;
         }
       }
@@ -617,7 +617,19 @@
     }
   }
 
-  #thank-you-container {
+  #zelle-thank-you-container {
+    .total-price {
+      font-weight: 500;
+      color: $black;
+
+      &::before {
+        content: '$';
+      }
+    }
+  }
+
+  #thank-you-container,
+  #zelle-thank-you-container {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -636,6 +648,10 @@
       * {
         font-size: 16px;
         line-height: 21px;
+      }
+
+      .zelle-email {
+        color: #25cdd6;
       }
     }
 
