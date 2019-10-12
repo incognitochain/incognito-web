@@ -23,3 +23,18 @@ div#product-container
                 div.total-label Total
             div.right
                 span.total-price.price=price
+        div.content-two-columns#pay-with-crypto.hidden
+            div.left
+                div.total-label.highlight Pay with 
+                    span.coin-name
+            div.right
+                span.total-price.price 
+    #payment-guide
+        h2 Don't have Bitcoin yet?
+        p
+        .payment-guide 
+            span In the US?
+            a(href='https://docs.google.com/document/d/1-g0j74-xgmwD7Xjz46zZ9mx8b-ajop1KyTyQ1HhDUoI/edit#', target='_blank').guide-link.guide-highlight Get Bitcoin from Coinbase
+        .payment-guide 
+            span Outside of the US?
+            span(video-url='https://www.youtube.com/embed/_DDsF_eIo4k').guide-link.guide-highlight Get Bitcoin from Binance
