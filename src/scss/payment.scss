@@ -22,6 +22,35 @@
     }
   }
 
+  #payment-guide {
+    margin-top: 30px;
+    * {
+      text-decoration: none;
+
+      &.guide-highlight {
+        color: $green;
+        margin-left: 10px;
+      }
+
+      &.guide-link {
+        &::after {
+          content: '\f054';
+          font-family: 'Font Awesome 5 Pro';
+          margin-left: 10px;
+          transition: margin-left 0.2s;
+          font-size: 0.8em;
+        }
+
+        &:hover {
+          cursor: pointer;
+          &::after {
+            margin-left: 13px;
+          }
+        }
+      }
+    }
+  }
+
   .loading-container {
     width: 100%;
     height: 100%;
@@ -369,8 +398,19 @@
       }
     }
 
-    .total-price {
-      font-size: 24px;
+    #pay-with-crypto {
+      margin-top: 10px;
+
+      .highlight {
+        &,
+        * {
+          font-weight: 500;
+        }
+      }
+
+      .total-price {
+        font-size: 24px;
+      }
     }
   }
 
@@ -410,34 +450,6 @@
 
       .description {
         margin-top: 5px;
-      }
-
-      .payment-guide {
-        * {
-          text-decoration: none;
-
-          &.guide-highlight {
-            color: $green;
-            margin-left: 10px;
-          }
-
-          &.guide-link {
-            &::after {
-              content: '\f054';
-              font-family: 'Font Awesome 5 Pro';
-              margin-left: 10px;
-              transition: margin-left 0.2s;
-              font-size: 0.8em;
-            }
-
-            &:hover {
-              cursor: pointer;
-              &::after {
-                margin-left: 13px;
-              }
-            }
-          }
-        }
       }
 
       .button-wrapper {
@@ -686,8 +698,8 @@
       text-align: center;
 
       .icon {
-        width: 150px;
-        height: 150px;
+        width: 200px;
+        height: 200px;
         margin-top: 25px;
       }
     }
@@ -720,6 +732,6 @@
   }
 
   .hidden {
-    display: none;
+    display: none !important;
   }
 }

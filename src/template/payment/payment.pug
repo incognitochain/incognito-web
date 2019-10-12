@@ -11,7 +11,7 @@ div#payment-container
             div#ship-to
             a.link(href='#') Change
     div.payment#pay-with-crypto
-        h2 Pay with crypto
+        h2 Pay with Bitcoin, Ethereum and more.
         div.card-input.payment-wrapper
             div.card-type
                 div.types
@@ -19,31 +19,32 @@ div#payment-container
                     img(src=require('../../image/icon/eth.svg'))
                     img(src=require('../../image/icon/bnb.svg'))
                     img(src=require('../../image/icon/usdt.svg'))
-                    span and more...
             div.card-information.input-wrapper
                 div.select-two-lines-label
                     div.select-wrapper.input-field
                         select(name='coin-name')#coin-name
-                            option(value='BTC') Bitcoin (BTC)
-                            option(value='ETH') Ethereum (ETH)
-                            option(value='BNB') Binance (BNB)
-                            option(value='USDT') Tether (USDT)
-                            option(value='USDC') USD Coin (USDC)
-                            option(value='TUSD') TrueUSD (TUSD)
-                            option(value='PAX') Paxos Standard (PAX)
-                            option(value='GUSD') Gemini Dollar (GUSD)
-                            option(value='USDS') Stably (USDS)
-                            option(value='BUSD') Binance USD (BUSD)
+                            include ./coin_name
+                            option(value='BTC') 
+                                +coin_name('BTC')
+                            option(value='ETH') 
+                                +coin_name('ETH')
+                            option(value='BNB') 
+                                +coin_name('BNB')
+                            option(value='USDT') 
+                                +coin_name('USDT')
+                            option(value='USDC') 
+                                +coin_name('USDC')
+                            option(value='TUSD')   
+                                +coin_name('TUSD')
+                            option(value='PAX') 
+                                +coin_name('PAX')
+                            option(value='GUSD') 
+                                +coin_name('GUSD')
+                            option(value='USDS') 
+                                +coin_name('USDS')
+                            option(value='BUSD') 
+                                +coin_name('BUSD')
                         div.caret
                             img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
             div.button-wrapper
                 button#submit-payment-btn Pay now
-    .payment#payment-guide
-        h2 Don't have Bitcoin yet ?
-        p
-        .payment-guide 
-            span In the US ?
-            a(href='https://docs.google.com/document/d/1-g0j74-xgmwD7Xjz46zZ9mx8b-ajop1KyTyQ1HhDUoI/edit#', target='_blank').guide-link.guide-highlight Get Bitcoin from Coinbase.
-        .payment-guide 
-            span Outside of the US ?
-            span(video-url='https://www.youtube.com/embed/_DDsF_eIo4k').guide-link.guide-highlight Get Bitcoin from Binance.
