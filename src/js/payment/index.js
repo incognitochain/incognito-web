@@ -216,6 +216,31 @@ const getCartInformation = () => {
   return cart;
 };
 
+const getCoinName = coin => {
+  switch (coin) {
+    case 'BTC':
+      return 'Bitcoin';
+    case 'ETH':
+      return 'Ethereum';
+    case 'BNB':
+      return 'Binance';
+    case 'USDT':
+      return 'Tether - ERC20';
+    case 'USDC':
+      return 'USD Coin';
+    case 'TUSD':
+      return 'TrueUSD';
+    case 'PAX':
+      return 'Paxos Standard';
+    case 'GUSD':
+      return 'Gemini Dollar';
+    case 'USDS':
+      return 'Stably';
+    case 'BUSD':
+      return 'Binance USD';
+  }
+};
+
 const handleSubmitCryptoOrder = async (
   container,
   {
@@ -257,35 +282,47 @@ const handleSubmitCryptoOrder = async (
         eventAction: 'show',
         eventLabel: 'Shown crypto wallet address to user'
       });
+      const {
+        TotalAmount: totalAmount = 0,
+        Address: walletAddress = ''
+      } = order;
       const thankyouContainer = container.querySelector('#thank-you-container');
       if (!thankyouContainer) return;
       const coinPriceEl = thankyouContainer.querySelector('.coin-price');
       const coinNameEl = thankyouContainer.querySelector('.coin-name');
-      const totalPriceEl = thankyouContainer.querySelector('.total-price');
       const walletAddressEl = thankyouContainer.querySelector(
         '#wallet-address'
       );
       const iconEl = thankyouContainer.querySelector('.icon');
       if (coinPriceEl) {
-        coinPriceEl.innerText = order.TotalAmount;
+        coinPriceEl.innerText = totalAmount;
       }
       if (coinNameEl) {
         coinNameEl.innerText = coinName;
       }
       if (walletAddressEl) {
-        walletAddressEl.innerText = order.Address;
-        walletAddressEl.setAttribute('data-copy-value', order.Address);
+        walletAddressEl.innerText = walletAddress;
+        walletAddressEl.setAttribute('data-copy-value', walletAddress);
       }
       if (iconEl) {
         try {
-          iconEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${order.Address}`;
+          iconEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${walletAddress}`;
           iconEl.classList.remove('hidden');
         } catch {}
       }
-      if (totalPriceEl) {
-        const cartInfo = getCartInformation();
-        const { totalPrice = 0 } = cartInfo;
-        totalPriceEl.innerText = `$${totalPrice}`;
+      const productContainer = container.querySelector(
+        '#product-container #pay-with-crypto'
+      );
+      if (productContainer) {
+        const totalPriceEl = productContainer.querySelector('.total-price');
+        const coinNameEl = productContainer.querySelector('.coin-name');
+        if (totalPriceEl) {
+          totalPriceEl.innerHTML = `${totalAmount} ${coinName}`;
+          productContainer.classList.remove('hidden');
+        }
+        if (coinNameEl) {
+          coinNameEl.innerText = getCoinName(coinName);
+        }
       }
       togglePayment();
       thankyouContainer.classList.remove('hidden');
@@ -543,6 +580,7 @@ const handlePayment = async container => {
   };
 
   handleGetProductPrice(productContainer);
+  addressCountryEl.addEventListener('blue', onCountryChange);
   addressCountryEl.addEventListener('change', onCountryChange);
 
   const countries = csc.getAllCountries();
