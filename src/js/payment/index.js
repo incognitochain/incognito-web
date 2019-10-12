@@ -241,6 +241,72 @@ const getCoinName = coin => {
   }
 };
 
+const handleSubmitZelleOrder = async (
+  container,
+  {
+    firstName,
+    lastName,
+    address,
+    city,
+    state,
+    zip,
+    country,
+    quantity,
+    coinName = 'BTC'
+  }
+) => {
+  const paymentContainer = container.querySelector('#payment-container');
+  const submitPaymentBtnEl = paymentContainer.querySelector(
+    '#submit-payment-zelle-btn'
+  );
+  if (submitPaymentBtnEl) {
+    submitPaymentBtnEl.disabled = true;
+    submitPaymentBtnEl.classList.add('loading');
+  }
+
+  try {
+    const order = await submitCryptoOrder({
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zip,
+      country,
+      coinName,
+      quantity
+    });
+    if (order) {
+      trackEvent({
+        eventCategory: 'Zelle Payment Page',
+        eventAction: 'show',
+        eventLabel: 'Shown zelle page'
+      });
+      const thankyouContainer = container.querySelector(
+        '#zelle-thank-you-container'
+      );
+      console.log(thankyouContainer);
+      if (!thankyouContainer) return;
+      const totalAmountEl = thankyouContainer.querySelector('.total-price');
+      if (totalAmountEl) {
+        const cartInfo = getCartInformation();
+        const { totalPrice = 0 } = cartInfo;
+        totalAmountEl.innerText = totalPrice;
+      }
+      togglePayment();
+      thankyouContainer.classList.remove('hidden');
+      resetPayment();
+    }
+  } catch (e) {
+    setMessage(e.message, 'error');
+  } finally {
+    if (submitPaymentBtnEl) {
+      submitPaymentBtnEl.disabled = false;
+      submitPaymentBtnEl.classList.remove('loading');
+    }
+  }
+};
+
 const handleSubmitCryptoOrder = async (
   container,
   {
@@ -310,18 +376,23 @@ const handleSubmitCryptoOrder = async (
           iconEl.classList.remove('hidden');
         } catch {}
       }
-      const productContainer = container.querySelector(
-        '#product-container #pay-with-crypto'
-      );
+      const productContainer = container.querySelector('#product-container');
       if (productContainer) {
-        const totalPriceEl = productContainer.querySelector('.total-price');
-        const coinNameEl = productContainer.querySelector('.coin-name');
-        if (totalPriceEl) {
-          totalPriceEl.innerHTML = `${totalAmount} ${coinName}`;
-          productContainer.classList.remove('hidden');
+        const cartInfo = productContainer.querySelector('#pay-with-crypto');
+        const paymentGuide = productContainer.querySelector('#payment-guide');
+        if (paymentGuide) {
+          paymentGuide.classList.remove('hidden');
         }
-        if (coinNameEl) {
-          coinNameEl.innerText = getCoinName(coinName);
+        if (cartInfo) {
+          const totalPriceEl = cartInfo.querySelector('.total-price');
+          const coinNameEl = cartInfo.querySelector('.coin-name');
+          if (totalPriceEl) {
+            totalPriceEl.innerHTML = `${totalAmount} ${coinName}`;
+            cartInfo.classList.remove('hidden');
+          }
+          if (coinNameEl) {
+            coinNameEl.innerText = getCoinName(coinName);
+          }
         }
       }
       togglePayment();
@@ -559,6 +630,36 @@ const handlePayment = async container => {
     });
   };
 
+  const onSubmitZellePayment = () => {
+    const firstName = firstNameEl.value || '';
+    const lastName = lastNameEl.value || '';
+    const address = addressStreetEl.value;
+    const city = addressCityEl.value;
+    const state = addressStateEl.value;
+    const zip = addressZipEl.value;
+    const country = addressCountryEl.value;
+    const quantity = 1;
+
+    if (!paymentContainer) return;
+
+    trackEvent({
+      eventCategory: 'Button',
+      eventAction: 'click',
+      eventLabel: `Submit payment with zelle`
+    });
+
+    handleSubmitZelleOrder(container, {
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zip,
+      country,
+      quantity
+    });
+  };
+
   const onCountryChange = async () => {
     const address = addressStreetEl.value;
     const city = addressCityEl.value;
@@ -610,8 +711,13 @@ const handlePayment = async container => {
     const submitPaymentBtnEl = paymentContainer.querySelector(
       '#submit-payment-btn'
     );
-    if (!submitPaymentBtnEl) return;
-    submitPaymentBtnEl.addEventListener('click', onSubmitPayment);
+    const submitZellePaymentBtnEl = paymentContainer.querySelector(
+      '#submit-payment-zelle-btn'
+    );
+    if (submitPaymentBtnEl)
+      submitPaymentBtnEl.addEventListener('click', onSubmitPayment);
+    if (submitZellePaymentBtnEl)
+      submitZellePaymentBtnEl.addEventListener('click', onSubmitZellePayment);
   }
 };
 
