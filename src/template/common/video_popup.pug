@@ -1,7 +1,9 @@
-.video-popup.hide
-    #close-container
-        button.close-button
-    .content
-    .subscribe-form
-        include ./price_info.pug
-        include ./subscribe_email_component.pug
+mixin video_popup(show_subscribe_form)
+    .video-popup.hide
+        #close-container
+            button.close-button
+        .content
+        if show_subscribe_form
+            .subscribe-form
+                include ./price_info.pug
+                include ./subscribe_email_component.pug
