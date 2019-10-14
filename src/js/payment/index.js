@@ -756,7 +756,7 @@ const handlePayment = async container => {
   };
 
   handleGetProductPrice(productContainer);
-  addressCountryEl.addEventListener('blue', onCountryChange);
+  addressCountryEl.addEventListener('blur', onCountryChange);
   addressCountryEl.addEventListener('change', onCountryChange);
 
   const countries = csc.getAllCountries();
