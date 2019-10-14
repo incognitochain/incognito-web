@@ -852,9 +852,20 @@
             margin-left: 0;
           }
 
-          img {
-            height: 35px;
-            width: auto;
+          &.desktop {
+            display: block;
+
+            @include breakpoint-down(sm) {
+              display: none;
+            }
+          }
+
+          &.mobile {
+            display: none;
+
+            @include breakpoint-down(sm) {
+              display: block;
+            }
           }
         }
       }
