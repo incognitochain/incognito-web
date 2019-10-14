@@ -1,27 +1,33 @@
 import injectScript from '../service/injectScript';
 
 const loadZendesk = () => {
-  injectScript({ fromSrc: `https://static.zdassets.com/ekr/snippet.js?key=${APP_ENV.ZENDESK_KEY}`, attrs: {
-    id: 'ze-snippet'
-  }}).then(() => {
+  injectScript({
+    fromSrc: `https://static.zdassets.com/ekr/snippet.js?key=${APP_ENV.ZENDESK_KEY}`,
+    attrs: {
+      id: 'ze-snippet'
+    }
+  }).then(() => {
     // setTimeout(() => {
     //   if (typeof $zopim !== 'undefined')
     //     $zopim.livechat.button.setOffsetVerticalMobile(70);
     // }, 3000);
   });
-}
+};
 
 const loadFbChat = () => {
   window.fbAsyncInit = function() {
     FB.init({
-      xfbml            : true,
-      version          : 'v3.3'
+      xfbml: true,
+      version: 'v3.3'
     });
   };
 
-  injectScript({ fromSrc: 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js', attrs: {
-    id: 'facebook-jssdk'
-  }});
+  injectScript({
+    fromSrc: 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js',
+    attrs: {
+      id: 'facebook-jssdk'
+    }
+  });
 
   const root = document.createElement('div');
   root.id = 'fb-root';
@@ -33,7 +39,7 @@ const loadFbChat = () => {
 
   document.body.appendChild(root);
   document.body.appendChild(customerEl);
-}
+};
 
 const loadGA = () => {
   injectScript({
@@ -45,7 +51,7 @@ const loadGA = () => {
         ga('send', 'pageview');
       `
   });
-}
+};
 
 // load FB Pixel
 const loadPixel = () => {
@@ -70,10 +76,9 @@ const loadPixel = () => {
     />
   `;
   document.head.appendChild(noScriptEl);
-}
+};
 // end load FB Pixel
 
-
-// loadFbChat();
+loadFbChat();
 loadGA();
 loadPixel();

@@ -261,7 +261,7 @@ const handleEarningSliders = async container => {
         ...newCoinFiatRate
       };
 
-      storage.set(KEYS.COIN_FIAT_RATES, JSON.stringify(newCoinFiatRate));
+      storage.set(KEYS.COIN_FIAT_RATE, JSON.stringify(newCoinFiatRate));
     }
 
     updateEarningUI(container, calculateEarning(currentRate));
