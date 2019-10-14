@@ -128,3 +128,12 @@ a {
 .show {
   display: block;
 }
+
+.fb_dialog {
+  transform: scale(0.75);
+
+  @include breakpoint-down(xl) {
+    right: 0pt !important;
+    bottom: 50pt !important;
+  }
+}
