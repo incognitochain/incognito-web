@@ -1,4 +1,4 @@
-div#information
+div#order-information-container.payment-page
     ul.breadcrumb.desktop
         li.breadcrumb-item.active
             span Information
@@ -59,13 +59,13 @@ div#information
                 )
             div.input-two-columns.country-wrapper
                 div.select-two-lines-label
-                    div.select-wrapper.input-field
+                    div.select-wrapper.input-field.has-value
                         label(for="country") Country/Region
                         select(id="country", name="country", required="true", error_message='Select a country')
                         div.caret
                             img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
                 div.select-two-lines-label
-                    div.select-wrapper.input-field
+                    div.select-wrapper.input-field.has-value
                         label(for="state") State
                         select(id="state", name="state", required="true", error_message='Select a state')
                         div.caret
