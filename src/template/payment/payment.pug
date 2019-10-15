@@ -1,7 +1,7 @@
-div#payment-container
+div#payment-container.payment-page.hidden
     ul.breadcrumb.desktop
         li.breadcrumb-item
-            a.link(href='#') Information
+            a.link(href='#').change-order-information Information
             img.icon(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
         li.breadcrumb-item.active
             span Payment
@@ -9,13 +9,13 @@ div#payment-container
         div.three-lines-content
             div Ship to
             div#ship-to
-            a.link(href='#') Change
+            a.link(href='#').change-order-information Change
     div.payment#pay-with-zelle
         h2 Pay in USD with Zelle
         p Zelle is the quickest way to pay for your Node.
         .payment-wrapper
             div.button-wrapper
-                button.submit-btn#submit-payment-zelle-btn Pay with Zelle
+                button.submit-btn#submit-zelle-payment-btn Pay with Zelle
     div.payment#pay-with-crypto
         h2 Pay with Bitcoin, Ethereum and more.
         div.card-input.payment-wrapper
@@ -28,7 +28,7 @@ div#payment-container
             div.card-information.input-wrapper
                 div.select-two-lines-label
                     div.select-wrapper.input-field
-                        select(name='coin-name')#coin-name
+                        select(name='coin-name')#crypto-payment-coin-name
                             include ./coin_name
                             option(value='BTC') 
                                 +coin_name('BTC')
@@ -53,13 +53,6 @@ div#payment-container
                         div.caret
                             img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
             div.button-wrapper
-                button.submit-btn#submit-payment-btn Pay now
-    #payment-guide
-        h2 Don't have Bitcoin yet?
-        p
-        .payment-guide 
-            span In the US?
-            a(href='https://docs.google.com/document/d/1-g0j74-xgmwD7Xjz46zZ9mx8b-ajop1KyTyQ1HhDUoI', target='_blank').guide-link.guide-highlight Get Bitcoin from Coinbase
-        .payment-guide 
-            span Outside of the US?
-            span(video-url='https://www.youtube.com/embed/_DDsF_eIo4k').guide-link.guide-highlight Get Bitcoin from Binance
+                button.submit-btn#submit-crypto-payment-btn Pay now
+    include ./crypto_guide
+    +crypto_guide(false)
