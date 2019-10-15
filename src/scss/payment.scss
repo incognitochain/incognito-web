@@ -22,7 +22,7 @@
     }
   }
 
-  #payment-guide {
+  .crypto-payment-guide {
     margin-top: 30px;
     * {
       text-decoration: none;
@@ -630,7 +630,7 @@
     }
   }
 
-  #thank-you-container,
+  #crypto-thank-you-container,
   #zelle-thank-you-container {
     display: flex;
     flex-direction: column;
@@ -666,7 +666,6 @@
     }
 
     .coin-name,
-    #wallet-address,
     .coin-price {
       font-weight: 500;
     }
@@ -684,7 +683,7 @@
       }
     }
 
-    #wallet-address {
+    .wallet-address {
       padding: 10px 20px;
       background: #f7f7f7;
       border-radius: 4px;
@@ -736,7 +735,7 @@
   }
 
   .link {
-    color: #197bbd;
+    color: #0da5ad;
     text-decoration: none;
     cursor: pointer;
   }
