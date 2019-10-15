@@ -13,6 +13,9 @@ export default class Cart {
     }
 
     this.price = 399;
+    this.cart = {};
+    this.selectedCoinName = 'BTC';
+    this.totalPrice = 0;
 
     this.parentContainer = container;
     this.container = this.parentContainer.querySelector('#cart-container');
@@ -22,6 +25,7 @@ export default class Cart {
   }
 
   saveCartToLocalStorage(cart) {
+    this.cart = cart;
     try {
       storage.set(KEYS.CART_INFORMATION, JSON.stringify(cart));
     } catch {}
@@ -43,13 +47,46 @@ export default class Cart {
     storage.set(KEYS.PRODUCT_PRICE, price);
   }
 
+  getCart() {
+    return this.cart;
+  }
+
   getPrice() {
     return this.price;
+  }
+
+  getCoinName(coin) {
+    switch (coin) {
+      case 'BTC':
+        return 'Bitcoin';
+      case 'ETH':
+        return 'Ethereum';
+      case 'BNB':
+        return 'Binance';
+      case 'USDT':
+        return 'Tether - ERC20';
+      case 'USDC':
+        return 'USD Coin';
+      case 'TUSD':
+        return 'TrueUSD';
+      case 'PAX':
+        return 'Paxos Standard';
+      case 'GUSD':
+        return 'Gemini Dollar';
+      case 'USDS':
+        return 'Stably';
+      case 'BUSD':
+        return 'Binance USD';
+    }
   }
 
   setPrice(price) {
     this.price = price || this.price;
     this.savePriceToLocalStorage(price);
+  }
+
+  setSelectedCoinName(coinName) {
+    this.selectedCoinName = coinName;
   }
 
   getCartElements() {
@@ -60,6 +97,12 @@ export default class Cart {
     const shippingPriceEl = this.container.querySelector('.shipping-price');
     const taxPriceEl = this.container.querySelector('.tax-price');
     const productPriceEl = this.container.querySelector('.product-price');
+    const totalPriceInCryptoEl = this.container.querySelector(
+      '#pay-with-crypto'
+    );
+    const cryptoPaymentGuideEl = this.container.querySelector(
+      '.crypto-payment-guide'
+    );
 
     return {
       quantityEl,
@@ -67,8 +110,74 @@ export default class Cart {
       totalPriceEl,
       shippingPriceEl,
       taxPriceEl,
-      productPriceEl
+      productPriceEl,
+      totalPriceInCryptoEl,
+      cryptoPaymentGuideEl
     };
+  }
+
+  getExchangeRates() {
+    if (this.exchangeRates) return this.exchangeRates;
+    try {
+      return JSON.parse(storage.get(KEYS.COIN_FIAT_RATE) || '{}');
+    } catch {}
+    return {};
+  }
+
+  getTotalPriceInCryptoEls() {
+    const { totalPriceInCryptoEl } = this.getCartElements();
+    if (!totalPriceInCryptoEl) return {};
+    const coinNameEl = totalPriceInCryptoEl.querySelector('.coin-name');
+    const totalPriceEl = totalPriceInCryptoEl.querySelector('.total-price');
+    return { coinNameEl, totalPriceEl };
+  }
+
+  showTotalPriceInCryptoEl() {
+    const { totalPriceInCryptoEl } = this.getCartElements();
+    if (!totalPriceInCryptoEl) return;
+    totalPriceInCryptoEl.classList.remove('hidden');
+  }
+
+  hideTotalPriceInCryptoEl() {
+    const { totalPriceInCryptoEl } = this.getCartElements();
+    if (!totalPriceInCryptoEl) return;
+    totalPriceInCryptoEl.classList.add('hidden');
+  }
+
+  showCryptoPaymentGuide() {
+    const { cryptoPaymentGuideEl } = this.getCartElements();
+    if (!cryptoPaymentGuideEl) return;
+    cryptoPaymentGuideEl.classList.remove('hidden');
+  }
+
+  updateTotalPriceInCrypto() {
+    const { coinNameEl, totalPriceEl } = this.getTotalPriceInCryptoEls();
+    const exchangeRates = this.getExchangeRates();
+    if (!this.selectedCoinName || !exchangeRates) return;
+    const coinRate = exchangeRates[this.selectedCoinName.toLowerCase()];
+    let totalAmountInCoin = this.totalPrice;
+
+    if (coinRate) {
+      totalAmountInCoin = this.totalPrice / coinRate;
+    }
+
+    let toFixedNumber = 0;
+    switch (this.selectedCoinName.toLowerCase()) {
+      case 'btc':
+        toFixedNumber = 6;
+        break;
+      case 'eth':
+      case 'bnb':
+        toFixedNumber = 4;
+        break;
+    }
+
+    if (coinNameEl)
+      coinNameEl.innerText = this.getCoinName(this.selectedCoinName);
+    if (totalPriceEl)
+      totalPriceEl.innerText = `${totalAmountInCoin.toFixed(toFixedNumber)} ${
+        this.selectedCoinName
+      }`;
   }
 
   updateCart({ shippingFee, tax, quantity, saveCart = false } = {}) {
@@ -90,6 +199,7 @@ export default class Cart {
     const price = this.getPrice();
     const subTotalPrice = quantity * price;
     const totalPrice = subTotalPrice + shippingFee + tax;
+    this.totalPrice = totalPrice;
 
     quantity = quantityEl ? quantityEl.value : quantity;
 
@@ -116,11 +226,13 @@ export default class Cart {
       }
     }
     if (totalPriceEl) totalPriceEl.innerText = `$${totalPrice}`;
+    this.updateTotalPriceInCrypto();
   }
 
   async getCoinExchangeRateFromServer() {
     try {
       const exchangeRates = await getExchangeRates();
+      this.exchangeRates = exchangeRates;
       storage.set(KEYS.COIN_FIAT_RATE, JSON.stringify(exchangeRates));
     } catch {}
   }
