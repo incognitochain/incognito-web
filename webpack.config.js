@@ -259,7 +259,7 @@ module.exports = {
   entry: path.resolve(__dirname, './src/js/index.js'),
   devtool: 'inline-source-map',
   output: {
-    filename: '[name].[hash:8].js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist')
   },
   ...(production ? prodConfig : devConfig)
