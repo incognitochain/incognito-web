@@ -3,10 +3,6 @@ jobs:
   build:
     docker:
       - image: circleci/node
-    filters:
-      branches:
-        only:
-          - master
     steps:
       - checkout
       - run: npm install
@@ -33,7 +29,10 @@ workflows:
   version: 2
   build_and_push:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              only: master
       - push:
           requires:
             - build
