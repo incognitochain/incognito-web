@@ -209,6 +209,76 @@
               padding-bottom: 0px;
             }
 
+            .button-and-countdown-container {
+              margin-top: 25px;
+              display: flex;
+
+              .cta {
+                margin-top: 0;
+              }
+
+              @include breakpoint-down(sm) {
+                flex-direction: column;
+              }
+            }
+
+            .countdown {
+              margin-left: 25px;
+
+              @include breakpoint-down(sm) {
+                margin-left: 0;
+                margin-top: 20px;
+              }
+
+              .countdown-container {
+                display: flex;
+                justify-content: space-around;
+
+                .divide {
+                  margin-top: 5px;
+                  margin-left: 8px;
+                  margin-right: 8px;
+                }
+
+                .group {
+                  display: flex;
+                  flex-direction: column;
+                  position: relative;
+
+                  &:not(:last-child) {
+                    // margin-right: 20px;
+                    // &::after {
+                    //   content: ':';
+                    //   position: absolute;
+                    //   right: -12px;
+                    //   top: 6px;
+                    // }
+                  }
+
+                  .data {
+                    width: 38px;
+                    height: 38px;
+                    border-radius: 4px;
+                    box-shadow: 0 0 3px rgba($color: #9f9f9f, $alpha: 0.5);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 20px;
+                    font-weight: 500;
+                  }
+
+                  .label {
+                    font-size: 8px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    text-align: center;
+                    color: #657576;
+                    font-weight: 500;
+                  }
+                }
+              }
+            }
+
             > div {
               .heading {
                 font-size: 32px;
@@ -559,19 +629,6 @@
 
           .subscribe-price-container {
             position: relative;
-
-            .cta {
-              &:not(.sticky) {
-                .subscribe-email {
-                  #email-subscribe {
-                    button {
-                      min-width: 250px;
-                      margin-top: 10px;
-                    }
-                  }
-                }
-              }
-            }
 
             @include breakpoint-down(sm) {
               display: flex;

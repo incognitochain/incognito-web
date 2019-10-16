@@ -71,8 +71,8 @@ const handleShowTotalSubscriber = async container => {
 const startCountdown = container => {
   const countdownEls = document.querySelectorAll('.countdown');
   for (const countdownEl of countdownEls) {
-    countdown(countdownEl, '2019-10-09T11:00:00.000-07:00', () => {
-      setMessage('The program was ended', 'error');
+    countdown(countdownEl, '2019-10-20T23:59:00.000-07:00', () => {
+      // setMessage('The program was ended', 'error');
     });
   }
 };
@@ -135,13 +135,13 @@ const handleScrollToEmailSubscriber = container => {
     subscribeEmailEl = subscribeEmailEl.offsetParent;
   } while (subscribeEmailEl);
 
-  const priceElm = priceInfoElm.querySelector('.price');
+  // const priceElm = priceInfoElm.querySelector('.price');
 
   window.addEventListener('scroll', function() {
     let ctaElmHeight = ctaEl.offsetHeight;
-    if (priceElm) {
-      ctaElmHeight += priceElm.offsetHeight + 20;
-    }
+    // if (priceElm) {
+    //   ctaElmHeight += priceElm.offsetHeight + 20;
+    // }
 
     if (window.pageYOffset > stickyPosition) {
       ctaEl.classList.add('sticky');
