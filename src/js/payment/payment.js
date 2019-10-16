@@ -1,4 +1,8 @@
-import { submitCryptoOrder, submitZelleOrder } from '../service/api';
+import {
+  getAmazonExpressSignature,
+  submitCryptoOrder,
+  submitZelleOrder
+} from '../service/api';
 import { trackEvent } from '../common/utils/ga';
 import storage from '../service/storage';
 import { setMessage } from '../service/message_box';
@@ -106,6 +110,48 @@ export default class Payment {
         this.onChangeOrderInformationClicked.bind(this)
       );
     });
+  }
+
+  setupAmazonPaymentButton({
+    firstName,
+    lastName,
+    address,
+    city,
+    state,
+    zip,
+    country
+  }) {
+    const { quantity } = this.cart.getCart();
+
+    console.log(process.env.AMAZON_SELLER_ID);
+    OffAmazonPayments.Button(
+      'amazon-payment-button',
+      process.env.AMAZON_SELLER_ID,
+      {
+        type: 'hostedPayment',
+        hostedParametersProvider: done => {
+          getAmazonExpressSignature({
+            firstName,
+            lastName,
+            address,
+            city,
+            state,
+            zip,
+            country,
+            quantity
+          })
+            .then(paymentInformation => {
+              done(paymentInformation);
+            })
+            .catch(e => {
+              setMessage(e.message, 'error');
+            });
+        },
+        onError: errorCode => {
+          console.log('amazon pay error', errorCode.getErrorMessage());
+        }
+      }
+    );
   }
 
   onChangeOrderInformationClicked() {
@@ -267,6 +313,15 @@ export default class Payment {
     zip,
     country
   }) {
+    this.setupAmazonPaymentButton({
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zip,
+      country
+    });
     this.showPage(this.paymentPageId);
     this.updateShipTo({
       firstName,
