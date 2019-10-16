@@ -28,9 +28,10 @@
         color: #8c9c9d;
         text-decoration: line-through;
         margin-right: 10px;
-        font-size: 40px;
+        font-size: 20px;
         position: relative;
         font-weight: 200;
+        top: -8px;
       }
       &.end-price {
         font-weight: 500;
@@ -79,7 +80,7 @@
   .rocket {
     display: flex;
     align-items: center;
-    margin-left: 30px;
+    margin-left: 20px;
 
     .info {
       &,
@@ -87,6 +88,11 @@
         line-height: 20px;
         font-size: 14px;
         font-weight: 400;
+      }
+
+      .highlight {
+        font-size: 12px;
+        color: #c33228;
       }
     }
 

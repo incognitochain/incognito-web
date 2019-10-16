@@ -199,13 +199,13 @@ const handleGetProductPrice = async container => {
       } = productPrice;
       priceInfoEls.forEach(priceInfoEl => {
         const priceEl = priceInfoEl.querySelector('.end-price');
-        const offerCountdownEl = priceInfoEl.querySelector('.offer-countdown');
-        const offerWrapperEl = priceInfoEl.querySelector('.offer-wrapper');
-        if (quantityRemaining < 1) {
-          offerWrapperEl.remove();
-        } else {
-          if (offerCountdownEl) offerCountdownEl.innerText = quantityRemaining;
-        }
+        // const offerCountdownEl = priceInfoEl.querySelector('.offer-countdown');
+        // const offerWrapperEl = priceInfoEl.querySelector('.offer-wrapper');
+        // if (quantityRemaining < 1) {
+        //   offerWrapperEl.remove();
+        // } else {
+        //   if (offerCountdownEl) offerCountdownEl.innerText = quantityRemaining;
+        // }
         if (priceEl) priceEl.innerText = price;
       });
     }
