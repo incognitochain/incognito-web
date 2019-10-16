@@ -13,7 +13,7 @@ export default class Cart {
     }
 
     this.price = 399;
-    this.cart = {};
+    this.cart = this.getCartFromLocalStorage();
     this.selectedCoinName = 'BTC';
     this.totalPrice = 0;
 
