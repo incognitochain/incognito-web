@@ -353,7 +353,9 @@ export const submitAmazonOrder = ({
   state,
   country,
   zip,
-  quantity
+  quantity,
+  orderReferenceId,
+  orderAccessToken
 }) => {
   return fetch('order/amazon/checkout', {
     method: 'POST',
@@ -365,7 +367,9 @@ export const submitAmazonOrder = ({
       AddressCity: city,
       AddressPostalCode: zip,
       AddressCountry: country,
-      Quantity: quantity
+      Quantity: quantity,
+      AmazonOrderReferenceId: orderReferenceId,
+      AmazonAccessToken: orderAccessToken
     }
   })
     .then(orderInfo => orderInfo)
