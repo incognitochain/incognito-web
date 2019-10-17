@@ -22,6 +22,37 @@
     }
   }
 
+  #pay-with-amazon {
+    position: relative;
+
+    :hover {
+      opacity: 0.9;
+    }
+
+    #amazon-payment-button {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      height: 100%;
+
+      img {
+        height: 100%;
+        max-height: unset !important;
+      }
+    }
+
+    .amazon-payment-button-mask {
+      background-color: #f9ca4f;
+      background-image: url('../image/amazon-logo.svg');
+      background-repeat: no-repeat;
+      background-position: center -25px;
+      background-size: 7rem 7rem;
+    }
+  }
+
   .crypto-payment-guide {
     margin-top: 30px;
     * {
