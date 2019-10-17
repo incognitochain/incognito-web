@@ -1,5 +1,10 @@
 #wallet-container {
   background: #191919;
+
+  @include breakpoint-down(xl) {
+    min-height: calc(100vh - 60px);
+  }
+
   > div.intro-slider-container {
     .right-content {
       * {
