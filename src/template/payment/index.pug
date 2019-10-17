@@ -1,5 +1,9 @@
 extends ../layout.pug
 
+block script
+    - const amazonSdkUrl = self.htmlWebpackPlugin.options.env.AMAZON_SDK_URL;
+    script(src=amazonSdkUrl)
+
 block main
     include ../header.pug
     div#content

@@ -111,7 +111,7 @@ const templateGen = [
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/order_confirmation/index.pug',
-    filename: 'thank-you.html',
+    filename: 'thankyou.html',
     env: process.env
   })
   // new HtmlWebpackPlugin({
@@ -138,7 +138,8 @@ const copyPlugin = new CopyPlugin([
 const customPlugin = [
   new webpack.ProvidePlugin({
     noUiSlider: 'nouislider'
-  })
+  }),
+  new webpack.EnvironmentPlugin(['AMAZON_SELLER_ID'])
 ];
 
 const production = process.env.NODE_ENV === 'production';
