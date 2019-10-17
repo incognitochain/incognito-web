@@ -159,6 +159,13 @@ export default class Payment {
     zip,
     country
   }) {
+    const testMode = queryString('testmode');
+    if (testMode) {
+      const payWithAmazonEl = this.container.querySelector('#pay-with-amazon');
+      if (payWithAmazonEl) {
+        payWithAmazonEl.classList.remove('hide');
+      }
+    }
     const amazonPaymentBtnId = 'amazon-payment-button';
     const { quantity } = this.cart.getCart();
     const amazonPaymentBtnEl = this.container.querySelector(
