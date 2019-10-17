@@ -109,6 +109,14 @@ export default class Payment {
     };
   }
 
+  getAmazonErrorMessage(errorCode) {
+    switch (errorCode) {
+      case 'BuyerAbandoned':
+        return 'You have been canceled your order';
+    }
+    return 'There has been a temporary error processing your request, please try again shortly.';
+  }
+
   setup() {
     const {
       zellePaymentBtnEl,
@@ -404,8 +412,9 @@ export default class Payment {
     const resultCode = queryString('resultCode');
     if (!resultCode) return;
     if (resultCode === 'Failure') {
+      const failureCode = queryString('failureCode');
+      setMessage(this.getAmazonErrorMessage(failureCode), 'error');
       window.history.pushState('', '', window.location.pathname);
-      setMessage('Your order has been canceled', 'error');
       return;
     }
     if (resultCode !== 'Success') return;
