@@ -151,37 +151,39 @@ export default class Payment {
     zip,
     country
   }) {
+    const amazonPaymentBtnId = 'amazon-payment-button';
     const { quantity } = this.cart.getCart();
-
-    console.log(process.env.AMAZON_SELLER_ID);
-    OffAmazonPayments.Button(
-      'amazon-payment-button',
-      process.env.AMAZON_SELLER_ID,
-      {
-        type: 'hostedPayment',
-        hostedParametersProvider: done => {
-          getAmazonExpressSignature({
-            firstName,
-            lastName,
-            address,
-            city,
-            state,
-            zip,
-            country,
-            quantity
-          })
-            .then(paymentInformation => {
-              done(paymentInformation);
-            })
-            .catch(e => {
-              setMessage(e.message, 'error');
-            });
-        },
-        onError: errorCode => {
-          console.log('amazon pay error', errorCode.getErrorMessage());
-        }
-      }
+    const amazonPaymentBtnEl = this.container.querySelector(
+      `#${amazonPaymentBtnId}`
     );
+    if (amazonPaymentBtnEl) {
+      amazonPaymentBtnEl.innerHTML = '';
+    }
+
+    OffAmazonPayments.Button(amazonPaymentBtnId, process.env.AMAZON_SELLER_ID, {
+      type: 'hostedPayment',
+      hostedParametersProvider: done => {
+        getAmazonExpressSignature({
+          firstName,
+          lastName,
+          address,
+          city,
+          state,
+          zip,
+          country,
+          quantity
+        })
+          .then(paymentInformation => {
+            done(paymentInformation);
+          })
+          .catch(e => {
+            setMessage(e.message, 'error');
+          });
+      },
+      onError: errorCode => {
+        console.log('amazon pay error', errorCode.getErrorMessage());
+      }
+    });
   }
 
   onChangeOrderInformationClicked() {
