@@ -1,13 +1,15 @@
 import {
   getAmazonExpressSignature,
   submitCryptoOrder,
-  submitZelleOrder
+  submitZelleOrder,
+  submitAmazonOrder
 } from '../service/api';
 import { trackEvent } from '../common/utils/ga';
 import storage from '../service/storage';
 import { setMessage } from '../service/message_box';
 import KEYS from '../constant/keys';
 import OrderInformation from './order_information';
+import queryString from '../service/queryString';
 
 export default class Payment {
   constructor(container, cart) {
@@ -28,6 +30,9 @@ export default class Payment {
     this.cart = cart;
     this.container = this.parentContainer.querySelector(
       `#${this.paymentPageId}`
+    );
+    this.loadingContainer = this.parentContainer.querySelector(
+      '.loading-container'
     );
     this.orderInformation = new OrderInformation(
       container,
@@ -81,6 +86,29 @@ export default class Payment {
     return { coinPriceEls, coinNameEls, walletAddressEls, iconEl };
   }
 
+  getPaymentInformation() {
+    const {
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zip,
+      country
+    } = this.orderInformation.getOrderInformationValues();
+    const { quantity = 1 } = this.cart.getCart();
+    return {
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zip,
+      country,
+      quantity
+    };
+  }
+
   setup() {
     const {
       zellePaymentBtnEl,
@@ -110,6 +138,8 @@ export default class Payment {
         this.onChangeOrderInformationClicked.bind(this)
       );
     });
+
+    this.handleAmazonPayment();
   }
 
   setupAmazonPaymentButton({
@@ -159,16 +189,7 @@ export default class Payment {
   }
 
   async onSubmitZelleOrder() {
-    const {
-      firstName,
-      lastName,
-      address,
-      city,
-      state,
-      zip,
-      country
-    } = this.orderInformation.getOrderInformationValues();
-    const { quantity = 1 } = this.cart.getCart();
+    const paymentInformation = this.getPaymentInformation();
 
     const { zellePaymentBtnEl } = this.getPaymentElements();
     if (zellePaymentBtnEl) {
@@ -178,14 +199,7 @@ export default class Payment {
 
     try {
       const order = await submitZelleOrder({
-        firstName,
-        lastName,
-        address,
-        city,
-        state,
-        zip,
-        country,
-        quantity
+        ...paymentInformation
       });
       if (order) {
         const { TotalPrice: totalPrice, OrderID: orderId } = order;
@@ -219,16 +233,7 @@ export default class Payment {
   }
 
   async onSubmitCryptoOrder() {
-    const {
-      firstName,
-      lastName,
-      address,
-      city,
-      state,
-      zip,
-      country
-    } = this.orderInformation.getOrderInformationValues();
-    const { quantity = 1 } = this.cart.getCart();
+    const paymentInformation = this.getPaymentInformation();
 
     const {
       cryptoPaymentBtnEl,
@@ -248,15 +253,8 @@ export default class Payment {
 
     try {
       const order = await submitCryptoOrder({
-        firstName,
-        lastName,
-        address,
-        city,
-        state,
-        zip,
-        country,
-        coinName,
-        quantity
+        ...paymentInformation,
+        coinName
       });
       if (order) {
         trackEvent({
@@ -301,6 +299,26 @@ export default class Payment {
         cryptoPaymentBtnEl.disabled = false;
         cryptoPaymentBtnEl.classList.remove('loading');
       }
+    }
+  }
+
+  async onSubmitAmazonOrder(orderReferenceId, orderAccessToken) {
+    const paymentInformation = this.getPaymentInformation();
+    this.showLoading();
+
+    try {
+      const orderId = await submitAmazonOrder({
+        ...paymentInformation,
+        orderReferenceId,
+        orderAccessToken
+      });
+
+      this.resetPayment();
+      window.location = 'thankyou.html';
+    } catch (e) {
+      setMessage(e.message, 'error');
+    } finally {
+      this.hideLoading();
     }
   }
 
@@ -358,6 +376,14 @@ export default class Payment {
     });
   }
 
+  showLoading() {
+    if (this.loadingContainer) this.loadingContainer.classList.remove('hidden');
+  }
+
+  hideLoading() {
+    if (this.loadingContainer) this.loadingContainer.classList.add('hidden');
+  }
+
   resetPayment() {
     storage.set(KEYS.PAYMENT_INFORMATION, '');
     storage.set(KEYS.CART_INFORMATION, '');
@@ -366,5 +392,31 @@ export default class Payment {
   handleSelectElementChanged(element, onChange) {
     element.addEventListener('blur', onChange);
     element.addEventListener('change', onChange);
+  }
+
+  handleAmazonPayment() {
+    const amazonSellerId = queryString('sellerId');
+    if (!amazonSellerId || amazonSellerId !== process.env.AMAZON_SELLER_ID)
+      return;
+
+    const resultCode = queryString('resultCode');
+    if (!resultCode) return;
+    if (resultCode === 'Failure') {
+      window.history.pushState('', '', window.location.pathname);
+      setMessage('Your order has been canceled', 'error');
+      return;
+    }
+    if (resultCode !== 'Success') return;
+
+    const orderReferenceId = queryString('orderReferenceId');
+    const orderAccessToken = '';
+
+    if (!orderReferenceId)
+      return setMessage(
+        'There was a problem while processing your order. Please contact us'
+      );
+
+    window.history.pushState('', '', window.location.pathname);
+    this.onSubmitAmazonOrder(orderReferenceId, orderAccessToken);
   }
 }
