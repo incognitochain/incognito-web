@@ -173,6 +173,10 @@
           .origin-price {
             font-size: 16px;
             top: 0px;
+
+            @include breakpoint-down(xl) {
+              margin-top: 0px;
+            }
           }
         }
       }
