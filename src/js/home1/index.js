@@ -73,6 +73,13 @@ const startCountdown = container => {
   for (const countdownEl of countdownEls) {
     countdown(countdownEl, '2019-10-20T23:59:00.000-07:00', () => {
       // setMessage('The program was ended', 'error');
+      countdownEl.remove();
+      const earlyBirdPriceEls = document.querySelectorAll(
+        '.price-info #early-bird-price-note'
+      );
+      earlyBirdPriceEls.forEach(earlyBirdPriceEl => {
+        earlyBirdPriceEl.remove();
+      });
     });
   }
 };
