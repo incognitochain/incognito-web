@@ -309,3 +309,78 @@ export const submitZelleOrder = ({
       );
     });
 };
+
+export const getAmazonExpressSignature = ({
+  firstName,
+  lastName,
+  address,
+  city,
+  state,
+  country,
+  zip,
+  quantity
+}) => {
+  return fetch('order/amazon/express-signature', {
+    method: 'POST',
+    body: {
+      FirstName: firstName,
+      LastName: lastName,
+      AddressStreet: address,
+      AddressRegion: state,
+      AddressCity: city,
+      AddressPostalCode: zip,
+      AddressCountry: country,
+      Quantity: quantity
+    }
+  })
+    .then(paymentSignature => paymentSignature)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
+
+export const submitAmazonOrder = ({
+  firstName,
+  lastName,
+  address,
+  city,
+  state,
+  country,
+  zip,
+  quantity,
+  orderReferenceId,
+  orderAccessToken
+}) => {
+  return fetch('order/amazon/checkout', {
+    method: 'POST',
+    body: {
+      FirstName: firstName,
+      LastName: lastName,
+      AddressStreet: address,
+      AddressRegion: state,
+      AddressCity: city,
+      AddressPostalCode: zip,
+      AddressCountry: country,
+      Quantity: quantity,
+      AmazonOrderReferenceId: orderReferenceId,
+      AmazonAccessToken: orderAccessToken
+    }
+  })
+    .then(orderInfo => orderInfo)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
