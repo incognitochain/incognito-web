@@ -185,6 +185,12 @@ export default class Payment {
     OffAmazonPayments.Button(amazonPaymentBtnId, APP_ENV.AMAZON_SELLER_ID, {
       type: 'hostedPayment',
       hostedParametersProvider: done => {
+        this.trackCheckoutPaymentTypeEvent('amazon');
+        trackEvent({
+          eventCategory: 'Payment',
+          eventAction: 'click',
+          eventLabel: 'Pay with Amazon'
+        });
         getAmazonExpressSignature({
           firstName,
           lastName,
@@ -339,12 +345,6 @@ export default class Payment {
   }
 
   async onSubmitAmazonOrder(orderReferenceId, orderAccessToken) {
-    this.trackCheckoutPaymentTypeEvent('amazon');
-    trackEvent({
-      eventCategory: 'Payment',
-      eventAction: 'click',
-      eventLabel: 'Pay with Amazon'
-    });
     const paymentInformation = this.getPaymentInformation();
     this.showLoading();
 
