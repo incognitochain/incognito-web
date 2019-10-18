@@ -96,10 +96,41 @@ const handleClickBuyNow = () => {
   });
 };
 
+const handleRenderAmazonExpressCheckoutButton = () => {
+  amazon.Login.setClientId(APP_ENV.AMAZON_CLIENT_ID);
+  OffAmazonPayments.Button(
+    'amazon-express-checkout-btn',
+    APP_ENV.AMAZON_SELLER_ID,
+    {
+      type: 'PwA',
+      size: 'medium',
+      color: 'Gold',
+      authorization: () => {
+        const loginOptions = {
+          scope:
+            'profile postal_code payments:widget payments:shipping_address payments:billing_address'
+        };
+
+        if (amazon && amazon.Login)
+          amazon.Login.authorize(
+            loginOptions,
+            `${window.location.origin}/payment.html?gateway=amazon`
+          );
+      },
+      onError: error => {
+        if (!APP_ENV.production) {
+          console.error(error);
+        }
+      }
+    }
+  );
+};
+
 const main = () => {
   // formHandle();
   handleAutoSignIn();
   handleClickBuyNow();
+  handleRenderAmazonExpressCheckoutButton();
 };
 
 main();
