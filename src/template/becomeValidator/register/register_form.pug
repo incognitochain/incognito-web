@@ -1,0 +1,40 @@
+#register-form-container
+    .input-wrapper
+        .label Your telegram ID
+        .input
+            input(name='telegram_id')
+    .input-wrapper
+        .label Your Incognito address
+        .input
+            input(name='node_wallet_address')
+    .input-wrapper
+        .label Your server IP address. This is where your Node is running on.
+        .input
+            input(name='node_ip')
+    .input-wrapper
+        .label How do you know about Incognito?
+        .input
+            .radio-group
+                input(type='radio', name='refer_from', value='friend')
+                .title Referred by a friend
+            .radio-group
+                input(type='radio', name='refer_from', value='github')
+                .title Github
+            .radio-group
+                input(type='radio', name='refer_from', value='reddit/bitcointalk')
+                .title Reddit/Bitcointalk
+            .radio-group
+                input(type='radio', name='refer_from', value='social_network')
+                .title Social network (Facebook, Twitter, etc...)
+            .radio-group
+                input(type='radio', name='refer_from', value='other')
+                .title Other 
+                    input(type='text', name='refer_from_other')
+    .input-wrapper
+        .label Questions? Comments? Feedback? Much appreciated!
+        .input
+            input(name='feedback')#feedback
+    .input-wrapper
+        .input
+            button#register Register
+    
