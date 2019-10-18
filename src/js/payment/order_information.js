@@ -1,10 +1,15 @@
 import csc from 'country-state-city';
 import KEYS from '../constant/keys';
-import { trackEvent } from '../common/utils/ga';
+import {
+  trackEvent,
+  addCartTrackEvent,
+  checkoutTrackEvent
+} from '../common/utils/ga';
 import { isEmail } from '../common/utils/validate';
 import { setMessage } from '../service/message_box';
 import { signUp } from '../service/api';
 import storage from '../service/storage';
+import LoadingButton from '../common/loading_button';
 
 export default class OrderInformation {
   constructor(container, cart, onSubmitSuccess) {
@@ -145,46 +150,53 @@ export default class OrderInformation {
     } = this.getOrderInformationValues();
 
     trackEvent({
-      eventCategory: 'Button',
+      eventCategory: 'Payment',
       eventAction: 'click',
-      eventLabel: 'Submit email and shipping info'
+      eventLabel: 'Submit shipping information'
     });
 
-    if (submitBtnEl) {
-      submitBtnEl.disabled = true;
-      submitBtnEl.classList.add('loading');
-    }
+    const submitBtnLoading = new LoadingButton(submitBtnEl);
+    submitBtnLoading.show();
 
-    const isSignedIn = await this.handleSignUp({ name, email });
-    if (submitBtnEl) {
-      submitBtnEl.disabled = false;
-      submitBtnEl.classList.remove('loading');
-    }
+    try {
+      const isSignedIn = await this.handleSignUp({ name, email });
 
-    if (isSignedIn) {
-      this.storeOrderInformationToLocalStorage({
-        email,
-        firstName,
-        lastName,
-        address,
-        name,
-        city,
-        zip,
-        country,
-        state,
-        step: 1
-      });
-      if (this.onSubmitSuccess) {
-        this.onSubmitSuccess({
+      if (isSignedIn) {
+        this.storeOrderInformationToLocalStorage({
+          email,
           firstName,
           lastName,
           address,
+          name,
           city,
-          state,
           zip,
-          country
+          country,
+          state,
+          step: 1
         });
+
+        if (this.onSubmitSuccess) {
+          this.onSubmitSuccess({
+            firstName,
+            lastName,
+            address,
+            city,
+            state,
+            zip,
+            country
+          });
+        }
+
+        // trackAddCartEvent();
+        this.trackSelectShippingEvent();
       }
+    } catch {
+      setMessage(
+        'There has been a temporary error processing your request, please try again shortly.',
+        'error'
+      );
+    } finally {
+      submitBtnLoading.hide();
     }
 
     return false;
@@ -382,6 +394,40 @@ export default class OrderInformation {
         field.setAttribute('validated', true);
       }
       handleInputChange(field);
+    });
+  }
+
+  // GA Tracking
+
+  trackAddCartEvent() {
+    const {
+      quantity,
+      price,
+      productId: id = 'node',
+      productName: name = 'Node'
+    } = this.cart.getCart();
+
+    addCartTrackEvent({ id, name, price, quantity });
+  }
+
+  trackSelectShippingEvent() {
+    const {
+      quantity,
+      price,
+      productId: id = 'node',
+      productName: name = 'Node'
+    } = this.cart.getCart();
+
+    checkoutTrackEvent({
+      product: {
+        id,
+        name,
+        price,
+        quantity
+      },
+      options: {
+        step: 1
+      }
     });
   }
 }
