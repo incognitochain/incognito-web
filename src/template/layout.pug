@@ -8,6 +8,8 @@ html(lang='en')
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     meta(property="og:image" content="/seo_image.png")
     block meta
+    - const amazonSdkUrl = self.htmlWebpackPlugin.options.env.AMAZON_SDK_URL;
+    script(src=amazonSdkUrl)
     block script
  body(style='opacity: 0').fadeIn-ani
    block main

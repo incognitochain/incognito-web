@@ -25,6 +25,7 @@ export default class Payment {
     this.paymentPageId = 'payment-container';
     this.cryptoThankyouPageId = 'crypto-thank-you-container';
     this.zelleThankyouPageId = 'zelle-thank-you-container';
+    this.amazonExpressCheckoutPageId = 'amazon-express-checkout-container';
 
     this.parentContainer = container;
     this.cart = cart;
