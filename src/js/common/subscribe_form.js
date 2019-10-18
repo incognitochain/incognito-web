@@ -97,7 +97,10 @@ const handleClickBuyNow = () => {
 };
 
 const handleRenderAmazonExpressCheckoutButton = () => {
-  amazon.Login.setClientId(APP_ENV.AMAZON_CLIENT_ID);
+  const amazonButtonSeller = document.querySelector(
+    '#amazon-express-checkout-btn'
+  );
+  if (!amazonButtonSeller) return;
   OffAmazonPayments.Button(
     'amazon-express-checkout-btn',
     APP_ENV.AMAZON_SELLER_ID,
@@ -114,7 +117,7 @@ const handleRenderAmazonExpressCheckoutButton = () => {
         if (amazon && amazon.Login)
           amazon.Login.authorize(
             loginOptions,
-            `${window.location.origin}/payment.html?gateway=amazon`
+            `${window.location.origin}/payment.html?gateway=amazon-express`
           );
       },
       onError: error => {
