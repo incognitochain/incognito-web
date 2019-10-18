@@ -88,9 +88,9 @@ const handleClickBuyNow = () => {
   buyNowButtons.forEach(buyNowButton => {
     buyNowButton.addEventListener('click', () => {
       trackEvent({
-        eventCategory: 'Buy Now',
+        eventCategory: 'Payment',
         eventAction: 'click',
-        eventLabel: 'Move to payment page'
+        eventLabel: 'Buy Now'
       });
     });
   });
