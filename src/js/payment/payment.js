@@ -120,6 +120,10 @@ export default class Payment {
   }
 
   setup() {
+    if (queryString('gateway') === 'amazon-express') {
+      return this.handleAmazonExpressPayment();
+    }
+
     const {
       zellePaymentBtnEl,
       cryptoPaymentBtnEl,
@@ -420,5 +424,12 @@ export default class Payment {
 
     window.history.pushState('', '', window.location.pathname);
     this.onSubmitAmazonOrder(orderReferenceId, orderAccessToken);
+  }
+
+  handleAmazonExpressPayment() {
+    this.showPage(this.amazonExpressCheckoutPageId);
+
+    const accessToken = queryString('access_token');
+    if (!accessToken) window.location = '/payment.html';
   }
 }
