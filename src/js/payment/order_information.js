@@ -9,6 +9,7 @@ import { isEmail } from '../common/utils/validate';
 import { setMessage } from '../service/message_box';
 import { signUp } from '../service/api';
 import storage from '../service/storage';
+import LoadingButton from '../common/loading_button';
 
 export default class OrderInformation {
   constructor(container, cart, onSubmitSuccess) {
@@ -154,44 +155,48 @@ export default class OrderInformation {
       eventLabel: 'Submit shipping information'
     });
 
-    if (submitBtnEl) {
-      submitBtnEl.disabled = true;
-      submitBtnEl.classList.add('loading');
-    }
+    const submitBtnLoading = new LoadingButton(submitBtnEl);
+    submitBtnLoading.show();
 
-    const isSignedIn = await this.handleSignUp({ name, email });
-    if (submitBtnEl) {
-      submitBtnEl.disabled = false;
-      submitBtnEl.classList.remove('loading');
-    }
+    try {
+      const isSignedIn = await this.handleSignUp({ name, email });
 
-    if (isSignedIn) {
-      this.storeOrderInformationToLocalStorage({
-        email,
-        firstName,
-        lastName,
-        address,
-        name,
-        city,
-        zip,
-        country,
-        state,
-        step: 1
-      });
-      if (this.onSubmitSuccess) {
-        this.onSubmitSuccess({
+      if (isSignedIn) {
+        this.storeOrderInformationToLocalStorage({
+          email,
           firstName,
           lastName,
           address,
+          name,
           city,
-          state,
           zip,
-          country
+          country,
+          state,
+          step: 1
         });
+
+        if (this.onSubmitSuccess) {
+          this.onSubmitSuccess({
+            firstName,
+            lastName,
+            address,
+            city,
+            state,
+            zip,
+            country
+          });
+        }
 
         // trackAddCartEvent();
         this.trackSelectShippingEvent();
       }
+    } catch {
+      setMessage(
+        'There has been a temporary error processing your request, please try again shortly.',
+        'error'
+      );
+    } finally {
+      submitBtnLoading.hide();
     }
 
     return false;

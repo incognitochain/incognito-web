@@ -14,6 +14,7 @@ import { setMessage } from '../service/message_box';
 import KEYS from '../constant/keys';
 import OrderInformation from './order_information';
 import queryString from '../service/queryString';
+import LoadingButton from '../common/loading_button';
 
 export default class Payment {
   constructor(container, cart) {
@@ -228,10 +229,8 @@ export default class Payment {
     const paymentInformation = this.getPaymentInformation();
 
     const { zellePaymentBtnEl } = this.getPaymentElements();
-    if (zellePaymentBtnEl) {
-      zellePaymentBtnEl.disabled = true;
-      zellePaymentBtnEl.classList.add('loading');
-    }
+    const zellePaymentLoadingBtn = new LoadingButton(zellePaymentBtnEl);
+    zellePaymentLoadingBtn.show();
 
     try {
       const order = await submitZelleOrder({
@@ -261,10 +260,7 @@ export default class Payment {
     } catch (e) {
       setMessage(e.message, 'error');
     } finally {
-      if (zellePaymentBtnEl) {
-        zellePaymentBtnEl.disabled = false;
-        zellePaymentBtnEl.classList.remove('loading');
-      }
+      zellePaymentLoadingBtn.hide();
     }
   }
 
@@ -287,11 +283,8 @@ export default class Payment {
     }
 
     const coinName = cryptoPaymentCoinNameEl.value;
-
-    if (cryptoPaymentBtnEl) {
-      cryptoPaymentBtnEl.disabled = true;
-      cryptoPaymentBtnEl.classList.add('loading');
-    }
+    const cryptoPaymentLoadingBtn = new LoadingButton(cryptoPaymentBtnEl);
+    cryptoPaymentLoadingBtn.show();
 
     try {
       const order = await submitCryptoOrder({
@@ -337,10 +330,7 @@ export default class Payment {
     } catch (e) {
       setMessage(e.message, 'error');
     } finally {
-      if (cryptoPaymentBtnEl) {
-        cryptoPaymentBtnEl.disabled = false;
-        cryptoPaymentBtnEl.classList.remove('loading');
-      }
+      cryptoPaymentLoadingBtn.hide();
     }
   }
 
