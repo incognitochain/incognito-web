@@ -1,6 +1,10 @@
 import csc from 'country-state-city';
 import KEYS from '../constant/keys';
-import { trackEvent } from '../common/utils/ga';
+import {
+  trackEvent,
+  addCartTrackEvent,
+  checkoutTrackEvent
+} from '../common/utils/ga';
 import { isEmail } from '../common/utils/validate';
 import { setMessage } from '../service/message_box';
 import { signUp } from '../service/api';
@@ -145,9 +149,9 @@ export default class OrderInformation {
     } = this.getOrderInformationValues();
 
     trackEvent({
-      eventCategory: 'Button',
+      eventCategory: 'Payment',
       eventAction: 'click',
-      eventLabel: 'Submit email and shipping info'
+      eventLabel: 'Submit shipping information'
     });
 
     if (submitBtnEl) {
@@ -184,6 +188,9 @@ export default class OrderInformation {
           zip,
           country
         });
+
+        // trackAddCartEvent();
+        this.trackSelectShippingEvent();
       }
     }
 
@@ -382,6 +389,40 @@ export default class OrderInformation {
         field.setAttribute('validated', true);
       }
       handleInputChange(field);
+    });
+  }
+
+  // GA Tracking
+
+  trackAddCartEvent() {
+    const {
+      quantity,
+      price,
+      productId: id = 'node',
+      productName: name = 'Node'
+    } = this.cart.getCart();
+
+    addCartTrackEvent({ id, name, price, quantity });
+  }
+
+  trackSelectShippingEvent() {
+    const {
+      quantity,
+      price,
+      productId: id = 'node',
+      productName: name = 'Node'
+    } = this.cart.getCart();
+
+    checkoutTrackEvent({
+      product: {
+        id,
+        name,
+        price,
+        quantity
+      },
+      options: {
+        step: 1
+      }
     });
   }
 }

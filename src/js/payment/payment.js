@@ -4,7 +4,11 @@ import {
   submitZelleOrder,
   submitAmazonOrder
 } from '../service/api';
-import { trackEvent } from '../common/utils/ga';
+import {
+  trackEvent,
+  checkoutTrackEvent,
+  purchaseTrackEvent
+} from '../common/utils/ga';
 import storage from '../service/storage';
 import { setMessage } from '../service/message_box';
 import KEYS from '../constant/keys';
@@ -96,7 +100,13 @@ export default class Payment {
       zip,
       country
     } = this.orderInformation.getOrderInformationValues();
-    const { quantity = 1 } = this.cart.getCart();
+    const {
+      price,
+      shippingFee,
+      tax,
+      totalPrice,
+      quantity = 1
+    } = this.cart.getCart();
     return {
       firstName,
       lastName,
@@ -105,7 +115,11 @@ export default class Payment {
       state,
       zip,
       country,
-      quantity
+      quantity,
+      price,
+      shippingFee,
+      tax,
+      totalPrice
     };
   }
 
@@ -168,7 +182,7 @@ export default class Payment {
       amazonPaymentBtnEl.innerHTML = '';
     }
 
-    OffAmazonPayments.Button(amazonPaymentBtnId, process.env.AMAZON_SELLER_ID, {
+    OffAmazonPayments.Button(amazonPaymentBtnId, APP_ENV.AMAZON_SELLER_ID, {
       type: 'hostedPayment',
       hostedParametersProvider: done => {
         getAmazonExpressSignature({
@@ -199,6 +213,12 @@ export default class Payment {
   }
 
   async onSubmitZelleOrder() {
+    this.trackCheckoutPaymentTypeEvent('zelle');
+    trackEvent({
+      eventCategory: 'Payment',
+      eventAction: 'click',
+      eventLabel: 'Pay with Zelle'
+    });
     const paymentInformation = this.getPaymentInformation();
 
     const { zellePaymentBtnEl } = this.getPaymentElements();
@@ -214,9 +234,9 @@ export default class Payment {
       if (order) {
         const { TotalPrice: totalPrice, OrderID: orderId } = order;
         trackEvent({
-          eventCategory: 'Zelle Payment Page',
+          eventCategory: 'Payment',
           eventAction: 'show',
-          eventLabel: 'Shown zelle page'
+          eventLabel: 'Zelle confirmation page'
         });
         const {
           totalAmountEls = [],
@@ -243,6 +263,12 @@ export default class Payment {
   }
 
   async onSubmitCryptoOrder() {
+    this.trackCheckoutPaymentTypeEvent('crypto');
+    trackEvent({
+      eventCategory: 'Payment',
+      eventAction: 'click',
+      eventLabel: 'Pay with Crypto'
+    });
     const paymentInformation = this.getPaymentInformation();
 
     const {
@@ -268,9 +294,9 @@ export default class Payment {
       });
       if (order) {
         trackEvent({
-          eventCategory: 'Crypto Payment Page',
+          eventCategory: 'Payment',
           eventAction: 'show',
-          eventLabel: 'Shown crypto wallet address to user'
+          eventLabel: 'Crypto confirmation page'
         });
         const {
           TotalAmount: totalAmount = 0,
@@ -313,14 +339,28 @@ export default class Payment {
   }
 
   async onSubmitAmazonOrder(orderReferenceId, orderAccessToken) {
+    this.trackCheckoutPaymentTypeEvent('amazon');
+    trackEvent({
+      eventCategory: 'Payment',
+      eventAction: 'click',
+      eventLabel: 'Pay with Amazon'
+    });
     const paymentInformation = this.getPaymentInformation();
     this.showLoading();
 
     try {
-      const orderId = await submitAmazonOrder({
+      const orderInfo = await submitAmazonOrder({
         ...paymentInformation,
         orderReferenceId,
         orderAccessToken
+      });
+
+      const orderNumber = orderInfo.OrderID;
+      this.trackPurchaseSuccessEvent('amazon', orderNumber);
+      trackEvent({
+        eventCategory: 'Payment',
+        eventAction: 'show',
+        eventLabel: 'Amazon confirmation page'
       });
 
       this.resetPayment();
@@ -406,8 +446,7 @@ export default class Payment {
 
   handleAmazonPayment() {
     const amazonSellerId = queryString('sellerId');
-    if (!amazonSellerId || amazonSellerId !== process.env.AMAZON_SELLER_ID)
-      return;
+    if (!amazonSellerId || amazonSellerId !== APP_ENV.AMAZON_SELLER_ID) return;
 
     const resultCode = queryString('resultCode');
     if (!resultCode) return;
@@ -429,5 +468,53 @@ export default class Payment {
 
     window.history.pushState('', '', window.location.pathname);
     this.onSubmitAmazonOrder(orderReferenceId, orderAccessToken);
+  }
+
+  // GA Tracking
+  trackCheckoutPaymentTypeEvent(paymentType) {
+    if (!paymentType) return;
+
+    const { quantity, price, id = 'node', name = 'Node' } = this.cart.getCart();
+
+    checkoutTrackEvent({
+      product: {
+        id,
+        name,
+        price,
+        quantity
+      },
+      options: {
+        step: 2,
+        option: paymentType
+      }
+    });
+  }
+
+  trackPurchaseSuccessEvent(paymentType, orderNumber) {
+    if (!paymentType) return;
+    if (!orderNumber) return;
+
+    const {
+      quantity,
+      price,
+      tax,
+      shippingFee,
+      id = 'node',
+      name = 'Node'
+    } = this.cart.getCart();
+
+    purchaseTrackEvent({
+      product: {
+        id,
+        name,
+        price,
+        quantity
+      },
+      options: {
+        id: orderNumber,
+        tax,
+        shipping: shippingFee
+      }
+    });
   }
 }
