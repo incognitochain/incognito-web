@@ -384,3 +384,54 @@ export const submitAmazonOrder = ({
       );
     });
 };
+
+export const registerValidator = ({
+  telegramId,
+  nodeWalletAddress,
+  nodeIP,
+  referFrom,
+  feedback
+}) => {
+  return fetch('/validator/new', {
+    method: 'POST',
+    body: {
+      TelegramID: telegramId,
+      NodeWalletAddress: nodeWalletAddress,
+      NodeIP: nodeIP,
+      ReferFrom: referFrom,
+      Feedback: feedback
+    }
+  })
+    .then(validator => validator)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
+
+export const getValidatorDetails = ({ telegramId, nodeWalletAddress }) => {
+  return fetch('/validator/check', {
+    method: 'POST',
+    body: {
+      TelegramID: telegramId,
+      NodeWalletAddress: nodeWalletAddress
+    }
+  })
+    .then(validatorInfo => validatorInfo)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
