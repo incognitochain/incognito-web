@@ -776,6 +776,13 @@
     #amazon-express-checkout-address-book-container,
     #amazon-express-checkout-payment-container {
       flex: 1;
+      min-height: 200px;
+      height: 200px;
+
+      @include breakpoint-down(xl) {
+        min-height: 300px;
+        height: 300px;
+      }
     }
 
     #amazon-express-checkout-payment-container {

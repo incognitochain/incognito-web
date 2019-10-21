@@ -109,6 +109,11 @@ const handleRenderAmazonExpressCheckoutButton = () => {
       size: 'medium',
       color: 'Gold',
       authorization: () => {
+        trackEvent({
+          eventCategory: 'Payment',
+          eventAction: 'click',
+          eventLabel: 'Pay with Amazon Express'
+        });
         const loginOptions = {
           scope:
             'profile postal_code payments:widget payments:shipping_address payments:billing_address'

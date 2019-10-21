@@ -3,6 +3,12 @@ mixin subscribe_email(btnText)
     //- input(placeholder='Enter your email', required, type='email', pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z0-9-]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')#email-input
     .title Earn crypto with Node
     include ./price_info
+    .express-checkout-cointainer
+      #amazon-express-checkout-container
+        #amazon-express-checkout-btn
+        button.mask 
+          img(src=require('../../image/icon/amazon-icon.svg'), alt='amazon express pay icon').icon
+          span Pay with Amazon
     a(href='/payment.html').buy-now-link
       button.buy-now-btn
         span#text
@@ -10,4 +16,3 @@ mixin subscribe_email(btnText)
             != btnText
           else 
             |Buy Now
-    #amazon-express-checkout-btn
