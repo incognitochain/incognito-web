@@ -410,7 +410,7 @@ export default class Payment {
         eventLabel: 'Amazon express confirmation page'
       });
 
-      this.resetPayment();
+      // this.resetPayment();
       window.location = 'thankyou.html';
     } catch (e) {
       setMessage(e.message, 'error');
