@@ -8,11 +8,9 @@ mixin subscribe_email(btnText)
         #amazon-express-checkout-btn
         button.mask 
           img(src=require('../../image/icon/amazon-icon.svg'), alt='amazon express pay icon').icon
-          span Pay with Amazon
+          span.content Pay with Amazon
+          span.content.sticky Pay
     a(href='/payment.html').buy-now-link
       button.buy-now-btn
-        span#text
-          if btnText
-            != btnText
-          else 
-            |Buy Now
+        span.content#text Buy Now
+        span.content.sticky Buy
