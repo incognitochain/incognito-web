@@ -117,7 +117,7 @@ const handleRenderAmazonExpressCheckoutButton = () => {
         if (amazon && amazon.Login)
           amazon.Login.authorize(
             loginOptions,
-            `${window.location.origin}/payment.html?gateway=amazon-express`
+            'payment.html?gateway=amazon-express'
           );
       },
       onError: error => {

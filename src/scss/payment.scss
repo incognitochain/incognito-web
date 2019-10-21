@@ -454,6 +454,7 @@
     .wrapper {
       max-width: 500px;
       width: 100%;
+      height: 100%;
 
       @include breakpoint-down(xl) {
         max-width: unset;
@@ -764,6 +765,26 @@
 
     &.hidden {
       display: none;
+    }
+  }
+
+  #amazon-express-checkout-container {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+
+    #amazon-express-checkout-address-book-container,
+    #amazon-express-checkout-payment-container {
+      flex: 1;
+    }
+
+    #amazon-express-checkout-payment-container {
+      margin-top: 30px;
+    }
+
+    #submit-button-container {
+      display: flex;
+      justify-content: flex-end;
     }
   }
 
