@@ -11,6 +11,7 @@ import KEYS from '../constant/keys';
 import OrderInformation from './order_information';
 import queryString from '../service/queryString';
 import LoadingButton from '../common/loading_button';
+import { signUp } from '../common/user';
 
 export default class Payment {
   constructor(container, cart) {
@@ -430,6 +431,72 @@ export default class Payment {
     this.showPage(this.amazonExpressCheckoutPageId);
 
     const accessToken = queryString('access_token');
-    if (!accessToken) window.location = '/payment.html';
+    if (!accessToken) return (window.location = '/payment.html');
+
+    let orderReferenceId = null;
+
+    const getUserToken = async ({ name, email }) => {
+      try {
+        return await signUp({ name, email });
+      } catch {
+        setMessage(
+          'There has been a temporary error processing your request, please try again shortly.',
+          'error'
+        );
+      }
+    };
+
+    const showAddressBookAndPayment = () => {
+      const amazonSellerId = APP_ENV.AMAZON_SELLER_ID;
+
+      new OffAmazonPayments.Widgets.AddressBook({
+        sellerId: amazonSellerId,
+        onOrderReferenceCreate: function(orderReference) {
+          orderReferenceId = orderReference.getAmazonOrderReferenceId();
+        },
+        onAddressSelect: function(orderReference) {
+          console.log(orderReference);
+        },
+        design: {
+          designMode: 'responsive'
+        },
+        onReady: function(orderReference) {},
+        onError: function(error) {}
+      }).bind('amazon-express-checkout-address-book-container');
+
+      new OffAmazonPayments.Widgets.Wallet({
+        sellerId: amazonSellerId,
+        onPaymentSelect: function(orderReference) {},
+        design: {
+          designMode: 'responsive'
+        },
+
+        onError: function(error) {}
+      }).bind('amazon-express-checkout-payment-container');
+    };
+
+    const onAmazonAuthorized = async response => {
+      this.hideLoading();
+      const customerProfile = response.profile;
+      const { PrimaryEmail: email, Name: name } = customerProfile;
+      const isSignedUp = await this.orderInformation.handleSignUp({
+        name,
+        email
+      });
+      if (isSignedUp) showAddressBookAndPayment();
+    };
+
+    const retrieveProfile = () => {
+      this.showLoading();
+      amazon.Login.retrieveProfile(accessToken, onAmazonAuthorized);
+    };
+
+    if (amazon && amazon.Login) {
+      retrieveProfile();
+    } else {
+      window.onAmazonPaymentsReady = () => {
+        retrieveProfile();
+      };
+    }
   }
 }
