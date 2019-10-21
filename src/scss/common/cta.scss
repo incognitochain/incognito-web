@@ -120,6 +120,10 @@
 
     .button-and-countdown-container {
       margin-top: 0px !important;
+
+      @include breakpoint-up(sm) {
+        align-items: center !important;
+      }
     }
 
     .countdown {
@@ -127,7 +131,7 @@
     }
 
     .subscribe-email {
-      max-width: 600px;
+      max-width: 800px;
       margin-left: auto;
       margin-right: auto;
     }
@@ -147,7 +151,50 @@
       }
 
       .express-checkout-cointainer {
-        display: none;
+        @include breakpoint-down(sm) {
+          margin-bottom: 0;
+          margin-right: 10px;
+        }
+
+        #amazon-express-checkout-container {
+          min-width: 100px;
+
+          .mask {
+            .icon {
+              height: 20px;
+            }
+
+            .content {
+              @include breakpoint-down(sm) {
+                &:not(.sticky) {
+                  display: none;
+                }
+
+                &.sticky {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .buy-now-btn {
+        @include breakpoint-down(sm) {
+          min-width: unset;
+        }
+
+        .content {
+          @include breakpoint-down(sm) {
+            &:not(.sticky) {
+              display: none;
+            }
+
+            &.sticky {
+              display: block;
+            }
+          }
+        }
       }
 
       .shipping-info {
