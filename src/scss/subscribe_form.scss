@@ -3,6 +3,54 @@
   max-width: 600px;
   align-items: center;
 
+  .express-checkout-cointainer {
+    margin-right: 10px;
+    width: 100%;
+
+    @include breakpoint-down(sm) {
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    #amazon-express-checkout-container {
+      position: relative;
+      min-width: 230px;
+
+      &:hover {
+        opacity: 0.8;
+      }
+
+      #amazon-express-checkout-btn {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        opacity: 0;
+        height: 100%;
+      }
+
+      .mask {
+        background-image: linear-gradient(180deg, #ffe155 0%, #ffc425 100%);
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &,
+        * {
+          color: #000;
+        }
+
+        .icon {
+          height: 30px;
+          width: auto;
+          margin-right: 15px;
+        }
+      }
+    }
+  }
+
   .title {
     font-size: 18px;
     line-height: 19px;
