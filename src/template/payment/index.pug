@@ -1,9 +1,5 @@
 extends ../layout.pug
 
-block script
-    - const amazonSdkUrl = self.htmlWebpackPlugin.options.env.AMAZON_SDK_URL;
-    script(src=amazonSdkUrl)
-
 block main
     include ../header.pug
     div#content
@@ -14,6 +10,7 @@ block main
                     include ./payment
                     include ./crypto_thank_you
                     include ./zelle_thank_you
+                    include ./amazon_express_checkout
             div.right-content
                 .wrapper
                     include ./cart
