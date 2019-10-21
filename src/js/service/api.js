@@ -385,6 +385,57 @@ export const submitAmazonOrder = ({
     });
 };
 
+export const submitAmazonExpressOrder = (
+  { orderReferenceId, orderAccessToken, quantity },
+  token
+) => {
+  return fetch('order/amazon/quick-checkout', {
+    method: 'POST',
+    body: {
+      Quantity: quantity,
+      AmazonOrderReferenceId: orderReferenceId,
+      AmazonAccessToken: orderAccessToken
+    },
+    token
+  })
+    .then(orderInfo => orderInfo)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
+
+export const getAmazonShippingFee = (
+  { orderReferenceId, orderAccessToken },
+  token = undefined
+) => {
+  return fetch('order/amazon/get-shipping-info', {
+    method: 'POST',
+    body: {
+      AmazonOrderReferenceId: orderReferenceId,
+      AmazonAccessToken: orderAccessToken
+    },
+    token
+  })
+    .then(shippingInfo => shippingInfo)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
+
 export const registerValidator = ({
   telegramId,
   nodeWalletAddress,

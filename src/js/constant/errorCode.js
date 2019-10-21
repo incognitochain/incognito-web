@@ -6,5 +6,6 @@ export default {
   '-1025': 'You’ve already signed up. Welcome back!',
   '-1026': 'The verification link you clicked on was expired',
   '-90000':
-    "Hey, just one per person. Let's make sure there's a Node for every loving home."
+    "Hey, just one per person. Let's make sure there's a Node for every loving home.",
+  '-90012': 'We’re sorry, but we are unable to process your payment.'
 };

@@ -180,7 +180,7 @@ export default class Cart {
       }`;
   }
 
-  updateCart({ shippingFee, tax, quantity, saveCart = false } = {}) {
+  updateCart({ shippingFee, tax, quantity = null, saveCart = false } = {}) {
     const {
       quantityEl,
       subTotalPriceEl,

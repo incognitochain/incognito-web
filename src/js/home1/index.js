@@ -311,7 +311,10 @@ const updateEarningUI = (container, earningData) => {
     totalEarningPrice += earning.fiat;
   });
 
-  if (earningPriceEl) earningPriceEl.innerText = Math.round(totalEarningPrice);
+  if (earningPriceEl)
+    earningPriceEl.innerText = Math.round(totalEarningPrice).toLocaleString(
+      'en-US'
+    );
   if (earningBTCEl)
     earningBTCEl.innerText = Math.round(earningData.btc.coin * 1e6) / 1e6;
   if (earningETHEl)

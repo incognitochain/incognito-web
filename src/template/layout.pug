@@ -8,6 +8,13 @@ html(lang='en')
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     meta(property="og:image" content="/seo_image.png")
     block meta
+    - const amazonSdkUrl = self.htmlWebpackPlugin.options.env.AMAZON_SDK_URL;
+    - const amazonClientId = self.htmlWebpackPlugin.options.env.AMAZON_CLIENT_ID;
+    script.
+      window.onAmazonLoginReady = function() {
+      amazon.Login.setClientId("#{amazonClientId}");
+      };
+    script(src=amazonSdkUrl)
     block script
  body(style='opacity: 0').fadeIn-ani
    block main
