@@ -7,9 +7,9 @@ import {
 } from '../common/utils/ga';
 import { isEmail } from '../common/utils/validate';
 import { setMessage } from '../service/message_box';
-import { signUp } from '../service/api';
 import storage from '../service/storage';
 import LoadingButton from '../common/loading_button';
+import { signUpAndSaveToStorage } from '../common/user';
 
 export default class OrderInformation {
   constructor(container, cart, onSubmitSuccess) {
@@ -316,12 +316,7 @@ export default class OrderInformation {
 
   async handleSignUp({ name, email }) {
     try {
-      const userData = await signUp({ name: name, email });
-      if (userData) {
-        const token = userData.Token;
-        storage.set(KEYS.TOKEN, token);
-        return true;
-      }
+      return await signUpAndSaveToStorage({ name: name, email });
     } catch (e) {
       setMessage(e.message, 'error');
     }
