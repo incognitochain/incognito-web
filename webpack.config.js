@@ -138,8 +138,7 @@ const copyPlugin = new CopyPlugin([
 const customPlugin = [
   new webpack.ProvidePlugin({
     noUiSlider: 'nouislider'
-  }),
-  new webpack.EnvironmentPlugin(['AMAZON_SELLER_ID'])
+  })
 ];
 
 const production = process.env.NODE_ENV === 'production';
