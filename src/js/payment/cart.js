@@ -25,7 +25,6 @@ export default class Cart {
   }
 
   saveCartToLocalStorage(cart) {
-    this.cart = cart;
     try {
       storage.set(KEYS.CART_INFORMATION, JSON.stringify(cart));
     } catch {}
@@ -203,14 +202,16 @@ export default class Cart {
 
     quantity = quantityEl ? quantityEl.value : quantity;
 
+    this.cart = {
+      price,
+      shippingFee,
+      tax,
+      quantity,
+      totalPrice
+    };
+
     if (saveCart) {
-      this.saveCartToLocalStorage({
-        price,
-        shippingFee,
-        tax,
-        quantity,
-        totalPrice
-      });
+      this.saveCartToLocalStorage(this.cart);
     }
 
     if (productPriceEl) productPriceEl.innerText = `$${price}`;
