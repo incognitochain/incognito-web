@@ -2,7 +2,8 @@ export const trackEvent = ({
   eventCategory,
   eventAction,
   eventLabel,
-  eventValue
+  eventValue,
+  hitCallback
 } = {}) => {
   if (typeof window.ga !== 'function') {
     return;
@@ -20,7 +21,12 @@ export const trackEvent = ({
     eventCategory,
     eventAction,
     eventLabel,
-    eventValue
+    eventValue,
+    hitCallback && {
+      hitCallback: function() {
+        hitCallback();
+      }
+    }
   );
 };
 

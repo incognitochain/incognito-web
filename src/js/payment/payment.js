@@ -365,15 +365,16 @@ export default class Payment {
       });
 
       const orderNumber = orderInfo.OrderID;
+      this.resetPayment();
       this.trackPurchaseSuccessEvent('amazon', orderNumber);
       trackEvent({
         eventCategory: 'Payment',
         eventAction: 'show',
-        eventLabel: 'Amazon confirmation page'
+        eventLabel: 'Amazon confirmation page',
+        hitCallback: () => {
+          window.location = 'thankyou.html';
+        }
       });
-
-      this.resetPayment();
-      window.location = 'thankyou.html';
     } catch (e) {
       setMessage(e.message, 'error');
     } finally {
@@ -407,11 +408,13 @@ export default class Payment {
       trackEvent({
         eventCategory: 'Payment',
         eventAction: 'show',
-        eventLabel: 'Amazon express confirmation page'
+        eventLabel: 'Amazon express confirmation page',
+        hitCallback: () => {
+          window.location = 'thankyou.html';
+        }
       });
 
       // this.resetPayment();
-      window.location = 'thankyou.html';
     } catch (e) {
       setMessage(e.message, 'error');
     } finally {
