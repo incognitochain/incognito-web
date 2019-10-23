@@ -148,9 +148,9 @@ export default class Payment {
   }
 
   setup() {
-    if (queryString('gateway') === 'amazon-express') {
-      return this.handleAmazonExpressPayment();
-    }
+    // if (queryString('gateway') === 'amazon-express') {
+    //   return this.handleAmazonExpressPayment();
+    // }
 
     const {
       zellePaymentBtnEl,
@@ -181,58 +181,58 @@ export default class Payment {
       );
     });
 
-    this.handleAmazonPayment();
+    // this.handleAmazonPayment();
   }
 
-  setupAmazonPaymentButton({
-    firstName,
-    lastName,
-    address,
-    city,
-    state,
-    zip,
-    country
-  }) {
-    const amazonPaymentBtnId = 'amazon-payment-button';
-    const { quantity } = this.cart.getCart();
-    const amazonPaymentBtnEl = this.container.querySelector(
-      `#${amazonPaymentBtnId}`
-    );
-    if (amazonPaymentBtnEl) {
-      amazonPaymentBtnEl.innerHTML = '';
-    }
+  // setupAmazonPaymentButton({
+  //   firstName,
+  //   lastName,
+  //   address,
+  //   city,
+  //   state,
+  //   zip,
+  //   country
+  // }) {
+  //   const amazonPaymentBtnId = 'amazon-payment-button';
+  //   const { quantity } = this.cart.getCart();
+  //   const amazonPaymentBtnEl = this.container.querySelector(
+  //     `#${amazonPaymentBtnId}`
+  //   );
+  //   if (amazonPaymentBtnEl) {
+  //     amazonPaymentBtnEl.innerHTML = '';
+  //   }
 
-    OffAmazonPayments.Button(amazonPaymentBtnId, APP_ENV.AMAZON_SELLER_ID, {
-      type: 'hostedPayment',
-      hostedParametersProvider: done => {
-        this.trackCheckoutPaymentTypeEvent('amazon');
-        trackEvent({
-          eventCategory: 'Payment',
-          eventAction: 'click',
-          eventLabel: 'Pay with Amazon'
-        });
-        getAmazonExpressSignature({
-          firstName,
-          lastName,
-          address,
-          city,
-          state,
-          zip,
-          country,
-          quantity
-        })
-          .then(paymentInformation => {
-            done(paymentInformation);
-          })
-          .catch(e => {
-            setMessage(e.message, 'error');
-          });
-      },
-      onError: errorCode => {
-        console.log('amazon pay error', errorCode.getErrorMessage());
-      }
-    });
-  }
+  //   OffAmazonPayments.Button(amazonPaymentBtnId, APP_ENV.AMAZON_SELLER_ID, {
+  //     type: 'hostedPayment',
+  //     hostedParametersProvider: done => {
+  //       this.trackCheckoutPaymentTypeEvent('amazon');
+  //       trackEvent({
+  //         eventCategory: 'Payment',
+  //         eventAction: 'click',
+  //         eventLabel: 'Pay with Amazon'
+  //       });
+  //       getAmazonExpressSignature({
+  //         firstName,
+  //         lastName,
+  //         address,
+  //         city,
+  //         state,
+  //         zip,
+  //         country,
+  //         quantity
+  //       })
+  //         .then(paymentInformation => {
+  //           done(paymentInformation);
+  //         })
+  //         .catch(e => {
+  //           setMessage(e.message, 'error');
+  //         });
+  //     },
+  //     onError: errorCode => {
+  //       console.log('amazon pay error', errorCode.getErrorMessage());
+  //     }
+  //   });
+  // }
 
   onChangeOrderInformationClicked() {
     this.showPage(this.informationPageId);
@@ -431,15 +431,15 @@ export default class Payment {
     zip,
     country
   }) {
-    this.setupAmazonPaymentButton({
-      firstName,
-      lastName,
-      address,
-      city,
-      state,
-      zip,
-      country
-    });
+    // this.setupAmazonPaymentButton({
+    //   firstName,
+    //   lastName,
+    //   address,
+    //   city,
+    //   state,
+    //   zip,
+    //   country
+    // });
     this.showPage(this.paymentPageId);
     this.updateShipTo({
       firstName,
@@ -494,212 +494,212 @@ export default class Payment {
     element.addEventListener('change', onChange);
   }
 
-  handleAmazonPayment() {
-    const amazonSellerId = queryString('sellerId');
-    if (!amazonSellerId || amazonSellerId !== APP_ENV.AMAZON_SELLER_ID) return;
+  // handleAmazonPayment() {
+  //   const amazonSellerId = queryString('sellerId');
+  //   if (!amazonSellerId || amazonSellerId !== APP_ENV.AMAZON_SELLER_ID) return;
 
-    const resultCode = queryString('resultCode');
-    if (!resultCode) return;
-    if (resultCode === 'Failure') {
-      const failureCode = queryString('failureCode');
-      setMessage(this.getAmazonErrorMessage(failureCode), 'error');
-      window.history.pushState('', '', window.location.pathname);
-      return;
-    }
-    if (resultCode !== 'Success') return;
+  //   const resultCode = queryString('resultCode');
+  //   if (!resultCode) return;
+  //   if (resultCode === 'Failure') {
+  //     const failureCode = queryString('failureCode');
+  //     setMessage(this.getAmazonErrorMessage(failureCode), 'error');
+  //     window.history.pushState('', '', window.location.pathname);
+  //     return;
+  //   }
+  //   if (resultCode !== 'Success') return;
 
-    const orderReferenceId = queryString('orderReferenceId');
-    const orderAccessToken = '';
+  //   const orderReferenceId = queryString('orderReferenceId');
+  //   const orderAccessToken = '';
 
-    if (!orderReferenceId)
-      return setMessage(
-        'There was a problem while processing your order. Please contact us'
-      );
+  //   if (!orderReferenceId)
+  //     return setMessage(
+  //       'There was a problem while processing your order. Please contact us'
+  //     );
 
-    window.history.pushState('', '', window.location.pathname);
-    this.onSubmitAmazonOrder(orderReferenceId, orderAccessToken);
-  }
+  //   window.history.pushState('', '', window.location.pathname);
+  //   this.onSubmitAmazonOrder(orderReferenceId, orderAccessToken);
+  // }
 
-  handleAmazonExpressPayment() {
-    this.showPage(this.amazonExpressCheckoutPageId);
+  // handleAmazonExpressPayment() {
+  //   this.showPage(this.amazonExpressCheckoutPageId);
 
-    const accessToken = queryString('access_token');
-    if (!accessToken) return (window.location = '/payment.html');
+  //   const accessToken = queryString('access_token');
+  //   if (!accessToken) return (window.location = '/payment.html');
 
-    this.cart.hideTotalPriceInCryptoEl();
+  //   this.cart.hideTotalPriceInCryptoEl();
 
-    const orderAccessToken = encodeURIComponent(accessToken);
-    let orderReferenceId = null;
-    let userToken = undefined;
-    let shippingAddressInfo = null;
-    const { submitBtnEl } = this.getAmazonExpressPageElements();
-    const submitLoadingBtn = new LoadingButton(submitBtnEl);
+  //   const orderAccessToken = encodeURIComponent(accessToken);
+  //   let orderReferenceId = null;
+  //   let userToken = undefined;
+  //   let shippingAddressInfo = null;
+  //   const { submitBtnEl } = this.getAmazonExpressPageElements();
+  //   const submitLoadingBtn = new LoadingButton(submitBtnEl);
 
-    const onSubmitBtnClicked = async () => {
-      if (!accessToken || !orderReferenceId || !userToken) {
-        return setMessage(
-          'There has been a temporary error processing your request, please try again shortly.',
-          'error'
-        );
-      }
+  //   const onSubmitBtnClicked = async () => {
+  //     if (!accessToken || !orderReferenceId || !userToken) {
+  //       return setMessage(
+  //         'There has been a temporary error processing your request, please try again shortly.',
+  //         'error'
+  //       );
+  //     }
 
-      submitLoadingBtn.show();
-      await this.onSubmitAmazonExpressOrder(
-        orderReferenceId,
-        orderAccessToken,
-        userToken
-      );
-      window.history.pushState('', '', window.location.pathname);
-      submitLoadingBtn.hide();
-    };
+  //     submitLoadingBtn.show();
+  //     await this.onSubmitAmazonExpressOrder(
+  //       orderReferenceId,
+  //       orderAccessToken,
+  //       userToken
+  //     );
+  //     window.history.pushState('', '', window.location.pathname);
+  //     submitLoadingBtn.hide();
+  //   };
 
-    const onAmazonAuthorized = async response => {
-      this.hideLoading();
-      if (response.error) {
-        return (window.location = 'payment.html');
-      }
-      const customerProfile = response.profile;
-      const { PrimaryEmail: email, Name: name } = customerProfile;
-      const token = await getUserToken({
-        name,
-        email
-      });
-      if (token) {
-        userToken = token;
-        showAddressBookAndPayment();
-      }
-    };
+  //   const onAmazonAuthorized = async response => {
+  //     this.hideLoading();
+  //     if (response.error) {
+  //       return (window.location = 'payment.html');
+  //     }
+  //     const customerProfile = response.profile;
+  //     const { PrimaryEmail: email, Name: name } = customerProfile;
+  //     const token = await getUserToken({
+  //       name,
+  //       email
+  //     });
+  //     if (token) {
+  //       userToken = token;
+  //       showAddressBookAndPayment();
+  //     }
+  //   };
 
-    const getUserToken = async ({ name, email }) => {
-      try {
-        return await signUp({ name, email });
-      } catch {
-        setMessage(
-          'There has been a temporary error processing your request, please try again shortly.',
-          'error'
-        );
-      }
-      return;
-    };
+  //   const getUserToken = async ({ name, email }) => {
+  //     try {
+  //       return await signUp({ name, email });
+  //     } catch {
+  //       setMessage(
+  //         'There has been a temporary error processing your request, please try again shortly.',
+  //         'error'
+  //       );
+  //     }
+  //     return;
+  //   };
 
-    const showAddressBookAndPayment = () => {
-      const amazonSellerId = APP_ENV.AMAZON_SELLER_ID;
+  //   const showAddressBookAndPayment = () => {
+  //     const amazonSellerId = APP_ENV.AMAZON_SELLER_ID;
 
-      new OffAmazonPayments.Widgets.AddressBook({
-        sellerId: amazonSellerId,
-        onOrderReferenceCreate: function(orderReference) {
-          orderReferenceId = orderReference.getAmazonOrderReferenceId();
-        },
-        onAddressSelect: function(orderReference) {
-          handleGetAmazonShippingFee(
-            orderReferenceId,
-            orderAccessToken,
-            userToken
-          );
-        },
-        design: {
-          designMode: 'responsive'
-        },
-        onReady: function(orderReference) {},
-        onError: function(error) {
-          if (!APP_ENV.production) {
-            console.error(error);
-          }
+  //     new OffAmazonPayments.Widgets.AddressBook({
+  //       sellerId: amazonSellerId,
+  //       onOrderReferenceCreate: function(orderReference) {
+  //         orderReferenceId = orderReference.getAmazonOrderReferenceId();
+  //       },
+  //       onAddressSelect: function(orderReference) {
+  //         handleGetAmazonShippingFee(
+  //           orderReferenceId,
+  //           orderAccessToken,
+  //           userToken
+  //         );
+  //       },
+  //       design: {
+  //         designMode: 'responsive'
+  //       },
+  //       onReady: function(orderReference) {},
+  //       onError: function(error) {
+  //         if (!APP_ENV.production) {
+  //           console.error(error);
+  //         }
 
-          switch (error.getErrorCode()) {
-            case 'BuyerSessionExpired':
-              window.location = '/';
-              break;
-            case 'AddressNotModifiable':
-              if (submitBtnEl) {
-                submitBtnEl.disabled = true;
-              }
-              break;
-          }
-        }
-      }).bind('amazon-express-checkout-address-book-container');
+  //         switch (error.getErrorCode()) {
+  //           case 'BuyerSessionExpired':
+  //             window.location = '/';
+  //             break;
+  //           case 'AddressNotModifiable':
+  //             if (submitBtnEl) {
+  //               submitBtnEl.disabled = true;
+  //             }
+  //             break;
+  //         }
+  //       }
+  //     }).bind('amazon-express-checkout-address-book-container');
 
-      new OffAmazonPayments.Widgets.Wallet({
-        sellerId: amazonSellerId,
-        onPaymentSelect: function(orderReference) {
-          if (submitBtnEl) {
-            submitBtnEl.disabled = false;
-          }
-        },
-        design: {
-          designMode: 'responsive'
-        },
-        onError: function(error) {
-          if (!APP_ENV.production) {
-            console.error(error);
-          }
+  //     new OffAmazonPayments.Widgets.Wallet({
+  //       sellerId: amazonSellerId,
+  //       onPaymentSelect: function(orderReference) {
+  //         if (submitBtnEl) {
+  //           submitBtnEl.disabled = false;
+  //         }
+  //       },
+  //       design: {
+  //         designMode: 'responsive'
+  //       },
+  //       onError: function(error) {
+  //         if (!APP_ENV.production) {
+  //           console.error(error);
+  //         }
 
-          switch (error.getErrorCode()) {
-            case 'BuyerSessionExpired':
-              window.location = '/';
-              break;
-            case 'PaymentMethodNotModifiable':
-              if (submitBtnEl) {
-                submitBtnEl.disabled = true;
-              }
-              break;
-          }
-        }
-      }).bind('amazon-express-checkout-payment-container');
-    };
+  //         switch (error.getErrorCode()) {
+  //           case 'BuyerSessionExpired':
+  //             window.location = '/';
+  //             break;
+  //           case 'PaymentMethodNotModifiable':
+  //             if (submitBtnEl) {
+  //               submitBtnEl.disabled = true;
+  //             }
+  //             break;
+  //         }
+  //       }
+  //     }).bind('amazon-express-checkout-payment-container');
+  //   };
 
-    const retrieveProfile = () => {
-      this.showLoading();
-      amazon.Login.retrieveProfile(accessToken, onAmazonAuthorized);
-    };
+  //   const retrieveProfile = () => {
+  //     this.showLoading();
+  //     amazon.Login.retrieveProfile(accessToken, onAmazonAuthorized);
+  //   };
 
-    const handleGetAmazonShippingFee = async (
-      orderReferenceId,
-      orderAccessToken,
-      token
-    ) => {
-      try {
-        const shippingInfo = await getAmazonShippingFee(
-          {
-            orderReferenceId,
-            orderAccessToken
-          },
-          token
-        );
-        if (shippingInfo) {
-          const {
-            ShippingAddress: shippingAddressObj,
-            ShippingFee: shippingFeeObj
-          } = shippingInfo;
-          shippingAddressInfo = {
-            firstName: shippingAddressObj.Fullname,
-            lastName: '',
-            address: shippingAddressObj.ShippingAddress,
-            city: shippingAddressObj.AddressCity,
-            state: shippingAddressObj.AddressRegion,
-            zip: shippingAddressObj.AddressPostalCode,
-            country: shippingAddressObj.AddressCountry
-          };
-          const { ShippingFee: shippingFee, Tax: tax } = shippingFeeObj;
-          this.cart.updateCart({ shippingFee, tax });
-        }
-      } catch (e) {
-        setMessage(e.message, 'error');
-      }
-    };
+  //   const handleGetAmazonShippingFee = async (
+  //     orderReferenceId,
+  //     orderAccessToken,
+  //     token
+  //   ) => {
+  //     try {
+  //       const shippingInfo = await getAmazonShippingFee(
+  //         {
+  //           orderReferenceId,
+  //           orderAccessToken
+  //         },
+  //         token
+  //       );
+  //       if (shippingInfo) {
+  //         const {
+  //           ShippingAddress: shippingAddressObj,
+  //           ShippingFee: shippingFeeObj
+  //         } = shippingInfo;
+  //         shippingAddressInfo = {
+  //           firstName: shippingAddressObj.Fullname,
+  //           lastName: '',
+  //           address: shippingAddressObj.ShippingAddress,
+  //           city: shippingAddressObj.AddressCity,
+  //           state: shippingAddressObj.AddressRegion,
+  //           zip: shippingAddressObj.AddressPostalCode,
+  //           country: shippingAddressObj.AddressCountry
+  //         };
+  //         const { ShippingFee: shippingFee, Tax: tax } = shippingFeeObj;
+  //         this.cart.updateCart({ shippingFee, tax });
+  //       }
+  //     } catch (e) {
+  //       setMessage(e.message, 'error');
+  //     }
+  //   };
 
-    if (amazon && amazon.Login) {
-      retrieveProfile();
-    } else {
-      window.onAmazonPaymentsReady = () => {
-        retrieveProfile();
-      };
-    }
+  //   if (amazon && amazon.Login) {
+  //     retrieveProfile();
+  //   } else {
+  //     window.onAmazonPaymentsReady = () => {
+  //       retrieveProfile();
+  //     };
+  //   }
 
-    if (submitBtnEl) {
-      submitBtnEl.addEventListener('click', onSubmitBtnClicked.bind(this));
-    }
-  }
+  //   if (submitBtnEl) {
+  //     submitBtnEl.addEventListener('click', onSubmitBtnClicked.bind(this));
+  //   }
+  // }
 
   // GA Tracking
   trackCheckoutPaymentTypeEvent(paymentType) {
