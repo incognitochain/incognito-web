@@ -22,7 +22,11 @@ class Slider extends HTMLElement {
   constructor() {
     super();
     this.data = this.getImageData();
-    this.aspectRatio = this.getAspectRatio();
+    this.aspectRatio = `${this.getAttribute('aspect_ratio') || '100'}%`;
+    this.isAutoSlide = this.getAttribute('auto_slide') === 'true' || false;
+    this.thumbnail = !this.hasAttribute('thumbnail')
+      ? true
+      : this.getAttribute('thumbnail') === 'true';
 
     this.containers = [];
     this.timer = null;
@@ -42,18 +46,6 @@ class Slider extends HTMLElement {
     } catch {}
   }
 
-  getAspectRatio() {
-    return `${this.getAttribute('aspect_ratio') || '100'}%`;
-  }
-
-  isAutoSlide() {
-    const defaultIsAutoSlide = false;
-    try {
-      return this.getAttribute('auto_slide') || defaultIsAutoSlide;
-    } catch {}
-    return false;
-  }
-
   getAutoSlideTime() {
     const defaultTime = 5 * 1000;
     try {
@@ -66,10 +58,9 @@ class Slider extends HTMLElement {
     const isDesktopDevice = window.matchMedia('(min-width: 1200px)').matches;
     if (!isDesktopDevice) return;
     this.render();
-    if (this.isAutoSlide()) {
+    this.slideNext();
+    if (this.isAutoSlide) {
       this.resetAutoSlide();
-    } else {
-      this.slideNext();
     }
   }
 
@@ -128,7 +119,12 @@ class Slider extends HTMLElement {
       position: relative;
     `;
     this.containers = this.data.map(data => {
-      const { type = 'image', img: src } = data;
+      const {
+        type = 'image',
+        img: src,
+        objectFit = 'cover',
+        objectPosition = 'center'
+      } = data;
       const container = document.createElement('div');
       container.style.cssText = `
         opacity: 0;
@@ -155,7 +151,7 @@ class Slider extends HTMLElement {
         );
       } else {
         const image = document.createElement('img');
-        image.style.cssText = `${defaultStyle}; object-fit: cover; object-position: center;`;
+        image.style.cssText = `${defaultStyle}; object-fit: ${objectFit}; object-position: ${objectPosition};`;
         image.src = src;
         container.appendChild(image);
       }
@@ -186,7 +182,7 @@ class Slider extends HTMLElement {
       cursor: ${this.data && this.data.length > 1 ? 'pointer' : 'initial'};
     `;
 
-    if (this.data && this.data.length > 1) {
+    if (this.thumbnail && this.data && this.data.length > 1) {
       // this.renderNextPrevButtons(shadow);
       this.renderCarouselButton(shadow);
     }
@@ -396,8 +392,6 @@ class Slider extends HTMLElement {
   }
 
   autoSlide(timeout = 4000 /** in milisecond */) {
-    this.slideNext();
-
     if (!this.timer) {
       this.timer = setInterval(this.slideNext, timeout);
     }
@@ -407,7 +401,7 @@ class Slider extends HTMLElement {
     clearInterval(this.timer);
     this.timer = null;
 
-    if (this.isAutoSlide()) {
+    if (this.isAutoSlide) {
       this.autoSlide(this.getAutoSlideTime());
     }
   }

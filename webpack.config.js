@@ -113,6 +113,11 @@ const templateGen = [
     template: 'src/template/order_confirmation/index.pug',
     filename: 'thankyou.html',
     env: process.env
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/dex/index.pug',
+    filename: 'dex.html',
+    env: process.env
   })
   // new HtmlWebpackPlugin({
   //   template: 'src/template/mine/index.pug',
