@@ -132,7 +132,7 @@ const handleScrollToFAQ = container => {
 const handleScrollToEmailSubscriber = container => {
   const ctaEl = container.querySelector('.cta');
   const priceInfoElm = container.querySelector('.price-info');
-  let subscribeEmailEl = ctaEl.querySelector('#email-subscribe');
+  let subscribeEmailEl = ctaEl.querySelector('#buy-now-container');
   let stickyPosition = 0;
 
   do {

@@ -1,0 +1,15 @@
+mixin list(desc)
+  li
+    span= desc
+
+div#intro-container.bounceInUp-ani
+  .content
+    div.intro
+      div
+        h1.heading Incognito DEX
+        h1.title Trade crypto privately
+        p.sub-title Trade BTC, ETH, ERC20, BNB and BEP2 tokens with 100% confidentiality. The world’s first confidential, scalable, cross-chain decentralized exchange.
+
+        #subscribe-container
+          include ../common/subscribe_form
+          +subscribe_email(undefined, 'dex')
