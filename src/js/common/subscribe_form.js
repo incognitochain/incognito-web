@@ -3,142 +3,87 @@ import { setMessage } from '../service/message_box';
 import storage from '../service/storage';
 import KEYS from '../constant/keys';
 import { trackEvent } from './utils/ga';
-import queryString from '../service/queryString';
+import LoadingButton from './loading_button';
 
-// const getReferralCode = () => {
-//   return storage.get(KEYS.REFERRAL_CODE) || undefined;
-// };
+const getReferralCode = () => {
+  return storage.get(KEYS.REFERRAL_CODE) || undefined;
+};
 
-// const formHandle = () => {
-//   const forms = document.querySelectorAll('form#email-subscribe');
-//   for (let form of forms) {
-//     const emailEl = form && form.querySelector('#email-input');
-//     const submitBtn = form && form.querySelector('button.submit-email');
+const formHandle = () => {
+  const forms = document.querySelectorAll('form#email-subscribe');
+  for (let form of forms) {
+    const from = form.getAttribute('from') || '';
+    const emailEl = form && form.querySelector('#email-input');
+    const submitBtn = form && form.querySelector('button.submit-email');
 
-//     emailEl &&
-//       emailEl.addEventListener('input', function(event) {
-//         if (emailEl.validity.patternMismatch || emailEl.validity.typeMismatch) {
-//           emailEl.setCustomValidity('This is not valid email!');
-//         } else {
-//           emailEl.setCustomValidity('');
-//         }
-//       });
+    emailEl &&
+      emailEl.addEventListener('input', function() {
+        if (emailEl.validity.patternMismatch || emailEl.validity.typeMismatch) {
+          emailEl.setCustomValidity('This is not valid email!');
+        } else {
+          emailEl.setCustomValidity('');
+        }
+      });
 
-//     form &&
-//       form.addEventListener('submit', async e => {
-//         trackEvent({
-//           eventCategory: 'Button',
-//           eventAction: 'submit',
-//           eventLabel: 'Subscribe email'
-//         });
+    form &&
+      form.addEventListener('submit', async e => {
+        trackEvent({
+          eventCategory: 'Button',
+          eventAction: 'submit',
+          eventLabel: `Subscribe email${from && ` from ${from}`}`
+        });
 
-//         e.preventDefault();
+        e.preventDefault();
 
-//         //set submit status
-//         const submitBtnText = submitBtn.querySelector('#text') || {};
-//         const originalBtnText = submitBtnText.innerText;
-//         submitBtnText.innerText = 'Sending...';
-//         submitBtn.disabled = 'disabled';
-//         submitBtn.classList.add('loading');
+        const loadingSubmitBtn = new LoadingButton(submitBtn);
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = 'Sending...';
 
-//         try {
-//           const subscribedData = await subscribe(
-//             emailEl.value,
-//             getReferralCode()
-//           );
-//           const authData = await auth(emailEl.value);
+        loadingSubmitBtn.show();
 
-//           setMessage('Your email has been subscribed!');
+        try {
+          const subscribedData = await subscribe(
+            emailEl.value,
+            getReferralCode(),
+            from
+          );
+          const authData = await auth(emailEl.value);
 
-//           // store data to local
-//           storage.setMultiple({
-//             [KEYS.TOKEN]: authData.token,
-//             [KEYS.MY_REFERRAL_CODE]: subscribedData.code
-//           });
+          setMessage('Your email has been subscribed!');
 
-//           location.pathname = '/referral.html';
-//         } catch (e) {
-//           setMessage(e.message, 'error');
-//         } finally {
-//           submitBtnText.innerText = originalBtnText;
-//           submitBtn.disabled = undefined;
-//           submitBtn.classList.remove('loading');
-//         }
-//       });
-//   }
-// };
-
-const handleAutoSignIn = () => {
-  const email = queryString('email');
-
-  if (email.trim()) {
-    const emailForm = document.querySelector('#email-subscribe');
-    if (!emailForm) return;
-    const emailInput = emailForm.querySelector('#email-input');
-    if (!emailInput) return;
-    emailInput.value = email.trim();
-    const submitButton = emailForm.querySelector('.submit-email');
-    if (!submitButton) return;
-    submitButton.click();
+          // store data to local
+          storage.setMultiple({
+            [KEYS.TOKEN]: authData.token,
+            [KEYS.MY_REFERRAL_CODE]: subscribedData.code
+          });
+        } catch (e) {
+          setMessage(e.message, 'error');
+        } finally {
+          submitBtn.innerText = originalBtnText;
+          loadingSubmitBtn.hide();
+        }
+      });
   }
 };
 
-const handleClickBuyNow = () => {
-  const buyNowButtons = document.querySelectorAll('.buy-now-btn');
-  buyNowButtons.forEach(buyNowButton => {
-    buyNowButton.addEventListener('click', () => {
-      trackEvent({
-        eventCategory: 'Payment',
-        eventAction: 'click',
-        eventLabel: 'Buy Now'
-      });
-    });
-  });
-};
+// const handleAutoSignIn = () => {
+//   const email = queryString('email');
 
-// const handleRenderAmazonExpressCheckoutButton = () => {
-//   const amazonButtonSeller = document.querySelector(
-//     '#amazon-express-checkout-btn'
-//   );
-//   if (!amazonButtonSeller) return;
-//   OffAmazonPayments.Button(
-//     'amazon-express-checkout-btn',
-//     APP_ENV.AMAZON_SELLER_ID,
-//     {
-//       type: 'PwA',
-//       size: 'medium',
-//       color: 'Gold',
-//       authorization: () => {
-//         trackEvent({
-//           eventCategory: 'Payment',
-//           eventAction: 'click',
-//           eventLabel: 'Pay with Amazon Express'
-//         });
-//         const loginOptions = {
-//           scope:
-//             'profile postal_code payments:widget payments:shipping_address payments:billing_address'
-//         };
-
-//         if (amazon && amazon.Login)
-//           amazon.Login.authorize(
-//             loginOptions,
-//             'payment.html?gateway=amazon-express'
-//           );
-//       },
-//       onError: error => {
-//         if (!APP_ENV.production) {
-//           console.error(error);
-//         }
-//       }
-//     }
-//   );
+//   if (email.trim()) {
+//     const emailForm = document.querySelector('#email-subscribe');
+//     if (!emailForm) return;
+//     const emailInput = emailForm.querySelector('#email-input');
+//     if (!emailInput) return;
+//     emailInput.value = email.trim();
+//     const submitButton = emailForm.querySelector('.submit-email');
+//     if (!submitButton) return;
+//     submitButton.click();
+//   }
 // };
 
 const main = () => {
-  // formHandle();
-  handleAutoSignIn();
-  handleClickBuyNow();
-  // handleRenderAmazonExpressCheckoutButton();
+  formHandle();
+  // handleAutoSignIn();
 };
 
 main();
