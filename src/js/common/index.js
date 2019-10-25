@@ -2,6 +2,7 @@ import './scroll_action';
 import './visible_effect';
 import './header_mobile';
 import './loadScript';
+import './buy_now';
 import './subscribe_form';
 import './collapse';
 import './copiable';

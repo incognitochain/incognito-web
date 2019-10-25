@@ -13,7 +13,8 @@
   }
 
   .subscribe-email {
-    #email-subscribe {
+    #email-subscribe,
+    #buy-now-container {
       width: 600px;
       @include breakpoint-down(md) {
         width: unset;
