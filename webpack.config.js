@@ -39,11 +39,11 @@ const templateGen = [
     filename: 'specs.html',
     env: process.env
   }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/sidechain/index.pug',
-    filename: 'sidechain.html',
-    env: process.env
-  }),
+  // new HtmlWebpackPlugin({
+  //   template: 'src/template/sidechain/index.pug',
+  //   filename: 'sidechain.html',
+  //   env: process.env
+  // }),
   new HtmlWebpackPlugin({
     template: 'src/template/sidechain/index.pug',
     filename: 'tech.html',
@@ -54,11 +54,11 @@ const templateGen = [
     filename: 'wallet.html',
     env: process.env
   }),
-  new HtmlWebpackPlugin({
-    template: 'src/template/subscribe_email/index.pug',
-    filename: 'subscribe.html',
-    env: process.env
-  }),
+  // new HtmlWebpackPlugin({
+  //   template: 'src/template/subscribe_email/index.pug',
+  //   filename: 'subscribe.html',
+  //   env: process.env
+  // }),
   new HtmlWebpackPlugin({
     template: 'src/template/about/index.pug',
     filename: 'about.html',

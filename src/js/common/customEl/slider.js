@@ -24,6 +24,7 @@ class Slider extends HTMLElement {
     this.data = this.getImageData();
     this.aspectRatio = `${this.getAttribute('aspect_ratio') || '100'}%`;
     this.isAutoSlide = this.getAttribute('auto_slide') === 'true' || false;
+    this.autoSlideTime = this.getAttribute('auto_slide_time') || 5 * 1000;
     this.thumbnail = !this.hasAttribute('thumbnail')
       ? true
       : this.getAttribute('thumbnail') === 'true';
@@ -44,14 +45,6 @@ class Slider extends HTMLElement {
     try {
       return JSON.parse(this.getAttribute('images'));
     } catch {}
-  }
-
-  getAutoSlideTime() {
-    const defaultTime = 5 * 1000;
-    try {
-      return this.getAttribute('auto_slide_time') || defaultTime;
-    } catch {}
-    return defaultTime;
   }
 
   connectedCallback() {
@@ -402,7 +395,7 @@ class Slider extends HTMLElement {
     this.timer = null;
 
     if (this.isAutoSlide) {
-      this.autoSlide(this.getAutoSlideTime());
+      this.autoSlide(this.autoSlideTime);
     }
   }
 
