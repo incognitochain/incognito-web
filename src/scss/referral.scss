@@ -37,9 +37,10 @@
 
       @include breakpoint-down(xl) {
         display: none;
-      };
+      }
     }
-    .content {
+
+    > div.content {
       flex: 1;
       text-align: left;
       display: flex;
@@ -94,16 +95,16 @@
           }
         }
       }
-      
+
       .block2 {
-	#email-subscribe {
-	  input {
-	    background: #FFFFFF;
-	    border: 0 solid rgba(0,0,0,0.04);
-	    box-shadow: 0 3px 8px 0 rgba(0,0,0,0.15);
-	    border-radius: 4px;
-	  }
-	}
+        #buy-now-container {
+          input {
+            background: #ffffff;
+            border: 0 solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.15);
+            border-radius: 4px;
+          }
+        }
 
         .copy-content {
           cursor: pointer;
@@ -121,11 +122,11 @@
             border-radius: 4px;
             margin-right: 10px;
             font-size: 18px;
-            color: #2A3036;
+            color: #2a3036;
             letter-spacing: -0.42px;
             width: 100px;
-            background-color: #FFFFFF;
-            box-shadow: 0 3px 8px 0 rgba(0,0,0,0.15);
+            background-color: #ffffff;
+            box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.15);
 
             @include breakpoint-down(1440px) {
               height: 44px;
@@ -147,7 +148,7 @@
             }
           }
         }
-  
+
         .btns {
           display: flex;
           justify-content: space-between;
@@ -159,9 +160,9 @@
 
           @include breakpoint-down(sm) {
             flex-direction: column;
-          };
-  
-          > button{
+          }
+
+          > button {
             flex: 1;
             height: 40px;
             border-radius: 4px;
@@ -176,7 +177,7 @@
             @include breakpoint-down(sm) {
               flex: unset;
               margin: 5px 0px;
-            };
+            }
 
             > img {
               height: 18px;
@@ -188,15 +189,15 @@
               margin-right: 10px;
               @include breakpoint-down(sm) {
                 margin-right: unset;
-              };
+              }
             }
           }
-    
+
           .share-twitter {
-            background: #29A3EF;
+            background: #29a3ef;
           }
           .share-facebook {
-            background: #4469B0;
+            background: #4469b0;
           }
           .share-google {
             background: #d74740;
@@ -241,7 +242,7 @@
       text-align: center;
       display: flex;
       flex-direction: column;
-      
+
       span.divider {
         margin: 20px 0px;
         display: block;
@@ -279,17 +280,17 @@
         @include breakpoint-down(1440px) {
           margin-top: 0px;
         }
-        
+
         @include breakpoint-down(1300px) {
           overflow-x: scroll;
-        };
-        
+        }
+
         .level-box {
           display: flex;
-          
+
           @include breakpoint-down(920px) {
             flex-direction: column;
-          };
+          }
 
           .box {
             padding: 20px 10px 10px 10px;
@@ -330,28 +331,29 @@
               display: flex;
               padding: 15px 10px;
               align-items: center;
-            };
+            }
 
-            :nth-child(1), :nth-child(2) {
+            :nth-child(1),
+            :nth-child(2) {
               @include breakpoint-down(920px) {
                 flex: 1;
                 text-align: center;
-              };
+              }
             }
-  
+
             &.label {
               text-align: left;
             }
-  
+
             &.active {
               .num {
-                >span {
+                > span {
                   background: $black;
                   color: $white;
                 }
               }
             }
-  
+
             .desc {
               letter-spacing: 0;
               text-align: center;
@@ -364,7 +366,7 @@
             }
 
             .num {
-              >span {
+              > span {
                 border: solid 1px black;
                 width: 30px;
                 height: 30px;
@@ -381,7 +383,7 @@
                 }
               }
             }
-  
+
             .minner {
               font-size: 16px;
               color: $black4;
@@ -390,7 +392,7 @@
               line-height: 29px;
               font-weight: bold;
             }
-  
+
             .top-percent {
               position: relative;
               span {
@@ -399,14 +401,14 @@
                 letter-spacing: 0;
                 text-align: center;
                 line-height: 29px;
-  
+
                 &.percent {
                   font-weight: bold;
                   font-size: 20px;
                 }
               }
             }
-  
+
             img {
               width: 120px;
               height: auto;
