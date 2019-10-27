@@ -1,4 +1,16 @@
-mixin subscribe_email(btnText = 'Subscribe', from = '')
-  form(onsubmit='return false;', from=from)#email-subscribe
-    input(placeholder='Enter your email', required, type='email', pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z0-9-]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')#email-input
-    button(type='submit').submit-email= btnText
+mixin subscribe_email(btnText)
+  #email-subscribe
+    //- input(placeholder='Enter your email', required, type='email', pattern='[A-Za-z0-9._%+-]{3,}@[a-zA-Z0-9-]{2,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})')#email-input
+    .title Earn crypto with Node
+    include ./price_info 
+    //- .express-checkout-cointainer
+    //-   #amazon-express-checkout-container
+    //-     #amazon-express-checkout-btn
+    //-     button.mask 
+    //-       img(src=require('../../image/icon/amazon-icon.svg'), alt='amazon express pay icon').icon
+    //-       span.content Pay with Amazon
+    //-       span.content.sticky Pay
+    a(href='/payment.html').buy-now-link
+      button.buy-now-btn
+        span.content#text Buy Now
+        span.content.sticky Buy
