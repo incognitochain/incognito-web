@@ -11,4 +11,5 @@ import './common';
 import './home1';
 import './about';
 import './payment';
+import './dex';
 // import './internalSubscriberBoard';

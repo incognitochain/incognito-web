@@ -34,7 +34,7 @@
       display: block;
     }
 
-    #email-subscribe {
+    #buy-now-container {
       max-width: unset;
 
       // @include breakpoint-up(460px) {
@@ -140,7 +140,7 @@
       display: none;
     }
 
-    #email-subscribe {
+    #buy-now-container {
       display: flex;
       flex-direction: row;
 
@@ -256,7 +256,7 @@
     }
 
     @include breakpoint-up(sm) {
-      #email-subscribe {
+      #buy-now-container {
         flex-direction: row;
         justify-content: center;
 

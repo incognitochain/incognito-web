@@ -6,7 +6,6 @@ import {
   getProductPrice
 } from '../service/api';
 import { trackEvent } from '../common/utils/ga';
-import { setMessage } from '../service/message_box';
 import isQueryStringExists from '../service/queryStringExists';
 import KEYS from '../constant/keys';
 import Tooltip from 'tooltip.js';
@@ -53,7 +52,7 @@ function main() {
   handleGetProductPrice(container);
 }
 
-const handleShowTotalSubscriber = async container => {
+const handleShowTotalSubscriber = async () => {
   try {
     const num = await getTotalSubscribe();
 
@@ -68,7 +67,7 @@ const handleShowTotalSubscriber = async container => {
   } catch {}
 };
 
-const startCountdown = container => {
+const startCountdown = () => {
   const countdownEls = document.querySelectorAll('.countdown');
   for (const countdownEl of countdownEls) {
     countdown(countdownEl, '2019-10-20T23:59:00.000-07:00', () => {
@@ -116,7 +115,6 @@ const handleScrollToFAQ = container => {
   const rootScrollerElm = container.querySelector('.right-content');
   if (!rootScrollerElm) return;
   const scrollBtn = container.querySelector('.scroll-down');
-  const faqElm = container.querySelector('#faq');
 
   rootScrollerElm.addEventListener('scroll', function(event) {
     const target = event.target;
@@ -134,7 +132,7 @@ const handleScrollToFAQ = container => {
 const handleScrollToEmailSubscriber = container => {
   const ctaEl = container.querySelector('.cta');
   const priceInfoElm = container.querySelector('.price-info');
-  let subscribeEmailEl = ctaEl.querySelector('#email-subscribe');
+  let subscribeEmailEl = ctaEl.querySelector('#buy-now-container');
   let stickyPosition = 0;
 
   do {
@@ -200,10 +198,7 @@ const handleGetProductPrice = async container => {
   try {
     const productPrice = await getProductPrice();
     if (productPrice) {
-      const {
-        OfferPrice: price,
-        RemainOffer: quantityRemaining
-      } = productPrice;
+      const { OfferPrice: price } = productPrice;
       priceInfoEls.forEach(priceInfoEl => {
         const priceEl = priceInfoEl.querySelector('.end-price');
         // const offerCountdownEl = priceInfoEl.querySelector('.offer-countdown');
