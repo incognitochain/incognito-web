@@ -8,11 +8,33 @@
   p {
     font-size: 18px;
   }
+  
+  nav#header {
+    position: absolute;
+    border-bottom: none;
 
+    .logo {
+      background-image: url('../image/logo_white.svg');
+    }
+
+    .hamburger-btn {
+      background-image: url('../image/icon/hamburger-white.svg');
+    }
+
+    .title {
+      color: $white;
+    }
+
+    .desktop-menu {
+      .menu-item {
+        color: #99A8A9;
+      }
+    }
+  }
   div#content {
     .intro-container {
       padding-top: $header-height;
-      background-color: #0c1c1d;
+      background-color: #0C1C1D;
       > div {
         display: flex;
         align-items: center;
@@ -31,13 +53,13 @@
               line-height: 56px;
             }
             span.highlight {
-              color: #25c7d6;
+              color: #25C7D6;
             }
           }
           .descs {
             .desc {
               font-size: 18px;
-              color: #adbaba;
+              color: #ADBABA;
               letter-spacing: 0;
               line-height: 27px;
 
@@ -52,7 +74,7 @@
 
           @include breakpoint-down(md) {
             display: none;
-          }
+          };
         }
       }
     }
@@ -68,15 +90,15 @@
             }
           }
           .content {
-            max-height: fit-content !important;
+            max-height: fit-content!important;
           }
         }
-
+    
         .label {
           position: relative;
           padding-left: 42px;
           font-size: 18px;
-          color: #0c1c1d;
+          color: #0C1C1D;
           letter-spacing: 0;
           line-height: 27px;
           &::before {
@@ -94,7 +116,7 @@
             color: $white;
           }
         }
-
+    
         .content {
           position: relative;
           padding-left: 42px;
@@ -110,12 +132,12 @@
           }
 
           a {
-            color: #3884ff;
+            color: #3884FF;
           }
-
+  
           p {
             font-size: 18px;
-            color: #0c1c1d;
+            color: #0C1C1D;
             letter-spacing: 0;
             line-height: 27px;
             font-weight: 300;
@@ -162,7 +184,7 @@
             display: flex;
             @include breakpoint-down(sm) {
               flex-direction: column;
-            }
+            };
             .img {
               flex: 1;
             }

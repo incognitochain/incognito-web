@@ -11,7 +11,7 @@
   }
 
   40% {
-    transform: rotateX(-20deg);
+    transform: rotateX( -20deg);
     animation-timing-function: ease-in;
   }
 
@@ -36,6 +36,7 @@
 
 @keyframes bounceInUp {
   from,
+
   to {
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
   }
@@ -65,26 +66,16 @@
   }
 }
 
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
 .fadeIn-ani {
   @include animated;
   animation-name: fadeIn;
   animation-duration: 500ms;
 }
 
-@keyframes spin {
-  100% {
-    transform: rotate(360deg);
-  }
+@keyframes spin { 
+  100% { 
+    transform:rotate(360deg); 
+  } 
 }
 
 .spin {

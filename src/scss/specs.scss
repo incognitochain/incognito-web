@@ -5,38 +5,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f7f7f7;
+    background-color: #F7F7F7;
     padding: 30px;
 
     @include breakpoint-down(md) {
       flex-direction: column;
-    }
+    };
 
     .label {
       margin-right: 20px;
       font-size: 20px;
     }
 
-    #buy-now-container {
+    form#email-subscribe {
       @include breakpoint-down(md) {
         margin-top: 20px;
         flex-direction: row;
-      }
+      };
 
       @include breakpoint-down(sm) {
         margin-top: 20px;
         flex-direction: column;
-      }
+      };
 
       > input {
         background-color: white;
         @include breakpoint-down(md) {
           margin-right: 20px;
-        }
+        };
 
         @include breakpoint-down(sm) {
           margin-right: unset;
-        }
+        };
       }
     }
   }
@@ -61,32 +61,31 @@
       height: 180px;
       width: auto;
     }
-  }
-  .content,
-  .device-image-container {
+  } 
+  .content, .device-image-container {
     .row {
       padding: 45px 0px;
       display: flex;
-      flex: 1;
+      flex: 1; 
 
       @include breakpoint-up(md) {
         &:not(:last-child) {
-          border-bottom: 1px solid #eaeaea;
+          border-bottom: 1px solid #EAEAEA;
         }
-      }
-
+      };
+  
       @include breakpoint-down(md) {
         flex-direction: column;
-      }
-
+      };
+  
       .specs-name-container {
         flex: 1;
-
+  
         @include breakpoint-down(md) {
-          border-bottom: 1px solid #eaeaea;
+          border-bottom: 1px solid #EAEAEA;
           padding-bottom: 20px;
           margin-bottom: 20px;
-        }
+        };
 
         > span.name {
           font-size: 24px;
@@ -94,12 +93,12 @@
           letter-spacing: 0;
         }
       }
-
+  
       .specs-info {
         display: flex;
         align-items: flex-start;
         flex: 2;
-
+  
         .specs {
           margin-right: 30px;
           span.desc {
@@ -111,7 +110,7 @@
             margin-bottom: 12px;
             font-weight: 300;
           }
-
+  
           span.label {
             display: block;
             font-size: 20px;
@@ -121,18 +120,18 @@
             margin-bottom: 12px;
             font-weight: 500;
           }
-
+  
           span.large-label {
             display: block;
             font-size: 32px;
-            color: #0a0b0f;
+            color: #0A0B0F;
             letter-spacing: 0;
             line-height: 27px;
             margin-bottom: 12px;
             font-weight: 500;
           }
         }
-
+  
         .specs1 {
           flex: 1;
         }
