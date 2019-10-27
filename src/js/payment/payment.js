@@ -1,4 +1,6 @@
 import {
+  getAmazonExpressSignature,
+  getAmazonShippingFee,
   submitCryptoOrder,
   submitZelleOrder,
   submitAmazonOrder,
@@ -13,7 +15,9 @@ import storage from '../service/storage';
 import { setMessage } from '../service/message_box';
 import KEYS from '../constant/keys';
 import OrderInformation from './order_information';
+import queryString from '../service/queryString';
 import LoadingButton from '../common/loading_button';
+import { signUp } from '../common/user';
 
 export default class Payment {
   constructor(container, cart) {
