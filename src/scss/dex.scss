@@ -1,0 +1,66 @@
+#dex-container {
+  background: #191919;
+
+  @include breakpoint-down(xl) {
+    min-height: calc(100vh - 60px);
+  }
+
+  > div.intro-slider-container {
+    .image {
+      @include breakpoint-up(xl) {
+        width: 50%;
+
+        .image-container {
+          height: calc(100vh - #{$header-height});
+          width: 100%;
+          overflow: hidden;
+
+          .desktop {
+            width: 720px;
+            height: 836px;
+            position: relative;
+
+            img.img-container {
+              width: 720px;
+              height: 836px;
+            }
+
+            .img-content {
+              position: absolute;
+              top: 177px;
+              left: 269px;
+              width: 190px;
+              height: 408px;
+            }
+          }
+        }
+      }
+    }
+
+    .right-content {
+      * {
+        color: $white;
+      }
+
+      #intro-container {
+        > div.content {
+          div.intro {
+            > div .heading {
+              color: $white;
+            }
+
+            > div {
+              h1.title {
+                color: $white;
+              }
+            }
+
+            #subscribe-container {
+              margin-top: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
