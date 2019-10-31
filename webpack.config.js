@@ -11,7 +11,7 @@ require('dotenv').config();
 
 const templateGen = [
   new HtmlWebpackPlugin({
-    template: 'src/template/node/index.pug',
+    template: 'src/template/home1/index.pug',
     filename: 'node.html',
     env: process.env
   }),
@@ -85,7 +85,7 @@ const templateGen = [
     env: process.env
   }),
   new HtmlWebpackPlugin({
-    template: 'src/template/home1/index.pug',
+    template: 'src/template/home2/index.pug',
     filename: 'index.html',
     env: process.env
   }),
@@ -117,6 +117,11 @@ const templateGen = [
   new HtmlWebpackPlugin({
     template: 'src/template/dex/index.pug',
     filename: 'dex.html',
+    env: process.env
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/build/index.pug',
+    filename: 'create.html',
     env: process.env
   })
   // new HtmlWebpackPlugin({

@@ -1,4 +1,4 @@
-#become-validator-container {
+#build-container {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -52,7 +52,7 @@
           }
         }
         .image {
-          flex: 2;
+          flex: 5;
 
           @include breakpoint-down(md) {
             display: none;
@@ -175,6 +175,10 @@
           img {
             max-width: 300px;
             display: block;
+
+            &.wallet {
+              max-width: unset;
+            }
 
             &.landscape {
               max-width: 700px;
