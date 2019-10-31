@@ -4,7 +4,9 @@
 #dex-container,
 #about-container,
 #home1-container,
+#home2-container,
 #airdrop-container,
+#build-container,
 #self-funded-container,
 #free-software-container {
   > div.intro-slider-container {
@@ -50,6 +52,10 @@
           object-position: 0px 85%;
         }
       }
+    }
+
+    .left-content {
+      flex: 1;
     }
 
     .right-content {
