@@ -1,0 +1,166 @@
+#home2-container {
+  .intro-slider-container {
+    position: relative;
+    align-items: center;
+    min-height: 798px;
+    height: 100vh;
+
+    > .title {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      text-align: center;
+      text-transform: uppercase;
+      padding-left: 15px;
+      margin-top: 45px;
+      font-size: 20px;
+      line-height: 49px;
+
+      * {
+        display: inline-block;
+        color: $black;
+      }
+
+      .logo {
+        width: 45px;
+        margin: 0 20px;
+        position: relative;
+        top: 14px;
+      }
+
+      .highlight {
+        @include breakpoint-up(xl) {
+          color: $white;
+        }
+      }
+
+      @include breakpoint-down(xl) {
+        padding-left: 0;
+      }
+
+      @include breakpoint-down(sm) {
+        font-size: 14px;
+        margin-top: 30px;
+
+        .logo {
+          margin: 0 10px;
+          width: 35px;
+          top: 9px;
+        }
+      }
+    }
+
+    .right-content,
+    .left-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+
+      @include breakpoint-down(xl) {
+        min-height: 800px;
+        padding-bottom: 50px;
+      }
+
+      @include breakpoint-down(lg) {
+        padding-bottom: 100px;
+      }
+
+      .description-container {
+        text-align: center;
+        margin-top: 100px;
+
+        .title {
+          margin: 0;
+          font-size: 42px;
+          line-height: 49px;
+          font-weight: bold;
+
+          @include breakpoint-down(sm) {
+            font-size: 32px;
+          }
+        }
+
+        .desc {
+          margin: 0;
+          margin-top: 10px;
+          margin-bottom: 35px;
+          font-size: 20px;
+          line-height: 28px;
+
+          @include breakpoint-down(sm) {
+            font-size: 16px;
+            margin-top: 0px;
+            margin-bottom: 30px;
+          }
+        }
+      }
+
+      .button-container {
+        button {
+          color: $white;
+          height: 54px;
+          min-width: 250px;
+        }
+      }
+
+      .image-container {
+        height: 100%;
+        width: 100%;
+        margin-top: 75px;
+        max-height: 350px;
+        display: flex;
+        justify-content: center;
+
+        img {
+          height: 100%;
+          width: auto;
+          object-fit: contain;
+
+          @include breakpoint-down(sm) {
+            width: inherit;
+          }
+        }
+
+        @include breakpoint-down(sm) {
+          margin-top: 30px;
+        }
+      }
+
+      &.left-content {
+        background: url('../image/home2/home-left-background.jpg') no-repeat
+          center;
+        background-size: cover;
+
+        .description-container {
+          @include breakpoint-down(xl) {
+            margin-top: 150px;
+          }
+        }
+
+        .button-container {
+          button {
+            background-color: $black;
+          }
+        }
+      }
+
+      &.right-content {
+        background-color: $black;
+        overflow: hidden;
+
+        * {
+          color: $white;
+        }
+
+        .image-container {
+          @include breakpoint-down(sm) {
+            margin-top: 80px;
+          }
+        }
+      }
+    }
+  }
+}
