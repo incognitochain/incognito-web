@@ -170,7 +170,7 @@ const devConfig = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.(css|scss)$/,
         use: [
           'style-loader',
           'css-loader', // translates CSS into CommonJS
