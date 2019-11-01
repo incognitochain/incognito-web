@@ -7,8 +7,8 @@ mixin sidebar-menu
   a(href='/wallet.html').menu-item.mobile Use
   a(href='/dex.html').menu-item.mobile Trade
   a(href='/create.html').menu-item.mobile Create
-  a(href='/free-software.html').menu-item.mobile Free Software
-  a(href='/self-funded.html').menu-item.mobile Self Funded
+  a(href='/free-software.html').menu-item.mobile Open Source
+  a(href='/self-funded.html').menu-item.mobile Bootstrapped
   //- a(href='/referral.html').menu-item.mobile Refer & Earn $50
 
   hr(size='1', width='100%').mobile
@@ -16,7 +16,7 @@ mixin sidebar-menu
   a(href='/tech.html').menu-item Tech Overview
   a(href='/validator.html').menu-item Host a Virtual Node
   a(href='https://github.com/incognitochain?tab=repositories', target='blank').menu-item Code
-  a(href='/about.html').menu-item About us
+  a(href='/about.html').menu-item Our story
 
   hr(size='1', width='100%')
 
@@ -33,29 +33,38 @@ mixin sidebar-menu
 
 
 
-nav#header
-  a(href='/').logo
-  .desktop-menu.group
-    .main
-      a(href='/node.html').menu-item POWER
-      a(href='/wallet.html').menu-item USE
-      a(href='/dex.html').menu-item TRADE
-      a(href='/create.html').menu-item CREATE
-    .right
-      a(href='/free-software.html').menu-item FREE SOFTWARE
-      a(href='/self-funded.html').menu-item SELF FUNDED
-      a(href='/tech.html').menu-item TECH
-      a(href='/about.html').menu-item ABOUT
-    //- a(href='https://t.me/incognitochain', target='blank').menu-item.telegram-btn
-    //-   img(src=require('../../image/icon/telegram_icon_round.svg'), alt='telegram-icon')
-    //-   | Join our Telegram
-  .mobile-sidebar
-    .hamburger-btn
-    .sidebar
-      .overlay
-      .content
-        .head
-          .close
-            img(src=require('../../image/icon/close.svg'), alt='close icon')
-        +menu-left
-        +sidebar-menu
+.header-container
+  #message-bar
+    span.badge New
+    span The mainnet is live! Ready to go incognito? Get free PRV to start.
+    span.app-links
+      a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='_blank').link iOS
+      a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='_blank').link Android
+  nav#header
+    a(href='/').logo
+    .desktop-menu.group
+      .main
+        a(href='/node.html').menu-item POWER
+        a(href='/wallet.html').menu-item USE
+        a(href='/dex.html').menu-item TRADE
+        a(href='/create.html').menu-item CREATE
+        a(href='https://mainnet.incognito.org', target='_blank').menu-item EXPLORE
+      .right
+        a(href='/free-software.html').menu-item OPEN SOURCE
+        a(href='/self-funded.html').menu-item BOOTSTRAPPED
+        a(href='/tech.html').menu-item TECH
+        a(href='http://blog.incognito.org', target='_blank').menu-item BLOG
+        a(href='/about.html').menu-item OUR STORY
+      //- a(href='https://t.me/incognitochain', target='blank').menu-item.telegram-btn
+      //-   img(src=require('../../image/icon/telegram_icon_round.svg'), alt='telegram-icon')
+      //-   | Join our Telegram
+    .mobile-sidebar
+      .hamburger-btn
+      .sidebar
+        .overlay
+        .content
+          .head
+            .close
+              img(src=require('../../image/icon/close.svg'), alt='close icon')
+          +menu-left
+          +sidebar-menu
