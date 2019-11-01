@@ -6,7 +6,7 @@ mixin stepHtml(step, stepName, isOpen)
       block
 
 .step-container.container
-  +collapse('validator-steps-guide')
+  +collapse('validator-steps-guide')(auto-collapse-first-item='true')
     +stepHtml('1', 'Create your account', 'true')
       p Download the Incognito App
       .row-img 
@@ -80,11 +80,11 @@ mixin stepHtml(step, stepName, isOpen)
 
       p If you see the following errors, just ignore them. You’re doing good.  
         br
-        span.quote Error: No such container: inc_miner
-        br
-        span.quote Error: No such container: inc_kovan
-        br
-        span.quote Error response from daemon: network with name inc_net already exists  
+        p.quote Error: No such container: inc_miner
+          br
+          |Error: No such container: inc_kovan
+          br
+          |Error response from daemon: network with name inc_net already exists  
           
       p For the curious, because Incognito is integrated with Ethereum (so you can send ETH and ERC20 tokens privately), its error messages show up here. There’s nothing much we can do about it. Move on.
 
