@@ -1,0 +1,33 @@
+extends ../layout.pug
+
+mixin side_content(image, btnText, btnLink, btnClass="")
+   .description-container
+      if block
+         block
+   .button-container
+      a(href=btnLink)
+         button(class=btnClass)!= btnText
+   .image-container 
+      img(src=image).bounceInUp-ani
+
+block title
+   title The plug & play Incognito Node
+
+block main
+   div#home2-container
+      div.intro-slider-container
+         h1.title
+            span Incognito mode
+            img(src=require('../../image/home2/logo.svg')).logo
+            span.highlight for your crypto
+         .left-content
+            +side_content(require('../../image/home2/home-left-image.png'), 'Power', '/node.html')
+               h1.title Power the network. 
+               .desc Earn crypto for giving others privacy.
+         .right-content
+            +side_content(require('../../image/home2/home-right-image.png'), 'Use', '/wallet.html')
+               h1.title Use the network.
+               .desc Send, receive and store crypto privately.
+
+      //- include section.pug
+      //- include question.pug
