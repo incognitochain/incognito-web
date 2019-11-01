@@ -29,8 +29,8 @@ const main = () => {
           hide(currentItem);
           currentItem = null;
         } else {
-          show(item);
           hide(currentItem);
+          show(item);
           currentItem = item;
         }
       };
@@ -51,6 +51,7 @@ const main = () => {
               // });
 
               toggle(item);
+              label && label.scrollIntoView({ block: 'start' });
             });
         });
     });

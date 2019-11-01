@@ -5,11 +5,15 @@
     background-color: #043234;
     margin: auto;
     text-align: center;
+    line-height: 20px;
 
-    * {
+    @include breakpoint-down(sm) {
+      padding: 10px 20px;
+    }
+
+    span {
       color: $white;
       font-size: 14px;
-      line-height: 15px;
     }
 
     .badge {
@@ -19,14 +23,39 @@
       border-radius: 3px;
       background-color: #5ae8f0;
       margin-right: 10px;
+
+      @include breakpoint-down(sm) {
+        display: none;
+      }
     }
 
     .app-links {
       margin-left: 20px;
 
       .link {
-        :not(:first-child) {
+        text-decoration: none;
+        color: #25cdd6;
+        font-weight: 500;
+
+        &:hover {
+          opacity: 0.8;
+        }
+
+        &::after {
+          content: '\f054';
+          font-family: 'Font Awesome 5 Pro';
+          font-size: 8px;
+          margin-left: 5px;
+          top: -1px;
+          position: relative;
+        }
+
+        &:not(:first-child) {
           margin-left: 10px;
+
+          @include breakpoint-down(sm) {
+            margin-left: 15px;
+          }
         }
       }
     }
