@@ -17,14 +17,12 @@ mixin stepHtml(step, stepName, isOpen)
           a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
             img(src=require('../../image/wallet/app_store_black.svg'), alt='ios-app')
       p Open the app and it will automatically generate a wallet for you.
-      p Under the tap 
-        |
-        span.highlight YOU
-        |, tap on 
-        span.highlight Account. 
+      p Tap on 
+        span.highlight Settings 
+        | (Gear icon). 
 
-      img(src=require('../../image/become_validator/view_account_setting.jpg'), alt='view_account_setting')
-      img(src=require('../../image/become_validator/view_your_keys.jpg'), alt='view_your_keys')
+      img(src=require('../../image/become_validator/1.png'), alt='view_account_setting')
+      img(src=require('../../image/become_validator/2.png'), alt='view_your_keys')
       p Copy 
         |
         span.highlight YOUR INCOGNITO ADDRESS
@@ -32,7 +30,7 @@ mixin stepHtml(step, stepName, isOpen)
         span.highlight VALIDATOR KEY 
         span.italic (keep them safe!)
         |. You’ll need them in STEP 3 and 4.
-      img(src=require('../../image/become_validator/copy_your_keys.jpg'), alt='copy_your_keys')
+      img(src=require('../../image/become_validator/3.png'), alt='copy_your_keys')
 
     +stepHtml('2', 'Set up your server')
       p You can run Incognito on a low-cost server. If you don’t have a server yet, it’s really simple and takes just a couple of minutes. You can set up an account with a VPS provider or a cloud service provider like
@@ -78,7 +76,7 @@ mixin stepHtml(step, stepName, isOpen)
         |
         span.highlight your VALIDATOR KEY 
         | (from Step 1).
-      p.script.copiable(data-copy-value='curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh') curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh
+      p.script.copiable(data-copy-value='curl -LO https://raw.githubusercontent.com/incognitochain/incognito-chain/master/bin/bridge/mainnet-run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh') curl -LO https://raw.githubusercontent.com/incognitochain/incognito-chain/master/bin/bridge/mainnet-run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh
 
       p If you see the following errors, just ignore them. You’re doing good.  
         br
@@ -90,62 +88,65 @@ mixin stepHtml(step, stepName, isOpen)
           
       p For the curious, because Incognito is integrated with Ethereum (so you can send ETH and ERC20 tokens privately), its error messages show up here. There’s nothing much we can do about it. Move on.
 
-    +stepHtml('4', 'Request free Privacy (PRV)')
-      p Privacy (PRV) is the native coin of the Incognito Network. To become a validator and help build the network, you’ll need to stake the minimum 1,750 PRV. It’s easy to request free PRV. Follow these steps:
+    +stepHtml('4', 'Get Privacy Token (PRV) to stake')
+      p Privacy (PRV) is the native coin of the Incognito Network. To become a validator, you’ll need to stake the minimum 1,750 PRV. You can purchase PRV on the Incognito DEX using BTC or ETH (more currencies coming soon).
+      p Here are instructions on how to buy PRV with ETH:
         ol
-          li Make a public post on either Facebook or Twitter that includes 
-            | 
-            span.highlight https://incognito.org/YOUR_INCOGNITO_ADDRESS
-            | 
-            |(from STEP 1) and a hashtag 
-            span.highlight #goincognito
+          li Deposit ETH to the Incognito Wallet to turn it into pETH 
+            p 
+            |Open the app. Tap private ETH. Tap Deposit.
             br
+            |Send ETH to the address displayed.
             br
-            span For example:
-            p.quote "I’m going to be a validator for the Incognito network. My address is https://incognito.org/1Uv3CsGLj7Ue6YoftT2XvMPrLcpETWgDPu9XQ3rF8FgZKMtwfkGPbQ1nRxtyhSVs7duQ #goincognito"
-            br
-          li Then, copy and paste the URL of that social post to the Incognito Telegram channel 
-            | 
-            a(href='https://t.me/incognitonode', target='blank') https://t.me/incognitonode 
-            | and fill 
-            a(href='https://docs.google.com/forms/d/e/1FAIpQLScrlIiQT3dUvkqAHuDMlMhrhR6JFEZyLEkVXLlaFOptamfSdw/viewform', target='blank') this form. 
-            | That’s it! 1,750 PRV will be added to your wallet. If your PRV has not arrived after 12 hours, please direct message 
-            a(href='https://t.me/peter_incognito', target='blank') @peter_incognito 
-            | for support.
+            |That’s it! You now have pETH.
+            p
+            img(src=require('../../image/become_validator/4.png'), alt='issue_new_token')
+            img(src=require('../../image/become_validator/5.png'), alt='issue_new_token')
+            img(src=require('../../image/become_validator/6.png'), alt='issue_new_token')
+            p
+          li Purchase PRV on the pDEX
+            p 
+            |Tap on DEX. Tap Swap.
+            p
+            img(src=require('../../image/become_validator/7.png'), alt='swap_token')
+            p
+            |Here are the PRV pairs. Right now, you can choose either pETH/PRV or pBTC/PRV. Enter the amount of ETH you want to swap for PRV (you’ll need 1750 PRV to stake), then tap Swap.
+            p
+            |Success! You now have PRV.
 
     +stepHtml('5', 'Monitor your node')
       p You can easily monitor your Incognito nodes right from your phone.      
-      img(src=require('../../image/become_validator/manage_node.jpg'), alt='manage_node')
+      img(src=require('../../image/become_validator/8.png'), alt='manage_node')
 
       p Tap 
         span.highlight "Add a Virtual Node"
-      img(src=require('../../image/become_validator/add_virtual_node.jpg'), alt='add_virtual_node')
+      img(src=require('../../image/become_validator/9.png'), alt='add_virtual_node')
 
       p Enter 
         span.highlight your Node's IP address, then click 
         span.highlight "Add"
-      img(src=require('../../image/become_validator/add_virtual_node_form.jpg'), alt='add_virtual_node_form')
+      img(src=require('../../image/become_validator/10.png'), alt='add_virtual_node_form')
 
     +stepHtml('6', 'Stake')
       p Almost there! Now, that you’ve got PRV, all you have to do is stake. Remember, you need to stake at least 1,750 PRV to begin earning rewards.
       p Tap on the Node you want to stake
-      img(src=require('../../image/become_validator/node_want_to_stake.jpg'), alt='node_want_to_stake')
+      img(src=require('../../image/become_validator/11.png'), alt='node_want_to_stake')
 
       p Tap 
         span.highlight "Run" 
         |to start staking
-      img(src=require('../../image/become_validator/start_staking.jpg'), alt='start_staking')
+      img(src=require('../../image/become_validator/12.png'), alt='start_staking')
 
       p Select fee & speed as you want, then tap 
         span.highlight "Stake"
-      img(src=require('../../image/become_validator/stake.jpg'), alt='stake')
-      img(src=require('../../image/become_validator/node_page.jpg'), alt='node_page')
+      img(src=require('../../image/become_validator/13.png'), alt='stake')
+      img(src=require('../../image/become_validator/14.png'), alt='node_page')
       
       p Congrats! You’re officially part of the network. Welcome to Incognito :)
       p
         span.highlight IMPORTANT NOTE: 
         |Please keep your PRIVATE KEY as SAFE because anyone who has it can access your funds. You may need it once you re-install the mobile app.
-      img(src=require('../../image/become_validator/secure_key.jpg'), alt='secure_key')
+      img(src=require('../../image/become_validator/15.png'), alt='secure_key')
 
       p We welcome any questions, comments, or feedback. Or just reach out to chat. We’re on telegram pretty much all the time:
         | 

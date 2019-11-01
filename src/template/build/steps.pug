@@ -1,0 +1,65 @@
+include ../common/collapse.pug
+
+mixin stepHtml(step, stepName, isOpen)
+  .step-item#hello
+    +collapseItemHtml(`<span class='label' data-step-number='${step}'>${stepName}</span>`, null, isOpen)
+      block
+
+.step-container.container
+  +collapse('validator-steps-guide')
+    +stepHtml('1', 'Request PRV to start creating privacy tokens and apps')
+      p Privacy (PRV) is the native coin of the Incognito Network. To start creating your own privacy tokens and apps, you’ll need some PRV for network fees.
+      p It’s easy to request free PRV. Just follow the steps below.
+      ol
+        li 
+          |Make a public post on either Facebook or Twitter that includes:
+          br
+          span.highlight https://incognito.org/YOUR_INCOGNITO_ADDRESS
+          br
+          |and a hashtag: 
+          br
+          span.highlight #goincognito
+          p
+          |For example:
+          br
+          |"I’m going to issue my own privacy coin, pEURO, on the Incognito network. My address is https://incognito.org/1Uv3CsGLj7Ue6YoftT2XvMPrLcpETWgDPu9XQ3rF8FgZKMtwfkGPbQ1nRxtyhSVs7duQ #goincognito"
+          br
+          |"I’m going to build my own privacy app, Anonymous Birds, on the Incognito network. My address is https://incognito.org/1Uv3CsGLj7Ue6YoftT2XvMPrLcpETWgDPu9XQ3rF8FgZKMtwfkGPbQ1nRxtyhSVs7duQ #goincognito"
+          p
+        li
+          |Then, copy and paste the URL of that social post to the Incognito Telegram channel: 
+          a(href='https://t.me/incognitonode', target='blank') https://t.me/incognitonode
+          |. 
+          br
+          |That’s it! 10 PRV will be added to your wallet. If your PRV has not arrived after 12 hours, please message 
+          a(href='https://t.me/peter_incognito', target='blank') @peter_incognito 
+          | for support.
+
+
+    +stepHtml('2', 'Project 1: Issue your own privacy token', 'true')
+      p Issue a privacy-protecting token with a couple of taps. Use it to represent confidential company shares, private memberships, a secret stablecoin – you get the idea. Tokenize any kind of private asset right from your phone.
+      p Takes about a minute. No coding required.
+      .row-img 
+        .img.install-app-img
+          img(src=require('../../image/build/3.png'))
+        .img.install-app-img
+          img(src=require('../../image/build/2.png'))
+        .img.install-app-img
+          img(src=require('../../image/build/1.png'))
+      p Success! Token created. Now you can send it to your users, your customers, your employees, your frenemies.
+
+    +stepHtml('3', 'Project 2: Build an anonymous mobile game')
+      p Create a privacy-protecting mobile app for anonymous players, chock a block full of secret in-game currencies, hidden rewards, confidential payouts, and untraceable gifts.
+      p Coming mid November 2019.
+      .row-img
+        .img.install-app-img
+          img(src=require('../../image/build/4.jpg'))
+        .img.install-app-img
+          img(src=require('../../image/build/5.jpg'))
+
+    +stepHtml('4', 'Project 3: Build a confidential e-commerce website')
+      p Cash only – online. Accept confidential payments for your e-commerce site in various privacy-protecting cryptocurrencies – even your own. Issue your own tokens to create bespoke payment options, easily distribute rewards, loyalty points, memberships and more.
+      .row-img
+        .img
+          img(src=require('../../image/build/6.png')).wallet
+      p Coming mid November 2019.
