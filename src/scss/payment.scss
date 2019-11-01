@@ -531,10 +531,7 @@
           display: flex;
           padding: 10px 15px;
           align-items: center;
-
-          &.payment-gateway {
-            cursor: pointer;
-          }
+          cursor: pointer;
 
           &#pay-with-crypto {
             flex-direction: column;

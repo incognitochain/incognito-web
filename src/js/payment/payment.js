@@ -58,21 +58,9 @@ export default class Payment {
     const updateOrderInformationEls = this.container.querySelectorAll(
       '.change-order-information'
     );
-    const creditCardFormEl = this.container.querySelector(
-      'form#credit-card-form'
-    );
-    const cardContainerEl = this.container.querySelector('#card-container');
-    const billingAddressContainerEl = this.container.querySelector(
-      '#billing-address'
-    );
-    const submitOrderBtnEl = this.container.querySelector('#submit-order-btn');
     return {
       cryptoPaymentCoinNameEl,
       updateOrderInformationEls,
-      creditCardFormEl,
-      cardContainerEl,
-      billingAddressContainerEl,
-      submitOrderBtnEl,
       paymentFormEl
     };
   }
@@ -87,10 +75,22 @@ export default class Payment {
     const billingAddressContainerEl = paymentFormEl.querySelector(
       '#billing-address-container'
     );
+    const submitOrderBtnEl = paymentFormEl.querySelector('#submit-order-btn');
+
+    const creditCardFormEl = paymentFormEl.querySelector('#pay-with-card');
+    const cardContainerEl =
+      creditCardFormEl && creditCardFormEl.querySelector('#card-container');
+    const billingAddressFormEl = paymentFormEl.querySelector(
+      '#different-billing-address-form'
+    );
 
     return {
       paymentMethodContainerEl,
-      billingAddressContainerEl
+      billingAddressContainerEl,
+      creditCardFormEl,
+      cardContainerEl,
+      billingAddressFormEl,
+      submitOrderBtnEl
     };
   }
 
@@ -149,20 +149,31 @@ export default class Payment {
     };
   }
 
-  setup() {
+  toggleAriaControls(container, ariaControlsName) {
+    const ariaControlsEls = container.querySelectorAll(
+      '.content-box__container__row.content'
+    );
+    ariaControlsEls.forEach(ariaControlsEl => {
+      const id = ariaControlsEl.id;
+      if (!id) return;
+      if (id === ariaControlsName) {
+        ariaControlsEl.classList.remove('hidden');
+        ariaControlsEl.disabled = false;
+      } else {
+        ariaControlsEl.classList.add('hidden');
+        ariaControlsEl.disabled = true;
+      }
+    });
+  }
+
+  async setup() {
+    this.setupPaymentForm();
+    this.setupBillingForm();
+
     const {
       cryptoPaymentCoinNameEl,
-      updateOrderInformationEls,
-      creditCardFormEl,
-      cardContainerEl,
-      billingAddressContainerEl
+      updateOrderInformationEls
     } = this.getPaymentElements();
-
-    if (billingAddressContainerEl)
-      this.billingAddressForm = new AddressForm(
-        billingAddressContainerEl,
-        'billing'
-      );
 
     if (cryptoPaymentCoinNameEl)
       this.handleSelectElementChanged(
@@ -177,6 +188,22 @@ export default class Payment {
         this.onChangeOrderInformationClicked.bind(this)
       );
     });
+  }
+
+  async setupPaymentForm() {
+    const {
+      paymentMethodContainerEl,
+      billingAddressContainerEl,
+      creditCardFormEl,
+      cardContainerEl,
+      submitOrderBtnEl
+    } = this.getPaymentFormElements();
+    if (
+      !paymentMethodContainerEl ||
+      !billingAddressContainerEl ||
+      !submitOrderBtnEl
+    )
+      return;
 
     // mask credit card form
     creditCardFormEl &&
@@ -197,24 +224,90 @@ export default class Payment {
         }
       });
 
-    this.setupPaymentForm();
-  }
-
-  setupPaymentForm() {
-    const {
-      paymentMethodContainerEl,
-      billingAddressContainerEl
-    } = this.getPaymentFormElements();
-    if (!paymentMethodContainerEl || !billingAddressContainerEl) return;
-
+    const self = this;
+    const defaultSubmitOrderBtnText = submitOrderBtnEl.innerText;
+    const submitOrderBtnPayNowText = submitOrderBtnEl.getAttribute(
+      'data-pay-now-text'
+    );
     const paymentMethodEls = paymentMethodContainerEl.querySelectorAll(
-      '.payment-gateway'
+      '.content-box__container__row'
     );
     paymentMethodEls.forEach(paymentMethodEl => {
+      const paymentMethodInputEl = paymentMethodEl.querySelector(
+        'input[name="payment_gateway"]'
+      );
+
+      const onPaymentMethodInputChanged = function() {
+        const ariaControls = this.getAttribute('aria-controls');
+        const paymentGateway = this.value;
+        self.toggleAriaControls(paymentMethodContainerEl, ariaControls);
+
+        if (paymentGateway === 'card') {
+          billingAddressContainerEl.classList.remove('hidden');
+          submitOrderBtnEl.innerText =
+            submitOrderBtnPayNowText || defaultSubmitOrderBtnText;
+        } else {
+          billingAddressContainerEl.classList.add('hidden');
+          submitOrderBtnEl.innerText = defaultSubmitOrderBtnText;
+        }
+      };
+
+      paymentMethodInputEl &&
+        paymentMethodInputEl.addEventListener(
+          'change',
+          onPaymentMethodInputChanged
+        );
+
       paymentMethodEl.addEventListener('click', function() {
-        const inputEl = this.querySelector('input[name="payment_gateway"]');
-        inputEl && (inputEl.checked = true);
+        paymentMethodInputEl && paymentMethodInputEl.click();
       });
+
+      const isDefault =
+        paymentMethodEl.getAttribute('data-default') === 'true' || false;
+      isDefault && paymentMethodEl.click();
+    });
+  }
+
+  async setupBillingForm() {
+    const {
+      billingAddressContainerEl,
+      billingAddressFormEl
+    } = this.getPaymentFormElements();
+    if (!billingAddressContainerEl) return;
+
+    if (billingAddressFormEl)
+      this.billingAddressForm = new AddressForm(
+        billingAddressFormEl,
+        'billing'
+      );
+
+    const self = this;
+    const billingAddressEls = billingAddressContainerEl.querySelectorAll(
+      '.content-box__container__row'
+    );
+    billingAddressEls.forEach(billingAddressEl => {
+      const billingAddressInputEl = billingAddressEl.querySelector(
+        'input[name="different_billing_address"]'
+      );
+
+      const onBillingAddressChanged = function() {
+        const ariaControls = this.getAttribute('aria-controls');
+        self.toggleAriaControls(billingAddressContainerEl, ariaControls);
+      };
+
+      billingAddressInputEl &&
+        billingAddressInputEl.addEventListener(
+          'click',
+          onBillingAddressChanged
+        );
+
+      billingAddressEl.addEventListener('click', function() {
+        billingAddressInputEl && billingAddressInputEl.click();
+      });
+
+      const isDefault =
+        billingAddressEl.getAttribute('data-default') === 'true' || false;
+      isDefault && billingAddressEl.click();
     });
   }
 
