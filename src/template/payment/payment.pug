@@ -20,9 +20,9 @@ div#payment-container.payment-page.hidden
             h2 Payment
             p All transactions are secure and encrypted.
             fieldset.content-box__container
-                .content-box__container__row.payment-gateway(data-select-gateway='card')
+                .content-box__container__row.payment-gateway(data-select-gateway='card', data-default="true")
                     .radio-input
-                        input(type='radio', name='payment_gateway', checked, value='card', aria-controls='pay-with-card')
+                        input(type='radio', name='payment_gateway', value='card', aria-controls='pay-with-card')
                     .radio-label 
                         .label Credit card
                         .accessory
@@ -31,7 +31,7 @@ div#payment-container.payment-page.hidden
                             img(src=require('../../image/icon/amex.svg'))
                             img(src=require('../../image/icon/discover.svg'))
                 +box-content#pay-with-card(data-subfields-for-gateway='card')
-                        .card-container.input-wrapper 
+                        .input-wrapper
                             .input-field
                                 label(for="card-number") Card number
                                 input(
@@ -43,16 +43,16 @@ div#payment-container.payment-page.hidden
                                     type='tel',
                                     error_message='Enter a valid card number'
                                 )        
-                            .input-field
-                                label(for="card-name") Name on card
-                                input(
-                                    autocomplete="cc-name",
-                                    placeholder="Name on card",
-                                    id="card-name",
-                                    name="card-name",
-                                    required="true",
-                                    error_message='Enter your name exactly as it’s written on your card'
-                                )
+                            //- .input-field
+                            //-     label(for="card-name") Name on card
+                            //-     input(
+                            //-         autocomplete="cc-name",
+                            //-         placeholder="Name on card",
+                            //-         id="card-name",
+                            //-         name="card-name",
+                            //-         required="true",
+                            //-         error_message='Enter your name exactly as it’s written on your card'
+                            //-     )
                             .input-two-columns           
                                 .input-field
                                     label(for="card-expiry") Expiration date (MM/YY)
@@ -73,7 +73,8 @@ div#payment-container.payment-page.hidden
                                         name="card-cvv",
                                         required="true",
                                         error_message='Enter the CVV or security code on your card'
-                                    )
+                                    )                        
+                        #card-container.input-wrapper 
                 .content-box__container__row.payment-gateway(data-select-gateway='zelle')
                     .radio-input
                         input(type='radio', name='payment_gateway', value='zelle', aria-controls='pay-with-zelle')
@@ -123,9 +124,9 @@ div#payment-container.payment-page.hidden
             h2 Billing Address
             p Select the address that matches your card or payment method.
             fieldset.content-box__container
-                .content-box__container__row(data-same-billing-address)
+                .content-box__container__row(data-same-billing-address, data-default="true")
                     .radio-input
-                        input(type='radio', name='different_billing_address', value='false', checked)
+                        input(type='radio', name='different_billing_address', value='false')
                     .radio-label
                         .label Same as shipping address
                 .content-box__container__row(data-different-billing-address)
@@ -138,4 +139,4 @@ div#payment-container.payment-page.hidden
                         include address_form
                         +address_form('billing')
         .content-box.button-wrapper
-            button#submit-order-btn Complete Order
+            button#submit-order-btn(data-pay-now-text='Pay Now') Complete Order
