@@ -33,29 +33,36 @@ mixin sidebar-menu
 
 
 
-nav#header
-  a(href='/').logo
-  .desktop-menu.group
-    .main
-      a(href='/node.html').menu-item POWER
-      a(href='/wallet.html').menu-item USE
-      a(href='/dex.html').menu-item TRADE
-      a(href='/create.html').menu-item CREATE
-    .right
-      a(href='/free-software.html').menu-item FREE SOFTWARE
-      a(href='/self-funded.html').menu-item SELF FUNDED
-      a(href='/tech.html').menu-item TECH
-      a(href='/about.html').menu-item ABOUT
-    //- a(href='https://t.me/incognitochain', target='blank').menu-item.telegram-btn
-    //-   img(src=require('../../image/icon/telegram_icon_round.svg'), alt='telegram-icon')
-    //-   | Join our Telegram
-  .mobile-sidebar
-    .hamburger-btn
-    .sidebar
-      .overlay
-      .content
-        .head
-          .close
-            img(src=require('../../image/icon/close.svg'), alt='close icon')
-        +menu-left
-        +sidebar-menu
+.header-container
+  #message-bar
+    span.badge New
+    span We are on Mainnet! Ready to go incognito? Get free PRV to start.
+    span.app-links
+      a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='_blank').link iOS
+      a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='_blank').link Android
+  nav#header
+    a(href='/').logo
+    .desktop-menu.group
+      .main
+        a(href='/node.html').menu-item POWER
+        a(href='/wallet.html').menu-item USE
+        a(href='/dex.html').menu-item TRADE
+        a(href='/create.html').menu-item CREATE
+      .right
+        a(href='/free-software.html').menu-item FREE SOFTWARE
+        a(href='/self-funded.html').menu-item SELF FUNDED
+        a(href='/tech.html').menu-item TECH
+        a(href='/about.html').menu-item ABOUT
+      //- a(href='https://t.me/incognitochain', target='blank').menu-item.telegram-btn
+      //-   img(src=require('../../image/icon/telegram_icon_round.svg'), alt='telegram-icon')
+      //-   | Join our Telegram
+    .mobile-sidebar
+      .hamburger-btn
+      .sidebar
+        .overlay
+        .content
+          .head
+            .close
+              img(src=require('../../image/icon/close.svg'), alt='close icon')
+          +menu-left
+          +sidebar-menu
