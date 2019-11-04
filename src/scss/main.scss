@@ -7,7 +7,6 @@
 @import 'core/image';
 @import 'core/font';
 @import 'core/animation';
-@import 'common/tooltip.scss';
 @import 'common/price_info.scss';
 @import 'common/video_popup.scss';
 @import 'common/cta.scss';
@@ -48,7 +47,6 @@
   box-sizing: border-box;
   color: $text-color;
   font-family: $default-font;
-  outline: none;
 }
 
 html,

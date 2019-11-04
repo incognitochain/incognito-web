@@ -19,8 +19,65 @@ div#order-information-container.payment-page
                     error_message='Enter a valid email'
                 )
         div.input-wrapper
-            h2 Shipping Address
-            include address_form
-            +address_form('shipping')
+            h2 Shipping address
+            div.input-two-columns
+                div.input-field
+                    label(for="first-name") First name
+                    input(
+                        placeholder="First name",
+                        id="first-name",
+                        name="first-name",
+                        required="true",
+                        error_message='Enter a first name'
+                    )
+                div.input-field
+                    label(for="last-name") Last name
+                    input(
+                        placeholder="Last name",
+                        id="last-name",
+                        name="last-name",
+                        required="true",
+                        error_message='Enter a last name'
+                    )
+            div.input-field
+                label(for="address") Address
+                input(
+                    placeholder="Address"
+                    id="address",
+                    name="address",
+                    required="true",
+                    error_message='Enter an address'
+                )
+            div.input-field
+                label(for="city") City
+                input(
+                    placeholder="City",
+                    id="city",
+                    name="city",
+                    required="true",
+                    error_message='Enter a city'
+                )
+            div.input-two-columns.country-wrapper
+                div.select-two-lines-label
+                    div.select-wrapper.input-field.has-value
+                        label(for="country") Country/Region
+                        select(id="country", name="country", required="true", error_message='Select a country')
+                        div.caret
+                            img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
+                div.select-two-lines-label
+                    div.select-wrapper.input-field.has-value
+                        label(for="state") State
+                        select(id="state", name="state", required="true", error_message='Select a state')
+                        div.caret
+                            img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
+                div.input-field
+                    label(for="postal-code") Postal code
+                    input(
+                        placeholder="Postal code",
+                        id="postal-code",
+                        name="postal-code",
+                        required="true",
+                        error_message='Enter a ZIP / Postal code'
+                    )
         div.button-wrapper
             button#submit-order-btn Continue to payment

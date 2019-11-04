@@ -135,7 +135,6 @@
 
     .wrapper {
       float: right;
-      position: relative;
     }
 
     .logo-wrapper {
@@ -184,27 +183,6 @@
 
       .input-field {
         position: relative;
-
-        .lock-icon {
-          &::before {
-            font-family: 'Font Awesome 5 Pro';
-            width: 20px;
-            height: 20px;
-            content: '\f023';
-            position: absolute;
-            top: 15px;
-            right: 10px;
-            font-weight: 'solid';
-            color: #919191;
-          }
-        }
-
-        .question-icon {
-          @extend .lock-icon;
-          &::before {
-            content: '\f059';
-          }
-        }
 
         .validator {
           color: #e32c2b;
@@ -309,56 +287,42 @@
           color: #737373;
           left: 11px;
         }
-      }
 
-      .select-wrapper {
-        padding: 16px 29px 5px 11px;
-        height: 43px;
-        background: white;
-        width: 100%;
-        font-size: 14px;
-        border: 1px solid #d9d9d9;
-        border-radius: 5px;
-
-        select {
-          position: absolute;
-          top: 0;
-          left: 0;
-          padding: 20px 29px 5px 11px;
-          font-size: 14px;
-          background: transparent;
-          border: none;
-          align-items: start;
-          appearance: none;
+        .select-wrapper {
+          padding: 16px 29px 5px 11px;
+          height: 43px;
+          background: white;
           width: 100%;
-          height: 100%;
-          transition: all 0.2s ease-out;
+          font-size: 14px;
+          border: 1px solid #d9d9d9;
+          border-radius: 5px;
 
-          &:focus {
-            outline: none;
-            border-color: #0dc7d8;
-            box-shadow: 0 0 0 1px #0dc7d8;
+          select {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 20px 29px 5px 11px;
+            font-size: 14px;
+            background: transparent;
+            border: none;
+            align-items: start;
+            appearance: none;
+            width: 100%;
+            height: 100%;
+            transition: all 0.2s ease-out;
+
+            &:focus {
+              outline: none;
+              border-color: #197bbd;
+              box-shadow: 0 0 0 1px #197bbd;
+            }
           }
-        }
-
-        .caret {
-          border-left: 1px rgba(179, 179, 179, 0.5) solid;
-          display: block;
-          width: 30px;
-          height: 20px;
-          pointer-events: none;
-          position: absolute;
-          top: 50%;
-          right: 0;
-          -webkit-transform: translate(0%, -50%);
-          transform: translate(0%, -50%);
         }
       }
     }
     .button-wrapper {
       display: flex;
       margin-top: 30px;
-      justify-content: flex-end;
 
       button {
         height: 55px;
@@ -369,23 +333,6 @@
 
         @include breakpoint-down(xl) {
           width: 100%;
-        }
-      }
-    }
-
-    .country-wrapper {
-      input {
-        margin: 0;
-      }
-
-      label {
-        margin-top: 0;
-      }
-
-      .select-wrapper {
-        label {
-          margin-left: 0;
-          margin-top: 0;
         }
       }
     }
@@ -524,128 +471,14 @@
   }
 
   #payment-container {
-    fieldset {
-      border: none;
-      margin: 0;
-      padding: 0;
-    }
+    .payment {
+      &:not(:last-child) {
+        margin-top: 50px;
+      }
 
-    .content-box {
-      margin-top: 50px;
-
-      .content-box__container {
-        background: #fff;
-        background-clip: padding-box;
-        border: 1px solid #d9d9d9;
-        border-radius: 5px;
-        color: #545454;
-        padding: 0;
-
-        .content-box__container__row ~ .content-box__container__row {
-          &:not(.hidden) {
-            border-top: 1px solid #d9d9d9;
-          }
-        }
-
-        .content-box__container__row {
-          box-sizing: border-box;
-          width: 100%;
-          display: flex;
-          padding: 10px 15px;
-          align-items: center;
-          cursor: pointer;
-
-          &#pay-with-crypto {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 15px;
-
-            .select-wrapper {
-              select {
-                padding: 14px 29px 5px 11px;
-              }
-            }
-          }
-
-          #card-container {
-            display: none;
-          }
-
-          #credit-card-form {
-            width: 100%;
-          }
-
-          &.content {
-            background-color: #fafafa;
-          }
-
-          .radio-input {
-            margin-right: 10px;
-            display: inline-flex;
-
-            input[type='radio'] {
-              appearance: none;
-              border: 1px solid #d9d9d9;
-              width: 18px;
-              height: 18px;
-              border-radius: 50%;
-              background: $white;
-              transition: all 0.2s ease-in-out;
-              cursor: pointer;
-              position: relative;
-
-              &::after {
-                width: 4px;
-                height: 4px;
-                margin-left: -2px;
-                margin-top: -2px;
-                background-color: #fff;
-                border-radius: 50%;
-                content: '';
-                display: block;
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: scale(0.2);
-                transition: all 0.2s ease-in-out 0.1s;
-                opacity: 0;
-              }
-
-              &:checked {
-                border: none;
-                box-shadow: 0 0 0 10px #0dc7d8 inset;
-
-                &::after {
-                  transform: scale(1);
-                  opacity: 1;
-                }
-              }
-            }
-          }
-
-          .radio-label {
-            display: flex;
-            width: 100%;
-            justify-content: space-between;
-
-            .label {
-              font-weight: 500;
-              margin-top: 3px;
-            }
-
-            .accessory {
-              @include breakpoint-down(sm) {
-                display: none;
-              }
-
-              img {
-                width: 20px;
-                height: 20px;
-                vertical-align: middle;
-                margin-right: 10px;
-              }
-            }
-          }
+      .payment-wrapper {
+        @include breakpoint-up(sm) {
+          max-width: 300px;
         }
       }
 
@@ -661,19 +494,25 @@
       }
     }
 
+    #pay-with-crypto {
+      select {
+        padding: 14px 29px 5px 12px;
+      }
+    }
+
     #ship-to {
       margin-right: 10px;
     }
 
     .information {
       padding: 12px 16px;
-      border: 1px solid #d9d9d9;
+      border: 1px solid #e6e6e6;
       border-radius: 5px;
       margin-bottom: 40px;
 
       .three-lines-content {
         &:not(:first-child) {
-          border-bottom: 1px solid #d9d9d9;
+          border-bottom: 1px solid #e6e6e6;
           padding-bottom: 10px;
           margin-bottom: 10px;
         }
@@ -682,10 +521,6 @@
       .link {
         font-size: 12px;
       }
-    }
-
-    #payment-form {
-      position: relative;
     }
 
     h2 {
@@ -752,6 +587,66 @@
 
         right: 5px;
         top: 21px;
+      }
+    }
+
+    .select-wrapper {
+      .caret {
+        border-left: 1px rgba(179, 179, 179, 0.5) solid;
+        display: block;
+        width: 30px;
+        height: 20px;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        -webkit-transform: translate(0%, -50%);
+        transform: translate(0%, -50%);
+
+        .icon {
+          right: 0px;
+          top: 6px;
+        }
+      }
+    }
+
+    .select-two-lines-label {
+      width: 100%;
+
+      label {
+        margin: 0;
+      }
+    }
+  }
+
+  #order-information-container {
+    .country-wrapper {
+      input {
+        margin: 0;
+      }
+
+      label {
+        margin-top: 0;
+      }
+
+      .select-wrapper {
+        .caret {
+          border-left: 1px rgba(179, 179, 179, 0.5) solid;
+          display: block;
+          width: 30px;
+          height: 20px;
+          pointer-events: none;
+          position: absolute;
+          top: 50%;
+          right: 0;
+          -webkit-transform: translate(0%, -50%);
+          transform: translate(0%, -50%);
+        }
+
+        label {
+          margin-left: 0;
+          margin-top: 0;
+        }
       }
     }
   }
