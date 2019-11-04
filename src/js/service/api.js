@@ -171,11 +171,11 @@ export const getShippingFee = ({
     });
 };
 
-export const isCreditCardDisabled = () => {
+export const checkCCPaymentGatewayLimit = () => {
   return fetch('order/authorize/check-limit', {
     method: 'GET'
   })
-    .then(result)
+    .then(isEnabled => isEnabled)
     .catch(e => {
       if (!APP_ENV.production) {
         console.error(e);
@@ -291,40 +291,50 @@ export const submitZelleOrder = ({
 };
 
 export const submitCreditCardOrder = ({
-  shipping = { firstName, lastName, address, city, state, zip, country },
-  billing = { firstName, lastName, address, city, state, zip, country },
-  card = {
-    number,
-    expiry,
-    code
-  },
+  firstName,
+  lastName,
+  address,
+  city,
+  state,
+  zip,
+  country,
+  billingFirstName,
+  billingLastName,
+  billingAddress,
+  billingCity,
+  billingState,
+  billingZip,
+  billingCountry,
+  cardNumber,
+  cardExpiry,
+  cardCode,
   quantity = 1
 }) => {
   return fetch('order/authorize/checkout', {
     method: 'POST',
     body: {
       ShippingTo: {
-        FirstName: shipping.firstName,
-        LastName: shipping.lastName,
-        AddressStreet: shipping.address,
-        AddressCity: shipping.city,
-        AddressRegion: shipping.state,
-        AddressPostalCode: shipping.zip,
-        AddressCountry: shipping.country
+        FirstName: firstName,
+        LastName: lastName,
+        AddressStreet: address,
+        AddressCity: city,
+        AddressRegion: state,
+        AddressPostalCode: zip,
+        AddressCountry: country
       },
       BillingTo: {
-        FirstName: billing.firstName,
-        LastName: billing.lastName,
-        AddressStreet: billing.address,
-        AddressCity: billing.city,
-        AddressRegion: billing.state,
-        AddressPostalCode: billing.zip,
-        AddressCountry: billing.country
+        FirstName: billingFirstName,
+        LastName: billingLastName,
+        AddressStreet: billingAddress,
+        AddressCity: billingCity,
+        AddressRegion: billingState,
+        AddressPostalCode: billingZip,
+        AddressCountry: billingCountry
       },
       CCInfo: {
-        CCNumber: card.number,
-        CCExpired: card.expiry,
-        CCCVC: card.code
+        CCNumber: cardNumber,
+        CCExpired: cardExpiry,
+        CCCVC: cardCode
       },
       Quantity: quantity
     }
