@@ -1,3 +1,7 @@
+mixin box-content
+    fieldset(disabled).content-box__container__row.content.hidden&attributes(attributes)
+        block
+
 div#payment-container.payment-page.hidden
     ul.breadcrumb.desktop
         li.breadcrumb-item
@@ -10,55 +14,131 @@ div#payment-container.payment-page.hidden
             div Ship to
             div#ship-to
             a.link(href='#').change-order-information Change
-    //- div.payment#pay-with-amazon
-    //-     h2 Pay in USD with Amazon Pay
-    //-     .payment-wrapper
-    //-         div.button-wrapper
-    //-             #amazon-payment-button
-    //-             button.submit-btn.amazon-payment-button-mask
-    div.payment#pay-with-zelle
-        h2 Pay in USD with Zelle
-        p Zelle is the quickest way to pay for your Node.
-        .payment-wrapper
-            div.button-wrapper
-                button.submit-btn#submit-zelle-payment-btn Pay with Zelle
-    div.payment#pay-with-crypto
-        h2 Pay with Bitcoin, Ethereum and more.
-        div.card-input.payment-wrapper
-            div.card-type
-                div.types
-                    img(src=require('../../image/icon/btc.svg'))
-                    img(src=require('../../image/icon/eth.svg'))
-                    img(src=require('../../image/icon/bnb.svg'))
-                    img(src=require('../../image/icon/usdt.svg'))
-            div.card-information.input-wrapper
-                div.select-two-lines-label
-                    div.select-wrapper.input-field
-                        select(name='coin-name')#crypto-payment-coin-name
-                            include ./coin_name
-                            option(value='BTC') 
-                                +coin_name('BTC')
-                            option(value='ETH') 
-                                +coin_name('ETH')
-                            option(value='BNB') 
-                                +coin_name('BNB')
-                            option(value='USDT') 
-                                +coin_name('USDT')
-                            option(value='USDC') 
-                                +coin_name('USDC')
-                            option(value='TUSD')   
-                                +coin_name('TUSD')
-                            option(value='PAX') 
-                                +coin_name('PAX')
-                            option(value='GUSD') 
-                                +coin_name('GUSD')
-                            option(value='USDS') 
-                                +coin_name('USDS')
-                            option(value='BUSD') 
-                                +coin_name('BUSD')
-                        div.caret
-                            img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
-            div.button-wrapper
-                button.submit-btn#submit-crypto-payment-btn Pay now
-    include ./crypto_guide
-    +crypto_guide(false)
+
+    form#payment-form
+        #payment-method-container.content-box
+            h2 Payment
+            p All transactions are secure and encrypted.
+            fieldset.content-box__container
+                .content-box__container__row.payment-gateway(data-select-gateway='card').hidden
+                    .radio-input
+                        input(type='radio', name='payment_gateway', value='card', aria-controls='pay-with-card')
+                    .radio-label 
+                        .label Credit card
+                        .accessory
+                            img(src=require('../../image/icon/visa.svg'))
+                            img(src=require('../../image/icon/mastercard.svg'))
+                            img(src=require('../../image/icon/amex.svg'))
+                            img(src=require('../../image/icon/discover.svg'))
+                +box-content#pay-with-card(data-subfields-for-gateway='card')
+                        .input-wrapper
+                            .input-field
+                                label(for="card-number") Card number
+                                input(
+                                    autocomplete="cc-number",
+                                    placeholder="Card Number",
+                                    id="card-number",
+                                    name="card-number",
+                                    required="true",
+                                    type='tel',
+                                    error_message='Enter a valid card number'
+                                )        
+                                span.lock-icon
+                            //- .input-field
+                            //-     label(for="card-name") Name on card
+                            //-     input(
+                            //-         autocomplete="cc-name",
+                            //-         placeholder="Name on card",
+                            //-         id="card-name",
+                            //-         name="card-name",
+                            //-         required="true",
+                            //-         error_message='Enter your name exactly as it’s written on your card'
+                            //-     )
+                            .input-two-columns           
+                                .input-field
+                                    label(for="card-expiry") Expiration date (MM/YYYY)
+                                    input(
+                                        autocomplete="cc-exp",
+                                        placeholder="Expiration date (MM/YYYY)",
+                                        id="card-expiry",
+                                        name="card-expiry",
+                                        required="true",
+                                        error_message='Enter a valid card expiry date'
+                                    )          
+                                .input-field
+                                    label(for="card-cvv") Security code
+                                    input(
+                                        autocomplete="cc-csc",
+                                        placeholder="Security code",
+                                        id="card-cvv",
+                                        name="card-cvv",
+                                        required="true",
+                                        error_message='Enter the CVV or security code on your card'
+                                    )       
+                                    i-tooltip(data-text='3-digit security code usually found on the back of your card. American Express cards have a 4-digit code located on the front.').question-icon                 
+                        #card-container.input-wrapper 
+                .content-box__container__row.payment-gateway(data-select-gateway='zelle', data-default="true")
+                    .radio-input
+                        input(type='radio', name='payment_gateway', value='zelle', aria-controls='pay-with-zelle')
+                    .radio-label 
+                        .label Zelle
+                        .accessory
+                .content-box__container__row.payment-gateway(data-select-gateway='crypto')
+                        .radio-input
+                            input(type='radio', name='payment_gateway', value='crypto', aria-controls='pay-with-crypto')
+                        .radio-label 
+                            .label Bitcoin, Ethereum and more
+                            .accessory
+                                img(src=require('../../image/icon/btc.svg'))
+                                img(src=require('../../image/icon/eth.svg'))
+                                img(src=require('../../image/icon/bnb.svg'))
+                                img(src=require('../../image/icon/usdt.svg'))
+                +box-content#pay-with-crypto(data-subfields-for-gateway='crypto')
+                        div.card-information.input-wrapper
+                            div.select-wrapper.input-field
+                                select(name='coin-name')#crypto-payment-coin-name
+                                    include ./coin_name
+                                    option(value='BTC') 
+                                        +coin_name('BTC')
+                                    option(value='ETH') 
+                                        +coin_name('ETH')
+                                    option(value='BNB') 
+                                        +coin_name('BNB')
+                                    option(value='USDT') 
+                                        +coin_name('USDT')
+                                    option(value='USDC') 
+                                        +coin_name('USDC')
+                                    option(value='TUSD')   
+                                        +coin_name('TUSD')
+                                    option(value='PAX') 
+                                        +coin_name('PAX')
+                                    option(value='GUSD') 
+                                        +coin_name('GUSD')
+                                    option(value='USDS') 
+                                        +coin_name('USDS')
+                                    option(value='BUSD') 
+                                        +coin_name('BUSD')
+                                div.caret
+                                    img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
+                        include crypto_guide
+                        +crypto_guide(false)
+        #billing-address-container.content-box.hidden
+            h2 Billing Address
+            p Select the address that matches your card or payment method.
+            fieldset.content-box__container
+                .content-box__container__row(data-same-billing-address, data-default="true")
+                    .radio-input
+                        input(type='radio', name='different_billing_address', value='false')
+                    .radio-label
+                        .label Same as shipping address
+                .content-box__container__row(data-different-billing-address)
+                    .radio-input
+                        input(type='radio', name='different_billing_address', value='true', aria-controls='different-billing-address-form')
+                    .radio-label
+                        .label Use a different billing address
+                +box-content#different-billing-address-form
+                    .input-wrapper
+                        include address_form
+                        +address_form('billing')
+        .content-box.button-wrapper
+            button#submit-order-btn(data-pay-now-text='Pay Now') Complete Order
