@@ -171,22 +171,6 @@ export const getShippingFee = ({
     });
 };
 
-export const checkCCPaymentGatewayLimit = () => {
-  return fetch('order/authorize/check-limit', {
-    method: 'GET'
-  })
-    .then(isEnabled => isEnabled)
-    .catch(e => {
-      if (!APP_ENV.production) {
-        console.error(e);
-      }
-      throw new Error(
-        e.message ||
-          'Something went wrong, but we’re on it. Please try again soon.'
-      );
-    });
-};
-
 export const submitCryptoOrder = ({
   firstName,
   lastName,
@@ -255,6 +239,43 @@ export const submitCryptoOrder = ({
     });
 };
 
+export const submitPaypalOrder = ({
+  firstName,
+  lastName,
+  address,
+  city,
+  state,
+  country,
+  zip,
+  orderId,
+  quantity
+}) => {
+  return fetch('order/paypal/checkout', {
+    method: 'POST',
+    body: {
+      FirstName: firstName,
+      LastName: lastName,
+      AddressStreet: address,
+      AddressRegion: state,
+      AddressCity: city,
+      AddressPostalCode: zip,
+      AddressCountry: country,
+      Quantity: quantity,
+      OrderID: orderId
+    }
+  })
+    .then(orderInfo => orderInfo)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
+
 export const submitZelleOrder = ({
   firstName,
   lastName,
@@ -290,53 +311,66 @@ export const submitZelleOrder = ({
     });
 };
 
-export const submitCreditCardOrder = ({
+export const getAmazonExpressSignature = ({
   firstName,
   lastName,
   address,
   city,
   state,
-  zip,
   country,
-  billingFirstName,
-  billingLastName,
-  billingAddress,
-  billingCity,
-  billingState,
-  billingZip,
-  billingCountry,
-  cardNumber,
-  cardExpiry,
-  cardCode,
-  quantity = 1
+  zip,
+  quantity
 }) => {
-  return fetch('order/authorize/checkout', {
+  return fetch('order/amazon/express-signature', {
     method: 'POST',
     body: {
-      ShippingTo: {
-        FirstName: firstName,
-        LastName: lastName,
-        AddressStreet: address,
-        AddressCity: city,
-        AddressRegion: state,
-        AddressPostalCode: zip,
-        AddressCountry: country
-      },
-      BillingTo: {
-        FirstName: billingFirstName,
-        LastName: billingLastName,
-        AddressStreet: billingAddress,
-        AddressCity: billingCity,
-        AddressRegion: billingState,
-        AddressPostalCode: billingZip,
-        AddressCountry: billingCountry
-      },
-      CCInfo: {
-        CCNumber: cardNumber,
-        CCExpired: cardExpiry,
-        CCCVC: cardCode
-      },
+      FirstName: firstName,
+      LastName: lastName,
+      AddressStreet: address,
+      AddressRegion: state,
+      AddressCity: city,
+      AddressPostalCode: zip,
+      AddressCountry: country,
       Quantity: quantity
+    }
+  })
+    .then(paymentSignature => paymentSignature)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
+
+export const submitAmazonOrder = ({
+  firstName,
+  lastName,
+  address,
+  city,
+  state,
+  country,
+  zip,
+  quantity,
+  orderReferenceId,
+  orderAccessToken
+}) => {
+  return fetch('order/amazon/checkout', {
+    method: 'POST',
+    body: {
+      FirstName: firstName,
+      LastName: lastName,
+      AddressStreet: address,
+      AddressRegion: state,
+      AddressCity: city,
+      AddressPostalCode: zip,
+      AddressCountry: country,
+      Quantity: quantity,
+      AmazonOrderReferenceId: orderReferenceId,
+      AmazonAccessToken: orderAccessToken
     }
   })
     .then(orderInfo => orderInfo)
@@ -344,6 +378,58 @@ export const submitCreditCardOrder = ({
       if (!APP_ENV.production) {
         console.error(e);
       }
+
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
+
+export const submitAmazonExpressOrder = (
+  { orderReferenceId, orderAccessToken, quantity },
+  token
+) => {
+  return fetch('order/amazon/quick-checkout', {
+    method: 'POST',
+    body: {
+      Quantity: quantity,
+      AmazonOrderReferenceId: orderReferenceId,
+      AmazonAccessToken: orderAccessToken
+    },
+    token
+  })
+    .then(orderInfo => orderInfo)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+
+      throw new Error(
+        e.message ||
+          'Something went wrong, but we’re on it. Please try again soon.'
+      );
+    });
+};
+
+export const getAmazonShippingFee = (
+  { orderReferenceId, orderAccessToken },
+  token = undefined
+) => {
+  return fetch('order/amazon/get-shipping-info', {
+    method: 'POST',
+    body: {
+      AmazonOrderReferenceId: orderReferenceId,
+      AmazonAccessToken: orderAccessToken
+    },
+    token
+  })
+    .then(shippingInfo => shippingInfo)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+
       throw new Error(
         e.message ||
           'Something went wrong, but we’re on it. Please try again soon.'
