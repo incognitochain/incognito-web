@@ -600,7 +600,7 @@
             #intro-heading {
               position: absolute;
               left: 0;
-              top: 100px;
+              top: calc(#{$header-height} + 80px);
               text-align: center;
               width: 100%;
               margin: 0 auto;

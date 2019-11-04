@@ -2,7 +2,7 @@ mixin collapse(id)
   div(
     class='collapse-container',
     data-id= id
-  )
+  )&attributes(attributes)
     block
 
 mixin collapseItem(label, desc)
