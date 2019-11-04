@@ -6,15 +6,15 @@ block main
         div#payment
             div.left-content
                 .wrapper
+                    include ./loading
+                    +loading.hidden
                     include ./order_information
                     include ./payment
                     include ./crypto_thank_you
                     include ./zelle_thank_you
-                    include ./amazon_express_checkout
             div.right-content
                 .wrapper
                     include ./cart
-            include ./loading
     include ../common/video_popup
     +video_popup(false)
 
