@@ -73,6 +73,7 @@
           }
           .content {
             max-height: fit-content !important;
+            word-wrap: break-word;
           }
         }
 
@@ -103,26 +104,45 @@
           position: relative;
           padding-left: 42px;
           margin-bottom: 30px;
+
+          * {
+            color: $black;
+          }
+
+          ol {
+            margin: 0;
+            li {
+              margin-top: 30px;
+              padding-left: 10px;
+            }
+          }
+
           &::before {
             display: block;
             position: absolute;
             content: '';
             width: 2px;
             height: 100%;
-            background-color: $grey;
+            background-image: linear-gradient(
+              #d1dfe0 33%,
+              rgba(255, 255, 255, 0) 0%
+            );
+            background-position: right;
+            background-size: 1px 8px;
+            background-repeat: repeat-y;
             left: 0px;
           }
 
           a {
-            color: #3884ff;
+            font-weight: 500;
           }
 
           p {
-            font-size: 18px;
+            font-size: 16px;
             color: #0c1c1d;
             letter-spacing: 0;
-            line-height: 27px;
-            font-weight: 300;
+            line-height: 24px;
+            font-weight: 400;
           }
           .script {
             font-size: 16px;
@@ -137,9 +157,9 @@
           }
 
           .quote {
-            font-size: 16px;
-            margin: 0px 10px;
-            letter-spacing: -1px;
+            padding: 20px;
+            border: 1px dashed #9ab7b8;
+            border-radius: 8px;
           }
 
           .copiable {
@@ -154,8 +174,25 @@
             }
           }
 
+          .divide {
+            margin: 30px 0px 15px;
+          }
+
           .highlight {
             font-weight: 500;
+            color: $black;
+
+            &.wrap {
+              padding: 10px 20px;
+              border-radius: 8px;
+              background-color: $white2;
+              margin: 10px 0;
+            }
+
+            &.special-link {
+              background-color: #f0f9f9;
+              color: $green1;
+            }
           }
 
           .italic {
@@ -169,6 +206,15 @@
             }
             .img {
               flex: 1;
+
+              &:not(:first-child) {
+                margin-left: 20px;
+
+                @include breakpoint-down(sm) {
+                  margin-left: 0;
+                  margin-top: 20px;
+                }
+              }
             }
           }
 
@@ -176,7 +222,7 @@
             max-width: 300px;
             display: block;
 
-            &.wallet {
+            &.full {
               max-width: unset;
             }
 

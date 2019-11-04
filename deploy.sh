@@ -23,7 +23,7 @@ gcloud auth activate-service-account --key-file ./cash-prototype-4a2c9d4ce248.js
 gcloud container clusters get-credentials incognito-live-cluster --zone us-west1-a --project cash-prototype
 docker login -u oauth2accesstoken -p "$(gcloud auth print-access-token)" https://gcr.io
 builNumber=$V
-curl -LO https://raw.githubusercontent.com/incognitochain/incognito-chain/master/bin/bridge/run.sh
+curl -L https://raw.githubusercontent.com/incognitochain/incognito-chain/master/bin/bridge/mainnet-run.sh -o run.sh
 docker build -t gcr.io/$PROJECT/$NAME_IMAGE:$builNumber .
 result=$(echo $?)
 if [ $result != 0 ] ; then
