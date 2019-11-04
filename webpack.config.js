@@ -232,7 +232,7 @@ const prodConfig = {
         use: ['babel-loader']
       },
       {
-        test: /\.scss$/,
+        test: /\.(css|scss)$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader', // translates CSS into CommonJS
