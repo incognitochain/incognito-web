@@ -85,6 +85,13 @@
 @font-face {
   font-family: 'Font Awesome 5 Pro';
   src: url('../assets/fonts/fa-light-300.woff') format('woff');
-  font-weight: 400;
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Font Awesome 5 Pro';
+  src: url('../assets/fonts/fa-solid-900.woff') format('woff');
+  font-weight: 'solid';
   font-style: normal;
 }
