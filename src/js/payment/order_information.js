@@ -1,3 +1,4 @@
+import csc from 'country-state-city';
 import KEYS from '../constant/keys';
 import {
   trackEvent,
@@ -6,11 +7,9 @@ import {
 } from '../common/utils/ga';
 import { isEmail } from '../common/utils/validate';
 import { setMessage } from '../service/message_box';
-import { signUpAndSaveToStorage } from '../common/user';
-import { handleSelectElementChanged, handleInputChange } from '../common/form';
 import storage from '../service/storage';
 import LoadingButton from '../common/loading_button';
-import AddressForm from './address_form';
+import { signUpAndSaveToStorage } from '../common/user';
 
 export default class OrderInformation {
   constructor(container, cart, onSubmitSuccess) {
@@ -38,22 +37,19 @@ export default class OrderInformation {
   }
 
   getOrderInformationElements() {
-    if (!this.container || !this.addressForm) return {};
+    if (!this.container) return {};
     const orderInformationFormEl = this.getOrderInformationForm();
     const emailEl = orderInformationFormEl.querySelector('#email');
+    const firstNameEl = orderInformationFormEl.querySelector('#first-name');
+    const lastNameEl = orderInformationFormEl.querySelector('#last-name');
+    const addressEl = orderInformationFormEl.querySelector('#address');
+    const cityEl = orderInformationFormEl.querySelector('#city');
+    const stateEl = orderInformationFormEl.querySelector('#state');
+    const zipEl = orderInformationFormEl.querySelector('#postal-code');
+    const countryEl = orderInformationFormEl.querySelector('#country');
     const submitBtnEl = orderInformationFormEl.querySelector(
       '#submit-order-btn'
     );
-
-    const {
-      firstNameEl,
-      lastNameEl,
-      addressEl,
-      cityEl,
-      stateEl,
-      zipEl,
-      countryEl
-    } = this.addressForm.getAddressFormElements();
 
     return {
       emailEl,
@@ -103,13 +99,30 @@ export default class OrderInformation {
   setup() {
     const orderInformationFormEl = this.getOrderInformationForm();
     if (!orderInformationFormEl) return;
-    this.addressForm = new AddressForm(orderInformationFormEl, 'shipping');
     this.handleFormValidation(orderInformationFormEl);
 
-    const { countryEl, emailEl } = this.getOrderInformationElements();
-    countryEl &&
-      handleSelectElementChanged(countryEl, this.onCountryChange.bind(this));
-    emailEl && handleInputChange(emailEl);
+    const { countryEl } = this.getOrderInformationElements();
+    if (countryEl)
+      this.handleSelectElementChanged(
+        countryEl,
+        this.onCountryChange.bind(this)
+      );
+
+    const countries = csc.getAllCountries();
+    let selectedCountryId = -1;
+    countries.forEach(country => {
+      const option = document.createElement('option');
+      option.setAttribute('id', country.id);
+      option.value = country.sortname;
+      option.innerText = country.name;
+      option.selected = country.sortname.toLowerCase() === 'us';
+      selectedCountryId =
+        country.sortname.toLowerCase() === 'us'
+          ? country.id
+          : selectedCountryId;
+      countryEl.appendChild(option);
+    });
+    this.updateAddressStateList(selectedCountryId);
 
     orderInformationFormEl.addEventListener(
       'submit',
@@ -190,6 +203,7 @@ export default class OrderInformation {
   }
 
   onCountryChange(e) {
+    const target = e.target;
     const {
       address,
       city,
@@ -198,6 +212,9 @@ export default class OrderInformation {
       country
     } = this.getOrderInformationValues();
     this.cart.getShippingFeeFromServer({ address, city, state, zip, country });
+
+    const countryId = target.options[target.selectedIndex].getAttribute('id');
+    this.updateAddressStateList(countryId);
   }
 
   isFormValidated(formContainer) {
@@ -213,6 +230,21 @@ export default class OrderInformation {
     }
 
     return true;
+  }
+
+  updateAddressStateList(countryId) {
+    const { stateEl } = this.getOrderInformationElements();
+    if (stateEl) {
+      stateEl.innerHTML = '';
+      const states = csc.getStatesOfCountry(countryId);
+
+      states.forEach(state => {
+        const option = document.createElement('option');
+        option.value = state.name;
+        option.innerText = state.name;
+        stateEl.appendChild(option);
+      });
+    }
   }
 
   storeOrderInformationToLocalStorage(newPaymentInfo) {
@@ -236,7 +268,16 @@ export default class OrderInformation {
   }
 
   fillOrderInformationForm() {
-    const { emailEl } = this.getOrderInformationElements();
+    const {
+      emailEl,
+      firstNameEl,
+      lastNameEl,
+      addressEl,
+      cityEl,
+      stateEl,
+      zipEl,
+      countryEl
+    } = this.getOrderInformationElements();
     const {
       email,
       address,
@@ -248,21 +289,17 @@ export default class OrderInformation {
       step,
       lastName
     } = this.getOrderInformationFromLocalStorage();
-
-    if (emailEl && email) {
-      emailEl.value = email;
-      emailEl.dispatchEvent(new Event('input'));
+    if (emailEl && email) emailEl.value = email;
+    if (firstNameEl && firstName) firstNameEl.value = firstName;
+    if (lastNameEl && lastName) lastNameEl.value = lastName;
+    if (addressEl && address) addressEl.value = address;
+    if (cityEl && city) cityEl.value = city;
+    if (zipEl && zip) zipEl.value = zip;
+    if (countryEl && country) {
+      countryEl.value = country;
+      countryEl.dispatchEvent(new Event('blur'));
     }
-    this.addressForm &&
-      this.addressForm.fillInformation({
-        firstName,
-        lastName,
-        address,
-        city,
-        state,
-        zip,
-        country
-      });
+    if (stateEl && state) stateEl.value = state;
 
     if (step === 1 && this.onSubmitSuccess) {
       this.onSubmitSuccess({
@@ -294,6 +331,7 @@ export default class OrderInformation {
   handleFormValidation(container) {
     const validatorClassName = 'validator';
     const errorClassName = 'error';
+    const hasValueClass = 'has-value';
 
     const addError = field => {
       const message = field.getAttribute('error_message') || 'Enter a value';
@@ -322,9 +360,16 @@ export default class OrderInformation {
 
     const handleInputChange = field => {
       field.addEventListener('input', function() {
+        const wrapper = this.parentNode;
         const value = this.value.trim();
         const isEmailRequired =
           this.getAttribute('email_required') === 'true' || false;
+
+        const previousSibling = this.previousSibling;
+        if (previousSibling.tagName === 'LABEL' && wrapper) {
+          if (value && value.length > 0) wrapper.classList.add(hasValueClass);
+          else wrapper.classList.remove(hasValueClass);
+        }
 
         if (!value || (isEmailRequired && !isEmail(value))) {
           addError(field);
