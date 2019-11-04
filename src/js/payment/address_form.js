@@ -100,31 +100,31 @@ export default class AddressForm {
       countryEl
     } = this.getAddressFormElements();
 
-    if (firstNameEl) {
+    if (firstNameEl && firstName != null) {
       firstNameEl.value = firstName;
       firstNameEl.dispatchEvent(new Event('input'));
     }
-    if (lastNameEl) {
+    if (lastNameEl && lastName != null) {
       lastNameEl.value = lastName;
       lastNameEl.dispatchEvent(new Event('input'));
     }
-    if (addressEl) {
+    if (addressEl && address != null) {
       addressEl.value = address;
       addressEl.dispatchEvent(new Event('input'));
     }
-    if (cityEl) {
+    if (cityEl && city != null) {
       cityEl.value = city;
       cityEl.dispatchEvent(new Event('input'));
     }
-    if (zipEl) {
+    if (zipEl && zip != null) {
       zipEl.value = zip;
       zipEl.dispatchEvent(new Event('input'));
     }
-    if (countryEl) {
+    if (countryEl && country != null) {
       countryEl.value = country;
       countryEl.dispatchEvent(new Event('blur'));
     }
-    if (stateEl) {
+    if (stateEl && state != null) {
       stateEl.value = state;
       stateEl.dispatchEvent(new Event('blur'));
     }

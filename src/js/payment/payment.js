@@ -2,7 +2,7 @@ import {
   submitCryptoOrder,
   submitZelleOrder,
   submitCreditCardOrder,
-  isCreditCardDisabled
+  checkCCPaymentGatewayLimit
 } from '../service/api';
 import {
   trackEvent,
@@ -52,14 +52,10 @@ export default class Payment {
   getPaymentElements() {
     if (!this.container) return {};
     const paymentFormEl = this.container.querySelector('form#payment-form');
-    const cryptoPaymentCoinNameEl = this.container.querySelector(
-      '#crypto-payment-coin-name'
-    );
     const updateOrderInformationEls = this.container.querySelectorAll(
       '.change-order-information'
     );
     return {
-      cryptoPaymentCoinNameEl,
       updateOrderInformationEls,
       paymentFormEl
     };
@@ -76,21 +72,42 @@ export default class Payment {
       '#billing-address-container'
     );
     const submitOrderBtnEl = paymentFormEl.querySelector('#submit-order-btn');
-
     const creditCardFormEl = paymentFormEl.querySelector('#pay-with-card');
     const cardContainerEl =
       creditCardFormEl && creditCardFormEl.querySelector('#card-container');
+    const cardPaymentGatewayInputEl = paymentFormEl.querySelector(
+      '.payment-gateway[data-select-gateway="card"]'
+    );
     const billingAddressFormEl = paymentFormEl.querySelector(
       '#different-billing-address-form'
     );
+    const paymentGatewayInputEl = paymentFormEl.querySelector(
+      'input[name="payment_gateway"]:checked'
+    );
+    const differentBillingAddressInputEl = paymentFormEl.querySelector(
+      'input[name="different_billing_address"]:checked'
+    );
+    const cryptoPaymentTypeInputEl = paymentFormEl.querySelector(
+      '#crypto-payment-coin-name'
+    );
+    const creditCardNumberEl = paymentFormEl.querySelector('#card-number');
+    const creditCardExpiryEl = paymentFormEl.querySelector('#card-expiry');
+    const creditCardCodeEl = paymentFormEl.querySelector('#card-cvv');
 
     return {
       paymentMethodContainerEl,
       billingAddressContainerEl,
       creditCardFormEl,
       cardContainerEl,
+      cardPaymentGatewayInputEl,
       billingAddressFormEl,
-      submitOrderBtnEl
+      paymentGatewayInputEl,
+      differentBillingAddressInputEl,
+      cryptoPaymentTypeInputEl,
+      submitOrderBtnEl,
+      creditCardNumberEl,
+      creditCardExpiryEl,
+      creditCardCodeEl
     };
   }
 
@@ -171,15 +188,9 @@ export default class Payment {
     this.setupBillingForm();
 
     const {
-      cryptoPaymentCoinNameEl,
+      paymentFormEl,
       updateOrderInformationEls
     } = this.getPaymentElements();
-
-    if (cryptoPaymentCoinNameEl)
-      this.handleSelectElementChanged(
-        cryptoPaymentCoinNameEl,
-        this.onCryptoPaymentCoinNameChanged.bind(this)
-      );
 
     // handle events while back to shipping address form
     updateOrderInformationEls.forEach(updateOrderInformationEl => {
@@ -188,6 +199,44 @@ export default class Payment {
         this.onChangeOrderInformationClicked.bind(this)
       );
     });
+
+    paymentFormEl &&
+      paymentFormEl.addEventListener(
+        'submit',
+        this.onPaymentFormSubmitted.bind(this)
+      );
+  }
+
+  disableCCPaymentGateway() {
+    const {
+      creditCardFormEl,
+      cardPaymentGatewayInputEl
+    } = this.getPaymentFormElements();
+    const { paymentFormEl } = this.getPaymentElements();
+    creditCardFormEl && creditCardFormEl.remove();
+    cardPaymentGatewayInputEl && cardPaymentGatewayInputEl.remove();
+
+    const paymentGatewayContainerEls =
+      paymentFormEl && paymentFormEl.querySelectorAll('.payment-gateway');
+
+    paymentGatewayContainerEls &&
+      paymentGatewayContainerEls.length > 0 &&
+      paymentGatewayContainerEls[0] &&
+      paymentGatewayContainerEls[0].click();
+  }
+
+  enableCCPaymentGateway() {
+    const {
+      cardPaymentGatewayInputEl,
+      creditCardFormEl
+    } = this.getPaymentFormElements();
+
+    creditCardFormEl && creditCardFormEl.classList.remove('hidden');
+
+    if (cardPaymentGatewayInputEl) {
+      cardPaymentGatewayInputEl.classList.remove('hidden');
+      cardPaymentGatewayInputEl.click();
+    }
   }
 
   async setupPaymentForm() {
@@ -196,14 +245,15 @@ export default class Payment {
       billingAddressContainerEl,
       creditCardFormEl,
       cardContainerEl,
+      cryptoPaymentTypeInputEl,
       submitOrderBtnEl
     } = this.getPaymentFormElements();
-    if (
-      !paymentMethodContainerEl ||
-      !billingAddressContainerEl ||
-      !submitOrderBtnEl
-    )
-      return;
+
+    cryptoPaymentTypeInputEl &&
+      this.handleSelectElementChanged(
+        cryptoPaymentTypeInputEl,
+        this.onCryptoPaymentCoinNameChanged.bind(this)
+      );
 
     // mask credit card form
     creditCardFormEl &&
@@ -224,6 +274,13 @@ export default class Payment {
         }
       });
 
+    if (
+      !paymentMethodContainerEl ||
+      !billingAddressContainerEl ||
+      !submitOrderBtnEl
+    )
+      return;
+
     const self = this;
     const defaultSubmitOrderBtnText = submitOrderBtnEl.innerText;
     const submitOrderBtnPayNowText = submitOrderBtnEl.getAttribute(
@@ -241,14 +298,20 @@ export default class Payment {
         const ariaControls = this.getAttribute('aria-controls');
         const paymentGateway = this.value;
         self.toggleAriaControls(paymentMethodContainerEl, ariaControls);
+        self.cart.hideTotalPriceInCryptoEl();
+        billingAddressContainerEl.classList.add('hidden');
+        submitOrderBtnEl.innerText = defaultSubmitOrderBtnText;
 
-        if (paymentGateway === 'card') {
-          billingAddressContainerEl.classList.remove('hidden');
-          submitOrderBtnEl.innerText =
-            submitOrderBtnPayNowText || defaultSubmitOrderBtnText;
-        } else {
-          billingAddressContainerEl.classList.add('hidden');
-          submitOrderBtnEl.innerText = defaultSubmitOrderBtnText;
+        switch (paymentGateway) {
+          case 'card':
+            billingAddressContainerEl.classList.remove('hidden');
+            submitOrderBtnEl.innerText =
+              submitOrderBtnPayNowText || defaultSubmitOrderBtnText;
+            break;
+          case 'crypto':
+            self.cart.showTotalPriceInCryptoEl();
+            break;
+          default:
         }
       };
 
@@ -311,25 +374,119 @@ export default class Payment {
     });
   }
 
+  async onPaymentFormSubmitted(e) {
+    e.preventDefault();
+
+    const {
+      paymentGatewayInputEl,
+      differentBillingAddressInputEl,
+      cryptoPaymentTypeInputEl,
+      submitOrderBtnEl,
+      creditCardNumberEl,
+      creditCardExpiryEl,
+      creditCardCodeEl
+    } = this.getPaymentFormElements();
+
+    if (!paymentGatewayInputEl) return;
+
+    const paymentGateway = paymentGatewayInputEl.value;
+    const isDifferentBillingAddress =
+      differentBillingAddressInputEl &&
+      differentBillingAddressInputEl.value === 'true';
+
+    const paymentInformation = this.getPaymentInformation();
+    const submitOrderLoadingBtnEl = new LoadingButton(submitOrderBtnEl);
+    submitOrderLoadingBtnEl.show();
+
+    switch (paymentGateway) {
+      case 'card':
+        const {
+          firstName: billingFirstName,
+          lastName: billingLastName,
+          address: billingAddress,
+          city: billingCity,
+          state: billingState,
+          zip: billingZip,
+          country: billingCountry
+        } = paymentInformation;
+
+        let billingAddressInformation;
+
+        if (isDifferentBillingAddress && this.billingAddressForm) {
+          const {
+            firstNameEl,
+            lastNameEl,
+            addressEl,
+            cityEl,
+            stateEl,
+            zipEl,
+            countryEl
+          } = this.billingAddressForm.getAddressFormElements();
+
+          billingAddressInformation = {
+            billingFirstName: firstNameEl.value.trim(),
+            billingLastName: lastNameEl.value.trim(),
+            billingAddress: addressEl.value.trim(),
+            billingCity: cityEl.value.trim(),
+            billingState: stateEl.value.trim(),
+            billingZip: zipEl.value.trim(),
+            billingCountry: countryEl.value.trim()
+          };
+        } else {
+          billingAddressInformation = {
+            billingFirstName,
+            billingLastName,
+            billingAddress,
+            billingCity,
+            billingState,
+            billingZip,
+            billingCountry
+          };
+        }
+
+        const creditCardInformation = {
+          cardNumber: creditCardNumberEl.value.replace(/\s+/g, ''),
+          cardExpiry: creditCardExpiryEl.value.replace(/\s+/g, ''),
+          cardCode: creditCardCodeEl.value
+        };
+
+        await this.onSubmitCreditCardOrder({
+          ...paymentInformation,
+          ...billingAddressInformation,
+          ...creditCardInformation
+        });
+        break;
+      case 'zelle':
+        await this.onSubmitZelleOrder(paymentInformation);
+        break;
+      case 'crypto':
+        const selectedCryptoName =
+          cryptoPaymentTypeInputEl && cryptoPaymentTypeInputEl.value;
+        await this.onSubmitCryptoOrder({
+          ...paymentInformation,
+          coinName: selectedCryptoName
+        });
+        break;
+    }
+
+    submitOrderLoadingBtnEl.hide();
+  }
+
   onChangeOrderInformationClicked() {
     this.showPage(this.informationPageId);
   }
 
-  async onSubmitCreditCardOrder() {
+  async onSubmitCreditCardOrder(paymentInformation) {
     this.trackCheckoutPaymentTypeEvent('credit-card');
     trackEvent({
       eventCategory: 'Payment',
       eventAction: 'click',
       eventLabel: 'Pay with credit card'
     });
-    this.showLoading();
-    const paymentInformation = this.getPaymentInformation();
 
     try {
       const orderInfo = await submitCreditCardOrder({
-        ...paymentInformation,
-        orderReferenceId,
-        orderAccessToken
+        ...paymentInformation
       });
 
       const orderNumber = orderInfo.OrderID;
@@ -340,28 +497,22 @@ export default class Payment {
         eventAction: 'show',
         eventLabel: 'Credit card confirmation page',
         hitCallback: () => {
+          this.resetPayment();
           window.location = 'thankyou.html';
         }
       });
     } catch (e) {
       setMessage(e.message, 'error');
-    } finally {
-      this.hideLoading();
     }
   }
 
-  async onSubmitZelleOrder() {
+  async onSubmitZelleOrder(paymentInformation) {
     this.trackCheckoutPaymentTypeEvent('zelle');
     trackEvent({
       eventCategory: 'Payment',
       eventAction: 'click',
       eventLabel: 'Pay with Zelle'
     });
-
-    const paymentInformation = this.getPaymentInformation();
-    const { zellePaymentBtnEl } = this.getPaymentElements();
-    const zellePaymentLoadingBtn = new LoadingButton(zellePaymentBtnEl);
-    zellePaymentLoadingBtn.show();
 
     try {
       const order = await submitZelleOrder({
@@ -390,12 +541,10 @@ export default class Payment {
       }
     } catch (e) {
       setMessage(e.message, 'error');
-    } finally {
-      zellePaymentLoadingBtn.hide();
     }
   }
 
-  async onSubmitCryptoOrder() {
+  async onSubmitCryptoOrder(paymentInformation) {
     this.trackCheckoutPaymentTypeEvent('crypto');
     trackEvent({
       eventCategory: 'Payment',
@@ -403,24 +552,9 @@ export default class Payment {
       eventLabel: 'Pay with Crypto'
     });
 
-    const paymentInformation = this.getPaymentInformation();
-    const {
-      cryptoPaymentBtnEl,
-      cryptoPaymentCoinNameEl
-    } = this.getPaymentElements();
-
-    if (!cryptoPaymentCoinNameEl) {
-      return setMessage('Please select a cryptocurrency', 'error');
-    }
-
-    const coinName = cryptoPaymentCoinNameEl.value;
-    const cryptoPaymentLoadingBtn = new LoadingButton(cryptoPaymentBtnEl);
-    cryptoPaymentLoadingBtn.show();
-
     try {
       const order = await submitCryptoOrder({
-        ...paymentInformation,
-        coinName
+        ...paymentInformation
       });
       if (order) {
         trackEvent({
@@ -432,6 +566,7 @@ export default class Payment {
           TotalAmount: totalAmount = 0,
           Address: walletAddress = ''
         } = order;
+        const { coinName } = paymentInformation;
         const {
           coinPriceEls = [],
           coinNameEls = [],
@@ -460,8 +595,6 @@ export default class Payment {
       }
     } catch (e) {
       setMessage(e.message, 'error');
-    } finally {
-      cryptoPaymentLoadingBtn.hide();
     }
   }
 
@@ -480,7 +613,16 @@ export default class Payment {
     this.showPage(this.paymentPageId);
     this.updateShipTo(addressInfo);
     this.updateBillingAddress(addressInfo);
-    this.cart.showTotalPriceInCryptoEl();
+    this.showLoading();
+    checkCCPaymentGatewayLimit()
+      .then(isEnabled => {
+        isEnabled
+          ? this.enableCCPaymentGateway()
+          : this.disableCCPaymentGateway();
+      })
+      .finally(() => {
+        this.hideLoading();
+      });
   }
 
   onCryptoPaymentCoinNameChanged(e) {

@@ -20,7 +20,7 @@ div#payment-container.payment-page.hidden
             h2 Payment
             p All transactions are secure and encrypted.
             fieldset.content-box__container
-                .content-box__container__row.payment-gateway(data-select-gateway='card', data-default="true")
+                .content-box__container__row.payment-gateway(data-select-gateway='card').hidden
                     .radio-input
                         input(type='radio', name='payment_gateway', value='card', aria-controls='pay-with-card')
                     .radio-label 
@@ -43,6 +43,7 @@ div#payment-container.payment-page.hidden
                                     type='tel',
                                     error_message='Enter a valid card number'
                                 )        
+                                span.lock-icon
                             //- .input-field
                             //-     label(for="card-name") Name on card
                             //-     input(
@@ -55,10 +56,10 @@ div#payment-container.payment-page.hidden
                             //-     )
                             .input-two-columns           
                                 .input-field
-                                    label(for="card-expiry") Expiration date (MM/YY)
+                                    label(for="card-expiry") Expiration date (MM/YYYY)
                                     input(
                                         autocomplete="cc-exp",
-                                        placeholder="Expiration date (MM/YY)",
+                                        placeholder="Expiration date (MM/YYYY)",
                                         id="card-expiry",
                                         name="card-expiry",
                                         required="true",
@@ -73,9 +74,10 @@ div#payment-container.payment-page.hidden
                                         name="card-cvv",
                                         required="true",
                                         error_message='Enter the CVV or security code on your card'
-                                    )                        
+                                    )       
+                                    i-tooltip(data-text='3-digit security code usually found on the back of your card. American Express cards have a 4-digit code located on the front.').question-icon                 
                         #card-container.input-wrapper 
-                .content-box__container__row.payment-gateway(data-select-gateway='zelle')
+                .content-box__container__row.payment-gateway(data-select-gateway='zelle', data-default="true")
                     .radio-input
                         input(type='radio', name='payment_gateway', value='zelle', aria-controls='pay-with-zelle')
                     .radio-label 
