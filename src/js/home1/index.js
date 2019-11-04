@@ -8,7 +8,6 @@ import {
 import { trackEvent } from '../common/utils/ga';
 import isQueryStringExists from '../service/queryStringExists';
 import KEYS from '../constant/keys';
-import Tooltip from 'tooltip.js';
 import storage from '../service/storage';
 
 // for earning calculation
@@ -27,10 +26,6 @@ let coinFiatRate = {
   bnb: 0.1
 };
 let sliderAffected = false;
-let defaultEarningTooltipContent =
-  '<div>Earnings will vary based on the volume of private transactions and the price of earned crypto at the time of withdrawal.</div><div>To make your own projections, use the sliders below.</div>';
-let affectedEarningTooltipContent =
-  '<div>How much you earn depends on how many people value privacy, so calculated from your projections below – here’s how much you’ll earn monthly.</div><div>The USD value is based on today’s BTC, ETH and BNB market prices.</div>';
 const earningTooltips = [];
 
 function main() {
@@ -48,7 +43,6 @@ function main() {
   handleAutoPlayUnboxing(container);
   handleAutoPlayIntro(container);
   handleEarningSliders(container);
-  handleSetupEarningTooltips(container);
   handleGetProductPrice(container);
 }
 
@@ -174,23 +168,6 @@ const handleAutoPlayIntro = container => {
       introVideoButton.click();
     }
   }
-};
-
-const handleSetupEarningTooltips = container => {
-  const earningTooltipElms = container.querySelectorAll('.earning-tooltip');
-  earningTooltipElms.forEach(tooltipEl => {
-    earningTooltips.push(
-      new Tooltip(tooltipEl, {
-        animation: true,
-        placement: 'auto bottom',
-        trigger: 'hover focus',
-        title: !sliderAffected
-          ? defaultEarningTooltipContent
-          : affectedEarningTooltipContent,
-        html: true
-      })
-    );
-  });
 };
 
 const handleGetProductPrice = async container => {
