@@ -117,6 +117,17 @@
             }
           }
 
+          ul {
+            @extend ol;
+            li {
+              list-style: initial;
+
+              &::before {
+                content: none;
+              }
+            }
+          }
+
           &::before {
             display: block;
             position: absolute;
