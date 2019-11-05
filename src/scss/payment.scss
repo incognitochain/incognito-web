@@ -186,14 +186,15 @@
         position: relative;
 
         .lock-icon {
+          position: absolute;
+          top: 15px;
+          right: 10px;
+
           &::before {
             font-family: 'Font Awesome 5 Pro';
             width: 20px;
             height: 20px;
             content: '\f023';
-            position: absolute;
-            top: 15px;
-            right: 10px;
             font-weight: 'solid';
             color: #919191;
           }
