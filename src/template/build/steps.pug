@@ -7,52 +7,77 @@ mixin stepHtml(step, stepName, isOpen)
 
 .step-container.container
   +collapse('validator-steps-guide')
-    +stepHtml('1', 'Request PRV to start creating privacy tokens and apps')
-      p Privacy (PRV) is the native coin of the Incognito Network. To start creating your own privacy tokens and apps, you’ll need some PRV for network fees.
-      p It’s easy to request free PRV. Just follow the steps below.
+    +stepHtml('1', 'Get 5 PRV to start creating on Incognito')
       ol
-        li 
-          |Make a public post on either Facebook or Twitter that includes:
+        li Download the Incognito App
           p
-          span.highlight.wrap https://incognito.org/YOUR_INCOGNITO_ADDRESS
-          div.divide and a hashtag: 
-          span.highlight.wrap #goincognito
-          div.divide For example:
+          .row-img 
+            .img.install-app-img
+              a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
+                img(src=require('../../image/wallet/google_play_black.svg'), alt='chplay-app')
+            .img.install-app-img
+              a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
+                img(src=require('../../image/wallet/app_store_black.svg'), alt='ios-app')
+        li Create an account and copy your wallet address
           p
-          p.quote "I’m going to issue my own privacy coin, SSH, on the Incognito network. My address is https://incognito.org/12S5hHShzxQyAbPzuNECediHErhyn9PJg7a2AbukBwdHzk7iywsjGpTWTSCLZgJKbPpY6UDbLDhdkWUv3fTC7u8oEM67xrQNpn1aDSt #goincognito"
-          p
-          p.quote "I’m going to build my own privacy app, Anonymous Birds, on the Incognito network. My address is https://incognito.org/12S5hHShzxQyAbPzuNECediHErhyn9PJg7a2AbukBwdHzk7iywsjGpTWTSCLZgJKbPpY6UDbLDhdkWUv3fTC7u8oEM67xrQNpn1aDSt #goincognito"
-          p
-        li
-          |Then, copy and paste the URL of that social post to the Incognito Telegram channel: 
-          p
-          a(href='https://t.me/incognitonode', target='blank').highlight.wrap.special-link https://t.me/incognitonode
-          p
-          |That’s it! 5 PRV will be added to your wallet. If your PRV has not arrived after 12 hours, please message 
+          .row-img 
+            .img
+              img(src=require('../../image/build/build_create_account_1.jpg'))
+            .img
+              img(src=require('../../image/build/build_create_account_2.jpg'))
+            .img
+              img(src=require('../../image/build/build_create_account_3.jpg'))
+        li Complete the 
+          a(href='https://forms.gle/Sg3wafqeFhyPKKYr9', target='_blank').highlight.special-link Incognito Ecosystem Survey
+        li Your submission will be reviewed for authenticity
+          p.quote To avoid scammers, we verify each submission manually. If your submission looks suspicious, you will be asked to provide additional information via email.
+        li That’s it! 5 PRV will be added to your wallet. If your PRV has not arrived after 12 hours, please message Peter on 
+          a(href='https://t.me/incognitonode', target='blank') Telegram
+          |  or at 
           a(href='https://t.me/peter_incognito', target='blank') @peter_incognito 
           | for support.
 
+    +stepHtml('2', 'Have an idea already?')
+      ul
+        li
+          span.highlight Privacy Apps (pApps) and Tokens
+          p If you’re developing an app on the Incognito chain, we would like to help support you with technical issues and promote your app. Reach out to Grant on 
+            a(href='https://t.me/incognitonode') Telegram
+            |  or at 
+            a(href='mailto:grant@incognito.org') grant@incognito.org
+            |.
+        li
+          span.highlight Incognito Platform Tools
+          p Incognito is governed by The Incognito DAO (decentralized autonomous organization). A percentage of all block rewards will go to the DAO, and these are used to fund protocol development and network growth.
+          p
+          |Incognito DAO’s funds are initially managed by the founding team. Management responsibilities will be gradually distributed to the community 
+          span.highlight beginning early 2020, 
+          |and community members will be able to vote on their favorite projects and receive funding from the DAO to build them.
+          p
+          |For now, if you’d like to get involved in developing the Incognito Platform, reach out to Grant on 
+          a(href='https://t.me/incognitonode') Telegram
+          |  or at 
+          a(href='mailto:grant@incognito.org') grant@incognito.org
+          |.
 
-    +stepHtml('2', 'Project 1: Issue your own privacy token')
-      p Issue a privacy-protecting token with a couple of taps. Use it to represent confidential company shares, private memberships, a secret stablecoin – you get the idea. Tokenize any kind of private asset right from your phone.
-      p Takes about a minute. No coding required.
-      .row-img 
-        .img
-          img(src=require('../../image/build/123.png')).full
-      p Success! Token created. Now you can send it to your users, your customers, your employees, your frenemies.
+    +stepHtml('3', 'Learn what’s possible with Incognito')
+      ul
+        li 
+          span.highlight Privacy Token Systems
+          p At the time of writing, 1,600 tokens have been created in the blockchain ecosystem. We believe that in the near future, tokens will increasingly represent everyday assets, including but not limited to stocks, fiats, gold, real estate and any form of ownership. We also strongly believe that very few people will willingly disclose their token holdings to the entire world. Incognito offers developers a simple way to create privacy-preserving tokens.
+        li 
+          span.highlight Privacy Stablecoin (aka. Cash)
+          p The stablecoin is one of the most promising iterations of blockchain utility. Stablecoins are typically pegged to world currencies like the USD or Euro, thus not subject to the volatility of other cryptocurrencies. As a digital currency, stablecoins are borderless, making them the perfect vessel for cross-border business payments or simply a secure way to store personal savings. Stablecoins are digital cash. Very few people want the world to know how exactly how much cash they have. On the Incognito platform, a privacy-preserving stablecoin (such as private DAI or private USDT) can be created in a few taps.
+        li
+          span.highlight Privacy DAO
+          p In a Decentralized Autonomous Organization , governance and decision making are 16 automated. The most common design is that everyone holds a number of voting tokens, used to cast votes on proposals. The problem is that the voters are exposed on a public ledger, and could be compromised. A privacy-preserving voting token would make the system more secure.
+        li
+          span.highlight Anonymous Prediction Market
+          p Decentralized betting and prediction markets were first proposed by Robin Hansen. This 17 concept was later materialized by crypto projects like Augur and Gnosis . While these 18 19 betting platforms remove the middlemen (the bookies), they still suffer from the identity problem. A privacy-preserving token could be used on these platforms to keep users completely anonymous.
 
-    +stepHtml('3', 'Project 2: Build an anonymous mobile game')
-      p Create a privacy-protecting mobile app for anonymous players, chock a block full of secret in-game currencies, hidden rewards, confidential payouts, and untraceable gifts.
-      p Coming mid November 2019.
-      .row-img
-        .img.install-app-img
-          img(src=require('../../image/build/4.png'))
-        .img.install-app-img
-          img(src=require('../../image/build/5.png'))
-
-    +stepHtml('4', 'Project 3: Build a confidential e-commerce website')
-      p Cash only – online. Accept confidential payments for your e-commerce site in various privacy-protecting cryptocurrencies – even your own. Issue your own tokens to create bespoke payment options, easily distribute rewards, loyalty points, memberships and more.
-      .row-img
-        .img
-          img(src=require('../../image/build/6.png')).full
-      p Coming mid November 2019.
+    +stepHtml('4', 'Earn PRV by contributing to our developer resources')
+      p Coming soon. If you would like to get involved in creating developer resources, contact Grant on 
+        a(href='https://t.me/incognitonode') Telegram
+        |  or at 
+        a(href='mailto:grant@incognito.org') grant@incognito.org
+        |.
