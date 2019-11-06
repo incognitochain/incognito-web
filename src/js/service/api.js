@@ -401,3 +401,22 @@ export const getValidatorDetails = ({ telegramId, nodeWalletAddress }) => {
       );
     });
 };
+
+export const getOrderHistory = ({ email, orderNumber }) => {
+  return fetch(
+    `order/history?OrderID=${encodeURIComponent(
+      orderNumber
+    )}&Email=${encodeURIComponent(email)}`,
+    {
+      method: 'GET'
+    }
+  )
+    .then(orderDetails => orderDetails)
+    .catch(e => {
+      if (!APP_ENV.production) {
+        console.error(e);
+      }
+
+      throw e;
+    });
+};

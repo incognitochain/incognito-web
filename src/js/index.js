@@ -12,4 +12,5 @@ import './home1';
 import './about';
 import './payment';
 import './dex';
+import './order_history';
 // import './internalSubscriberBoard';
