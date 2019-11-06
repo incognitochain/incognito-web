@@ -1,0 +1,40 @@
+#order-history-details-container.hidden
+    div.left-content
+        .wrapper
+            .section__header
+                .icon-tick
+                .order-heading
+                    div Order 
+                        span.order-number
+                    h1.title Thank you&nbsp;
+                        span#first-name
+                        |!
+            .content-box
+                .content-box__container
+                    .content-box__container__row
+                        h2.heading Your order is confirmed
+                        p We’ve accepted your order, and we’re getting it ready. Come back to this page for updates on your shipment status.
+                
+                .content-box__container
+                    .content-box__container__row
+                        h2.heading Order information
+                        .section__content
+                            .section__content__column
+                                h3.heading Contact information
+                                p#contact-email
+                                h3.heading Shipping address
+                                address#shipping-address
+                            .section__content__column
+                                h3.heading Payment method
+                                p#payment-gateway
+                                #crypto-wallet-address-container.hidden
+                                    h3.heading Wallet address
+                                    p#wallet-address
+                                h3.heading Payment status
+                                p#payment-status
+            .button-wrapper 
+                |Need help?&nbsp;
+                a#request-update-href Contact us
+    div.right-content
+        .wrapper
+            include ../payment/cart

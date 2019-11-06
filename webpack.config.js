@@ -123,6 +123,11 @@ const templateGen = [
     template: 'src/template/build/index.pug',
     filename: 'create.html',
     env: process.env
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/order_history/index.pug',
+    filename: 'order/history.html',
+    env: process.env
   })
   // new HtmlWebpackPlugin({
   //   template: 'src/template/mine/index.pug',
@@ -270,7 +275,8 @@ module.exports = {
   devtool: 'inline-source-map',
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/'
   },
   ...(production ? prodConfig : devConfig)
 };
