@@ -279,22 +279,28 @@
             }
           }
 
-          > a {
-            &:not(.menu-item) {
-              margin: 30px auto;
-              text-align: center;
-              margin-bottom: 10px;
-            }
+          .sidebar-menu {
+            overflow-y: auto;
 
-            &.menu-item {
-              padding: 12px 10px;
-              margin-right: 30px;
-              font-size: 16px;
-              font-weight: 400;
+            > a {
+              display: block;
 
-              @include breakpoint-down(sm) {
-                padding-top: 7px;
-                padding-bottom: 7px;
+              &:not(.menu-item) {
+                margin: 30px auto;
+                text-align: center;
+                margin-bottom: 10px;
+              }
+
+              &.menu-item {
+                padding: 12px 10px;
+                margin-right: 30px;
+                font-size: 16px;
+                font-weight: 400;
+
+                @include breakpoint-down(sm) {
+                  padding-top: 7px;
+                  padding-bottom: 7px;
+                }
               }
             }
           }

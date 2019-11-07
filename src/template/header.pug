@@ -3,32 +3,34 @@ mixin menu-left()
   //- a(href='/mine.html').menu-item Mine
 
 mixin sidebar-menu
-  a(href='/node.html').menu-item.mobile Power
-  a(href='/wallet.html').menu-item.mobile Use
-  a(href='/dex.html').menu-item.mobile Trade
-  a(href='/create.html').menu-item.mobile Create
-  a(href='/free-software.html').menu-item.mobile Open Source
-  a(href='/self-funded.html').menu-item.mobile Bootstrapped
-  //- a(href='/referral.html').menu-item.mobile Refer & Earn $50
+  .sidebar-menu
+    a(href='/node.html').menu-item.mobile Power
+    a(href='/wallet.html').menu-item.mobile Use
+    a(href='/dex.html').menu-item.mobile Trade
+    a(href='/create.html').menu-item.mobile Create
+    a(href='/free-software.html').menu-item.mobile Open Source
+    a(href='/self-funded.html').menu-item.mobile Bootstrapped
+    a(href='/blog', target='_blank').menu-item.mobile Blog
+    //- a(href='/referral.html').menu-item.mobile Refer & Earn $50
 
-  hr(size='1', width='100%').mobile
+    hr(size='1', width='100%').mobile
 
-  a(href='/tech.html').menu-item Tech Overview
-  a(href='/validator.html').menu-item Host a Virtual Node
-  a(href='https://github.com/incognitochain?tab=repositories', target='blank').menu-item Code
-  a(href='/about.html').menu-item Our story
+    a(href='/tech.html').menu-item Tech Overview
+    a(href='/validator.html').menu-item Host a Virtual Node
+    a(href='https://github.com/incognitochain?tab=repositories', target='blank').menu-item Code
+    a(href='/about.html').menu-item Our story
 
-  hr(size='1', width='100%')
+    hr(size='1', width='100%')
 
-  a(href='/deck.pdf', target='blank').menu-item Deck (PDF)
-  a(href='/whitepaper.pdf', target='blank').menu-item Whitepaper (PDF)
-  
-  hr(size='1', width='100%')
-  
-  a(href='https://t.me/incognitochain', target='blank').menu-item Telegram
-  a(href='mailto: go@incognito.org').menu-item Contact Us
-  a(href='/privacy.html').menu-item Privacy & Terms
-  a(href='/return.html').menu-item Return & Warranty
+    a(href='/deck.pdf', target='blank').menu-item Deck (PDF)
+    a(href='/whitepaper.pdf', target='blank').menu-item Whitepaper (PDF)
+    
+    hr(size='1', width='100%')
+    
+    a(href='https://t.me/incognitochain', target='blank').menu-item Telegram
+    a(href='mailto: go@incognito.org').menu-item Contact Us
+    a(href='/privacy.html').menu-item Privacy & Terms
+    a(href='/return.html').menu-item Return & Warranty
   
 
 
