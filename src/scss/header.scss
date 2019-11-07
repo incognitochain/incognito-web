@@ -77,14 +77,6 @@
       padding: 15px;
     }
 
-    .mobile {
-      display: none;
-
-      @include breakpoint-down(lg) {
-        display: block;
-      }
-    }
-
     &.light {
       h3.header-logo {
         color: $green;
@@ -279,22 +271,36 @@
             }
           }
 
-          > a {
-            &:not(.menu-item) {
-              margin: 30px auto;
-              text-align: center;
-              margin-bottom: 10px;
+          .sidebar-menu {
+            overflow-y: auto;
+
+            > .menu-item {
+              display: block;
+
+              &:not(.menu-item) {
+                margin: 30px auto;
+                text-align: center;
+                margin-bottom: 10px;
+              }
+
+              &.menu-item {
+                padding: 12px 10px;
+                margin-right: 30px;
+                font-size: 16px;
+                font-weight: 400;
+
+                @include breakpoint-down(sm) {
+                  padding-top: 7px;
+                  padding-bottom: 7px;
+                }
+              }
             }
 
-            &.menu-item {
-              padding: 12px 10px;
-              margin-right: 30px;
-              font-size: 16px;
-              font-weight: 400;
+            .mobile {
+              display: none;
 
-              @include breakpoint-down(sm) {
-                padding-top: 7px;
-                padding-bottom: 7px;
+              @include breakpoint-down(lg) {
+                display: block;
               }
             }
           }
