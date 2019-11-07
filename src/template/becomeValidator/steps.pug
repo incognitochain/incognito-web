@@ -92,6 +92,23 @@ mixin stepHtml(step, stepName, isOpen)
           |Error response from daemon: network with name inc_net already exists  
           
       p For the curious, because Incognito is integrated with Ethereum (so you can send ETH and ERC20 tokens privately), its error messages show up here. There’s nothing much we can do about it. Move on.
+      p.highlight Advanced set up: customize the port of your Node
+      p The default rpc port is 9334 and node port is 9433. To change it, please follow these steps:
+      ol
+        li In your terminal:
+          p Open the file 
+            a(href='/run.sh').highlight.special-link run.sh
+            |  by this command:
+          p.script.copiable(data-copy-value='nano run.sh') nano run.sh
+          p Add the following param in docker command (replace node_port, rpc_port correspond to the port you want)
+          p.script.copiable(data-copy-value='docker run ... -p <node_port>:<node_port> -p <rpc_port>:<rpc_port> ...') docker run ... -p &lt;node_port&gt;:&lt;node_port&gt; -p &lt;rpc_port&gt;:&lt;rpc_port&gt; ...
+          p Then run the following command (replace rpc_port, node_port with yours):
+          p.script.copiable(data-copy-value='rpc_port=9334 node_port=9433 ./run.sh') rpc_port=9334 node_port=9433 ./run.sh
+        li On the app:
+          p Separate the IP of your Virtual Node and the customized port by a colon before adding the Node. For example: 123.456.7.8:9335
+          .row-img
+            .img
+              img(src=require('../../image/become_validator/16.png'), alt='example virtual node ip')
 
     +stepHtml('4', 'Get Privacy Token (PRV) to stake')
       p Privacy (PRV) is the native coin of the Incognito Network. To become a validator, you’ll need to stake the minimum 1,750 PRV. You can purchase PRV on the Incognito DEX using BTC or ETH (more currencies coming soon).
