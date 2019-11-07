@@ -12,7 +12,9 @@ const getOrderStatusDetailElements = container => {
   const cartContainerEl = container.querySelector('#cart-container');
   const contactEmailEl = container.querySelector('#contact-email');
   const orderNumberEl = container.querySelector('.order-number');
-  const requestUpdateHrefEl = container.querySelector('#request-update-href');
+  const requestUpdateHrefEls = container.querySelectorAll(
+    '.request-update-href'
+  );
   const productPriceEl =
     cartContainerEl && cartContainerEl.querySelector('.product-price');
   const productQuantityEl =
@@ -33,7 +35,7 @@ const getOrderStatusDetailElements = container => {
     firstNameEl,
     orderNumberEl,
     contactEmailEl,
-    requestUpdateHrefEl,
+    requestUpdateHrefEls,
     productPriceEl,
     productQuantityEl,
     productSubtotalEl,
@@ -80,7 +82,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
     walletAddressContainerEl,
     walletAddressEl,
     shippingAddressEl,
-    requestUpdateHrefEl,
+    requestUpdateHrefEls,
     firstNameEl,
     orderNumberEl,
     contactEmailEl,
@@ -141,7 +143,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
     );
   }
 
-  if (paymentStatusEl && orderStatus) {
+  if (paymentStatusEl) {
     paymentStatusEl.innerText = getPaymentStatus(orderStatus);
   }
 
@@ -183,9 +185,11 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
     productShippingFeeEl.innerText = shippingFee ? `$${shippingFee}` : 'FREE';
   }
 
-  if (requestUpdateHrefEl) {
-    requestUpdateHrefEl.href = `mailto:go@incognito.org?subject=${encodeURIComponent(
-      `Order Update Request - #${orderNumber}`
-    )}`;
+  if (requestUpdateHrefEls) {
+    requestUpdateHrefEls.forEach(requestUpdateHrefEl => {
+      requestUpdateHrefEl.href = `mailto:go@incognito.org?subject=${encodeURIComponent(
+        `Order Update Request - #${orderNumber}`
+      )}`;
+    });
   }
 };
