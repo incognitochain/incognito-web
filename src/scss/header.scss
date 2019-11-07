@@ -77,14 +77,6 @@
       padding: 15px;
     }
 
-    .mobile {
-      display: none;
-
-      @include breakpoint-down(lg) {
-        display: block;
-      }
-    }
-
     &.light {
       h3.header-logo {
         color: $green;
@@ -282,7 +274,7 @@
           .sidebar-menu {
             overflow-y: auto;
 
-            > a {
+            > .menu-item {
               display: block;
 
               &:not(.menu-item) {
@@ -301,6 +293,14 @@
                   padding-top: 7px;
                   padding-bottom: 7px;
                 }
+              }
+            }
+
+            .mobile {
+              display: none;
+
+              @include breakpoint-down(lg) {
+                display: block;
               }
             }
           }
