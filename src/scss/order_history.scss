@@ -53,6 +53,8 @@
       .title {
         margin: 0;
         margin-top: 5px;
+        line-height: 32px;
+
         &,
         * {
           color: $black;
@@ -66,6 +68,10 @@
       .section__content__column {
         flex: 1;
         width: 50%;
+
+        &:not(:first-child) {
+          margin-left: 30px;
+        }
 
         h3.heading {
           font-weight: 400;
@@ -90,6 +96,22 @@
 
           h2.heading {
             font-weight: 400;
+          }
+
+          .description-container {
+            .description {
+              &:not(:first-child) {
+                margin-top: 20px;
+              }
+            }
+
+            .strong {
+              font-weight: 500;
+            }
+
+            .highlight {
+              color: $green;
+            }
           }
         }
       }
