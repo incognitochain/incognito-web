@@ -271,7 +271,6 @@
         display: flex;
         padding: 10px 15px;
         align-items: center;
-        cursor: pointer;
 
         &#pay-with-crypto {
           flex-direction: column;
@@ -345,6 +344,7 @@
           display: flex;
           width: 100%;
           justify-content: space-between;
+          cursor: pointer;
 
           .label {
             font-weight: 500;

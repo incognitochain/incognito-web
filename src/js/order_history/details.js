@@ -1,3 +1,51 @@
+import { getCoinName } from '../common/utils/crypto';
+import { replaceVariables } from '../common/utils/string';
+import {
+  PAYMENT_TYPE,
+  PAYMENT_TYPE_TEXT,
+  ORDER_STATUS,
+  ORDER_STATUS_TEXT,
+  ZELLE_PAYMENT_ADDRESS
+} from '../constant/payment';
+
+const contactEmail = 'go@incognito.org';
+const contactEmailSubject = 'Order Update Request #{{ order_number }}';
+
+const messages = {
+  title: {
+    success: 'Thank you, {{ first_name }}!',
+    fail: '{{ first_name }}, your order did not go through.',
+    pending: '{{ first_name }}, your order is pending.'
+  },
+  heading: {
+    success: 'Your order is confirmed',
+    fail: 'Your payment was unsuccessful',
+    pending: {
+      [PAYMENT_TYPE.CRYPTO]: 'Please make a transfer to complete your order.',
+      [PAYMENT_TYPE.ZELLE]: 'Please make a transfer to complete your order.'
+    }
+  },
+  description: {
+    success:
+      'Thanks! We’re getting your Node ready. Please keep an eye on this page for updates on your shipping status. If you would like to change your shipping address, please send a message asap to <a href="{{ support_email_href }}">{{ support_email }}</a>.',
+    fail:
+      'You can still place a new order anytime. If this is a mistake, or if you need assistance completing your order, please contact <a href="{{ support_email_href }}">{{ support_email }}</a> and we will be happy to assist.',
+    pending: {
+      [PAYMENT_TYPE.CRYPTO]:
+        '<div class="description">Please send <span class="strong">{{ amount }} {{ coin_name }}</span> to the wallet address below.</div>\
+        <div class="description script copiable wallet-address strong" data-copy-value={{ wallet_address }}>{{ wallet_address }}</div>\
+        <div class="description">If you need a little more time, simply place an order again when you are ready. For assistance completing your order, please reach out to us at <a href="{{ support_email_href }}">{{ support_email }}</a>. Thanks!</div>',
+      [PAYMENT_TYPE.ZELLE]: `<div class="description">Simply make a transfer to the Incognito Zelle account.</div>\
+        <div class="description">Order number: <span class="strong">#{{ order_number }}</span><br />Amount: <span class="strong">\${{ amount }}</span><br />Send to: <span class="strong highlight">${ZELLE_PAYMENT_ADDRESS}</span></div>\
+        <div class="description note">\
+          <h3 class="heading">Please note:</h3>\
+          When making a Zelle transfer, please include your order number #<span class="strong">{{ order_number }}</span> in the Notes section.\
+        </div>
+        <div class="description">If you need any assistance completing your order, please reach out to <a href="{{ support_email_href }}">{{ support_email }}</a>. Thanks for your interest in Node!</div>`
+    }
+  }
+};
+
 const getOrderStatusDetailElements = container => {
   if (!container) return {};
 
@@ -6,7 +54,7 @@ const getOrderStatusDetailElements = container => {
   const walletAddressContainerEl = container.querySelector(
     '#crypto-wallet-address-container'
   );
-  const firstNameEl = container.querySelector('#first-name');
+  const mainHeaderEl = container.querySelector('#main-header');
   const walletAddressEl = container.querySelector('#wallet-address');
   const shippingAddressEl = container.querySelector('#shipping-address');
   const cartContainerEl = container.querySelector('#cart-container');
@@ -15,6 +63,15 @@ const getOrderStatusDetailElements = container => {
   const requestUpdateHrefEls = container.querySelectorAll(
     '.request-update-href'
   );
+  const orderConfirmationTextContainerEl = container.querySelector(
+    '#order-confirmation-text-container'
+  );
+  const orderConfirmationTitleEl =
+    orderConfirmationTextContainerEl &&
+    orderConfirmationTextContainerEl.querySelector('.heading');
+  const orderConfirmationDescriptionEl =
+    orderConfirmationTextContainerEl &&
+    orderConfirmationTextContainerEl.querySelector('.description-container');
   const productPriceEl =
     cartContainerEl && cartContainerEl.querySelector('.product-price');
   const productQuantityEl =
@@ -32,7 +89,7 @@ const getOrderStatusDetailElements = container => {
     walletAddressEl,
     walletAddressContainerEl,
     shippingAddressEl,
-    firstNameEl,
+    mainHeaderEl,
     orderNumberEl,
     contactEmailEl,
     requestUpdateHrefEls,
@@ -40,37 +97,18 @@ const getOrderStatusDetailElements = container => {
     productQuantityEl,
     productSubtotalEl,
     productShippingFeeEl,
-    productTotalPriceEl
+    productTotalPriceEl,
+    orderConfirmationTitleEl,
+    orderConfirmationDescriptionEl
   };
 };
 
 const getPaymentGateway = (paymentGateway, currencyType) => {
   switch (+paymentGateway) {
-    case 1:
-      return currencyType;
-    case 2:
-      return 'Paypal';
-    case 3:
-      return 'Zelle';
-    case 4:
-      return 'Amazon';
-    case 5:
-      return 'Credit card';
+    case PAYMENT_TYPE.CRYPTO:
+      return getCoinName(currencyType);
     default:
-      return 'Unknow';
-  }
-};
-
-const getPaymentStatus = status => {
-  switch (+status) {
-    case 0:
-      return 'Pending';
-    case 1:
-    case 3:
-    case 4:
-      return 'Paid';
-    default:
-      return 'Failed';
+      return PAYMENT_TYPE_TEXT[paymentGateway] || 'Unknow';
   }
 };
 
@@ -83,14 +121,16 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
     walletAddressEl,
     shippingAddressEl,
     requestUpdateHrefEls,
-    firstNameEl,
+    mainHeaderEl,
     orderNumberEl,
     contactEmailEl,
     productPriceEl,
     productQuantityEl,
     productSubtotalEl,
     productShippingFeeEl,
-    productTotalPriceEl
+    productTotalPriceEl,
+    orderConfirmationTitleEl,
+    orderConfirmationDescriptionEl
   } = getOrderStatusDetailElements(container);
 
   const {
@@ -109,27 +149,128 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
     BasePrice: orderBasePrice,
     TotalPrice: orderTotalPrice,
     PaymentType: orderPaymentType,
-    Status: orderStatus,
     CurrencyType: orderCurrencyType,
-    CreatedAt: orderCreatedTime
+    ExpiredAt: orderExpiredTime
   } = orderDetails;
+
+  let { Status: orderStatus } = orderDetails;
+
+  if (
+    orderExpiredTime &&
+    orderPaymentType === PAYMENT_TYPE.CRYPTO &&
+    orderStatus === ORDER_STATUS.PENDING &&
+    new Date(orderExpiredTime) < Date.now()
+  ) {
+    orderStatus = ORDER_STATUS.TIMED_OUT;
+  }
+
+  const contactEmailHref = `mailto:${contactEmail}?subject=${encodeURIComponent(
+    replaceVariables(contactEmailSubject, {
+      order_number: orderNumber
+    })
+  )}`;
 
   const productPrice = +orderProductPrice || 0;
   const productQuantity = +orderQuantity || 1;
   const productBasePrice = +orderPaymentType === 1 ? orderBasePrice || 1 : 1;
   const productSubtotal = productPrice * productQuantity;
-  const productTotalPrice = orderTotalPrice
+  let productTotalPrice = orderTotalPrice
     ? Math.round(orderTotalPrice / productBasePrice)
     : 0;
   const tax = orderTax;
-  const shippingFee = productTotalPrice - tax - productSubtotal;
+  let shippingFee = productTotalPrice - tax - productSubtotal;
+  shippingFee = shippingFee < 0 ? 0 : shippingFee;
+  productTotalPrice =
+    productTotalPrice < productSubtotal ? productSubtotal : productTotalPrice;
 
   if (orderNumberEl && orderNumber) {
     orderNumberEl.innerText = `#${orderNumber}`;
   }
 
-  if (firstNameEl && orderFirstName) {
-    firstNameEl.innerText = orderFirstName;
+  switch (+orderStatus) {
+    case ORDER_STATUS.PENDING:
+      if (mainHeaderEl) {
+        const titleMessage = messages.title.pending;
+        mainHeaderEl.innerText = replaceVariables(titleMessage, {
+          first_name: orderFirstName
+        });
+      }
+
+      if (orderConfirmationTitleEl) {
+        const headingMessage = messages.heading.pending[orderPaymentType];
+
+        if (headingMessage) {
+          orderConfirmationTitleEl.innerText = headingMessage;
+        }
+      }
+
+      if (orderConfirmationDescriptionEl) {
+        const descriptionMessage =
+          messages.description.pending[orderPaymentType];
+
+        if (descriptionMessage) {
+          orderConfirmationDescriptionEl.innerHTML = replaceVariables(
+            descriptionMessage,
+            {
+              order_number: orderNumber,
+              amount: orderTotalPrice,
+              support_email: contactEmail,
+              support_email_href: contactEmailHref,
+              coin_name: orderCurrencyType,
+              wallet_address: orderCryptoWalletAddress
+            }
+          );
+        }
+      }
+      break;
+    case ORDER_STATUS.RECEIVE_COIN:
+    case ORDER_STATUS.PAYMENT_SUCCESS:
+    case ORDER_STATUS.SENT_MASTER_WALLET:
+      if (mainHeaderEl) {
+        const titleMessage = messages.title.success;
+        mainHeaderEl.innerText = replaceVariables(titleMessage, {
+          first_name: orderFirstName
+        });
+      }
+
+      if (orderConfirmationTitleEl) {
+        const headingMessage = messages.heading.success;
+        orderConfirmationTitleEl.innerText = headingMessage;
+      }
+
+      if (orderConfirmationDescriptionEl) {
+        const descriptionMessage = messages.description.success;
+        orderConfirmationDescriptionEl.innerHTML = replaceVariables(
+          descriptionMessage,
+          {
+            support_email: contactEmail,
+            support_email_href: contactEmailHref
+          }
+        );
+      }
+      break;
+    default:
+      if (mainHeaderEl) {
+        mainHeaderEl.innerText = replaceVariables(messages.title.fail, {
+          first_name: orderFirstName
+        });
+      }
+
+      if (orderConfirmationTitleEl) {
+        const headingMessage = messages.heading.fail;
+        orderConfirmationTitleEl.innerText = headingMessage;
+      }
+
+      if (orderConfirmationDescriptionEl) {
+        const descriptionMessage = messages.description.fail;
+        orderConfirmationDescriptionEl.innerHTML = replaceVariables(
+          descriptionMessage,
+          {
+            support_email: contactEmail,
+            support_email_href: contactEmailHref
+          }
+        );
+      }
   }
 
   if (contactEmailEl && orderEmail) {
@@ -144,7 +285,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
   }
 
   if (paymentStatusEl) {
-    paymentStatusEl.innerText = getPaymentStatus(orderStatus);
+    paymentStatusEl.innerText = ORDER_STATUS_TEXT[+orderStatus];
   }
 
   if (+orderPaymentType === 1 && walletAddressEl && orderCryptoWalletAddress) {
@@ -187,9 +328,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
 
   if (requestUpdateHrefEls) {
     requestUpdateHrefEls.forEach(requestUpdateHrefEl => {
-      requestUpdateHrefEl.href = `mailto:go@incognito.org?subject=${encodeURIComponent(
-        `Order Update Request - #${orderNumber}`
-      )}`;
+      requestUpdateHrefEl.href = contactEmailHref;
     });
   }
 };

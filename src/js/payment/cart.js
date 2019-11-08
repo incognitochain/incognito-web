@@ -5,6 +5,7 @@ import {
   getExchangeRates,
   getShippingFee
 } from '../service/api';
+import { getCoinName } from '../common/utils/crypto';
 
 export default class Cart {
   constructor(container) {
@@ -52,31 +53,6 @@ export default class Cart {
 
   getPrice() {
     return this.price;
-  }
-
-  getCoinName(coin) {
-    switch (coin) {
-      case 'BTC':
-        return 'Bitcoin';
-      case 'ETH':
-        return 'Ethereum';
-      case 'BNB':
-        return 'Binance';
-      case 'USDT':
-        return 'Tether - ERC20';
-      case 'USDC':
-        return 'USD Coin';
-      case 'TUSD':
-        return 'TrueUSD';
-      case 'PAX':
-        return 'Paxos Standard';
-      case 'GUSD':
-        return 'Gemini Dollar';
-      case 'USDS':
-        return 'Stably';
-      case 'BUSD':
-        return 'Binance USD';
-    }
   }
 
   setPrice(price) {
@@ -171,15 +147,20 @@ export default class Cart {
         break;
     }
 
-    if (coinNameEl)
-      coinNameEl.innerText = this.getCoinName(this.selectedCoinName);
+    if (coinNameEl) coinNameEl.innerText = getCoinName(this.selectedCoinName);
     if (totalPriceEl)
       totalPriceEl.innerText = `${totalAmountInCoin.toFixed(toFixedNumber)} ${
         this.selectedCoinName
       }`;
   }
 
-  updateCart({ shippingFee, tax, quantity = null, saveCart = false } = {}) {
+  updateCart({
+    price = this.getPrice(),
+    shippingFee,
+    tax,
+    quantity = null,
+    saveCart = false
+  } = {}) {
     const {
       quantityEl,
       subTotalPriceEl,
@@ -195,7 +176,6 @@ export default class Cart {
     tax = tax != null ? tax : currentCart.tax || 0;
     quantity = quantity != null ? quantity : currentCart.quantity || 1;
 
-    const price = this.getPrice();
     const subTotalPrice = quantity * price;
     const totalPrice = subTotalPrice + shippingFee + tax;
     this.totalPrice = totalPrice;
