@@ -3,6 +3,12 @@ extends ../layout.pug
 
 block title
    title The plug & play Incognito Node
+
+block meta
+   - var descriptionContent = `Meet the world's first platform for privacy tokens. Send, store, receive and trade cryptocurrency privately. Earn crypto for powering privacy for the world. Just one tap to explore the Incognito Blockchain and turn on incognito mode for your bitcoin, ethereum, and more.`;
+   meta(name='description', content=descriptionContent)
+   meta(name='og:description' content=descriptionContent)
+   meta(name='twitter:description' content=descriptionContent)
    
 block main
    include ../header.pug
