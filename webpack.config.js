@@ -147,6 +147,10 @@ const copyPlugin = new CopyPlugin([
   {
     from: path.resolve(__dirname, './src/image/seo'),
     to: ''
+  },
+  {
+    from: path.resolve(__dirname, './robots.txt'),
+    to: ''
   }
 ]);
 
