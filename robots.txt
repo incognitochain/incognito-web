@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /blog/
+Allow: /blog/wp-content/uploads/
+Disallow: /blog/wp-content/plugins/
+Disallow: /blog/wp-admin/
+ 
+Sitemap: https://incognito.org/blog/sitemap_index.xml
