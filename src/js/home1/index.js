@@ -128,6 +128,10 @@ const handleScrollToEmailSubscriber = container => {
   const priceInfoElm = container.querySelector('.price-info');
   let subscribeEmailEl = ctaEl.querySelector('#buy-now-container');
   let stickyPosition = 0;
+  const getZendeskEl = () => {
+    return document.querySelector('iframe#launcher');
+  };
+  let zendeskEl = getZendeskEl();
 
   do {
     stickyPosition += subscribeEmailEl.offsetTop || 0;
@@ -138,6 +142,9 @@ const handleScrollToEmailSubscriber = container => {
 
   window.addEventListener('scroll', function() {
     let ctaElmHeight = ctaEl.offsetHeight;
+    if (!zendeskEl) {
+      zendeskEl = getZendeskEl();
+    }
     // if (priceElm) {
     //   ctaElmHeight += priceElm.offsetHeight + 20;
     // }
@@ -145,8 +152,10 @@ const handleScrollToEmailSubscriber = container => {
     if (window.pageYOffset > stickyPosition) {
       ctaEl.classList.add('sticky');
       priceInfoElm.style.paddingTop = `${ctaElmHeight}px`;
+      zendeskEl && zendeskEl.classList.add('sticky');
     } else {
       ctaEl.classList.remove('sticky');
+      zendeskEl && zendeskEl.classList.remove('sticky');
       priceInfoElm.style.paddingTop = 0;
     }
   });
