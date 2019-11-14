@@ -50,3 +50,11 @@
     }
   }
 }
+
+iframe#launcher {
+  @include breakpoint-down(xl) {
+    &.sticky {
+      bottom: 75px !important;
+    }
+  }
+}
