@@ -1,34 +1,40 @@
-class Sticky extends HTMLElement {
-  constructor() {
-    super();
-    this.stickyPosition = 0;
-  }
-
-  onWindowScrolled() {
-    if (window.pageYOffset > this.stickyPosition) {
-      this.classList.add('sticky');
-    } else {
-      this.classList.remove('sticky');
-    }
-  }
-
-  connectedCallback() {
+class Sticky {
+  constructor(
+    element,
+    options = {},
+    callback = { onAddSticky: () => {}, onRemoveSticky: () => {} }
+  ) {
+    this.element = element;
+    this.options = options;
+    this.callback = callback;
     this.setup();
-    window.addEventListener('scroll', this.onWindowScrolled.bind(this));
-  }
-
-  disconnectedCallback() {
-    window.removeEventListener('scroll', this.onWindowScrolled);
   }
 
   setup() {
-    let parentElement = this;
+    if (!this.element) return;
+
+    let stickyPosition = 0;
+    let parentElement = this.element;
 
     do {
-      this.stickyPosition += parentElement.offsetTop || 0;
+      stickyPosition += parentElement.offsetTop || 0;
       parentElement = parentElement.offsetParent;
     } while (parentElement);
+
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > stickyPosition) {
+        this.element.classList.add('sticky');
+        if (this.callback && this.callback.onAddSticky) {
+          this.callback.onAddSticky();
+        }
+      } else {
+        this.element.classList.remove('sticky');
+        if (this.callback && this.callback.onRemoveSticky) {
+          this.callback.onRemoveSticky();
+        }
+      }
+    });
   }
 }
 
-customElements.define('i-sticky', Sticky);
+export default Sticky;

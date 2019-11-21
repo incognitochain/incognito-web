@@ -10,6 +10,7 @@ import { trackEvent } from '../common/utils/ga';
 import isQueryStringExists from '../service/queryStringExists';
 import KEYS from '../constant/keys';
 import storage from '../service/storage';
+import Sticky from '../common/sticky';
 
 // for earning calculation
 const earningStepPercent = 0.5;
@@ -47,6 +48,7 @@ function main() {
   handleSectionSwipers(container);
   handlePressSwiper(container);
   handleScrollToEmailSubscriber(container);
+  handleScrollToNavigationLinks(container);
 }
 
 const handleSectionSwipers = container => {
@@ -225,6 +227,11 @@ const handleScrollToEmailSubscriber = container => {
       priceInfoElm.style.paddingTop = 0;
     }
   });
+};
+
+const handleScrollToNavigationLinks = container => {
+  const navLinksEl = container.querySelector('.nav-links');
+  new Sticky(navLinksEl);
 };
 
 const handleAutoPlayUnboxing = container => {
