@@ -48,7 +48,10 @@ function main() {
   handleSectionSwipers(container);
   handlePressSwiper(container);
   handleScrollToEmailSubscriber(container);
-  handleScrollToNavigationLinks(container);
+
+  window.addEventListener('load', () => {
+    handleScrollToNavigationLinks(container);
+  });
 }
 
 const handleSectionSwipers = container => {
