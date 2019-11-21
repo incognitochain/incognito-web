@@ -1,3 +1,4 @@
+import Swiper from 'swiper';
 import YoutubePlayer from '../common/youtubePlayer';
 import countdown from '../service/countdown';
 import {
@@ -38,13 +39,78 @@ function main() {
   handleVideoPlayers(container);
   startCountdown(container);
   handleShowTotalSubscriber(container);
-  handleScrollToEmailSubscriber(container);
   handleScrollToFAQ(container);
   handleAutoPlayUnboxing(container);
   handleAutoPlayIntro(container);
   handleEarningSliders(container);
   handleGetProductPrice(container);
+  handleSectionSwipers(container);
+  handlePressSwiper(container);
+  handleScrollToEmailSubscriber(container);
 }
+
+const handleSectionSwipers = container => {
+  const swiperEls = container.querySelectorAll(
+    '.swiper-container.swiper-coverflow'
+  );
+  swiperEls.forEach(swiper => {
+    new Swiper(swiper, {
+      effect: 'coverflow',
+      loop: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      keyboardControl: true,
+      mousewheelControl: true,
+      lazy: {
+        loadPrevNext: true
+      },
+      preventClicks: false,
+      preventClicksPropagation: false,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 500,
+        modifier: 1,
+        slideShadows: true
+      }
+    });
+  });
+};
+
+const handlePressSwiper = container => {
+  const pressContainerEl = container.querySelector('.press-container');
+  if (!pressContainerEl) return;
+  const swiperEl = pressContainerEl.querySelector('.swiper-container');
+  if (!swiperEl) return;
+  const nextEl = pressContainerEl.querySelector('.swiper-button-next');
+  const prevEl = pressContainerEl.querySelector('.swiper-button-prev');
+
+  new Swiper(swiperEl, {
+    slidesPerView: 1,
+    breakpoints: {
+      576: {
+        slidesPerView: 2
+      },
+      992: {
+        slidesPerView: 4
+      }
+    },
+    loop: true,
+    navigation: {
+      nextEl: nextEl,
+      prevEl: prevEl
+    },
+    watchOverflow: true,
+    spaceBetween: 50,
+    autoplay: {
+      delay: 4000
+    }
+  });
+};
 
 const handleShowTotalSubscriber = async () => {
   try {
