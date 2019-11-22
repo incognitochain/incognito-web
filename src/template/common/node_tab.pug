@@ -1,0 +1,7 @@
+mixin node_tab(active_index)
+    #node-tab-container
+        .tab-container
+            .tab-item(class=active_index === 1 ? "active" : "")
+                a(href='/node.html') Node
+            .tab-item(class=active_index === 2 ? "active" : "")
+                a(href  ='/validator.html') Virtual Node
