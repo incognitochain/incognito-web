@@ -155,12 +155,15 @@ a {
     .tab-item {
       padding: 10px 20px;
 
-      * {
+      a {
+        text-decoration: none;
         color: $black;
       }
 
-      a {
-        text-decoration: none;
+      &:hover:not(.active) {
+        a {
+          color: $green !important;
+        }
       }
 
       &.active {
