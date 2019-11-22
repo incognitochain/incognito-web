@@ -1,9 +1,23 @@
 #press-container
-    .divide
-        span.title Node is featured on
-    .press-group
-        .press-logo.desktop
-            img(src=require('../../image/press/desktop.svg'))
-        .press-logo.mobile
-            img(src=require('../../image/press/mobile.svg'))
-    .divide
+    .title Node is featured on
+    .press-container
+        .swiper-container.press-group
+            .swiper-wrapper.press-wrapper
+                .press-logo.swiper-slide
+                    img(src=require('../../image/press/money_in_crypto.svg'))
+                .press-logo.swiper-slide
+                    img(src=require('../../image/press/canard.svg'))
+                .press-logo.swiper-slide
+                    img(src=require('../../image/press/market_watch.svg'))
+                .press-logo.swiper-slide
+                    img(src=require('../../image/press/yahoo.svg'))
+                .press-logo.swiper-slide
+                    img(src=require('../../image/press/verdict.svg'))
+                .press-logo.swiper-slide
+                    img(src=require('../../image/press/the_block.svg'))
+                .press-logo.swiper-slide
+                    img(src=require('../../image/press/chainnews.svg'))
+                .press-logo.swiper-slide
+                    img(src=require('../../image/press/the_blockchain_domain.svg'))
+        .swiper-button-next
+        .swiper-button-prev

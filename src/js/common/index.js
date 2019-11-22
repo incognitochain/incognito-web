@@ -10,4 +10,6 @@ import './onload';
 import './customEl';
 import './header';
 import './telegram_chat';
+import './tab_navigation';
+import './sticky';
 // import './invite_email_form';
