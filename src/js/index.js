@@ -5,6 +5,8 @@ import 'nodelist-foreach-polyfill';
 import '@webcomponents/custom-elements';
 import '@webcomponents/shadydom';
 
+import 'swiper/css/swiper.min.css';
+
 import '../scss/main.scss';
 import './referral';
 import './common';

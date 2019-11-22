@@ -7,37 +7,7 @@ mixin stepHtml(step, stepName, isOpen)
 
 .step-container.container
   +collapse('validator-steps-guide')(auto-collapse-first-item='true')
-    +stepHtml('1', 'Create your account', 'true')
-      p Download the Incognito App
-      .row-img 
-        .img.install-app-img
-          a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
-            img(src=require('../../image/wallet/google_play_black.svg'), alt='chplay-app')
-        .img.install-app-img
-          a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
-            img(src=require('../../image/wallet/app_store_black.svg'), alt='ios-app')
-      p Open the app and it will automatically generate a wallet for you.
-      p Tap on 
-        span.highlight Settings 
-        | (Gear icon). 
-
-      .row-img
-        .img
-          img(src=require('../../image/become_validator/1.png'), alt='view_account_setting')
-        .img
-          img(src=require('../../image/become_validator/2.png'), alt='view_your_keys')
-      p Copy 
-        |
-        span.highlight YOUR INCOGNITO ADDRESS
-        |  and your 
-        span.highlight VALIDATOR KEY 
-        span.italic (keep them safe!)
-        |. You’ll need them in STEP 3 and 4.
-      .row-img
-        .img
-          img(src=require('../../image/become_validator/3.png'), alt='copy_your_keys')
-
-    +stepHtml('2', 'Set up your server')
+    +stepHtml('1', 'Set up your server', 'true')
       p You can run Incognito on a low-cost server. If you don’t have a server yet, it’s really simple and takes just a couple of minutes. You can set up an account with a VPS provider or a cloud service provider like
         | 
         a(href='https://www.digitalocean.com', target='blank') DigitalOcean
@@ -75,6 +45,36 @@ mixin stepHtml(step, stepName, isOpen)
         |. You’ll need it in Step 5.
       p See instructions to set up Node in the Step 3.
 
+    +stepHtml('2', 'Create your account')
+      p Download the Incognito App
+      .row-img 
+        .img.install-app-img
+          a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
+            img(src=require('../../image/wallet/google_play_black.svg'), alt='chplay-app')
+        .img.install-app-img
+          a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
+            img(src=require('../../image/wallet/app_store_black.svg'), alt='ios-app')
+      p Open the app and it will automatically generate a wallet for you.
+      p Tap on 
+        span.highlight Settings 
+        | (Gear icon). 
+
+      .row-img
+        .img
+          img(src=require('../../image/become_validator/1.png'), alt='view_account_setting')
+        .img
+          img(src=require('../../image/become_validator/2.png'), alt='view_your_keys')
+      p Copy 
+        |
+        span.highlight YOUR INCOGNITO ADDRESS
+        |  and your 
+        span.highlight VALIDATOR KEY 
+        span.italic (keep them safe!)
+        |. You’ll need them in STEP 3 and 4.
+      .row-img
+        .img
+          img(src=require('../../image/become_validator/3.png'), alt='copy_your_keys')
+
     +stepHtml('3', 'Run Incognito')
       p In your terminal:
       p Run this command line below. Replace validator_key with 
@@ -111,36 +111,12 @@ mixin stepHtml(step, stepName, isOpen)
               img(src=require('../../image/become_validator/16.png'), alt='example virtual node ip')
 
     +stepHtml('4', 'Get Privacy Token (PRV) to stake')
-      p Privacy (PRV) is the native coin of the Incognito Network. To become a validator, you’ll need to stake the minimum 1,750 PRV. You can purchase PRV on the Incognito DEX using BTC or ETH (more currencies coming soon).
-      p Here are instructions on how to buy PRV with ETH:
+      p Privacy (PRV) is the native coin of the Incognito Network. To become a validator, you’ll need to stake the minimum 1,750 PRV. You can purchase PRV on the Incognito pDEX using BTC or ETH (more currencies coming soon) or you can borrow PRV using crypto as collateral on Constant platform.
         ol
-          li Deposit ETH to the Incognito Wallet to turn it into pETH 
-            p 
-            |Open the app. Tap private ETH. Tap Deposit.
-            br
-            |Send ETH to the address displayed.
-            br
-            |That’s it! You now have pETH.
-            p
-            .row-img
-              .img
-                img(src=require('../../image/become_validator/4.png'), alt='issue_new_token')
-              .img
-                img(src=require('../../image/become_validator/5.png'), alt='issue_new_token')
-              .img
-                img(src=require('../../image/become_validator/6.png'), alt='issue_new_token')
-            p
-          li Purchase PRV on the pDEX
-            p 
-            |Tap on DEX. Tap Swap.
-            p
-            .row-img
-              .img
-                img(src=require('../../image/become_validator/7.png'), alt='swap_token')
-            p
-            |Here are the PRV pairs. Right now, you can choose either pETH/PRV or pBTC/PRV. Enter the amount of ETH you want to swap for PRV (you’ll need 1750 PRV to stake), then tap Swap.
-            p
-            |Success! You now have PRV.
+          li Buy PRV: 
+            a(href='https://incognito.org/blog/how-to-trade-bitcoin-privately-with-incognito-pdex/').highlight pDex Instruction
+          li Borrow PRV: 
+            a(href='https://incognito.org/blog/how-to-borrow-prv-with-constant/').highlight Constant Loan Instruction
 
     +stepHtml('5', 'Monitor your node')
       p You can easily monitor your Incognito nodes right from your phone. 

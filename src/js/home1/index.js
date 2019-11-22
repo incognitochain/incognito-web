@@ -1,3 +1,4 @@
+import Swiper from 'swiper';
 import YoutubePlayer from '../common/youtubePlayer';
 import countdown from '../service/countdown';
 import {
@@ -9,6 +10,7 @@ import { trackEvent } from '../common/utils/ga';
 import isQueryStringExists from '../service/queryStringExists';
 import KEYS from '../constant/keys';
 import storage from '../service/storage';
+import Sticky from '../common/sticky';
 
 // for earning calculation
 const earningStepPercent = 0.5;
@@ -38,13 +40,106 @@ function main() {
   handleVideoPlayers(container);
   startCountdown(container);
   handleShowTotalSubscriber(container);
-  handleScrollToEmailSubscriber(container);
   handleScrollToFAQ(container);
   handleAutoPlayUnboxing(container);
   handleAutoPlayIntro(container);
   handleEarningSliders(container);
   handleGetProductPrice(container);
+  handleSectionSwipers(container);
+  handlePressSwiper(container);
+  handleTestimonialSwiper(container);
+  handleScrollToEmailSubscriber(container);
+
+  window.addEventListener('load', () => {
+    handleScrollToNavigationLinks(container);
+  });
 }
+
+const handleTestimonialSwiper = container => {
+  const testimonialContainerEl = container.querySelector(
+    '#testimonial-container'
+  );
+  if (!testimonialContainerEl) return;
+  const swiperEl = testimonialContainerEl.querySelector('.swiper-container');
+  if (!swiperEl) return;
+  const nextBtnEl = swiperEl.querySelector('.swiper-btn-next');
+  const prevBtnEl = swiperEl.querySelector('.swiper-btn-prev');
+
+  new Swiper(swiperEl, {
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    loop: true,
+    watchOverflow: true,
+    spaceBetween: 50,
+    navigation: {
+      nextEl: nextBtnEl,
+      prevEl: prevBtnEl
+    }
+  });
+};
+
+const handleSectionSwipers = container => {
+  const swiperEls = container.querySelectorAll(
+    '.swiper-container.swiper-coverflow'
+  );
+  swiperEls.forEach(swiper => {
+    new Swiper(swiper, {
+      effect: 'coverflow',
+      loop: true,
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      keyboardControl: true,
+      mousewheelControl: true,
+      lazy: {
+        loadPrevNext: true
+      },
+      preventClicks: false,
+      preventClicksPropagation: false,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      coverflowEffect: {
+        rotate: 0,
+        stretch: 0,
+        depth: 500,
+        modifier: 1,
+        slideShadows: true
+      }
+    });
+  });
+};
+
+const handlePressSwiper = container => {
+  const pressContainerEl = container.querySelector('.press-container');
+  if (!pressContainerEl) return;
+  const swiperEl = pressContainerEl.querySelector('.swiper-container');
+  if (!swiperEl) return;
+  const nextEl = pressContainerEl.querySelector('.swiper-button-next');
+  const prevEl = pressContainerEl.querySelector('.swiper-button-prev');
+
+  new Swiper(swiperEl, {
+    slidesPerView: 1,
+    breakpoints: {
+      576: {
+        slidesPerView: 2
+      },
+      992: {
+        slidesPerView: 4
+      }
+    },
+    loop: true,
+    navigation: {
+      nextEl: nextEl,
+      prevEl: prevEl
+    },
+    watchOverflow: true,
+    spaceBetween: 50,
+    autoplay: {
+      delay: 4000
+    }
+  });
+};
 
 const handleShowTotalSubscriber = async () => {
   try {
@@ -64,7 +159,7 @@ const handleShowTotalSubscriber = async () => {
 const startCountdown = () => {
   const countdownEls = document.querySelectorAll('.countdown');
   for (const countdownEl of countdownEls) {
-    countdown(countdownEl, '2019-10-20T23:59:00.000-07:00', () => {
+    countdown(countdownEl, '2019-11-29T23:59:00.000-07:00', () => {
       // setMessage('The program was ended', 'error');
       countdownEl.remove();
       const earlyBirdPriceEls = document.querySelectorAll(
@@ -159,6 +254,11 @@ const handleScrollToEmailSubscriber = container => {
       priceInfoElm.style.paddingTop = 0;
     }
   });
+};
+
+const handleScrollToNavigationLinks = container => {
+  const navLinksEl = container.querySelector('.nav-links');
+  new Sticky(navLinksEl);
 };
 
 const handleAutoPlayUnboxing = container => {
