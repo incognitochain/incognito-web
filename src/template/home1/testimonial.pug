@@ -1,0 +1,28 @@
+mixin review(image, name, subject, content, rate)
+    .review&attributes(attributes)
+        if image
+            .review-image   
+                img(src=image, alt="review image")
+        
+        .review-wrapper
+            .review-subject= subject
+            .review-content!= content
+            .review-reviewer
+                .name= name
+                .rating
+                    - var n = 0
+                    while n < rate
+                        - n++
+                        .rating-star
+#testimonial-container
+    h1.title What our customers say
+    .swiper-container
+        .swiper-wrapper
+            +review(require('../../image/home1/testimonial/1.jpg'), 'G Porter', 'Interesting gadget with uncertain ROI', 'Got my Node in the mail yesterday! Obviously it’ll take a while to see substantial ROI, but for now, the product seems solid and well made. Fairly easy to set up, but does take a few hours to start earning. Best to be patient.', 4).swiper-slide
+            +review(require('../../image/home1/testimonial/2.jpg'), 'kriptowolf', 'Looks as advertised. Cool device', 'Looks as advertised. Got mine during the early bird special, so should earn back what I paid for it pretty quickly. I had a few issues during set up – would recommend making the instructions clearer. However, the device is beautiful, the idea is novel – and it works (so far…)', 4).swiper-slide
+            +review(require('../../image/home1/testimonial/3.jpg'), 'Chris Mullins', 'Convenient alternative to virtual staking', 'Opted for Incognito’s Node device instead of running a Virtual Node. Just seemed more convenient. To my understanding, devices earn less initially but don’t require further investment other than the cost of the hardware itself. Will see how long before it pays itself back. Hesitantly optimistic.', 5).swiper-slide
+            +review(require('../../image/home1/testimonial/4.jpg'), '0xfiend', 'Promising but depends on a lot of factors', 'I have a Coinmine device, so here’s a brief comparison for those of you deciding between them. Node is quite a lot smaller, but Coinmine isn’t huge either. As the Incognito Blockchain is still new, Coinmine earns a greater variety of currencies, but a smaller amount. I do like Node’s privacy angle, but obviously, how much you’ll earn depends on Incognito’s transaction volume. I guess we’ll see. If you’re all about guaranteed ROI, Node is probably not the right product for you.', 3).swiper-slide
+            +review(require('../../image/home1/testimonial/5.jpg'), 'Desmond Tran', 'Steady earnings so far', 'All good so far. Easy to set up, app is intuitive and gives you access to a bunch of other crypto features like trading and so on. Don’t expect to strike gold fast though. Earned about 12 PRV my first day, about 4 USD.', 4).swiper-slide
+        .swiper-btn-wrapper
+            .swiper-btn-prev
+            .swiper-btn-next

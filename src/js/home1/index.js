@@ -47,12 +47,36 @@ function main() {
   handleGetProductPrice(container);
   handleSectionSwipers(container);
   handlePressSwiper(container);
+  handleTestimonialSwiper(container);
   handleScrollToEmailSubscriber(container);
 
   window.addEventListener('load', () => {
     handleScrollToNavigationLinks(container);
   });
 }
+
+const handleTestimonialSwiper = container => {
+  const testimonialContainerEl = container.querySelector(
+    '#testimonial-container'
+  );
+  if (!testimonialContainerEl) return;
+  const swiperEl = testimonialContainerEl.querySelector('.swiper-container');
+  if (!swiperEl) return;
+  const nextBtnEl = swiperEl.querySelector('.swiper-btn-next');
+  const prevBtnEl = swiperEl.querySelector('.swiper-btn-prev');
+
+  new Swiper(swiperEl, {
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    loop: true,
+    watchOverflow: true,
+    spaceBetween: 50,
+    navigation: {
+      nextEl: nextBtnEl,
+      prevEl: prevBtnEl
+    }
+  });
+};
 
 const handleSectionSwipers = container => {
   const swiperEls = container.querySelectorAll(
@@ -135,7 +159,7 @@ const handleShowTotalSubscriber = async () => {
 const startCountdown = () => {
   const countdownEls = document.querySelectorAll('.countdown');
   for (const countdownEl of countdownEls) {
-    countdown(countdownEl, '2019-10-20T23:59:00.000-07:00', () => {
+    countdown(countdownEl, '2019-11-29T23:59:00.000-07:00', () => {
       // setMessage('The program was ended', 'error');
       countdownEl.remove();
       const earlyBirdPriceEls = document.querySelectorAll(

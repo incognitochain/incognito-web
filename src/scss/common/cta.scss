@@ -120,6 +120,7 @@
 
     .button-and-countdown-container {
       margin-top: 0px !important;
+      justify-content: center;
 
       @include breakpoint-up(sm) {
         align-items: center !important;

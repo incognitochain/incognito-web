@@ -118,7 +118,7 @@
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    margin: 100px 0px;
+    margin: 100px 0px 80px;
     width: 100%;
 
     @include breakpoint-down(sm) {
@@ -240,7 +240,7 @@
             .button-and-countdown-container {
               margin-top: 25px;
               display: flex;
-              flex-direction: column;
+              // flex-direction: column;
               align-items: flex-start;
 
               .cta {
@@ -713,6 +713,188 @@
     }
   }
 
+  #testimonial-container {
+    background-color: #ebf8f9;
+    padding: 50px 0px;
+
+    @include breakpoint-down(sm) {
+      padding: 30px;
+    }
+
+    h1.title {
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 41px;
+      text-align: center;
+      margin-top: 0px;
+      margin-bottom: 50px;
+
+      @include breakpoint-down(sm) {
+        font-size: 28px;
+        margin-bottom: 30px;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        width: 40px;
+        height: 2px;
+        background-color: $green;
+        margin: 30px auto 0px;
+      }
+    }
+
+    .swiper-container {
+      .swiper-wrapper {
+        display: flex;
+
+        .swiper-slide {
+          &.swiper-slide-next,
+          &.swiper-slide-prev {
+            opacity: 0.6;
+          }
+        }
+      }
+      .swiper-btn-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 50px;
+
+        @include breakpoint-down(sm) {
+          margin-top: 30px;
+        }
+
+        .swiper-btn-prev,
+        .swiper-btn-next {
+          cursor: pointer;
+
+          &::before {
+            font-family: 'Font Awesome 5 Pro';
+            color: $black;
+            opacity: 0.5;
+            display: block;
+            font-size: 25px;
+          }
+
+          &:hover {
+            &::before {
+              opacity: 1;
+            }
+          }
+
+          &.swiper-btn-prev {
+            &::before {
+              content: '\f177';
+            }
+            margin-right: 20px;
+          }
+
+          &.swiper-btn-next {
+            &::before {
+              content: '\f178';
+            }
+          }
+        }
+      }
+    }
+
+    .review {
+      background-color: $white;
+      display: flex;
+      width: 80%;
+      height: auto;
+
+      @include breakpoint-down(xl) {
+        flex-direction: column;
+      }
+
+      @include breakpoint-down(sm) {
+        width: 100%;
+      }
+
+      .review-image {
+        @include breakpoint-down(xl) {
+          text-align: center;
+        }
+
+        @include breakpoint-up(sm) {
+          img {
+            height: 100%;
+            width: auto;
+          }
+        }
+      }
+
+      .review-wrapper {
+        padding: 30px 50px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        @include breakpoint-down(sm) {
+          padding: 20px 30px;
+        }
+
+        .review-subject {
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 28px;
+          color: $black;
+        }
+
+        .review-content {
+          margin-top: 20px;
+        }
+
+        .review-reviewer {
+          margin-top: auto;
+          width: 100%;
+          display: flex;
+          align-items: flex-end;
+          padding-top: 20px;
+          height: 100%;
+
+          @include breakpoint-down(sm) {
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+          }
+
+          .name {
+            color: $black;
+
+            &::before {
+              content: 'Name: ';
+            }
+          }
+
+          .rating {
+            margin-left: 30px;
+            display: flex;
+
+            @include breakpoint-down(sm) {
+              margin-left: 0;
+            }
+
+            .rating-star {
+              &::before {
+                content: '\f005';
+                font-family: 'Font Awesome 5 Pro';
+                font-weight: 'solid';
+                font-size: 18px;
+                color: $green;
+              }
+
+              &:not(:first-child) {
+                margin-left: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   #float-buttons {
     @include breakpoint-down(xl) {
       display: none;
@@ -826,13 +1008,16 @@
   }
 
   #content-container {
+    margin-top: 50px;
+
     @include breakpoint-down(xl) {
-      margin-top: 0px;
+      margin-top: 30px;
     }
 
     .heading {
       font-size: 32px;
       line-height: 44px;
+      text-align: center;
     }
 
     .nav-links {
@@ -885,6 +1070,10 @@
 
       .container {
         display: flex;
+
+        @include breakpoint-up(sm) {
+          justify-content: center;
+        }
 
         @include breakpoint-down(sm) {
           padding: 0;
