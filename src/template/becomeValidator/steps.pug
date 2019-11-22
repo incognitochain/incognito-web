@@ -111,39 +111,12 @@ mixin stepHtml(step, stepName, isOpen)
               img(src=require('../../image/become_validator/16.png'), alt='example virtual node ip')
 
     +stepHtml('4', 'Get Privacy Token (PRV) to stake')
-      p Privacy (PRV) is the native coin of the Incognito Network. To become a validator, you’ll need to stake the minimum 1,750 PRV. You can purchase PRV on the Incognito DEX using BTC or ETH (more currencies coming soon) or you can borrow PRV using crypto as collateral on Constant platform.
-      p Here are instructions on how to buy PRV with ETH:
+      p Privacy (PRV) is the native coin of the Incognito Network. To become a validator, you’ll need to stake the minimum 1,750 PRV. You can purchase PRV on the Incognito pDEX using BTC or ETH (more currencies coming soon) or you can borrow PRV using crypto as collateral on Constant platform.
         ol
-          li Deposit ETH to the Incognito Wallet to turn it into pETH 
-            p 
-            |Open the app. Tap private ETH. Tap Deposit.
-            br
-            |Send ETH to the address displayed.
-            br
-            |That’s it! You now have pETH.
-            p
-            .row-img
-              .img
-                img(src=require('../../image/become_validator/4.png'), alt='issue_new_token')
-              .img
-                img(src=require('../../image/become_validator/5.png'), alt='issue_new_token')
-              .img
-                img(src=require('../../image/become_validator/6.png'), alt='issue_new_token')
-            p
-          li Purchase PRV on the pDEX
-            p 
-            |Tap on DEX. Tap Swap.
-            p
-            .row-img
-              .img
-                img(src=require('../../image/become_validator/7.png'), alt='swap_token')
-            p
-            |Here are the PRV pairs. Right now, you can choose either pETH/PRV or pBTC/PRV. Enter the amount of ETH you want to swap for PRV (you’ll need 1750 PRV to stake), then tap Swap.
-            p
-            |Success! You now have PRV.
-          li Borrow PRV
-            p
-            a(href='/blog/how-to-borrow-prv-with-constant/') Constant Loan Instruction
+          li Buy PRV: 
+            a(href='https://incognito.org/blog/how-to-trade-bitcoin-privately-with-incognito-pdex/').highlight pDex Instruction
+          li Borrow PRV: 
+            a(href='https://incognito.org/blog/how-to-borrow-prv-with-constant/').highlight Constant Loan Instruction
 
     +stepHtml('5', 'Monitor your node')
       p You can easily monitor your Incognito nodes right from your phone. 
