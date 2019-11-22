@@ -144,3 +144,33 @@ a {
     bottom: 55pt !important;
   }
 }
+
+#node-tab-container {
+  .tab-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+    width: 100%;
+
+    .tab-item {
+      padding: 10px 20px;
+
+      * {
+        color: $black;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      &.active {
+        border-bottom: 2px solid $green;
+        font-weight: 500;
+      }
+
+      &:not(:first-child) {
+        margin-left: 50px;
+      }
+    }
+  }
+}

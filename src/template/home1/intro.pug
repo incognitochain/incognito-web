@@ -10,8 +10,10 @@ div#intro-container
   .content
     div.intro
       #intro-heading
-        h1.heading Incognito Node
-        .description Earn BTC, ETH, BNB and more, for helping to process confidential crypto transactions for the world. 
+        include ../common/node_tab.pug
+        +node_tab(1)
+        h1.heading Power privacy. Earn crypto.
+        .description Earn BTC, ETH, PRV and more, for processing confidential crypto transactions for the world.
           //- span.see-how.scroll-action-btn(data-scroll-to='.video-link') See how
           //- span.earning-tooltip.hint
         //- .description.extra Built by a bunch of geeks who shipped $100M+ of connected hardware worldwide.

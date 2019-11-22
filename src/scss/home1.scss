@@ -38,9 +38,6 @@
         flex: 1;
 
         @include breakpoint-up(sm) {
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
           padding: 0 20px;
         }
 
@@ -61,13 +58,8 @@
           margin-top: 8px;
           margin-right: 20px;
 
-          @include breakpoint-up(xl) {
-            margin-top: 0px;
-            margin-right: 0px;
-          }
-
           > img {
-            width: 30px;
+            width: 100%;
           }
 
           &.easy {
@@ -91,6 +83,116 @@
 
     @include breakpoint-down(sm) {
       flex-direction: column;
+    }
+  }
+
+  > .container {
+    width: 100%;
+  }
+
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: $black;
+
+    &::after {
+      font-size: 28px;
+    }
+
+    @include breakpoint-down(sm) {
+      &::after {
+        font-size: 20px;
+      }
+
+      &.swiper-button-next {
+        right: 5px;
+      }
+
+      &.swiper-button-prev {
+        left: 5px;
+      }
+    }
+  }
+
+  #press-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: 100px 0px;
+    width: 100%;
+
+    @include breakpoint-down(sm) {
+      margin: 30px 0;
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 500;
+      color: $black;
+
+      &::after {
+        margin: 20px auto 0;
+        width: 40px;
+        display: block;
+        content: '';
+        height: 2px;
+        background-color: $green1;
+      }
+    }
+
+    .divide {
+      border-top: 1px solid $white2;
+      margin-top: 70px;
+      margin-bottom: 30px;
+
+      &:last-child {
+        margin-top: 50px;
+      }
+
+      .title {
+        padding: 0 20px;
+        background: $white;
+        position: relative;
+      }
+    }
+
+    .press-container {
+      display: flex;
+      align-items: center;
+      position: relative;
+      z-index: 0;
+      width: 100%;
+      margin-top: 60px;
+
+      @include breakpoint-down(sm) {
+        margin-top: 30px;
+      }
+
+      .press-group {
+        width: 80%;
+
+        @include breakpoint-down(sm) {
+          width: 75%;
+        }
+
+        .press-wrapper {
+          display: flex;
+          align-items: center;
+          margin-top: 5px;
+
+          .press-logo {
+            width: 25%;
+
+            @include breakpoint-down(xl) {
+              width: 50%;
+            }
+
+            @include breakpoint-down(sm) {
+              width: 100%;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -582,7 +684,7 @@
       }
 
       .image {
-        margin-top: 150px;
+        margin-top: 250px;
         position: relative;
       }
 
@@ -594,7 +696,7 @@
 
           > div.content {
             position: initial !important;
-            margin-top: 150px;
+            margin-top: 250px;
             margin-left: 40px;
 
             #intro-heading {
@@ -728,82 +830,112 @@
       margin-top: 0px;
     }
 
-    #press-container {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      text-align: center;
-
-      .title {
-        font-size: 24px;
-        font-weight: 400;
-        color: $black;
-      }
-
-      .divide {
-        border-top: 1px solid #f0f5f5;
-        margin-top: 70px;
-        margin-bottom: 30px;
-
-        &:last-child {
-          margin-top: 50px;
-        }
-
-        .title {
-          top: -11px;
-          padding: 0 20px;
-          background: $white;
-          position: relative;
-        }
-      }
-
-      .press-group {
-        display: flex;
-        justify-content: center;
-
-        @include breakpoint-down(sm) {
-          flex-direction: column;
-          justify-content: flex-start;
-        }
-
-        .press-logo {
-          margin: 0 50px;
-
-          @include breakpoint-down(sm) {
-            margin: 10px 0;
-            text-align: left;
-          }
-
-          &:last-child {
-            margin-right: 0;
-          }
-
-          &:first-child {
-            margin-left: 0;
-          }
-
-          &.desktop {
-            display: block;
-
-            @include breakpoint-down(sm) {
-              display: none;
-            }
-          }
-
-          &.mobile {
-            display: none;
-
-            @include breakpoint-down(sm) {
-              display: block;
-            }
-          }
-        }
-      }
-    }
-
     .heading {
       font-size: 32px;
       line-height: 44px;
+    }
+
+    .nav-links {
+      width: 100%;
+      border-bottom: 1px solid $white2;
+      background: $white;
+      position: relative;
+      z-index: 2;
+
+      #buy-now-container {
+        margin-left: auto;
+        display: none;
+
+        button {
+          height: 44px;
+          min-width: 190px;
+        }
+
+        .price-info {
+          display: block;
+
+          .rocket {
+            display: none;
+          }
+
+          .price {
+            margin-top: 0px;
+
+            .end-price {
+              font-size: 20px;
+              font-weight: 400;
+
+              &::before {
+                top: 0px;
+                font-size: inherit;
+              }
+            }
+
+            .origin-price {
+              font-size: 16px;
+              top: 0px;
+
+              @include breakpoint-down(xl) {
+                margin-top: 0px;
+              }
+            }
+          }
+        }
+      }
+
+      .container {
+        display: flex;
+
+        @include breakpoint-down(sm) {
+          padding: 0;
+          overflow-x: auto;
+
+          &::-webkit-scrollbar {
+            display: none;
+          }
+        }
+
+        .link {
+          padding: 20px 25px 0px;
+          cursor: pointer;
+
+          &::after {
+            content: '';
+            width: 0;
+            height: 2px;
+            background-color: $green1;
+            transition: width 0.3s;
+            display: block;
+            margin-top: 20px;
+          }
+
+          &.active {
+            &::after {
+              width: 100%;
+            }
+          }
+
+          &:hover {
+            color: $green1;
+          }
+        }
+      }
+
+      &.sticky {
+        position: fixed;
+        top: 0px;
+        box-shadow: 0 2px 4px 0 rgba(203, 203, 203, 0.5);
+
+        @include breakpoint-up(xl) {
+          #buy-now-container {
+            display: flex;
+          }
+        }
+
+        + .container {
+          padding-top: 68px;
+        }
+      }
     }
 
     .story-container,
@@ -820,16 +952,255 @@
 
       @include breakpoint-down(lg) {
         margin-top: 30px;
-        padding-bottom: 50px;
+        padding-bottom: 80px;
+      }
+
+      .swiper-container {
+        .swiper-wrapper {
+          .swiper-slide-shadow-left,
+          .swiper-slide-shadow-right {
+            background-image: none;
+            background-color: rgba($color: $white, $alpha: 0.7);
+          }
+
+          .swiper-slide {
+            width: 80%;
+            margin-bottom: 0 !important;
+
+            .description {
+              margin-bottom: 0px;
+            }
+
+            &:not(.swiper-slide-active) {
+              .description {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+
+      tab-item {
+        &:not(.active) {
+          display: none;
+        }
+
+        .app-store-groups {
+          display: flex;
+
+          @include breakpoint-down(sm) {
+            flex-direction: column;
+          }
+
+          img {
+            width: 200px;
+            margin-right: 20px;
+            margin-top: 20px;
+          }
+        }
+
+        &#virtual-node {
+          .virtual-node-steps {
+            .step-container {
+              padding: 50px 50px 0;
+              max-width: 1300px;
+
+              .step-item {
+                .show-collapse {
+                  .label {
+                    &::before {
+                      background-color: $green;
+                    }
+                  }
+                  .content {
+                    max-height: fit-content !important;
+                    word-wrap: break-word;
+                  }
+                }
+
+                .label {
+                  position: relative;
+                  padding-left: 42px;
+                  font-size: 18px;
+                  color: #0c1c1d;
+                  letter-spacing: 0;
+                  line-height: 27px;
+                  &::before {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    content: attr(data-step-number);
+                    width: 30px;
+                    height: 30px;
+                    background-color: $grey;
+                    left: -15px;
+                    border-radius: 15px;
+                    top: -4px;
+                    color: $white;
+                  }
+                }
+
+                .content {
+                  position: relative;
+                  padding-left: 42px;
+                  margin-bottom: 30px;
+
+                  * {
+                    color: $black;
+                  }
+
+                  ol {
+                    margin: 0;
+                    li {
+                      margin-top: 30px;
+                      padding-left: 10px;
+                    }
+                  }
+
+                  ul {
+                    @extend ol;
+                    li {
+                      list-style: initial;
+
+                      &::before {
+                        content: none;
+                      }
+                    }
+                  }
+
+                  &::before {
+                    display: block;
+                    position: absolute;
+                    content: '';
+                    width: 2px;
+                    height: 100%;
+                    background-image: linear-gradient(
+                      #d1dfe0 33%,
+                      rgba(255, 255, 255, 0) 0%
+                    );
+                    background-position: right;
+                    background-size: 1px 8px;
+                    background-repeat: repeat-y;
+                    left: 0px;
+                  }
+
+                  a {
+                    font-weight: 500;
+                  }
+
+                  p {
+                    font-size: 16px;
+                    color: #0c1c1d;
+                    letter-spacing: 0;
+                    line-height: 24px;
+                    font-weight: 400;
+                  }
+                  .script {
+                    font-size: 16px;
+                    letter-spacing: -1px;
+                    font-weight: 400;
+                    color: black;
+                  }
+
+                  .install-app-img {
+                    max-width: 200px;
+                    margin-right: 20px;
+                  }
+
+                  .quote {
+                    padding: 20px;
+                    border: 1px dashed #9ab7b8;
+                    border-radius: 8px;
+                  }
+
+                  .copiable {
+                    &::after {
+                      content: 'Copy';
+                      margin-left: 5px;
+                      background-color: $green;
+                      color: $white;
+                      padding: 2px 10px;
+                      font-size: 14px;
+                      border-radius: 2px;
+                    }
+                  }
+
+                  .divide {
+                    margin: 30px 0px 15px;
+                  }
+
+                  .highlight {
+                    font-weight: 500;
+                    color: $black;
+
+                    &.wrap {
+                      padding: 10px 20px;
+                      border-radius: 8px;
+                      background-color: $white2;
+                      margin: 10px 0;
+                    }
+
+                    &.special-link {
+                      background-color: #f0f9f9;
+                      color: $green1;
+                    }
+                  }
+
+                  .italic {
+                    font-style: italic;
+                  }
+
+                  .row-img {
+                    display: flex;
+                    @include breakpoint-down(sm) {
+                      flex-direction: column;
+                    }
+                    .img {
+                      flex: 1;
+
+                      &:not(:first-child) {
+                        margin-left: 20px;
+
+                        @include breakpoint-down(sm) {
+                          margin-left: 0;
+                          margin-top: 20px;
+                        }
+                      }
+                    }
+                  }
+
+                  img {
+                    max-width: 300px;
+                    display: block;
+
+                    &.full {
+                      max-width: unset;
+                    }
+
+                    &.landscape {
+                      max-width: 700px;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
 
       .heading {
         font-size: 32px;
         line-height: 41px;
-        font-weight: 500px;
+        font-weight: 500;
         text-align: left;
-        margin-top: 0px;
+        margin-top: 100px;
         margin-bottom: 50px;
+
+        @include breakpoint-down(sm) {
+          margin-top: 30px;
+          margin-bottom: 30px;
+        }
       }
 
       .content {
