@@ -616,9 +616,10 @@ export default class Payment {
     this.showLoading();
     checkCCPaymentGatewayLimit()
       .then(isEnabled => {
-        isEnabled
-          ? this.enableCCPaymentGateway()
-          : this.disableCCPaymentGateway();
+        // isEnabled
+        //   ? this.enableCCPaymentGateway()
+        //   : this.disableCCPaymentGateway();
+        this.disableCCPaymentGateway();
       })
       .finally(() => {
         this.hideLoading();
