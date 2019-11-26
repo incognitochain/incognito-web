@@ -129,8 +129,17 @@ export default class Payment {
     const coinPriceEls = container.querySelectorAll('.coin-price');
     const coinNameEls = container.querySelectorAll('.coin-name');
     const walletAddressEls = container.querySelectorAll('.wallet-address');
+    const totalAmountEls = container.querySelectorAll('.total-price');
+    const orderNumberEls = container.querySelectorAll('.order-number');
     const iconEl = container.querySelector('.icon');
-    return { coinPriceEls, coinNameEls, walletAddressEls, iconEl };
+    return {
+      coinPriceEls,
+      coinNameEls,
+      walletAddressEls,
+      iconEl,
+      totalAmountEls,
+      orderNumberEls
+    };
   }
 
   getPaymentInformation() {
@@ -632,20 +641,30 @@ export default class Payment {
         });
         const {
           TotalAmount: totalAmount = 0,
-          Address: walletAddress = ''
+          Address: walletAddress = '',
+          TotalPrice: totalPrice,
+          OrderID: orderId
         } = order;
         const { coinName } = paymentInformation;
         const {
           coinPriceEls = [],
           coinNameEls = [],
           walletAddressEls = [],
-          iconEl
+          iconEl,
+          totalAmountEls,
+          orderNumberEls
         } = this.getCryptoThankyouPageElements();
         coinPriceEls.forEach(coinPriceEl => {
           coinPriceEl.innerText = totalAmount;
         });
         coinNameEls.forEach(coinNameEl => {
           coinNameEl.innerText = coinName;
+        });
+        totalAmountEls.forEach(totalAmountEl => {
+          totalAmountEl.innerText = totalPrice;
+        });
+        orderNumberEls.forEach(orderNumberEl => {
+          orderNumberEl.innerText = orderId;
         });
         walletAddressEls.forEach(walletAddressEl => {
           walletAddressEl.innerText = walletAddress;
