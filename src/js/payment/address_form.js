@@ -25,6 +25,9 @@ export default class AddressForm {
     const stateEl = this.container.querySelector(`#${this.prefix}-state`);
     const zipEl = this.container.querySelector(`#${this.prefix}-postal-code`);
     const countryEl = this.container.querySelector(`#${this.prefix}-country`);
+    const phoneNumberEl = this.container.querySelector(
+      `#${this.prefix}-phone-number`
+    );
 
     return {
       firstNameEl,
@@ -33,7 +36,8 @@ export default class AddressForm {
       cityEl,
       stateEl,
       zipEl,
-      countryEl
+      countryEl,
+      phoneNumberEl
     };
   }
 
@@ -89,7 +93,16 @@ export default class AddressForm {
     this.fillCountryList();
   }
 
-  fillInformation({ firstName, lastName, address, city, state, zip, country }) {
+  fillInformation({
+    firstName,
+    lastName,
+    address,
+    city,
+    state,
+    zip,
+    country,
+    phoneNumber
+  }) {
     const {
       firstNameEl,
       lastNameEl,
@@ -97,7 +110,8 @@ export default class AddressForm {
       cityEl,
       stateEl,
       zipEl,
-      countryEl
+      countryEl,
+      phoneNumberEl
     } = this.getAddressFormElements();
 
     if (firstNameEl && firstName != null) {
@@ -127,6 +141,10 @@ export default class AddressForm {
     if (stateEl && state != null) {
       stateEl.value = state;
       stateEl.dispatchEvent(new Event('blur'));
+    }
+    if (phoneNumberEl && phoneNumber != null) {
+      phoneNumberEl.value = phoneNumber;
+      phoneNumberEl.dispatchEvent(new Event('input'));
     }
   }
 }

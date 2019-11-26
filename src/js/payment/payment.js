@@ -1,3 +1,4 @@
+import IMask from 'imask';
 import {
   submitCryptoOrder,
   submitZelleOrder,
@@ -14,7 +15,6 @@ import { setMessage } from '../service/message_box';
 import KEYS from '../constant/keys';
 import OrderInformation from './order_information';
 import LoadingButton from '../common/loading_button';
-import Card from 'card';
 import AddressForm from './address_form';
 
 export default class Payment {
@@ -141,7 +141,8 @@ export default class Payment {
       city,
       state,
       zip,
-      country
+      country,
+      phoneNumber
     } = this.orderInformation.getOrderInformationValues();
     const {
       price,
@@ -162,7 +163,8 @@ export default class Payment {
       price,
       shippingFee,
       tax,
-      totalPrice
+      totalPrice,
+      phoneNumber
     };
   }
 
@@ -243,8 +245,9 @@ export default class Payment {
     const {
       paymentMethodContainerEl,
       billingAddressContainerEl,
-      creditCardFormEl,
-      cardContainerEl,
+      creditCardNumberEl,
+      creditCardExpiryEl,
+      creditCardCodeEl,
       cryptoPaymentTypeInputEl,
       submitOrderBtnEl
     } = this.getPaymentFormElements();
@@ -255,23 +258,88 @@ export default class Payment {
         this.onCryptoPaymentCoinNameChanged.bind(this)
       );
 
-    // mask credit card form
-    creditCardFormEl &&
-      new Card({
-        form: creditCardFormEl,
-        container: cardContainerEl,
-        formSelectors: {
-          numberInput: 'input[name="card-number"]',
-          expiryInput: 'input[name="card-expiry"]',
-          cvcInput: 'input[name="card-cvv"]',
-          nameInput: 'input[name="card-name"]'
-        },
-        placeholders: {
-          number: '•••• •••• •••• ••••',
-          name: 'Full Name',
-          expiry: '••/••',
-          cvc: '•••'
+    creditCardNumberEl &&
+      new IMask(creditCardNumberEl, {
+        mask: [
+          {
+            mask: '0000 000000 00000',
+            regex: '^3[47]\\d{0,13}',
+            cardtype: 'american express'
+          },
+          {
+            mask: '0000 0000 0000 0000',
+            regex: '^(?:6011|65\\d{0,2}|64[4-9]\\d?)\\d{0,12}',
+            cardtype: 'discover'
+          },
+          {
+            mask: '0000 000000 0000',
+            regex: '^3(?:0([0-5]|9)|[689]\\d?)\\d{0,11}',
+            cardtype: 'diners'
+          },
+          {
+            mask: '0000 0000 0000 0000',
+            regex: '^(5[1-5]\\d{0,2}|22[2-9]\\d{0,1}|2[3-7]\\d{0,2})\\d{0,12}',
+            cardtype: 'mastercard'
+          },
+          // {
+          //     mask: '0000-0000-0000-0000',
+          //     regex: '^(5019|4175|4571)\\d{0,12}',
+          //     cardtype: 'dankort'
+          // },
+          // {
+          //     mask: '0000-0000-0000-0000',
+          //     regex: '^63[7-9]\\d{0,13}',
+          //     cardtype: 'instapayment'
+          // },
+          {
+            mask: '0000 000000 00000',
+            regex: '^(?:2131|1800)\\d{0,11}',
+            cardtype: 'jcb15'
+          },
+          {
+            mask: '0000 0000 0000 0000',
+            regex: '^(?:35\\d{0,2})\\d{0,12}',
+            cardtype: 'jcb'
+          },
+          {
+            mask: '0000 0000 0000 0000',
+            regex: '^(?:5[0678]\\d{0,2}|6304|67\\d{0,2})\\d{0,12}',
+            cardtype: 'maestro'
+          },
+          // {
+          //     mask: '0000-0000-0000-0000',
+          //     regex: '^220[0-4]\\d{0,12}',
+          //     cardtype: 'mir'
+          // },
+          {
+            mask: '0000 0000 0000 0000',
+            regex: '^4\\d{0,15}',
+            cardtype: 'visa'
+          },
+          {
+            mask: '0000 0000 0000 0000',
+            regex: '^62\\d{0,14}',
+            cardtype: 'unionpay'
+          },
+          {
+            mask: '0000 0000 0000 0000',
+            cardtype: 'Unknown'
+          }
+        ]
+      });
+
+    creditCardExpiryEl &&
+      new IMask(creditCardExpiryEl, {
+        mask: 'MM {/} YY',
+        blocks: {
+          YY: new IMask.MaskedRange({ from: 2019, to: 3000 }),
+          MM: new IMask.MaskedRange({ from: 1, to: 12 })
         }
+      });
+
+    creditCardCodeEl &&
+      new IMask(creditCardCodeEl, {
+        mask: /^\d{0,4}$/
       });
 
     if (
@@ -606,7 +674,8 @@ export default class Payment {
       city,
       state,
       zip,
-      country
+      country,
+      phoneNumber
     }
   ) {
     this.shippingAddress = addressInfo;
