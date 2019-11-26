@@ -1,3 +1,4 @@
+import IMask from 'imask';
 import KEYS from '../constant/keys';
 import {
   trackEvent,
@@ -52,7 +53,8 @@ export default class OrderInformation {
       cityEl,
       stateEl,
       zipEl,
-      countryEl
+      countryEl,
+      phoneNumberEl
     } = this.addressForm.getAddressFormElements();
 
     return {
@@ -64,7 +66,8 @@ export default class OrderInformation {
       stateEl,
       zipEl,
       countryEl,
-      submitBtnEl
+      submitBtnEl,
+      phoneNumberEl
     };
   }
 
@@ -77,7 +80,8 @@ export default class OrderInformation {
       cityEl,
       stateEl,
       zipEl,
-      countryEl
+      countryEl,
+      phoneNumberEl
     } = this.getOrderInformationElements();
     let email = '';
     let firstName = '';
@@ -87,6 +91,7 @@ export default class OrderInformation {
     let state = '';
     let zip = '';
     let country = 'US';
+    let phoneNumber = '';
 
     if (emailEl) email = emailEl.value.trim();
     if (firstNameEl) firstName = firstNameEl.value.trim();
@@ -96,8 +101,19 @@ export default class OrderInformation {
     if (stateEl) state = stateEl.value.trim();
     if (zipEl) zip = zipEl.value.trim();
     if (countryEl) country = countryEl.value.trim();
+    if (phoneNumberEl) phoneNumber = phoneNumberEl.value.trim();
 
-    return { email, firstName, lastName, address, city, state, zip, country };
+    return {
+      email,
+      firstName,
+      lastName,
+      address,
+      city,
+      state,
+      zip,
+      country,
+      phoneNumber
+    };
   }
 
   setup() {
@@ -106,10 +122,25 @@ export default class OrderInformation {
     this.addressForm = new AddressForm(orderInformationFormEl, 'shipping');
     this.handleFormValidation(orderInformationFormEl);
 
-    const { countryEl, emailEl } = this.getOrderInformationElements();
+    const {
+      countryEl,
+      emailEl,
+      phoneNumberEl
+    } = this.getOrderInformationElements();
     countryEl &&
       handleSelectElementChanged(countryEl, this.onCountryChange.bind(this));
     emailEl && handleInputChange(emailEl);
+    phoneNumberEl &&
+      new IMask(phoneNumberEl, {
+        mask: [
+          {
+            mask: '(000) 000-0000'
+          },
+          {
+            mask: /^[0-9]{0,15}$/
+          }
+        ]
+      });
 
     orderInformationFormEl.addEventListener(
       'submit',
@@ -133,7 +164,8 @@ export default class OrderInformation {
       city,
       state,
       zip,
-      country
+      country,
+      phoneNumber
     } = this.getOrderInformationValues();
 
     trackEvent({
@@ -159,6 +191,7 @@ export default class OrderInformation {
           zip,
           country,
           state,
+          phoneNumber,
           step: 1
         });
 
@@ -170,7 +203,8 @@ export default class OrderInformation {
             city,
             state,
             zip,
-            country
+            country,
+            phoneNumber
           });
         }
 
@@ -246,7 +280,8 @@ export default class OrderInformation {
       state,
       firstName,
       step,
-      lastName
+      lastName,
+      phoneNumber
     } = this.getOrderInformationFromLocalStorage();
 
     if (emailEl && email) {
@@ -261,7 +296,8 @@ export default class OrderInformation {
         city,
         state,
         zip,
-        country
+        country,
+        phoneNumber
       });
 
     if (step === 1 && this.onSubmitSuccess) {
@@ -272,7 +308,8 @@ export default class OrderInformation {
         city,
         state,
         zip,
-        country
+        country,
+        phoneNumber
       });
     }
   }
@@ -325,8 +362,9 @@ export default class OrderInformation {
         const value = this.value.trim();
         const isEmailRequired =
           this.getAttribute('email_required') === 'true' || false;
+        const isRequired = this.required;
 
-        if (!value || (isEmailRequired && !isEmail(value))) {
+        if ((isRequired && !value) || (isEmailRequired && !isEmail(value))) {
           addError(field);
           return false;
         } else {

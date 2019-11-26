@@ -22,5 +22,14 @@ div#order-information-container.payment-page
             h2 Shipping Address
             include address_form
             +address_form('shipping')
+                .input-field
+                    label(for=`shipping-phone-number`) Phone Number (Optional)
+                    input(
+                        placeholder="Phone Number (Optional)",
+                        id=`shipping-phone-number`,
+                        type="tel"
+                        name=`shipping[phone_number]`,
+                    )
+                    i-tooltip(data-text='In case we need to contact you about your order').question-icon                 
         div.button-wrapper
             button#submit-order-btn Continue to payment

@@ -150,7 +150,8 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
     TotalPrice: orderTotalPrice,
     PaymentType: orderPaymentType,
     CurrencyType: orderCurrencyType,
-    ExpiredAt: orderExpiredTime
+    ExpiredAt: orderExpiredTime,
+    PhoneNumber: orderPhoneNumber
   } = orderDetails;
 
   let { Status: orderStatus } = orderDetails;
@@ -301,6 +302,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
         ${orderShippingState ? ` ${orderShippingState}` : ''}\
         ${orderShippingZip ? ` ${orderShippingZip}` : ''}\
         ${orderShippingCountry ? `<br/>${orderShippingCountry}` : ''}
+        ${orderPhoneNumber ? `<br/>${orderPhoneNumber}` : ''}
     `;
 
     shippingAddressEl.innerHTML = shippingAddress;
