@@ -3,35 +3,27 @@
     @media screen and (min-width: $breakpoint-xs) {
       @content;
     }
-  }
-
-  @if $size == sm {
+  } @else if $size == sm {
     @media screen and (min-width: $breakpoint-sm) {
       @content;
     }
-  }
-
-  @if $size == md {
+  } @else if $size == md {
     @media screen and (min-width: $breakpoint-md) {
       @content;
     }
-  }
-
-  @if $size == lg {
+  } @else if $size == lg {
     @media screen and (min-width: $breakpoint-lg) {
       @content;
     }
-  }
-
-  @if $size == xl {
+  } @else if $size == xl {
     @media screen and (min-width: $breakpoint-xl) {
       @content;
     }
-  }
-
-  // fallback to px
-  @media screen and (min-width: $size) {
-    @content;
+  } @else {
+    // fallback to px
+    @media screen and (min-width: $size) {
+      @content;
+    }
   }
 }
 
@@ -40,34 +32,26 @@
     @media screen and (max-width: $breakpoint-xs) {
       @content;
     }
-  }
-
-  @if $size == sm {
+  } @else if $size == sm {
     @media screen and (max-width: $breakpoint-sm) {
       @content;
     }
-  }
-
-  @if $size == md {
+  } @else if $size == md {
     @media screen and (max-width: $breakpoint-md) {
       @content;
     }
-  }
-
-  @if $size == lg {
+  } @else if $size == lg {
     @media screen and (max-width: $breakpoint-lg) {
       @content;
     }
-  }
-
-  @if $size == xl {
+  } @else if $size == xl {
     @media screen and (max-width: $breakpoint-xl) {
       @content;
     }
-  }
-
-  // fallback to px
-  @media screen and (max-width: $size) {
-    @content;
+  } @else {
+    // fallback to px
+    @media screen and (max-width: $size) {
+      @content;
+    }
   }
 }

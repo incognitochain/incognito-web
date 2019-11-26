@@ -51,7 +51,7 @@ const templateGen = [
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/wallet/index.pug',
-    filename: 'wallet.html',
+    filename: 'send-bitcoin-anonymously-01.html',
     env: process.env
   }),
   // new HtmlWebpackPlugin({
