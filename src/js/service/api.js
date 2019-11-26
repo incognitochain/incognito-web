@@ -196,7 +196,8 @@ export const submitCryptoOrder = ({
   country,
   zip,
   coinName,
-  quantity
+  quantity,
+  phoneNumber
 }) => {
   const CURRENCIES = {
     ETH: 1,
@@ -240,7 +241,8 @@ export const submitCryptoOrder = ({
       CurrencyType: currencyType,
       Quantity: quantity,
       TokenID: tokenId,
-      TokenSymbol: tokenSymbol
+      TokenSymbol: tokenSymbol,
+      PhoneNumber: phoneNumber
     }
   })
     .then(orderInfo => orderInfo)
@@ -263,7 +265,8 @@ export const submitZelleOrder = ({
   state,
   country,
   zip,
-  quantity
+  quantity,
+  phoneNumber
 }) => {
   return fetch('order/zelle/checkout', {
     method: 'POST',
@@ -275,7 +278,8 @@ export const submitZelleOrder = ({
       AddressCity: city,
       AddressPostalCode: zip,
       AddressCountry: country,
-      Quantity: quantity
+      Quantity: quantity,
+      PhoneNumber: phoneNumber
     }
   })
     .then(orderInfo => orderInfo)
@@ -298,6 +302,7 @@ export const submitCreditCardOrder = ({
   state,
   zip,
   country,
+  phoneNumber,
   billingFirstName,
   billingLastName,
   billingAddress,
@@ -320,7 +325,8 @@ export const submitCreditCardOrder = ({
         AddressCity: city,
         AddressRegion: state,
         AddressPostalCode: zip,
-        AddressCountry: country
+        AddressCountry: country,
+        PhoneNumber: phoneNumber
       },
       BillingTo: {
         FirstName: billingFirstName,
