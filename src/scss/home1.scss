@@ -1174,20 +1174,6 @@
           display: none;
         }
 
-        .app-store-groups {
-          display: flex;
-
-          @include breakpoint-down(sm) {
-            flex-direction: column;
-          }
-
-          img {
-            width: 200px;
-            margin-right: 20px;
-            margin-top: 20px;
-          }
-        }
-
         &#virtual-node {
           .virtual-node-steps {
             .step-container {
