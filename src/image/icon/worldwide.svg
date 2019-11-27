@@ -1,44 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="60px" height="60px" viewBox="0 0 60 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 56 (81588) - https://sketch.com -->
-    <title>1</title>
+<svg width="27px" height="27px" viewBox="0 0 27 27" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 58 (84663) - https://sketch.com -->
+    <title>globe</title>
     <desc>Created with Sketch.</desc>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="Update-Copy-16" transform="translate(-224.000000, -823.000000)">
-            <g id="1" transform="translate(224.000000, 823.000000)">
-                <circle id="Oval" fill="#BCF9FA" fill-rule="nonzero" cx="30" cy="30" r="29.7619048"></circle>
-                <path d="M37.1428571,51.9047619 L57.6190476,51.9047619" id="Path" stroke="#303C63" stroke-linecap="round" stroke-linejoin="round"></path>
-                <g id="Group" transform="translate(4.761905, 5.714286)">
-                    <ellipse id="Oval" fill="#FFFFFF" fill-rule="nonzero" cx="20.3809524" cy="20.7619048" rx="15.3333333" ry="15.5714286"></ellipse>
-                    <ellipse id="Oval" stroke="#303C63" stroke-linecap="round" stroke-linejoin="round" cx="20.3809524" cy="20.7619048" rx="15.3333333" ry="15.5714286"></ellipse>
-                    <path d="M16.3333333,40.8095238 C7.14285714,38.9047619 0.238095238,30.6666667 0.238095238,20.7619048 C0.238095238,9.47619048 9.28571429,0.285714286 20.4285714,0.285714286 C30,0.285714286 38,7.04761905 40.0952381,16.0952381" id="Path" stroke="#101111" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <ellipse id="Oval" stroke="#101111" stroke-linecap="round" stroke-linejoin="round" cx="20.3809524" cy="20.7619048" rx="8.42857143" ry="15.5714286"></ellipse>
-                    <path d="M20.4761905,5.23809524 L20.4761905,36.1904762" id="Path" stroke="#101111" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M5.23809524,20.952381 L35.7142857,20.952381" id="Path" stroke="#101111" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M7.14285714,12.8571429 L33.3333333,12.8571429" id="Path" stroke="#101111" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M7.14285714,28.5714286 L33.3333333,28.5714286" id="Path" stroke="#101111" stroke-linecap="round" stroke-linejoin="round"></path>
-                </g>
-                <ellipse id="Oval" stroke="#101111" stroke-linecap="round" stroke-linejoin="round" cx="25.1428571" cy="26.4761905" rx="15.3333333" ry="15.5714286"></ellipse>
-                <g id="Group" transform="translate(23.809524, 29.047619)">
-                    <rect id="Rectangle" fill="#E4EEEF" fill-rule="nonzero" x="0" y="15.7142857" width="33.8095238" height="4.28571429"></rect>
-                    <polyline id="Path" stroke="#303C63" stroke-linecap="round" stroke-linejoin="round" points="21.4285714 20 33.8095238 20 33.8095238 15.7142857 0 15.7142857 0 20 18.5714286 20"></polyline>
-                    <circle id="Oval" fill="#E2E2E2" fill-rule="nonzero" cx="6.76190476" cy="19.8571429" r="3"></circle>
-                    <circle id="Oval" fill="#E2E2E2" fill-rule="nonzero" cx="27.3809524" cy="19.8571429" r="3"></circle>
-                    <circle id="Oval" fill="#303C63" fill-rule="nonzero" cx="27.3809524" cy="19.8571429" r="1.14285714"></circle>
-                    <circle id="Oval" stroke="#303C63" stroke-linecap="round" stroke-linejoin="round" cx="6.76190476" cy="19.8571429" r="3"></circle>
-                    <circle id="Oval" fill="#303C63" fill-rule="nonzero" cx="6.76190476" cy="19.8571429" r="1.14285714"></circle>
-                    <circle id="Oval" stroke="#303C63" stroke-linecap="round" stroke-linejoin="round" cx="27.3809524" cy="19.9047619" r="3"></circle>
-                    <path d="M18.047619,0 L4.57142857,0 C2.9047619,0 1.42857143,1.33333333 1.42857143,3 L1.42857143,15.7142857 L20.952381,15.7142857 L20.952381,3 C20.952381,1.33333333 19.7142857,0 18.047619,0 Z" id="Path" fill="#FCF8D2" fill-rule="nonzero"></path>
-                    <path d="M18.047619,0 L4.57142857,0 C2.9047619,0 1.42857143,1.33333333 1.42857143,3 L1.42857143,15.7142857 L20.952381,15.7142857 L20.952381,3 C20.952381,1.33333333 19.7142857,0 18.047619,0 Z" id="Path" stroke="#303C63" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M20.952381,15.7142857 L32.3809524,15.7142857 L32.3809524,8.76190476 C32.3809524,8.42857143 32.2380952,8.14285714 32.047619,7.85714286 L28.6666667,3.38095238 C28.3809524,3 27.9047619,2.9047619 27.4285714,2.9047619 L22.5714286,2.9047619 C21.7619048,2.9047619 20.952381,3.33333333 20.952381,4.19047619 L20.952381,15.7142857 Z" id="Path" fill="#FFFFFF" fill-rule="nonzero"></path>
-                    <path d="M20.952381,15.7142857 L32.3809524,15.7142857 L32.3809524,8.76190476 C32.3809524,8.42857143 32.2380952,8.14285714 32.047619,7.85714286 L28.6666667,3.38095238 C28.3809524,3 27.9047619,2.9047619 27.4285714,2.9047619 L22.5714286,2.9047619 C21.7619048,2.9047619 20.952381,3.33333333 20.952381,4.19047619 L20.952381,15.7142857 Z" id="Path" stroke="#303C63" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <polygon id="Path" fill="#AAF3F6" fill-rule="nonzero" points="23.3333333 10.952381 23.3333333 4.76190476 27.047619 4.76190476 30 9 30 10.952381"></polygon>
-                    <polygon id="Path" stroke="#303C63" stroke-linecap="round" stroke-linejoin="round" points="23.3333333 10.952381 23.3333333 4.76190476 27.047619 4.76190476 30 9 30 10.952381"></polygon>
-                    <path d="M23.8095238,12.8571429 L26.6666667,12.8571429" id="Path" stroke="#303C63" stroke-linecap="round" stroke-linejoin="round"></path>
-                </g>
-                <path d="M44.8095238,21.8571429 L46.1904762,19.0952381" id="Path" stroke="#101111" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M44.8095238,21.8571429 L42.0952381,20.4761905" id="Path" stroke="#101111" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M30.5714286,51.9047619 L2.85714286,51.9047619" id="Path" stroke="#303C63" stroke-linecap="round" stroke-linejoin="round"></path>
+        <g id="Update-Copy-6" transform="translate(-770.000000, -464.000000)" stroke="#101111">
+            <g id="globe" transform="translate(771.000000, 465.000000)">
+                <path d="M12.5,0.403225806 L12.5,24.5967742" id="Path"></path>
+                <path d="M0.403225806,12.5 L24.5967742,12.5" id="Path"></path>
+                <ellipse id="Oval" stroke-linecap="square" cx="12.5" cy="12.5" rx="6.91209677" ry="12.0967742"></ellipse>
+                <path d="M2.26612903,6.0483871 L22.733871,6.0483871" id="Path"></path>
+                <path d="M2.26612903,18.9516129 L22.733871,18.9516129" id="Path"></path>
+                <circle id="Oval" stroke-linecap="square" cx="12.5" cy="12.5" r="12.0967742"></circle>
             </g>
         </g>
     </g>

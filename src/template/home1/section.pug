@@ -1,145 +1,150 @@
-i-tab-navigation#content-container(default-tab-index=0)
-    h1.heading Product detail
-    .nav-links
-        .container
-            tab.link Node
-            tab.link App
-            tab.link Specs
-            tab.link FAQ
-            tab.link Unboxed
-            include ../common/buy_now.pug
-            +buy_now()
-    .container
+#content-container
+    .section.container
+        include ./benefit.pug
+        //- include ./slider.pug
+        include ./press.pug
         .story-container
-            tab-item#node
-                h1.heading It's easy.
-                .content
-                    .group
-                        .description Node helps you collect the biggest coins of today – BTC, ETH, PRV and more – and all you need to do is turn it on.
-                        .swiper-container.swiper-coverflow
-                            .swiper-wrapper
-                                .image.swiper-slide 
-                                    img(src=require('../../image/home1/story/2.jpg'))
-                                    .description Plug in, earn crypto.
-                                .image.swiper-slide
-                                    img(src=require('../../image/home1/story/4.jpg'))
-                                    .description Collect today’s most exciting cryptocurrencies.
-                                .image.swiper-slide
-                                    img(src=require('../../image/home1/story/9.jpg'))
-                                    .description Keep track of your earnings from anywhere in the world
-                            .swiper-button-next
-                            .swiper-button-prev
-                h1.heading Ethical.
-                .content
-                    .group
-                        .description Node earns rewards for processing private transactions for the crypto world. Whenever someone sends bitcoin privately, you get bitcoin – because you made privacy possible.
-                        .swiper-container.swiper-coverflow
-                            .swiper-wrapper
-                                .image.swiper-slide 
-                                    img(src=require('../../image/home1/story/10.jpg'))
-                                    .description Earn rewards for protecting our rights.
-                                .image.swiper-slide
-                                    img(src=require('../../image/home1/story/11.jpg'))
-                                    .description Solve the biggest threat to our new economy.
-                                .image.swiper-slide
-                                    img(src=require('../../image/home1/story/3.jpg'))
-                                    .description Earn rewards for protecting our rights.
-                            .swiper-button-next
-                            .swiper-button-prev
-                h1.heading Energy-efficient.
-                .content
-                    .group
-                        .description Node needs just 1.5kwh to run all day, thanks to Proof of Stake technology. That’s about 8 cents.
-                        .swiper-container.swiper-coverflow
-                            .swiper-wrapper
-                                .image.swiper-slide 
-                                    img(src=require('../../image/home1/story/7.jpg'))
-                                    .description Move over mining rigs
-                                .image.swiper-slide
-                                    img(src=require('../../image/home1/story/22.jpg'))
-                                    .description Be kind to the earth and your electricity bill
-                            .swiper-button-next
-                            .swiper-button-prev
-                h1.heading More on privacy.
-                .content
-                    .group
-                        .description Whenever anyone sends or receives crypto - that’s recorded on a public ledger. That means anyone can search your entire crypto financial history, see how much you have, what you do with it, who you send it to, and where it comes from.
-                        .description Have a look:
-                        .image 
-                            img(src=require('../../image/home1/story/23.jpg'))
-                            .description On public blockchains, senders, receivers and amounts are visible and traceable
-                        .description We have a problem. If crypto gets bigger, we have an even bigger problem. Would you expose your bank statements to the entire world?
-                        .description Node powers the Incognito Network. Incognito is a privacy-focused alternative, which uses advanced cryptographic techniques (zero-knowledge proofs, ring signatures and stealth addresses) to obscure the sender, receiver, and amount of every single transaction made on the network.
-                        .description Node makes the application of this technology possible, for anyone who wants to claim their right to privacy. And neither the owner of a Node, or the user of the network, needs any technical expertise to earn rewards, choose privacy, or give privacy.
-                h1.heading R & D
-                .content
-                    .group
-                        .description A full year of R&D.
-                        .swiper-container.swiper-coverflow
-                            .swiper-wrapper
-                                .image.swiper-slide 
-                                    img(src=require('../../image/home1/story/15.jpg'))
-                                    .description Some early sketches.
-                                .image.swiper-slide
-                                    img(src=require('../../image/home1/story/17.jpg'))
-                                    .description Crafting the mould.
-                                .image.swiper-slide
-                                    img(src=require('../../image/home1/story/18.jpg'))
-                                    .description Selecting the materials
-                            .swiper-button-next
-                            .swiper-button-prev
-            tab-item#app
-                .content
-                    .group
-                        .image
-                            img(src=require('../../image/home1/story/13.jpg'))
-                        .description To bring your Node online, manage it remotely and keep track of your earnings, just connect your Node to the app.
+            h1.heading Meet Node.
+            .content
+                .group
+                    h1.title The easiest way to own crypto
+                    .description Plug in, earn crypto. That’s about it. Node helps you collect the biggest coins of today – BTC, ETH, BNB and more – and all you need to do is turn it on.
+                    .image 
+                        img(src=require('../../image/home1/story/2.jpg'))
+                        .description Takes about a second to get started.
+                    .image 
+                        img(src=require('../../image/home1/story/3.jpg'))
+                        .description Can’t decide? Node earns the most promising currencies on the market today.
+                    .description Want to keep track of your earnings? Do it from the app. Node doesn’t require babysitting (or hours spent staring at order books), so you can earn crypto while you’re chilling at the beach.
+                    .image 
+                        img(src=require('../../image/home1/story/4.jpg'))
+                        .description Start, pause, resume, withdraw your earnings from the handy mobile app.
+                    .image 
+                        img(src=require('../../image/home1/story/5.jpg'))
+                        .description Node is happy to stay at home while you travel the world.
+                //- .group
+                //-     h1.title The least scary way to get crypto
+                //-     .description If you’ve ever tried to buy a little Bitcoin and ended up backing out, we get it. Typically, it’s not super easy to get your hands on crypto. You’ll have to upload your ID and SSN on shady crypto exchanges, buy directly from strangers or cobble together your own mining rig. It’s not ideal.
+                //-     .description With Node, you don’t have to give up your personal info. You don’t need any technical expertise. You literally just need a power socket, and a place for your Node to sit.
+                //-     .image 
+                //-         img(src=require('../../image/home1/story/6.jpg'))
+                //-         .description Where are you gonna put your Node?
+                //-     .description If you’re curious about this seismic financial movement but hesitant to dive into the madness, Node is a great place to start. Now, all you have to do is plug Node in.
+                .group
+                    h1.title The most energy-efficient way to generate crypto
+                    .description Node is not a less powerful mining machine. Node is something else entirely.
+                    .image 
+                        img(src=require('../../image/home1/story/7.jpg'))
+                        .description Mining rigs are so yesterday.
+                    .description Node earns crypto by powering a new type of protocol (Proof of Stake, for our fellow nerds out there), one that consumes substantially less energy. This means hash rates don’t apply, and you’re not in a duck-swinging battle to see who’s got the biggest, baddest supercomputer.
+                    .description Node needs just 1.5kwh a day to run, so if you live in the USA, it will cost you less than 8 cents to keep Node running all day long. Node is the most low maintenance housemate/pet you’ve ever had.
+                    .image 
+                        img(src=require('../../image/home1/story/8.jpg'))
+                        .description This is Mr. Fancy, our CEO. 
+                .group
+                    h1.title The most ethical way to earn crypto
+                    .description Do you think people deserve privacy? So does Node.
+                    .description Node is a gadget with heart. It earns rewards for powering incognito mode for the crypto world. When you switch Node on, you’re not just earning crypto, you’re also giving anyone the option to claim their right to privacy.
+                    .description Node makes sure you’re rewarded for protecting these rights, so a percentage of every private transaction will go you. This means whenever someone sends Bitcoin privately, you get Bitcoin.
+                    .image
+                        img(src=require('../../image/home1/story/9.jpg'))
+                        .description Watch your rewards accumulate in real-time.
+                    .description Your Node will work together with thousands of other Nodes to support and sustain a decentralized, alternative network where all transactions are confidential. This means you don’t have to trust institutions, service providers and profit-driven centralized parties to tell you your information is safe. Node makes sure you’re in control.
+                    .image
+                        img(src=require('../../image/home1/story/10.jpg'))
+                        .description Be a part of something bigger.           
+                .group
+                    h1.title Hold up. What do you mean confidential transactions?
+                    .description Whenever anyone sends or receives crypto - that’s recorded on a public ledger. That means anyone can search your entire crypto financial history, see how much you have, what you do with it, who you send it to, and where it comes from.
+                    .description If you think crypto is gonna get bigger, then we have a problem. You don’t need to have anything to hide to not want to expose your bank statements to the entire world.
+                    .description Node powers the Incognito Network. Incognito is a privacy-focused alternative, which uses advanced cryptographic techniques (zero-knowledge proofs, ring signatures and stealth addresses) to obscure the sender, receiver, and amount of every single transaction made on the network.
+                    .description Node makes the application of this technology possible, for anyone who wants to claim their right to privacy. And neither the owner of a Node, or the user of the network, needs any technical expertise to earn rewards or choose privacy. That’s where we come in.
+                .group
+                    h1.title Hello, from all of us.
+                    .description We’re a diverse team of 30+ cryptographers, distributed system researchers, programmers, and community builders - busy creating the privacy layer of the decentralized web. We also happen to be a bunch of hardware geeks who’ve shipped $100M+ of connected hardware worldwide, so we kind of know what we’re doing (most of the time).
+                    .image
+                        img(src=require('../../image/home1/story/12.jpg'))
+                    .description We came together to help open up this exciting new economy to our fellow lovers of innovation. And to make privacy simple, accessible, and most importantly, something that belongs to the people. Blockchain is often referred to as The New Internet. Well, this is our chance to do things differently.
+                .group
+                    h1.title What’s in the box
+                    .description Chris will show you:
+                    .description 
+                        iframe(width="100%" height="500px" src="https://www.youtube.com/embed/eXNAD4wckQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
+                    .description 1 x Node
+                        <br/>
+                        |1 x Power cable
+                        <br/>
+                        |4 x International adaptors
+                        <br/>
+                        |1 x Ethernet Port
+                        <br/>
+                        |1 x Thank you note
+                .group
+                    h1.title The Node app
+                    .description To bring your Node online, manage it remotely and keep track of your earnings, just connect your Node to the app.
+                    .image
+                        img(src=require('../../image/home1/story/13.jpg'))
                         .description Available on iOS and Android
-                        .description 
-                            .app-store-groups
-                                a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
-                                    img(src=require('../../image/wallet/google_play_black.svg'), alt='chplay-app')
-                                a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
-                                    img(src=require('../../image/wallet/app_store_black.svg'), alt='ios-app')
-            tab-item#specs
-                .content
-                    .group
-                        .image
-                            img(src=require('../../image/home1/story/14.png'))
-            tab-item#faq
-                .content
-                    .group
-                        h1.title Why is Node so much more efficient than traditional mining devices?
-                        .description Traditional mining relies on an energy-guzzling mechanism called Proof of Work (PoW). Most major blockchains have now made upgrades to Proof of Stake (PoS) - a much more efficient system. By running only the latest PoS blockchains, Node is able to earn you cryptocurrency for less energy than it takes to power your desktop.
-                        h1.title When will Node ship?
-                        .description Node will begin shipping in November with priority for the first orders.
-                        h1.title How much electricity does it consume?
-                        .description Node is very energy efficient. At maximum capacity, it consumers ~1.5 kWh a day. On average, it consumes less than ~1 kWh a day. In the US, that’s about $0.08 a day.
-                        h1.title What is the return policy?
-                        .description If you don’t love your Node, simply return it within 30 days for a full refund. No questions asked.
-                        h1.title Which countries are Node available in?
-                        .description Node ships worldwide and ships quickly through our international warehouse partners in North America, Europe and Asia.
-                        h1.title How long does it take to set up Node?
-                        .description Plug it in. Connect to WiFi. Let it run. That’s it!
-                        h1.title How quiet is Node?
-                        .description Node is extremely quiet, even when it operates at maximum capacity. You can set up Node anywhere. On the kitchen counter, in your bedroom, or in the office.
-                        h1.title Which currencies can Node earn?
-                        .description Node earns Incognito’s native coin, Privacy (PRV), for every block created. Since Node offers incognito mode for multiple currencies from multiple blockchains, it can also collect transaction fees in multiple cryptocurrencies (BTC, ETH, BNB, and more).
-                        h1.title Are my dollar earnings fixed?
-                        .description The fiat value of what Node earns is variable, due to the volatility of the crypto market. Users are free at any time to withdraw their rewards and cash out to fiat. Via the Node app, users will be able to see the USD value of their assets at any given time, and be able to make decisions on whether or not they would like to withdraw.
-                        h1.title How much will I earn?
-                        .description The money Node will make is dependent on how many people use the network to send and receive crypto privately (BTC, ETH, BNB, etc.). While we are hesitant to give exact numbers as there are many variables, we are confident in advertising minimum earnings around the $25/month range (at today's market price). Node earns rewards for powering privacy for the token economy, and as such, its value is tied to the network's usage. Please only purchase Node if you believe what it does is useful or meaningful.
-            tab-item#unboxed
-                .content
-                    .group
-                        .description 
-                            iframe(width="100%" height="500px" src="https://www.youtube.com/embed/eXNAD4wckQI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen)
-                        .description 1 x Node
-                            <br/>
-                            |1 x Power cable
-                            <br/>
-                            |4 x International adaptors
-                            <br/>
-                            |1 x Ethernet Port
-                            <br/>
-                            |1 x Thank you note
+                .group
+                    h1.title Device Specs
+                    .image
+                        img(src=require('../../image/home1/story/14.png'))
+                .group
+                    h1.title The Process
+                    h3.subtitle Designing the shape.
+                    .description We wanted Node to look a little different from the typical home device, but still elegant enough to fit in any room. Here are some early sketches.
+                    .image
+                        img(src=require('../../image/home1/story/15.jpg'))
+                    h3.subtitle Crafting the mould.
+                    .description This part was super fun 
+                    .image
+                        img(src=require('../../image/home1/story/16.jpg'))
+                    h3.subtitle Selecting the materials.
+                    .description Node is made of scratch-resistant, anodized aluminum, so if takes a minor tumble, you’ll be ok. It’s lightweight (X lbs), sleek (size), and robust.
+                    .image
+                        img(src=require('../../image/home1/story/17.jpg'))
+                        .description Waiting to have life put in them
+                    .image
+                        img(src=require('../../image/home1/story/18.jpg'))
+                        .description Everyone loves a little canvas
+                    h3.subtitle Full speed ahead.
+                    .description Production of the first Nodes has already begun. Here are a few snapshots of Node coming to life.
+                    .image
+                        img(src=require('../../image/home1/story/19.jpg'))
+                        .description Say hello to the granule mixer
+                    .image
+                        img(src=require('../../image/home1/story/20.jpg'))
+                        .description 2 assembled moulds looking like friendly robots
+                    .image
+                        img(src=require('../../image/home1/story/21.jpg'))
+                        .description Aluminum shape treatment
+                .group
+                    h1.title Environmental commitments
+                    .description We integrate sustainability into the very core of the product. By powering a PoS protocol instead of the traditional PoW, Node is an energy-efficient alternative to an environmentally wasteful industry.
+                    .description Node is predominantly made of aluminum and canvas, both of which are widely recyclable, and constitute easily removable components. The motherboard is lead-free and can be repurposed. Node opts to be powered by external sources and thus does not contain a battery. Node’s packaging is made entirely out of recycled cardboard and paper – no plastic is used.
+                .group
+                    h1.title Timeline
+                    .image
+                        img(src=require('../../image/home1/story/roadmap.png'))
+                .group
+                    h1.title FAQ
+                    h3.subtitle Why is Node so much more efficient than traditional mining devices?
+                    .description Traditional mining relies on an energy-guzzling mechanism called Proof of Work (PoW). Most major blockchains have now made upgrades to Proof of Stake (PoS) - a much more efficient system. By running only the latest PoS blockchains, Node is able to earn you cryptocurrency for less energy than it takes to power your desktop.
+                    h3.subtitle When will Node ship?
+                    .description Node will begin shipping in November with priority for the first orders.
+                    h3.subtitle How much electricity does it consume?
+                    .description Node is very energy efficient. At maximum capacity, it consumers ~1.5 kWh a day. On average, it consumes less than ~1 kWh a day. In the US, that’s about $0.08 a day.
+                    h3.subtitle What is the return policy?
+                    .description If you don’t love your Node, simply return it within 30 days for a full refund. No questions asked.
+                    h3.subtitle Which countries are Node available in?
+                    .description Node ships worldwide and ships quickly through our international warehouse partners in North America, Europe and Asia.
+                    h3.subtitle How long does it take to set up Node?
+                    .description Plug it in. Connect to WiFi. Let it run. That’s it!
+                    h3.subtitle How quiet is Node?
+                    .description Node is extremely quiet, even when it operates at maximum capacity. You can set up Node anywhere. On the kitchen counter, in your bedroom, or in the office.
+                    h3.subtitle Which currencies can Node earn?
+                    .description Node earns Incognito’s native coin, Privacy (PRV), for every block created. Since Node offers incognito mode for multiple currencies from multiple blockchains, it can also collect transaction fees in multiple cryptocurrencies (BTC, ETH, BNB, and more).
+                    h3.subtitle Are my dollar earnings fixed?
+                    .description The fiat value of what Node earns is variable, due to the volatility of the crypto market. Users are free at any time to withdraw their rewards and cash out to fiat. Via the Node app, users will be able to see the USD value of their assets at any given time, and be able to make decisions on whether or not they would like to withdraw.
+                    h3.subtitle How much will I earn?
+                    .description The money Node will make is dependent on how many people use the network to send and receive crypto privately (BTC, ETH, BNB, etc.). While we are hesitant to give exact numbers as there are many variables, we are confident in advertising minimum earnings around the $25/month range (at today's market price). Node earns rewards for powering privacy for the token economy, and as such, its value is tied to the network's usage. Please only purchase Node if you believe what it does is useful or meaningful.
