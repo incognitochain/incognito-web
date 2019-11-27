@@ -1,0 +1,18 @@
+.intro-container
+  .container
+    .info
+      h1.title
+        span Issue your own  
+          span.highlight privacy-first 
+          |tokens on Incognito
+      .descs
+        ol.desc
+          li.desc Download the Incognito Wallet app
+            include /common/app_store
+            +app_store(false)
+          li.desc Tap “Issue your own token”
+          li.desc Enter your token details
+          li.desc Start using it!
+
+    .image
+      img(src=require('@image/build/build-logo.svg'), alt='become-validator-img')

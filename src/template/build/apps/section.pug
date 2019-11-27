@@ -1,0 +1,54 @@
+include /build/section.pug      
+#section-container
+  +section(
+    'Use cases',
+    'What kinds of pApps can I build?',
+    'Incognito is a new blockchain ecosystem with privacy at its center. Shielded accounts and transactions mean new opportunities for financial transactions, customer rewards, games, contracts, and more. '
+  )
+    .container
+      div
+        div Finance
+        div Use Incognito to buy, sell, hodl and trade crypto assets privately and anonymously.
+      div
+        div Rewards
+        div Integrate Incognito with your POS or e-commerce store to reward customers with private, tradable tokens.
+      div
+        div Games
+        div Take your games to the next level with secret token balances and transactions. 
+      div
+        div Digital Cash
+        div Integrate private stablecoins to your payroll or e-commerce store. Give users the privacy and stability of physical cash with the borderless freedom of cryptocurrency.
+
+  +section(
+    'Support',
+    'How can we help you?',
+    'Incognito is committed to supporting developers. Let us know what you need.',
+    'Join our Developer group on <a href="https://t.me/incognitodev" target="_blank">Telegram</a> or email us at <a href="mailto:go@incognito.org">go@incognito.org</a>.',
+    'Get 5 PRV for filling out completing the <a href="https://forms.gle/Sg3wafqeFhyPKKYr9">Incognito Ecosystem Survey</a>.'
+  )
+
+  +section(
+    'Discover',
+    'Incognito is open source.',
+    'Incognito embraces a full-stack approach to decentralized privacy, reimagining technology at every layer. Every line of its code is freely available.',
+    'Anyone can participate, everyone can join, no one can ever restrict or control Incognito. Incognito is and will always be 100% open-source.'
+  )
+    .container
+      a(href='https://github.com/incognitochain?tab=repositories', target='_blank')
+        button Browse the code
+    
+  +section(
+    'Funding',
+    'Get funding for your project on Incognito.',
+    'A percentage of all Incognito block rewards are put aside for the growth and improvement of the Incognito blockchain. Grants and rewards will be allocated to promising projects through the Incognito DAO. Open enrollment will begin December 2nd, 2019.',
+    '<a href="https://docs.google.com/document/d/1R2n2izut3qvabrLq2Q8JNsGOJCs3P5DfofmXKbgObvo/edit?usp=sharing" target="_blank">Check out the plan and contribute your ideas.</a>'
+  )
+    
+  +section(
+    '',
+    'Keep in touch.',
+    'Join our community of developers and be the first to receive updates on the SDK and DAO funding programs.'
+  )
+    .container
+      include /common/subscribe_form
+      +subscribe_email('Be the first', 'create-app')

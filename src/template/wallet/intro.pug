@@ -11,11 +11,8 @@ div#intro-container.bounceInUp-ani
           span.crypto-name Bitcoin
         p.sub-title The Incognito mobile wallet allows you to privately store, send and receive all your crypto assets. Turn on privacy for your BTC, ETH, DAI and more.
 
-        .app-store-groups
-          a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
-            img(src=require('../../image/wallet/google-play.svg'), alt='chplay-app')
-          a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
-            img(src=require('../../image/wallet/app-store.svg'), alt='ios-app')
+        include /common/app_store
+        +app_store(false)
 
         //- div.action-btn.scroll-action-btn(data-scroll-to='#section-container')
         //-   img(src=require('../../image/icon/arrow_grey.svg'))
