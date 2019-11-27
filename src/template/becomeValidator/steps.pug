@@ -47,13 +47,8 @@ mixin stepHtml(step, stepName, isOpen)
 
     +stepHtml('2', 'Create your account')
       p Download the Incognito App
-      .row-img 
-        .img.install-app-img
-          a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank')
-            img(src=require('../../image/wallet/google_play_black.svg'), alt='chplay-app')
-        .img.install-app-img
-          a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank')
-            img(src=require('../../image/wallet/app_store_black.svg'), alt='ios-app')
+      include /common/app_store
+      +app_store()
       p Open the app and it will automatically generate a wallet for you.
       p Tap on 
         span.highlight Settings 
