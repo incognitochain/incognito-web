@@ -1,0 +1,12 @@
+.app-store-groups {
+  display: flex;
+
+  @include breakpoint-down(sm) {
+    flex-direction: column;
+  }
+
+  .app {
+    width: 200px;
+    margin-right: 20px;
+  }
+}
