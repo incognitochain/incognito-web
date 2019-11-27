@@ -772,9 +772,17 @@
     }
   }
 
+  #crypto-thank-you-container,
   #zelle-thank-you-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+
     .total-price,
-    .order-number {
+    .order-number,
+    .coin-name,
+    .coin-price {
       font-weight: 500;
       color: $black;
     }
@@ -783,14 +791,6 @@
         content: '$';
       }
     }
-  }
-
-  #crypto-thank-you-container,
-  #zelle-thank-you-container {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
 
     .title {
       color: #25cdd6;
