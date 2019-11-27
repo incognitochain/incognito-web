@@ -10,14 +10,14 @@ mixin stepHtml(step, stepName, isOpen)
     +stepHtml('1', `Sign in <a href='https://console.cloud.google.com/'>Google cloud</a> or if you don't have an account yet, <a href='https://cloud.google.com/'>sign up</a> and get a free $300 for 1 year.`, 'true')
 
     +stepHtml('2', 'Select "Compute Engine" -> "VM Instances"')
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_2.png')).landscape
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_2.png')).landscape
 
     +stepHtml('3', 'Click "Create instance"')
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_3.png')).landscape
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_3.png')).landscape
 
     +stepHtml('4', 'Name your instance, select "n1-highcpu-4" as below:')
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_4.png')).landscape
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_4_create.png')).landscape
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_4.png')).landscape
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_4_create.png')).landscape
       p Click 
         span.highlight "Create" 
         |and wait a few minutes.
@@ -25,12 +25,12 @@ mixin stepHtml(step, stepName, isOpen)
     +stepHtml('5', 'Change the firewall rule')
       p Click on 
         span.highlight "(nic0)"
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_5_choose_ip.png')).landscape
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_5_choose_ip.png')).landscape
       p Choose 
         span.highlight "Firewall rules" 
         |on the left bar and click 
         span.highlight "Create Firewall Rule"
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_5_create_firewall.png')).landscape
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_5_create_firewall.png')).landscape
       p Name the firewall rule
         br
         |Under 
@@ -42,7 +42,7 @@ mixin stepHtml(step, stepName, isOpen)
         span.highlight "Source IP ranges"
         |, 
         span.highlight input "0.0.0.0/0"
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_5_fill_info.png')).landscape
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_5_fill_info.png')).landscape
       p Under 
         span.highlight "Protocols and ports", 
         |choose 
@@ -50,20 +50,100 @@ mixin stepHtml(step, stepName, isOpen)
         |and tick on 
         span.highlight "tcp"
         |, then input 
-        span.highlight "9334,9433"
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_5_create.png')).landscape
+        span.highlight "9334,9433,8545"
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_5_create.png')).landscape
       p Then click 
         span.highlight "Create" 
         |and go back to VM Instance.
       p Your local server is now created. This is the IP address to run your Virtual Node
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_5_ip.png')).landscape
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_5_ip.png')).landscape
 
     +stepHtml('6', 'SSH to instance')
       p Click on 
         span.highlight "SSH"
         |, select 
         span.highlight "Open in browser window"
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_6_connect.png')).landscape
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_6_connect.png')).landscape
       p From this SSH window, you can start to set up node by following this instruction: 
         a(href='/validator.html') https://incognito.org/validator
-      img(src=require('../../image/launch_on_google_cloud/run_on_gc_step_6_ssh.png')).landscape
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_6_ssh.png')).landscape
+
+    +stepHtml('', `Useful tip: How to increase disk's capacity?`)
+      p Network grows bigger by time. You will need to upgrade your disk to store the entire blockchain to be a full node.
+      p In VM instances page, click on three-dot symbol to "
+        span.highlight stop
+        |" the instance
+      .row-img
+        .img
+          img(src=require('@image/launch_on_google_cloud/run_on_gc_step_7_1.png')).landscape
+      p Click "
+        spna.highlight stop
+        |" to confirm
+      .row-img
+        .img
+          img(src=require('@image/launch_on_google_cloud/run_on_gc_step_7_2.png')).landscape
+      p Click on your instance to get inside. Then click on "
+        span.highlight Edit
+        |" as below:
+      img(src=require('@image/launch_on_google_cloud/run_on_gc_step_7_3.png')).landscape
+      p Scroll down to find the 
+        span.highlight Boot Disk 
+        |section. Click "
+        span.highlight Add new disk
+        |"
+      .row-img
+        .img
+          img(src=require('@image/launch_on_google_cloud/run_on_gc_step_7_4.png'))
+      p In "
+        span.highlight Deletion rule
+        |", choose "
+        span.highlight Delete disk
+        |". Then input the size you want to upgrade. For example, we increase the capacity from 10 GB to 50 GB
+      .row-img
+        .img
+          img(src=require('@image/launch_on_google_cloud/run_on_gc_step_7_5.png'))
+      p Click "
+        span.highlight Done
+        |" to finish. Then click "
+        span.highlight Save
+        |" to save your setting.
+      .row-img
+        .img
+          img(src=require('@image/launch_on_google_cloud/run_on_gc_step_7_6.png')).landscape
+      p Next, let's run your instance again, and format the new disk partition
+      .row-img
+        .img
+          img(src=require('@image/launch_on_google_cloud/run_on_gc_step_7_7.png')).landscape
+      p Ssh to your server, then input these commands:
+      p.script.copiable(data-copy-value='sudo lsblk') sudo lsblk
+      p.script.copiable(data-copy-value='sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/[DEVICE_ID]') sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/[DEVICE_ID]
+      p.script.copiable(data-copy-value='sudo mkdir -p /mnt/disks/[MNT_DIR]') sudo mkdir -p /mnt/disks/[MNT_DIR]
+      p.script.copiable(data-copy-value='sudo mount -o discard,defaults /dev/[DEVICE_ID] /mnt/disks/[MNT_DIR]') sudo mount -o discard,defaults /dev/[DEVICE_ID] /mnt/disks/[MNT_DIR]
+      p &nbsp;
+      p For example, after "
+        span.highlight sudo lsblk
+        |", I got the ID of new disk is "
+        span.highlight sdb
+        |":
+      p.script.copiable(data-copy-value='sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb') sudo mkfs.ext4 -m 0 -F -E lazy_itable_init=0,lazy_journal_init=0,discard /dev/sdb
+      p Next, I create a folder "
+        span.highlight newdisk
+        |":
+      p.script.copiable(data-copy-value='sudo mkdir -p /mnt/disks/newdisk') sudo mkdir -p /mnt/disks/newdisk
+      p Finally, I mount the disk to the instance:
+      p.script.copiable(data-copy-value='sudo mount -o discard,defaults /dev/sdb /mnt/disks/newdisk') sudo mount -o discard,defaults /dev/sdb /mnt/disks/newdisk
+      .row-img
+        .img
+          img(src=require('@image/launch_on_google_cloud/run_on_gc_step_7_8.png')).landscape
+      p Next, we stop the current Virtual Node, and remove it completely. We need to run your virtual node on the new disk now. After remove the Node, please input these commands. Remember to replace 
+        span.highlight validator_key 
+        |with your 
+        span.highlight VALIDATOR KEY
+        |:
+      p.script.copiable(data-value-copy='cd /mnt/disks/newdisk') cd /mnt/disks/newdisk
+      p.script.copiable(data-value-copy='curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh') curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh
+      .row-img
+        .img
+          img(src=require('@image/launch_on_google_cloud/run_on_gc_step_7_9.png')).landscape
+      p This is the instruction link from Google: 
+        a(href='https://cloud.google.com/compute/docs/disks/add-persistent-disk' target='_blank') https://cloud.google.com/compute/docs/disks/add-persistent-disk

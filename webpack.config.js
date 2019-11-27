@@ -196,7 +196,8 @@ const devConfig = {
         test: /\.pug$/,
         loader: 'pug-loader',
         options: {
-          self: true
+          self: true,
+          root: path.resolve(__dirname, 'src/template')
         }
       },
       {
@@ -253,7 +254,8 @@ const prodConfig = {
         test: /\.pug$/,
         loader: 'pug-loader',
         options: {
-          self: true
+          self: true,
+          root: path.resolve(__dirname, 'src/template')
         }
       },
       {
@@ -281,6 +283,11 @@ module.exports = {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/'
+  },
+  resolve: {
+    alias: {
+      '@image': path.resolve(__dirname, 'src/image')
+    }
   },
   ...(production ? prodConfig : devConfig)
 };

@@ -57,6 +57,16 @@
             display: none;
           }
         }
+
+        ol.desc {
+          li {
+            margin: 20px 0px;
+          }
+        }
+      }
+
+      .app-store-groups {
+        margin: 20px 0px;
       }
     }
 
@@ -240,6 +250,20 @@
               max-width: 700px;
             }
           }
+        }
+      }
+    }
+
+    #section-container {
+      > div.section {
+        h1.title {
+          font-size: 38px;
+          font-weight: 500;
+          letter-spacing: unset;
+        }
+
+        #email-subscribe {
+          margin: 0 auto;
         }
       }
     }

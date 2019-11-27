@@ -45,13 +45,56 @@
       #intro-container {
         > div.content {
           div.intro {
-            > div .heading {
-              color: $white;
-            }
-
             > div {
+              .heading {
+                color: $white;
+              }
               h1.title {
                 color: $white;
+              }
+
+              p.sub-title {
+                &.highlight {
+                  font-weight: 500;
+                }
+
+                &.explaination {
+                  font-size: 0.8rem;
+
+                  &::before {
+                    content: '\f059';
+                    font-family: 'Font Awesome 5 Pro';
+                    margin-right: 5px;
+                    font-weight: 300;
+                  }
+                }
+              }
+
+              .cta {
+                margin-top: 50px;
+
+                .desktop,
+                .mobile {
+                  display: none;
+
+                  @include breakpoint-up(xl) {
+                    &.desktop {
+                      display: block;
+                    }
+                  }
+
+                  @include breakpoint-down(xl) {
+                    &.mobile {
+                      display: block;
+                    }
+                  }
+                }
+
+                .mobile {
+                  button {
+                    min-width: 200px;
+                  }
+                }
               }
             }
 

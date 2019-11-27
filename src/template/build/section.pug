@@ -1,0 +1,10 @@
+mixin section(subtitle, title, ...descs)
+  .section
+    .info.container.visible-effect
+      h3.subtitle= subtitle
+      h1.title= title
+      each desc in descs
+        p.desc!= desc
+    if block
+      .content
+        block
