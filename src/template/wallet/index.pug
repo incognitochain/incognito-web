@@ -5,9 +5,10 @@ block title
    title Send Bitcoin anonymously. Make your bitcoin untraceable.
    
 block meta
-    meta(property="description" content="Looking to send Bitcoin anonymously? Now you can stay completely anonymous when you send not just Bitcoin, but also Ethereum or any other cryptocurrency. Use the Incognito anonymous bitcoin wallet to hide your bitcoin activity from prying eyes. Turn all your coins into privacy coins.")
-    meta(property="og:image" content=require('../../image/wallet/wallet_slider_1.jpg'))
-    meta(property="og:description" content="Looking to send Bitcoin anonymously? Now you can stay completely anonymous when you send not just Bitcoin, but also Ethereum or any other cryptocurrency. Use the Incognito anonymous bitcoin wallet to hide your bitcoin activity from prying eyes. Turn all your coins into privacy coins.")
+   - var descriptionContent = `Looking to send Bitcoin anonymously? Now you can stay completely anonymous when you send Bitcoin, Ethereum or any other cryptocurrency. Use the Incognito anonymous bitcoin wallet to hide your bitcoin activity from prying eyes. Turn all your coins into privacy coins.`;
+   meta(name='description' content=descriptionContent)
+   meta(name='og:description' content=descriptionContent)
+   meta(name='twitter:description' content=descriptionContent)
 
 block main
    include ../header.pug
