@@ -1,7 +1,13 @@
 extends ../layout.pug
 
 block title
-   title Build awesome privacy dapps
+   title Create your own crypto token in 15 seconds.
+
+block meta
+   - var descriptionContent = `The Incognito token generator allows you to create your own cryptocurrency in 15 seconds. What’s different? All tokens are completely anonymous. Create your own ICO, put secret game tokens on the blockchain, issue confidential company shares. Create crypto tokens with zero code: Incognito does the hard work for you.`;
+   meta(name='description', content=descriptionContent)
+   meta(name='og:description' content=descriptionContent)
+   meta(name='twitter:description' content=descriptionContent)
    
 block main
    include ../telegram_chat.pug
