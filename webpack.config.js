@@ -128,6 +128,11 @@ const templateGen = [
     template: 'src/template/order_history/index.pug',
     filename: 'order/history.html',
     env: process.env
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/payroll/index.pug',
+    filename: 'payroll.html',
+    env: process.env
   })
   // new HtmlWebpackPlugin({
   //   template: 'src/template/mine/index.pug',
