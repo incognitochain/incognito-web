@@ -1,0 +1,88 @@
+mixin feature(icon, title, description)
+    .feature
+        .icon
+            img(src=icon)
+        .title= title
+        .description= description
+
+mixin work-flow(icon, description)
+    .work-flow
+        .icon
+            img(src=icon)
+        .description= description
+
+.intro-container
+    .image
+        img(src=require('@image/payroll/payroll-banner.jpg'))
+    .container.section
+        .intro
+            h1.title Add privacy to your crypto payroll.
+            p.description Send completely confidential payments to your globally distributed team. Obscure all balances and transaction details with a single tap.
+            .cta-button-container
+                .cta-button#try-free-btn
+                    .title Have a lean team?
+                    button Try it out for FREE
+                .cta-button#schedule-demo-btn
+                    .title Need something bigger?
+                    button Schedule a demo
+
+.core-features-container
+    .container.section
+        h1.title Core features
+        p.description Putting payroll on the blockchain makes perfect sense, but exposing salary details to the world can be tricky. Enable incognito mode for your payroll and keep all transaction details completely confidential.
+        .features-container
+            +feature(null, 'Privacy-protected', 'Obscure sender and receiver addresses, balances, and transaction amounts. Protect your team’s privacy. ')
+            +feature(null, 'Non-custodial', 'Keep full control over your funds. Incognito is fully decentralized. You hold your own private keys.')
+            +feature(null, 'Customizable', 'Pricing starts at $0 – it’s free to make unlimited transfers of unlimited amounts. Get more bells and whistles from just $4.99 a month.')
+        .cta-button-container
+            button Learn more about our plans
+
+.how-it-works-container.container.section
+    h1.title How it works
+    p.description Send private, global payments in just a few minutes.
+    .work-flow-container
+        +work-flow(null, 'Download the Incognito wallet for iOS or Android')
+        +work-flow(null, 'Deposit crypto to your Incognito wallet')
+        +work-flow(null, 'Get your team to get their own Incognito wallets')
+        +work-flow(null, 'Send completely private payments to your team ')
+    .cta-button-container
+        .cta-button
+            .title Try out the basic version for free.
+            .description Try out the basic version for free. Just download the wallet to get started.
+            include /common/app_store
+            +app_store()
+        .cta-button
+            .title Want something a little more powerful? 
+            .description Get one-tap multi-sends, payment notifications and your own management dashboard.
+            button Schedule a demo
+
+.plan-container.container
+    div
+        h1.title Pricing
+        p.description Tell us what features matter most to you, and we’ll recommend the right plan.
+    .plan-groups
+        .plan#lean
+            .plan-wrapper
+                .name Lean
+                .price FREE
+                .cta-button
+                    button Try it out now
+            .benefit-wrapper
+                .benefit Unlimited employees
+                .benefit Complete privacy
+                .benefit Low transaction fee (as zero)
+                .benefit Support within 48 hours
+        .plan#enterprise
+            .plan-wrapper
+                .name Enterprise
+                .price $4.99
+                p employee/monthly
+                    button Schedule a demo
+            .benefit-wrapper
+                .benefit Unlimited employees
+                .benefit Complete privacy
+                .benefit Low transaction fee (as zero)
+                .benefit Management dashboard
+                .benefit 1-click payments
+                .benefit Support in real time
+        

@@ -1,0 +1,81 @@
+#payroll-container {
+  $core-features-background-color: #f6fdfd;
+
+  .section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h1.title {
+      font-size: 42px;
+      line-height: 56px;
+      font-weight: 500;
+    }
+
+    p.description {
+      font-size: 18px;
+      line-height: 27px;
+    }
+  }
+
+  .container {
+    button {
+      height: 54px;
+      font-size: 18px;
+    }
+  }
+
+  .intro-container {
+    position: relative;
+
+    .container {
+      height: 100%;
+      position: absolute;
+      top: 0px;
+      display: flex;
+      align-items: center;
+
+      &.section {
+        align-items: flex-start;
+        justify-content: center;
+      }
+    }
+
+    .intro {
+      width: 45%;
+    }
+
+    .cta-button-container {
+      display: flex;
+
+      .cta-button {
+        text-align: center;
+        margin-top: 40px;
+
+        &:not(:first-child) {
+          margin-left: 30px;
+        }
+
+        .title {
+          font-weight: 500;
+          font-size: 14px;
+          text-transform: uppercase;
+          color: $black;
+          margin-bottom: 15px;
+        }
+
+        &#schedule-demo-btn {
+          button {
+            background: transparent;
+            border: 2px solid $green;
+            color: $green;
+          }
+        }
+      }
+    }
+  }
+
+  .core-features-container {
+    background: url('../image/payroll/payroll-core-features-background.svg');
+  }
+}
