@@ -38,7 +38,7 @@ function main() {
   }
 
   handleVideoPlayers(container);
-  startCountdown(container);
+  // startCountdown(container);
   handleShowTotalSubscriber(container);
   handleScrollToFAQ(container);
   handleAutoPlayUnboxing(container);
