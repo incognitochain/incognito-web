@@ -13,7 +13,7 @@ export default class Cart {
       throw new Error('container not found');
     }
 
-    this.price = 299;
+    this.price = 399;
     this.cart = this.getCartFromLocalStorage();
     this.selectedCoinName = 'BTC';
     this.totalPrice = 0;
