@@ -414,9 +414,6 @@
             }
 
             .img {
-              max-height: 400px;
-              position: relative;
-
               &:not(:last-child) {
                 margin-right: 60px;
 
@@ -432,6 +429,7 @@
               }
 
               img {
+                max-height: 400px;
                 height: 100%;
                 width: auto;
               }
