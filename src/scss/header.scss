@@ -60,7 +60,7 @@
       }
     }
 
-    &.black-friday {
+    &.cyber-monday {
       background-color: $black;
 
       span {
@@ -81,14 +81,14 @@
 
         .sale-price {
           font-size: 18px;
-          color: $red2;
+          color: $pink;
           position: relative;
           top: 2px;
         }
       }
 
       .badge {
-        background-color: $red2;
+        background-color: $pink;
         color: $white;
       }
 
