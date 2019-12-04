@@ -120,8 +120,13 @@ const templateGen = [
     env: process.env
   }),
   new HtmlWebpackPlugin({
-    template: 'src/template/build/index.pug',
-    filename: 'create.html',
+    template: 'src/template/build/apps/index.pug',
+    filename: 'create/apps.html',
+    env: process.env
+  }),
+  new HtmlWebpackPlugin({
+    template: 'src/template/build/tokens/index.pug',
+    filename: 'create/tokens.html',
     env: process.env
   }),
   new HtmlWebpackPlugin({
