@@ -159,7 +159,7 @@ const handleShowTotalSubscriber = async () => {
 const startCountdown = () => {
   const countdownEls = document.querySelectorAll('.countdown');
   for (const countdownEl of countdownEls) {
-    countdown(countdownEl, '2019-11-29T23:59:00.000-07:00', () => {
+    countdown(countdownEl, '2019-12-06T23:59:00.000-07:00', () => {
       // setMessage('The program was ended', 'error');
       countdownEl.remove();
       const earlyBirdPriceEls = document.querySelectorAll(

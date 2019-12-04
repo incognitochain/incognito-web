@@ -7,7 +7,7 @@ mixin sidebar-menu
     a(href='/node.html').menu-item.mobile Power
     a(href='/send-bitcoin-anonymously-01.html').menu-item.mobile Use
     a(href='/dex.html').menu-item.mobile Trade
-    a(href='/create.html').menu-item.mobile Create
+    a(href='/create/tokens.html').menu-item.mobile Create
     a(href='/free-software.html').menu-item.mobile Open Source
     a(href='/self-funded.html').menu-item.mobile Bootstrapped
     a(href='/blog', target='_blank').menu-item.mobile Blog
@@ -36,9 +36,15 @@ mixin sidebar-menu
 
 
 .header-container
-  #message-bar.black-friday
+  //- #message-bar
+  //-   span.badge New
+  //-   span The mainnet is live! Ready to go incognito? 
+  //-   span.app-links
+  //-     a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='_blank').link iOS
+  //-     a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='_blank').link Android
+  #message-bar.cyber-monday
     span.badge Hurry
-    span BLACK FRIDAY SALE
+    span CYBER MONDAY SALE
     span.price Node 
       span.original-price $399
       span &nbsp;&nbsp;&nbsp;
@@ -51,7 +57,7 @@ mixin sidebar-menu
         a(href='/node.html').menu-item POWER
         a(href='/send-bitcoin-anonymously-01.html').menu-item USE
         a(href='/dex.html').menu-item TRADE
-        a(href='/create.html').menu-item CREATE
+        a(href='/create/tokens.html').menu-item CREATE
         a(href='https://mainnet.incognito.org', target='_blank').menu-item EXPLORE
       .right
         a(href='/free-software.html').menu-item OPEN SOURCE

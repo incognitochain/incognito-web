@@ -4,53 +4,67 @@ include /build/section.pug
     'Tokenization',
     'What can I use tokens for?',
     '<p class="desc quote">“Everything will be tokenized and connected by a blockchain one day..”<br/>- Fred Ehrsam, Coinbase Founder</p>'
-  )
-    .container
-      div
-        div IOUs
-        div Living with roommates? Tokenize your security deposit and pay them to do chores for you.
-      div
-        div SHARED BUDGETS
-        div Get reimbursed for common purchases from the token treasury, and pay teammates with tokens.
-      div
-        div VOTING
-        div Issue a voting token and send one to each member. Vote by sending your token to one address.
-      div
-        div OWNERSHIP
-        div Sell shares to raise funds to buy a house. Then flip it and distribute profits among the shareholders.
+  ).card-container
+    .container.card-wrapper
+      .card
+        .card-icon 
+          img(src=require('@image/build/build_tokens_ious.svg'))
+        .card-title IOUs
+        .card-description Living with roommates? Tokenize your security deposit and pay them to do chores for you.
+      .card
+        .card-icon 
+          img(src=require('@image/build/build_tokens_shared_budgets.svg'))
+        .card-title SHARED BUDGETS
+        .card-description Get reimbursed for common purchases from the token treasury, and pay teammates with tokens.
+      .card
+        .card-icon 
+          img(src=require('@image/build/build_tokens_voting.svg'))
+        .card-title VOTING
+        .card-description Issue a voting token and send one to each member. Vote by sending your token to one address.
+      .card
+        .card-icon 
+          img(src=require('@image/build/build_tokens_ownership.svg'))
+        .card-title OWNERSHIP
+        .card-description Sell shares to raise funds to buy a house. Then flip it and distribute profits among the shareholders.
 
   +section(
     'Send and receive',
     'Send and receive confidentially on Incognito.',
     'Send your private tokens to anyone. Just enter their account address or scan their QR code. Your account balance and transactions details are totally hidden from prying eyes.',
     '<a href="/tech.html">How does it work?</a>'
-  )
+  ).how-it-works-container
+    .container
+      .row-img
+        .img
+          img(src=require('@image/build/build_tokens_how_it_works_1.jpg'))
+        .img
+          img(src=require('@image/build/build_tokens_how_it_works_2.jpg'))
+        .img
+          img(src=require('@image/build/build_tokens_how_it_works_3.jpg'))
 
   +section(
     'Funding',
     'What else can I do with tokens?'
-  )
+  ).funding-container.container
     .container
-      div
-        .icon
-        div
-          div Trade your private tokens for crypto
-          div If your token becomes valuable, you can exchange it for private cryptocurrencies like pBTC and pETH on 
+      .funding-wrapper
+        .funding
+          .funding-icon
+            img(src=require('@image/build/build_tokens_funding_trade.svg'))
+          .funding-title Trade your private tokens for crypto
+          .funding-description If your token becomes valuable, you can exchange it for private cryptocurrencies like pBTC and pETH on 
             a(href='/blog/how-to-trade-bitcoin-privately-with-incognito-pdex/') the Incognito DEX
             |.
-      div
-        .icon
-        div
-          div Win prizes for your token idea
-          div The Incognito DAO is a pool of funds devoted to growing and improving the network. Our first program is Token Awards: Win crypto for using private tokens. 
+        .funding
+          .funding-icon
+            img(src=require('@image/build/build_tokens_funding_prize.svg'))
+          .funding-title Win prizes for your token idea
+          .funding-description The Incognito DAO is a pool of funds devoted to growing and improving the network. Our first program is Token Awards: Win crypto for using private tokens. 
             a(href='https://docs.google.com/document/d/1Nsn5c8rXkcAoIS5I5fluUQfX-_uFjCVhyJqgEZPXKrQ/edit?usp=sharing' target='_blank') Check out the plan and contribute your ideas
-            |.
-    
-  +section(
-    '',
-    'Be the first to hear about updates.',
-    'Drop your email below to stay up-to-date on the latest features and releases.'
-  )
-    .container
-      include /common/subscribe_form
-      +subscribe_email('Be the first', 'create-app')
+            |.    
+      .subscribe-email-container
+        .container
+          h1.title Be the first to hear about updates.
+          p.desc Drop your email below to stay up-to-date on the latest features and releases.
+          include /common/subscribe_form
+          +subscribe_email('Be the first', 'create-tokens')
