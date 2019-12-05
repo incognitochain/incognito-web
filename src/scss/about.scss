@@ -214,6 +214,7 @@
         height: auto;
         background: transparent;
         margin: 15px;
+        color: $green;
 
         @include breakpoint-down(sm) {
           margin: 10px 0px;

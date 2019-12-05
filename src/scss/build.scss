@@ -10,7 +10,7 @@
   }
 
   div#content {
-    .intro-container {
+    #intro-container {
       background-color: #0c1c1d;
 
       .tab-container {
@@ -54,13 +54,9 @@
         .info {
           flex: 5;
           padding-right: 40px;
-          .title {
-            span {
-              font-size: 42px;
-              color: $white;
-              letter-spacing: 0;
-              line-height: 56px;
-            }
+          h1.title {
+            color: $white;
+
             span.highlight {
               color: #25cdd6;
             }
@@ -306,39 +302,6 @@
 
     #section-container {
       > div.section {
-        h3.subtitle {
-          font-size: 16px;
-          letter-spacing: 1.5;
-        }
-
-        h1.title {
-          font-weight: bold;
-          font-size: 42px;
-          letter-spacing: 0;
-
-          &::after {
-            margin: 30px auto 0;
-            display: block;
-            content: '';
-            width: 30px;
-            height: 3px;
-            background-color: $green;
-          }
-        }
-
-        p.desc {
-          *,
-          a {
-            font-size: 20px;
-            line-height: 30px;
-          }
-
-          a {
-            text-decoration: none;
-            color: $green;
-          }
-        }
-
         &.card-container {
           background: url('../image/build/build_card_background.jpg') no-repeat;
           background-size: cover;
@@ -438,6 +401,7 @@
         }
 
         &.funding-container {
+          margin-top: 0;
           padding: 100px 0 0;
 
           @include breakpoint-down(sm) {
@@ -576,7 +540,7 @@
 
     &.create-apps,
     &.create-tokens {
-      .intro-container {
+      #intro-container {
         background-image: url('../image/build/build_banner_background.jpg');
         background-repeat: no-repeat;
         background-size: cover;
@@ -584,7 +548,7 @@
     }
 
     &.create-apps {
-      .intro-container {
+      #intro-container {
         .button-container {
           display: flex;
 
