@@ -6,7 +6,11 @@
   }
 
   .app {
-    width: 200px;
-    margin-right: 20px;
+    max-width: 200px;
+    width: 100%;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
   }
 }

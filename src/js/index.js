@@ -15,4 +15,5 @@ import './about';
 import './payment';
 import './dex';
 import './order_history';
+import './payroll';
 // import './internalSubscriberBoard';
