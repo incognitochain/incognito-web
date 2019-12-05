@@ -1,0 +1,15 @@
+extends /layout.pug
+
+block title
+   title Privacy & Terms
+
+block meta
+   link(href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet")
+   script(src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript")
+   
+block main
+   include /header.pug
+   include /telegram_chat.pug
+   #payroll-container
+      include /payroll/intro.pug
+
