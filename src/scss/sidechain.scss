@@ -38,18 +38,6 @@
   }
 
   #section-container {
-    @include breakpoint-down(xl) {
-      padding-top: 0px;
-    }
-
-    > div.section {
-      .info {
-        h1.title {
-          font-size: 38px;
-          font-weight: 500;
-          letter-spacing: unset;
-        }
-      }
-    }
+    padding-top: 0;
   }
 }

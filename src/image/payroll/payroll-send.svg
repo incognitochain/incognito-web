@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="62px" height="62px" viewBox="0 0 62 62" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56 (81588) - https://sketch.com -->
+    <title>Group 27</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Update-Copy-19" transform="translate(-1128.000000, -2017.000000)">
+            <g id="Group-27" transform="translate(1129.000000, 2018.000000)">
+                <circle id="Oval" stroke="#101111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero" cx="14.516129" cy="23.239975" r="3.87096774"></circle>
+                <circle id="Oval" stroke="#101111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero" cx="44.516129" cy="23.239975" r="3.87096774"></circle>
+                <rect id="Rectangle" stroke="#101111" stroke-width="2" fill="#FFFFFF" fill-rule="nonzero" stroke-linecap="round" stroke-linejoin="round" x="0" y="30.0141685" width="60" height="29.0322581"></rect>
+                <path d="M52.5967742,33.8851363 L7.40322581,33.8851363 C6.81834144,35.5347398 5.52057128,36.83251 3.87096774,37.4173943 L3.87096774,50.6754588 C5.85459531,51.3788422 7.30231025,53.1005492 7.65483871,55.1754588 L52.3451613,55.1754588 C52.6976897,53.1005492 54.1454047,51.3788422 56.1290323,50.6754588 L56.1290323,37.4173943 C54.4794287,36.83251 53.1816586,35.5347398 52.5967742,33.8851363 L52.5967742,33.8851363 Z" id="Path" stroke="#101111" stroke-width="2" fill="#D2FDFF" fill-rule="nonzero" stroke-linecap="round" stroke-linejoin="round"></path>
+                <circle id="Oval" fill="#101111" fill-rule="nonzero" cx="11.6129032" cy="42.5948137" r="1.93548387"></circle>
+                <path d="M9.67741935,47.4335234 L13.5483871,47.4335234" id="Path" stroke="#101111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <circle id="Oval" fill="#101111" fill-rule="nonzero" cx="48.3870968" cy="42.5948137" r="1.93548387"></circle>
+                <path d="M46.4516129,47.4335234 L50.3225806,47.4335234" id="Path" stroke="#101111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                <circle id="Oval" stroke="#101111" stroke-width="2" fill-rule="nonzero" cx="30" cy="44.5302976" r="7"></circle>
+                <path d="M39.8709677,0.0141685188 L29.8258065,1.156104 C29.6199828,1.17887564 29.4122753,1.17887564 29.2064516,1.156104 L19.1612903,0.0141685188 C17.7504631,-0.125075805 16.4453873,0.774976471 16.0741935,2.14320078 L13.5483871,13.5625556 L45.483871,13.5625556 L42.9580645,2.16255562 C42.5946852,0.78658105 41.2874767,-0.123137737 39.8709677,0.0141685188 Z" id="Path" stroke="#101111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero"></path>
+                <rect id="Rectangle" stroke="#101111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill-rule="nonzero" x="2.90322581" y="13.5625556" width="53.2258065" height="3.87096774" rx="1.93548387"></rect>
+                <rect id="Rectangle" stroke="#101111" stroke-width="2" fill="#FFFFFF" fill-rule="nonzero" stroke-linecap="round" stroke-linejoin="round" x="14.516129" y="17.4335234" width="30" height="12.5806452"></rect>
+                <circle id="Oval" fill="#101111" fill-rule="nonzero" cx="22.2580645" cy="24.2077169" r="3.87096774"></circle>
+                <circle id="Oval" fill="#101111" fill-rule="nonzero" cx="36.7741935" cy="24.2077169" r="3.87096774"></circle>
+                <path d="M34.8387097,25.1754588 C34.8387097,23.5690072 32.4580645,22.272233 29.516129,22.272233 C26.5741935,22.272233 24.1935484,23.5690072 24.1935484,25.1754588" id="Path" stroke="#101111" stroke-width="2"></path>
+            </g>
+        </g>
+    </g>
+</svg>
