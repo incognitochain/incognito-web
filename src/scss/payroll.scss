@@ -4,8 +4,17 @@
   #intro-container {
     position: relative;
 
+    @include breakpoint-down(lg) {
+      margin-bottom: 30px;
+    }
+
     .image {
       max-height: 800px;
+
+      @include breakpoint-down(lg) {
+        display: none;
+      }
+
       img {
         object-fit: cover;
         object-position: center;
@@ -19,10 +28,22 @@
       display: flex;
       align-items: center;
 
+      @include breakpoint-down(lg) {
+        position: initial;
+      }
+
       .info {
         align-items: flex-start;
         justify-content: center;
         width: 50%;
+
+        @include breakpoint-down(xl) {
+          width: 60%;
+        }
+
+        @include breakpoint-down(lg) {
+          width: 100%;
+        }
 
         h1.title {
           &::after {
@@ -33,12 +54,31 @@
         .cta-button-container {
           display: flex;
 
+          @include breakpoint-down(sm) {
+            flex-direction: column;
+          }
+
           .cta-button {
             text-align: center;
             margin-top: 40px;
 
+            @include breakpoint-down(sm) {
+              text-align: left;
+            }
+
             &:not(:first-child) {
               margin-left: 30px;
+
+              @include breakpoint-down(sm) {
+                margin-left: 0;
+                margin-top: 20px;
+              }
+            }
+
+            &:first-child {
+              @include breakpoint-down(sm) {
+                margin-top: 0;
+              }
             }
 
             .title {
@@ -69,6 +109,25 @@
       flex-direction: column;
       align-items: center;
       padding-bottom: 0;
+
+      @include breakpoint-down(sm) {
+        text-align: left;
+      }
+
+      &:not(:first-child) {
+        @include breakpoint-down(lg) {
+          margin-top: 50px;
+        }
+      }
+
+      h1.title {
+        &::after {
+          @include breakpoint-down(sm) {
+            margin-left: initial;
+            margin-right: initial;
+          }
+        }
+      }
     }
 
     .container {
@@ -82,6 +141,10 @@
       position: relative;
       padding-top: 50px;
 
+      @include breakpoint-down(lg) {
+        padding-top: 0;
+      }
+
       &::before {
         background-color: #f6fdfd;
         border-radius: 0% 0% 50% 50% / 40%;
@@ -92,6 +155,15 @@
         position: absolute;
         left: -15%;
         top: 0;
+
+        @include breakpoint-down(lg) {
+          border-radius: 0% 0% 50% 50% / 20%;
+        }
+
+        @include breakpoint-down(sm) {
+          border-radius: 0% 0% 50% 50% / 5%;
+          height: 103%;
+        }
       }
 
       .container {
@@ -102,11 +174,27 @@
           display: flex;
           justify-content: center;
           margin: 80px auto 0;
+
+          @include breakpoint-down(sm) {
+            flex-direction: column;
+            margin-top: 30px;
+          }
+
           .feature {
             text-align: center;
             flex: 1;
+
+            @include breakpoint-down(sm) {
+              margin-right: 0;
+              text-align: left;
+            }
+
             &:not(:last-child) {
               margin-right: 50px;
+
+              @include breakpoint-down(sm) {
+                margin-right: 0;
+              }
             }
             .icon {
               img {
@@ -120,10 +208,19 @@
               color: $black;
               margin: 10px 0;
             }
-
             .description {
               margin-bottom: 50px;
+
+              @include breakpoint-down(sm) {
+                margin-bottom: 30px;
+              }
             }
+          }
+        }
+
+        .cta-button-container {
+          @include breakpoint-down(sm) {
+            text-align: center;
           }
         }
       }
@@ -131,27 +228,48 @@
 
     .how-it-works-container {
       margin-top: 150px;
+
       .work-flow-container {
         display: flex;
         justify-content: center;
         margin: 0 auto;
         margin-top: 50px;
+
+        @include breakpoint-down(sm) {
+          flex-direction: column;
+        }
+
         .work-flow {
           text-align: center;
           position: relative;
 
+          @include breakpoint-down(sm) {
+            text-align: left;
+          }
+
           &:not(:last-child) {
             margin-right: 60px;
+
+            @include breakpoint-down(sm) {
+              margin-right: 0;
+              margin-bottom: 50px;
+            }
 
             &::after {
               content: '\f054';
               font-family: 'Font Awesome 5 Pro';
-              margin: 0 20px;
               position: absolute;
               top: 50px;
               font-size: 30px;
               z-index: 1;
-              right: -60px;
+              right: -40px;
+
+              @include breakpoint-down(sm) {
+                right: initial;
+                top: initial;
+                bottom: -35px;
+                transform: rotate(90deg);
+              }
             }
           }
 
@@ -166,7 +284,14 @@
 
       .cta-button-container {
         display: flex;
+        justify-content: center;
         margin-top: 80px;
+
+        @include breakpoint-down(sm) {
+          flex-direction: column;
+          margin-top: 30px;
+        }
+
         .cta-button {
           flex: 1;
           border-radius: 15px;
@@ -177,6 +302,10 @@
           text-align: center;
           display: flex;
           flex-direction: column;
+
+          @include breakpoint-down(lg) {
+            padding: 30px;
+          }
 
           .title {
             font-size: 24px;
@@ -189,17 +318,33 @@
           .description {
             margin-bottom: 50px;
             flex: 1;
+
+            @include breakpoint-down(sm) {
+              margin-bottom: 20px;
+            }
           }
 
           &#schedule-demo {
             background-color: #f3f9fd;
             margin-left: 100px;
 
+            @include breakpoint-down(sm) {
+              margin-left: 0;
+              margin-top: 60px;
+            }
+
             &::before {
               content: 'OR';
               position: absolute;
               left: -60px;
               top: calc(50% - 8px);
+
+              @include breakpoint-down(sm) {
+                content: 'OR';
+                position: absolute;
+                left: calc(50% - 10px);
+                top: -40px;
+              }
             }
 
             .title {
@@ -208,6 +353,22 @@
 
             button {
               background-color: $blue1;
+            }
+          }
+
+          .app-store-groups {
+            flex-direction: column;
+
+            @include breakpoint-down(sm) {
+              align-items: center;
+            }
+
+            .app {
+              &:not(:last-child) {
+                @include breakpoint-down(sm) {
+                  margin-right: 0;
+                }
+              }
             }
           }
         }
@@ -228,15 +389,31 @@
         width: 130%;
         position: absolute;
         left: -15%;
+
+        @include breakpoint-down(lg) {
+          border-radius: 50% 50% 0 0 / 25%;
+        }
+
+        @include breakpoint-down(sm) {
+          border-radius: 50% 50% 0 0 / 5%;
+        }
       }
 
       .container {
         position: relative;
         padding-top: 130px;
         z-index: 1;
-        flex-direction: row;
         align-items: flex-start;
         display: flex;
+
+        @include breakpoint-down(lg) {
+          flex-direction: column;
+          padding-top: 60px;
+        }
+
+        @include breakpoint-down(sm) {
+          padding-top: 20px;
+        }
 
         .intro {
           text-align: left;
@@ -259,6 +436,20 @@
           display: flex;
           padding-left: 70px;
 
+          @include breakpoint-down(xl) {
+            padding-left: 30px;
+          }
+
+          @include breakpoint-down(lg) {
+            padding-left: 0;
+          }
+
+          @include breakpoint-down(sm) {
+            flex-direction: column;
+            flex: 0 0 100%;
+            width: 100%;
+          }
+
           .plan {
             display: flex;
             flex: 1 0 50%;
@@ -266,6 +457,10 @@
 
             &:not(:first-child) {
               margin-left: 15px;
+
+              @include breakpoint-down(sm) {
+                margin-left: 0;
+              }
             }
 
             .plan-wrapper {
@@ -315,6 +510,10 @@
 
             .benefit-wrapper {
               padding: 40px 15px;
+
+              @include breakpoint-down(xl) {
+                padding: 40px 0;
+              }
 
               .benefit {
                 color: $white;
