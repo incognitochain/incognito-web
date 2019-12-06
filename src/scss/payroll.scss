@@ -357,16 +357,12 @@
           }
 
           .app-store-groups {
-            @include breakpoint-down(lg) {
-              flex-direction: column;
-              align-items: center;
-            }
+            flex-direction: column;
+            align-items: center;
 
             .app {
               &:not(:last-child) {
-                @include breakpoint-down(lg) {
-                  margin-right: 0;
-                }
+                margin-right: 0;
               }
             }
           }
