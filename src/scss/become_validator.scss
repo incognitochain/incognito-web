@@ -15,9 +15,13 @@
   }
 
   div#content {
-    .intro-container {
+    #intro-container {
       > div {
         padding-top: 30px;
+      }
+
+      h1.title {
+        color: $white;
       }
     }
   }
