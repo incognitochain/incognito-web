@@ -41,7 +41,14 @@ include /build/section.pug
           li.desc Can be deployed quickly.
           li.desc Also, we really like open source projects.
       .button-container
-        a(href='https://forms.gle/5bDMeCXKmMbTkrwSA')
+        a(
+          href='https://forms.gle/5bDMeCXKmMbTkrwSA'
+          target='_blank'
+          ga-tracking
+          data-ga-event-category='button' 
+          data-ga-event-action='click' 
+          data-ga-event-label='Create apps/Submit application'
+        )
           button Submit an Application
 
 
@@ -60,7 +67,14 @@ include /build/section.pug
     'Anyone can participate, everyone can join, no one can ever restrict or control Incognito. Incognito is and will always be 100% open-source.'
   ).funding-container.container
     .container
-      a(href='https://github.com/incognitochain?tab=repositories', target='_blank')
+      a(
+        href='https://github.com/incognitochain?tab=repositories' 
+        target='_blank'
+        ga-tracking
+        data-ga-event-category='button' 
+        data-ga-event-action='click' 
+        data-ga-event-label='Create apps/Browse the code'
+      )
         button Browse the code
       .subscribe-email-container
         .container

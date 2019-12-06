@@ -1,6 +1,20 @@
 mixin app_store(dark=true)    
     .app-store-groups&attributes(attributes)
-        a(href='https://play.google.com/store/apps/details?id=com.incognito.wallet', target='blank').app
+        a(
+            href='https://play.google.com/store/apps/details?id=com.incognito.wallet' 
+            target='blank'
+            ga-tracking
+            data-ga-event-category='button' 
+            data-ga-event-action='click' 
+            data-ga-event-label='Android App'
+        ).app
             img(src=require(`@image/wallet/${dark ? 'google_play_black.svg' : 'google-play.svg'}`), alt='chplay-app')
-        a(href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1', target='blank').app
+        a(
+            href='https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1' 
+            target='blank'
+            ga-tracking
+            data-ga-event-category='button' 
+            data-ga-event-action='click' 
+            data-ga-event-label='iOS App'
+        ).app
             img(src=require(`@image/wallet/${dark ? 'app_store_black.svg' : 'app-store.svg'}`), alt='ios-app')
