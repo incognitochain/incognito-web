@@ -12,4 +12,5 @@ import './header';
 import './telegram_chat';
 import './tab_navigation';
 import './sticky';
+import './ga_tracking';
 // import './invite_email_form';
