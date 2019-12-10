@@ -16,4 +16,5 @@ import './payment';
 import './dex';
 import './order_history';
 import './payroll';
+import './build';
 // import './internalSubscriberBoard';
