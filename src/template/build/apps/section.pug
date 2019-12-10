@@ -76,9 +76,5 @@ include /build/section.pug
         data-ga-event-label='Create apps/Browse the code'
       )
         button Browse the code
-      .subscribe-email-container
-        .container
-          h1.title Keep in touch.
-          p.desc Join our community of developers and be the first to receive updates on the SDK and DAO funding programs.
-          include /common/subscribe_form
-          +subscribe_email('Be the first', 'create-app')
+      include /common/newsletter_subscription
+      +newsletter_subscription('Keep in touch.', 'Join our community of developers and be the first to receive updates on the SDK and DAO funding programs.', 'Be the first', 'create-app')

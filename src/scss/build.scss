@@ -1,4 +1,5 @@
-#build-container {
+#create-apps-container,
+#create-tokens-container {
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -302,6 +303,75 @@
 
     #section-container {
       > div.section {
+        &.award-container {
+          .highlight {
+            font-weight: 500;
+          }
+
+          .award-wrapper {
+            margin: 0 auto;
+            font-size: 18px;
+            border-collapse: collapse;
+
+            tr {
+              th {
+                font-weight: 500;
+                color: $black;
+              }
+
+              th,
+              td {
+                border-bottom: 1px solid $grey;
+                padding: 15px 0;
+                min-width: 200px;
+              }
+            }
+
+            tbody {
+              tr:last-child {
+                td {
+                  border-bottom: none;
+                }
+              }
+            }
+          }
+
+          .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+
+            .button {
+              &:not(:last-child) {
+                margin-right: 80px;
+              }
+            }
+          }
+
+          .rules-container {
+            list-style: initial;
+            text-align: left;
+            overflow: hidden;
+            max-height: 0;
+            transition: all 0.5s ease-in-out;
+            margin: 0;
+
+            &.show {
+              max-height: 200px;
+              margin-top: 40px;
+            }
+
+            li {
+              list-style: initial;
+              font-size: 18px;
+
+              &::before {
+                content: none;
+              }
+            }
+          }
+        }
+
         &.card-container {
           background: url('../image/build/build_card_background.jpg') no-repeat;
           background-size: cover;
@@ -450,43 +520,6 @@
               .funding-description {
                 flex: 1;
               }
-            }
-          }
-
-          .subscribe-email-container {
-            background-color: #0f3435;
-            border-radius: 8px;
-            padding: 80px 20px;
-            margin-top: 80px;
-
-            @include breakpoint-down(sm) {
-              padding: 20px 30px 30px;
-            }
-
-            .container {
-              @include breakpoint-down(sm) {
-                padding: 0;
-              }
-            }
-
-            h1.title {
-              font-size: 32px;
-              color: $white;
-              line-height: 40px;
-
-              &::after {
-                content: none;
-              }
-            }
-
-            p.desc {
-              color: $white;
-              font-size: 16px;
-              line-height: 24px;
-            }
-
-            #email-subscribe {
-              margin-top: 30px;
             }
           }
         }
