@@ -126,7 +126,7 @@ const templateGen = [
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/build/tokens/index.pug',
-    filename: 'create/tokens.html',
+    filename: 'create/privacy-coins.html',
     env: process.env
   }),
   new HtmlWebpackPlugin({
