@@ -1,0 +1,7 @@
+mixin newsletter_subscription(title = 'Be the first to hear about updates.', description = 'Drop your email below to stay up-to-date on the latest features and releases.', btnText = 'Be the first', subscribeFrom = 'newsletter')
+  .newsletter-subscription-container
+    .container
+      h1.title= title
+      p.desc= description
+      include /common/subscribe_form
+      +subscribe_email(btnText, subscribeFrom)

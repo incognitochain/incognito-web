@@ -1,5 +1,43 @@
 include /build/section.pug      
-#section-container
+#section-container  
+  +section(
+    '',
+    'Win Awards for your Privacy Coin',
+    'Coin Awards is a public competition to promote creativity and innovation in the use of privacy coins.',
+    '<p class="highlight">Coin Score = (No. Transactions * 0.7) + (No. Unique Followers * 0.3)</p>'
+  ).award-container
+    .container
+      table.award-wrapper
+        thead.award-heading
+          tr
+            th Award
+            th Amount
+        tbody.award-body
+          tr
+            td 1st Place, Coin Score
+            td $375*
+          tr
+            td 2nd Place, Coin Score
+            td $250*
+          tr
+            td 3rd Place, Coin Score
+            td $125*
+          tr
+            td Mostly Innovative, by popular vote
+            td $250*
+      p.desc *Winners will receive USD-equivalent in PRV, based on pDEX price at time of transfer.
+      .button-container
+        .button
+          button#read-the-rules Read the Rules
+        .button
+          a(href="https://mainnet.incognito.org/tokens" target="_blank")
+            button View Leaderboard
+      ul.rules-container
+        li.rule Coin Score Winners will be selected at midnight PST on 31 January, 2020.
+        li.rule The Most Innovative award will be voted on by the community after 31 January, 2020. The winner will be announced on 7 February, 2020.
+        li.rule Privacy coins using bots or trading between a small number of accounts will be flagged and investigated by the founding team. Coins found to be gaming the system will be disqualified.
+        li.rule Awards will be sent directly to the account of the privacy coin creator. For coins without this data, the founding team will try to work with creators for verification.
+  
   +section(
     'Tokenization',
     'What can I use tokens for?',
@@ -41,30 +79,5 @@ include /build/section.pug
           img(src=require('@image/build/build_tokens_how_it_works_2.jpg'))
         .img
           img(src=require('@image/build/build_tokens_how_it_works_3.jpg'))
-
-  +section(
-    'Funding',
-    'What else can I do with tokens?'
-  ).funding-container.container
-    .container
-      .funding-wrapper
-        .funding
-          .funding-icon
-            img(src=require('@image/build/build_tokens_funding_trade.svg'))
-          .funding-title Trade your private tokens for crypto
-          .funding-description If your token becomes valuable, you can exchange it for private cryptocurrencies like pBTC and pETH on 
-            a(href='/blog/how-to-trade-bitcoin-privately-with-incognito-pdex/' target='_blank') the Incognito DEX
-            |.
-        .funding
-          .funding-icon
-            img(src=require('@image/build/build_tokens_funding_prize.svg'))
-          .funding-title Win prizes for your token idea
-          .funding-description The Incognito DAO is a pool of funds devoted to growing and improving the network. Our first program is Token Awards: Win crypto for using private tokens. 
-            a(href='https://docs.google.com/document/d/1Nsn5c8rXkcAoIS5I5fluUQfX-_uFjCVhyJqgEZPXKrQ/edit?usp=sharing' target='_blank') Check out the plan and contribute your ideas
-            |.    
-      .subscribe-email-container
-        .container
-          h1.title Be the first to hear about updates.
-          p.desc Drop your email below to stay up-to-date on the latest features and releases.
-          include /common/subscribe_form
-          +subscribe_email('Be the first', 'create-tokens')
+      include /common/newsletter_subscription
+      +newsletter_subscription
