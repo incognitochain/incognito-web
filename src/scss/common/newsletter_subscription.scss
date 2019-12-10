@@ -6,9 +6,13 @@
 
   @include breakpoint-down(sm) {
     padding: 20px 30px 30px;
+    margin-top: 30px;
   }
 
   .container {
+    padding: 0 100px;
+    text-align: center;
+
     @include breakpoint-down(sm) {
       padding: 0;
     }
@@ -18,9 +22,15 @@
     font-size: 32px;
     color: $white;
     line-height: 40px;
+    margin-top: 0;
 
     &::after {
-      content: none;
+      margin: 20px auto 0;
+      display: block;
+      content: '';
+      width: 30px;
+      height: 3px;
+      background-color: #0dc7d8;
     }
   }
 
@@ -31,6 +41,6 @@
   }
 
   #email-subscribe {
-    margin-top: 30px;
+    margin: 30px auto 0;
   }
 }

@@ -7,6 +7,10 @@ const handleToggleAwardRules = container => {
     if (!rulesContainer) return;
 
     rulesContainer.classList.toggle('show');
+
+    if (rulesContainer.classList.contains('show')) {
+      rulesContainer.scrollIntoView({ behavior: 'smooth' });
+    }
   });
 };
 
