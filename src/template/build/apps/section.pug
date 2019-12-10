@@ -15,17 +15,17 @@ include /build/section.pug
         .card-icon 
           img(src=require('@image/build/build_apps_rewards.svg'))
         .card-title Rewards
-        .card-description Integrate Incognito with your POS or e-commerce store to reward customers with private, tradable tokens.
+        .card-description Integrate Incognito with your POS or e-commerce store to reward customers with private, tradable coins.
       .card
         .card-icon 
           img(src=require('@image/build/build_apps_games.svg'))
         .card-title Games
-        .card-description Take your games to the next level with secret token balances and transactions. 
+        .card-description Take your games to the next level with secret coin balances and transactions. 
       .card
         .card-icon 
           img(src=require('@image/build/build_apps_digital_cash.svg'))
         .card-title Digital Cash
-        .card-descriptionn Integrate private stablecoins to your payroll or e-commerce store. Give users the privacy and stability of physical cash with the borderless freedom of cryptocurrency.
+        .card-descriptionn Integrate privacy stablecoins to your payroll or e-commerce store. Give users the privacy and stability of physical cash with the borderless freedom of cryptocurrency.
 
   +section(
     '',
@@ -76,9 +76,5 @@ include /build/section.pug
         data-ga-event-label='Create apps/Browse the code'
       )
         button Browse the code
-      .subscribe-email-container
-        .container
-          h1.title Keep in touch.
-          p.desc Join our community of developers and be the first to receive updates on the SDK and DAO funding programs.
-          include /common/subscribe_form
-          +subscribe_email('Be the first', 'create-app')
+      include /common/newsletter_subscription
+      +newsletter_subscription('Keep in touch.', 'Join our community of developers and be the first to receive updates on the SDK and DAO funding programs.', 'Be the first', 'create-app')
