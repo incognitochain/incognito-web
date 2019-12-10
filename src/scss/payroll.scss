@@ -119,15 +119,6 @@
           margin-top: 50px;
         }
       }
-
-      h1.title {
-        &::after {
-          @include breakpoint-down(sm) {
-            margin-left: initial;
-            margin-right: initial;
-          }
-        }
-      }
     }
 
     .container {
@@ -394,7 +385,7 @@
         }
       }
 
-      .container {
+      > .container {
         position: relative;
         padding-top: 130px;
         z-index: 1;
@@ -417,7 +408,7 @@
             color: $white;
 
             &::after {
-              margin: initial;
+              margin-left: initial;
             }
           }
 
@@ -549,6 +540,12 @@
             }
           }
         }
+      }
+
+      .newsletter-subscription-container {
+        position: relative;
+        background: none;
+        margin-top: 0;
       }
     }
   }

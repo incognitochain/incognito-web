@@ -294,6 +294,13 @@
           }
         }
       }
+      .newsletter-subscription-container {
+        margin-bottom: 80px;
+
+        @include breakpoint-down(sm) {
+          margin-bottom: 30px;
+        }
+      }
     }
   }
 }

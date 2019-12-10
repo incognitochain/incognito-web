@@ -1419,5 +1419,10 @@
         }
       }
     }
+
+    .story-container ~ .newsletter-subscription-container {
+      margin-bottom: 100px;
+      margin-top: 0;
+    }
   }
 }
