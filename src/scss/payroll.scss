@@ -36,6 +36,7 @@
         align-items: flex-start;
         justify-content: center;
         width: 50%;
+        flex: none;
 
         @include breakpoint-down(xl) {
           width: 60%;
@@ -46,6 +47,8 @@
         }
 
         h1.title {
+          color: $black;
+
           &::after {
             content: none;
           }
