@@ -14,17 +14,10 @@ block main
    include ../header.pug
    //- include ../telegram_chat.pug
    div#wallet-container
-      div.intro-slider-container
-         .image
-            .desktop
-               i-slider(images=[{
-                     img: require('../../image/wallet/wallet_slider_1.jpg'),
-                     position: 'top',
-                     paddingTop: 'calc(100vh - 60px)'
-                  }
-               ])
-            img(src=require('../../image/wallet/wallet_mobile_bg.jpg')).mobile
-         .right-content
-            include intro.pug
-      //- include section.pug
-      //- include question.pug
+      #content
+         include ./intro
+         include ./section
+         include ./footer
+         .container
+            include /common/newsletter_subscription
+            +newsletter_subscription
