@@ -457,7 +457,6 @@
   }
 }
 
-#wallet-container,
 #dex-container,
 #self-funded-container,
 #free-software-container {
@@ -479,8 +478,80 @@
 #payroll-container,
 #create-apps-container,
 #create-tokens-container,
-#become-validator-container {
+#become-validator-container,
+#wallet-container {
   #intro-container {
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 50px;
+      padding-bottom: 50px;
+
+      .info {
+        flex: 1;
+        padding-right: 40px;
+        h1.title {
+          color: $white;
+
+          span.highlight {
+            color: #25cdd6;
+          }
+        }
+        .descs {
+          ol {
+            list-style: none;
+            counter-reset: li;
+            padding: 0;
+
+            li {
+              counter-increment: li;
+
+              &::before {
+                content: counter(li);
+                color: $green;
+                margin-right: 20px;
+                font-size: 20px;
+                font-weight: 500;
+              }
+            }
+          }
+
+          .desc {
+            font-size: 16px;
+            color: $white;
+            letter-spacing: 0;
+            line-height: 27px;
+
+            a {
+              color: $white;
+            }
+
+            .highlight {
+              color: #25cdd6;
+            }
+          }
+        }
+      }
+      .image {
+        flex: 1;
+
+        @include breakpoint-down(md) {
+          display: none;
+        }
+      }
+
+      ol.desc {
+        li {
+          margin: 20px 0px;
+        }
+      }
+    }
+
+    .app-store-groups {
+      margin: 20px 0px;
+    }
+
     h1.title {
       font-size: 38px;
       line-height: 46px;
