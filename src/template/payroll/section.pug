@@ -1,3 +1,15 @@
+mixin review(avatar, name, title, content)
+    .review&attributes(attributes)
+        if avatar
+            .review-avatar   
+                img(src=avatar, alt="avatar image")
+        
+        .review-wrapper
+            .review-subject= title
+            .review-content!= content
+            .review-user - 
+                != name
+
 #section-container
     .core-features-container.section
         .container
@@ -41,6 +53,19 @@
                         data-ga-event-action='click' 
                         data-ga-event-label='Payroll/Schedule demo'
                     )#schedule-demo-btn Schedule a demo
+
+    .testimonial-container.section
+            .intro.container
+                h1.title What our customers say
+            .swiper-container
+                .swiper-wrapper
+                    +review(require('@image/payroll/payroll_testimonial_autonomous_avatar.jpg'), 'Autonomous', 'The only private crypto payroll option', 'We’ve tried a few different crypto payroll services but the lack of privacy was a dealbreaker. We tested Incognito last month and the results have been good so far. Instant transfers as you would expect, and confidential.', 4).swiper-slide
+                    +review(require('@image/payroll/payroll_testimonial_constant_avatar.jpg'), 'Constant', 'Works for any type of crypto', 'It hasn’t been a difficult transition – we can continue payroll in our stablecoin of choice, but now the details are visible only to the relevant parties.', 4).swiper-slide
+                    +review(require('@image/payroll/payroll_testimonial_dvg_avatar.jpg'), 'DVG', 'Good for cross-border teams', 'We are trying out Incognito for the first month for part of our operations, and so far we are liking the results. We’re saving a bunch of money on bank fees, our employees get their money faster, and we can still protect their privacy.', 4).swiper-slide
+                    +review(require('@image/payroll/payroll_testimonial_essen_avatar.jpg'), 'Essen', 'Free option works well', 'We’re a small startup so we really appreciate the free option for ‘Lean’ teams. It’s a no-frills product offering but good enough for our purposes. Lets you send and receive any cryptocurrency privately.', 4).swiper-slide
+                .swiper-btn-wrapper
+                    .swiper-btn-prev
+                    .swiper-btn-next
 
     .plan-container.section
         .container
