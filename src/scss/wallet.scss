@@ -4,6 +4,12 @@
       background: #191919;
       position: relative;
 
+      @include breakpoint-up(sm) {
+        min-height: 650px;
+        display: flex;
+        align-items: center;
+      }
+
       .info {
         @include breakpoint-up(lg) {
           flex: 0 0 50%;
@@ -22,6 +28,7 @@
         width: 50%;
         padding-top: 30px;
         padding-left: 10%;
+        overflow: hidden;
 
         img {
           height: 100%;

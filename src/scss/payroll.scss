@@ -10,6 +10,7 @@
 
     .image {
       max-height: 800px;
+      padding: 0;
 
       @include breakpoint-down(lg) {
         display: none;
@@ -120,6 +121,14 @@
       &:not(:first-child) {
         @include breakpoint-down(lg) {
           margin-top: 50px;
+        }
+      }
+
+      h1.title {
+        &::after {
+          @include breakpoint-down(sm) {
+            margin-left: 0;
+          }
         }
       }
     }
@@ -357,6 +366,120 @@
             .app {
               &:not(:last-child) {
                 margin-right: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .testimonial-container {
+      background-color: #f6fdfd;
+      padding: 50px 0;
+
+      @include breakpoint-down(sm) {
+        padding: 20px 0;
+      }
+
+      .swiper-container {
+        padding-top: 50px;
+        padding-bottom: 10px;
+        width: 100vw;
+
+        .swiper-wrapper {
+          .swiper-slide {
+            transition: opacity 0.3s ease-in-out;
+            opacity: 1;
+
+            &.review {
+              border-radius: 8px;
+              background-color: $white;
+              box-shadow: 0 2px 4px 0 rgba(203, 203, 203, 0.5);
+              height: auto;
+              padding: 0 30px 30px;
+              display: flex;
+              flex-direction: column;
+
+              .review-avatar {
+                margin: -40px auto 30px;
+
+                img {
+                  width: 100px;
+                  height: 100px;
+                  border-radius: 50%;
+                  object-fit: cover;
+                  box-shadow: 0 2px 4px 0 rgba(203, 203, 203, 0.5);
+                  border: 5px solid $white;
+                }
+              }
+
+              .review-wrapper {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+
+                .review-subject {
+                  font-size: 20px;
+                  font-weight: 500;
+                  line-height: 32px;
+                  color: $black;
+                  margin-bottom: 20px;
+                }
+
+                .review-content {
+                  text-align: left;
+                  flex: 1;
+                }
+
+                .review-user {
+                  margin-top: 20px;
+                  text-align: right;
+                  font-weight: 500;
+                  color: $black;
+                }
+              }
+            }
+
+            &.swiper-slide-next,
+            &.swiper-slide-prev {
+              opacity: 0.5;
+            }
+          }
+        }
+
+        .swiper-btn-wrapper {
+          display: flex;
+          justify-content: center;
+          margin-top: 30px;
+
+          .swiper-btn-prev,
+          .swiper-btn-next {
+            cursor: pointer;
+
+            &::before {
+              font-family: 'Font Awesome 5 Pro';
+              color: $black;
+              opacity: 0.5;
+              display: block;
+              font-size: 25px;
+            }
+
+            &:hover {
+              &::before {
+                opacity: 1;
+              }
+            }
+
+            &.swiper-btn-prev {
+              &::before {
+                content: '\f177';
+              }
+              margin-right: 20px;
+            }
+
+            &.swiper-btn-next {
+              &::before {
+                content: '\f178';
               }
             }
           }
