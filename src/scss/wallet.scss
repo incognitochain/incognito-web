@@ -26,13 +26,27 @@
         right: 0;
         top: 0;
         width: 50%;
-        padding-top: 30px;
         padding-left: 10%;
         overflow: hidden;
 
+        &::before {
+          content: '';
+          display: block;
+          height: 100%;
+          width: 100%;
+          background-color: $green;
+          position: absolute;
+          top: 0;
+          margin-left: 100px;
+          border-bottom-left-radius: 80px;
+        }
+
         img {
+          margin-top: 100px;
           height: 100%;
           width: auto;
+          position: relative;
+          z-index: 1;
         }
       }
     }
