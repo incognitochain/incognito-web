@@ -29,15 +29,78 @@ include /build/section.pug
       .button-container
         .button
           button#read-the-rules Read the Rules
-        .button
-          a(href="https://mainnet.incognito.org/tokens" target="_blank")
-            button View Leaderboard
       ul.rules-container
         li.rule Coin Score Winners will be selected at midnight PST on 31 January, 2020.
         li.rule The Most Innovative award will be voted on by the community after 31 January, 2020. The winner will be announced on 7 February, 2020.
         li.rule Privacy coins using bots or trading between a small number of accounts will be flagged and investigated by the founding team. Coins found to be gaming the system will be disqualified.
         li.rule Awards will be sent directly to the account of the privacy coin creator. For coins without this data, the founding team will try to work with creators for verification.
   
+  +section(
+    '',
+    'Privacy Coin Leaderboard',
+    'Here are the top custom Privacy Coins, based on number of transactions, as of 16 December.',
+    'Coming soon: real-time leaderboard with Coin Score'
+  ).award-container
+    .container
+      table.award-wrapper
+        thead.award-heading
+          tr
+           th Position
+           th Name
+           th Symbol
+           th Custom Token Tx
+        tbody.award-body
+          tr
+            td 1
+            td PERKS
+            td PERKS
+            td 349
+          tr
+            td 2
+            td Hedus
+            td HEDUS
+            td 120
+          tr
+            td 3
+            td Upstairs
+            td UPS
+            td 69 
+          tr
+            td 4
+            td Lexusirous
+            td LEXSIR
+            td 52 
+          tr
+            td 5
+            td Mr. Dorin Goian
+            td DG
+            td 31 
+          tr
+            td 6
+            td Privacy BTC
+            td BTC
+            td 29  
+          tr
+            td 7
+            td Cash
+            td SCH
+            td 21
+          tr
+            td 8
+            td ETH
+            td INCOGNITO
+            td 14
+          tr
+            td 9
+            td Weedin
+            td WEED
+            td 1
+          tr
+            td 10
+            td NECRO
+            td NEC
+            td 11
+
   +section(
     'Tokenization',
     'What can I use coins for?',
