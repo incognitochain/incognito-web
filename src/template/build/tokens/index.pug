@@ -3,6 +3,13 @@ extends /layout.pug
 block title
    title Issue your own privacy coins
    
+block meta
+   - var descriptionContent = ``;
+   meta(property="og:image" content="/Create.png") 
+   meta(name='description' content=descriptionContent)
+   meta(name='og:description' content=descriptionContent)
+   meta(name='twitter:description' content=descriptionContent)
+
 block main
    include /telegram_chat.pug
    #create-tokens-container
