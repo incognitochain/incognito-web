@@ -3,7 +3,13 @@ extends ../layout.pug
 
 block title
    title Privately send Bitcoin, Ethereum, and more.
-
+   meta(property="og:image" content="/Bootstrapped.png")
+block meta
+   - var descriptionContent = `Privately send Bitcoin, Ethereum, and more.`;
+   meta(name='description' content=descriptionContent)
+   meta(name='og:description' content=descriptionContent)
+   meta(name='twitter:description' content=descriptionContent)
+ 
 block main
    include ../header.pug
    //- include ../telegram_chat.pug

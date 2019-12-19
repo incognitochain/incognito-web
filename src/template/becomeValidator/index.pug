@@ -1,7 +1,14 @@
 extends ../layout.pug
 
+
 block title
    title Become an Incognito Validator
+   meta(property="og:image" content="/validator.png")
+block meta
+   - var descriptionContent = `Become an Incognito Validator`;
+   meta(name='description' content=descriptionContent)
+   meta(name='og:description' content=descriptionContent)
+   meta(name='twitter:description' content=descriptionContent) 
    
 block main
    include ../telegram_chat.pug
