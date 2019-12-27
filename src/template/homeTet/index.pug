@@ -1,0 +1,59 @@
+extends ../layout.pug
+
+mixin side_content(image, btnText, btnLink)
+   .description-container
+      if block
+         block
+   .button-container
+      a(href=btnLink)
+         button(class=btnClass)!= btnText
+   .image-container
+      img(src=image).bounceInUp-ani
+
+block title
+   title Send Bitcoin anonymously. Power privacy.
+
+block meta
+   meta(property="og:image" content="/Aboutus.png")
+   - var descriptionContent = `Store and send Bitcoin anonymously, as well as Ethereum and any other cryptocurrency. Trade on the first ever fully anonymous crypto exchange. Turn all your coins into privacy coins. Be a validator, earn passive income, and power privacy for the world. What will you do first?`;
+   meta(name='description' content=descriptionContent)
+   meta(name='og:description' content=descriptionContent)
+   meta(name='twitter:description' content=descriptionContent)
+
+block main
+   div#home-tet
+      div.two-sides
+         div.left-side
+            div.main-content
+               div.logo-container
+                  img(src=require('../../image/home2/logo.svg')).logo
+                  div Incognito
+               div.content
+                  div.title Nhận lì xì hái lộc.
+                  div.sub-title Lên đến 1 BITCOIN
+                  div.sub-content Các trò chơi may mắn với nhiều cơ hội nhận iPhone 11 Pro, Airpods, Bitcoin và nhiều phần quà hấp dẫn khác.
+               div.actions
+                  img(src=require('../../image/mouse.png')).mouse
+                  div.download-btn TẢI APP, NHẬN NGAY BTC
+                  div.stores
+                     button.play-store
+                     button.apple-store
+               div.time-countdown.countdown
+                  div.days
+                     div.time-unit
+                        div.data
+                     div.time-text ngày
+                  div.hours
+                     div.time-unit
+                        div.data
+                     div.time-text giờ
+                  div.mins
+                     div.time-unit
+                        div.data
+                     div.time-text phút
+                  div.seconds
+                     div.time-unit
+                        div.data
+                     div.time-text giây
+         div.right-side
+            img(src=require('../../image/mouse-desktop.png')).mouse-desktop

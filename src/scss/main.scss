@@ -28,6 +28,7 @@
 @import './coundown.scss';
 @import './home1.scss';
 @import './home2.scss';
+@import './homeTet.scss';
 @import './modal.scss';
 @import './invite_email_form.scss';
 @import './subscribe_email.scss';
@@ -179,4 +180,18 @@ a {
       }
     }
   }
+}
+
+.play-store {
+  width: 224px;
+  background-size: contain;
+  background-image: url("../image/google_play.png");
+  background-repeat: no-repeat;
+}
+
+.apple-store {
+  width: 188px;
+  background-size: contain;
+  background-image: url("../image/app_store.png");
+  background-repeat: no-repeat;
 }
