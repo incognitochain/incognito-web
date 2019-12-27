@@ -1,0 +1,257 @@
+#home-tet {
+  background-image: url('../image/tet.png');
+  background-size: contain;
+  min-height: 100vh;
+  min-width: 100vw;
+  padding-top: 20px;
+
+  * {
+    font-family: 'SFProText';
+  }
+
+  .mouse-desktop {
+    display: none;
+  }
+
+  .main-content {
+    text-align: center;
+    width: 100%;
+    padding: 15px 25px 25px;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 35px;
+      height: 35px;
+    }
+
+    div {
+      font-size: 16px;
+      letter-spacing: 2px;
+      color: white;
+      margin-left: 10px;
+      height: 35px;
+      line-height: 35px;
+    }
+  }
+
+  .content {
+    margin-top: 15px;
+
+    .title {
+      font-size: 28px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      line-height: 56px;
+      text-align: center;
+    }
+
+    .sub-title {
+      text-align: center;
+      color: #F2EA02;
+      text-shadow: 0 1px 3px 0 #9B9733;
+      font-size: 32px;
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    .sub-content {
+      margin-top: 20px;
+      opacity: 0.96;
+      font-size: 16px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      line-height: 24px;
+      text-align: center;
+      font-weight: 400;
+    }
+  }
+
+  button {
+    background-color: transparent;
+    border-color: transparent;
+    border-radius: 0;
+  }
+
+  .download-btn {
+    background-image: linear-gradient(95deg, #FEF1A0 1%, #FDEF5E 100%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.50);
+    border-radius: 6px;
+    font-size: 16px;
+    color: #2E2929;
+    letter-spacing: 0;
+    width: 100%;
+    flex: 1;
+    margin-bottom: 15px;
+    padding: 15px;
+    height: auto;
+  }
+
+  .mouse {
+    margin-top: -30px;
+    margin-bottom: -30px;
+  }
+
+  .time-countdown {
+    display: flex;
+    margin-top: 20px;
+    margin-left: 0;
+    justify-content: space-between;
+
+    div.time-unit {
+      background: #620E0E;
+      border-radius: 12px;
+      padding: 22px 20px;
+      letter-spacing: 0;
+
+      > div {
+        color: white;
+        font-size: 20px;
+        width: 28px;
+      }
+    }
+
+    .time-text {
+      margin-top: 15px;
+      color: white;
+    }
+  }
+
+  .stores {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+      margin-top: 10px;
+    }
+
+    button:first-child {
+      margin-right: 10px;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-sm) and (max-width: $breakpoint-lg - 1) {
+    .main-content {
+      width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  @media screen and (min-width: $breakpoint-lg) {
+    padding-top: 0;
+
+    .two-sides {
+      display: flex;
+      margin: 0 auto;
+    }
+
+    .left-side {
+      justify-content: flex-end;
+      display: flex;
+      flex: 2;
+
+      .main-content {
+        padding-top: 44px;
+        width: 430px;
+      }
+    }
+
+    .right-side {
+      flex: 3;
+      margin-left: 40px;
+      justify-content: flex-end;
+      display: flex;
+    }
+
+    .main-content {
+      width: 430px;
+    }
+
+    .mouse {
+      display: none;
+    }
+
+    .mouse-desktop {
+      display: inline;
+      width: auto;
+      max-height: 100vh;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: flex-start;
+
+      img {
+        width: 55px;
+        height: 55px;
+      }
+
+      div {
+        font-size: 28px;
+        letter-spacing: 2px;
+        color: white;
+        margin-left: 15px;
+        vertical-align: middle;
+        height: 55px;
+        line-height: 55px;
+      }
+    }
+
+    .content {
+      margin-top: 60px;
+
+      .title {
+        font-size: 42px;
+        text-align: left;
+        line-height: 56px;
+        letter-spacing: 1px;
+      }
+
+      .sub-title {
+        color: #F2EA02;
+        font-size: 36px;
+        font-weight: bold;
+        text-align: left;
+        margin-top: 10px;
+        letter-spacing: 1px;
+      }
+
+      .sub-content {
+        margin-top: 35px;
+        margin-bottom: 50px;
+        opacity: 0.96;
+        font-size: 24px;
+        text-align: left;
+        color: #FFFFFF;
+        letter-spacing: 0;
+        line-height: 33px;
+      }
+    }
+
+    button {
+      background-color: transparent;
+      border-color: transparent;
+      border-radius: 0;
+    }
+
+    .download-btn {
+      background-image: linear-gradient(95deg, #FEF1A0 1%, #FDEF5E 100%);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.50);
+      border-radius: 6px;
+      font-size: 20px;
+      color: #2E2929;
+      letter-spacing: 0;
+      width: 100%;
+      flex: 1;
+      margin-bottom: 15px;
+    }
+
+    .stores {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

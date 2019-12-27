@@ -90,6 +90,11 @@ const templateGen = [
     env: process.env
   }),
   new HtmlWebpackPlugin({
+    template: 'src/template/homeTet/index.pug',
+    filename: 'tet.html',
+    env: process.env
+  }),
+  new HtmlWebpackPlugin({
     template: 'src/template/airdrop/index.pug',
     filename: 'airdrop.html',
     env: process.env
