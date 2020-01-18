@@ -2,44 +2,39 @@ extends ../layout.pug
 
 
 block title
-   title Go Incognito. Buy and sell Bitcoin anonymously without KYC.
-   
+    title Go Incognito. Buy and sell Bitcoin anonymously without KYC.
+
 block meta
-   - var descriptionContent = `You don’t have to give up your identity to buy and sell Bitcoin anonymously. You don’t have to surrender your documents to trade Ethereum and other coins. pDEX is first non-custodial, completely decentralized, anonymous Bitcoin exchange. Oh, and you can become a liquidity provider and list your own trading pairs.`;
-   meta(property="og:image" content="/Aboutus.png")
-   meta(name='description', content=descriptionContent)
-   meta(name='og:description' content=descriptionContent)
-   meta(name='twitter:description' content=descriptionContent)   
+    - var descriptionContent = `You don’t have to give up your identity to buy and sell Bitcoin anonymously. You don’t have to surrender your documents to trade Ethereum and other coins. pDEX is first non-custodial, completely decentralized, anonymous Bitcoin exchange. Oh, and you can become a liquidity provider and list your own trading pairs.`;
+    meta(property="og:image" content="/Aboutus.png")
+    meta(name='description', content=descriptionContent)
+    meta(name='og:description' content=descriptionContent)
+    meta(name='twitter:description' content=descriptionContent)   
 
 block main
-   include ../header.pug
-   div#dex-container
-      div.intro-slider-container
-         .image
-            .image-container
-               .desktop
-                  .img-content
-                     i-slider(images=[
-                        {
-                           img: require('../../image/dex/dex_content_1.png'),
-                           objectFit: 'contain'
-                        },
-                        {
-                           img: require('../../image/dex/dex_content_2.png'),
-                           objectFit: 'contain'
-                        },
-                        {
-                           img: require('../../image/dex/dex_content_3.png'),
-                           objectFit: 'contain'
-                        },
-                     ], 
-                     aspect_ratio=424.11/197.5*100,
-                     auto_slide='true',
-                     auto_slide_time=3*1000,
-                     thumbnail='false')
-                  img(src=require('../../image/dex/dex_container.jpg')).img-container
-            img(src=require('../../image/wallet/wallet_mobile_bg.jpg')).mobile
-         .right-content
-            include intro.pug
-      //- include section.pug
-      //- include question.pug
+    include ../header.pug
+
+    div#dex-container
+        //- div.background-image
+        //-     img(src=require('../../image/dex/background.png'), alt="")
+        .trading-board-container
+            .tb-header
+                h4.crypto-name
+                    | Name
+                h4.last-price
+                    | Last price
+            - var cryptoFactories = [
+            -        {cryptoImg: require('../../image/dex/btc.svg'), cryptoName: "pBTC",lastPrice: "$7,0000",priceAction: require('../../image/dex/price_up.svg') },
+            -        {cryptoImg: require('../../image/dex/eth.svg'),cryptoName: "pETH",lastPrice: "$7,0000",priceAction: require('../../image/dex/price_down.svg')},
+            -        {cryptoImg: require('../../image/dex/prv.svg'),cryptoName: "pPRV",lastPrice: "$7,0000",priceAction: require('../../image/dex/price_down.svg')},
+            -        {cryptoImg: require('../../image/dex/bnb.svg'),cryptoName: "pBNB",lastPrice: "$7,0000",priceAction: require('../../image/dex/price_up.svg')},
+            -        {cryptoImg: require('../../image/dex/one.svg'),cryptoName: "pOne",lastPrice: "$7,0000",priceAction: require('../../image/dex/price_up.svg')}
+            -   ]
+            .tb-main
+                each item in cryptoFactories
+                    include item_trading_board
+                    +cryptoItem(item)
+        div.device
+            div.image-container
+                img(src=require('../../image/dex/device.svg'), alt="")
+        div.info    

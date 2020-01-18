@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>bitcoin-btc-logo (4)</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <filter x="-50.0%" y="-50.0%" width="200.0%" height="200.0%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Update-Copy-22" transform="translate(-146.000000, -360.000000)" fill-rule="nonzero">
+            <g id="bitcoin-btc-logo-(4)" filter="url(#filter-1)" transform="translate(150.000000, 362.000000)">
+                <circle id="Oval" fill="#F7931A" cx="12" cy="12" r="12"></circle>
+                <path d="M17.39175,10.515 C17.62725,8.943 16.4295,8.09775 14.793,7.53375 L15.324,5.40375 L14.028,5.08125 L13.5105,7.155 C13.17,7.0695 12.8205,6.99 12.47175,6.9105 L12.993,4.82325 L11.697,4.5 L11.166,6.62925 C10.884,6.56475 10.6065,6.50175 10.338,6.43425 L10.3395,6.4275 L8.5515,5.98125 L8.2065,7.36575 C8.2065,7.36575 9.16875,7.58625 9.1485,7.59975 C9.6735,7.731 9.768,8.07825 9.75225,8.35425 L9.14775,10.7805 C9.18375,10.7895 9.23025,10.803 9.28275,10.82325 L9.1455,10.7895 L8.298,14.1885 C8.2335,14.3475 8.07075,14.58675 7.70325,14.496 C7.71675,14.51475 6.76125,14.26125 6.76125,14.26125 L6.11775,15.74475 L7.80525,16.1655 C8.11875,16.24425 8.42625,16.32675 8.7285,16.404 L8.19225,18.558 L9.4875,18.8805 L10.0185,16.7505 C10.3725,16.84575 10.716,16.93425 11.052,17.01825 L10.5225,19.13925 L11.8185,19.46175 L12.35475,17.31225 C14.56575,17.73075 16.22775,17.562 16.9275,15.5625 C17.4915,13.953 16.89975,13.02375 15.7365,12.4185 C16.584,12.2235 17.2215,11.66625 17.39175,10.515 L17.39175,10.515 Z M14.42925,14.6685 C14.0295,16.27875 11.31825,15.408 10.43925,15.18975 L11.15175,12.336 C12.03075,12.55575 14.8485,12.99 14.42925,14.6685 Z M14.8305,10.49175 C14.46525,11.9565 12.20925,11.21175 11.478,11.0295 L12.123,8.442 C12.85425,8.62425 15.2115,8.964 14.8305,10.49175 Z" id="Shape" fill="#FFFFFF"></path>
+            </g>
+        </g>
+    </g>
+</svg>
