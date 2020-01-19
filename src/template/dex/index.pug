@@ -13,28 +13,28 @@ block meta
 
 block main
     include ../header.pug
-
-    div#dex-container
-        //- div.background-image
-        //-     img(src=require('../../image/dex/background.png'), alt="")
-        .trading-board-container
-            .tb-header
-                h4.crypto-name
-                    | Name
-                h4.last-price
-                    | Last price
-            - var cryptoFactories = [
-            -        {cryptoImg: require('../../image/dex/btc.svg'), cryptoName: "pBTC",lastPrice: "$7,0000",priceAction: require('../../image/dex/price_up.svg') },
-            -        {cryptoImg: require('../../image/dex/eth.svg'),cryptoName: "pETH",lastPrice: "$7,0000",priceAction: require('../../image/dex/price_down.svg')},
-            -        {cryptoImg: require('../../image/dex/prv.svg'),cryptoName: "pPRV",lastPrice: "$7,0000",priceAction: require('../../image/dex/price_down.svg')},
-            -        {cryptoImg: require('../../image/dex/bnb.svg'),cryptoName: "pBNB",lastPrice: "$7,0000",priceAction: require('../../image/dex/price_up.svg')},
-            -        {cryptoImg: require('../../image/dex/one.svg'),cryptoName: "pOne",lastPrice: "$7,0000",priceAction: require('../../image/dex/price_up.svg')}
-            -   ]
-            .tb-main
-                each item in cryptoFactories
-                    include item_trading_board
-                    +cryptoItem(item)
-        div.device
-            div.image-container
-                img(src=require('../../image/dex/device.svg'), alt="")
-        div.info    
+    div#dex-container.abs-center-ver
+        .extra.abs-center-ver
+            .trading-board-container
+                .tb-intro
+                    p.desc
+                        | Trading board
+                - var cryptoFactories = [
+                -        {cryptoImg: require('../../image/dex/btc.svg'), cryptoName: "pBTC",lastPrice: "$7,000",priceAction: require('../../image/dex/price_up.svg') },
+                -        {cryptoImg: require('../../image/dex/eth.svg'),cryptoName: "pETH",lastPrice: "$7,000",priceAction: require('../../image/dex/price_down.svg')},
+                -        {cryptoImg: require('../../image/dex/prv.svg'),cryptoName: "pPRV",lastPrice: "$7,000",priceAction: require('../../image/dex/price_down.svg')},
+                -        {cryptoImg: require('../../image/dex/bnb.svg'),cryptoName: "pBNB",lastPrice: "$7,000",priceAction: require('../../image/dex/price_up.svg')},
+                -        {cryptoImg: require('../../image/dex/one.svg'),cryptoName: "pOne",lastPrice: "$7,000",priceAction: require('../../image/dex/price_up.svg')}
+                -   ]
+                .tb-main
+                    .crypto-item 
+                        p.crypto-name
+                            | Name
+                        p.last-price
+                            | Last price      
+                    each item in cryptoFactories
+                        include item_trading_board
+                        +cryptoItem(item)
+            div.device
+                div.img-container
+            include intro.pug

@@ -1,22 +1,33 @@
-mixin list(desc)
-  li
-    span= desc
+//- mixin list(desc)
+//-   li
+//-     span= desc
 
-div#intro-container.bounceInUp-ani
-  .content
-    div.intro
-      div
-        h1.heading Incognito DEX
-        h1.title Trade crypto privately
-        p.sub-title Completely anonymous trading – no KYC, no records of buyers, sellers or transaction amounts. No third party risk – you control your money and hold your own private keys. Decentralized, scalable, cross-chain liquidity. Trade BTC, ETH, PRV and more with 100% confidentiality.
-        .cta
-          //- .desktop
-          p.sub-title.highlight START TRADING NOW
-          //- .mobile
-          //-   a(href='intent://mp3.zing.vn/#Intent;scheme=http;package=com.incognito.wallet;end')
-          //-     button Trade now
-          //-   p Don't have the app yet?
-          include /common/app_store
-          +app_store(false)
-          p.sub-title.explaination
-            a(href='/blog/how-to-trade-bitcoin-privately-with-incognito-pdex/' target='_blank') Learn more: How to trade privately on pDEX
+//- div#intro-container.bounceInUp-ani
+//-   .content
+//-     div.intro
+//-       div
+//-         h1.heading Incognito DEX
+//-         h1.title Trade crypto privately
+//-         p.sub-title Completely anonymous trading – no KYC, no records of buyers, sellers or transaction amounts. No third party risk – you control your money and hold your own private keys. Decentralized, scalable, cross-chain liquidity. Trade BTC, ETH, PRV and more with 100% confidentiality.
+//-         .cta
+//-           //- .desktop
+//-           p.sub-title.highlight START TRADING NOW
+//-           //- .mobile
+//-           //-   a(href='intent://mp3.zing.vn/#Intent;scheme=http;package=com.incognito.wallet;end')
+//-           //-     button Trade now
+//-           //-   p Don't have the app yet?
+//-           include /common/app_store
+//-           +app_store(false)
+//-           p.sub-title.explaination
+//-             a(href='/blog/how-to-trade-bitcoin-privately-with-incognito-pdex/' target='_blank') Learn more: How to trade privately on pDEX
+
+
+.intro-container.bounceInUp-ani
+  p.title
+
+  p.desc
+
+  .actions
+  
+
+

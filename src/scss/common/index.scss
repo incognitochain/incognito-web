@@ -1,0 +1,64 @@
+//ellipsis
+.ellipsis {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+//overlay
+.overlay {
+  position: absolute;
+  height: 30%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(1, 1, 1, 0.6);
+}
+
+//image-background
+.image-background {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+}
+
+//center-vertical
+.abs-center-ver {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+//center-horizontal
+.abs-center-hor {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+//center
+.abs-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//break
+.break {
+  margin: 5% 0;
+  height: 2px;
+  border-radius: 4px;
+  background: #fff;
+}
+
+p {
+  margin: 0;
+  padding: 0;
+}
+img {
+  width: 100%;
+  height: 100%;
+}
