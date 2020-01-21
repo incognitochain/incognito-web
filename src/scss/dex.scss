@@ -119,6 +119,8 @@
   background-size: cover;
   background-position: center;
   bottom: 5%;
+  min-width: 1200px;
+  min-height: 600px;
   .extra {
     display: grid;
     grid-template-columns: 1.8fr 1fr 2fr;
@@ -210,6 +212,18 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+  }
+  .trading-board-container .tb-main {
+    max-height: 300px;
+    overflow: hidden scroll;
+    position: relative;
+  }
+  .trading-board-container .tb-main .crypto-item {
+    &:first-child {
+      position: sticky;
+      top: 0;
+      background: #fff;
+    }
   }
   @include breakpoint-down(xl) {
   }
