@@ -66,6 +66,8 @@ const pPRV = {
   pDecimal: '9'
 };
 
+const PDEX_TOKENS = 'pDexTokens';
+
 const getTokenList = () => axios.get(`https://api.incognito.org/ptoken/list`);
 
 const getBeaconHeight = () =>
@@ -103,7 +105,15 @@ const getPDex = BeaconHeight =>
     }
   );
 
-const calPriceTokenByUSDT = (pDecimals, token) => {
+const formatCurrencyByUSD = price =>
+  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+    price
+  );
+
+const calcVolumeToken = (price, cirSupply) =>
+  new BigNumber(price).multipliedBy(cirSupply).toString();
+
+const calcPriceTokenByUSDT = (pDecimals, token) => {
   const a = new BigNumber(token.a);
   const b = new BigNumber(token.b);
   const k = a.multipliedBy(b);
@@ -111,6 +121,22 @@ const calPriceTokenByUSDT = (pDecimals, token) => {
     .minus(k.dividedBy(a.plus(Math.pow(10, pDecimals))))
     .dividedBy(Math.pow(10, pUSDT.PDecimals))
     .toFixed(4);
+};
+
+const calcPriceChange = (price, tokenID) => {
+  if (PDEX_TOKENS in localStorage) {
+    const pDexTokens = JSON.parse(localStorage.getItem(PDEX_TOKENS));
+    const { price: lastPrice } = pDexTokens.find(
+      item => item.TokenID === tokenID
+    );
+    const priceBN = new BigNumber(price);
+    const lastPriceBN = new BigNumber(lastPrice);
+    if (lastPriceBN.isGreaterThan(priceBN)) {
+      return 'price_up';
+    }
+    return 'price_down';
+  }
+  return '';
 };
 
 const getTokenPairWithUSDT = PDEPoolPairs =>
@@ -135,6 +161,31 @@ const getTokenPairWithUSDT = PDEPoolPairs =>
       return [...arr, item];
     }, []);
 
+const renderTradingBoard = tokens =>
+  tokens.map(
+    item =>
+      `
+  <div class="crypto-item" id=${item.TokenID}>
+    <div class="crypto-img">
+      <img src="http://s3.amazonaws.com/incognito-org/wallet/cryptocurrency-icons/32@2x/color/${item.Symbol.toLowerCase()}@2x.png" alt="" />
+    </div>
+    <p class="crypto-name">
+      ${item.PSymbol}
+    </p>
+    <p class="last-price">
+      ${formatCurrencyByUSD(item.price)}
+    </p>
+    <div class="price-action">
+      <img alt="" src="${
+        !!item.priceChange
+          ? `${require(`../../image/dex/${item.priceChange}.svg`)}`
+          : ''
+      }"/>
+    </div>
+  </div>
+`
+  );
+
 const fetchData = async () => {
   try {
     const tokenListData = await getTokenList();
@@ -154,32 +205,23 @@ const fetchData = async () => {
         const tokenPaired = tokenPairWithUSDT.find(
           tokenPaired => tokenPaired.TokenID === item.TokenID
         );
+        const price = calcPriceTokenByUSDT(item.PDecimals, tokenPaired);
+        const volume = calcVolumeToken(price, tokenPaired.a);
         const token = {
           ...item,
-          price: calPriceTokenByUSDT(item.PDecimals, tokenPaired)
+          price,
+          volume,
+          priceChange: calcPriceChange(price, item.TokenID)
         };
         return [...arr, token];
       }, [])
-      .map(
-        item =>
-          `
-        <div class="crypto-item">
-          <div class="crypto-img">
-            <img src="http://s3.amazonaws.com/incognito-org/wallet/cryptocurrency-icons/32@2x/color/${item.Symbol.toLowerCase()}@2x.png" alt="" />
-          </div>
-          <p class="crypto-name">
-            ${item.PSymbol}
-          </p>
-          <p class="last-price">
-            ${item.price}
-          </p>
-          <div class="price-action">
-            <img alt="" src=""/>
-          </div>
-        </div>
-      `
-      );
-    $('#trading-board-container .tb-main').append(tokens);
+      .sort((a, b) => {
+        const aVolume = new BigNumber(a.volume);
+        const bVolume = new BigNumber(b.volume);
+        return bVolume.minus(aVolume);
+      });
+    localStorage.setItem(PDEX_TOKENS, JSON.stringify(tokens));
+    $('#trading-board-container .tb-main').append(renderTradingBoard(tokens));
   } catch (error) {
     console.log(error);
   }
