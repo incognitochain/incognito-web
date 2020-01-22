@@ -1,109 +1,224 @@
+// #dex-container {
+//   background: #191919;
+
+//   @include breakpoint-down(xl) {
+//     min-height: calc(100vh - 60px);
+//   }
+
+//   > div.intro-slider-container {
+//     .image {
+//       @include breakpoint-up(xl) {
+//         width: 50%;
+
+//         .image-container {
+//           height: calc(100vh - #{$header-height});
+//           width: 100%;
+//           overflow: hidden;
+
+//           .desktop {
+//             width: 720px;
+//             height: 836px;
+//             position: relative;
+
+//             img.img-container {
+//               width: 720px;
+//               height: 836px;
+//             }
+
+//             .img-content {
+//               position: absolute;
+//               top: 177px;
+//               left: 269px;
+//               width: 190px;
+//               height: 408px;
+//             }
+//           }
+//         }
+//       }
+//     }
+
+//     .right-content {
+//       * {
+//         color: $white;
+//       }
+
+//       #intro-container {
+//         > div.content {
+//           div.intro {
+//             > div {
+//               .heading {
+//                 color: $white;
+//               }
+//               h1.title {
+//                 color: $white;
+//               }
+
+//               p.sub-title {
+//                 &.highlight {
+//                   font-weight: 500;
+//                 }
+
+//                 &.explaination {
+//                   font-size: 0.8rem;
+
+//                   &::before {
+//                     content: '\f059';
+//                     font-family: 'Font Awesome 5 Pro';
+//                     margin-right: 5px;
+//                     font-weight: 300;
+//                   }
+//                 }
+//               }
+
+//               .cta {
+//                 margin-top: 50px;
+
+//                 .desktop,
+//                 .mobile {
+//                   display: none;
+
+//                   @include breakpoint-up(xl) {
+//                     &.desktop {
+//                       display: block;
+//                     }
+//                   }
+
+//                   @include breakpoint-down(xl) {
+//                     &.mobile {
+//                       display: block;
+//                     }
+//                   }
+//                 }
+
+//                 .mobile {
+//                   button {
+//                     min-width: 200px;
+//                   }
+//                 }
+//               }
+//             }
+
+//             #subscribe-container {
+//               margin-top: 20px;
+//             }
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+@import './common/index.scss';
+
 #dex-container {
-  background: #191919;
-
-  @include breakpoint-down(xl) {
-    min-height: calc(100vh - 60px);
+  position: fixed;
+  top: 60px;
+  width: 100%;
+  overflow: hidden;
+  background: url('../image/dex/background.png') no-repeat;
+  background-size: cover;
+  background-position: center;
+  bottom: 0;
+  min-width: 1200px;
+  min-height: 600px;
+  .extra {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    justify-content: space-between;
+    width: 90%;
+    grid-gap: 5%;
+    top: 18%;
   }
-
-  > div.intro-slider-container {
-    .image {
-      @include breakpoint-up(xl) {
-        width: 50%;
-
-        .image-container {
-          height: calc(100vh - #{$header-height});
-          width: 100%;
-          overflow: hidden;
-
-          .desktop {
-            width: 720px;
-            height: 836px;
-            position: relative;
-
-            img.img-container {
-              width: 720px;
-              height: 836px;
-            }
-
-            .img-content {
-              position: absolute;
-              top: 177px;
-              left: 269px;
-              width: 190px;
-              height: 408px;
-            }
-          }
-        }
+  .trading-board-container {
+    background: #fff;
+    padding: 15% 0 20px;
+    border-radius: 5%;
+    display: flex;
+    flex-direction: column;
+    margin: 7% 0;
+  }
+  .tb-intro .desc {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 20px;
+    line-height: 24px;
+    color: #000;
+    margin-bottom: 5%;
+    letter-spacing: 1px;
+  }
+  .crypto-item {
+    display: grid;
+    grid-template-columns: 25% 25% 40% 10%;
+    align-items: center;
+    justify-items: flex-start;
+    margin: 5% 0;
+    &-header {
+      .crypto-name,
+      .last-price {
+        color: #8d8d8d;
+        font-weight: 400;
       }
     }
-
-    .right-content {
-      * {
-        color: $white;
-      }
-
-      #intro-container {
-        > div.content {
-          div.intro {
-            > div {
-              .heading {
-                color: $white;
-              }
-              h1.title {
-                color: $white;
-              }
-
-              p.sub-title {
-                &.highlight {
-                  font-weight: 500;
-                }
-
-                &.explaination {
-                  font-size: 0.8rem;
-
-                  &::before {
-                    content: '\f059';
-                    font-family: 'Font Awesome 5 Pro';
-                    margin-right: 5px;
-                    font-weight: 300;
-                  }
-                }
-              }
-
-              .cta {
-                margin-top: 50px;
-
-                .desktop,
-                .mobile {
-                  display: none;
-
-                  @include breakpoint-up(xl) {
-                    &.desktop {
-                      display: block;
-                    }
-                  }
-
-                  @include breakpoint-down(xl) {
-                    &.mobile {
-                      display: block;
-                    }
-                  }
-                }
-
-                .mobile {
-                  button {
-                    min-width: 200px;
-                  }
-                }
-              }
-            }
-
-            #subscribe-container {
-              margin-top: 20px;
-            }
-          }
-        }
-      }
+  }
+  .crypto-item .crypto-img {
+    width: 24px;
+    height: 24px;
+    justify-self: center;
+  }
+  .tb-main .crypto-item .crypto-name {
+    font-weight: 500;
+  }
+  .crypto-item .last-price {
+  }
+  .crypto-item .price-action {
+    width: 14px;
+    height: 20px;
+  }
+  .intro-container {
+    background: transparent;
+    align-self: center;
+  }
+  .intro-container .title {
+    font-size: 2em;
+    line-height: 1.5em;
+    color: #000;
+    font-weight: 400;
+    > span {
+      font-weight: 500;
+      color: #000;
     }
+  }
+  .intro-container .desc {
+    margin: 20px 0;
+    line-height: 30px;
+  }
+  .link {
+    color: #26cdd6;
+    text-decoration: none;
+  }
+  .device {
+    position: relative;
+    min-height: 500px;
+  }
+  .device .img-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: url('../image/dex/device.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+  .trading-board-container .tb-main {
+    overflow: hidden scroll;
+    position: relative;
+    max-height: 300px;
+  }
+  .trading-board-container .tb-main .crypto-item:first-child {
+    margin-top: 0;
+  }
+  @include breakpoint-down(xl) {
   }
 }
