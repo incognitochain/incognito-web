@@ -62,7 +62,7 @@ const pUSDT = {
 };
 
 const pPRV = {
-  PSymbol: "PRV",
+  PSymbol: 'PRV',
   Symbol: 'PRV',
   PDecimals: 9,
   TokenID: '0000000000000000000000000000000000000000000000000000000000000004'
@@ -173,29 +173,30 @@ const getTokenPairWithUSDT = PDEPoolPairs =>
     }, []);
 
 const renderTradingBoard = tokens =>
-  tokens.map(
-    item =>
-      `
-  <div class="crypto-item" id=${item.TokenID}>
-    <div class="crypto-img">
-      <img src="http://s3.amazonaws.com/incognito-org/wallet/cryptocurrency-icons/32@2x/color/${item.Symbol.toLowerCase()}@2x.png" alt="" />
-    </div>
-    <p class="crypto-name">
-      ${item.PSymbol}
-    </p>
-    <p class="last-price">
-      ${formatCurrencyByUSD(item.price)}
-    </p>
-    <div class="price-action">
-      <img alt="" src="${
-        !!item.priceChange
-          ? `${require(`../../image/dex/${item.priceChange}.svg`)}`
-          : ''
-      }"/>
-    </div>
+  [...tokens].map(item => {
+    return new BigNumber(item.price).isGreaterThanOrEqualTo(new BigNumber(0.001))
+      ? `
+<div class="crypto-item" id=${item.TokenID}>
+  <div class="crypto-img">
+    <img src="http://s3.amazonaws.com/incognito-org/wallet/cryptocurrency-icons/32@2x/color/${item.Symbol.toLowerCase()}@2x.png" alt="" />
   </div>
+  <p class="crypto-name">
+    ${item.PSymbol}
+  </p>
+  <p class="last-price">
+    ${formatCurrencyByUSD(item.price)}
+  </p>
+  <div class="price-action">
+    <img alt="" src="${
+      !!item.priceChange
+        ? `${require(`../../image/dex/${item.priceChange}.svg`)}`
+        : ''
+    }"/>
+  </div>
+</div>
 `
-  );
+      : null;
+  });
 
 const fetchData = async () => {
   try {
