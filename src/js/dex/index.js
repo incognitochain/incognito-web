@@ -114,10 +114,9 @@ const calcTotalLiquid = tokens =>
         return new BigNumber(total).plus(new BigNumber(token.liquid));
       }, 0)
       .dividedBy(Math.pow(10, 6))
-      .toFixed(4)
   );
 const formatCurrencyByUSD = price =>
-  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
+  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 4 }).format(
     price
   );
 
