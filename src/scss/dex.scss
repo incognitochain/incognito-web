@@ -113,12 +113,12 @@
 #dex-container {
   position: fixed;
   top: 60px;
-  width: 95%;
+  width: 100%;
   overflow: hidden;
   background: url('../image/dex/background.png') no-repeat;
   background-size: cover;
   background-position: center;
-  bottom: 5%;
+  bottom: 0;
   min-width: 1200px;
   min-height: 600px;
   .extra {
