@@ -1,20 +1,9 @@
 #trading-board-container.trading-board-container
     .tb-intro
-        p.desc
-            | Total Liquidity: .... USD
-    - var cryptoFactories = [
-    -        {cryptoImg: require('../../image/dex/btc.svg'), cryptoName: "pBTC",lastPrice: "$7,000",priceAction: require('../../image/dex/price_up.svg') },
-    -        {cryptoImg: require('../../image/dex/eth.svg'),cryptoName: "pETH",lastPrice: "$7,000",priceAction: require('../../image/dex/price_down.svg')},
-    -        {cryptoImg: require('../../image/dex/prv.svg'),cryptoName: "pPRV",lastPrice: "$7,000",priceAction: require('../../image/dex/price_down.svg')},
-    -        {cryptoImg: require('../../image/dex/bnb.svg'),cryptoName: "pBNB",lastPrice: "$7,000",priceAction: require('../../image/dex/price_up.svg')},
-    -        {cryptoImg: require('../../image/dex/one.svg'),cryptoName: "pOne",lastPrice: "$7,000",priceAction: require('../../image/dex/price_up.svg')}
-    -   ]
+        p.desc#total-liquid
     .tb-main
         .crypto-item 
             p.crypto-name
                 | Name
             p.last-price
                 | Last average price      
-        //- each item in cryptoFactories
-        //-     include item_trading_board
-        //-     +cryptoItem(item)
