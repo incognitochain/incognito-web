@@ -1,44 +1,6 @@
-import fit from '../common/utils/fit';
-import { subscribe } from '../service/api';
-import { setMessage } from '../service/message_box';
 import axios from 'axios';
 import $ from 'jquery';
 import BigNumber from 'bignumber.js';
-
-const handleResizeLeftImage = container => {
-  const imageContainerEl = container.querySelector('.image .image-container');
-  if (!imageContainerEl) return;
-  const imageEl = imageContainerEl.querySelector('.desktop');
-  fit(imageEl, imageContainerEl, {
-    // Alignment
-    hAlign: fit.CENTER, // or fit.LEFT, fit.RIGHT
-    vAlign: fit.CENTER, // or fit.TOP, fit.BOTTOM
-    cover: true,
-    watch: true,
-    apply: true
-  });
-};
-
-const handleSubscribeForm = container => {
-  const formContainerEl = container.querySelector('');
-  if (!formContainerEl) return;
-  const emailInputEl = formContainerEl.querySelector('');
-  const submitBtnEl = formContainerEl.querySelector('');
-
-  if (!emailInputEl || !submitBtnEl) return;
-
-  const onSubmitBtnClicked = () => {
-    const email = emailInputEl.value;
-    try {
-      subscribe(email, '', 'dex');
-      setMessage('Your email has been subscribed!');
-    } catch (e) {
-      setMessage(e, 'error');
-    }
-  };
-
-  submitBtnEl.addEventListener('click', onSubmitBtnClicked);
-};
 
 const pUSDT = {
   ID: 9,
@@ -68,8 +30,6 @@ const pPRV = {
   TokenID: '0000000000000000000000000000000000000000000000000000000000000004'
 };
 
-const PDEX_TOKENS = 'pDexTokens';
-
 const getTokenList = () => axios.get(`https://api.incognito.org/ptoken/list`);
 
 const getBeaconHeight = () =>
@@ -77,7 +37,7 @@ const getBeaconHeight = () =>
     `https://mainnet.incognito.org/fullnode`,
     {
       jsonrpc: '1.0',
-      method: 'getbeaconbeststate',
+      method: 'getblockchaininfo',
       params: [],
       id: 1
     },
@@ -86,7 +46,7 @@ const getBeaconHeight = () =>
         'Content-Type': 'application/json'
       }
     }
-  );
+  ).then(res => res.data.Result.BestBlocks[-1].Height);
 const getPDex = BeaconHeight =>
   axios.post(
     `https://mainnet.incognito.org/fullnode`,
@@ -105,13 +65,19 @@ const getPDex = BeaconHeight =>
         'Content-Type': 'application/json'
       }
     }
-  );
+  ).then(res => res.data.Result.PDEPoolPairs);
 
 const calcTotalLiquid = tokens =>
   formatCurrencyByUSD(
     tokens
       .reduce((total, token) => {
-        return new BigNumber(total).plus(new BigNumber(token.liquid));
+        return new BigNumber(total)
+          .plus(new BigNumber(token.usdtLiquid))
+          .plus(
+            new BigNumber(token.volume)
+              .dividedBy(Math.pow(10, token.PDecimals))
+              .multipliedBy(Math.pow(10, pUSDT.PDecimals))
+          )
       }, 0)
       .dividedBy(Math.pow(10, 6))
   );
@@ -126,26 +92,29 @@ const calcVolumeToken = (price, cirSupply) =>
 const calcPriceTokenByUSDT = (pDecimals, token) => {
   const a = new BigNumber(token.a);
   const b = new BigNumber(token.b);
+
   const k = a.multipliedBy(b);
   return b
-    .minus(k.dividedBy(a.plus(Math.pow(10, pDecimals))))
-    .dividedBy(Math.pow(10, pUSDT.PDecimals))
-    .toFixed(4);
+    .minus(k.dividedBy(a.plus(Math.pow(10, pDecimals - 2))))
+    .multipliedBy(1e2)
+    .dividedBy(Math.pow(10, pUSDT.PDecimals));
 };
 
-const calcPriceChange = (price, tokenID) => {
-  if (PDEX_TOKENS in localStorage) {
-    const pDexTokens = JSON.parse(localStorage.getItem(PDEX_TOKENS));
-    const { price: lastPrice } = pDexTokens.find(
-      item => item.TokenID === tokenID
-    );
+const calcPriceChange = (price, prevPrice) => {
+  if (prevPrice > 0) {
     const priceBN = new BigNumber(price);
-    const lastPriceBN = new BigNumber(lastPrice);
+    const lastPriceBN = new BigNumber(prevPrice);
+
+    if (lastPriceBN.isEqualTo(priceBN)) {
+      return '';
+    }
+
     if (lastPriceBN.isGreaterThan(priceBN)) {
       return 'price_up';
     }
     return 'price_down';
   }
+
   return '';
 };
 
@@ -171,7 +140,7 @@ const getTokenPairWithUSDT = PDEPoolPairs =>
       return [...arr, item];
     }, []);
 
-const renderTradingBoard = tokens =>
+const renderTradingBoard = (tokens, prevTokens) =>
   [...tokens].map(item => {
     return new BigNumber(item.price).isGreaterThanOrEqualTo(new BigNumber(0.001))
       ? `
@@ -197,45 +166,55 @@ const renderTradingBoard = tokens =>
       : null;
   });
 
+const parseTokens = (pairs, tokenList, prevTokens) => {
+  const tokenPairWithUSDT = getTokenPairWithUSDT(pairs);
+  const tokensValid = tokenList.filter(token =>
+    tokenPairWithUSDT.some(
+      tokenPaired => tokenPaired.TokenID === token.TokenID
+    )
+  );
+  return tokensValid
+    .reduce((arr, item) => {
+      const tokenPaired = tokenPairWithUSDT.find(
+        tokenPaired => tokenPaired.TokenID === item.TokenID
+      );
+      const price = calcPriceTokenByUSDT(item.PDecimals, tokenPaired);
+      const volume = calcVolumeToken(price, tokenPaired.a);
+      const token = {
+        ...item,
+        price,
+        volume,
+        priceChange:
+          prevTokens ?
+          calcPriceChange(
+            price,
+            (prevTokens.find(item => item.TokenID === item.TokenID) || { price: 0 }).price
+          ) : '',
+        usdtLiquid: tokenPaired.b,
+        tokenLiquid: tokenPaired.a,
+      };
+      return [...arr, token];
+    }, [])
+    .sort((a, b) => {
+      const aVolume = new BigNumber(a.volume);
+      const bVolume = new BigNumber(b.volume);
+      return bVolume.minus(aVolume);
+    });
+};
+
 const fetchData = async () => {
   try {
     const tokenListData = await getTokenList();
     const tokenList = [...tokenListData.data.Result, pPRV];
-    const beaconHeightData = await getBeaconHeight();
-    const { BeaconHeight } = beaconHeightData.data.Result;
-    const pdex = await getPDex(BeaconHeight);
-    const { PDEPoolPairs } = pdex.data.Result;
-    const tokenPairWithUSDT = getTokenPairWithUSDT(PDEPoolPairs);
-    const tokensValid = tokenList.filter(token =>
-      tokenPairWithUSDT.some(
-        tokenPaired => tokenPaired.TokenID === token.TokenID
-      )
-    );
-    const tokens = tokensValid
-      .reduce((arr, item) => {
-        const tokenPaired = tokenPairWithUSDT.find(
-          tokenPaired => tokenPaired.TokenID === item.TokenID
-        );
-        const price = calcPriceTokenByUSDT(item.PDecimals, tokenPaired);
-        const volume = calcVolumeToken(price, tokenPaired.a);
-        const token = {
-          ...item,
-          price,
-          volume,
-          priceChange: calcPriceChange(price, item.TokenID),
-          liquid: tokenPaired.b
-        };
-        return [...arr, token];
-      }, [])
-      .sort((a, b) => {
-        const aVolume = new BigNumber(a.volume);
-        const bVolume = new BigNumber(b.volume);
-        return bVolume.minus(aVolume);
-      });
-    localStorage.setItem(PDEX_TOKENS, JSON.stringify(tokens));
-    $('#trading-board-container .tb-main').append(renderTradingBoard(tokens));
+    const beaconHeight = await getBeaconHeight();
+    const prevPairs = await getPDex(beaconHeight - 1);
+    const currentPairs = await getPDex(beaconHeight);
+    const prevTokens = parseTokens(prevPairs, tokenList);
+    const currentTokens = parseTokens(currentPairs, tokenList, prevTokens);
+
+    $('#trading-board-container .tb-main').append(renderTradingBoard(currentTokens, prevTokens));
     $('#trading-board-container .tb-intro #total-liquid').text(
-      `Liquidity pool: ${calcTotalLiquid(tokens)}`
+      `Liquidity pool: ${calcTotalLiquid(currentTokens)}`
     );
   } catch (error) {
     console.log(error);
