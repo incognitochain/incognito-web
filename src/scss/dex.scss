@@ -127,16 +127,15 @@
     justify-content: space-between;
     width: 90%;
     grid-gap: 5%;
-    bottom: -1%;
+    top: 18%;
   }
   .trading-board-container {
     background: #fff;
-    padding: 10% 0;
+    padding: 15% 0 20px;
     border-radius: 5%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    margin-bottom: 10%;
+    margin: 7% 0;
   }
   .tb-intro .desc {
     text-transform: uppercase;
@@ -145,6 +144,7 @@
     line-height: 24px;
     color: #000;
     margin-bottom: 5%;
+    letter-spacing: 1px;
   }
   .crypto-item {
     display: grid;
@@ -152,14 +152,11 @@
     align-items: center;
     justify-items: flex-start;
     margin: 5% 0;
-    &:first-child {
+    &-header {
       .crypto-name,
       .last-price {
         color: #8d8d8d;
         font-weight: 400;
-      }
-      .crypto-name {
-        grid-column-start: 2;
       }
     }
   }
@@ -168,7 +165,7 @@
     height: 24px;
     justify-self: center;
   }
-  .crypto-item .crypto-name {
+  .tb-main .crypto-item .crypto-name {
     font-weight: 500;
   }
   .crypto-item .last-price {
@@ -192,7 +189,8 @@
     }
   }
   .intro-container .desc {
-    margin: 2% 0;
+    margin: 20px 0;
+    line-height: 30px;
   }
   .link {
     color: #26cdd6;
@@ -200,7 +198,7 @@
   }
   .device {
     position: relative;
-    min-height: 400px;
+    min-height: 500px;
   }
   .device .img-container {
     position: absolute;
@@ -214,16 +212,12 @@
     background-position: center;
   }
   .trading-board-container .tb-main {
-    max-height: 250px;
     overflow: hidden scroll;
     position: relative;
+    max-height: 300px;
   }
-  .trading-board-container .tb-main .crypto-item {
-    &:first-child {
-      position: sticky;
-      top: -2px;
-      background: #fff;
-    }
+  .trading-board-container .tb-main .crypto-item:first-child {
+    margin-top: 0;
   }
   @include breakpoint-down(xl) {
   }
