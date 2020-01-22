@@ -1,0 +1,12 @@
+mixin cryptoItem(item)
+    .crypto-item
+        .crypto-img
+            img(src=(item.cryptoImg) alt="")   
+        p.crypto-name
+            | #{item.cryptoName}
+        p.last-price
+            | #{item.lastPrice}
+        .price-action
+            img(src=(item.priceAction) alt="")    
+
+
