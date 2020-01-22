@@ -221,7 +221,7 @@
   .trading-board-container .tb-main .crypto-item {
     &:first-child {
       position: sticky;
-      top: 0;
+      top: -2px;
       background: #fff;
     }
   }

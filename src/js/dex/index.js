@@ -62,8 +62,10 @@ const pUSDT = {
 };
 
 const pPRV = {
-  id: '0000000000000000000000000000000000000000000000000000000000000004',
-  pDecimal: '9'
+  PSymbol: "PRV",
+  Symbol: 'PRV',
+  PDecimals: 9,
+  TokenID: '0000000000000000000000000000000000000000000000000000000000000004'
 };
 
 const PDEX_TOKENS = 'pDexTokens';
@@ -105,6 +107,15 @@ const getPDex = BeaconHeight =>
     }
   );
 
+const calcTotalLiquid = tokens =>
+  formatCurrencyByUSD(
+    tokens
+      .reduce((total, token) => {
+        return new BigNumber(total).plus(new BigNumber(token.liquid));
+      }, 0)
+      .dividedBy(Math.pow(10, 6))
+      .toFixed(4)
+  );
 const formatCurrencyByUSD = price =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(
     price
@@ -189,7 +200,7 @@ const renderTradingBoard = tokens =>
 const fetchData = async () => {
   try {
     const tokenListData = await getTokenList();
-    const tokenList = tokenListData.data.Result;
+    const tokenList = [...tokenListData.data.Result, pPRV];
     const beaconHeightData = await getBeaconHeight();
     const { BeaconHeight } = beaconHeightData.data.Result;
     const pdex = await getPDex(BeaconHeight);
@@ -211,7 +222,8 @@ const fetchData = async () => {
           ...item,
           price,
           volume,
-          priceChange: calcPriceChange(price, item.TokenID)
+          priceChange: calcPriceChange(price, item.TokenID),
+          liquid: tokenPaired.b
         };
         return [...arr, token];
       }, [])
@@ -222,6 +234,9 @@ const fetchData = async () => {
       });
     localStorage.setItem(PDEX_TOKENS, JSON.stringify(tokens));
     $('#trading-board-container .tb-main').append(renderTradingBoard(tokens));
+    $('#trading-board-container .tb-intro #total-liquid').text(
+      `Liquidity pool: ${calcTotalLiquid(tokens)}`
+    );
   } catch (error) {
     console.log(error);
   }
