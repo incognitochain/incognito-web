@@ -135,20 +135,11 @@
     }
 
     .logo {
-      display: flex;
-      position: relative;
       width: 125px;
       height: 25px;
       background-image: url('../image/logo_black.svg');
       background-repeat: no-repeat;
       background-size: contain;
-
-      @include breakpoint-up(xl) {
-        position: absolute;
-        left: calc(50% - 60px);
-        z-index: 1;
-      }
-
       h3.header-logo {
         font-size: 26px;
         font-weight: 600;
@@ -158,22 +149,7 @@
     }
 
     .desktop-menu {
-      display: flex;
-      align-items: center;
-
       .main {
-        flex: 1;
-
-        // .menu-item {
-        //   font-size: 15px;
-        //   font-weight: 600;
-
-        //   &.highlight-btn {
-        //     font-size: 15px;
-        //     border-radius: 15px;
-        //   }
-        // }
-
         .split-line {
           margin: 0 20px;
           width: 1px;
@@ -189,12 +165,11 @@
       font-size: 14px;
     }
 
-    .group {
-      position: relative;
-      flex: 1;
-      justify-content: center;
-      align-items: center;
-
+    .desktop-menu {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 20px;
+      margin-left: auto;
       @include breakpoint-down(900px) {
         display: none;
       }
@@ -212,16 +187,9 @@
         font-weight: 500;
 
         &.highlight-btn {
-          // background: $white;
-          // box-shadow: 0 0 4px 0 rgba(125,125,125,0.65);
-          // border-radius: 13px;
           font-weight: 600;
-          // font-size: 12px;
           color: $black;
-          // letter-spacing: 0.5px;
-          // padding: 5px 15px;
         }
-
         &.telegram-btn {
           background-color: $blue;
           display: flex;
