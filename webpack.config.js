@@ -46,12 +46,12 @@ const templateGen = [
   // }),
   new HtmlWebpackPlugin({
     template: 'src/template/sidechain/index.pug',
-    filename: 'tech.html',
+    filename: 'c/research.html',
     env: process.env
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/wallet/index.pug',
-    filename: 'send-bitcoin-anonymously-01.html',
+    filename: 'c/wallet.html',
     env: process.env
   }),
   // new HtmlWebpackPlugin({
@@ -66,7 +66,7 @@ const templateGen = [
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/becomeValidator/index.pug',
-    filename: 'validator.html',
+    filename: 't/how-to-host-a-virtual-node/28.html',
     env: process.env
   }),
   new HtmlWebpackPlugin({
@@ -121,7 +121,7 @@ const templateGen = [
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/dex/index.pug',
-    filename: 'dex.html',
+    filename: 'c/wallet/trade.html',
     env: process.env
   }),
   new HtmlWebpackPlugin({
@@ -131,7 +131,7 @@ const templateGen = [
   }),
   new HtmlWebpackPlugin({
     template: 'src/template/build/tokens/index.pug',
-    filename: 'create/privacy-coins.html',
+    filename: 'c/wallet/invent.html',
     env: process.env
   }),
   new HtmlWebpackPlugin({
