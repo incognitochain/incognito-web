@@ -85,7 +85,7 @@ const templateGen = [
     env: process.env
   }),
   new HtmlWebpackPlugin({
-    template: 'src/template/home2/index.pug',
+    template: 'src/template/home1/index.pug',
     filename: 'index.html',
     env: process.env
   }),

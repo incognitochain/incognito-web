@@ -1,4 +1,6 @@
 .header-container {
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
+  border-bottom: solid 1px $white2;
   #message-bar {
     width: 100%;
     padding: 15px;
@@ -109,17 +111,16 @@
   }
 
   nav#header {
-    padding: 0px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     min-height: $header-height;
     position: relative;
-    border-bottom: solid 1px $white2;
     background: $white;
     z-index: 2;
-
+    max-width: 1200px;
+    margin: auto;
     @include breakpoint-down(md) {
       padding: 15px;
     }
@@ -135,20 +136,12 @@
     }
 
     .logo {
-      display: flex;
-      position: relative;
-      width: 125px;
-      height: 25px;
-      background-image: url('../image/logo_black.svg');
+      height: 2.57em;
+      width: auto;
+      min-width: 125px;
+      background-image: url('../image/icon/logo.png');
       background-repeat: no-repeat;
       background-size: contain;
-
-      @include breakpoint-up(xl) {
-        position: absolute;
-        left: calc(50% - 60px);
-        z-index: 1;
-      }
-
       h3.header-logo {
         font-size: 26px;
         font-weight: 600;
@@ -158,22 +151,7 @@
     }
 
     .desktop-menu {
-      display: flex;
-      align-items: center;
-
       .main {
-        flex: 1;
-
-        // .menu-item {
-        //   font-size: 15px;
-        //   font-weight: 600;
-
-        //   &.highlight-btn {
-        //     font-size: 15px;
-        //     border-radius: 15px;
-        //   }
-        // }
-
         .split-line {
           margin: 0 20px;
           width: 1px;
@@ -189,12 +167,11 @@
       font-size: 14px;
     }
 
-    .group {
-      position: relative;
-      flex: 1;
-      justify-content: center;
-      align-items: center;
-
+    .desktop-menu {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 10px;
+      margin-left: auto;
       @include breakpoint-down(900px) {
         display: none;
       }
@@ -205,23 +182,31 @@
       }
 
       .menu-item {
-        font-size: 12px;
-        color: #657576;
-        letter-spacing: 1px;
-        margin: auto 15px;
-        font-weight: 500;
-
-        &.highlight-btn {
-          // background: $white;
-          // box-shadow: 0 0 4px 0 rgba(125,125,125,0.65);
-          // border-radius: 13px;
-          font-weight: 600;
-          // font-size: 12px;
-          color: $black;
-          // letter-spacing: 0.5px;
-          // padding: 5px 15px;
+        padding: 6px 10px;
+        margin: 0 5px;
+        color: #333;
+        font-size: 1.1487em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.btn {
+          background: #08c;
+          color: #fff;
+          font-size: .8706em;
+          > img {
+            width: 1em;
+            height: 1em;
+            margin-right: 6px;
+          }
         }
-
+        &.icon {
+          width: 2.2857em;
+          height: auto;
+        }
+        &.highlight-btn {
+          font-weight: 600;
+          color: $black;
+        }
         &.telegram-btn {
           background-color: $blue;
           display: flex;
@@ -268,7 +253,7 @@
         height: 25px;
         width: 25px;
         cursor: pointer;
-        background-image: url('../image/icon/hamburger.svg');
+        background-image: url('../image/icon/menu.svg');
         background-repeat: no-repeat;
         background-size: contain;
       }
