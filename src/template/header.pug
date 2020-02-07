@@ -10,28 +10,28 @@ mixin sidebar-menu
     a(href='/create/privacy-coins.html').menu-item.mobile Create
     a(href='/free-software.html').menu-item Open Source
     a(href='/self-funded.html').menu-item Bootstrapped
-    a(href='/blog', target='_blank').menu-item.mobile Blog
+    a(href='/blog' target='_blank').menu-item.mobile Blog
     //- a(href='/referral.html').menu-item.mobile Refer & Earn $50
 
-    hr(size='1', width='100%').mobile
+    hr(size='1' width='100%').mobile
 
     a(href='/tech.html').menu-item.mobile Tech Overview
     a(href='/validator.html').menu-item Host a Virtual Node
-    a(href='https://github.com/incognitochain?tab=repositories', target='blank').menu-item Code
+    a(href='https://github.com/incognitochain?tab=repositories' target='blank').menu-item Code
     a(href='/about.html').menu-item.mobile Our story
 
-    hr(size='1', width='100%')
+    hr(size='1' width='100%')
 
-    a(href='/deck.pdf', target='blank').menu-item Deck (PDF)
-    a(href='/whitepaper.pdf', target='blank').menu-item Whitepaper (PDF)
-    
-    hr(size='1', width='100%')
-    
-    a(href='https://t.me/incognitochain', target='blank').menu-item Telegram
+    a(href='/deck.pdf' target='blank').menu-item Deck (PDF)
+    a(href='/whitepaper.pdf' target='blank').menu-item Whitepaper (PDF)
+
+    hr(size='1' width='100%')
+
+    a(href='https://t.me/incognitochain' target='blank').menu-item Telegram
     a(href='mailto: go@incognito.org').menu-item Contact Us
     a(href='/privacy.html').menu-item Privacy & Terms
     a(href='/return.html').menu-item Return & Warranty
-  
+
 
 
 
@@ -39,15 +39,26 @@ mixin sidebar-menu
   nav#header
     a(href='/').logo
     .desktop-menu
-        a(href='/node.html').menu-item POWER
-        a(href='/send-bitcoin-anonymously-01.html').menu-item USE
-        a(href='/dex.html').menu-item TRADE
-        a(href='/create/privacy-coins.html').menu-item CREATE
-        a(href='https://mainnet.incognito.org', target='_blank').menu-item EXPLORE
-        a(href='/payroll.html').menu-item PAYROLL
-        a(href='/tech.html').menu-item TECH
-        a(href='/blog', target='_blank').menu-item BLOG
-        a(href='/about.html').menu-item OUR STORY  
+      //- a(href='/node.html').menu-item POWER
+      //- a(href='/send-bitcoin-anonymously-01.html').menu-item USE
+      //- a(href='/dex.html').menu-item TRADE
+      //- a(href='/create/privacy-coins.html').menu-item CREATE
+      //- a(href='https://mainnet.incognito.org' target='_blank').menu-item EXPLORE
+      //- a(href='/payroll.html').menu-item PAYROLL
+      //- a(href='/tech.html').menu-item TECH
+      //- a(href='/blog' target='_blank').menu-item BLOG
+      //- a(href='/about.html').menu-item OUR STORY  
+      a(href="/node.html").menu-item Buy a Node
+      a(href="https://mainnet.incognito.org/" target='_blank').menu-item Network
+      a(href="https://github.com/incognitochain" target='_blank').menu-item Code
+      a(href="https://apps.apple.com/us/app/incognito-crypto-wallet/id1475631606?ls=1" target='_blank').menu-item iOS
+      a(href="https://play.google.com/store/apps/details?id=com.incognito.wallet&hl=en" target='_blank').menu-item Android
+      //- a(href="/sign-up").menu-item.btn Sign Up
+      //- a(href="/sign-in").menu-item.btn 
+      //-   img(src=require('@image/icon/user.svg'), alt="")
+      //-   | Log In
+      //- a(href="/search").menu-item.icon
+      //-   img(src=require('@image/icon/search.svg'), alt="")
     .mobile-sidebar
       .hamburger-btn
       .sidebar
