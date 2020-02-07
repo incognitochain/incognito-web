@@ -136,10 +136,11 @@
     }
 
     .logo {
-      height: 2.57em;
+      height: 22px;
+      margin-top: 4px;
       width: auto;
       min-width: 125px;
-      background-image: url('../image/icon/logo.png');
+      background-image: url('../image/icon/logo.svg');
       background-repeat: no-repeat;
       background-size: contain;
       h3.header-logo {
