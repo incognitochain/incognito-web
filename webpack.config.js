@@ -10,11 +10,11 @@ const CopyPlugin = require('copy-webpack-plugin');
 require('dotenv').config();
 
 const templateGen = [
-  new HtmlWebpackPlugin({
-    template: 'src/template/home1/index.pug',
-    filename: 'node.html',
-    env: process.env
-  }),
+  // new HtmlWebpackPlugin({
+  //   template: 'src/template/home1/index.pug',
+  //   filename: 'node.html',
+  //   env: process.env
+  // }),
   new HtmlWebpackPlugin({
     template: 'src/template/referral/index.pug',
     filename: 'referral.html',
