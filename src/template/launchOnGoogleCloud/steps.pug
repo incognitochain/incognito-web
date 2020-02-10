@@ -141,7 +141,7 @@ mixin stepHtml(step, stepName, isOpen)
         span.highlight VALIDATOR KEY
         |:
       p.script.copiable(data-value-copy='cd /mnt/disks/newdisk') cd /mnt/disks/newdisk
-      p.script.copiable(data-value-copy='curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh') curl -LO https://incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh
+      p.script.copiable(data-value-copy='curl -LO https://node.incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh') curl -LO https://node.incognito.org/run.sh && sed -i "s/xxx/validator_key/" run.sh && sudo bash run.sh
       .row-img
         .img
           img(src=require('@image/launch_on_google_cloud/run_on_gc_step_7_9.png')).landscape
