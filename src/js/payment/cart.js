@@ -127,6 +127,7 @@ export default class Cart {
 
   updateTotalPriceInCrypto() {
     const { coinNameEl, totalPriceEl } = this.getTotalPriceInCryptoEls();
+    console.log(`selectedCoinName`,this.selectedCoinName)
     const exchangeRates = this.getExchangeRates();
     if (!this.selectedCoinName || !exchangeRates) return;
     const coinRate = exchangeRates[this.selectedCoinName.toLowerCase()];

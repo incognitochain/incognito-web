@@ -667,7 +667,10 @@ export default class Payment {
           orderNumberEl.innerText = orderId;
         });
         walletAddressEls.forEach(walletAddressEl => {
-          walletAddressEl.innerText = walletAddress;
+          walletAddressEl.innerText =
+            walletAddress.length > 20
+              ? walletAddress.substring(0, 20) + '...'
+              : walletAddress;
           walletAddressEl.setAttribute('data-copy-value', walletAddress);
         });
         if (iconEl) {
