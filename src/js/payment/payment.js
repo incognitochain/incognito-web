@@ -16,6 +16,7 @@ import KEYS from '../constant/keys';
 import OrderInformation from './order_information';
 import LoadingButton from '../common/loading_button';
 import AddressForm from './address_form';
+import errorCode from '../constant/errorCode';
 
 export default class Payment {
   constructor(container, cart) {
@@ -630,6 +631,10 @@ export default class Payment {
     });
 
     try {
+      const { quantity } = paymentInformation;
+      if (quantity < 1 || quantity > 5) {
+        throw Error(errorCode['-90021']);
+      }
       const order = await submitCryptoOrder({
         ...paymentInformation
       });

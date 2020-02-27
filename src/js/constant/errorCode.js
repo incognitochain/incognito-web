@@ -12,5 +12,6 @@ export default {
   '-90016': 'Your credit card information is invalid.',
   '-90017': 'We’re sorry, but we are unable to process your payment.',
   '-90018': 'We’re sorry, but we are unable to process your payment.',
-  '-90020': 'This payment method is not available at this time.'
+  '-90020': 'This payment method is not available at this time.',
+  '-90021': 'Quantity is invalid. 0 < Quantity <= 5'
 };
