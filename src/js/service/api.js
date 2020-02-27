@@ -2,6 +2,7 @@ import fetch from './fetch';
 import authModel from '../model/auth';
 import subscribeModel from '../model/subscribe';
 import referralLevelModel from '../model/referralLevel';
+import $ from 'jquery';
 
 export const subscribe = (email, referralCode, from = '') => {
   return fetch('auth/subscribe', {
@@ -202,7 +203,8 @@ export const submitCryptoOrder = ({
   const CURRENCIES = {
     ETH: 1,
     BTC: 2,
-    BNB: 4
+    BNB: 4,
+    PRV: 7
   };
 
   const ERC20_TOKENS = {
@@ -226,6 +228,17 @@ export const submitCryptoOrder = ({
     currencyType = 3;
     tokenId = ERC20_TOKENS[coinName];
     tokenSymbol = coinName;
+  }
+
+  if (currencyType === CURRENCIES.PRV) {
+    $(`#show-note`).append(`
+      <div class="description">
+        <h2 class="note">Please note:</h2>
+        <div class="description">
+          Please remember to include your order number <span class="order-number underline-text"></span> in the memo field. Orders without a memo will not be processed.     
+        </div>
+      </div>
+    `);
   }
 
   return fetch('order/crypto/checkout', {

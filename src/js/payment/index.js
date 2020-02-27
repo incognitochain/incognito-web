@@ -2,7 +2,7 @@ import isPath from '../common/utils/isPathname';
 import Cart from './cart';
 import Payment from './payment';
 import YoutubePlayer from '../common/youtubePlayer';
-
+import $ from 'jquery';
 const handlePaymentGuide = container => {
   const paymentGuideContainers = container.querySelectorAll(
     '.crypto-payment-guide'
@@ -32,4 +32,6 @@ const main = () => {
   const payment = new Payment(container, cart);
 };
 
-main();
+$(document).ready(() => {
+  main();
+});

@@ -1,15 +1,29 @@
 - var price = '$399'
-- var quantity = 1
+//- - var quantity = 1
 div#cart-container
     div.order-items
         div.product
-            span.product-quantity=quantity
+            //- span.product-quantity=quantity
             img.product-image(
                 alt="Node",
                 src=require("../../image/device.png")
             )
         div.product-name Node
-        div.product-price.price=price
+        div(id="price").product-price.price=price
+    .order-info
+        p.desc By owning a Node, you're making crypto safer. By owning a Node, you're owning a piece of the only network that supports privacy for any coin. Where even BTC, ETH, BNB and more can be privacy coins. 
+            span.desc.underline-text Why is privacy important?
+        ul.features
+            li.item Help protect the world from the dangers of surveillance
+            li.item Help give yourself and others the right to privacy
+            li.item Earn block rewards in PRV and transaction fees in currencies such as BTC, ETH, BNB, etc
+            li.item Own a share of the current and future income of the Incognito network   
+    .order-quantity
+        p.title CHOOSE YOUR QUANTITY
+        select(id="order-quantity").select-box
+            -for(var i = 1;i<=10;i++){
+                option(value=i) #{i}
+            -}
     div.order-summary
         div.content-two-columns.separator
             div.left
