@@ -20,5 +20,7 @@ export const getCoinName = coin => {
       return 'Stably';
     case 'BUSD':
       return 'Binance USD';
+    case 'PRV':
+      return 'PRV';
   }
 };

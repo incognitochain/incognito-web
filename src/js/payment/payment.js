@@ -158,7 +158,7 @@ export default class Payment {
       shippingFee,
       tax,
       totalPrice,
-      quantity = 1
+      quantity
     } = this.cart.getCart();
     return {
       firstName,
@@ -168,7 +168,7 @@ export default class Payment {
       state,
       zip,
       country,
-      quantity,
+      quantity: Number(quantity),
       price,
       shippingFee,
       tax,
@@ -667,7 +667,10 @@ export default class Payment {
           orderNumberEl.innerText = orderId;
         });
         walletAddressEls.forEach(walletAddressEl => {
-          walletAddressEl.innerText = walletAddress;
+          walletAddressEl.innerText =
+            walletAddress.length > 20
+              ? walletAddress.substring(0, 20) + '...'
+              : walletAddress;
           walletAddressEl.setAttribute('data-copy-value', walletAddress);
         });
         if (iconEl) {

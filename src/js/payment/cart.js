@@ -6,23 +6,44 @@ import {
   getShippingFee
 } from '../service/api';
 import { getCoinName } from '../common/utils/crypto';
+import $ from 'jquery';
 
 export default class Cart {
   constructor(container) {
     if (!container) {
       throw new Error('container not found');
     }
-
     this.price = 399;
+    this.quantity = 1;
     this.cart = this.getCartFromLocalStorage();
     this.selectedCoinName = 'BTC';
     this.totalPrice = 0;
-
     this.parentContainer = container;
     this.container = this.parentContainer.querySelector('#cart-container');
     this.getPriceFromLocalStorage();
     this.getCoinExchangeRateFromServer();
     this.getPriceFromServer();
+    this.init();
+  }
+
+  init() {
+    $('#order-quantity').on('change', () => {
+      const selected = $('#order-quantity option:selected').val();
+      this.quantity = selected;
+      this.updateCart();
+    });
+  }
+
+  getQuantity() {
+    return this.quantity;
+  }
+
+  setQuantity(value) {
+    this.quantity = value;
+  }
+
+  getPriceEle() {
+    return $('#price');
   }
 
   saveCartToLocalStorage(cart) {
@@ -66,7 +87,7 @@ export default class Cart {
 
   getCartElements() {
     if (!this.container) return {};
-    const quantityEl = null;
+    const quantityEl = this.container.querySelector('#order-quantity');
     const subTotalPriceEl = this.container.querySelector('.sub-total-price');
     const totalPriceEl = this.container.querySelector('.total-price');
     const shippingPriceEl = this.container.querySelector('.shipping-price');
@@ -158,11 +179,11 @@ export default class Cart {
     price = this.getPrice(),
     shippingFee,
     tax,
-    quantity = null,
+    quantity = this.quantity,
     saveCart = false
   } = {}) {
     const {
-      quantityEl,
+      // quantityEl,
       subTotalPriceEl,
       totalPriceEl,
       shippingPriceEl,
@@ -174,13 +195,13 @@ export default class Cart {
     shippingFee =
       shippingFee != null ? shippingFee : currentCart.shippingFee || 0;
     tax = tax != null ? tax : currentCart.tax || 0;
-    quantity = quantity != null ? quantity : currentCart.quantity || 1;
+    // quantity = quantity != null ? quantity : currentCart.quantity || 1;
 
     const subTotalPrice = quantity * price;
     const totalPrice = subTotalPrice + shippingFee + tax;
     this.totalPrice = totalPrice;
 
-    quantity = quantityEl ? quantityEl.value : quantity;
+    // quantity = quantityEl ? quantityEl.value : quantity;
 
     this.cart = {
       price,
@@ -236,7 +257,7 @@ export default class Cart {
   }
 
   async getShippingFeeFromServer({ address, city, zip, state, country }) {
-    let quantity = 1;
+    const quantity = this.quantity;
     let shippingFee = 0;
     let tax = 0;
 
