@@ -952,3 +952,70 @@
     display: none !important;
   }
 }
+
+#cart-container .order-info {
+  p.desc {
+    font-size: 14px;
+    line-height: 24px;
+    margin: 20px 0;
+  }
+  .underline-text {
+    text-decoration: underline;
+  }
+  ul.features {
+    padding: 0;
+    margin: 0;
+  }
+  ul.features > li.item {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    padding-left: 20px;
+    font-family: Colfax;
+    font-size: 14px;
+    line-height: 24px;
+    &::before {
+      position: absolute;
+      margin: 0;
+      left: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+}
+
+#cart-container .order-quantity {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  p.title {
+    flex: 1 0 auto;
+    align-items: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28px;
+  }
+  select.select-box {
+    padding: 16px 29px 5px 11px;
+    height: 43px;
+    background: white;
+    font-size: 14px;
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    flex: 1 0 auto;
+  }
+}
+
+#payment .left-content,
+.right-content {
+  @media screen and (max-width: 1200px) {
+    width: 100% !important;
+    margin: auto;
+  }
+}
+
+#payment .right-content {
+  @media screen and (max-width: 1200px) {
+    max-width: 650px;
+  }
+}

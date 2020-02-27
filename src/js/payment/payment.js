@@ -158,7 +158,7 @@ export default class Payment {
       shippingFee,
       tax,
       totalPrice,
-      quantity = 1
+      quantity
     } = this.cart.getCart();
     return {
       firstName,
@@ -168,7 +168,7 @@ export default class Payment {
       state,
       zip,
       country,
-      quantity,
+      quantity: Number(quantity),
       price,
       shippingFee,
       tax,
