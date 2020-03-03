@@ -3,18 +3,7 @@ V=$(date "+%Y%m%d_%H%M%S")
 BUILDER_IMAGE="$NAME_SPACE-$REPO_NAME-builder"
 NAME_IMAGE="$NAME_SPACE-$REPO_NAME"
 CWD=$(pwd)
-echo "{
-  \"type\": \"$TYPE\",
-  \"project_id\": \"$PROJECT_ID\",
-  \"private_key_id\": \"$PRIVATE_KEY_ID\",
-  \"private_key\": \"$PRIVATE_KEY\",
-  \"client_email\": \"$CLIENT_EMAIL\",
-  \"client_id\": \"$CLIENT_ID\",
-  \"auth_uri\": \"$AUTH_URL\",
-  \"token_uri\": \"$TOKEN_URL\",
-  \"auth_provider_x509_cert_url\": \"$AUTH_PROVIDER_X509_CERT_URL\",
-  \"client_x509_cert_url\": \"$CLIENT_X509_CERT_URL\"
-}" > ./cash-prototype-4a2c9d4ce248.json
+echo $GOOGLE_CLOUD > ./cash-prototype-4a2c9d4ce248.json
 echo $CRT > ./incognito.org.crt
 echo $CSR > ./incognito.org.csr
 echo $PASS > ./incognito.org.pass
