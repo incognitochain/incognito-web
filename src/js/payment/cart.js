@@ -100,6 +100,9 @@ export default class Cart {
       '.crypto-payment-guide'
     );
 
+    const shippingExtraText= this.container.querySelector('.extra-text-ship');
+
+
     return {
       quantityEl,
       subTotalPriceEl,
@@ -108,7 +111,8 @@ export default class Cart {
       taxPriceEl,
       productPriceEl,
       totalPriceInCryptoEl,
-      cryptoPaymentGuideEl
+      cryptoPaymentGuideEl,
+      shippingExtraText
     };
   }
 
@@ -180,15 +184,17 @@ export default class Cart {
     shippingFee,
     tax,
     quantity = this.quantity,
-    saveCart = false
+    saveCart = false,
+    country
   } = {}) {
     const {
       // quantityEl,
       subTotalPriceEl,
       totalPriceEl,
-      shippingPriceEl,
+      shippingPriceEl, 
       taxPriceEl,
-      productPriceEl
+      productPriceEl,
+      shippingExtraText
     } = this.getCartElements();
 
     const currentCart = this.getCartFromLocalStorage();
@@ -227,6 +233,15 @@ export default class Cart {
         taxPriceEl.classList.remove('show');
       }
     }
+    console.log(country, shippingExtraText);
+    if (country!= undefined && country!="US") { 
+      //shippingExtraText.classList.remove('show');
+      shippingExtraText.innerText='This does not include any potential duties or taxes that will vary depending on your locality.';
+      
+    }else{
+      shippingExtraText.innerText='';
+    }
+
     if (totalPriceEl) totalPriceEl.innerText = `$${totalPrice}`;
     this.updateTotalPriceInCrypto();
   }
@@ -275,7 +290,8 @@ export default class Cart {
       quantity,
       shippingFee,
       tax,
-      saveCart: true
+      saveCart: true,
+      country
     });
   }
 }

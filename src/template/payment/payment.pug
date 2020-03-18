@@ -1,6 +1,6 @@
 mixin box-content
     fieldset(disabled).content-box__container__row.content.hidden&attributes(attributes)
-        block
+        block 
 
 div#payment-container.payment-page.hidden
     ul.breadcrumb.desktop
@@ -76,18 +76,12 @@ div#payment-container.payment-page.hidden
                                         error_message='Enter the CVV or security code on your card'
                                     )       
                                     i-tooltip(data-text='3-digit security code usually found on the back of your card. American Express cards have a 4-digit code located on the front.').question-icon                 
-                        #card-container.input-wrapper 
-                .content-box__container__row.payment-gateway(data-select-gateway='zelle', data-default="true")
-                    .radio-input
-                        input(type='radio', name='payment_gateway', value='zelle', aria-controls='pay-with-zelle')
-                    .radio-label 
-                        .label Zelle
-                        .accessory
+                        #card-container.input-wrapper  
                 .content-box__container__row.payment-gateway(data-select-gateway='crypto')
                         .radio-input
                             input(type='radio', name='payment_gateway', value='crypto', aria-controls='pay-with-crypto')
                         .radio-label 
-                            .label Bitcoin, Ethereum and more
+                            .label  Bitcoin, PRV, Ethereum and more
                             .accessory
                                 img(src=require('../../image/icon/btc.svg'))
                                 img(src=require('../../image/icon/eth.svg'))
@@ -102,6 +96,8 @@ div#payment-container.payment-page.hidden
                                         +coin_name('BTC')
                                     option(value='ETH') 
                                         +coin_name('ETH')
+                                    option(value='PRV')
+                                        +coin_name('PRV')
                                     option(value='BNB') 
                                         +coin_name('BNB')
                                     option(value='USDT') 
@@ -118,12 +114,16 @@ div#payment-container.payment-page.hidden
                                         +coin_name('USDS')
                                     option(value='BUSD') 
                                         +coin_name('BUSD')
-                                    option(value='PRV')
-                                        +coin_name('PRV')
                                 div.caret
                                     img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
                         include crypto_guide
                         +crypto_guide(false)
+                .content-box__container__row.payment-gateway(data-select-gateway='zelle', data-default="true")
+                    .radio-input
+                        input(type='radio', name='payment_gateway', value='zelle', aria-controls='pay-with-zelle')
+                    .radio-label 
+                        .label Zelle
+                        .accessory
         #billing-address-container.content-box.hidden
             h2 Billing Address
             p Select the address that matches your card or payment method.
