@@ -30,9 +30,10 @@ const main = () => {
   handlePaymentGuide(container);
 
   const cart = new Cart(container);
+  
   const payment = new Payment(container, cart);
 };
 
 $(document).ready(() => {
-  main();
+  main(); 
 });
