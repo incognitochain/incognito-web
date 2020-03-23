@@ -1,3 +1,7 @@
+mixin box-content
+    fieldset(disabled).content-box__container__row.content.hidden&attributes(attributes)
+        block
+
 div#order-information-container.payment-page
     ul.breadcrumb.desktop
         li.breadcrumb-item.active
@@ -31,5 +35,23 @@ div#order-information-container.payment-page
                         name=`shipping[phone_number]`,
                     )
                     i-tooltip(data-text='In case we need to contact you about your order').question-icon                 
+        div#billing-address-container.content-box.input-wrapper
+            h2 Billing Address
+            p Select the address that matches your card or payment method.
+            fieldset.content-box__container
+                .content-box__container__row(data-same-billing-address, data-default="true")
+                    .radio-input
+                        input(type='radio', name='different_billing_address', value='false')
+                    .radio-label
+                        .label Same as shipping address
+                .content-box__container__row(data-different-billing-address)
+                    .radio-input
+                        input(type='radio', name='different_billing_address', value='true', aria-controls='different-billing-address-form')
+                    .radio-label
+                        .label Use a different billing address
+                +box-content#different-billing-address-form
+                    .input-wrapper
+                        include address_form
+                        +address_form('billing')        
         div.button-wrapper
             button#submit-order-btn Continue to payment
