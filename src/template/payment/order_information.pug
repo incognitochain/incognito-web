@@ -2,7 +2,7 @@ mixin box-content
     fieldset(disabled).content-box__container__row.content.hidden&attributes(attributes)
         block
 
-div#order-information-container.payment-page
+div#order-information-container.payment-page.hidden
     ul.breadcrumb.desktop
         li.breadcrumb-item.active
             span Information
@@ -54,4 +54,4 @@ div#order-information-container.payment-page
                         include address_form
                         +address_form('billing')        
         div.button-wrapper
-            button#submit-order-btn Continue to payment
+            button#submit-order-btn Complete Order

@@ -1024,6 +1024,11 @@
   @include content-box();
 }
 
+#payment #different-billing-address-form {
+  margin: 0;
+  border: 1px solid transparent;
+}
+
 #payment {
   h2 {
     font-size: 18px;
