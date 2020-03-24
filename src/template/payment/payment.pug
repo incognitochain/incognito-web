@@ -20,7 +20,7 @@ div#payment-container.payment-page
             h2 Payment
             p All transactions are secure and encrypted.
             fieldset.content-box__container
-                .content-box__container__row.payment-gateway(data-select-gateway='card')
+                .content-box__container__row.payment-gateway(data-select-gateway='card'  data-default="true")
                     .radio-input
                         input(type='radio' name='payment_gateway' value='card' aria-controls='pay-with-card')
                     .radio-label 
@@ -119,7 +119,7 @@ div#payment-container.payment-page
                                 img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
                     include crypto_guide
                     +crypto_guide(false)
-                .content-box__container__row.payment-gateway(data-select-gateway='zelle' data-default="true")
+                .content-box__container__row.payment-gateway(data-select-gateway='zelle')
                     .radio-input
                         input(type='radio' name='payment_gateway' value='zelle' aria-controls='pay-with-zelle')
                     .radio-label 
