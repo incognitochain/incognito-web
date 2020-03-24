@@ -30,12 +30,12 @@
       margin-top: 0;
     }
 
-    h2 {
-      font-size: 18px;
-      font-weight: 400;
-      margin-bottom: 15px;
-      margin-top: 0;
-    }
+    // h2 {
+    //   font-size: 18px;
+    //   font-weight: 400;
+    //   margin-bottom: 15px;
+    //   margin-top: 0;
+    // }
 
     .input-field {
       position: relative;
@@ -704,11 +704,11 @@
       position: relative;
     }
 
-    h2 {
-      font-size: 18px;
-      font-weight: 400;
-      margin: 0;
-    }
+    // h2 {
+    //   font-size: 18px;
+    //   font-weight: 400;
+    //   margin: 0;
+    // }
 
     p {
       margin-top: 0;
@@ -1017,5 +1017,22 @@
 #payment .right-content {
   @media screen and (max-width: 1200px) {
     max-width: 650px;
+  }
+}
+
+#payment #order-information-container {
+  @include content-box();
+}
+
+#payment #different-billing-address-form {
+  margin: 0;
+  border: 1px solid transparent;
+}
+
+#payment {
+  h2 {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
   }
 }
