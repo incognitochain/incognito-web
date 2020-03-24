@@ -1,5 +1,4 @@
 import IMask from 'imask';
-import KEYS from '../constant/keys';
 import {
   trackEvent,
   addCartTrackEvent,
@@ -9,9 +8,12 @@ import { isEmail } from '../common/utils/validate';
 import { setMessage } from '../service/message_box';
 import { signUpAndSaveToStorage } from '../common/user';
 import { handleSelectElementChanged, handleInputChange } from '../common/form';
-import storage from '../service/storage';
 import LoadingButton from '../common/loading_button';
 import AddressForm from './address_form';
+import {
+  storeOrderInformationToLocalStorage,
+  getOrderInformationFromLocalStorage
+} from './util';
 
 export default class OrderInformation {
   constructor(container, cart, onSubmitSuccess) {
@@ -179,9 +181,22 @@ export default class OrderInformation {
 
     try {
       const isSignedIn = await this.handleSignUp({ name, email });
-
+      const { paymentGateway } = getOrderInformationFromLocalStorage();
       if (isSignedIn) {
-        this.storeOrderInformationToLocalStorage({
+        // this.storeOrderInformationToLocalStorage({
+        //   email,
+        //   firstName,
+        //   lastName,
+        //   address,
+        //   name,
+        //   city,
+        //   zip,
+        //   country,
+        //   state,
+        //   phoneNumber,
+        //   step: 2
+        // });
+        storeOrderInformationToLocalStorage({
           email,
           firstName,
           lastName,
@@ -192,7 +207,7 @@ export default class OrderInformation {
           country,
           state,
           phoneNumber,
-          step: 1
+          step: 2
         });
 
         if (this.onSubmitSuccess) {
@@ -249,28 +264,40 @@ export default class OrderInformation {
     return true;
   }
 
-  storeOrderInformationToLocalStorage(newPaymentInfo) {
-    const paymentInfo = this.getOrderInformationFromLocalStorage();
-    const newInfo = { ...paymentInfo, ...newPaymentInfo };
+  // storeOrderInformationToLocalStorage(newPaymentInfo) {
+  //   const paymentInfo = this.getOrderInformationFromLocalStorage();
+  //   const newInfo = { ...paymentInfo, ...newPaymentInfo };
 
-    storage.set(KEYS.PAYMENT_INFORMATION, JSON.stringify(newInfo));
-  }
+  //   storage.set(KEYS.PAYMENT_INFORMATION, JSON.stringify(newInfo));
+  // }
 
-  getOrderInformationFromLocalStorage() {
-    try {
-      const json = storage.get(KEYS.PAYMENT_INFORMATION) || '{}';
-      const paymentInfo = JSON.parse(json);
-      return paymentInfo;
-    } catch (error) {
-      if (!APP_ENV.production) {
-        console.error(error);
-      }
-    }
-    return {};
-  }
+  // getOrderInformationFromLocalStorage() {
+  //   try {
+  //     const json = storage.get(KEYS.PAYMENT_INFORMATION) || '{}';
+  //     const paymentInfo = JSON.parse(json);
+  //     return paymentInfo;
+  //   } catch (error) {
+  //     if (!APP_ENV.production) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   return {};
+  // }
 
   fillOrderInformationForm() {
     const { emailEl } = this.getOrderInformationElements();
+    // const {
+    //   email,
+    //   address,
+    //   city,
+    //   zip,
+    //   country,
+    //   state,
+    //   firstName,
+    //   step,
+    //   lastName,
+    //   phoneNumber
+    // } = this.getOrderInformationFromLocalStorage();
     const {
       email,
       address,
@@ -282,8 +309,7 @@ export default class OrderInformation {
       step,
       lastName,
       phoneNumber
-    } = this.getOrderInformationFromLocalStorage();
-
+    } = getOrderInformationFromLocalStorage();
     if (emailEl && email) {
       emailEl.value = email;
       emailEl.dispatchEvent(new Event('input'));
@@ -300,7 +326,7 @@ export default class OrderInformation {
         phoneNumber
       });
 
-    if (step === 1 && this.onSubmitSuccess) {
+    if (step === 2 && this.onSubmitSuccess) {
       this.onSubmitSuccess({
         firstName,
         lastName,
@@ -414,7 +440,7 @@ export default class OrderInformation {
         quantity
       },
       options: {
-        step: 1
+        step: 2
       }
     });
   }

@@ -3,6 +3,7 @@ import Cart from './cart';
 import Payment from './payment';
 import YoutubePlayer from '../common/youtubePlayer';
 import $ from 'jquery';
+
 const handlePaymentGuide = container => {
   const paymentGuideContainers = container.querySelectorAll(
     '.crypto-payment-guide'
@@ -29,9 +30,10 @@ const main = () => {
   handlePaymentGuide(container);
 
   const cart = new Cart(container);
+  
   const payment = new Payment(container, cart);
 };
 
 $(document).ready(() => {
-  main();
+  main(); 
 });
