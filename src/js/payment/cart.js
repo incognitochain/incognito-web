@@ -187,7 +187,6 @@ export default class Cart {
     saveCart = false,
     country
   } = {}) {
-    console.log(`why you dont update cart?`);
     const {
       // quantityEl,
       subTotalPriceEl,
@@ -234,7 +233,6 @@ export default class Cart {
         taxPriceEl.classList.remove('show');
       }
     }
-    console.log(country, shippingExtraText);
     if (country != undefined && country != 'US') {
       //shippingExtraText.classList.remove('show');
       shippingExtraText.innerText =

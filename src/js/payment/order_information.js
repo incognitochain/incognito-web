@@ -223,7 +223,7 @@ export default class OrderInformation {
 
     try {
       const isSignedIn = await this.handleSignUp({ name, email });
-      const { paymentGateway } = getOrderInformationFromLocalStorage();
+      // const { paymentGateway } = getOrderInformationFromLocalStorage();
       if (isSignedIn) {
         // this.storeOrderInformationToLocalStorage({
         //   email,
@@ -368,7 +368,6 @@ export default class OrderInformation {
         country,
         phoneNumber
       });
-
     if (step === 2 && this.onSubmitSuccess) {
       this.onSubmitSuccess({
         firstName,
