@@ -515,9 +515,7 @@ export default class Payment {
         } = paymentInformation;
 
         let billingAddressInformation;
-        console.log(`isDifferentBillingAddress`, isDifferentBillingAddress);
         if (isDifferentBillingAddress && this.billingAddressForm) {
-          console.log(`aaaaaa`);
           const {
             firstNameEl,
             lastNameEl,
@@ -537,7 +535,6 @@ export default class Payment {
             billingCountry: countryEl.value.trim()
           };
         } else {
-          console.log(`bbbbb`);
           billingAddressInformation = {
             billingFirstName,
             billingLastName,
@@ -548,13 +545,11 @@ export default class Payment {
             billingCountry
           };
         }
-        console.log(`billingAddressInformation`, billingAddressInformation);
         const creditCardInformation = {
           cardNumber: creditCardNumberEl.value.replace(/\s+/g, ''),
           cardExpiry: creditCardExpiryEl.value.replace(/\s+/g, ''),
           cardCode: creditCardCodeEl.value
         };
-
         await this.onSubmitCreditCardOrder({
           ...paymentInformation,
           ...billingAddressInformation,
@@ -585,6 +580,14 @@ export default class Payment {
 
   onSubmitPaymentFormSuccess() {
     this.showPage(this.informationPageId);
+    const { creditCardNumberEl } = this.getPaymentFormElements();
+    const { paymentGateway } = getOrderInformationFromLocalStorage();
+    if (paymentGateway === 'card') {
+      const cardNumber = creditCardNumberEl.value.replace(/\s+/g, '');
+      storeOrderInformationToLocalStorage({
+        cardNumber: cardNumber.slice(cardNumber.length - 4)
+      });
+    }
     this.orderInformation.updatePaymentGatewayName();
   }
 
@@ -750,7 +753,7 @@ export default class Payment {
     try {
       this.shippingAddress = addressInfo;
       this.updateShipTo(addressInfo);
-      this.updateBillingAddress(addressInfo);
+      // this.updateBillingAddress(addressInfo);
       this.showLoading();
       // const isEnabled = await checkCCPaymentGatewayLimit();
       // isEnabled
