@@ -57,12 +57,16 @@ export default class Payment {
   getPaymentElements() {
     if (!this.container) return {};
     const paymentFormEl = this.container.querySelector('form#payment-form');
-    const updateOrderInformationEls = this.container.querySelectorAll(
-      '.change-order-information'
+    // const updateOrderInformationEls = this.container.querySelectorAll(
+    //   '.change-order-information'
+    // );
+    const updatePaymentInfoEls = this.container.querySelectorAll(
+      `.change-payment-information`
     );
     return {
-      updateOrderInformationEls,
-      paymentFormEl
+      // updateOrderInformationEls,
+      paymentFormEl,
+      updatePaymentInfoEls
     };
   }
 
@@ -207,16 +211,24 @@ export default class Payment {
 
     const {
       paymentFormEl,
-      updateOrderInformationEls
+      // updateOrderInformationEls
+      updatePaymentInfoEls
     } = this.getPaymentElements();
 
     // handle events while back to shipping address form
-    updateOrderInformationEls.forEach(updateOrderInformationEl => {
-      updateOrderInformationEl.addEventListener(
+    // updateOrderInformationEls.forEach(updateOrderInformationEl => {
+    //   updateOrderInformationEl.addEventListener(
+    //     'click',
+    //     this.onChangeOrderInformationClicked.bind(this)
+    //   );
+    // });
+
+    updatePaymentInfoEls.forEach(updatePaymentInfoEl =>
+      updatePaymentInfoEl.addEventListener(
         'click',
-        this.onChangeOrderInformationClicked.bind(this)
-      );
-    });
+        this.onChangePaymentInfoClicked.bind(this)
+      )
+    );
 
     paymentFormEl &&
       paymentFormEl.addEventListener(
@@ -583,6 +595,10 @@ export default class Payment {
 
   onChangeOrderInformationClicked() {
     this.showPage(this.informationPageId);
+  }
+
+  onChangePaymentInfoClicked() {
+    this.showPage(this.paymentPageId);
   }
 
   async onSubmitCreditCardOrder(paymentInformation) {
