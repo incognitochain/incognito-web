@@ -5,22 +5,21 @@ mixin box-content
 div#payment-container.payment-page
     ul.breadcrumb.desktop
         li.breadcrumb-item
-            a.link(href='#').change-order-information Information
+            a.link(href='#').change-payment-information Payment
             img.icon(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
         li.breadcrumb-item.active
-            span Payment
+            span Information
     //- div.information
     //-     div.three-lines-content
     //-         div Ship to
     //-         div#ship-to
-    //-         a.link(href='#').change-order-information Change
-
+    //-         a.link(href='#').change-payment-information Change
     form#payment-form
         #payment-method-container.content-box
             h2 Payment
             p All transactions are secure and encrypted.
             fieldset.content-box__container
-                .content-box__container__row.payment-gateway(data-select-gateway='card'  data-default="true")
+                .content-box__container__row.payment-gateway(data-select-gateway='card' data-default="true")
                     .radio-input
                         input(type='radio' name='payment_gateway' value='card' aria-controls='pay-with-card')
                     .radio-label 

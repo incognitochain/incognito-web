@@ -25,18 +25,9 @@
   .input-wrapper {
     width: 100%;
     margin-top: 45px;
-
     &:first-child {
       margin-top: 0;
     }
-
-    // h2 {
-    //   font-size: 18px;
-    //   font-weight: 400;
-    //   margin-bottom: 15px;
-    //   margin-top: 0;
-    // }
-
     .input-field {
       position: relative;
 
@@ -934,18 +925,8 @@
 
   .three-lines-content {
     display: flex;
-
-    > div:first-child {
-      width: 70px;
-    }
-
-    > div:nth-child(2) {
-      flex: 1;
-    }
-
-    > div:last-child {
-      width: 50px;
-    }
+    align-items: center;
+    justify-content: space-between;
   }
 
   .hidden {
@@ -1014,6 +995,25 @@
   }
 }
 
+#payment .left-content .input-wrapper {
+  @media screen and (max-width: 1200px) {
+    margin-top: 10px;
+  }
+}
+
+#payment #payment-container .content-box {
+  @media screen and (max-width: 1200px) {
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+}
+
+#payment #order-information-container .content-box {
+  @media screen and (max-width: 1200px) {
+    margin-top: 10px !important;
+  }
+}
+
 #payment .right-content {
   @media screen and (max-width: 1200px) {
     max-width: 650px;
@@ -1034,5 +1034,11 @@
     font-size: 18px;
     font-weight: 400;
     margin: 0;
+  }
+}
+
+#payment #order-information-container .content-box .content-box__container {
+  @media screen and (max-width: 1200px) {
+    margin-top: 10px;
   }
 }
