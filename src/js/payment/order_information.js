@@ -189,9 +189,17 @@ export default class OrderInformation {
   }
 
   updatePaymentGatewayName() {
-    const { paymentGatewayName } = getOrderInformationFromLocalStorage();
+    const {
+      paymentGatewayName,
+      paymentGateway,
+      cardNumber
+    } = getOrderInformationFromLocalStorage();
     const { paymentGatewayEl } = this.getOrderInformationElements();
-    paymentGatewayEl.innerHTML = paymentGatewayName;
+    let innerHTML = paymentGatewayName;
+    if (paymentGateway === 'card') {
+      innerHTML = `${innerHTML} <br/> ****${cardNumber}`;
+    }
+    paymentGatewayEl.innerHTML = innerHTML;
   }
 
   async onSubmitForm(e) {
