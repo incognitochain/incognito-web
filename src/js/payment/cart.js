@@ -187,6 +187,7 @@ export default class Cart {
     saveCart = false,
     country
   } = {}) {
+    console.log(`why you dont update cart?`);
     const {
       // quantityEl,
       subTotalPriceEl,
