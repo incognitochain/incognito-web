@@ -24,6 +24,7 @@ export default class Cart {
     this.getCoinExchangeRateFromServer();
     this.getPriceFromServer();
     this.init();
+    this.getShippingFeeFromServer = this.getShippingFeeFromServer.bind(this);
   }
 
   init() {
@@ -100,8 +101,7 @@ export default class Cart {
       '.crypto-payment-guide'
     );
 
-    const shippingExtraText= this.container.querySelector('.extra-text-ship');
-
+    const shippingExtraText = this.container.querySelector('.extra-text-ship');
 
     return {
       quantityEl,
@@ -191,7 +191,7 @@ export default class Cart {
       // quantityEl,
       subTotalPriceEl,
       totalPriceEl,
-      shippingPriceEl, 
+      shippingPriceEl,
       taxPriceEl,
       productPriceEl,
       shippingExtraText
@@ -233,13 +233,12 @@ export default class Cart {
         taxPriceEl.classList.remove('show');
       }
     }
-    console.log(country, shippingExtraText);
-    if (country!= undefined && country!="US") { 
+    if (country != undefined && country != 'US') {
       //shippingExtraText.classList.remove('show');
-      shippingExtraText.innerText='This does not include any potential duties or taxes that will vary depending on your locality.';
-      
-    }else{
-      shippingExtraText.innerText='';
+      shippingExtraText.innerText =
+        'This does not include any potential duties or taxes that will vary depending on your locality.';
+    } else {
+      shippingExtraText.innerText = '';
     }
 
     if (totalPriceEl) totalPriceEl.innerText = `$${totalPrice}`;

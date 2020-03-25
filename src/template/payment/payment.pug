@@ -5,24 +5,23 @@ mixin box-content
 div#payment-container.payment-page
     ul.breadcrumb.desktop
         li.breadcrumb-item
-            a.link(href='#').change-order-information Information
+            a.link(href='#').change-payment-information Payment
             img.icon(src=require('../../image/icon/chevron-right-light.svg'), alt='right')
         li.breadcrumb-item.active
-            span Payment
+            span Information
     //- div.information
     //-     div.three-lines-content
     //-         div Ship to
     //-         div#ship-to
-    //-         a.link(href='#').change-order-information Change
-
+    //-         a.link(href='#').change-payment-information Change
     form#payment-form
         #payment-method-container.content-box
             h2 Payment
             p All transactions are secure and encrypted.
             fieldset.content-box__container
-                .content-box__container__row.payment-gateway(data-select-gateway='card')
+                .content-box__container__row.payment-gateway(data-select-gateway='card' data-default="true")
                     .radio-input
-                        input(type='radio' name='payment_gateway' value='card' aria-controls='pay-with-card')
+                        input(type='radio' name='payment_gateway' value='card' aria-controls='pay-with-card' aria-name='Credit card')
                     .radio-label 
                         .label Credit card
                         .accessory
@@ -79,7 +78,7 @@ div#payment-container.payment-page
                     #card-container.input-wrapper  
                 .content-box__container__row.payment-gateway(data-select-gateway='crypto')
                     .radio-input
-                        input(type='radio' name='payment_gateway' value='crypto' aria-controls='pay-with-crypto')
+                        input(type='radio' name='payment_gateway' value='crypto' aria-controls='pay-with-crypto' aria-name='Crypto')
                     .radio-label 
                         .label  Bitcoin, PRV, Ethereum and more
                         .accessory
@@ -119,9 +118,9 @@ div#payment-container.payment-page
                                 img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
                     include crypto_guide
                     +crypto_guide(false)
-                .content-box__container__row.payment-gateway(data-select-gateway='zelle' data-default="true")
+                .content-box__container__row.payment-gateway(data-select-gateway='zelle')
                     .radio-input
-                        input(type='radio' name='payment_gateway' value='zelle' aria-controls='pay-with-zelle')
+                        input(type='radio' name='payment_gateway' value='zelle' aria-controls='pay-with-zelle' aria-name='Zelle')
                     .radio-label 
                         .label Zelle
                         .accessory
