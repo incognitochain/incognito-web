@@ -21,22 +21,20 @@ import {
   storeOrderInformationToLocalStorage,
   getOrderInformationFromLocalStorage
 } from './util';
+import Cart from './cart';
 
 export default class Payment {
   constructor(container, cart) {
     if (!container) {
       throw new Error('container not found');
     }
-
     if (!cart) {
       throw new Error('cart not found');
     }
-
     this.informationPageId = 'order-information-container';
     this.paymentPageId = 'payment-container';
     this.cryptoThankyouPageId = 'crypto-thank-you-container';
     this.zelleThankyouPageId = 'zelle-thank-you-container';
-
     this.parentContainer = container;
     this.cart = cart;
     this.container = this.parentContainer.querySelector(
@@ -45,13 +43,8 @@ export default class Payment {
     this.loadingContainer = this.parentContainer.querySelector(
       '.loading-container'
     );
-
+    this.orderInformation = null;
     this.setup();
-    this.orderInformation = new OrderInformation(
-      container,
-      cart,
-      this.onSubmitOrderInformationSuccess.bind(this)
-    );
   }
 
   getPaymentElements() {
@@ -393,6 +386,7 @@ export default class Payment {
 
       const onPaymentMethodInputChanged = function() {
         const ariaControls = this.getAttribute('aria-controls');
+        const ariaName = this.getAttribute('aria-name');
         const paymentGateway = this.value;
         self.toggleAriaControls(paymentMethodContainerEl, ariaControls);
         self.cart.hideTotalPriceInCryptoEl();
@@ -413,7 +407,8 @@ export default class Payment {
             break;
         }
         storeOrderInformationToLocalStorage({
-          paymentGateway
+          paymentGateway,
+          paymentGatewayName: ariaName
         });
       };
 
@@ -502,7 +497,6 @@ export default class Payment {
     if (!paymentGatewayInputEl) return;
     // const paymentGateway = paymentGatewayInputEl.value;
     const { paymentGateway } = getOrderInformationFromLocalStorage();
-    console.log(`paymentGateway`, paymentGateway);
     const isDifferentBillingAddress =
       differentBillingAddressInputEl &&
       differentBillingAddressInputEl.value === 'true';
@@ -591,6 +585,16 @@ export default class Payment {
 
   onSubmitPaymentFormSuccess() {
     this.showPage(this.informationPageId);
+    let cart = this.card;
+    if (!cart) {
+      cart = new Cart(document.querySelector(`#payment`));
+    }
+    console.log(`cart`, cart);
+    this.orderInformation = new OrderInformation(
+      this.container,
+      cart,
+      this.onSubmitOrderInformationSuccess.bind(this)
+    );
   }
 
   onChangeOrderInformationClicked() {
@@ -799,7 +803,6 @@ export default class Payment {
 
   showPage(pageId = this.informationPageId) {
     const pages = this.parentContainer.querySelectorAll('.payment-page');
-    console.log(`pageId`, pageId);
     pages.forEach(page => {
       if (page.id === pageId) {
         page.classList.remove('hidden');

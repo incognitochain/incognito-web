@@ -21,7 +21,7 @@ div#payment-container.payment-page
             fieldset.content-box__container
                 .content-box__container__row.payment-gateway(data-select-gateway='card' data-default="true")
                     .radio-input
-                        input(type='radio' name='payment_gateway' value='card' aria-controls='pay-with-card')
+                        input(type='radio' name='payment_gateway' value='card' aria-controls='pay-with-card' aria-name='Credit card')
                     .radio-label 
                         .label Credit card
                         .accessory
@@ -78,7 +78,7 @@ div#payment-container.payment-page
                     #card-container.input-wrapper  
                 .content-box__container__row.payment-gateway(data-select-gateway='crypto')
                     .radio-input
-                        input(type='radio' name='payment_gateway' value='crypto' aria-controls='pay-with-crypto')
+                        input(type='radio' name='payment_gateway' value='crypto' aria-controls='pay-with-crypto' aria-name='Crypto')
                     .radio-label 
                         .label  Bitcoin, PRV, Ethereum and more
                         .accessory
@@ -120,7 +120,7 @@ div#payment-container.payment-page
                     +crypto_guide(false)
                 .content-box__container__row.payment-gateway(data-select-gateway='zelle')
                     .radio-input
-                        input(type='radio' name='payment_gateway' value='zelle' aria-controls='pay-with-zelle')
+                        input(type='radio' name='payment_gateway' value='zelle' aria-controls='pay-with-zelle' aria-name='Zelle')
                     .radio-label 
                         .label Zelle
                         .accessory
