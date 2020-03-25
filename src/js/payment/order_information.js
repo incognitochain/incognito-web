@@ -42,6 +42,7 @@ export default class OrderInformation {
     this.paymentPageId = 'payment-container';
     this.cryptoThankyouPageId = 'crypto-thank-you-container';
     this.zelleThankyouPageId = 'zelle-thank-you-container';
+    this.updatePaymentGatewayName = this.updatePaymentGatewayName.bind(this);
     this.setup();
   }
 
@@ -155,10 +156,8 @@ export default class OrderInformation {
       countryEl,
       emailEl,
       phoneNumberEl,
-      updatePaymentInfoEls,
-      paymentGatewayEl
+      updatePaymentInfoEls
     } = this.getOrderInformationElements();
-    const { paymentGatewayName } = getOrderInformationFromLocalStorage();
     countryEl &&
       handleSelectElementChanged(countryEl, this.onCountryChange.bind(this));
     emailEl && handleInputChange(emailEl);
@@ -185,20 +184,14 @@ export default class OrderInformation {
         this.onChangePaymentInfoClicked.bind(this)
       )
     );
-    // switch (paymentGateway) {
-    //   case `card`:
-    //     paymentGatewayEl.innerHTML = paymentGateway;
-    //     break;
-    //   case `crypto`:
-    //     paymentGatewayEl.innerHTML = paymentGateway;
-    //     break;
-    //   case `zelle`:
-    //     break;
-    //   default:
-    //     break;
-    // }
-    paymentGatewayEl.innerHTML = paymentGatewayName;
+
     this.fillOrderInformationForm();
+  }
+
+  updatePaymentGatewayName() {
+    const { paymentGatewayName } = getOrderInformationFromLocalStorage();
+    const { paymentGatewayEl } = this.getOrderInformationElements();
+    paymentGatewayEl.innerHTML = paymentGatewayName;
   }
 
   async onSubmitForm(e) {
@@ -295,7 +288,8 @@ export default class OrderInformation {
       zip,
       country
     } = this.getOrderInformationValues();
-    this.cart.getShippingFeeFromServer({ address, city, state, zip, country });
+    const cart = new Cart(document.querySelector(`#payment`));
+    cart.getShippingFeeFromServer({ address, city, state, zip, country });
   }
 
   isFormValidated(formContainer) {

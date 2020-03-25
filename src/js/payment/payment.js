@@ -43,7 +43,11 @@ export default class Payment {
     this.loadingContainer = this.parentContainer.querySelector(
       '.loading-container'
     );
-    this.orderInformation = null;
+    this.orderInformation = new OrderInformation(
+      this.container,
+      this.cart,
+      this.onSubmitOrderInformationSuccess.bind(this)
+    );
     this.setup();
   }
 
@@ -585,16 +589,7 @@ export default class Payment {
 
   onSubmitPaymentFormSuccess() {
     this.showPage(this.informationPageId);
-    let cart = this.card;
-    if (!cart) {
-      cart = new Cart(document.querySelector(`#payment`));
-    }
-    console.log(`cart`, cart);
-    this.orderInformation = new OrderInformation(
-      this.container,
-      cart,
-      this.onSubmitOrderInformationSuccess.bind(this)
-    );
+    this.orderInformation.updatePaymentGatewayName();
   }
 
   onChangeOrderInformationClicked() {
