@@ -1046,15 +1046,15 @@
           .price {
             margin-top: 0px;
 
-            .end-price {
-              font-size: 20px;
-              font-weight: 400;
+            // .end-price {
+            //   font-size: 20px;
+            //   font-weight: 400;
 
-              &::before {
-                top: 0px;
-                font-size: inherit;
-              }
-            }
+            //   &::before {
+            //     top: 0px;
+            //     font-size: inherit;
+            //   }
+            // }
 
             .origin-price {
               font-size: 16px;
