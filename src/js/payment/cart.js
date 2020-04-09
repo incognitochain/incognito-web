@@ -3,10 +3,11 @@ import KEYS from '../constant/keys';
 import {
   getProductPrice,
   getExchangeRates,
-  getShippingFee
+  getShippingFee,
 } from '../service/api';
 import { getCoinName } from '../common/utils/crypto';
 import $ from 'jquery';
+import { ORIGIN_PRODUCT_PRICE } from '../constant/payment';
 
 export default class Cart {
   constructor(container) {
@@ -112,7 +113,7 @@ export default class Cart {
       productPriceEl,
       totalPriceInCryptoEl,
       cryptoPaymentGuideEl,
-      shippingExtraText
+      shippingExtraText,
     };
   }
 
@@ -185,7 +186,7 @@ export default class Cart {
     tax,
     quantity = this.quantity,
     saveCart = false,
-    country
+    country,
   } = {}) {
     const {
       // quantityEl,
@@ -194,7 +195,7 @@ export default class Cart {
       shippingPriceEl,
       taxPriceEl,
       productPriceEl,
-      shippingExtraText
+      shippingExtraText,
     } = this.getCartElements();
 
     const currentCart = this.getCartFromLocalStorage();
@@ -214,7 +215,7 @@ export default class Cart {
       shippingFee,
       tax,
       quantity,
-      totalPrice
+      totalPrice,
     };
 
     if (saveCart) {
@@ -256,18 +257,20 @@ export default class Cart {
   async getPriceFromServer() {
     try {
       const productPrice = await getProductPrice();
-      if (productPrice) {
-        const { OfferPrice: price } = productPrice;
-        this.setPrice(price);
+      if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
+        // const { OfferPrice: price } = productPrice;
+        this.setPrice(productPrice);
+      } else {
+        this.setPrice(ORIGIN_PRODUCT_PRICE);
       }
-    } catch {}
-
-    if (!this.container) return;
-    const productPriceEl = this.container.querySelector('.product-price');
-    if (!productPriceEl) return;
-    productPriceEl.innerText = `$${this.getPrice()}`;
-
-    this.updateCart();
+      if (!this.container) return;
+      const productPriceEl = this.container.querySelector('.product-price');
+      if (!productPriceEl) return;
+      productPriceEl.innerText = `$${this.getPrice()}`;
+      this.updateCart();
+    } catch (error) {
+      this.setPrice(ORIGIN_PRODUCT_PRICE);
+    }
   }
 
   async getShippingFeeFromServer({ address, city, zip, state, country }) {
@@ -290,7 +293,7 @@ export default class Cart {
       shippingFee,
       tax,
       saveCart: true,
-      country
+      country,
     });
   }
 }

@@ -10,26 +10,26 @@ export const subscribe = (email, referralCode, from = '') => {
     body: {
       Email: email,
       ReferralCode: referralCode,
-      FromPage: from
-    }
+      FromPage: from,
+    },
   })
     .then(subscribeModel.fromJson)
-    .catch(e => {
+    .catch((e) => {
       throw new Error(
         e.message || 'Can not subscribe your email right now, please try later'
       );
     });
 };
 
-export const auth = email => {
+export const auth = (email) => {
   return fetch('auth/token', {
     method: 'POST',
     body: {
-      Email: email
-    }
+      Email: email,
+    },
   })
     .then(authModel.fromJson)
-    .catch(e => {
+    .catch((e) => {
       throw new Error(
         e.message || 'Can not register your email right now, please try later'
       );
@@ -38,43 +38,43 @@ export const auth = email => {
 
 export const listReferralLevel = () => {
   return fetch('auth/referral-levels', {
-    method: 'GET'
+    method: 'GET',
   })
-    .then(data => data && data.map(referralLevelModel.fromJson))
-    .catch(e => {
+    .then((data) => data && data.map(referralLevelModel.fromJson))
+    .catch((e) => {
       throw new Error(e.message || 'Can not get referral program list');
     });
 };
 
 export const getUserTotalReferral = () => {
   return fetch('auth/total-referral', {
-    method: 'GET'
+    method: 'GET',
   })
-    .then(num => Number.parseInt(num) || 0)
-    .catch(e => {
+    .then((num) => Number.parseInt(num) || 0)
+    .catch((e) => {
       throw new Error(e.message || 'Can not get user referral total');
     });
 };
 
-export const verifyEmailToken = token => {
+export const verifyEmailToken = (token) => {
   return fetch('auth/verify-email', {
     method: 'POST',
     body: {
-      Token: token
-    }
-  }).catch(e => {
+      Token: token,
+    },
+  }).catch((e) => {
     throw new Error(e.message || 'Token is invalid');
   });
 };
 
-export const sendReferralInvitation = emails => {
+export const sendReferralInvitation = (emails) => {
   const emailStr = emails && emails.join(',');
   return fetch('auth/referral-invitation', {
     method: 'POST',
     body: {
-      Email: emailStr
-    }
-  }).catch(e => {
+      Email: emailStr,
+    },
+  }).catch((e) => {
     if (!APP_ENV.production) {
       console.error(e);
     }
@@ -85,10 +85,10 @@ export const sendReferralInvitation = emails => {
 
 export const getTotalSubscribe = () => {
   return fetch('auth/total-subscrite', {
-    method: 'GET'
+    method: 'GET',
   })
-    .then(num => Intl.NumberFormat().format(num))
-    .catch(e => {
+    .then((num) => Intl.NumberFormat().format(num))
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -99,16 +99,16 @@ export const getTotalSubscribe = () => {
 
 export const getExchangeRates = () => {
   return fetch('exchange/rates', {
-    method: 'GET'
+    method: 'GET',
   })
-    .then(rates => {
+    .then((rates) => {
       const fiatRate = {};
-      rates.forEach(rate => {
+      rates.forEach((rate) => {
         fiatRate[rate.Base.toLowerCase()] = rate.Price;
       });
       return fiatRate;
     })
-    .catch(e => {
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -116,11 +116,11 @@ export const getExchangeRates = () => {
 };
 
 export const getProductPrice = () => {
-  return fetch('product/price', {
-    method: 'GET'
+  return fetch('order/price', {
+    method: 'GET',
   })
-    .then(price => price)
-    .catch(e => {
+    .then((price) => price)
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -132,11 +132,11 @@ export const signUp = ({ name, email }) => {
     method: 'POST',
     body: {
       FullName: name,
-      Email: email
-    }
+      Email: email,
+    },
   })
-    .then(user => user)
-    .catch(e => {
+    .then((user) => user)
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -152,7 +152,7 @@ export const getShippingFee = ({
   city = '',
   zip = '',
   state,
-  country
+  country,
 }) => {
   return fetch('order/shipping-fee', {
     method: 'POST',
@@ -161,11 +161,11 @@ export const getShippingFee = ({
       AddressCity: city,
       AddressRegion: state,
       AddressPostalCode: zip,
-      AddressCountry: country
-    }
+      AddressCountry: country,
+    },
   })
-    .then(fee => fee)
-    .catch(e => {
+    .then((fee) => fee)
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -174,10 +174,10 @@ export const getShippingFee = ({
 
 export const checkCCPaymentGatewayLimit = () => {
   return fetch('order/authorize/check-limit', {
-    method: 'GET'
+    method: 'GET',
   })
-    .then(isEnabled => isEnabled)
-    .catch(e => {
+    .then((isEnabled) => isEnabled)
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -198,13 +198,13 @@ export const submitCryptoOrder = ({
   zip,
   coinName,
   quantity,
-  phoneNumber
+  phoneNumber,
 }) => {
   const CURRENCIES = {
     ETH: 1,
     BTC: 2,
     BNB: 4,
-    PRV: 7
+    PRV: 7,
   };
 
   const ERC20_TOKENS = {
@@ -214,7 +214,7 @@ export const submitCryptoOrder = ({
     PAX: '0x8e870d67f660d95d5be530380d0ec0bd388289e1',
     GUSD: '0x056fd409e1d7a124bd7017459dfea2f387b6d5cd',
     USDS: '0xa4bdb11dc0a2bec88d24a3aa1e6bb17201112ebe',
-    BUSD: '0x4fabb145d64652a948d72533023f6e7a623c7c53'
+    BUSD: '0x4fabb145d64652a948d72533023f6e7a623c7c53',
   };
 
   coinName = coinName.toUpperCase();
@@ -255,11 +255,11 @@ export const submitCryptoOrder = ({
       Quantity: quantity,
       TokenID: tokenId,
       TokenSymbol: tokenSymbol,
-      PhoneNumber: phoneNumber
-    }
+      PhoneNumber: phoneNumber,
+    },
   })
-    .then(orderInfo => orderInfo)
-    .catch(e => {
+    .then((orderInfo) => orderInfo)
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -279,7 +279,7 @@ export const submitZelleOrder = ({
   country,
   zip,
   quantity,
-  phoneNumber
+  phoneNumber,
 }) => {
   return fetch('order/zelle/checkout', {
     method: 'POST',
@@ -292,11 +292,11 @@ export const submitZelleOrder = ({
       AddressPostalCode: zip,
       AddressCountry: country,
       Quantity: quantity,
-      PhoneNumber: phoneNumber
-    }
+      PhoneNumber: phoneNumber,
+    },
   })
-    .then(orderInfo => orderInfo)
-    .catch(e => {
+    .then((orderInfo) => orderInfo)
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -326,7 +326,7 @@ export const submitCreditCardOrder = ({
   cardNumber,
   cardExpiry,
   cardCode,
-  quantity = 1
+  quantity = 1,
 }) => {
   return fetch('order/authorize/checkout', {
     method: 'POST',
@@ -339,7 +339,7 @@ export const submitCreditCardOrder = ({
         AddressRegion: state,
         AddressPostalCode: zip,
         AddressCountry: country,
-        PhoneNumber: phoneNumber
+        PhoneNumber: phoneNumber,
       },
       BillingTo: {
         FirstName: billingFirstName,
@@ -348,18 +348,18 @@ export const submitCreditCardOrder = ({
         AddressCity: billingCity,
         AddressRegion: billingState,
         AddressPostalCode: billingZip,
-        AddressCountry: billingCountry
+        AddressCountry: billingCountry,
       },
       CCInfo: {
         CCNumber: cardNumber,
         CCExpired: cardExpiry,
-        CCCVC: cardCode
+        CCCVC: cardCode,
       },
-      Quantity: quantity
-    }
+      Quantity: quantity,
+    },
   })
-    .then(orderInfo => orderInfo)
-    .catch(e => {
+    .then((orderInfo) => orderInfo)
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -375,7 +375,7 @@ export const registerValidator = ({
   nodeWalletAddress,
   nodeIP,
   referFrom,
-  feedback
+  feedback,
 }) => {
   return fetch('/validator/new', {
     method: 'POST',
@@ -384,11 +384,11 @@ export const registerValidator = ({
       NodeWalletAddress: nodeWalletAddress,
       NodeIP: nodeIP,
       ReferFrom: referFrom,
-      Feedback: feedback
-    }
+      Feedback: feedback,
+    },
   })
-    .then(validator => validator)
-    .catch(e => {
+    .then((validator) => validator)
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -405,11 +405,11 @@ export const getValidatorDetails = ({ telegramId, nodeWalletAddress }) => {
     method: 'POST',
     body: {
       TelegramID: telegramId,
-      NodeWalletAddress: nodeWalletAddress
-    }
+      NodeWalletAddress: nodeWalletAddress,
+    },
   })
-    .then(validatorInfo => validatorInfo)
-    .catch(e => {
+    .then((validatorInfo) => validatorInfo)
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
@@ -427,11 +427,11 @@ export const getOrderHistory = ({ email, orderNumber }) => {
       orderNumber
     )}&Email=${encodeURIComponent(email)}`,
     {
-      method: 'GET'
+      method: 'GET',
     }
   )
-    .then(orderDetails => orderDetails)
-    .catch(e => {
+    .then((orderDetails) => orderDetails)
+    .catch((e) => {
       if (!APP_ENV.production) {
         console.error(e);
       }
