@@ -45,7 +45,7 @@ export const getCountdown = (ele) => {
       `0${minutes}`.slice(-2) +
       ':' +
       `0${seconds}`.slice(-2);
-    const shouldShow = new Date('April 10, 2020 20:00:00').getTime();
+    const shouldShow = new Date('April 9, 2020 21:00:00').getTime();
     if (shouldShow <= now) {
       ele.innerHTML = `Offer ends in ${result}`;
     }
