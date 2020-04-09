@@ -14,7 +14,7 @@ export default class Cart {
     if (!container) {
       throw new Error('container not found');
     }
-    this.price = 399;
+    this.price = 0;
     this.quantity = 1;
     this.cart = this.getCartFromLocalStorage();
     this.selectedCoinName = 'BTC';
@@ -63,7 +63,7 @@ export default class Cart {
   }
 
   getPriceFromLocalStorage() {
-    this.price = storage.get(KEYS.PRODUCT_PRICE) || this.price;
+    this.price = this.price || storage.get(KEYS.PRODUCT_PRICE);
   }
 
   savePriceToLocalStorage(price) {
@@ -79,6 +79,7 @@ export default class Cart {
   }
 
   setPrice(price) {
+    console.log(`price`, price);
     this.price = price || this.price;
     this.savePriceToLocalStorage(price);
   }
@@ -94,7 +95,7 @@ export default class Cart {
     const totalPriceEl = this.container.querySelector('.total-price');
     const shippingPriceEl = this.container.querySelector('.shipping-price');
     const taxPriceEl = this.container.querySelector('.tax-price');
-    const productPriceEl = this.container.querySelector('.product-price');
+    const productPriceEl = this.container.querySelector('#price');
     const totalPriceInCryptoEl = this.container.querySelector(
       '#pay-with-crypto'
     );
@@ -192,7 +193,7 @@ export default class Cart {
       // quantityEl,
       subTotalPriceEl,
       totalPriceEl,
-      shippingPriceEl, 
+      shippingPriceEl,
       taxPriceEl,
       productPriceEl,
       shippingExtraText,
@@ -256,20 +257,33 @@ export default class Cart {
 
   async getPriceFromServer() {
     try {
+      if (!this.container) return;
+      const { productPriceEl } = this.getCartElements();
+      const productPriceContainerEl = this.container.querySelector(
+        '.product-price'
+      );
+      if (!productPriceEl) return;
+      if (!productPriceContainerEl) return;
       const productPrice = await getProductPrice();
       if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
-        // const { OfferPrice: price } = productPrice;
         this.setPrice(productPrice);
+        const originEl = this.container.querySelector('#origin-price');
+        if (!originEl) {
+          const newOriginEl = document.createElement('div');
+          newOriginEl.classList.add('price');
+          newOriginEl.id = 'origin-price';
+          newOriginEl.innerText = `$${ORIGIN_PRODUCT_PRICE}`;
+          productPriceContainerEl.prepend(newOriginEl);
+        } else {
+          originEl.innerText = `$${ORIGIN_PRODUCT_PRICE}`;
+        }
       } else {
         this.setPrice(ORIGIN_PRODUCT_PRICE);
       }
-      if (!this.container) return;
-      const productPriceEl = this.container.querySelector('.product-price');
-      if (!productPriceEl) return;
       productPriceEl.innerText = `$${this.getPrice()}`;
       this.updateCart();
     } catch (error) {
-      this.setPrice(ORIGIN_PRODUCT_PRICE);
+      console.log(`error`, error);
     }
   }
 
@@ -281,8 +295,8 @@ export default class Cart {
     try {
       const fee = await getShippingFee({ address, city, zip, state, country });
       if (fee) {
-        const productPrice = fee.Price;
-        this.setPrice(productPrice);
+        // const productPrice = fee.Price;
+        // this.setPrice(productPrice);
         shippingFee = fee.ShippingFee;
         tax = fee.Tax;
       }

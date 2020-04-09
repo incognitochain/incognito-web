@@ -943,6 +943,9 @@
   .underline-text {
     text-decoration: underline;
   }
+  .bold-text {
+    font-weight: 500;
+  }
   ul.features {
     padding: 0;
     margin: 0;
@@ -1057,4 +1060,22 @@
   .link {
     font-size: 12px;
   }
+}
+
+#origin-price {
+  color: #aaa;
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+#price,
+#origin-price {
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.product-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
