@@ -8,6 +8,7 @@ import {
 import { getCoinName } from '../common/utils/crypto';
 import $ from 'jquery';
 import { ORIGIN_PRODUCT_PRICE } from '../constant/payment';
+import { handleCountdown } from './util';
 
 export default class Cart {
   constructor(container) {
@@ -264,8 +265,10 @@ export default class Cart {
       );
       if (!productPriceEl) return;
       if (!productPriceContainerEl) return;
-      const productPrice = await getProductPrice();
+      // const productPrice = await getProductPrice();
+      let productPrice = 349;
       if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
+        handleCountdown();
         this.setPrice(productPrice);
         const originEl = this.container.querySelector('#origin-price');
         if (!originEl) {

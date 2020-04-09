@@ -111,6 +111,7 @@
   }
 
   nav#header {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -193,7 +194,7 @@
         &.btn {
           background: #08c;
           color: #fff;
-          font-size: .8706em;
+          font-size: 0.8706em;
           > img {
             width: 1em;
             height: 1em;
