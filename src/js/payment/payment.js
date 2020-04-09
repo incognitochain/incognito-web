@@ -17,22 +17,23 @@ import OrderInformation from './order_information';
 import LoadingButton from '../common/loading_button';
 import AddressForm from './address_form';
 import errorCode from '../constant/errorCode';
+import {
+  storeOrderInformationToLocalStorage,
+  getOrderInformationFromLocalStorage
+} from './util';
 
 export default class Payment {
   constructor(container, cart) {
     if (!container) {
       throw new Error('container not found');
     }
-
     if (!cart) {
       throw new Error('cart not found');
     }
-
     this.informationPageId = 'order-information-container';
     this.paymentPageId = 'payment-container';
     this.cryptoThankyouPageId = 'crypto-thank-you-container';
     this.zelleThankyouPageId = 'zelle-thank-you-container';
-
     this.parentContainer = container;
     this.cart = cart;
     this.container = this.parentContainer.querySelector(
@@ -41,24 +42,26 @@ export default class Payment {
     this.loadingContainer = this.parentContainer.querySelector(
       '.loading-container'
     );
-
-    this.setup();
     this.orderInformation = new OrderInformation(
-      container,
-      cart,
+      this.cart,
       this.onSubmitOrderInformationSuccess.bind(this)
     );
+    this.setup();
   }
 
   getPaymentElements() {
     if (!this.container) return {};
     const paymentFormEl = this.container.querySelector('form#payment-form');
-    const updateOrderInformationEls = this.container.querySelectorAll(
-      '.change-order-information'
+    // const updateOrderInformationEls = this.container.querySelectorAll(
+    //   '.change-order-information'
+    // );
+    const updatePaymentInfoEls = this.container.querySelectorAll(
+      `.change-payment-information`
     );
     return {
-      updateOrderInformationEls,
-      paymentFormEl
+      // updateOrderInformationEls,
+      paymentFormEl,
+      updatePaymentInfoEls
     };
   }
 
@@ -69,9 +72,9 @@ export default class Payment {
     const paymentMethodContainerEl = paymentFormEl.querySelector(
       '#payment-method-container'
     );
-    const billingAddressContainerEl = paymentFormEl.querySelector(
-      '#billing-address-container'
-    );
+    // const billingAddressContainerEl = this.container.querySelector(
+    //   `form#order-info`
+    // );
     const submitOrderBtnEl = paymentFormEl.querySelector('#submit-order-btn');
     const creditCardFormEl = paymentFormEl.querySelector('#pay-with-card');
     const cardContainerEl =
@@ -79,15 +82,15 @@ export default class Payment {
     const cardPaymentGatewayInputEl = paymentFormEl.querySelector(
       '.payment-gateway[data-select-gateway="card"]'
     );
-    const billingAddressFormEl = paymentFormEl.querySelector(
-      '#different-billing-address-form'
-    );
+    // const billingAddressFormEl = paymentFormEl.querySelector(
+    //   '#different-billing-address-form'
+    // );
     const paymentGatewayInputEl = paymentFormEl.querySelector(
       'input[name="payment_gateway"]:checked'
     );
-    const differentBillingAddressInputEl = paymentFormEl.querySelector(
-      'input[name="different_billing_address"]:checked'
-    );
+    // const differentBillingAddressInputEl = paymentFormEl.querySelector(
+    //   'input[name="different_billing_address"]:checked'
+    // );
     const cryptoPaymentTypeInputEl = paymentFormEl.querySelector(
       '#crypto-payment-coin-name'
     );
@@ -97,13 +100,13 @@ export default class Payment {
 
     return {
       paymentMethodContainerEl,
-      billingAddressContainerEl,
+      // billingAddressContainerEl,
       creditCardFormEl,
       cardContainerEl,
       cardPaymentGatewayInputEl,
-      billingAddressFormEl,
+      // billingAddressFormEl,
       paymentGatewayInputEl,
-      differentBillingAddressInputEl,
+      // differentBillingAddressInputEl,
       cryptoPaymentTypeInputEl,
       submitOrderBtnEl,
       creditCardNumberEl,
@@ -201,16 +204,24 @@ export default class Payment {
 
     const {
       paymentFormEl,
-      updateOrderInformationEls
+      // updateOrderInformationEls
+      updatePaymentInfoEls
     } = this.getPaymentElements();
 
     // handle events while back to shipping address form
-    updateOrderInformationEls.forEach(updateOrderInformationEl => {
-      updateOrderInformationEl.addEventListener(
+    // updateOrderInformationEls.forEach(updateOrderInformationEl => {
+    //   updateOrderInformationEl.addEventListener(
+    //     'click',
+    //     this.onChangeOrderInformationClicked.bind(this)
+    //   );
+    // });
+
+    updatePaymentInfoEls.forEach(updatePaymentInfoEl =>
+      updatePaymentInfoEl.addEventListener(
         'click',
-        this.onChangeOrderInformationClicked.bind(this)
-      );
-    });
+        this.onChangePaymentInfoClicked.bind(this)
+      )
+    );
 
     paymentFormEl &&
       paymentFormEl.addEventListener(
@@ -254,7 +265,7 @@ export default class Payment {
   async setupPaymentForm() {
     const {
       paymentMethodContainerEl,
-      billingAddressContainerEl,
+      // billingAddressContainerEl,
       creditCardNumberEl,
       creditCardExpiryEl,
       creditCardCodeEl,
@@ -354,7 +365,7 @@ export default class Payment {
 
     if (
       !paymentMethodContainerEl ||
-      !billingAddressContainerEl ||
+      // !billingAddressContainerEl ||
       !submitOrderBtnEl
     )
       return;
@@ -367,6 +378,7 @@ export default class Payment {
     const paymentMethodEls = paymentMethodContainerEl.querySelectorAll(
       '.content-box__container__row'
     );
+
     paymentMethodEls.forEach(paymentMethodEl => {
       const paymentMethodInputEl = paymentMethodEl.querySelector(
         'input[name="payment_gateway"]'
@@ -374,23 +386,30 @@ export default class Payment {
 
       const onPaymentMethodInputChanged = function() {
         const ariaControls = this.getAttribute('aria-controls');
+        const ariaName = this.getAttribute('aria-name');
         const paymentGateway = this.value;
         self.toggleAriaControls(paymentMethodContainerEl, ariaControls);
         self.cart.hideTotalPriceInCryptoEl();
-        billingAddressContainerEl.classList.add('hidden');
+        // billingAddressContainerEl.classList.add('hidden');
         submitOrderBtnEl.innerText = defaultSubmitOrderBtnText;
-
         switch (paymentGateway) {
           case 'card':
-            billingAddressContainerEl.classList.remove('hidden');
+            // billingAddressContainerEl.classList.remove('hidden');
             submitOrderBtnEl.innerText =
               submitOrderBtnPayNowText || defaultSubmitOrderBtnText;
             break;
           case 'crypto':
             self.cart.showTotalPriceInCryptoEl();
             break;
+          case 'zelle':
+            break;
           default:
+            break;
         }
+        storeOrderInformationToLocalStorage({
+          paymentGateway,
+          paymentGatewayName: ariaName
+        });
       };
 
       paymentMethodInputEl &&
@@ -410,10 +429,21 @@ export default class Payment {
   }
 
   async setupBillingForm() {
-    const {
-      billingAddressContainerEl,
-      billingAddressFormEl
-    } = this.getPaymentFormElements();
+    // const {
+    //   billingAddressContainerEl,
+    //   billingAddressFormEl
+    // } = this.getPaymentFormElements();
+
+    const billingAddressContainerEl = document.querySelector(
+      '#payment #billing-address-container'
+    );
+
+    const billingAddressFormEl = document.querySelector(
+      `#payment #different-billing-address-form`
+    );
+
+    console.log(`billingAddressContainerEl`, billingAddressContainerEl);
+
     if (!billingAddressContainerEl) return;
 
     if (billingAddressFormEl)
@@ -452,32 +482,28 @@ export default class Payment {
     });
   }
 
-  async onPaymentFormSubmitted(e) {
-    e.preventDefault();
-
+  async onPayment() {
     const {
       paymentGatewayInputEl,
-      differentBillingAddressInputEl,
       cryptoPaymentTypeInputEl,
       submitOrderBtnEl,
       creditCardNumberEl,
       creditCardExpiryEl,
       creditCardCodeEl
     } = this.getPaymentFormElements();
-
     if (!paymentGatewayInputEl) return;
-
-    const paymentGateway = paymentGatewayInputEl.value;
+    const { paymentGateway } = getOrderInformationFromLocalStorage();
+    const differentBillingAddressInputEl = document.querySelector(
+      `#payment #billing-address-container input[name="different_billing_address"]:checked`
+    );
     const isDifferentBillingAddress =
       differentBillingAddressInputEl &&
       differentBillingAddressInputEl.value === 'true';
-
     const paymentInformation = this.getPaymentInformation();
     const submitOrderLoadingBtnEl = new LoadingButton(submitOrderBtnEl);
     submitOrderLoadingBtnEl.show();
-
     switch (paymentGateway) {
-      case 'card':
+      case 'card': {
         const {
           firstName: billingFirstName,
           lastName: billingLastName,
@@ -489,7 +515,6 @@ export default class Payment {
         } = paymentInformation;
 
         let billingAddressInformation;
-
         if (isDifferentBillingAddress && this.billingAddressForm) {
           const {
             firstNameEl,
@@ -500,7 +525,6 @@ export default class Payment {
             zipEl,
             countryEl
           } = this.billingAddressForm.getAddressFormElements();
-
           billingAddressInformation = {
             billingFirstName: firstNameEl.value.trim(),
             billingLastName: lastNameEl.value.trim(),
@@ -521,19 +545,18 @@ export default class Payment {
             billingCountry
           };
         }
-
         const creditCardInformation = {
           cardNumber: creditCardNumberEl.value.replace(/\s+/g, ''),
           cardExpiry: creditCardExpiryEl.value.replace(/\s+/g, ''),
           cardCode: creditCardCodeEl.value
         };
-
         await this.onSubmitCreditCardOrder({
           ...paymentInformation,
           ...billingAddressInformation,
           ...creditCardInformation
         });
         break;
+      }
       case 'zelle':
         await this.onSubmitZelleOrder(paymentInformation);
         break;
@@ -550,8 +573,30 @@ export default class Payment {
     submitOrderLoadingBtnEl.hide();
   }
 
+  async onPaymentFormSubmitted(e) {
+    e.preventDefault();
+    this.onSubmitPaymentFormSuccess();
+  }
+
+  onSubmitPaymentFormSuccess() {
+    this.showPage(this.informationPageId);
+    const { creditCardNumberEl } = this.getPaymentFormElements();
+    const { paymentGateway } = getOrderInformationFromLocalStorage();
+    if (paymentGateway === 'card') {
+      const cardNumber = creditCardNumberEl.value.replace(/\s+/g, '');
+      storeOrderInformationToLocalStorage({
+        cardNumber: cardNumber.slice(cardNumber.length - 4)
+      });
+    }
+    this.orderInformation.updatePaymentGatewayName();
+  }
+
   onChangeOrderInformationClicked() {
     this.showPage(this.informationPageId);
+  }
+
+  onChangePaymentInfoClicked() {
+    this.showPage(this.paymentPageId);
   }
 
   async onSubmitCreditCardOrder(paymentInformation) {
@@ -693,7 +738,7 @@ export default class Payment {
     }
   }
 
-  onSubmitOrderInformationSuccess(
+  async onSubmitOrderInformationSuccess(
     addressInfo = {
       firstName,
       lastName,
@@ -705,20 +750,21 @@ export default class Payment {
       phoneNumber
     }
   ) {
-    this.shippingAddress = addressInfo;
-    this.showPage(this.paymentPageId);
-    this.updateShipTo(addressInfo);
-    this.updateBillingAddress(addressInfo);
-    this.showLoading();
-    checkCCPaymentGatewayLimit()
-      .then(isEnabled => {
-        isEnabled
-          ? this.enableCCPaymentGateway()
-          : this.disableCCPaymentGateway();
-      })
-      .finally(() => {
-        this.hideLoading();
-      });
+    try {
+      this.shippingAddress = addressInfo;
+      this.updateShipTo(addressInfo);
+      // this.updateBillingAddress(addressInfo);
+      this.showLoading();
+      // const isEnabled = await checkCCPaymentGatewayLimit();
+      // isEnabled
+      //   ? this.enableCCPaymentGateway()
+      //   : this.disableCCPaymentGateway();
+      await this.onPayment();
+    } catch (error) {
+      throw Error(error);
+    } finally {
+      this.hideLoading();
+    }
   }
 
   onCryptoPaymentCoinNameChanged(e) {
@@ -790,7 +836,7 @@ export default class Payment {
         quantity
       },
       options: {
-        step: 2,
+        step: 1,
         option: paymentType
       }
     });
