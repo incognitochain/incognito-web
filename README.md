@@ -1,4 +1,4 @@
-# Incognito Website
+# Incognito Website Buy Node
 
 ## Run project:
 Install dependencies, make sure [Yarn](https://yarnpkg.com/lang/en/docs/install/#mac-stable) was installed 
