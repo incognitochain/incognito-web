@@ -1079,3 +1079,17 @@
   flex-direction: row;
   align-items: center;
 }
+
+.countdown-container {
+  color: #ff6347;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 26px;
+  margin-right: 5%;
+  @media screen and (max-width: 1200px) {
+    font-size: 16px;
+    line-height: 18px;
+    margin-right: unset;
+    margin-top: 20px;
+  }
+}
