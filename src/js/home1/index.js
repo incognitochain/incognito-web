@@ -4,13 +4,15 @@ import countdown from '../service/countdown';
 import {
   getTotalSubscribe,
   getExchangeRates,
-  getProductPrice
+  getProductPrice,
 } from '../service/api';
 import { trackEvent } from '../common/utils/ga';
 import isQueryStringExists from '../service/queryStringExists';
 import KEYS from '../constant/keys';
 import storage from '../service/storage';
 import Sticky from '../common/sticky';
+import { ORIGIN_PRODUCT_PRICE } from '../constant/payment';
+import $ from 'jquery';
 
 // for earning calculation
 const earningStepPercent = 0.5;
@@ -20,12 +22,12 @@ const earningMaxPercent = 100;
 const fixedEarningInUSDRate = {
   btc: 6.75,
   eth: 13.75,
-  bnb: 4.5
+  bnb: 4.5,
 };
 let coinFiatRate = {
   btc: 0.1,
   eth: 0.1,
-  bnb: 0.1
+  bnb: 0.1,
 };
 let sliderAffected = false;
 const earningTooltips = [];
@@ -36,7 +38,7 @@ function main() {
   if (!container) {
     return;
   }
-
+  console.log(`init home...`);
   handleVideoPlayers(container);
   // startCountdown(container);
   handleShowTotalSubscriber(container);
@@ -55,7 +57,7 @@ function main() {
   });
 }
 
-const handleTestimonialSwiper = container => {
+const handleTestimonialSwiper = (container) => {
   const testimonialContainerEl = container.querySelector(
     '#testimonial-container'
   );
@@ -73,16 +75,16 @@ const handleTestimonialSwiper = container => {
     spaceBetween: 50,
     navigation: {
       nextEl: nextBtnEl,
-      prevEl: prevBtnEl
-    }
+      prevEl: prevBtnEl,
+    },
   });
 };
 
-const handleSectionSwipers = container => {
+const handleSectionSwipers = (container) => {
   const swiperEls = container.querySelectorAll(
     '.swiper-container.swiper-coverflow'
   );
-  swiperEls.forEach(swiper => {
+  swiperEls.forEach((swiper) => {
     new Swiper(swiper, {
       effect: 'coverflow',
       loop: true,
@@ -91,26 +93,26 @@ const handleSectionSwipers = container => {
       keyboardControl: true,
       mousewheelControl: true,
       lazy: {
-        loadPrevNext: true
+        loadPrevNext: true,
       },
       preventClicks: false,
       preventClicksPropagation: false,
       navigation: {
         nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
+        prevEl: '.swiper-button-prev',
       },
       coverflowEffect: {
         rotate: 0,
         stretch: 0,
         depth: 500,
         modifier: 1,
-        slideShadows: true
-      }
+        slideShadows: true,
+      },
     });
   });
 };
 
-const handlePressSwiper = container => {
+const handlePressSwiper = (container) => {
   const pressContainerEl = container.querySelector('.press-container');
   if (!pressContainerEl) return;
   const swiperEl = pressContainerEl.querySelector('.swiper-container');
@@ -122,22 +124,22 @@ const handlePressSwiper = container => {
     slidesPerView: 1,
     breakpoints: {
       576: {
-        slidesPerView: 2
+        slidesPerView: 2,
       },
       992: {
-        slidesPerView: 4
-      }
+        slidesPerView: 4,
+      },
     },
     loop: true,
     navigation: {
       nextEl: nextEl,
-      prevEl: prevEl
+      prevEl: prevEl,
     },
     watchOverflow: true,
     spaceBetween: 50,
     autoplay: {
-      delay: 4000
-    }
+      delay: 4000,
+    },
   });
 };
 
@@ -165,21 +167,21 @@ const startCountdown = () => {
       const earlyBirdPriceEls = document.querySelectorAll(
         '.price-info #early-bird-price-note'
       );
-      earlyBirdPriceEls.forEach(earlyBirdPriceEl => {
+      earlyBirdPriceEls.forEach((earlyBirdPriceEl) => {
         earlyBirdPriceEl.remove();
       });
     });
   }
 };
 
-const handleVideoPlayers = container => {
+const handleVideoPlayers = (container) => {
   try {
     container;
 
     const links = container.querySelectorAll('.link[data-video-url]');
 
     links &&
-      links.forEach(link => {
+      links.forEach((link) => {
         link.addEventListener('click', () => {
           const url = link.getAttribute('data-video-url');
 
@@ -190,7 +192,7 @@ const handleVideoPlayers = container => {
             trackEvent({
               eventCategory: 'Youtube player',
               eventAction: 'click',
-              eventLabel: `Play url ${url}`
+              eventLabel: `Play url ${url}`,
             });
           }
         });
@@ -200,12 +202,12 @@ const handleVideoPlayers = container => {
   }
 };
 
-const handleScrollToFAQ = container => {
+const handleScrollToFAQ = (container) => {
   const rootScrollerElm = container.querySelector('.right-content');
   if (!rootScrollerElm) return;
   const scrollBtn = container.querySelector('.scroll-down');
 
-  rootScrollerElm.addEventListener('scroll', function(event) {
+  rootScrollerElm.addEventListener('scroll', function (event) {
     const target = event.target;
 
     if (scrollBtn) {
@@ -218,7 +220,7 @@ const handleScrollToFAQ = container => {
   });
 };
 
-const handleScrollToEmailSubscriber = container => {
+const handleScrollToEmailSubscriber = (container) => {
   const ctaEl = container.querySelector('.cta');
   const priceInfoElm = container.querySelector('.price-info');
   let subscribeEmailEl = ctaEl.querySelector('#buy-now-container');
@@ -235,7 +237,7 @@ const handleScrollToEmailSubscriber = container => {
 
   // const priceElm = priceInfoElm.querySelector('.price');
 
-  window.addEventListener('scroll', function() {
+  window.addEventListener('scroll', function () {
     let ctaElmHeight = ctaEl.offsetHeight;
     if (!zendeskEl) {
       zendeskEl = getZendeskEl();
@@ -256,12 +258,12 @@ const handleScrollToEmailSubscriber = container => {
   });
 };
 
-const handleScrollToNavigationLinks = container => {
+const handleScrollToNavigationLinks = (container) => {
   const navLinksEl = container.querySelector('.nav-links');
   new Sticky(navLinksEl);
 };
 
-const handleAutoPlayUnboxing = container => {
+const handleAutoPlayUnboxing = (container) => {
   if (isQueryStringExists(KEYS.UNBOXING_QUERY)) {
     const unboxingVideoButton = container.querySelector(".link[type='unbox']");
     if (unboxingVideoButton) {
@@ -270,7 +272,7 @@ const handleAutoPlayUnboxing = container => {
   }
 };
 
-const handleAutoPlayIntro = container => {
+const handleAutoPlayIntro = (container) => {
   if (isQueryStringExists(KEYS.INTRO_QUERY)) {
     const introVideoButton = container.querySelector(".link[type='intro']");
     if (introVideoButton) {
@@ -279,29 +281,33 @@ const handleAutoPlayIntro = container => {
   }
 };
 
-const handleGetProductPrice = async container => {
+const handleGetProductPrice = async (container) => {
   const priceInfoEls = container.querySelectorAll('.price-info');
   try {
     const productPrice = await getProductPrice();
+  
     if (productPrice) {
-      const { OfferPrice: price } = productPrice;
-      priceInfoEls.forEach(priceInfoEl => {
-        const priceEl = priceInfoEl.querySelector('.end-price');
-        // const offerCountdownEl = priceInfoEl.querySelector('.offer-countdown');
-        // const offerWrapperEl = priceInfoEl.querySelector('.offer-wrapper');
-        // if (quantityRemaining < 1) {
-        //   offerWrapperEl.remove();
-        // } else {
-        //   if (offerCountdownEl) offerCountdownEl.innerText = quantityRemaining;
-        // }
-        if (priceEl) priceEl.innerText = price;
+      priceInfoEls.forEach((priceInfoEl) => {
+        const priceEl = priceInfoEl.querySelector('.price');
+        const endPriceEl = document.createElement('span');
+        endPriceEl.classList.add('end-price');
+        const promotePriceEl = document.createElement('span');
+        promotePriceEl.classList.add('promote-price');
+        endPriceEl.innerHTML = productPrice;
+        if (productPrice < ORIGIN_PRODUCT_PRICE) {
+          promotePriceEl.innerHTML = ORIGIN_PRODUCT_PRICE;
+          priceEl.appendChild(promotePriceEl);
+        }
+        priceEl.appendChild(endPriceEl);
       });
     }
-  } catch {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const updateEarningTooltip = () => {
-  earningTooltips.map(tooltip => {
+  earningTooltips.map((tooltip) => {
     tooltip.updateTitleContent(
       !sliderAffected
         ? defaultEarningTooltipContent
@@ -310,13 +316,13 @@ const updateEarningTooltip = () => {
   });
 };
 
-const handleEarningSliders = async container => {
+const handleEarningSliders = async (container) => {
   const sliderContainer = container.querySelector('.earning-slider-container');
   if (!sliderContainer) return;
   const currentRate = {
     btc: 0.5,
     eth: 0.5,
-    bnb: 0.5
+    bnb: 0.5,
   };
   const defaultSliderOptions = {
     start: earningDefaultStartPercent,
@@ -324,21 +330,21 @@ const handleEarningSliders = async container => {
     step: earningStepPercent,
     range: {
       min: earningMinPercent,
-      max: earningMaxPercent
+      max: earningMaxPercent,
     },
     format: {
-      to: value => {
+      to: (value) => {
         return value.toFixed(1);
       },
-      from: value => {
+      from: (value) => {
         return Number(value).toFixed(1);
-      }
-    }
+      },
+    },
   };
   const sliders = {
     btc: sliderContainer.querySelector('#btc-slider'),
     eth: sliderContainer.querySelector('#eth-slider'),
-    bnb: sliderContainer.querySelector('#bnb-slider')
+    bnb: sliderContainer.querySelector('#bnb-slider'),
   };
 
   try {
@@ -346,7 +352,7 @@ const handleEarningSliders = async container => {
     if (newCoinFiatRate) {
       coinFiatRate = {
         ...coinFiatRate,
-        ...newCoinFiatRate
+        ...newCoinFiatRate,
       };
 
       storage.set(KEYS.COIN_FIAT_RATE, JSON.stringify(newCoinFiatRate));
@@ -361,7 +367,7 @@ const handleEarningSliders = async container => {
     if (slider) {
       noUiSlider.create(slider, {
         ...defaultSliderOptions,
-        start: currentRate[coinName]
+        start: currentRate[coinName],
       });
       slider.noUiSlider.on('slide', (values, handle, uncoded) => {
         // if (!sliderAffected) sliderAffected = true;
@@ -388,7 +394,7 @@ const updateEarningUI = (container, earningData) => {
 
   let totalEarningPrice = 0;
 
-  Object.values(earningData).forEach(earning => {
+  Object.values(earningData).forEach((earning) => {
     totalEarningPrice += earning.fiat;
   });
 
@@ -404,7 +410,7 @@ const updateEarningUI = (container, earningData) => {
     earningBNBEl.innerText = Math.round(earningData.bnb.coin * 1e4) / 1e4;
 };
 
-const calculateEarning = rates => {
+const calculateEarning = (rates) => {
   const earning = {};
 
   for (const coinName in rates) {
@@ -422,4 +428,6 @@ const calculateEarning = rates => {
   return earning;
 };
 
-main();
+$(document).ready(() => {
+  main();
+});

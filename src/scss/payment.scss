@@ -25,18 +25,9 @@
   .input-wrapper {
     width: 100%;
     margin-top: 45px;
-
     &:first-child {
       margin-top: 0;
     }
-
-    h2 {
-      font-size: 18px;
-      font-weight: 400;
-      margin-bottom: 15px;
-      margin-top: 0;
-    }
-
     .input-field {
       position: relative;
 
@@ -704,11 +695,11 @@
       position: relative;
     }
 
-    h2 {
-      font-size: 18px;
-      font-weight: 400;
-      margin: 0;
-    }
+    // h2 {
+    //   font-size: 18px;
+    //   font-weight: 400;
+    //   margin: 0;
+    // }
 
     p {
       margin-top: 0;
@@ -934,18 +925,8 @@
 
   .three-lines-content {
     display: flex;
-
-    > div:first-child {
-      width: 70px;
-    }
-
-    > div:nth-child(2) {
-      flex: 1;
-    }
-
-    > div:last-child {
-      width: 50px;
-    }
+    align-items: center;
+    justify-content: space-between;
   }
 
   .hidden {
@@ -961,6 +942,9 @@
   }
   .underline-text {
     text-decoration: underline;
+  }
+  .bold-text {
+    font-weight: 500;
   }
   ul.features {
     padding: 0;
@@ -978,8 +962,7 @@
       position: absolute;
       margin: 0;
       left: 5px;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 0;
     }
   }
 }
@@ -1014,8 +997,85 @@
   }
 }
 
+#payment .left-content .input-wrapper {
+  @media screen and (max-width: 1200px) {
+    margin-top: 10px;
+  }
+}
+
+#payment #payment-container .content-box {
+  @media screen and (max-width: 1200px) {
+    margin-top: 0px;
+    margin-bottom: 20px;
+  }
+}
+
+#payment #order-information-container .content-box {
+  @media screen and (max-width: 1200px) {
+    margin-top: 10px !important;
+  }
+}
+
 #payment .right-content {
   @media screen and (max-width: 1200px) {
     max-width: 650px;
   }
+}
+
+#payment #order-information-container {
+  @include content-box();
+}
+
+#payment #different-billing-address-form {
+  margin: 0;
+  border: 1px solid transparent;
+}
+
+#payment {
+  h2 {
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0;
+  }
+}
+
+#payment #order-information-container .content-box .content-box__container {
+  @media screen and (max-width: 1200px) {
+    margin-top: 10px;
+  }
+}
+
+#order-information-container .information {
+  padding: 12px 16px;
+  border: 1px solid #d9d9d9;
+  border-radius: 5px;
+  margin-bottom: 40px;
+  .three-lines-content {
+    &:not(:first-child) {
+      border-bottom: 1px solid #d9d9d9;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+  }
+  .link {
+    font-size: 12px;
+  }
+}
+
+#origin-price {
+  color: #aaa;
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+#price,
+#origin-price {
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.product-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }

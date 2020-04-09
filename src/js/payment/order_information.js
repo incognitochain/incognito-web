@@ -1,5 +1,4 @@
 import IMask from 'imask';
-import KEYS from '../constant/keys';
 import {
   trackEvent,
   addCartTrackEvent,
@@ -9,28 +8,53 @@ import { isEmail } from '../common/utils/validate';
 import { setMessage } from '../service/message_box';
 import { signUpAndSaveToStorage } from '../common/user';
 import { handleSelectElementChanged, handleInputChange } from '../common/form';
-import storage from '../service/storage';
 import LoadingButton from '../common/loading_button';
 import AddressForm from './address_form';
+import {
+  storeOrderInformationToLocalStorage,
+  getOrderInformationFromLocalStorage
+} from './util';
+import Cart from './cart';
 
 export default class OrderInformation {
-  constructor(container, cart, onSubmitSuccess) {
-    if (!container) {
+  constructor(
+    // container,
+    cart,
+    onSubmitSuccess
+  ) {
+    this.parentContainer = document.querySelector(`#payment`);
+    this.container = this.parentContainer.querySelector(
+      ` #order-information-container`
+    );
+    if (!this.container) {
       throw new Error('container not found');
     }
-
     if (!cart) {
       throw new Error('cart not found');
     }
-
-    this.parentContainer = container;
+    // this.parentContainer = container;
     this.cart = cart;
     this.onSubmitSuccess = onSubmitSuccess;
-    this.container = this.parentContainer.querySelector(
-      '#order-information-container'
-    );
-
+    // this.container = this.parentContainer.querySelector(
+    //   '#order-information-container'
+    // );
+    this.informationPageId = 'order-information-container';
+    this.paymentPageId = 'payment-container';
+    this.cryptoThankyouPageId = 'crypto-thank-you-container';
+    this.zelleThankyouPageId = 'zelle-thank-you-container';
+    this.updatePaymentGatewayName = this.updatePaymentGatewayName.bind(this);
     this.setup();
+  }
+
+  showPage(pageId = this.informationPageId) {
+    const pages = this.parentContainer.querySelectorAll('.payment-page');
+    pages.forEach(page => {
+      if (page.id === pageId) {
+        page.classList.remove('hidden');
+      } else {
+        page.classList.add('hidden');
+      }
+    });
   }
 
   getOrderInformationForm() {
@@ -45,7 +69,10 @@ export default class OrderInformation {
     const submitBtnEl = orderInformationFormEl.querySelector(
       '#submit-order-btn'
     );
-
+    const updatePaymentInfoEls = this.container.querySelectorAll(
+      `.change-payment-information`
+    );
+    const paymentGatewayEl = this.container.querySelector(`#payment-gatewate`);
     const {
       firstNameEl,
       lastNameEl,
@@ -67,7 +94,9 @@ export default class OrderInformation {
       zipEl,
       countryEl,
       submitBtnEl,
-      phoneNumberEl
+      phoneNumberEl,
+      updatePaymentInfoEls,
+      paymentGatewayEl
     };
   }
 
@@ -115,17 +144,19 @@ export default class OrderInformation {
       phoneNumber
     };
   }
-
+  onChangePaymentInfoClicked() {
+    this.showPage(this.paymentPageId);
+  }
   setup() {
     const orderInformationFormEl = this.getOrderInformationForm();
     if (!orderInformationFormEl) return;
     this.addressForm = new AddressForm(orderInformationFormEl, 'shipping');
     this.handleFormValidation(orderInformationFormEl);
-
     const {
       countryEl,
       emailEl,
-      phoneNumberEl
+      phoneNumberEl,
+      updatePaymentInfoEls
     } = this.getOrderInformationElements();
     countryEl &&
       handleSelectElementChanged(countryEl, this.onCountryChange.bind(this));
@@ -147,7 +178,28 @@ export default class OrderInformation {
       this.onSubmitForm.bind(this)
     );
 
+    updatePaymentInfoEls.forEach(updatePaymentInfoEl =>
+      updatePaymentInfoEl.addEventListener(
+        'click',
+        this.onChangePaymentInfoClicked.bind(this)
+      )
+    );
+
     this.fillOrderInformationForm();
+  }
+
+  updatePaymentGatewayName() {
+    const {
+      paymentGatewayName,
+      paymentGateway,
+      cardNumber
+    } = getOrderInformationFromLocalStorage();
+    const { paymentGatewayEl } = this.getOrderInformationElements();
+    let innerHTML = paymentGatewayName;
+    if (paymentGateway === 'card') {
+      innerHTML = `${innerHTML} <br/> ****${cardNumber}`;
+    }
+    paymentGatewayEl.innerHTML = innerHTML;
   }
 
   async onSubmitForm(e) {
@@ -179,9 +231,22 @@ export default class OrderInformation {
 
     try {
       const isSignedIn = await this.handleSignUp({ name, email });
-
+      // const { paymentGateway } = getOrderInformationFromLocalStorage();
       if (isSignedIn) {
-        this.storeOrderInformationToLocalStorage({
+        // this.storeOrderInformationToLocalStorage({
+        //   email,
+        //   firstName,
+        //   lastName,
+        //   address,
+        //   name,
+        //   city,
+        //   zip,
+        //   country,
+        //   state,
+        //   phoneNumber,
+        //   step: 2
+        // });
+        storeOrderInformationToLocalStorage({
           email,
           firstName,
           lastName,
@@ -192,7 +257,7 @@ export default class OrderInformation {
           country,
           state,
           phoneNumber,
-          step: 1
+          step: 2
         });
 
         if (this.onSubmitSuccess) {
@@ -231,7 +296,8 @@ export default class OrderInformation {
       zip,
       country
     } = this.getOrderInformationValues();
-    this.cart.getShippingFeeFromServer({ address, city, state, zip, country });
+    const cart = new Cart(document.querySelector(`#payment`));
+    cart.getShippingFeeFromServer({ address, city, state, zip, country });
   }
 
   isFormValidated(formContainer) {
@@ -249,28 +315,40 @@ export default class OrderInformation {
     return true;
   }
 
-  storeOrderInformationToLocalStorage(newPaymentInfo) {
-    const paymentInfo = this.getOrderInformationFromLocalStorage();
-    const newInfo = { ...paymentInfo, ...newPaymentInfo };
+  // storeOrderInformationToLocalStorage(newPaymentInfo) {
+  //   const paymentInfo = this.getOrderInformationFromLocalStorage();
+  //   const newInfo = { ...paymentInfo, ...newPaymentInfo };
 
-    storage.set(KEYS.PAYMENT_INFORMATION, JSON.stringify(newInfo));
-  }
+  //   storage.set(KEYS.PAYMENT_INFORMATION, JSON.stringify(newInfo));
+  // }
 
-  getOrderInformationFromLocalStorage() {
-    try {
-      const json = storage.get(KEYS.PAYMENT_INFORMATION) || '{}';
-      const paymentInfo = JSON.parse(json);
-      return paymentInfo;
-    } catch (error) {
-      if (!APP_ENV.production) {
-        console.error(error);
-      }
-    }
-    return {};
-  }
+  // getOrderInformationFromLocalStorage() {
+  //   try {
+  //     const json = storage.get(KEYS.PAYMENT_INFORMATION) || '{}';
+  //     const paymentInfo = JSON.parse(json);
+  //     return paymentInfo;
+  //   } catch (error) {
+  //     if (!APP_ENV.production) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   return {};
+  // }
 
   fillOrderInformationForm() {
     const { emailEl } = this.getOrderInformationElements();
+    // const {
+    //   email,
+    //   address,
+    //   city,
+    //   zip,
+    //   country,
+    //   state,
+    //   firstName,
+    //   step,
+    //   lastName,
+    //   phoneNumber
+    // } = this.getOrderInformationFromLocalStorage();
     const {
       email,
       address,
@@ -282,8 +360,7 @@ export default class OrderInformation {
       step,
       lastName,
       phoneNumber
-    } = this.getOrderInformationFromLocalStorage();
-
+    } = getOrderInformationFromLocalStorage();
     if (emailEl && email) {
       emailEl.value = email;
       emailEl.dispatchEvent(new Event('input'));
@@ -299,8 +376,7 @@ export default class OrderInformation {
         country,
         phoneNumber
       });
-
-    if (step === 1 && this.onSubmitSuccess) {
+    if (step === 2 && this.onSubmitSuccess) {
       this.onSubmitSuccess({
         firstName,
         lastName,
@@ -414,7 +490,7 @@ export default class OrderInformation {
         quantity
       },
       options: {
-        step: 1
+        step: 2
       }
     });
   }

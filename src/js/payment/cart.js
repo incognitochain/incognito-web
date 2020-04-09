@@ -3,17 +3,18 @@ import KEYS from '../constant/keys';
 import {
   getProductPrice,
   getExchangeRates,
-  getShippingFee
+  getShippingFee,
 } from '../service/api';
 import { getCoinName } from '../common/utils/crypto';
 import $ from 'jquery';
+import { ORIGIN_PRODUCT_PRICE } from '../constant/payment';
 
 export default class Cart {
   constructor(container) {
     if (!container) {
       throw new Error('container not found');
     }
-    this.price = 399;
+    this.price = 0;
     this.quantity = 1;
     this.cart = this.getCartFromLocalStorage();
     this.selectedCoinName = 'BTC';
@@ -24,6 +25,7 @@ export default class Cart {
     this.getCoinExchangeRateFromServer();
     this.getPriceFromServer();
     this.init();
+    this.getShippingFeeFromServer = this.getShippingFeeFromServer.bind(this);
   }
 
   init() {
@@ -61,7 +63,7 @@ export default class Cart {
   }
 
   getPriceFromLocalStorage() {
-    this.price = storage.get(KEYS.PRODUCT_PRICE) || this.price;
+    this.price = this.price || storage.get(KEYS.PRODUCT_PRICE);
   }
 
   savePriceToLocalStorage(price) {
@@ -77,6 +79,7 @@ export default class Cart {
   }
 
   setPrice(price) {
+    console.log(`price`, price);
     this.price = price || this.price;
     this.savePriceToLocalStorage(price);
   }
@@ -92,7 +95,7 @@ export default class Cart {
     const totalPriceEl = this.container.querySelector('.total-price');
     const shippingPriceEl = this.container.querySelector('.shipping-price');
     const taxPriceEl = this.container.querySelector('.tax-price');
-    const productPriceEl = this.container.querySelector('.product-price');
+    const productPriceEl = this.container.querySelector('#price');
     const totalPriceInCryptoEl = this.container.querySelector(
       '#pay-with-crypto'
     );
@@ -100,8 +103,7 @@ export default class Cart {
       '.crypto-payment-guide'
     );
 
-    const shippingExtraText= this.container.querySelector('.extra-text-ship');
-
+    const shippingExtraText = this.container.querySelector('.extra-text-ship');
 
     return {
       quantityEl,
@@ -112,7 +114,7 @@ export default class Cart {
       productPriceEl,
       totalPriceInCryptoEl,
       cryptoPaymentGuideEl,
-      shippingExtraText
+      shippingExtraText,
     };
   }
 
@@ -185,16 +187,16 @@ export default class Cart {
     tax,
     quantity = this.quantity,
     saveCart = false,
-    country
+    country,
   } = {}) {
     const {
       // quantityEl,
       subTotalPriceEl,
       totalPriceEl,
-      shippingPriceEl, 
+      shippingPriceEl,
       taxPriceEl,
       productPriceEl,
-      shippingExtraText
+      shippingExtraText,
     } = this.getCartElements();
 
     const currentCart = this.getCartFromLocalStorage();
@@ -214,7 +216,7 @@ export default class Cart {
       shippingFee,
       tax,
       quantity,
-      totalPrice
+      totalPrice,
     };
 
     if (saveCart) {
@@ -233,13 +235,12 @@ export default class Cart {
         taxPriceEl.classList.remove('show');
       }
     }
-    console.log(country, shippingExtraText);
-    if (country!= undefined && country!="US") { 
+    if (country != undefined && country != 'US') {
       //shippingExtraText.classList.remove('show');
-      shippingExtraText.innerText='This does not include any potential duties or taxes that will vary depending on your locality.';
-      
-    }else{
-      shippingExtraText.innerText='';
+      shippingExtraText.innerText =
+        'This does not include any potential duties or taxes that will vary depending on your locality.';
+    } else {
+      shippingExtraText.innerText = '';
     }
 
     if (totalPriceEl) totalPriceEl.innerText = `$${totalPrice}`;
@@ -256,19 +257,34 @@ export default class Cart {
 
   async getPriceFromServer() {
     try {
+      if (!this.container) return;
+      const { productPriceEl } = this.getCartElements();
+      const productPriceContainerEl = this.container.querySelector(
+        '.product-price'
+      );
+      if (!productPriceEl) return;
+      if (!productPriceContainerEl) return;
       const productPrice = await getProductPrice();
-      if (productPrice) {
-        const { OfferPrice: price } = productPrice;
-        this.setPrice(price);
+      if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
+        this.setPrice(productPrice);
+        const originEl = this.container.querySelector('#origin-price');
+        if (!originEl) {
+          const newOriginEl = document.createElement('div');
+          newOriginEl.classList.add('price');
+          newOriginEl.id = 'origin-price';
+          newOriginEl.innerText = `$${ORIGIN_PRODUCT_PRICE}`;
+          productPriceContainerEl.prepend(newOriginEl);
+        } else {
+          originEl.innerText = `$${ORIGIN_PRODUCT_PRICE}`;
+        }
+      } else {
+        this.setPrice(ORIGIN_PRODUCT_PRICE);
       }
-    } catch {}
-
-    if (!this.container) return;
-    const productPriceEl = this.container.querySelector('.product-price');
-    if (!productPriceEl) return;
-    productPriceEl.innerText = `$${this.getPrice()}`;
-
-    this.updateCart();
+      productPriceEl.innerText = `$${this.getPrice()}`;
+      this.updateCart();
+    } catch (error) {
+      console.log(`error`, error);
+    }
   }
 
   async getShippingFeeFromServer({ address, city, zip, state, country }) {
@@ -279,8 +295,8 @@ export default class Cart {
     try {
       const fee = await getShippingFee({ address, city, zip, state, country });
       if (fee) {
-        const productPrice = fee.Price;
-        this.setPrice(productPrice);
+        // const productPrice = fee.Price;
+        // this.setPrice(productPrice);
         shippingFee = fee.ShippingFee;
         tax = fee.Tax;
       }
@@ -291,7 +307,7 @@ export default class Cart {
       shippingFee,
       tax,
       saveCart: true,
-      country
+      country,
     });
   }
 }
