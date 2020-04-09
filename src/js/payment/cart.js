@@ -192,7 +192,7 @@ export default class Cart {
       // quantityEl,
       subTotalPriceEl,
       totalPriceEl,
-      shippingPriceEl,
+      shippingPriceEl, 
       taxPriceEl,
       productPriceEl,
       shippingExtraText,
