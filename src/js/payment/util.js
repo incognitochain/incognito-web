@@ -39,10 +39,15 @@ export const getCountdown = (ele) => {
     );
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    var result = hours + 'h ' + minutes + 'm ' + seconds + 's ';
+    var result =
+      `0${hours}`.slice(-2) +
+      ':' +
+      `0${minutes}`.slice(-2) +
+      ':' +
+      `0${seconds}`.slice(-2);
     const shouldShow = new Date('April 10, 2020 20:00:00').getTime();
     if (shouldShow <= now) {
-      ele.innerHTML = result;
+      ele.innerHTML = `Offer ends in ${result}`;
     }
     // If the count down is over, write some text
     if (distance < 0) {
@@ -53,9 +58,13 @@ export const getCountdown = (ele) => {
 };
 
 export const handleCountdown = () => {
-  const logoEl = document.querySelector(`#logo`);
-  const countDownEle = document.createElement('div');
-  countDownEle.classList.add(['countdown-container']);
-  logoEl.after(countDownEle);
-  getCountdown(countDownEle);
+  try {
+    const container = document.querySelectorAll(`#submit-order-btn`);
+    const countDownEle = document.createElement('div');
+    countDownEle.classList.add(['countdown-container']);
+    container.forEach((ele) => ele.before(countDownEle));
+    getCountdown(countDownEle);
+  } catch (error) {
+    console.log(error);
+  }
 };

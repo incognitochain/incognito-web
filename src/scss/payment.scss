@@ -1081,15 +1081,14 @@
 }
 
 .countdown-container {
-  color: #f40000;
+  color: #ff6347;
   font-weight: 400;
-  font-size: 2em;
-  line-height: 2.5em;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  @media screen and (max-width: 576px){
-      font-size: 1em;
-      line-height: 1.5em;;
+  font-size: 24px;
+  line-height: 26px;
+  margin-right: 5%;
+  @media screen and (max-width: 1200px) {
+    font-size: 1em;
+    line-height: 1.5em;
+    margin-right: unset;
   }
 }
