@@ -297,8 +297,8 @@ export default class Cart {
     try {
       const fee = await getShippingFee({ address, city, zip, state, country });
       if (fee) {
-        // const productPrice = fee.Price;
-        // this.setPrice(productPrice);
+        const productPrice = fee.Price;
+        this.setPrice(productPrice);
         shippingFee = fee.ShippingFee;
         tax = fee.Tax;
       }
