@@ -265,8 +265,7 @@ export default class Cart {
       );
       if (!productPriceEl) return;
       if (!productPriceContainerEl) return;
-      // const productPrice = await getProductPrice();
-      let productPrice = 349;
+      const productPrice = await getProductPrice();
       if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
         handleCountdown();
         this.setPrice(productPrice);
@@ -298,8 +297,8 @@ export default class Cart {
     try {
       const fee = await getShippingFee({ address, city, zip, state, country });
       if (fee) {
-        // const productPrice = fee.Price;
-        // this.setPrice(productPrice);
+        const productPrice = fee.Price;
+        this.setPrice(productPrice);
         shippingFee = fee.ShippingFee;
         tax = fee.Tax;
       }
