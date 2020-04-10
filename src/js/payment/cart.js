@@ -265,8 +265,7 @@ export default class Cart {
       );
       if (!productPriceEl) return;
       if (!productPriceContainerEl) return;
-      // const productPrice = await getProductPrice();
-      let productPrice = 349;
+      const productPrice = await getProductPrice();
       if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
         handleCountdown();
         this.setPrice(productPrice);
