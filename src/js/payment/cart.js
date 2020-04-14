@@ -4,6 +4,7 @@ import {
   getProductPrice,
   getExchangeRates,
   getShippingFee,
+  getConfigsFromServer,
 } from '../service/api';
 import { getCoinName } from '../common/utils/crypto';
 import $ from 'jquery';
@@ -25,6 +26,7 @@ export default class Cart {
     this.getPriceFromLocalStorage();
     this.getCoinExchangeRateFromServer();
     this.getPriceFromServer();
+    // this.getSystemConfigsFromServer();
     this.init();
     this.getShippingFeeFromServer = this.getShippingFeeFromServer.bind(this);
   }
@@ -103,6 +105,7 @@ export default class Cart {
     const cryptoPaymentGuideEl = this.container.querySelector(
       '.crypto-payment-guide'
     );
+    const shippingTimeEl = this.container.querySelector('#shipping-time');
 
     const shippingExtraText = this.container.querySelector('.extra-text-ship');
 
@@ -116,6 +119,7 @@ export default class Cart {
       totalPriceInCryptoEl,
       cryptoPaymentGuideEl,
       shippingExtraText,
+      shippingTimeEl,
     };
   }
 
@@ -259,15 +263,19 @@ export default class Cart {
   async getPriceFromServer() {
     try {
       if (!this.container) return;
-      const { productPriceEl } = this.getCartElements();
+      const { productPriceEl, shippingTimeEl } = this.getCartElements();
       const productPriceContainerEl = this.container.querySelector(
         '.product-price'
       );
-      if (!productPriceEl) return;
-      if (!productPriceContainerEl) return;
-      const productPrice = await getProductPrice();
+      if (!productPriceEl || !shippingTimeEl || !productPriceContainerEl) {
+        return;
+      }
+      const configs = await getConfigsFromServer();
+      const {
+        MinerPrice: productPrice,
+        MinerShipInfo: shippingInDays,
+      } = configs;
       if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
-        // handleCountdown();
         this.setPrice(productPrice);
         const originEl = this.container.querySelector('#origin-price');
         if (!originEl) {
@@ -283,6 +291,7 @@ export default class Cart {
         this.setPrice(ORIGIN_PRODUCT_PRICE);
       }
       productPriceEl.innerText = `$${this.getPrice()}`;
+      shippingTimeEl.innerText = `Ships ${shippingInDays || 'within 2 days'}`;
       this.updateCart();
     } catch (error) {
       console.log(`error`, error);
