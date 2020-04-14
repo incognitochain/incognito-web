@@ -270,11 +270,12 @@ export default class Cart {
       if (!productPriceEl || !shippingTimeEl || !productPriceContainerEl) {
         return;
       }
-      const configs = await getConfigsFromServer();
-      const {
-        MinerPrice: productPrice,
-        MinerShipInfo: shippingInDays,
-      } = configs;
+      // const configs = await getConfigsFromServer();
+      // const {
+      //   MinerPrice: productPrice,
+      //   MinerShipInfo: shippingInDays,
+      // } = configs;
+      const productPrice = await getProductPrice();
       if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
         this.setPrice(productPrice);
         const originEl = this.container.querySelector('#origin-price');
@@ -291,7 +292,8 @@ export default class Cart {
         this.setPrice(ORIGIN_PRODUCT_PRICE);
       }
       productPriceEl.innerText = `$${this.getPrice()}`;
-      shippingTimeEl.innerText = `Ships ${shippingInDays || 'within 2 days'}`;
+      // shippingTimeEl.innerText = `Ships ${shippingInDays || 'within 2 days'}`;
+      shippingTimeEl.innerText = `Ships within 2 days`;
       this.updateCart();
     } catch (error) {
       console.log(`error`, error);
