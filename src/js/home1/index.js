@@ -285,6 +285,7 @@ const handleGetProductPrice = async (container) => {
   const priceInfoEls = container.querySelectorAll('.price-info');
   try {
     const productPrice = await getProductPrice();
+  
     if (productPrice) {
       priceInfoEls.forEach((priceInfoEl) => {
         const priceEl = priceInfoEl.querySelector('.price');

@@ -4,17 +4,19 @@ import {
   getProductPrice,
   getExchangeRates,
   getShippingFee,
+  getConfigsFromServer,
 } from '../service/api';
 import { getCoinName } from '../common/utils/crypto';
 import $ from 'jquery';
 import { ORIGIN_PRODUCT_PRICE } from '../constant/payment';
+// import { handleCountdown } from './util';
 
 export default class Cart {
   constructor(container) {
     if (!container) {
       throw new Error('container not found');
     }
-    this.price = 399;
+    this.price = 0;
     this.quantity = 1;
     this.cart = this.getCartFromLocalStorage();
     this.selectedCoinName = 'BTC';
@@ -24,6 +26,7 @@ export default class Cart {
     this.getPriceFromLocalStorage();
     this.getCoinExchangeRateFromServer();
     this.getPriceFromServer();
+    // this.getSystemConfigsFromServer();
     this.init();
     this.getShippingFeeFromServer = this.getShippingFeeFromServer.bind(this);
   }
@@ -63,7 +66,7 @@ export default class Cart {
   }
 
   getPriceFromLocalStorage() {
-    this.price = storage.get(KEYS.PRODUCT_PRICE) || this.price;
+    this.price = this.price || storage.get(KEYS.PRODUCT_PRICE);
   }
 
   savePriceToLocalStorage(price) {
@@ -79,6 +82,7 @@ export default class Cart {
   }
 
   setPrice(price) {
+    console.log(`price`, price);
     this.price = price || this.price;
     this.savePriceToLocalStorage(price);
   }
@@ -94,16 +98,16 @@ export default class Cart {
     const totalPriceEl = this.container.querySelector('.total-price');
     const shippingPriceEl = this.container.querySelector('.shipping-price');
     const taxPriceEl = this.container.querySelector('.tax-price');
-    const productPriceEl = this.container.querySelector('.product-price');
+    const productPriceEl = this.container.querySelector('#price');
     const totalPriceInCryptoEl = this.container.querySelector(
       '#pay-with-crypto'
     );
     const cryptoPaymentGuideEl = this.container.querySelector(
       '.crypto-payment-guide'
     );
+    const shippingTimeEl = this.container.querySelector('#shipping-time');
 
-    const shippingExtraText= this.container.querySelector('.extra-text-ship');
-
+    const shippingExtraText = this.container.querySelector('.extra-text-ship');
 
     return {
       quantityEl,
@@ -114,7 +118,8 @@ export default class Cart {
       productPriceEl,
       totalPriceInCryptoEl,
       cryptoPaymentGuideEl,
-      shippingExtraText
+      shippingExtraText,
+      shippingTimeEl,
     };
   }
 
@@ -187,16 +192,16 @@ export default class Cart {
     tax,
     quantity = this.quantity,
     saveCart = false,
-    country
+    country,
   } = {}) {
     const {
       // quantityEl,
       subTotalPriceEl,
       totalPriceEl,
-      shippingPriceEl, 
+      shippingPriceEl,
       taxPriceEl,
       productPriceEl,
-      shippingExtraText
+      shippingExtraText,
     } = this.getCartElements();
 
     const currentCart = this.getCartFromLocalStorage();
@@ -235,13 +240,12 @@ export default class Cart {
         taxPriceEl.classList.remove('show');
       }
     }
-    console.log(country, shippingExtraText);
-    if (country!= undefined && country!="US") { 
+    if (country != undefined && country != 'US') {
       //shippingExtraText.classList.remove('show');
-      shippingExtraText.innerText='This does not include any potential duties or taxes that will vary depending on your locality.';
-      
-    }else{
-      shippingExtraText.innerText='';
+      shippingExtraText.innerText =
+        'This does not include any potential duties or taxes that will vary depending on your locality.';
+    } else {
+      shippingExtraText.innerText = '';
     }
 
     if (totalPriceEl) totalPriceEl.innerText = `$${totalPrice}`;
@@ -258,20 +262,41 @@ export default class Cart {
 
   async getPriceFromServer() {
     try {
+      if (!this.container) return;
+      const { productPriceEl, shippingTimeEl } = this.getCartElements();
+      const productPriceContainerEl = this.container.querySelector(
+        '.product-price'
+      );
+      if (!productPriceEl || !shippingTimeEl || !productPriceContainerEl) {
+        return;
+      }
+      // const configs = await getConfigsFromServer();
+      // const {
+      //   MinerPrice: productPrice,
+      //   MinerShipInfo: shippingInDays,
+      // } = configs;
       const productPrice = await getProductPrice();
       if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
-        // const { OfferPrice: price } = productPrice;
         this.setPrice(productPrice);
+        const originEl = this.container.querySelector('#origin-price');
+        if (!originEl) {
+          const newOriginEl = document.createElement('div');
+          newOriginEl.classList.add('price');
+          newOriginEl.id = 'origin-price';
+          newOriginEl.innerText = `$${ORIGIN_PRODUCT_PRICE}`;
+          productPriceContainerEl.prepend(newOriginEl);
+        } else {
+          originEl.innerText = `$${ORIGIN_PRODUCT_PRICE}`;
+        }
       } else {
         this.setPrice(ORIGIN_PRODUCT_PRICE);
       }
-      if (!this.container) return;
-      const productPriceEl = this.container.querySelector('.product-price');
-      if (!productPriceEl) return;
       productPriceEl.innerText = `$${this.getPrice()}`;
+      // shippingTimeEl.innerText = `Ships ${shippingInDays || 'within 2 days'}`;
+      shippingTimeEl.innerText = `Ships within 24 hours`;
       this.updateCart();
     } catch (error) {
-      this.setPrice(ORIGIN_PRODUCT_PRICE);
+      console.log(`error`, error);
     }
   }
 
@@ -295,7 +320,7 @@ export default class Cart {
       shippingFee,
       tax,
       saveCart: true,
-      country
+      country,
     });
   }
 }

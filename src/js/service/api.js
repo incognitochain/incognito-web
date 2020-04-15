@@ -439,3 +439,13 @@ export const getOrderHistory = ({ email, orderNumber }) => {
       throw e;
     });
 };
+
+export const getConfigsFromServer = () => {
+  return fetch(`system/configs`, {
+    method: 'GET',
+  })
+    .then((resolve) => resolve)
+    .catch((e) => {
+      throw e;
+    });
+};

@@ -33,3 +33,5 @@ export const PAYMENT_TYPE_TEXT = {
 export const ZELLE_PAYMENT_ADDRESS = 'payment@incognito.org';
 
 export const ORIGIN_PRODUCT_PRICE = 399;
+
+export const SHIPPING_DAYS_DEFAULT = 2;
