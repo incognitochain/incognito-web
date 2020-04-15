@@ -943,6 +943,9 @@
   .underline-text {
     text-decoration: underline;
   }
+  .bold-text {
+    font-weight: 500;
+  }
   ul.features {
     padding: 0;
     margin: 0;
@@ -976,8 +979,8 @@
     line-height: 28px;
   }
   select.select-box {
-    padding: 16px 29px 5px 11px;
-    height: 43px;
+    padding: 7px 29px 5px 11px;
+    height: 36px;
     background: white;
     font-size: 14px;
     border: 1px solid #d9d9d9;
@@ -1056,5 +1059,37 @@
   }
   .link {
     font-size: 12px;
+  }
+}
+
+#origin-price {
+  color: #aaa;
+  text-decoration: line-through;
+  margin-right: 10px;
+}
+
+#price,
+#origin-price {
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.product-price {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.countdown-container {
+  color: #ff6347;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 26px;
+  margin-right: 5%;
+  @media screen and (max-width: 1200px) {
+    font-size: 16px;
+    line-height: 18px;
+    margin-right: unset;
+    margin-top: 20px;
   }
 }
