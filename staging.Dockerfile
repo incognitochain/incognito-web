@@ -1,6 +1,10 @@
 FROM node:10.16.3-slim AS builder
 
+ARG CONF_ENV
+
 WORKDIR /app
+
+RUN echo -n "$CONF_ENV" | base64 -d > .env
 
 COPY . .
 

@@ -36,6 +36,7 @@ jobs:
           image: incognito-web
           tag: $(echo $CIRCLE_SHA1 | cut -c -7)
           dockerfile: staging.Dockerfile
+          extra_build_args: --build-arg CONF_ENV
       - gcr/push-image:
           image: incognito-web
           tag: $(echo $CIRCLE_SHA1 | cut -c -7)
