@@ -30,26 +30,26 @@ div#cart-container
     div.order-summary
         div.content-two-columns.separator
             div.left
-                div Subtotal 
-                div Shipping 
+                div Subtotal
+                div Shipping
                 div.rocket
-                .info.offer-wrapper  
-                    span(id="shipping-time").shipppingTime 
+                .info.offer-wrapper
+                    span(id="shipping-time").shipppingTime
                 div.extra-text-ship(style={'font-size':'12px', width:'100%'})
 
             div.right
-                div.sub-total-price=price 
+                div.sub-total-price=price
                 div.shipping-price FREE
         div.content-two-columns
             div.left
-                div.total-label Total 
+                div.total-label Total
             div.right
-                span.total-price.price=price  
+                span.total-price.price=price
         div.content-two-columns#pay-with-crypto.hidden
             div.left
-                div.total-label.highlight Pay with 
+                div.total-label.highlight Pay with
                     span.coin-name
             div.right
-                span.total-price.price 
+                span.total-price.price
     include ./crypto_guide
     +crypto_guide()

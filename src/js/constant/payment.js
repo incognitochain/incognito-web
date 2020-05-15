@@ -22,6 +22,7 @@ export const PAYMENT_TYPE = {
   ZELLE: 3,
   AMAZON: 4,
   AUTHORIZE_DOT_NET: 5,
+  INCOGNITO_TOKEN: 6,
 };
 export const PAYMENT_TYPE_TEXT = {
   [PAYMENT_TYPE.CRYPTO]: 'Crypto',
@@ -29,6 +30,7 @@ export const PAYMENT_TYPE_TEXT = {
   [PAYMENT_TYPE.ZELLE]: 'Zelle',
   [PAYMENT_TYPE.AMAZON]: 'Amazon Payment',
   [PAYMENT_TYPE.AUTHORIZE_DOT_NET]: 'Credit card',
+  [PAYMENT_TYPE.INCOGNITO_TOKEN]: 'Incognito Token',
 };
 export const ZELLE_PAYMENT_ADDRESS = 'payment@incognito.org';
 
