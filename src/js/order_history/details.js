@@ -106,6 +106,7 @@ const getOrderStatusDetailElements = container => {
 const getPaymentGateway = (paymentGateway, currencyType) => {
   switch (+paymentGateway) {
     case PAYMENT_TYPE.CRYPTO:
+    case PAYMENT_TYPE.INCOGNITO_TOKEN:
       return getCoinName(currencyType);
     default:
       return PAYMENT_TYPE_TEXT[paymentGateway] || 'Unknow';
