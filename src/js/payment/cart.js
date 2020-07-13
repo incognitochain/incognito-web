@@ -240,7 +240,7 @@ export default class Cart {
         taxPriceEl.classList.remove('show');
       }
     }
-    if (country != undefined && country != 'US') {
+    if (country && (country != 'US' || country != 'VN')) {
       //shippingExtraText.classList.remove('show');
       shippingExtraText.innerText =
         'This does not include any potential duties or taxes that will vary depending on your locality.';
@@ -293,7 +293,7 @@ export default class Cart {
       }
       productPriceEl.innerText = `$${this.getPrice()}`;
       // shippingTimeEl.innerText = `Ships ${shippingInDays || 'within 2 days'}`;
-      shippingTimeEl.innerText = `Ships July 15 - July 30`;
+      shippingTimeEl.innerText = `Ships Aug 10 - Aug 25`;
       this.updateCart();
     } catch (error) {
       console.log(`error`, error);
