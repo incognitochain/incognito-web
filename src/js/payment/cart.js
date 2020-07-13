@@ -240,7 +240,7 @@ export default class Cart {
         taxPriceEl.classList.remove('show');
       }
     }
-    if (country != undefined && country != 'US') {
+    if (country && (country != 'US' || country != 'VN')) {
       //shippingExtraText.classList.remove('show');
       shippingExtraText.innerText =
         'This does not include any potential duties or taxes that will vary depending on your locality.';
