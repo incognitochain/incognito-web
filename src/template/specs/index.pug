@@ -20,18 +20,18 @@ block main
    include ../telegram_chat.pug
    include ../header.pug
    div#specs
-    .subscribe-email
-      include ../common/buy_now.pug
-      +buy_now()
+    //- .subscribe-email
+    //-   include ../common/buy_now.pug
+    //-   +buy_now()
     .device-image-container
       .container
         +row-specs('')
           +spec1
             span.device-name Node
             img(src=require('../../image/basic-miner.png'), alt='basic-miner').device
-          +spec2
-            span.device-name Node Pro
-            img(src=require('../../image/pro-miner.png'), alt='pro-miner').device
+          //- +spec2
+          //-   span.device-name Node Pro
+          //-   img(src=require('../../image/pro-miner.png'), alt='pro-miner').device
     .content.container
       //- +row-specs('Cost')
       //-   +spec1
@@ -47,39 +47,39 @@ block main
       +row-specs('Built-in blockchains')
         +spec1
           span.desc Incognito Network
-        +spec2
-          span.desc Incognito Network
-            br
-            | Ethereum 2.0
-            br
-            | Harmony
-            br
-            | Lightning Network
+        //- +spec2
+        //-   span.desc Incognito Network
+        //-     br
+        //-     | Ethereum 2.0
+        //-     br
+        //-     | Harmony
+        //-     br
+        //-     | Lightning Network
       +row-specs('Memory')
         +spec1
           span.large-label 4GB
           span.desc DDR3L-1600/1866 1.35V SO-DIMM
-        +spec2
-          span.large-label 8GB
-          span.desc DDR3L-1600/1866 1.35V SO-DIMM
+        //- +spec2
+        //-   span.large-label 8GB
+        //-   span.desc DDR3L-1600/1866 1.35V SO-DIMM
 
       +row-specs('Storage')
         +spec1
           span.large-label 512GB SSD
           span.desc PCIe-Gen2. SATA3 6Gb/s
-        +spec2
-          span.large-label 1TB
-          span.desc PCIe-Gen2. SATA3 6Gb/s
+        //- +spec2
+        //-   span.large-label 1TB
+        //-   span.desc PCIe-Gen2. SATA3 6Gb/s
 
       +row-specs('Processor')
         +spec1
           span.large-label 4-core
           span.desc 1.5Ghz quad-core Intel Celeron J3455
           span.desc Apollo Lake (Goldmont), 4C/4T, 1.5 - 2.3 GHz, 14nm, 2 MB L2, 10W TDP
-        +spec2
-          span.large-label 4-core
-          span.desc 1.5Ghz quad-core Intel Celeron J3455
-          span.desc Apollo Lake (Goldmont), 4C/4T, 1.5 - 2.3 GHz, 14nm, 2 MB L2, 10W TDP
+        //- +spec2
+        //-   span.large-label 4-core
+        //-   span.desc 1.5Ghz quad-core Intel Celeron J3455
+        //-   span.desc Apollo Lake (Goldmont), 4C/4T, 1.5 - 2.3 GHz, 14nm, 2 MB L2, 10W TDP
       
       +row-specs('Communications')
         +spec1
