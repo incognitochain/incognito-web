@@ -107,7 +107,7 @@ export default class Cart {
     );
     const shippingTimeEl = this.container.querySelector('#shipping-time');
 
-    const shippingExtraText = this.container.querySelector('.extra-text-ship');
+    const shippingExtraText = $('#extra-text-ship');
 
     return {
       quantityEl,
@@ -203,19 +203,16 @@ export default class Cart {
       productPriceEl,
       shippingExtraText,
     } = this.getCartElements();
-
+    let _country = !!country ? country : $('#shipping-country').val();
     const currentCart = this.getCartFromLocalStorage();
     shippingFee =
       shippingFee != null ? shippingFee : currentCart.shippingFee || 0;
     tax = tax != null ? tax : currentCart.tax || 0;
     // quantity = quantity != null ? quantity : currentCart.quantity || 1;
-
     const subTotalPrice = quantity * price;
     const totalPrice = subTotalPrice + shippingFee + tax;
     this.totalPrice = totalPrice;
-
     // quantity = quantityEl ? quantityEl.value : quantity;
-
     this.cart = {
       price,
       shippingFee,
@@ -240,15 +237,20 @@ export default class Cart {
         taxPriceEl.classList.remove('show');
       }
     }
-    if (country && (country != 'US' || country != 'VN')) {
-      //shippingExtraText.classList.remove('show');
-      shippingExtraText.innerText =
-        'This does not include any potential duties or taxes that will vary depending on your locality.';
-    } else {
-      shippingExtraText.innerText = '';
-    }
-
     if (totalPriceEl) totalPriceEl.innerText = `$${totalPrice}`;
+    switch (_country) {
+      case 'US':
+      case 'VN': {
+        shippingExtraText.text('');
+        break;
+      }
+      default: {
+        shippingExtraText.text(
+          'This does not include any potential duties or taxes that will vary depending on your locality.'
+        );
+        break;
+      }
+    }
     this.updateTotalPriceInCrypto();
   }
 
