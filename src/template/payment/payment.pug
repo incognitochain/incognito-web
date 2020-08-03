@@ -80,7 +80,7 @@ div#payment-container.payment-page
                     .radio-input
                         input(type='radio' name='payment_gateway' value='crypto' aria-controls='pay-with-crypto' aria-name='Crypto')
                     .radio-label
-                        .label  Bitcoin, PRV, Ethereum and more
+                        .label  Bitcoin, Ethereum and more
                         .accessory
                             img(src=require('../../image/icon/prv.jpg'), alt="")
                             img(src=require('../../image/icon/btc.svg'))
@@ -96,8 +96,6 @@ div#payment-container.payment-page
                                     +coin_name('BTC')
                                 option(value='ETH')
                                     +coin_name('ETH')
-                                option(value='PRV')
-                                    +coin_name('PRV')
                                 option(value='BNB')
                                     +coin_name('BNB')
                                 option(value='USDT')
