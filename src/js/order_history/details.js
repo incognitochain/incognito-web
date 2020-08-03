@@ -5,8 +5,9 @@ import {
   PAYMENT_TYPE_TEXT,
   ORDER_STATUS,
   ORDER_STATUS_TEXT,
-  ZELLE_PAYMENT_ADDRESS
+  ZELLE_PAYMENT_ADDRESS,
 } from '../constant/payment';
+import { ellipsisCenter } from '../../utils';
 
 const contactEmail = 'go@incognito.org';
 const contactEmailSubject = 'Order Update Request #{{ order_number }}';
@@ -15,15 +16,15 @@ const messages = {
   title: {
     success: 'Thank you, {{ first_name }}!',
     fail: '{{ first_name }}, your order did not go through.',
-    pending: '{{ first_name }}, your order is pending.'
+    pending: '{{ first_name }}, your order is pending.',
   },
   heading: {
     success: 'Your order is confirmed',
     fail: 'Your payment was unsuccessful',
     pending: {
       [PAYMENT_TYPE.CRYPTO]: 'Please make a transfer to complete your order.',
-      [PAYMENT_TYPE.ZELLE]: 'Please make a transfer to complete your order.'
-    }
+      [PAYMENT_TYPE.ZELLE]: 'Please make a transfer to complete your order.',
+    },
   },
   description: {
     success:
@@ -41,12 +42,12 @@ const messages = {
           <h3 class="heading">Please note:</h3>\
           When making a Zelle transfer, please include your order number #<span class="strong">{{ order_number }}</span> in the Notes section.\
         </div>
-        <div class="description">If you need any assistance completing your order, please reach out to <a href="{{ support_email_href }}">{{ support_email }}</a>. Thanks for your interest in Node!</div>`
-    }
-  }
+        <div class="description">If you need any assistance completing your order, please reach out to <a href="{{ support_email_href }}">{{ support_email }}</a>. Thanks for your interest in Node!</div>`,
+    },
+  },
 };
 
-const getOrderStatusDetailElements = container => {
+const getOrderStatusDetailElements = (container) => {
   if (!container) return {};
 
   const paymentGatewayEl = container.querySelector('#payment-gateway');
@@ -99,7 +100,7 @@ const getOrderStatusDetailElements = container => {
     productShippingFeeEl,
     productTotalPriceEl,
     orderConfirmationTitleEl,
-    orderConfirmationDescriptionEl
+    orderConfirmationDescriptionEl,
   };
 };
 
@@ -131,7 +132,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
     productShippingFeeEl,
     productTotalPriceEl,
     orderConfirmationTitleEl,
-    orderConfirmationDescriptionEl
+    orderConfirmationDescriptionEl,
   } = getOrderStatusDetailElements(container);
 
   const {
@@ -152,7 +153,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
     PaymentType: orderPaymentType,
     CurrencyType: orderCurrencyType,
     ExpiredAt: orderExpiredTime,
-    PhoneNumber: orderPhoneNumber
+    PhoneNumber: orderPhoneNumber,
   } = orderDetails;
 
   let { Status: orderStatus } = orderDetails;
@@ -168,7 +169,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
 
   const contactEmailHref = `mailto:${contactEmail}?subject=${encodeURIComponent(
     replaceVariables(contactEmailSubject, {
-      order_number: orderNumber
+      order_number: orderNumber,
     })
   )}`;
 
@@ -194,7 +195,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
       if (mainHeaderEl) {
         const titleMessage = messages.title.pending;
         mainHeaderEl.innerText = replaceVariables(titleMessage, {
-          first_name: orderFirstName
+          first_name: orderFirstName,
         });
       }
 
@@ -219,7 +220,10 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
               support_email: contactEmail,
               support_email_href: contactEmailHref,
               coin_name: orderCurrencyType,
-              wallet_address: orderCryptoWalletAddress
+              wallet_address: ellipsisCenter({
+                str: orderCryptoWalletAddress,
+                limit: 25,
+              }),
             }
           );
         }
@@ -231,7 +235,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
       if (mainHeaderEl) {
         const titleMessage = messages.title.success;
         mainHeaderEl.innerText = replaceVariables(titleMessage, {
-          first_name: orderFirstName
+          first_name: orderFirstName,
         });
       }
 
@@ -246,7 +250,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
           descriptionMessage,
           {
             support_email: contactEmail,
-            support_email_href: contactEmailHref
+            support_email_href: contactEmailHref,
           }
         );
       }
@@ -254,7 +258,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
     default:
       if (mainHeaderEl) {
         mainHeaderEl.innerText = replaceVariables(messages.title.fail, {
-          first_name: orderFirstName
+          first_name: orderFirstName,
         });
       }
 
@@ -269,7 +273,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
           descriptionMessage,
           {
             support_email: contactEmail,
-            support_email_href: contactEmailHref
+            support_email_href: contactEmailHref,
           }
         );
       }
@@ -330,7 +334,7 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
   }
 
   if (requestUpdateHrefEls) {
-    requestUpdateHrefEls.forEach(requestUpdateHrefEl => {
+    requestUpdateHrefEls.forEach((requestUpdateHrefEl) => {
       requestUpdateHrefEl.href = contactEmailHref;
     });
   }
