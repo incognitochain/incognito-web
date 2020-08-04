@@ -42,12 +42,11 @@ jobs:
           tag: $(echo $CIRCLE_SHA1 | cut -c -7)
   deploy_staging:
     docker:
-      - image: gcr.io/staging-incognito/deployer:0.3
+      - image: gcr.io/staging-incognito/deployer
         auth:
           username: _json_key
           password: $GCLOUD_SERVICE_KEY
         environment:
-          CLUSTER: staging
           RELEASE: incognito-web
           NAMESPACE: default
     working_directory: /etc/deployments
