@@ -9,6 +9,12 @@ import {
 } from '../constant/payment';
 import { ellipsisCenter } from '../../utils';
 
+const FEDEX_STATUS = {
+  LABEL_CREATED: "Label created",
+  PICKED_UP: "Picked up",
+  IN_TRANSIT: "In transit",
+  DELIVERED: "Delivered",
+}; 
 const contactEmail = 'go@incognito.org';
 const contactEmailSubject = 'Order Update Request #{{ order_number }}';
 
@@ -20,6 +26,10 @@ const messages = {
   },
   heading: {
     success: 'Your order is confirmed',
+    label_created: 'Your Node is ready',
+    picked_up: 'Your Node is on its way',
+    in_transit: 'Your Node is on its way',
+    delivered: 'Have you got it?',
     fail: 'Your payment was unsuccessful',
     pending: {
       [PAYMENT_TYPE.CRYPTO]: 'Please make a transfer to complete your order.',
@@ -29,6 +39,10 @@ const messages = {
   description: {
     success:
       'Thanks! We’re getting your Node ready. Please keep an eye on this page for updates on your shipping status. If you would like to change your shipping address, please send a message asap to <a href="{{ support_email_href }}">{{ support_email }}</a>.',
+    node_ready: 'The shipping guy is comming to pick it up!',
+    picked_up: 'The shipping guy just come to pick it. Stay tuned!',
+    in_transit: `<div class="description-container">Node will reach you soon. Let's use your tracking number that we had provided in your email and check it <a href='https://https://www.fedex.com/en-us/tracking.html' target='_blank'>here</a></div>`,
+    delivered: `Node is finally at your front door! Let's open the package and join the Incognito network.`,
     fail:
       'You can still place a new order anytime. If this is a mistake, or if you need assistance completing your order, please contact <a href="{{ support_email_href }}">{{ support_email }}</a> and we will be happy to assist.',
     pending: {
@@ -154,8 +168,8 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
     CurrencyType: orderCurrencyType,
     ExpiredAt: orderExpiredTime,
     PhoneNumber: orderPhoneNumber,
+    TrackingNumberStatus: TrackingNumberStatus,
   } = orderDetails;
-
   let { Status: orderStatus } = orderDetails;
 
   if (
@@ -240,19 +254,53 @@ export const updateOrderDetails = (container, orderNumber, orderDetails) => {
       }
 
       if (orderConfirmationTitleEl) {
-        const headingMessage = messages.heading.success;
-        orderConfirmationTitleEl.innerText = headingMessage;
+        switch (TrackingNumberStatus) {
+          case FEDEX_STATUS.LABEL_CREATED:
+            orderConfirmationTitleEl.innerText = messages.heading.label_created;
+            break;
+          case FEDEX_STATUS.PICKED_UP:
+            orderConfirmationTitleEl.innerText = messages.heading.picked_up;
+            break;
+          case FEDEX_STATUS.IN_TRANSIT:
+            orderConfirmationTitleEl.innerText = messages.heading.in_transit;
+            break;
+          case FEDEX_STATUS.DELIVERED:
+            orderConfirmationTitleEl.innerText = messages.heading.delivered;
+            break;
+          default:
+            orderConfirmationTitleEl.innerText = messages.heading.success;
+            break;
+        }
       }
 
       if (orderConfirmationDescriptionEl) {
-        const descriptionMessage = messages.description.success;
-        orderConfirmationDescriptionEl.innerHTML = replaceVariables(
-          descriptionMessage,
-          {
-            support_email: contactEmail,
-            support_email_href: contactEmailHref,
-          }
-        );
+        switch (TrackingNumberStatus) {
+          case FEDEX_STATUS.LABEL_CREATED:
+            orderConfirmationDescriptionEl.innerText =
+              messages.description.label_created;
+            break;
+          case FEDEX_STATUS.PICKED_UP:
+            orderConfirmationDescriptionEl.innerText =
+              messages.description.picked_up;
+            break;
+          case FEDEX_STATUS.IN_TRANSIT:
+            orderConfirmationDescriptionEl.innerHTML =
+              messages.description.in_transit;
+            break;
+          case FEDEX_STATUS.DELIVERED:
+            orderConfirmationDescriptionEl.innerText =
+              messages.description.delivered;
+            break;
+          default:
+            orderConfirmationDescriptionEl.innerHTML = replaceVariables(
+              messages.description.success,
+              {
+                support_email: contactEmail,
+                support_email_href: contactEmailHref,
+              }
+            );
+            break;
+        }
       }
       break;
     default:
