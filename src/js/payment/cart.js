@@ -179,7 +179,8 @@ export default class Cart {
         break;
     }
 
-    if (coinNameEl) coinNameEl.innerText = getCoinName(this.selectedCoinName);
+    if (coinNameEl)
+      coinNameEl.innerText = getCoinName(this.selectedCoinName);
     if (totalPriceEl)
       totalPriceEl.innerText = `${totalAmountInCoin.toFixed(toFixedNumber)} ${
         this.selectedCoinName
@@ -207,7 +208,8 @@ export default class Cart {
     const currentCart = this.getCartFromLocalStorage();
     const checkFee =
       shippingFee != null ? shippingFee : currentCart.shippingFee;
-    shippingFee = checkFee * quantity || 0;
+    shippingFee =
+      _country == 'US' || _country == 'VN' ? 0 : checkFee * quantity;
     tax = tax != null ? tax : currentCart.tax || 0;
     // quantity = quantity != null ? quantity : currentCart.quantity || 1;
     const subTotalPrice = quantity * price;
