@@ -19,7 +19,7 @@ export default class Cart {
     this.price = 0;
     this.quantity = $('#order-quantity option:selected').val() || 1;
     this.cart = this.getCartFromLocalStorage();
-    this.selectedCoinName = 'BTC';
+    this.selectedCoinName =$('#crypto-payment-coin-name option:selected').val() ||'BTC';
     this.totalPrice = 0;
     this.parentContainer = container;
     this.container = this.parentContainer.querySelector('#cart-container');
