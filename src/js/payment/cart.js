@@ -17,9 +17,9 @@ export default class Cart {
       throw new Error('container not found');
     }
     this.price = 0;
-    this.quantity = 1;
+    this.quantity = $('#order-quantity option:selected').val() || 1;
     this.cart = this.getCartFromLocalStorage();
-    this.selectedCoinName = 'BTC';
+    this.selectedCoinName =$('#crypto-payment-coin-name option:selected').val() ||'BTC';
     this.totalPrice = 0;
     this.parentContainer = container;
     this.container = this.parentContainer.querySelector('#cart-container');
@@ -179,7 +179,8 @@ export default class Cart {
         break;
     }
 
-    if (coinNameEl) coinNameEl.innerText = getCoinName(this.selectedCoinName);
+    if (coinNameEl)
+      coinNameEl.innerText = getCoinName(this.selectedCoinName);
     if (totalPriceEl)
       totalPriceEl.innerText = `${totalAmountInCoin.toFixed(toFixedNumber)} ${
         this.selectedCoinName
@@ -205,17 +206,19 @@ export default class Cart {
     } = this.getCartElements();
     let _country = !!country ? country : $('#shipping-country').val();
     const currentCart = this.getCartFromLocalStorage();
+    const checkFee =
+      shippingFee != null ? shippingFee : currentCart.shippingFee;
     shippingFee =
-      shippingFee != null ? shippingFee : currentCart.shippingFee || 0;
+      _country == 'US' || _country == 'VN' ? 0 : checkFee * quantity;
     tax = tax != null ? tax : currentCart.tax || 0;
     // quantity = quantity != null ? quantity : currentCart.quantity || 1;
     const subTotalPrice = quantity * price;
-    const totalPrice = subTotalPrice + shippingFee + tax;
+    const totalPrice = subTotalPrice + shippingFee;
     this.totalPrice = totalPrice;
     // quantity = quantityEl ? quantityEl.value : quantity;
     this.cart = {
       price,
-      shippingFee,
+      shippingFee: shippingFee / quantity,
       tax,
       quantity,
       totalPrice,
@@ -273,9 +276,7 @@ export default class Cart {
         return;
       }
       const configs = await getConfigsFromServer();
-      const {
-        MinerShipInfo: shippingInDays,
-      } = configs;
+      const { MinerShipInfo: shippingInDays } = configs;
       const productPrice = await getProductPrice();
       if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
         this.setPrice(productPrice);
