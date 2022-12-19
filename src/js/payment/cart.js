@@ -19,7 +19,7 @@ export default class Cart {
     this.price = 0;
     this.quantity = 1;
     this.cart = this.getCartFromLocalStorage();
-    this.selectedCoinName = 'BTC';
+    this.selectedCoinName = 'USDT';
     this.totalPrice = 0;
     this.parentContainer = container;
     this.container = this.parentContainer.querySelector('#cart-container');

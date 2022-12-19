@@ -680,6 +680,8 @@
 
         &:first-child {
           width: 60%;
+          border-radius: 8px;
+          overflow: hidden;
         }
       }
 
@@ -1008,7 +1010,7 @@
   }
 
   #content-container {
-    margin-top: 50px;
+    //margin-top: 50px;
 
     @include breakpoint-down(xl) {
       margin-top: 30px;
@@ -1137,7 +1139,7 @@
     }
 
     .story-container {
-      margin-top: 60px;
+      margin-top: 30px;
       padding-bottom: 80px;
 
       @include breakpoint-down(lg) {

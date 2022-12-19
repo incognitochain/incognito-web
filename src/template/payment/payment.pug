@@ -19,30 +19,30 @@ div#payment-container.payment-page
             h2 Payment
             p All transactions are secure and encrypted.
             fieldset.content-box__container
-                .content-box__container__row.payment-gateway(data-select-gateway='card' data-default="true")
-                    .radio-input
-                        input(type='radio' name='payment_gateway' value='card' aria-controls='pay-with-card' aria-name='Credit card')
-                    .radio-label 
-                        .label Credit card
-                        .accessory
-                            img(src=require('../../image/icon/visa.svg'))
-                            img(src=require('../../image/icon/mastercard.svg'))
-                            img(src=require('../../image/icon/amex.svg'))
-                            img(src=require('../../image/icon/discover.svg'))
+                //.content-box__container__row.payment-gateway(data-select-gateway='card' data-default="true")
+                    //.radio-input
+                    //    input(type='radio' name='payment_gateway' value='card' aria-controls='pay-with-card' aria-name='Credit card')
+                    //.radio-label
+                    //    .label Credit card
+                    //    .accessory
+                    //        img(src=require('../../image/icon/visa.svg'))
+                    //        img(src=require('../../image/icon/mastercard.svg'))
+                    //        img(src=require('../../image/icon/amex.svg'))
+                    //        img(src=require('../../image/icon/discover.svg'))
                 +box-content#pay-with-card(data-subfields-for-gateway='card')
-                    .input-wrapper
-                        .input-field
-                            label(for="card-number") Card number
-                            input(
-                                autocomplete="cc-number",
-                                placeholder="Card Number",
-                                id="card-number",
-                                name="card-number",
-                                required="true",
-                                type='tel',
-                                error_message='Enter a valid card number'
-                            )        
-                            span.lock-icon
+                    //.input-wrapper
+                        //.input-field
+                        //    label(for="card-number") Card number
+                        //    input(
+                        //        autocomplete="cc-number",
+                        //        placeholder="Card Number",
+                        //        id="card-number",
+                        //        name="card-number",
+                        //        required="true",
+                        //        type='tel',
+                        //        error_message='Enter a valid card number'
+                        //    )
+                        //    span.lock-icon
                         //- .input-field
                         //-     label(for="card-name") Name on card
                         //-     input(
@@ -53,78 +53,72 @@ div#payment-container.payment-page
                         //-         required="true",
                         //-         error_message='Enter your name exactly as it’s written on your card'
                         //-     )
-                        .input-two-columns           
-                            .input-field
-                                label(for="card-expiry") Expiration date (MM/YYYY)
-                                input(
-                                    autocomplete="cc-exp",
-                                    placeholder="Expiration date (MM/YYYY)",
-                                    id="card-expiry",
-                                    name="card-expiry",
-                                    required="true",
-                                    error_message='Enter a valid card expiry date'
-                                )          
-                            .input-field
-                                label(for="card-cvv") Security code
-                                input(
-                                    autocomplete="cc-csc",
-                                    placeholder="Security code",
-                                    id="card-cvv",
-                                    name="card-cvv",
-                                    required="true",
-                                    error_message='Enter the CVV or security code on your card'
-                                )       
-                                i-tooltip(data-text='3-digit security code usually found on the back of your card. American Express cards have a 4-digit code located on the front.').question-icon                 
-                    #card-container.input-wrapper  
-                .content-box__container__row.payment-gateway(data-select-gateway='crypto')
+                        //.input-two-columns
+                        //    .input-field
+                        //        label(for="card-expiry") Expiration date (MM/YYYY)
+                        //        input(
+                        //            autocomplete="cc-exp",
+                        //            placeholder="Expiration date (MM/YYYY)",
+                        //            id="card-expiry",
+                        //            name="card-expiry",
+                        //            required="true",
+                        //            error_message='Enter a valid card expiry date'
+                        //        )
+                        //    .input-field
+                        //        label(for="card-cvv") Security code
+                        //        input(
+                        //            autocomplete="cc-csc",
+                        //            placeholder="Security code",
+                        //            id="card-cvv",
+                        //            name="card-cvv",
+                        //            required="true",
+                        //            error_message='Enter the CVV or security code on your card'
+                        //        )
+                        //        i-tooltip(data-text='3-digit security code usually found on the back of your card. American Express cards have a 4-digit code located on the front.').question-icon
+                    //#card-container.input-wrapper
+                .content-box__container__row.payment-gateway(data-select-gateway='crypto' data-default="true")
                     .radio-input
                         input(type='radio' name='payment_gateway' value='crypto' aria-controls='pay-with-crypto' aria-name='Crypto')
                     .radio-label 
-                        .label  Bitcoin, PRV, Ethereum and more
+                        .label  Stable coins
                         .accessory
-                            img(src=require('../../image/icon/prv.jpg'), alt="")
-                            img(src=require('../../image/icon/btc.svg'))
-                            img(src=require('../../image/icon/eth.svg'))
-                            img(src=require('../../image/icon/bnb.svg'))
+                            //img(src=require('../../image/icon/prv.jpg'), alt="")
+                            //img(src=require('../../image/icon/btc.svg'))
+                            //img(src=require('../../image/icon/eth.svg'))
+                            //img(src=require('../../image/icon/bnb.svg'))
                             img(src=require('../../image/icon/usdt.svg'))
+                            img(src=require('../../image/icon/usdc.svg'))
+                            img(src=require('../../image/icon/dai.svg'))
                 +box-content#pay-with-crypto(data-subfields-for-gateway='crypto')
                     div.card-information.input-wrapper
                         div.select-wrapper.input-field
                             select(name='coin-name')#crypto-payment-coin-name
                                 include ./coin_name
-                                option(value='BTC') 
-                                    +coin_name('BTC')
-                                option(value='ETH') 
-                                    +coin_name('ETH')
-                                option(value='PRV')
-                                    +coin_name('PRV')
-                                option(value='BNB') 
-                                    +coin_name('BNB')
-                                option(value='USDT') 
+                                //option(value='BTC')
+                                //    +coin_name('BTC')
+                                //option(value='ETH')
+                                //    +coin_name('ETH')
+                                //option(value='PRV')
+                                //    +coin_name('PRV')
+                                //option(value='BNB')
+                                //    +coin_name('BNB')
+                                option(value='USDT')
                                     +coin_name('USDT')
-                                option(value='USDC') 
+                                option(value='USDC')
                                     +coin_name('USDC')
-                                option(value='TUSD')   
-                                    +coin_name('TUSD')
-                                option(value='PAX') 
-                                    +coin_name('PAX')
-                                option(value='GUSD') 
-                                    +coin_name('GUSD')
-                                option(value='USDS') 
-                                    +coin_name('USDS')
-                                option(value='BUSD') 
-                                    +coin_name('BUSD')
+                                option(value='DAI')
+                                    +coin_name('DAI')
                             div.caret
                                 img.icon(src=require('../../image/icon/caret-down-solid.svg'), alt='caret')
-                    include crypto_guide
-                    +crypto_guide(false)
-                .content-box__container__row.payment-gateway(data-select-gateway='zelle')
-                    .radio-input
-                        input(type='radio' name='payment_gateway' value='zelle' aria-controls='pay-with-zelle' aria-name='Zelle')
-                    .radio-label 
-                        .label Zelle
-                        .accessory
-                            img(src=require('../../image/icon/zelle.png'), alt="")
+                    //include crypto_guide
+                    //+crypto_guide(false)
+                //.content-box__container__row.payment-gateway(data-select-gateway='zelle')
+                //    .radio-input
+                //        input(type='radio' name='payment_gateway' value='zelle' aria-controls='pay-with-zelle' aria-name='Zelle')
+                //    .radio-label
+                //        .label Zelle
+                //        .accessory
+                //            img(src=require('../../image/icon/zelle.png'), alt="")
         //- #billing-address-container.content-box.hidden
         //-     h2 Billing Address
         //-     p Select the address that matches your card or payment method.

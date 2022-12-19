@@ -15,7 +15,9 @@ const customFetch = (
 
   token && (_headers['Authorization'] = `Bearer ${token}`);
 
-  return fetch(`${APP_ENV.BASE_API_URL}/${_url}`, {
+  console.log('BASE_API_URL', APP_ENV.BASE_API_URL);
+  const BASE_API_URL = "https://test-api2.incognito.org"
+  return fetch(`${BASE_API_URL}/${_url}`, {
     method,
     body: JSON.stringify(body),
     headers: _headers
