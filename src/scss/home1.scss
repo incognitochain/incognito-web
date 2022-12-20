@@ -5,7 +5,9 @@
   flex: 1;
   flex-direction: column;
   overflow-y: scroll;
-
+   img {
+     border-radius: 8px;
+   }
   .benefit-container {
     display: flex;
     justify-content: space-between;
@@ -360,7 +362,7 @@
                   line-height: 34px;
                   font-weight: 500;
                   margin-top: 5px;
-                  color: #25cdd6;
+                  color: #1A73E8;
 
                   &::before {
                     content: '$';
@@ -524,7 +526,7 @@
               margin-top: 10px;
               margin-bottom: 10px;
               position: relative;
-
+              color: $black;
               .highlight {
                 color: $green1;
                 font-weight: 500;
@@ -604,7 +606,6 @@
 
           .subscribe-price-container {
             position: relative;
-
             @include breakpoint-down(sm) {
               display: flex;
               flex-direction: column;

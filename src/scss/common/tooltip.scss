@@ -1,7 +1,7 @@
 .tooltip {
   z-index: 9999;
   box-shadow: 0 1px 5px 0 rgba(179, 179, 179, 0.5);
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: $black;
   position: absolute;
 
@@ -15,7 +15,7 @@
     background-color: $black;
     box-sizing: border-box;
     transition: opacity 0.3ms;
-    border-radius: 4px;
+    border-radius: 8px;
     position: relative;
 
     &,

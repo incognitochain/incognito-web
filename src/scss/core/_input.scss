@@ -1,7 +1,7 @@
 input {
   &:not([type='radio']):not([type='checkbox']) {
     background: #ffffff;
-    border-radius: 4px;
+    border-radius: 8px;
     height: $input-height;
     border: none;
     margin: 0px;

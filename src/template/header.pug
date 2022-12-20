@@ -31,8 +31,8 @@ mixin sidebar-menu
 .header-container
   nav#header
     a#logo(href='/').logo
-    .desktop-menu
-      a(href="https://incognito.org/" target="_blank").menu-item Community 
+    //.desktop-menu
+    //  a(href="https://incognito.org/" target="_blank").menu-item Community
       //- a(href='/c/wallet.html').menu-item.mobile Use
       //- a(href='/c/wallet/trade.html').menu-item.mobile Trade
       //- a(href='/c/wallet/invent.html').menu-item.mobile Create
@@ -47,13 +47,13 @@ mixin sidebar-menu
       //-   | Log In
       //- a(href="/search").menu-item.icon
       //-   img(src=require('@image/icon/search.svg'), alt="")
-    .mobile-sidebar
-      .hamburger-btn
-      .sidebar
-        .overlay
-        .content
-          .head
-            .close
-              img(src=require('@image/icon/close.svg'), alt='close icon')
-          +menu-left
-          +sidebar-menu
+    //.mobile-sidebar
+    //  .hamburger-btn
+    //  .sidebar
+    //    .overlay
+    //    .content
+    //      .head
+    //        .close
+    //          img(src=require('@image/icon/close.svg'), alt='close icon')
+    //      +menu-left
+    //      +sidebar-menu

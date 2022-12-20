@@ -48,7 +48,7 @@
 
       button {
         background: $green1;
-        border-radius: 4px;
+        border-radius: 8px;
         min-width: 190px;
 
         @include breakpoint-up(md) {
@@ -114,8 +114,8 @@
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.98);
-    box-shadow: 0 2px 4px 0 rgba(203, 203, 203, 0.5);
+    background: $background-color;
+    box-shadow: 0 2px 4px 0 rgba(70, 63, 63, 0.5);
     margin-top: 0px;
 
     .button-and-countdown-container {
@@ -236,7 +236,7 @@
       align-items: center;
       input,
       button {
-        height: 36px;
+        height: 40px;
 
         @include breakpoint-down(xl) {
           height: 44px;

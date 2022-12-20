@@ -13,13 +13,17 @@
       font-size: 12px;
       margin-right: 10px;
 
+      //span {
+      //  color: $black;
+      //  font-weight: 500;
+      //}
       &:before {
         content: '';
       }
     }
     .active {
       font-weight: 500;
-      color: #333333;
+      color: $btn-background-color;
     }
   }
   .input-wrapper {
@@ -27,6 +31,9 @@
     margin-top: 45px;
     &:first-child {
       margin-top: 0;
+    }
+    input {
+      background-color: black;
     }
     .input-field {
       position: relative;
@@ -60,6 +67,7 @@
       &.has-value {
         input {
           padding-top: 28px;
+          background-color: black;
         }
 
         label {
@@ -98,21 +106,25 @@
     }
 
     input {
-      background-color: white;
-      color: #333333;
-      border: 1px solid #d9d9d9;
+      border: 1px solid $border-color;
+      background-color: $box-color;
+      color: $black;
       padding: 12px;
       font-size: 14px;
       font-weight: 400;
       height: 43px;
       width: 100%;
       margin: 6px 0;
-      border-radius: 5px;
+      border-radius: 8px;
       transition: all 0.2s ease-out;
+      ::placeholder {
+        color: red;
+        background-color: #0a91ff;
+      }
       &:focus {
         outline: none;
-        border-color: #0dc7d8;
-        box-shadow: 0 0 0 1px #0dc7d8;
+        //border-color: #0dc7d8;
+        //box-shadow: 0 0 0 1px #0dc7d8;
       }
     }
 
@@ -161,11 +173,11 @@
     .select-wrapper {
       padding: 16px 29px 5px 11px;
       height: 43px;
-      background: white;
+      color: white;
       width: 100%;
       font-size: 14px;
-      border: 1px solid #d9d9d9;
-      border-radius: 5px;
+      border: 1px solid $border-color;
+      border-radius: 8px;
 
       select {
         position: absolute;
@@ -183,8 +195,8 @@
 
         &:focus {
           outline: none;
-          border-color: #0dc7d8;
-          box-shadow: 0 0 0 1px #0dc7d8;
+          //border-color: #0dc7d8;
+          //box-shadow: 0 0 0 1px #0dc7d8;
         }
       }
 
@@ -241,12 +253,20 @@
 @mixin content-box {
   .content-box {
     margin-top: 50px;
+    h2 {
+      font-weight: 600;
+    }
+    p {
+      color: $black;
+      margin-bottom: 6px;
+    }
 
     .content-box__container {
-      background: #fff;
+      background: $box-color;
       background-clip: padding-box;
-      border: 1px solid #d9d9d9;
-      border-radius: 5px;
+      border: 1px solid $border-color;
+      border-radius: 8px;
+      overflow: hidden;
       color: #545454;
       padding: 0;
 
@@ -271,6 +291,10 @@
           .select-wrapper {
             select {
               padding: 14px 29px 5px 11px;
+              background-color: $box-color;
+              color: $black;
+              border-radius: 8px;
+              overflow: hidden;
             }
           }
         }
@@ -284,7 +308,7 @@
         }
 
         &.content {
-          background-color: #fafafa;
+          background-color: $box-color-2;
         }
 
         .radio-input {
@@ -293,7 +317,7 @@
 
           input[type='radio'] {
             appearance: none;
-            border: 1px solid #d9d9d9;
+            border: 1px solid $border-color;
             width: 18px;
             height: 18px;
             border-radius: 50%;
@@ -339,7 +363,8 @@
 
           .label {
             font-weight: 500;
-            margin-top: 3px;
+            margin-top: 5px;
+            color: $black;
           }
 
           .accessory {
@@ -374,10 +399,9 @@
 #payment {
   display: flex;
   font-size: 14px;
-  background: white;
+  background: $background-color;
   min-height: calc(100vh - 60px);
   margin: 0 auto;
-  background: linear-gradient(90deg, white 52%, #fafafa 100%);
   justify-content: center;
 
   @include breakpoint-down(xl) {
@@ -483,7 +507,7 @@
 
   .divide-line {
     margin-top: 30px;
-    border-top: 1px solid #e4eeef;
+    border-top: 1px solid $border-color;
     position: relative;
 
     .text {
@@ -492,9 +516,10 @@
       margin: 0 auto;
       text-align: center;
       left: 50%;
-      background: white;
+      background: $border-color;
       padding: 0 20px;
       margin-left: -30px;
+      border-radius: 8px;
     }
   }
 
@@ -521,10 +546,12 @@
     @include payment-input-wrapper();
   }
   .right-content {
-    background: #fafafa;
     box-shadow: 1px 0 0 #e1e1e1 inset;
     padding: 50px;
 
+    p, span, div, li {
+      color: $black;
+    }
     @include breakpoint-down(xl) {
       padding: 20px;
       flex: unset;
@@ -551,7 +578,6 @@
           text-align: center;
           border-radius: 1.75em;
           background-color: rgba(114, 114, 114, 0.9);
-          color: #fff;
           box-sizing: border-box;
           min-width: 21px;
           height: 21px;
@@ -564,9 +590,8 @@
 
       .product-name {
         margin-left: 20px;
-        color: #323232;
         font-weight: 500;
-        font-size: 14px;
+        font-size: 20px;
       }
 
       .product-price {
@@ -583,7 +608,7 @@
       margin-bottom: 20px;
       padding-top: 20px;
       padding-bottom: 20px;
-      border: 1px solid #e1e1e1;
+      border: 1px solid $border-color;
       border-left: 0;
       border-right: 0;
     }
@@ -674,8 +699,8 @@
 
     .information {
       padding: 12px 16px;
-      border: 1px solid #d9d9d9;
-      border-radius: 5px;
+      border: 1px solid $border-color;
+      border-radius: 8px;
       margin-bottom: 40px;
 
       .three-lines-content {
@@ -794,7 +819,7 @@
     }
 
     .title {
-      color: #25cdd6;
+      color: #1A73E8;
       font-size: 28px;
       line-height: 37px;
       margin: 0px;
@@ -817,7 +842,7 @@
       }
 
       .zelle-email {
-        color: #0da5ad;
+        color: $btn-background-color;
       }
     }
 
@@ -841,9 +866,9 @@
 
     .wallet-address {
       padding: 10px 20px;
-      background: #f7f7f7;
-      border-radius: 4px;
-      border: 2px solid #eff3f3;
+      background: $box-color;
+      border-radius: 8px;
+      border: 2px solid $border-color;
       height: 48px;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -854,7 +879,7 @@
         font-family: 'Font Awesome 5 Pro';
         float: right;
         font-size: 20px;
-        color: #25cdd6;
+        color: $btn-background-color;
         display: none;
 
         @include breakpoint-up(sm) {
@@ -862,10 +887,9 @@
           display: block;
           content: 'Copy';
           right: -21px;
-          background-color: #1e3536;
+          color: $btn-background-color;
           border-top-right-radius: 4px;
           border-bottom-right-radius: 4px;
-          color: white;
           padding: 11px 30px;
           font-size: 14px;
           position: relative;
@@ -918,9 +942,9 @@
   }
 
   .link {
-    color: #0da5ad;
     text-decoration: none;
     cursor: pointer;
+    font-weight: 500;
   }
 
   .three-lines-content {
@@ -981,11 +1005,12 @@
   select.select-box {
     padding: 7px 29px 5px 11px;
     height: 36px;
-    background: white;
+    background: $box-color;
     font-size: 14px;
-    border: 1px solid #d9d9d9;
-    border-radius: 5px;
+    border: 1px solid $border-color;
+    border-radius: 8px;
     flex: 1 0 auto;
+    color: $black;
   }
 }
 
@@ -1047,7 +1072,7 @@
 
 #order-information-container .information {
   padding: 12px 16px;
-  border: 1px solid #d9d9d9;
+  border: 1px solid $border-color;
   border-radius: 5px;
   margin-bottom: 40px;
   .three-lines-content {

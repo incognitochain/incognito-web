@@ -1,6 +1,6 @@
 .header-container {
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.25);
-  border-bottom: solid 1px $white2;
+  //border-bottom: solid 1px $white2;
   #message-bar {
     width: 100%;
     padding: 15px;
@@ -36,7 +36,7 @@
 
       .link {
         text-decoration: none;
-        color: #25cdd6;
+        color: #1A73E8;
         font-weight: 500;
 
         &:hover {
@@ -118,7 +118,6 @@
     width: 100%;
     min-height: $header-height;
     position: relative;
-    background: $white;
     z-index: 2;
     max-width: 1200px;
     margin: auto;
@@ -186,7 +185,7 @@
       .menu-item {
         padding: 6px 10px;
         margin: 0 5px;
-        color: #333;
+        color: $black;
         font-size: 1.1487em;
         display: flex;
         align-items: center;

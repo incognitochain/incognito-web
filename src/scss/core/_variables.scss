@@ -1,12 +1,12 @@
 // colors
 $green: #0dc7d8;
-$green1: #25cdd6;
+$green1: #1A73E8;
 $blue: #41b4e6;
 $blue1: #1b97fb;
 $white: white;
 $whitegrey: #fafafa;
 $white2: #f0f5f5;
-$black: #111111;
+$black: white;
 $black1: #20252b;
 $black2: #1d1f20;
 $black3: #30353b;
@@ -15,15 +15,18 @@ $black5: #101111;
 $grey: #bbbfc4;
 $grey1: #333333;
 $grey2: #70777e;
-$grey3: #4a5656;
+$grey3: white;
 $red: red;
 $red2: #fe4d4d;
 $pink: #ff0055;
 $grey-light: #b2b7bd;
 
-$background-color: white;
+$background-color: #191919;
+$box-color: #252525;
+$box-color-2: #303030;
+$border-color: #545454;
 $text-color: $grey3;
-$btn-background-color: $green;
+$btn-background-color: #1A73E8;
 $btn-text-color: #ffffff;
 $overlay-bg-color: rgba(1, 1, 1, 0.6);
 
