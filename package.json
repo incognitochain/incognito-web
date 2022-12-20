@@ -1,6 +1,7 @@
 {
   "name": "incognito",
   "version": "1.0.0",
+  "repository": "https://github.com/incognitochain/incognito-web.git",
   "description": "",
   "main": "index.js",
   "scripts": {
