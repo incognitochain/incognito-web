@@ -292,7 +292,7 @@ const handleGetProductPrice = async (container) => {
         const endPriceEl = document.createElement('span');
         endPriceEl.classList.add('end-price');
         const promotePriceEl = document.createElement('span');
-        promotePriceEl.classList.add('promote-price');
+        // promotePriceEl.classList.add('promote-price');
         endPriceEl.innerHTML = productPrice;
         if (productPrice < ORIGIN_PRODUCT_PRICE) {
           promotePriceEl.innerHTML = ORIGIN_PRODUCT_PRICE;

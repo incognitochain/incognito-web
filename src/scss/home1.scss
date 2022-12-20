@@ -677,17 +677,23 @@
 
       > div {
         width: 50%;
-
         &:first-child {
           width: 60%;
           border-radius: 8px;
           overflow: hidden;
+          min-width: 800px;
         }
       }
 
+      #player {
+        background: #0a91ff;
+        border-radius: 8px !important;
+      }
       .image {
         margin-top: 150px;
         position: relative;
+        .html5-video-player  {
+        }
       }
 
       .right-content {
