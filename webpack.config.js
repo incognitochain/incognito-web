@@ -181,7 +181,7 @@ console.debug(`Production mode: ${!!production}`);
 const devConfig = {
   mode: 'development',
   devServer: {
-    host: '0.0.0.0',
+    host: 'localhost',
     contentBase: './dist',
     disableHostCheck: true
   },
