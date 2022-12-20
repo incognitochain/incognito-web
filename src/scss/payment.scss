@@ -546,7 +546,7 @@
     @include payment-input-wrapper();
   }
   .right-content {
-    box-shadow: 1px 0 0 #e1e1e1 inset;
+    box-shadow: 1px 0 0 $border-color inset;
     padding: 50px;
 
     p, span, div, li {
