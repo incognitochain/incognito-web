@@ -190,17 +190,16 @@
   font-weight: 500;
   margin-right: 10px;
   position: relative;
-  font-size: 45px;
+  font-size: 40px;
   line-height: 35px;
   padding-left: 15px;
   color: $black;
   &::before {
     content: '$';
     font-size: 0.5em;
-    position: relative;
-    top: -12px;
+    top: -7px;
     position: absolute;
-    left: 0;
+    left: 2px;
   }
   @media screen and (max-width: 576px) {
     font-size: 20px;

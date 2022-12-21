@@ -419,7 +419,7 @@
           content: '';
           width: 30px;
           height: 3px;
-          background-color: $green;
+          background-color: $btn-background-color;
         }
 
         @include breakpoint-down(sm) {

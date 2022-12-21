@@ -207,11 +207,16 @@
 
   > div.intro-slider-container {
     max-width: 1200px;
-
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    @include breakpoint-down(xl) {
+      flex-direction: column;
+    }
     .right-content {
       display: flex;
       flex-direction: column;
-
+      flex: 0.4;
       #intro-container {
         min-height: unset;
         padding-bottom: 0px;
@@ -228,10 +233,10 @@
 
           div.intro {
             justify-content: unset !important;
-            padding-bottom: 0px;
+            padding-bottom: 0;
 
             @include breakpoint-up(xl) {
-              margin-top: 20px;
+              //margin-top: 20px;
             }
 
             @include breakpoint-down(xl) {
@@ -259,10 +264,47 @@
             > div {
               .heading {
                 font-size: 32px;
-                line-height: 41px;
+                line-height: 120%;
                 letter-spacing: 0.4px;
                 text-transform: none;
-                font-weight: 500;
+                font-weight: 600;
+              }
+              .box-buy {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                padding: 16px 24px 16px 24px;
+                border: 1px solid $border-color;
+                border-radius: 12px;
+                > .cta {
+                  margin-top: 0;
+                }
+              }
+              .preview {
+                padding: 16px 24px 16px 24px;
+                border: 1px solid $border-color;
+                border-radius: 12px;
+                margin-top: 20px;
+                item {
+                  color: #9C9C9C
+                }
+              }
+              .button-and-countdown-container {
+               margin-top: 0;
+              }
+              .content-heading {
+                font-weight: 700;
+                font-size: 34px;
+                line-height: 140%;
+                margin-top: 0;
+                margin-bottom: 0;
+              }
+              .content-description {
+                color: #9C9C9C;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 140%;
               }
             }
 
@@ -617,7 +659,7 @@
                   #buy-now-container {
                     button: {
                       max-width: 250px;
-                      margin-top: 10px;
+                      //margin-top: 10px;
                     }
                   }
                 }
@@ -677,12 +719,11 @@
       margin: 0 auto;
 
       > div {
-        width: 50%;
+        //width: 50%;
         &:first-child {
           width: 60%;
           border-radius: 8px;
           overflow: hidden;
-          min-width: 800px;
         }
       }
 
@@ -691,8 +732,9 @@
         border-radius: 8px !important;
       }
       .image {
-        margin-top: 150px;
+        margin-top: 30px; // margin-top
         position: relative;
+        flex: 0.6;
         .html5-video-player  {
         }
       }
@@ -705,7 +747,7 @@
 
           > div.content {
             position: initial !important;
-            margin-top: 150px;
+            margin-top: 30px; // margin-top
             margin-left: 40px;
 
             #intro-heading {
@@ -1420,7 +1462,7 @@
             .description {
               font-size: 14px;
               font-style: italic;
-              color: #9b9e9e;
+              color: #9C9C9C;
               margin-top: 5px;
               text-align: center;
             }
