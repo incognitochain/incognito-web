@@ -2,7 +2,7 @@ ul {
   li {
     list-style: none;
     &:before {
-      content: '>';
+      content: '•';
       margin-left: -10px;
       margin-right: 10px;
       color: $btn-background-color;
