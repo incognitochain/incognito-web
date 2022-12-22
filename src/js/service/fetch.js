@@ -16,7 +16,7 @@ const customFetch = (
   token && (_headers['Authorization'] = `Bearer ${token}`);
 
   console.log('BASE_API_URL', APP_ENV.BASE_API_URL);
-  const BASE_API_URL = "https://staging-api-service.incognito.org"
+  const BASE_API_URL = "https://api.incognito.org"
   return fetch(`${BASE_API_URL}/${_url}`, {
     method,
     body: JSON.stringify(body),
