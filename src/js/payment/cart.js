@@ -11,6 +11,8 @@ import $ from 'jquery';
 import { ORIGIN_PRODUCT_PRICE } from '../constant/payment';
 // import { handleCountdown } from './util';
 
+let selectedCoinName = 'USDT';
+
 export default class Cart {
   constructor(container) {
     if (!container) {
@@ -19,7 +21,6 @@ export default class Cart {
     this.price = 0;
     this.quantity = 1;
     this.cart = this.getCartFromLocalStorage();
-    this.selectedCoinName = 'USDT';
     this.totalPrice = 0;
     this.parentContainer = container;
     this.container = this.parentContainer.querySelector('#cart-container');
@@ -88,7 +89,7 @@ export default class Cart {
   }
 
   setSelectedCoinName(coinName) {
-    this.selectedCoinName = coinName;
+    selectedCoinName = coinName;
   }
 
   getCartElements() {
@@ -160,8 +161,8 @@ export default class Cart {
   updateTotalPriceInCrypto() {
     const { coinNameEl, totalPriceEl } = this.getTotalPriceInCryptoEls();
     const exchangeRates = this.getExchangeRates();
-    if (!this.selectedCoinName || !exchangeRates) return;
-    const coinRate = exchangeRates[this.selectedCoinName.toLowerCase()];
+    if (!selectedCoinName || !exchangeRates) return;
+    const coinRate = exchangeRates[selectedCoinName.toLowerCase()];
     let totalAmountInCoin = this.totalPrice;
 
     if (coinRate) {
@@ -169,7 +170,7 @@ export default class Cart {
     }
 
     let toFixedNumber = 0;
-    switch (this.selectedCoinName.toLowerCase()) {
+    switch (selectedCoinName.toLowerCase()) {
       case 'btc':
         toFixedNumber = 6;
         break;
@@ -179,10 +180,10 @@ export default class Cart {
         break;
     }
 
-    if (coinNameEl) coinNameEl.innerText = getCoinName(this.selectedCoinName);
+    if (coinNameEl) coinNameEl.innerText = getCoinName(selectedCoinName);
     if (totalPriceEl)
       totalPriceEl.innerText = `${totalAmountInCoin.toFixed(toFixedNumber)} ${
-        this.selectedCoinName
+        selectedCoinName
       }`;
   }
 

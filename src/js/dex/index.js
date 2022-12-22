@@ -223,7 +223,7 @@ const fetchData = async () => {
 
 const main = () => {
   document.onreadystatechange = function() {
-    if (document.readyState == 'complete') {
+    if (document.readyState === 'complete') {
       fetchData();
     }
   };
