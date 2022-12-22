@@ -269,25 +269,70 @@
                 text-transform: none;
                 font-weight: 600;
               }
+              .span-own-node {
+                padding-top: 40px;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 140%;
+              }
               .box-buy {
                 display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                padding: 16px 24px 16px 24px;
+                //flex-direction: row;
+                //justify-content: space-between;
+                flex-direction: column;
+                align-items: flex-start;
                 border: 1px solid $border-color;
                 border-radius: 12px;
+                padding: 16px 0;
                 > .cta {
                   margin-top: 0;
                 }
+                a {
+                  margin-left: 40px;
+                }
+
+                img {
+                  width: 24px;
+                }
+                .rocket {
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  padding-left: 24px;
+                  padding-right: 24px;
+                  span {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 140%;
+                    margin-left: 8px;
+                  }
+                }
+                .offer-wrapper {
+                  width: fit-content;
+                }
+                .buy-link {
+                  border-top: 1px solid $border-color;
+                  display: flex;
+                  justify-content: space-between;
+                  width: 100%;
+                  padding-top: 12px;
+                  margin-top: 12px;
+                  padding-left: 24px;
+                  padding-right: 24px;
+                }
               }
               .preview {
-                padding: 16px 24px 16px 24px;
-                border: 1px solid $border-color;
-                border-radius: 12px;
-                margin-top: 20px;
+                //padding: 16px 24px 16px 24px;
+                //border: 1px solid $border-color;
+                //border-radius: 12px;
+                box-sizing: border-box;
+                padding-left: 10px;
                 .item {
-                  color: #9C9C9C
+                  color: white;
+                  font-weight: 400;
+                  font-size: 16px;
+                  line-height: 140%;
+                  margin-top: 8px;
                 }
               }
               .button-and-countdown-container {
@@ -301,10 +346,12 @@
                 margin-bottom: 20px;
               }
               .content-description {
-                color: #9C9C9C;
+                color: $black;
                 font-weight: 400;
                 font-size: 16px;
                 line-height: 140%;
+                margin-bottom: 40px;
+                margin-top: 24px;
               }
             }
 
@@ -1089,7 +1136,6 @@
 
         .price-info {
           display: block;
-
           .rocket {
             display: none;
           }
