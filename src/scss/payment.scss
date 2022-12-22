@@ -2,7 +2,7 @@
   .breadcrumb {
     display: flex;
     flex-wrap: wrap;
-    padding-left: 10px;
+    padding-left: 0;
     margin-top: 0;
     margin-bottom: 28px;
 
@@ -257,8 +257,9 @@
       font-weight: 600;
     }
     p {
-      color: $black;
-      margin-bottom: 6px;
+      color: #9C9C9C;
+      margin-top: 12px;
+      margin-bottom: 12px;
     }
 
     .content-box__container {
@@ -657,7 +658,7 @@
 
   .left-content {
     width: 65%;
-    max-width: 650px;
+    //max-width: 650px;
   }
 
   .right-content {
@@ -1057,6 +1058,8 @@
 }
 
 #payment {
+  width: 100%;
+  max-width: 1280px;
   h2 {
     font-size: 18px;
     font-weight: 400;
