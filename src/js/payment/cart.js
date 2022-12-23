@@ -276,19 +276,19 @@ export default class Cart {
         MinerPrice: productPrice,
         MinerShipInfo: shippingInDays,
       } = configs;
-      console.log('SANG TEST: ', productPrice);
       if (productPrice && productPrice < ORIGIN_PRODUCT_PRICE) {
         this.setPrice(productPrice);
-        // const originEl = this.container.querySelector('#origin-price');
-        // if (!originEl) {
-        //   const newOriginEl = document.createElement('div');
-        //   newOriginEl.classList.add('price');
-        //   newOriginEl.id = 'origin-price';
-        //   newOriginEl.innerText = `$${ORIGIN_PRODUCT_PRICE}`;
-        //   productPriceContainerEl.prepend(newOriginEl);
-        // } else {
-        //   originEl.innerText = `$${ORIGIN_PRODUCT_PRICE}`;
-        // }
+        const originEl = this.container.querySelector('#origin-price');
+        if (!originEl) {
+          const newOriginEl = document.createElement('div');
+          newOriginEl.classList.add('price');
+          newOriginEl.id = 'origin-price';
+          newOriginEl.innerText = `$${ORIGIN_PRODUCT_PRICE}`;
+          newOriginEl.style.color = '#9C9C9C'
+          productPriceContainerEl.prepend(newOriginEl);
+        } else {
+          originEl.innerText = `$${ORIGIN_PRODUCT_PRICE}`;
+        }
       } else {
         this.setPrice(ORIGIN_PRODUCT_PRICE);
       }
