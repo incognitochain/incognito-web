@@ -288,6 +288,9 @@
                 }
                 a {
                   margin-left: 40px;
+                  @include breakpoint-down(sm) {
+                    margin-left: auto;
+                  }
                 }
 
                 img {
