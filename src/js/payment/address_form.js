@@ -47,7 +47,7 @@ export default class AddressForm {
 
     handleSelectElementChanged(countryEl, this.onCountryChange.bind(this));
 
-    const countries = csc.getAllCountries();
+    const countries = csc.getAllCountries().filter(country => !['UA', "RU"].includes(country.sortname));
     let selectedCountryId = -1;
     countries.forEach(country => {
       const option = document.createElement('option');
