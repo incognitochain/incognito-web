@@ -292,7 +292,7 @@ export default class Cart {
         this.setPrice(ORIGIN_PRODUCT_PRICE);
       }
       productPriceEl.innerText = `$${this.getPrice()}`;
-      shippingTimeEl.innerText = `Ships ${shippingInDays || 'within 2 days'}`;
+      shippingTimeEl.innerText = `${shippingInDays || 'within 2 days'}`;
       this.updateCart();
     } catch (error) {
       console.log(`error`, error);
