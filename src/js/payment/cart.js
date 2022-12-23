@@ -206,6 +206,7 @@ export default class Cart {
     } = this.getCartElements();
 
     const currentCart = this.getCartFromLocalStorage();
+    let cloneShippingFee = shippingFee
     shippingFee =
       shippingFee != null ? shippingFee : currentCart.shippingFee || 0;
     tax = tax != null ? tax : currentCart.tax || 0;
@@ -232,7 +233,7 @@ export default class Cart {
     if (productPriceEl) productPriceEl.innerText = `$${price}`;
     if (subTotalPriceEl) subTotalPriceEl.innerText = `$${subTotalPrice}`;
     if (shippingPriceEl)
-      shippingPriceEl.innerText = shippingFee ? `$${shippingFee}` : 'FREE';
+      shippingPriceEl.innerText = cloneShippingFee === undefined && shippingFee === 0 ? "~" : shippingFee ? `$${shippingFee}` : 'FREE';
     if (taxPriceEl) {
       if (tax > 0) {
         taxPriceEl.classList.add('show');
