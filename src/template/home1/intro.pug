@@ -22,19 +22,20 @@ div#intro-container
         h1.content-heading Incognito Node
         h3.content-description Node is the simplest way to power the Incognito network and earn crypto. Just plug it in to get started.
         .box-buy
-          .rocket
-            .info.offer-wrapper
-              img(src=require('../../image/icon/shipping.svg')).icon
-            span.shipppingTime Ships within 24 hours
-          .buy-link
-            include ../common/price_info.pug
-            include ../common/subscribe_email_component.pug
+          include ../common/price_info.pug
+          include ../common/subscribe_email_component.pug
+          //.rocket
+          //  .info.offer-wrapper
+          //    img(src=require('../../image/icon/shipping.svg')).icon
+          //  span.shipppingTime Ships within 24 hours
+        //.buy-link
         p.span-own-node As a Node owner, you:
         ul.preview
           //li.item Protect people from the dangers of surveillance.
           li.item Give everyone a way to use crypto privately.
           li.item Own a share of the Incognito network.
           li.item Earn block rewards in PRV.
+          li.item Be ready by January 15th, 2023.
       //include ./benefit.pug
       //include ./slider.pug
       .video-link

@@ -277,13 +277,12 @@
               }
               .box-buy {
                 display: flex;
-                //flex-direction: row;
-                //justify-content: space-between;
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: space-between;
                 align-items: flex-start;
                 border: 1px solid $border-color;
                 border-radius: 12px;
-                padding: 16px 0;
+                padding: 16px 24px;
                 > .cta {
                   margin-top: 0;
                 }
@@ -311,14 +310,16 @@
                   width: fit-content;
                 }
                 .buy-link {
-                  border-top: 1px solid $border-color;
-                  display: flex;
-                  justify-content: space-between;
-                  width: 100%;
-                  padding-top: 12px;
-                  margin-top: 12px;
-                  padding-left: 24px;
-                  padding-right: 24px;
+                  //border: 1px solid $border-color;
+                  //display: flex;
+                  //flex-direction: row;
+                  //justify-content: space-between;
+                  //width: 100%;
+                  //padding-top: 12px;
+                  //margin-top: 12px;
+                  //padding-left: 24px;
+                  //padding-right: 24px;
+                  //background-color: #0a91ff;
                 }
               }
               .preview {
