@@ -285,19 +285,18 @@ const handleGetProductPrice = async (container) => {
   const priceInfoEls = container.querySelectorAll('.price-info');
   try {
     const productPrice = await getProductPrice();
-  
     if (productPrice) {
       priceInfoEls.forEach((priceInfoEl) => {
         const priceEl = priceInfoEl.querySelector('.price');
         const endPriceEl = document.createElement('span');
         endPriceEl.classList.add('end-price');
-        const promotePriceEl = document.createElement('span');
+        // const promotePriceEl = document.createElement('span');
         // promotePriceEl.classList.add('promote-price');
         endPriceEl.innerHTML = productPrice;
-        if (productPrice < ORIGIN_PRODUCT_PRICE) {
-          promotePriceEl.innerHTML = ORIGIN_PRODUCT_PRICE;
-          priceEl.appendChild(promotePriceEl);
-        }
+        // if (productPrice < ORIGIN_PRODUCT_PRICE) {
+          // promotePriceEl.innerHTML = ORIGIN_PRODUCT_PRICE;
+          // priceEl.appendChild(promotePriceEl);
+        // }
         priceEl.appendChild(endPriceEl);
       });
     }
