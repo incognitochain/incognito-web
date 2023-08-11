@@ -1,7 +1,7 @@
-mixin buy_now(btnText = 'Buy Now', btnSmallText = 'Buy Now')
+mixin buy_now(btnText = 'Out of stock', btnSmallText = 'Out of stock')
   #buy-now-container
     .title Earn crypto with Node
-    include ./price_info 
+    include ./price_info
     //- .express-checkout-cointainer
     //-   #amazon-express-checkout-container
     //-     #amazon-express-checkout-btn
@@ -9,7 +9,7 @@ mixin buy_now(btnText = 'Buy Now', btnSmallText = 'Buy Now')
     //-       img(src=require('../../image/icon/amazon-icon.svg'), alt='amazon express pay icon').icon
     //-       span.content Pay with Amazon
     //-       span.content.sticky Pay
-    a(href='/payment.html').buy-now-link
+    a.buy-now-link
       button.buy-now-btn
         span.content#text= btnText
         span.content.sticky= btnSmallText
